@@ -1,0 +1,29 @@
+---
+layout: documentation
+page_title_show: true
+title: Examples
+page_title: Examples
+author: The Hybrid Group
+description: Examples of using Cylon.JS with different hardware configurations
+page_subtitle: How you can get started.
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#example-panel").addClass("active-panel");
+    $("#example-panel li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+
+.examples
+  = partial "partials/cylon", locals: { name: 'Cylon' }
+  = partial "partials/ardrone", locals: { name: 'ARDrone' }
+  = partial "partials/beaglebone", locals: { name: 'Beaglebone' }
+  = partial "partials/firmata", locals: { name: 'Firmata' }
+  = partial "partials/joystick", locals: { name: 'Joystick' }
+  = partial "partials/leapmotion", locals: { name: 'Leap Motion' }
+  = partial "partials/neurosky", locals: { name: 'Neurosky' }
+  = partial "partials/opencv", locals: { name: 'OpenCV' }
+  = partial "partials/pebble", locals: { name: 'Pebble' }
+  = partial "partials/raspi", locals: { name: 'Raspberry Pi' }
+  = partial "partials/spark", locals: { name: 'Spark' }
+  = partial "partials/sphero", locals: { name: 'Sphero' }

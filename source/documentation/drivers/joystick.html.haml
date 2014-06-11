@@ -1,0 +1,48 @@
+/devices---
+title: Cylon.js - Generic Joystick Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Generic Joystick
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+
+joystick_platform: true
+---
+
+%section.intro
+  =image_tag "/images/devices/joystick.jpg", class: "display"
+  .info-intro
+    %p Allows user to interact with Cylon.js devices using any joystick or game controller that is compatible with SDL.
+  .clear
+  
+%section.how-to
+  %h2 How to establish a connection and setup the driver
+  :markdown
+        :::javascript
+        require 'Cylon.js'
+        ..
+
+  %h3 How to use events and call them on your drivers
+  %p Pretty simple, when the connection and the driver have been setup (as explained above) you can call events on them as follows:
+  :markdown
+        :::javascript
+        ..
+
+%section.how-to
+  %h2 How to use
+  %h3 Example receiving button events from a generic joystick.
+  :markdown
+        :::javascript
+        require 'Cylon.js'
+        ..
+
+
+%section.compatability.hardware
+  %h2 Compatibility:
+  .devices
+    = partial "documentation/partials/devices_platforms"

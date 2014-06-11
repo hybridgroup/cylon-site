@@ -1,0 +1,88 @@
+---
+title: Cylon.js - MPL115A2 Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: MPL115A2
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+
+arduino_platform: true
+digispark_platform: true
+raspberry_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#i2c li:nth-child(5)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/mpl115a2.jpg", class: "display"
+  .info-intro
+    %p Used for measuring barometric pressure.
+    %p 
+      For more information click
+      = link_to "here.", "https://www.adafruit.com/products/992", target: "_blank"
+  .clear
+   
+%section.how_to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'mpl115a2', driver: 'mpl115a2' },
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example of the mpl115a2 driver with the Arduino.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'mpl115a2', driver: 'mpl115a2' },
+
+          work: function(my) {
+            my.mpl115a2.on('start', function() {
+              my.mpl115a2.getTemperature(function(data) {
+                var temp = data['temperature'],
+                    pressure = data['pressure'];
+
+                Logger.info("temperature " + temp  + " pressure " + pressure);
+              });
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/i2c/commands_mpl115a2"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/i2c/events_mpl115a2"
+
+
+%section.circuit#Circuit
+  %h2 Circuit
+  .description-circuit
+    %p 
+  .image-circuit 
+    %img{:src => "/documentation/drivers/breadboards/i2c/mpl115a2_bb.png", :alt => ""}/ 
+  .clear 
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  =# TODO: Update platform list with all that work with this driver in Cylon.js.
+  .devices
+    = partial "documentation/partials/devices_platforms"
+    

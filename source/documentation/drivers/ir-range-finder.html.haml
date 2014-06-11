@@ -1,0 +1,93 @@
+---
+title: Cylon.js - Sharp IR Proximity Sensor Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Sharp IR Proximity Sensor
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+
+arduino_platform: true
+spark_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#gpio li:nth-child(5)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/ir-range-finder.jpg", class: "display"
+  .info-intro
+    %p
+      Infrared proximity sensor made by Sharp. Part # GP2Y0A21YK has an analog output that varies from 3.1V at 10cm to 0.4V at 80cm. The sensor has a Japanese Solderless Terminal (JST) Connector.
+    %p 
+      For more information click
+      = link_to "here.", "https://www.sparkfun.com/products/242", target: "_blank"
+
+  .clear
+
+%section.how_to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+
+        device: {
+          name: 'sensor',
+          driver: 'ir-range-sensor',
+          pin: 0,
+          model: 'gp2y0a41sk0f'
+        },
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+
+          device: {
+            name: 'sensor',
+            driver: 'ir-range-sensor',
+            pin: 0,
+            model: 'gp2y0a41sk0f'
+          },
+
+          work: function(my) {
+            every((1).seconds(), function(){
+              var range = my.sensor.range();
+              console.log('Range ===>', range);
+            });
+          }
+
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/gpio/commands_ir_range_finder"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/gpio/events_ir_range_finder"
+
+%section.circuit#Circuit
+  %h2 Circuit
+  .description-circuit
+    %p
+  .image-circuit
+    -# Image of sensor here.
+    %img{:src => "/documentation/drivers/breadboards/gpio/ir_range_finder_bb.png", :alt => ""}/
+  .clear
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  =# TODO: Update platform list with all that work with this driver in Cylon.js.
+  .devices
+    = partial "documentation/partials/devices_platforms"

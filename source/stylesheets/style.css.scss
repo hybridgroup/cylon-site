@@ -1,0 +1,55 @@
+@import "../hybridpages/assets/stylesheets/main.scss";
+
+// Custom
+.app-logo {
+
+  a {
+
+    @extend .hidden-text;
+    margin-top: 10px;
+  }
+}
+
+.content {
+
+  .documentation {
+
+    .api {
+
+      img {
+
+          width: 100%;
+      }
+    }
+
+    .examples {
+
+      table {
+
+        tbody tr td:first-child, thead tr th:first-child {
+
+          width: 580px;
+        }
+      }
+    }
+  }
+}
+
+.makerland {
+
+  ul {
+
+    li {
+
+      p {
+
+        font-size: 16pt;
+      }
+    }
+  }
+}
+
+.makerland-hide {
+
+  display:none;
+}

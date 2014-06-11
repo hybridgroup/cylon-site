@@ -1,0 +1,156 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+require 'git'
+require 'fileutils'
+
+if ARGV.any?
+  REPOS = ARGV.collect do |arg|
+    if arg[/^([\w-]+\/[\w-]+)$/, 1]
+      "https://github.com/#{arg}.git"
+    else
+      arg
+    end
+  end
+else
+  REPOS = %w(
+    https://github.com/hybridgroup/cylon-ardrone.git
+    https://github.com/hybridgroup/cylon-beaglebone.git
+    https://github.com/hybridgroup/cylon-crazyflie.git
+    https://github.com/hybridgroup/cylon-digispark.git
+    https://github.com/hybridgroup/cylon-firmata.git
+    https://github.com/hybridgroup/cylon-force.git
+    https://github.com/hybridgroup/cylon-glass.git
+    https://github.com/hybridgroup/cylon-gpio.git
+    https://github.com/hybridgroup/cylon-i2c.git
+    https://github.com/hybridgroup/cylon-joystick.git
+    https://github.com/hybridgroup/cylon-keyboard.git
+    https://github.com/hybridgroup/cylon-leapmotion.git
+    https://github.com/hybridgroup/cylon-opencv.git
+    https://github.com/hybridgroup/cylon-pebble.git
+    https://github.com/hybridgroup/cylon-raspi.git
+    https://github.com/hybridgroup/cylon-rapiro.git
+    https://github.com/hybridgroup/cylon-skynet.git
+    https://github.com/hybridgroup/cylon-spark.git
+    https://github.com/hybridgroup/cylon-sphero.git
+    https://github.com/hybridgroup/cylon-tessel-example.git
+    https://github.com/hybridgroup/cylon-tessel.git
+    https://github.com/hybridgroup/cylon-neurosky.git
+  )
+end
+
+# Public: Gets the name of the repository from it's GitHub clone URI
+#
+# uri - string git clone URI to extract a name from
+#
+# Examples
+#
+#   get_repo_name "https://github.com/hybridgroup/cylon-ardrone.git"
+#   #=> "cylon-ardrone"
+#
+#   get_repo_name "git@github.com:hybridgroup/cylon.git"
+#   #=> "cylon"
+#
+#   get_repo_name ""
+#   #=> nil
+#
+# Returns a string or nil if it couldn't be parsed
+def get_repo_name(uri)
+  uri[/.*\/(.*).git/, 1]
+end
+
+# Public: Uses the git gem to clone down a remote git repository
+#
+# uri - string URI of remote git repo to clone down
+#
+# Returns an array containing the path to the cloned repository, and the Git
+# repository instance
+def clone_repo(uri)
+  name = get_repo_name(uri)
+  path = File.expand_path("#{__dir__}/../.docs/#{name}")
+
+  FileUtils.rm_rf(path) if File.directory?(path)
+
+  puts "  - Cloning #{name}."
+  repo = Git.clone(uri, path)
+  return [path, repo]
+end
+
+def extract_docs_from_repo(path)
+  docs = {}
+
+  puts "  - Importing docs from #{File.basename(path)}"
+
+  Dir.glob(path + "/docs/*.md") do |file|
+    contents = File.read(file)
+    filename = File.basename(file)
+    docs[filename] = contents
+    puts "    - #{filename}"
+  end
+
+  docs
+end
+
+def add_docs_to_site(repo_name, docs)
+  return if docs == {}
+  docs_path = File.expand_path("#{__dir__}/../source/documentation/drivers/partials/")
+  docs_path += "/" + repo_name[/^cylon-(.*)$/, 1]
+
+  if File.directory?(docs_path)
+    FileUtils.rm_rf docs_path + "/*.html.haml"
+  else
+    FileUtils.mkdir_p docs_path
+  end
+
+  docs.each do |name, content|
+    filename = "_" + File.basename(name, ".md") + ".html.haml"
+    path = File.join docs_path, filename
+
+    content = content.force_encoding("UTF-8")
+
+    # indent by two spaces
+    content.gsub! /^(.+)/, '  \1'
+
+    File.write path, ":markdown\n#{content}"
+  end
+end
+
+def extract_breadboard_images_from_repo(path)
+  puts "  - Importing breadboard images from #{File.basename(path)}"
+  images = Dir.glob(path + "/docs/breadboards/*_bb.png")
+  images.each { |image| puts "    - #{File.basename(image)}" }
+  images
+end
+
+def add_breadboard_images_to_site(repo_name, images)
+  return if images == []
+
+  images_path = File.expand_path("#{__dir__}/../source/documentation/drivers/breadboards/")
+  images_path += "/" + repo_name[/^cylon-(.*)$/, 1]
+
+  FileUtils.rm_rf images_path if File.directory?(images_path)
+  FileUtils.mkdir_p images_path
+
+  FileUtils.cp images, images_path
+end
+
+def main
+  REPOS.each do |repo|
+    name = get_repo_name(repo)
+    puts "Importing docs from #{name}."
+
+    path, repo = clone_repo repo
+
+    docs = extract_docs_from_repo path
+    add_docs_to_site name, docs
+
+    images = extract_breadboard_images_from_repo path
+    add_breadboard_images_to_site name, images
+
+    FileUtils.rm_rf path
+  end
+end
+
+main

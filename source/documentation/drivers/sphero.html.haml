@@ -1,0 +1,866 @@
+---
+title: Cylon.js - Sphero Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Sphero
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+sphero_colors_driver: true
+active_menu_docs: true
+subnavjs: true
+
+sphero_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#others li:nth-child(7)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/sphero.jpg", class: "display"
+  .info-intro
+    %p Allows user to interact with the Sphero robotic sphero using Cylon.js.
+    %p
+      For more information click
+      = link_to "here", "http://www.gosphero.com/", target: "_blank"
+  .clear
+  
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  %p
+    That is pretty simple once the Sphero is ready (connected and listening), you just need three lines of code and you are set,
+    Cylon.js and the Sphero driver take care of the rest.
+
+    :markdown
+          :::javascript
+          var Cylon = require('cylon');
+
+          Cylon.robot({
+            connection: {name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0'},
+
+            device: {name: 'sphero', driver: 'sphero'},
+          ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p 
+    This example rolls the sphero in a random direction and change direction every second.
+
+    :markdown
+          :::javascript
+
+          var Cylon = require('cylon');
+
+          Cylon.robot({
+            connection: {name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0'},
+
+            device: {name: 'sphero', driver: 'sphero'},
+
+            work: function(me) {
+              every((1).second(), function() {
+                me.sphero.roll 60, Math.floor(Math.random() * 360)
+              });
+            }
+          }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/sphero/commands"
+    %h5
+      Note: for more information about the documentation of the Sphero driver click
+      =link_to "here.", "https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf" 
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/sphero/events"
+
+%section#SpheroColors
+  %h2 Sphero Colors 
+
+  %table.commands 
+    %tr 
+      %th Example
+      %th Name
+      %th Code
+      %th Example
+      %th Name
+      %th Code
+    %tr 
+      %td
+        .aliceblue.square
+      %td.command 
+        %span aliceblue
+      %td 0xF0F8FF
+      %td
+        .antiquewhite.square
+      %td.command 
+        %span antiquewhite
+      %td 0xFAEBD7
+    %tr 
+      %td
+        .square.aqua
+      %td.command 
+        %span aqua
+      %td 0x00FFFF
+      %td
+        .square.aquamarine 
+      %td.command 
+        %span aquamarine
+      %td 0x7FFFD4
+    %tr 
+      %td
+        .square.azure
+      %td.command 
+        %span azure
+      %td 0xF0FFFF
+      %td
+        .square.beige
+      %td.command 
+        %span beige
+      %td 0xF5F5DC
+    %tr 
+      %td
+        .square.bisque
+      %td.command 
+        %span bisque
+      %td 0xFFE4C4
+      %td
+        .square.black
+      %td.command 
+        %span black
+      %td 0x000000
+    %tr 
+      %td
+        .square.blanchedalmond
+      %td.command 
+        %span blanchedalmond
+      %td 0xFFEBCD
+      %td
+        .square.blue
+      %td.command 
+        %span blue
+      %td 0x0000FF
+    %tr 
+      %td
+        .square.blueviolet
+      %td.command 
+        %span blueviolet
+      %td 0x8A2BE2
+      %td
+        .square.brown
+      %td.command 
+        %span brown
+      %td 0xA52A2A
+    %tr 
+      %td
+        .square.burlywood
+      %td.command 
+        %span burlywood
+      %td 0xDEB887
+      %td
+        .square.cadetblue
+      %td.command 
+        %span cadetblue
+      %td 0x5F9EA0
+    %tr 
+      %td
+        .square.chartreuse
+      %td.command 
+        %span chartreuse
+      %td 0x7FFF00
+      %td
+        .square.chocolate
+      %td.command 
+        %span chocolate
+      %td 0xD2691E
+    %tr 
+      %td
+        .square.coral
+      %td.command 
+        %span coral
+      %td 0xFF7F50
+      %td
+        .square.cornflowerblue
+      %td.command 
+        %span cornflowerblue
+      %td 0x6495ED
+    %tr 
+      %td
+        .square.cornsilk
+      %td.command 
+        %span cornsilk
+      %td 0xFFF8DC
+      %td
+        .square.crimson
+      %td.command 
+        %span crimson
+      %td 0xDC143C
+    %tr 
+      %td
+        .square.cyan
+      %td.command 
+        %span cyan
+      %td 0x00FFFF
+      %td
+        .square.darkblue
+      %td.command 
+        %span darkblue
+      %td 0x00008B
+    %tr 
+      %td
+        .square.darkcyan
+      %td.command 
+        %span darkcyan
+      %td 0x008B8B
+      %td
+        .square.darkgoldenrod
+      %td.command 
+        %span darkgoldenrod
+      %td 0xB8860B
+    %tr 
+      %td
+        .square.darkgray
+      %td.command 
+        %span darkgray
+      %td 0xA9A9A9
+      %td
+        .square.darkgreen
+      %td.command 
+        %span darkgreen
+      %td 0x006400
+    %tr 
+      %td
+        .square.darkkhaki
+      %td.command 
+        %span darkkhaki
+      %td 0xBDB76B
+      %td
+        .square.darkmagenta
+      %td.command 
+        %span darkmagenta
+      %td 0x8B008B
+    %tr 
+      %td
+        .square.darkolivegreen
+      %td.command 
+        %span darkolivegreen
+      %td 0x556B2F
+      %td
+        .square.darkorange
+      %td.command 
+        %span darkorange
+      %td 0xFF8C00
+    %tr 
+      %td
+        .square.darkorchid
+      %td.command 
+        %span darkorchid
+      %td 0x9932CC
+      %td
+        .square.darkred
+      %td.command 
+        %span darkred
+      %td 0x8B0000
+    %tr 
+      %td
+        .square.darksalmon
+      %td.command 
+        %span darksalmon
+      %td 0xE9967A
+      %td
+        .square.darkseagreen
+      %td.command 
+        %span darkseagreen
+      %td 0x8FBC8F
+    %tr 
+      %td
+        .square.darkslateblue
+      %td.command 
+        %span darkslateblue
+      %td 0x483D8B
+      %td
+        .square.darkslategray
+      %td.command 
+        %span darkslategray
+      %td 0x2F4F4F
+    %tr 
+      %td
+        .square.darkturquoise
+      %td.command 
+        %span darkturquoise
+      %td 0x00CED1
+      %td
+        .square.darkviolet
+      %td.command 
+        %span darkviolet
+      %td 0x9400D3
+    %tr 
+      %td
+        .square.deeppink
+      %td.command 
+        %span deeppink
+      %td 0xFF1493
+      %td
+        .square.deepskyblue
+      %td.command 
+        %span deepskyblue
+      %td 0x00BFFF
+    %tr 
+      %td
+        .square.dimgray
+      %td.command 
+        %span dimgray
+      %td 0x696969
+      %td
+        .square.dodgerblue
+      %td.command 
+        %span dodgerblue
+      %td 0x1E90FF
+    %tr 
+      %td
+        .square.firebrick
+      %td.command 
+        %span firebrick
+      %td 0xB22222
+      %td
+        .square.floralwhite
+      %td.command 
+        %span floralwhite
+      %td 0xFFFAF0
+    %tr 
+      %td
+        .square.forestgreen
+      %td.command 
+        %span forestgreen
+      %td 0x228B22
+      %td
+        .square.fuchsia
+      %td.command 
+        %span fuchsia
+      %td 0xFF00FF
+    %tr 
+      %td
+        .square.gainsboro
+      %td.command 
+        %span gainsboro
+      %td 0xDCDCDC
+      %td
+        .square.ghostwhite
+      %td.command 
+        %span ghostwhite
+      %td 0xF8F8FF
+    %tr 
+      %td
+        .square.gold
+      %td.command 
+        %span gold
+      %td 0xFFD700
+      %td
+        .square.goldenrod
+      %td.command 
+        %span goldenrod
+      %td 0xDAA520
+    %tr 
+      %td
+        .square.gray
+      %td.command 
+        %span gray
+      %td 0x808080
+      %td
+        .square.green
+      %td.command 
+        %span green
+      %td 0x008000
+    %tr 
+      %td
+        .square.greenyellow
+      %td.command 
+        %span greenyellow
+      %td 0xADFF2F
+      %td
+        .square.honeydew
+      %td.command 
+        %span honeydew
+      %td 0xF0FFF0
+    %tr 
+      %td
+        .square.hotpink
+      %td.command 
+        %span hotpink
+      %td 0xFF69B4
+      %td
+        .square.indianred
+      %td.command 
+        %span indianred
+      %td 0xCD5C5C
+    %tr 
+      %td
+        .square.indigo
+      %td.command 
+        %span indigo
+      %td 0x4B0082
+      %td
+        .square.ivory
+      %td.command 
+        %span ivory
+      %td 0xFFFFF0
+    %tr 
+      %td
+        .square.khaki
+      %td.command 
+        %span khaki
+      %td 0xF0E68C
+      %td
+        .square.lavender
+      %td.command 
+        %span lavender
+      %td 0xE6E6FA
+    %tr 
+      %td
+        .square.lavenderblush
+      %td.command 
+        %span lavenderblush
+      %td 0xFFF0F5
+      %td
+        .square.lawngreen
+      %td.command 
+        %span lawngreen
+      %td 0x7CFC00
+    %tr 
+      %td
+        .square.lemonchiffon
+      %td.command 
+        %span lemonchiffon
+      %td 0xFFFACD
+      %td
+        .square.lightblue
+      %td.command 
+        %span lightblue
+      %td 0xADD8E6
+    %tr 
+      %td
+        .square.lightcoral
+      %td.command 
+        %span lightcoral
+      %td 0xF08080
+      %td
+        .square.lightcyan
+      %td.command 
+        %span lightcyan
+      %td 0xE0FFFF
+    %tr 
+      %td
+        .square.lightgoldenrodyellow
+      %td.command 
+        %span lightgoldenrodyellow
+      %td 0xFAFAD2
+      %td
+        .square.lightgreen
+      %td.command 
+        %span lightgreen
+      %td 0x90EE90
+    %tr 
+      %td
+        .square.lightgrey
+      %td.command 
+        %span lightgrey
+      %td 0xD3D3D3
+      %td
+        .square.lightpink
+      %td.command 
+        %span lightpink
+      %td 0xFFB6C1
+    %tr 
+      %td
+        .square.lightsalmon
+      %td.command 
+        %span lightsalmon
+      %td 0xFFA07A
+      %td
+        .square.lightseagreen
+      %td.command 
+        %span lightseagreen
+      %td 0x20B2AA
+    %tr 
+      %td
+        .square.lightskyblue
+      %td.command 
+        %span lightskyblue
+      %td 0x87CEFA
+      %td
+        .square.lightslategray
+      %td.command 
+        %span lightslategray
+      %td 0x778899
+    %tr 
+      %td
+        .square.lightsteelblue
+      %td.command 
+        %span lightsteelblue
+      %td 0xB0C4DE
+      %td
+        .square.lightyellow
+      %td.command 
+        %span lightyellow
+      %td 0xFFFFE0
+    %tr 
+      %td
+        .square.lime
+      %td.command 
+        %span lime
+      %td 0x00FF00
+      %td
+        .square.limegreen
+      %td.command 
+        %span limegreen
+      %td 0x32CD32
+    %tr 
+      %td
+        .square.linen
+      %td.command 
+        %span linen
+      %td 0xFAF0E6
+      %td
+        .square.magenta
+      %td.command 
+        %span magenta
+      %td 0xFF00FF
+    %tr 
+      %td
+        .square.maroon
+      %td.command 
+        %span maroon
+      %td 0x800000
+      %td
+        .square.mediumaquamarine
+      %td.command 
+        %span mediumaquamarine
+      %td 0x66CDAA
+    %tr 
+      %td
+        .square.mediumblue
+      %td.command 
+        %span mediumblue
+      %td 0x0000CD
+      %td
+        .square.mediumorchid
+      %td.command 
+        %span mediumorchid
+      %td 0xBA55D3
+    %tr 
+      %td
+        .square.mediumpurple
+      %td.command 
+        %span mediumpurple
+      %td 0x9370DB
+      %td
+        .square.mediumseagreen
+      %td.command 
+        %span mediumseagreen
+      %td 0x3CB371
+    %tr 
+      %td
+        .square.mediumslateblue
+      %td.command 
+        %span mediumslateblue
+      %td 0x7B68EE
+      %td
+        .square.mediumspringgreen
+      %td.command 
+        %span mediumspringgreen
+      %td 0x00FA9A
+    %tr 
+      %td
+        .square.mediumturquoise
+      %td.command 
+        %span mediumturquoise
+      %td 0x48D1CC
+      %td
+        .square.mediumvioletred
+      %td.command 
+        %span mediumvioletred
+      %td 0xC71585
+    %tr 
+      %td
+        .square.midnightblue
+      %td.command 
+        %span midnightblue
+      %td 0x191970
+      %td
+        .square.mintcream
+      %td.command 
+        %span mintcream
+      %td 0xF5FFFA
+    %tr 
+      %td
+        .square.mistyrose
+      %td.command 
+        %span mistyrose
+      %td 0xFFE4E1
+      %td
+        .square.moccasin
+      %td.command 
+        %span moccasin
+      %td 0xFFE4B5
+    %tr 
+      %td
+        .square.navajowhite
+      %td.command 
+        %span navajowhite
+      %td 0xFFDEAD
+      %td
+        .square.navy
+      %td.command 
+        %span navy
+      %td 0x000080
+    %tr 
+      %td
+        .square.oldlace
+      %td.command 
+        %span oldlace
+      %td 0xFDF5E6
+      %td
+        .square.olive
+      %td.command 
+        %span olive
+      %td 0x808000
+    %tr 
+      %td
+        .square.olivedrab
+      %td.command 
+        %span olivedrab
+      %td 0x6B8E23
+      %td
+        .square.orange
+      %td.command 
+        %span orange
+      %td 0xFFA500
+    %tr 
+      %td
+        .square.orangered
+      %td.command 
+        %span orangered
+      %td 0xFF4500
+      %td
+        .square.orchid
+      %td.command 
+        %span orchid
+      %td 0xDA70D6
+    %tr 
+      %td
+        .square.palegoldenrod
+      %td.command 
+        %span palegoldenrod
+      %td 0xEEE8AA
+      %td
+        .square.palegreen
+      %td.command 
+        %span palegreen
+      %td 0x98FB98
+    %tr 
+      %td
+        .square.paleturquoise
+      %td.command 
+        %span paleturquoise
+      %td 0xAFEEEE
+      %td
+        .square.palevioletred
+      %td.command 
+        %span palevioletred
+      %td 0xDB7093
+    %tr 
+      %td
+        .square.papayawhip
+      %td.command 
+        %span papayawhip
+      %td 0xFFEFD5
+      %td
+        .square.peachpuff
+      %td.command 
+        %span peachpuff
+      %td 0xFFDAB9
+    %tr 
+      %td
+        .square.peru
+      %td.command 
+        %span peru
+      %td 0xCD853F
+      %td
+        .square.pink
+      %td.command 
+        %span pink
+      %td 0xFFC0CB
+    %tr 
+      %td
+        .square.plum
+      %td.command 
+        %span plum
+      %td 0xDDA0DD
+      %td
+        .square.powderblue
+      %td.command 
+        %span powderblue
+      %td 0xB0E0E6
+    %tr 
+      %td
+        .square.purple
+      %td.command 
+        %span purple
+      %td 0x800080
+      %td
+        .square.red
+      %td.command 
+        %span red
+      %td 0xFF0000
+    %tr 
+      %td
+        .square.rosybrown
+      %td.command 
+        %span rosybrown
+      %td 0xBC8F8F
+      %td
+        .square.royalblue
+      %td.command 
+        %span royalblue
+      %td 0x4169E1
+    %tr 
+      %td
+        .square.saddlebrown
+      %td.command 
+        %span saddlebrown
+      %td 0x8B4513
+      %td
+        .square.salmon
+      %td.command 
+        %span salmon
+      %td 0xFA8072
+    %tr 
+      %td
+        .square.sandybrown
+      %td.command 
+        %span sandybrown
+      %td 0xF4A460
+      %td
+        .square.seagreen
+      %td.command 
+        %span seagreen
+      %td 0x2E8B57
+    %tr 
+      %td
+        .square.seashell
+      %td.command 
+        %span seashell
+      %td 0xFFF5EE
+      %td
+        .square.sienna
+      %td.command 
+        %span sienna
+      %td 0xA0522D
+    %tr 
+      %td
+        .square.silver
+      %td.command 
+        %span silver
+      %td 0xC0C0C0
+      %td
+        .square.skyblue
+      %td.command 
+        %span skyblue
+      %td 0x87CEEB
+    %tr 
+      %td
+        .square.slateblue
+      %td.command 
+        %span slateblue
+      %td 0x6A5ACD
+      %td
+        .square.slategray
+      %td.command 
+        %span slategray
+      %td 0x708090
+    %tr 
+      %td
+        .square.snow
+      %td.command 
+        %span snow
+      %td 0xFFFAFA
+      %td
+        .square.springgreen
+      %td.command 
+        %span springgreen
+      %td 0x00FF7F
+    %tr 
+      %td
+        .square.steelblue
+      %td.command 
+        %span steelblue
+      %td 0x4682B4
+      %td
+        .square.tan
+      %td.command 
+        %span tan
+      %td 0xD2B48C
+    %tr 
+      %td
+        .square.teal
+      %td.command 
+        %span teal
+      %td 0x008080
+      %td
+        .square.thistle
+      %td.command 
+        %span thistle
+      %td 0xD8BFD8
+    %tr 
+      %td
+        .square.tomato
+      %td.command 
+        %span tomato
+      %td 0xFF6347
+      %td
+        .square.turquoise
+      %td.command 
+        %span turquoise
+      %td 0x40E0D0
+    %tr 
+      %td
+        .square.violet
+      %td.command 
+        %span violet
+      %td 0xEE82EE
+      %td
+        .square.wheat
+      %td.command 
+        %span wheat
+      %td 0xF5DEB3
+    %tr 
+      %td
+        .square.white
+      %td.command 
+        %span white
+      %td 0xFFFFFF
+      %td
+        .square.whitesmoke
+      %td.command 
+        %span whitesmoke
+      %td 0xF5F5F5
+    %tr 
+      %td
+        .square.yellow
+      %td.command 
+        %span yellow
+      %td 0xFFFF00
+      %td
+        .square.yellowgreen
+      %td.command 
+        %span yellowgreen
+      %td 0x9ACD32
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  =# TODO: Update platform list with all that work with this driver in Cylon.js.
+  .devices
+    = partial "documentation/partials/devices_platforms"
