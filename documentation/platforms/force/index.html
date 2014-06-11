@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Force with Cylon.js</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a href="/documentation" class="item">Docs</a>
+            <a class="active" href="/documentation/platforms">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Platforms</h1>
+          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Force</h1>
+                    <h2 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-force" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-force/issues">Issues</a>
+</h2>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav"><div class="container">
+                    <nav><a href="#HowToInstall">How To Install</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
+                      <a href="#top">Top</a>
+                    </nav>
+</div>
+                </section><br><section class="intro"><img class="display" src="/images/devices/force.jpg"><div class="info-intro">
+                    <p></p>
+                    This module provides an adaptor and drivers for Force.com
+                    <p>
+                      It uses the nforce module
+                      <a href="https://github.com/kevinohara80/nforce">(https://github.com/kevinohara80/nforce)</a>
+                      created by @kevinohara80 thank you!
+                    </p>
+                    <p>
+                      For more info about the Force platform go to
+                      <a target="blank" href="http://www.salesforce.com/platform/overview/">http://www.force.com/</a>.
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
+                  <p>
+                    Installing cylon.js with Force support is pretty easy.
+                  </p>
+                  <pre class="CodeRay">npm install cylon-force
+</pre>
+                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                  <p></p>
+                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+    <span class="key">sfuser</span>: process.env.SF_USERNAME,
+    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
+    <span class="key">orgCreds</span>: {
+      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
+      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
+      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+    }
+  },
+  <span class="key">device</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>
+  },
+  <span class="function">work</span>: <span class="keyword">function</span>(me) {
+    <span class="keyword">var</span> toSend;
+    me.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      <span class="keyword">return</span> me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+        <span class="keyword">return</span> Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">, data Content: </span><span class="delimiter">"</span></span> + data.sobject.Content__c + <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id);
+      });
+    });
+    toSend = <span class="string"><span class="delimiter">"</span><span class="content">{ </span><span class="char">\"</span><span class="content">identifier</span><span class="char">\"</span><span class="content"> :</span><span class="char">\"</span><span class="delimiter">"</span></span> + me.name + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content">, </span><span class="char">\"</span><span class="content">msg</span><span class="char">\"</span><span class="content">: </span><span class="char">\"</span><span class="delimiter">"</span></span> + <span class="string"><span class="delimiter">'</span><span class="content">Salesforce Bot #2</span><span class="delimiter">'</span></span> + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content"> }</span><span class="delimiter">"</span></span>;
+    <span class="keyword">return</span> me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, toSend);
+  }
+}).start();
+</pre>
+                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
+                  <h2>Salesforce Setup</h2>
+                  <h3>Getting Started</h3>
+                  <ul>
+<li>
+                      First you'll need an account on DeveloperForce. If you don't already have one, you can create one at:
+                      <a target="blank" href="http://developer.force.com/join">http://developer.force.com/join</a>
+                    </li>
+                    <br><li>
+                      Next, you need to configure a new connected app in your developer profile in order to retrieve all the keys, tokens, urls nedded to
+                      connect your app with SalesForce. In order to do this:
+                      <ul>
+<br><li>Go to -&gt; Setup (top) &gt; Create (side) &gt; Apps &gt; Connected Apps (scroll down ) &gt; New Check "Enable Oauth Settings".</li>
+                        <li>Next, add all permissions. Use "http://localhost:3000/oauth/_callback" as your callback URL. You'll be using the Oauth2 web server flow, so you need your personal security code. If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.</li>
+                        <li>Setup &gt; My Personal Information &gt; Reset My Security Code, you'll need your password + security token to be able to login (PASSWORDsecurityCode (concatenated, no space)).</li>
+                      </ul>
+</li>
+                    <br><li>
+                      Now we need to setup an object with a couple of custom fields for streaming communication. In this example we'll create a new object and call it 'Sphero_Message': We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.
+                      <ul>
+<br><li>Go to Setup -&gt; Create -&gt; Object -&gt; New and name it Sphero_Message</li>
+                        <li>Create custom attributes "Sphero_Name" and "Bucks" both text type.</li>
+                        <li>
+                          We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it
+                          <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN">here</a>
+                        </li>
+                      </ul>
+</li>
+                    <br><li>
+                      Setup apexRest code so we can create new objects using RESTfull implementation:
+                      <ul>
+<br><li>Go click in My Profile -&gt; Developer Console, when the developer console opens up go to:</li>
+                        <li>Click File -&gt; New -&gt; Apex Class and the following code to that:</li>
+                        <li>
+                          We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it
+                          <a href="https://login.salesforce.com/?ec=302&amp;amp;startURL=%2Fpackaging%2FinstallPackage.apexp%3Fp0%3D04ti00000004IoN">here</a>
+                        </li>
+                        </ul>
+<pre class="CodeRay">@RestResource(urlMapping='/SpheroController/*')
+global with sharing class SpheroController {
+  @HttpPost
+    global static void create(String spheroName, String bucks) {
+      SpheroController.handleSpheroMessage(spheroName, bucks)
+    }
+
+  public static void handleSpheroMessage(String spheroName, String bucks) {
+    Sphero_Message__c sm = new Sphero_Message__c();
+    sm.Sphero_Name__c = spheroName;
+    sm.Bucks__c = bucks;
+    insert sm;
+  }
+}
+</pre>
+                      </li>
+</ul>
+<li>
+                      To be able to stream we need to setup a PushTopic to connect to.
+                      <ul>
+<br><li>Go to developer console click on Debug -&gt; Open Execute Anonymus Code or (Ctrl +E)</li>
+                        <li>Add code to create the new pushTopic with the query you want to execute and the events you want it to report.</li>
+                        </ul>
+<pre class="CodeRay">PushTopic pt = new PushTopic();
+pt.apiversion = 28.0;
+pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
+pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
+insert pt;
+System.debug('Created new PushTopic: '+ pt.Id);
+</pre>
+                      
+                    </li>
+                    <li>At this point everything in salesforce should be ready and we should be able to connect, authenticate, push/create records through apexRest and stream information using the pushTopic.</li>
+                  
+                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
+                  <p>All Cylon.js drivers listed below should work with the Force:</p>
+                  <div class="hardware">
+                    <div class="devices">
+                      <a class="device" href="/documentation/drivers/force" title="Force">
+                        <img src="/images/devices/force.jpg"></a>
+                    </div>
+                  </div>
+                </section>
+</div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#platform-panel").addClass("active-panel");
+                  $("#platform-panel ul li:nth-child(9)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

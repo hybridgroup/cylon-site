@@ -1,0 +1,613 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>BeagleBone with Cylon</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a href="/documentation" class="item">Docs</a>
+            <a class="active" href="/documentation/platforms">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Platforms</h1>
+          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">BeagleBone</h1>
+                    <h2 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-beaglebone" class="repository">Repository</a> <a class="issues" href="https://github.com/hybridgroup/cylon-beaglebone/issues">Issues</a>
+</h2>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav"><div class="container">
+                    <nav><a href="#HowToInstall">How To Install</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
+                      <a href="#top">Top</a>
+                    </nav>
+</div>
+                </section><br><section class="intro"><img class="display" src="/images/devices/beaglebone.jpg"><div class="info-intro">
+                    <p>The BeagleBone is an ARM based single board computer, with many different GPIO interfaces built in.</p>
+                    <p>
+                      For more info about the BeagleBone platform click
+                      <a target="blank" href="http://beagleboard.org/Products/BeagleBone">here</a>.
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
+                  <p>Installing Cylon.js for beaglebone is pretty easy.</p>
+                  <pre class="CodeRay">npm install cylon-beaglebone
+</pre>
+                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                  <p>This small program causes an LED and a button.</p>
+                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>
+  },
+  <span class="key">devices</span>: [
+    {
+      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,
+      <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_12</span><span class="delimiter">'</span></span>
+    }, {
+      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>,
+      <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>
+    }
+  ],
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="keyword">return</span> my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      <span class="keyword">return</span> my.led.toggle();
+    });
+  }
+}).start();
+</pre>
+                </section><section class="how-to" id="HowToConnect"><h2>How to Setup the Beaglebone Black.</h2>
+                  <h3>Installing Beaglebone Black drivers.</h3>
+                  <p>
+                    For OSX and Windows some drivers need to be installed, for Linux you only need to setup some udev-rules.
+                    You can find all driver related docs in the beaglebone site:
+                  </p>
+                  <a href="http://beagleboard.org/Getting+Started#step2">Beaglebone Driver Docs</a>
+                  <h3>Finding the SD card disk name</h3>
+                  <ul>
+<li>Insert your SD card into your host computer</li>
+                    <li>Determine the name of your SD card, ie /dev/sdb</li>
+                  </ul>
+<p>
+                    On OS X, you can use the diskutil command to help figure out the name of your card.
+                  </p>
+                  <pre class="CodeRay">$ diskutil list
+/dev/disk0
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *500.3 GB   disk0
+   1:                        EFI EFI                     209.7 MB   disk0s1
+   2:                  Apple_HFS Macintosh HD            499.4 GB   disk0s2
+   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *15.9 GB    disk1
+   1:                 DOS_FAT_32 UNTITLED                15.9 GB    disk1s1
+</pre>
+                  <p>
+                    In this case, our disk's name is /dev/disk1. Before you proceed, make sure to eject the mounted volume with diskutil unmount /dev/disk1s1.
+                  </p>
+                  <p>
+                    On most Linux distros, you should be able to use the `df -h` command to help you find what the name of your disk is.
+                  </p>
+                  <h3>Downloading the Linux image and flashing the SD card</h3>
+                  <p>
+                    Once the host computer drivers (udev-rules in the Linux case) have been installed, we need to flash the Linux image (our OS runing in the
+                    Beaglebone Black) to the SD card, we are using an ubuntu based distro for our current Beaglebone Black dev env. Steps to acomplish this are as follows.
+                  </p>
+                  <ol>
+<li>Download current Beaglebone Black Linux image</li>
+                    <li>Uncompress Linux image</li>
+                    <li>Flash Linux image to SD card</li>
+                  </ol>
+<h4>Downloading the Linux image</h4>
+                  <p>Pretty straight forward when you have a direct link to download, here it is:</p>
+                  <a href="https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz">Beaglebone Black Linux image</a>
+                  <p>If you preffer to use the terminal (we know you do :-) ):</p>
+                  <pre class="CodeRay">$ curl -O https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+</pre>
+                  <h4>Uncompressing the image file</h4>
+                  <p>
+                    Once the image has finished downloading, uncompress it to your working folder using your favorite tool, or once again
+                    use your favorite command line interface and run this command.
+                  </p>
+                  <pre class="CodeRay">$ tar -xJf robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+</pre>
+                  <h4>Flashing the SD card</h4>
+                  <p>
+                    The final step in setting up the SD card is to actually flashing the image we just downloaded and uncompressed into the sd card. You can accomplish just that by running the following command(make sure to specify the appropiate `/dev/sdX` device that represents your SD Card).
+                  </p>
+                  <pre class="CodeRay">$ sudo dd bs=1M count=3950 if=./robot-ubuntu_13.10-armv7-1394437089.img of=/dev/sdb &amp;&amp; sudo sync
+</pre>
+                  <h4>Download, uncompress and flash Linux image in three commands</h4>
+                  <p>
+                    A recap of the commands used in the steps above, in case you just want to see what was done to have
+                    a working Beaglebone Black OS flashed to the SD card.
+                  </p>
+                  <pre class="CodeRay">$ curl -O https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+$ tar -xJf robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+$ sudo dd bs=1M count=3950 if=./robot-ubuntu_13.10-armv7-1394437089.img of=/dev/sdb &amp;&amp; sudo sync
+</pre>
+                </section><section class="how-to" id="HowToConnect"><h2>How to Connect</h2>
+                  <p>
+                    Connecting to the Beaglebone Black is quite simple when you have everything setup, you can connect using SSH
+                    and share the internet connection of your host computer (the computer the BBB is connected to).
+                  </p>
+                  <h4>How to connect on Linux</h4>
+                  <p>
+                    Save the following script as bbb_sh.sh (or whatever name you preffer) and use this script to ssh into your Beaglebone Black.
+                  </p>
+                  <pre class="CodeRay">#!/bin/bash
+sudo -- sh -c 'echo 1 &gt; /proc/sys/net/ipv4/ip_forward'
+sudo iptables -A POSTROUTING -t nat -j MASQUERADE
+ssh ubuntu@192.168.7.2
+</pre>
+                  <p>After the script is saved in your computer it is pretty easy to connect by just running it.</p>
+                  <pre class="CodeRay">$ sudo sh bbb_ssh.sh
+</pre>
+                  <h4>How to connect on OSX</h4>
+                  <p>Just SSH into the beaglebone black, the IP address is 192.168.1.2</p>
+                  <pre class="CodeRay">$ ssh ubuntu@192.168.1.2
+</pre>
+                  <h4>How to connect on Windows</h4>
+                  <p>The process in Windows requires more steps to setup, but when done should be equaly easy to connect to the board.</p>
+                  <ol>
+<li>
+                      First follow this guide for setting up internet sharing on your windows computer,
+                      <a href="http://lanceme.blogspot.com/2013/06/windows-7-internet-sharing-for.html">Windows Internet Sharing</a>
+                      , Only follow the sections titled "On the Windows 7 computer".
+                    </li>
+                    <li>
+                      You need to instal putty (or your preffered SSH client) to SSH into the Beaglebone Black,
+                      <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">download Putty.</a>
+                    </li>
+                    <li>Finally, you can ssh into the Beaglebone Black using Putty (or the SSH client you installed) in the same way we do it in OSX, The Beaglebone Black's IP address is 192.168.7.2</li>
+                  </ol>
+<pre class="CodeRay">$ ssh ubuntu@192.168.1.2
+</pre>
+                  <h4>Login Credentials</h4>
+                  <p>After all the previous work and connecting through SSH you are going to need some credentials to login to the Beaglebone Black OS, the creds are as follows:</p>
+                  <ul>
+<li>User: ubuntu</li>
+                    <li>Password: robot</li>
+                  </ul>
+<h4>(Optional) VNC connection</h4>
+                  <p>
+                    The Beaglebone Black has been preloaded with vnc and the xfce desktop environment. You may start vnc by logging into the Beaglebone Black and executing
+                  </p>
+                  <pre class="CodeRay">$ sh ~/start_vnc.sh
+</pre>
+                  <p>
+                    The Beaglebone Black now has an active vnc session on 192.168.7.2:1 with the password robotvnc
+                  </p>
+                  <p>
+                    I'll admint that was a bit long for a setup process (let me tell you a secret, we are not done yet :-S ... ), but hopefully not too complicated,
+                    just a bit on the long side, now you have a full Linux system running in you Beaglebone Black! Congrats... now on to the next
+                    and final part, resising the SD card partition.
+                  </p>
+                  <h4>Resising the SD Card partition</h4>
+                  <p>
+                    We now have our full Ubuntu Linux OS setup, ready and working in our Beaglebone Black, and we are able to connect using SSH, so what's next? well we need
+                    some space in that SD card partition to do all of our work and install all of our code, thankfully that is quite simple, all that we require is to run
+                    some commands and reboot the board a couple of times, so let's dive into it.
+                  </p>
+                  <p>First login to the board using SSH and run the following commands</p>
+                  <pre class="CodeRay">$ fdisk /dev/mmcblk0
+d
+2
+n
+p
+2
+
+
+w
+$ shutdown -r now
+</pre>
+                  <p>After the board has rebooted, we log back in and execute the following commands</p>
+                  <pre class="CodeRay">$ resize2fs /dev/mmcblk0p2
+$ shutdown -r now
+</pre>
+                  <p>
+                    Once again we wait for the board to reboot and log back in to make sure the partition has been resized successfully by running
+                  </p>
+                  <pre class="CodeRay">$ df -h
+</pre>
+                  <p>
+                    The /dev/root partition should be the size of the entire SD card, and with this
+                    we are finally done to start running Cylon directly on the Beaglebone Black.
+                  </p>
+                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
+                  <p>All Cylon.js digital and PWM GPIO drivers listed below should work with the BeagleBone:</p>
+                  <div class="hardware">
+                    <h2>GPIO Drivers</h2>
+                    <div class="devices">
+                      <!-- // Button -->
+                      <a class="device" href="/documentation/drivers/button" title="Button">
+                        <img src="/images/devices/button.jpg"></a>
+                      <!-- // Continuos Servo -->
+                      <a class="device" href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <img src="/images/devices/continuous-servo.jpg"></a>
+                      <!-- // LED -->
+                      <a class="device" href="/documentation/drivers/led" title="LED">
+                        <img src="/images/devices/LED.jpg"></a>
+                      <!-- // Makey Button -->
+                      <a class="device" href="/documentation/drivers/makey-button" title="Maxbotix Range Finder">
+                        <img src="/images/devices/makey-button.jpg"></a>
+                      <!-- // Motor -->
+                      <a class="device" href="/documentation/drivers/motor" title="Motor">
+                        <img src="/images/devices/motor.jpg"></a>
+                      <!-- // Servo -->
+                      <a class="device" href="/documentation/drivers/servo" title="Servo">
+                        <img src="/images/devices/servo.jpg"></a>
+                    </div>
+                  </div>
+                </section>
+</div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#platform-panel").addClass("active-panel");
+                  $("#platform-panel ul li:nth-child(3)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

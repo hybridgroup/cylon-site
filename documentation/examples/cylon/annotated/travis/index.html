@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="A Cylon.JS code example" name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Cylon.JS Example - Cylon and Travis</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Example: Cylon and Travis</h1>
+          <h2 class="subtitle"><a href="https://github.com/hybridgroup/cylon/tree/master/examples/travis" target="_blank">View In Repo</a></h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                
+                <h1 id="cylon-and-travis">Cylon and Travis</h1>
+                
+                <p>For this Cylon example, we're going to check on a Travis build every ten
+                seconds, and change the color of a Sphero depending on the result.</p>
+                
+                <p>Before you run this, make sure you install the following dependencies:</p>
+                
+                <ul>
+<li>
+<strong>travis-ci</strong> (npm install travis-ci)</li>
+                  <li>
+<strong>cylon-sphero</strong> (npm install cylon-sphero)</li>
+                </ul>
+<p>First of all, let's load up Cylon. We're going to load the version directly from
+                the repo, since we're here already:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+</pre>
+                
+                <p>Next, we'll set up Travis. We're going to be using the very useful <a href="https://github.com/pwmckenna/node-travis-ci">travis-ci</a>
+                module.</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Travis = require(<span class="string"><span class="delimiter">'</span><span class="content">travis-ci</span><span class="delimiter">'</span></span>)
+</pre>
+                
+                <p>Now that we've got our Travis module imported, let's set it up:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> travis = <span class="keyword">new</span> Travis({<span class="key">version</span>: <span class="string"><span class="delimiter">'</span><span class="content">2.0.0</span><span class="delimiter">'</span></span>});
+</pre>
+                
+                <p>Now we have a working interface to the Travis-CI API. Let's set up a username
+                and repo to query Travis about later, as long as we're here. Feel free to change
+                these if you want to try with your own repositories.</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> user = <span class="string"><span class="delimiter">"</span><span class="content">hybridgroup</span><span class="delimiter">"</span></span>,
+    name = <span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>;
+</pre>
+                
+                <h2 id="robot">Robot</h2>
+                
+                <p>And with that last bit of setup done, let's start setting up our robot!</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+</pre>
+                
+                <p>We use a connection to tell Cylon what port it can use to communicate with our
+                Sphero, along with what adaptor it should require (<code>cylon-sphero</code>) to connect to
+                it. We give it a name to make it easier to reference later on.</p>
+                
+                <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
+</pre>
+                
+                <p>Devices are set up in a similar fashion, but allow us to directly issue commands
+                to the sphero. These are added to the robot's namespace directly to make them
+                easy to access.</p>
+                
+                <pre class="CodeRay">  device: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+</pre>
+                
+                <p>Now that we've told our robot what hardware it has access to, we can start
+                telling it what it should do. The work function passes along one argument,
+                a reference to the robot so we can access it's state and hardware.</p>
+                
+                <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+</pre>
+                
+                <p>We'll define a function to check Travis and change the Sphero's color depending
+                on the state of the last build.</p>
+                
+                <pre class="CodeRay">    <span class="keyword">var</span> <span class="function">checkTravis</span> = <span class="keyword">function</span>() {
+</pre>
+                
+                <p>First, it will log that it's checking Travis to the logger:</p>
+                
+                <pre class="CodeRay">      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Checking repo </span><span class="delimiter">"</span></span> + user + <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> + name);
+</pre>
+                
+                <p>Let's set the default color of the Sphero to blue until we know what the build
+                status is:</p>
+                
+                <pre class="CodeRay">      my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+</pre>
+                
+                <p>Now we'll fetch the Travis build status:</p>
+                
+                <pre class="CodeRay">      travis.repos({ <span class="key">owner_name</span>: user, <span class="key">name</span>: name }, <span class="keyword">function</span>(err, res) {
+</pre>
+                
+                <p>If we were returned a response containing a repo, we'll check the status of the
+                build and use that to determine what color we should make the Sphero.</p>
+                
+                <pre class="CodeRay">        <span class="keyword">if</span> (res.repo === <span class="predefined-constant">undefined</span>) { my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>); }
+
+        <span class="keyword">switch</span> (res.repo.last_build_state) {
+</pre>
+                
+                <p>When the build state is passed, then we'll set the Sphero's color to green:</p>
+                
+                <pre class="CodeRay">          <span class="keyword">case</span> <span class="string"><span class="delimiter">'</span><span class="content">passed</span><span class="delimiter">'</span></span>:
+            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">green</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+            <span class="keyword">break</span>;
+</pre>
+                
+                <p>And if the build has failed, let's set the Sphero's color to red:</p>
+                
+                <pre class="CodeRay">          <span class="keyword">case</span> <span class="string"><span class="delimiter">'</span><span class="content">failed</span><span class="delimiter">'</span></span>:
+            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">red</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+            <span class="keyword">break</span>;
+</pre>
+                
+                <p>Otherwise, we'll just set it to blue:</p>
+                
+                <pre class="CodeRay">            <span class="keyword">else</span> me.sphero.setColor <span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>
+          <span class="keyword">default</span>:
+            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+        }
+      });
+    };
+</pre>
+                
+                <p>Now that we've got that function defined, let's call it to set the initial color
+                of the Sphero:</p>
+                
+                <pre class="CodeRay">    checkTravis();
+</pre>
+                
+                <p>And every ten seconds, let's keep checking Travis:</p>
+                
+                <pre class="CodeRay">    every((<span class="integer">10</span>).seconds(), checkTravis);
+  }
+</pre>
+                
+                <p>And now that we've got our work defined, let's start the robot!</p>
+                
+                <pre class="CodeRay">}).start();
+</pre>
+              </div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#example-panel").addClass("active-panel");
+                  $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

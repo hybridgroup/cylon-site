@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="A Cylon.JS code example" name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Cylon.JS Example - Leapmotion Ardrone 2.0</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Example: Leapmotion Ardrone 2.0</h1>
+          <h2 class="subtitle"><a href="https://github.com/hybridgroup/cylon/tree/master/examples/leap_ardrone" target="_blank">View In Repo</a></h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                
+                <div class="example">
+                  <pre class="CodeRay"><span class="comment">/*
+ * leap_ardrone.js
+ * 
+ * Written by Giuliano Sposito and Fábio Uechi
+ * Copyright (c) 2013-2014 CI&amp;T Software
+ * Licensed under the Apache 2.0 license.
+*/</span>
+
+Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="comment">// constants</span>
+<span class="keyword">var</span> lastS = <span class="integer">0</span>,
+    handStartPosition = [],
+    handStartDirection = [],
+    UP_CONTROL_THRESHOLD = <span class="integer">50</span>,
+    UP_SPEED_FACTOR = <span class="float">0.01</span>,
+    CIRCLE_THRESHOLD = <span class="float">1.5</span>,
+    DIRECTION_THRESHOLD = <span class="float">0.25</span>,
+    DIRECTION_SPEED_FACTOR = <span class="float">0.05</span>,
+    TURN_SPEED = <span class="float">0.5</span>,
+    TURN_TRESHOLD = <span class="float">0.2</span>,
+    TURN_SPEED_FACTOR = <span class="float">2.0</span>;
+
+Cylon.robot({
+
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1:6437</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>}
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+
+    <span class="comment">// HAND </span>
+    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
+
+      <span class="comment">// detects open hand ==&gt; reset</span>
+      <span class="keyword">if</span> (hand.s&gt;<span class="float">1.5</span> &amp;&amp; lastS&lt;=<span class="float">1.5</span>) {
+        handStartPosition = hand.palmPosition;
+        handStartDirection = hand.direction;
+      };
+
+      <span class="comment">// TURNS</span>
+      <span class="keyword">if</span>(hand.s&gt;<span class="float">1.5</span> &amp;&amp; Math.abs(handStartDirection[<span class="integer">0</span>]-hand.direction[<span class="integer">0</span>]) &gt; TURN_TRESHOLD ) {
+        <span class="keyword">var</span> signal = handStartDirection[<span class="integer">0</span>]-hand.direction[<span class="integer">0</span>];
+        <span class="keyword">var</span> value = (Math.abs(handStartDirection[<span class="integer">0</span>]-hand.direction[<span class="integer">0</span>])-TURN_TRESHOLD)*TURN_SPEED_FACTOR;
+        <span class="keyword">if</span> (signal&gt;<span class="integer">0</span>){
+          my.drone.counterClockwise(value);
+        }
+
+        <span class="keyword">if</span> (signal&lt;<span class="integer">0</span>){
+          my.drone.clockwise(value);
+        }      
+      }
+  
+      <span class="comment">// UP and DOWN </span>
+      <span class="keyword">if</span> (hand.s&gt;<span class="float">1.5</span> &amp;&amp; Math.abs(hand.palmPosition[<span class="integer">1</span>]-handStartPosition[<span class="integer">1</span>]) &gt; UP_CONTROL_THRESHOLD) {    
+        <span class="keyword">var</span> signal = (hand.palmPosition[<span class="integer">1</span>]-handStartPosition[<span class="integer">1</span>]) &gt;= <span class="integer">0</span> ? <span class="integer">1</span> : -<span class="integer">1</span>;
+        <span class="keyword">var</span> value = Math.round(Math.abs((hand.palmPosition[<span class="integer">1</span>]-handStartPosition[<span class="integer">1</span>]))-UP_CONTROL_THRESHOLD) * UP_SPEED_FACTOR;
+    
+        <span class="keyword">if</span> (signal&gt;<span class="integer">0</span>) {
+          my.drone.up(value);
+        };
+
+        <span class="keyword">if</span> (signal&lt;<span class="integer">0</span>) {
+            my.drone.down(value);
+        }
+      }
+
+      <span class="comment">// DIRECTION FRONT/BACK</span>
+      <span class="keyword">if</span> (hand.s&gt;<span class="float">1.5</span> &amp;&amp; (Math.abs(hand.palmNormal[<span class="integer">2</span>])&gt;DIRECTION_THRESHOLD)) {
+        <span class="keyword">if</span> (hand.palmNormal[<span class="integer">2</span>]&gt;<span class="integer">0</span>) {
+            <span class="keyword">var</span> value = Math.abs(Math.round( hand.palmNormal[<span class="integer">2</span>]*<span class="integer">10</span> + DIRECTION_THRESHOLD )*DIRECTION_SPEED_FACTOR);
+            my.drone.forward( value );
+        };
+        
+        <span class="keyword">if</span> (hand.palmNormal[<span class="integer">2</span>]&lt;<span class="integer">0</span>) {
+            <span class="keyword">var</span> value = Math.abs(Math.round( hand.palmNormal[<span class="integer">2</span>]*<span class="integer">10</span> - DIRECTION_THRESHOLD )*DIRECTION_SPEED_FACTOR);
+            my.drone.back( value );
+        };
+      } 
+
+      <span class="comment">// DIRECTION LEFT/RIGHT</span>
+      <span class="keyword">if</span> (hand.s&gt;<span class="float">1.5</span> &amp;&amp; (Math.abs(hand.palmNormal[<span class="integer">0</span>])&gt;DIRECTION_THRESHOLD)) {
+        <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>]&gt;<span class="integer">0</span>) {
+            <span class="keyword">var</span> value = Math.abs(Math.round( hand.palmNormal[<span class="integer">0</span>]*<span class="integer">10</span> + DIRECTION_THRESHOLD )*DIRECTION_SPEED_FACTOR);
+            my.drone.left( value );
+        };
+        
+        <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>]&lt;<span class="integer">0</span>) {
+            <span class="keyword">var</span> value = Math.abs(Math.round( hand.palmNormal[<span class="integer">0</span>]*<span class="integer">10</span> - DIRECTION_THRESHOLD )*DIRECTION_SPEED_FACTOR);
+            my.drone.right( value );
+        };
+      }
+
+      <span class="comment">// AUTO FREEZE</span>
+      <span class="keyword">if</span> ( hand.s&gt;<span class="float">1.5</span> &amp;&amp;  <span class="comment">// open hand</span>
+          (Math.abs(hand.palmNormal[<span class="integer">0</span>])&lt;DIRECTION_THRESHOLD) &amp;&amp; <span class="comment">// within left/right threshold</span>
+          (Math.abs(hand.palmNormal[<span class="integer">2</span>])&lt;DIRECTION_THRESHOLD) &amp;&amp; <span class="comment">// within forward/back threshold</span>
+           Math.abs(hand.palmPosition[<span class="integer">1</span>]-handStartPosition[<span class="integer">1</span>]) &lt; UP_CONTROL_THRESHOLD &amp;&amp; <span class="comment">// within up/down threshold</span>
+           Math.abs(handStartDirection[<span class="integer">0</span>]-hand.direction[<span class="integer">0</span>]) &lt; TURN_TRESHOLD) <span class="comment">// within turn threshold</span>
+      {
+          my.drone.stop();
+      }
+
+      <span class="comment">// COMMAND FREEZE</span>
+      <span class="keyword">if</span> (hand.s&lt;=<span class="float">1.5</span> &amp;&amp; lastS &gt; <span class="float">1.5</span>) { <span class="comment">// closed hand</span>
+        my.drone.stop();
+      }
+
+      lastS = hand.s;
+
+    });<span class="comment">// end hand</span>
+
+    <span class="comment">// Gestures</span>
+    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">gesture</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(gesture) {
+      <span class="keyword">if</span> (gesture.type==<span class="string"><span class="delimiter">'</span><span class="content">circle</span><span class="delimiter">'</span></span> &amp;&amp; gesture.state==<span class="string"><span class="delimiter">'</span><span class="content">stop</span><span class="delimiter">'</span></span> &amp;&amp; gesture.progress &gt; CIRCLE_THRESHOLD ){
+        <span class="keyword">if</span> (gesture.normal[<span class="integer">2</span>] &lt; <span class="integer">0</span>) {
+          my.drone.takeoff();
+        };
+
+        <span class="keyword">if</span> (gesture.normal[<span class="integer">2</span>] &gt; <span class="integer">0</span>) {
+          my.drone.land();
+        }
+      }
+        
+      <span class="comment">// EMERGENCE STOP</span>
+      <span class="keyword">if</span> (gesture.type==<span class="string"><span class="delimiter">'</span><span class="content">keyTap</span><span class="delimiter">'</span></span> || gesture.type==<span class="string"><span class="delimiter">'</span><span class="content">screenTap</span><span class="delimiter">'</span></span>) {
+          my.drone.stop();
+      };
+    }); <span class="comment">// end gesture</span>
+
+    <span class="comment">//KEYBOARD</span>
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">right</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+      my.drone.rightFlip();
+    });
+
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">left</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+      my.drone.leftFlip();
+    });
+
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">up</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+      my.drone.frontFlip();
+    });
+
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">down</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+      my.drone.backFlip();
+    });
+
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">w</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+        my.drone.wave();
+    });
+
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">s</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
+        my.drone.stop();
+    });
+      
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">l</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) {
+        my.drone.land();
+    });
+
+  } <span class="comment">// end work</span>
+}).start();
+</pre>
+                </div>
+              </div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#example-panel").addClass("active-panel");
+                  $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Cylon.js CLI</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Guides</h1>
+          <h2 class="subtitle">A Guide by Humans, for Humanscurrently running robots.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                
+                <div class="cli">
+                  <h1>What is it?</h1>
+                  <p>
+                    Cylon CLI is a powerful command line interface tool that provides several tools to make RobotOps and setting up your devices to work with cylon a lot easier.
+                  </p>
+                  <h2>How to install</h2>
+                  <p>
+                    For the commands to be available everywhere the cylon module needs to be installed globally.
+                    Here's how to do it.
+                  </p>
+                  <pre class="CodeRay">$ sudo npm install -g cylon-cli
+</pre>
+                  <p>
+                    You install the Cylon CLI separately from the rest of Cylon.js, which means you can use it to program Arduinos with the Firmata firmware also compatible with other JavaScript frameworks such as Johnny-Five. The Cylon CLI provides many useful features on other platforms as well.
+                  </p>
+                  <h2>How can I use it?</h2>
+                  <p>
+                    </p>
+<p>The Cylon.JS CLI tools are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the <code>cylon-cli</code> module installed globally, the toolkit will be available at all times. To find all available commands, just run <code>cylon help</code>.</p>
+                  
+                  <h3>Printing a list of available commands</h3>
+                  <pre class="CodeRay">$ cylon
+
+Usage: cylon [command] [options]
+
+Commands:
+  arduino [subcommand] [opts]
+      Install avrdude, and upload sketches to your Arduino
+
+  bluetooth [pair|unpair|connect]
+      Scan, pair, unpair bluetooth devices. Establishes serial to Bluetooth connection.
+
+  crazyflie [subcommand] [opts]
+      Set udev rules for Crazyflie
+
+  digispark [subcommand]
+      Set udev rules, and upload the Littlewire protocol to your Digispark
+
+  generate [module|driver] [name]
+      Generate new Cylon components or modules
+
+  help
+      Prints help for using the Cylon-CLI commands.
+
+  scan [type]
+      Scans serial, Bluetooth, or USB for connected devices
+
+  spark upload [access_token] [device_id] [firmware_file]
+      Upload new firmare to your Spark Core
+</pre>
+                  <h3>Scanning serial port for connected devices</h3>
+                  <pre class="CodeRay">$ cylon scan serial
+</pre>
+                  <h3>Important note about Cylon CLI commands.</h3>
+                  <p>
+                    Parameters described between
+                    <b>&lt;required_param&gt;</b>
+                    are required, parameters between
+                    <b>[optional_param]</b>
+                    are optional.
+                  </p>
+                  <p>
+                    </p>
+<p>To use the commands as described here you need to install cylon as a global module by running <code>sudo npm install -g cylon-cli</code>.</p>
+                  
+                  <p>
+                    </p>
+<p>If you choose to install locally, using just local path, and you cannot call the commands, you might need to use the full path to the cylon command file, or add <code>./node_modules/cylon/bin</code> directory to the $PATH.</p>
+                    <pre class="CodeRay">$ cylon scan serial
+</pre>
+                  
+                  <h2>What Cylon CLI commands are available?</h2>
+                  <p>
+                    If you have only installed cylon, the list of available commands is the one printed in the section above,
+                    let's review them one by one.
+                  </p>
+                  <h2>cylon arduino [subcommand] [opts]</h2>
+                  <h4>Description</h4>
+                  <p>
+                    Install avrdude, and upload sketches to your Arduino.
+                  </p>
+                  <pre class="CodeRay">$ cylon arduino
+Usage:
+cylon arduino scan                                     # scans serialports for Arduino boards
+cylon arduino install                                  # installs avrdude to allow uploading of sketches to Arduino
+cylon arduino upload firmata [port]                    # uploads Firmata sketch to Arduino
+cylon arduino upload rapiro [port]                     # uploads Rapiro sketch to Arduino
+cylon arduino upload [custom-firmware-filename] [port] # uploads a custom sketch to Arduino
+</pre>
+                  <b>
+                    Notes:
+                    </b><p>To be able to run the upload command
+                    you must run <code>cylon arduino install</code> first.
+                    The serial port must have the correct permissions for your
+                    user to read and write, or run it as root (sudo it).</p>
+                  
+                  <pre class="CodeRay">$ cylon arduino upload ttyACM0
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f
+avrdude: reading input file "/home/myuser/workspace/cylon-cmds/node_modules/cylon-firmata/src/cli/hex/StandardFirmata.cpp.hex"
+avrdude: writing flash (11452 bytes):
+
+Writing | ################################################## | 100% 1.84s
+
+avrdude: 11452 bytes of flash written
+avrdude: verifying flash memory against /home/myuser/workspace/cylon-cmds/node_modules/cylon-firmata/src/cli/hex/StandardFirmata.cpp.hex:
+avrdude: load data flash data from input file /home/myuser/workspace/cylon-cmds/node_modules/cylon-firmata/src/cli/hex/StandardFirmata.cpp.hex:
+avrdude: input file /home/myuser/workspace/cylon-cmds/node_modules/cylon-firmata/src/cli/hex/StandardFirmata.cpp.hex contains 11452 bytes
+avrdude: reading on-chip flash data:
+
+Reading | ################################################## | 100% 1.47s
+
+avrdude: verifying ...
+avrdude: 11452 bytes of flash verified
+
+avrdude: safemode: Fuses OK
+
+avrdude done.  Thank you.
+</pre>
+                  <h2>cylon bluetooth [scan|pair|unpair|connect]</h2>
+                  <h4>Description</h4>
+                  <p>
+                    </p>
+<p>Lets you pair, unpair and connect to bluetooth devices by specifying one
+                    of three subcommands, the avilable options for the subcommand are <code>pair</code>,
+                    <code>unpair</code> or <code>connect</code>.</p>
+                  
+                  <h4>cylon bluetooth scan</h4>
+                  <b>Description</b>
+                  <p>
+                    Scans for bluetooth devices
+                  </p>
+                  <pre class="CodeRay">$ cylon scan bluetooth
+Scanning ...
+  00:06:66:4A:23:C3        Sphero-RPB
+</pre>
+                  <h4>cylon bluetooth pair &lt;address&gt; [hciX]</h4>
+                  <b>Description</b>
+                  <p>
+                    Pairs a bluetooth device to the computer.
+                  </p>
+                  <b>
+                    Notes:
+                    </b><p>when prompted, answer <code>yes</code> or enter any <code>1234</code> to confirm pairing pin.</p>
+                  
+                  <pre class="CodeRay">$ cylon bluetooth pair 00:06:66:4A:23:C3
+RequestConfirmation (/org/bluez/630/hci0/dev_00_06_66_4A_23_C3, 135070)
+Confirm passkey (yes/no): yes
+Release
+New device (/org/bluez/630/hci0/dev_00_06_66_4A_23_C3)
+</pre>
+                  <h4>cylon bluetooth unpair &lt;address&gt; [hciX]</h4>
+                  <b>Description</b>
+                  <p>
+                    Unpairs a bluetooth device.
+                  </p>
+                  <b>
+                    Notes:
+                    </b><p>when prompted answer <code>no</code> to deny pairing pin.</p>
+                  
+                  <pre class="CodeRay">$ cylon bluetooth unpair 00:06:66:4A:23:C3
+RequestConfirmation (/org/bluez/630/hci0/dev_00_06_66_4A_23_C3, 761422)
+Confirm passkey (yes/no): no
+Creating device failed: org.bluez.Error.AuthenticationFailed: Authentication Failed
+</pre>
+                  <h4>cylon bluetooth connect &lt;address&gt; [rfcommX]</h4>
+                  <b>Description</b>
+                  <p>
+                    connects a bluetooth device to a serial port to enable communication with CylonJS.
+                  </p>
+                  <pre class="CodeRay">$ cylon bluetooth connect 00:06:66:4A:23:C3
+Connected /dev/rfcomm0 to 00:06:66:4A:23:C3 on channel 1
+Press CTRL-C for hangup
+</pre>
+                  <h2>cylon crazyflie &lt;subcommand&gt;</h2>
+                  <h4>Description</h4>
+                  <p>Set udev rules for Crazyflie.</p>
+                  <pre class="CodeRay">$ cylon crazyflie
+Usage:
+cylon crazyflie set-udev-rules
+</pre>
+                  <h2>cylon digispark &lt;subcommand&gt;</h2>
+                  <h4>Description</h4>
+                  <p>Set udev rules, and upload the Littlewire protocol to your Digispark.</p>
+                  <pre class="CodeRay">$ cylon digispark
+Usage:
+  cylon digispark scan
+  cylon digispark upload
+  cylon digispark set-udev-rules
+</pre>
+                  <h2>cylon generate &lt;module|driver&gt; &lt;name&gt;</h2>
+                  <h4>Description</h4>
+                  <p>Generates a new Cylon component or adaptor module.</p>
+                  <pre class="CodeRay">$ cylon generate module octobot
+Creating cylon-octobot adaptor.
+Compiling templates.
+
+$ cylon generate driver octobot
+$ cat lib/octobot.js
+"use strict";
+
+var namespace = require('node-namespace');
+
+namespace("Cylon.Drivers", function() {
+  this.Octobot = (function(klass) {
+    subclass(Octobot, klass);
+
+    function Octobot(opts) {
+      Octobot.__super__.constructor.apply(this, arguments);
+    }
+
+    Octobot.prototype.commands = function() {
+      return [];
+    };
+
+    Octobot.prototype.start = function() {
+      Octobot.__super__.start.apply(this, arguments);
+    };
+
+    return Octobot;
+
+  })(Cylon.Driver);
+});
+
+module.exports = Cylon.Drivers.Octobot;
+</pre>
+                  <h2>cylon help</h2>
+                  <h4>Description</h4>
+                  <p>Prints help for using the Cylon-CLI commands.</p>
+                  <pre class="CodeRay">$ cylon help
+Usage: cylon [command] [options]
+
+Commands:
+   arduino [subcommand] [opts]
+      Install avrdude, and upload sketches to your Arduino
+
+   bluetooth [pair|unpair|connect]
+      Scan, pair, unpair bluetooth devices. Establishes serial to Bluetooth connection.
+
+   crazyflie [subcommand] [opts]
+      Set udev rules for Crazyflie
+
+   digispark [subcommand]
+      Set udev rules, and upload the Littlewire protocol to your Digispark
+
+   help
+      Prints help for using the Cylon-CLI commands.
+
+   scan [type]
+      Scans serial, Bluetooth, or USB for connected devices
+
+   spark upload [access_token] [device_id] [firmware_file]
+      Upload new firmare to your Spark Core
+</pre>
+                  <h2>cylon scan &lt;type&gt;</h2>
+                  <h4>Description</h4>
+                  <p>
+                    </p>
+<p>Scans different types of devices connected to your computer. The available options for the type param are <code>serial</code>, <code>bluetooth</code> or <code>usb</code>.</p>
+                  
+                  <pre class="CodeRay">$ cylon scan usb
+Bus 002 Device 002: ID 8087:8000 Intel Corp.
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 007: ID 08bb:2702 Texas Instruments Speakers
+Bus 003 Device 012: ID 1781:0c9f Multiple Vendors USBtiny
+Bus 003 Device 013: ID 2341:0043 Arduino SA Uno R3 (CDC ACM)
+</pre>
+                  <pre class="CodeRay">$ cylon scan bluetooth
+Scanning ...
+  00:06:66:4A:23:C3        Sphero-RPB
+</pre>
+                  <h2>cylon spark upload &lt;access_token&gt; &lt;device_id&gt; &lt;firmware_file&gt;</h2>
+                  <h4>Description</h4>
+                  <p>
+                    <b>Description:</b>
+                    lets you upload new source code directly to your Spark Core.<br><b>Notes:</b>
+                    </p>
+<ul>
+<li>
+<code>access_token:</code> In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.</li>
+                      <li>
+<code>device_id:</code> After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.</li>
+                    </ul>
+<pre class="CodeRay">$ cylon spark upload [access_token] [device_id] new_firmware.cpp
+</pre>
+                  <p>Necessary arguments :</p>
+                  <pre class="CodeRay">$ cylon spark upload
+
+Necessary arguments:
+- [access_token] # your Spark access token
+- [device_id]    # your Spark Core's device ID
+- [filename]     # filename of app you'd like to upload
+</pre>
+                  <p>
+                    For more information on how to program your Spark, please see
+                    <a target="blank" href="http://docs.spark.io/#/examples">Spark's examples</a>
+                  </p>
+                  <p>
+                    You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Spark, and you can get both of these from Spark's
+                    <a target="blank" href="https://spark.io/build">Build tool</a>
+                  </p>
+                </div>
+              </div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#guides-panel").addClass("active-panel");
+                  $("#guides-panel ul li:nth-child(3)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
