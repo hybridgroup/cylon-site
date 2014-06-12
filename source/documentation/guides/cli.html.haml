@@ -43,15 +43,15 @@ active_menu_docs: true
 
         Commands:
 
-          generate [module|driver|robot|tessel] [name|dir]
+          generate [module|driver|robot|tessel] [name]
               Generate new Cylon components or modules
               
               Usage:
                 
                 cylon generate module [name] # generates a new cylon module
                 cylon generate driver [name] # generates a new driver class in ./lib
-                cylon generate robot [dir] # generates a new robot in ./dir, complete with Test-Driven-Robotics harness
-                cylon generate tessel [dir] # generates a new robot in ./dir, ready to go with Tessel
+                cylon generate robot [name] # generates a new robot in ./dir, complete with Test-Driven-Robotics harness
+                cylon generate tessel [name] # generates a new robot in ./dir, ready to go with Tessel
   
 
   %h2 What Cylon CLI commands are available?
@@ -143,17 +143,17 @@ active_menu_docs: true
 
         module.exports = Cylon.Drivers.Octobot;
 
-  %h5 $ cylon generate robot [dir]
+  %h5 $ cylon generate robot [name]
   :markdown
-    Generates a new robot in `./dir`, complete with Test-Driven-Robotics harness.
+    Generates a new robot in `./name`, complete with Test-Driven-Robotics harness.
   
         :::bash
         $ cylon generate robot ./myRobot
         Creating new robot in ./myRobot
 
-  %h5 $ cylon generate tessel [dir]
+  %h5 $ cylon generate tessel [name]
   :markdown
-    Generates a new robot in ./dir, ready to go with Tessel
+    Generates a new robot in ./name, ready to go with Tessel
   
         :::bash
         $ cylon generate tessel ./myRobot
