@@ -1,0 +1,83 @@
+---
+page_title_show: true
+title: "Cylon 0.15.0 is Out!"
+page_title: Blog
+date: 2014-06-13
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+
+Cylon 0.15.0 has just been released, as part of our run-up to `1.0.0`. It has
+a number of small changes, mainly effecting how modules are written. Don't
+worry, there's still a lot of changes for end-users as well!
+
+Here's a overview of the changes, but if you want to see more check out the
+[compare view][] on GitHub.
+
+* **Better halting:** - Halting Cylon programs with Ctrl-C should now be more
+  reliable, with a forced quit if the program can't gracefully stop within
+a couple seconds.
+
+* **Removed 'connect' and 'start' events from Adaptors/Drivers:** - due to how
+  our startup works, by the time listeners could be set up for these events they
+  were already fired.
+
+* **Cleaner startup:** - we now lean more on the [async][] module to make sure
+  Robot startup is as simple and efficient as possible.
+
+* **Have some fun:** - you can now optionally pass a `play` block when creating
+  a Robot, rather than `work`. Internally, they behave the same, but all work
+  and no play makes Jack a dull boy!
+
+* **Number#fromScale update:** - the `fromScale` extension to Number will now
+  cap results to the top or bottom of the scale.
+
+* **API Refactors:** - our API has been updated to use Express 4 (previously we
+  were using 3.5). Additionally, several catch-all routes have been replaced by
+  middleware. Overall, this substancially downsizes the dependency tree for
+  Cylon.
+
+* **Commands is now an array, not a function:** - previously, Adaptor/Driver
+  `#commands` was a function that returned an array. For 0.15.0, we've eschewed
+  that in favor of just directly accessing an array.
+
+* **find{Robot,RobotConnection,RobotDevice} gone:** - we removed these
+  previously used convenience methods from Cylon, in favor of manual lookup. To
+  go with this change, `Cylon.robots` is now an object, not an array. Robots
+  created with `Cylon.robot` are stored in this object, using their name as
+  a key.
+
+* **Utils (mostly) removed from global namespace:** - Most of the utility
+  functions have been removed from the global namespace, with the exceptions of
+  `every`, `after`, and `constantly`, as well as the extensions to `Number` we
+  provide (`seconds`, `fromScale`, etc.). All utilities can still be found under
+  the Cylon.Utils namespace.
+
+## Contributors
+
+A huge thanks to our contributors who made this release possible. And a special
+thanks to new contributors [Andrew Nesbitt][], [Chris Boette][], and [Fábio
+Franco Uechi][]!
+
+## Documentation
+
+We're constantly updating the Cylon docs to keep them up-to-date. You can find
+the latest info on the [docs page][].
+
+## Issues
+
+If you find any issues with Cylon, please let us know! We try to be on IRC
+(#cylon on freenode) as much as possible, but if we're not around leave us
+a [GitHub issue][] and we'll get back to you as soon as possible.
+
+[compare view]: http://github.com/hybridgroup/cylon/compare/v0.14.0...HEAD
+
+[async]: https://github.com/caolan/async
+
+[Fábio Franco Uechi]: https://github.com/fabito
+[Andrew Nesbitt]: https://github.com/andrew
+[Chris Boette]: https://github.com/chrisbodhi
+
+[docs page]: https://cylonjs.com/documentation
+[GitHub issue]: https://github.com/hybridgroup/cylon/issues
