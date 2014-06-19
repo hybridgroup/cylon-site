@@ -7,7 +7,7 @@
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Cylon.js - JSConf 2014</title>
+<title>Cylon.js - Tutorials</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -58,7 +58,7 @@
 </div>
       <div class="page-title">
         <div class="w">
-          <h1 class="title">JSConf 2014</h1>
+          <h1 class="title">Tutorials</h1>
           <h2 class="subtitle">Workshop</h2>
         </div>
       </div>
@@ -254,8 +254,8 @@ Cylon.start();
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 <span class="keyword">var</span> time = <span class="integer">0</span>;
 <span class="keyword">var</span> calibration = <span class="predefined-constant">false</span>;
- 
- 
+
+
 Cylon.robot({
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
@@ -279,7 +279,7 @@ Cylon.robot({
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.checkCalibration(my);
     my.sphero.setBackLED(<span class="integer">255</span>);
- 
+
     my.forward.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">forward</span><span class="delimiter">"</span></span>);
       my.checkCalibration(my);
@@ -288,7 +288,7 @@ Cylon.robot({
     my.forward.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.sphero.stop();
     });
- 
+
     my.back.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">back</span><span class="delimiter">"</span></span>);
       my.checkCalibration(my);
@@ -297,7 +297,7 @@ Cylon.robot({
     my.back.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.sphero.stop();
     });
- 
+
     my.right.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">right</span><span class="delimiter">"</span></span>);
       <span class="keyword">var</span> t = Date.now();
@@ -314,7 +314,7 @@ Cylon.robot({
     my.right.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.sphero.stop();
     });
- 
+
     my.left.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>);
       my.checkCalibration(my);
@@ -661,6 +661,19 @@ Cylon.start();
                       </li>
                     </ul>
 </dd>
+                  <dt>
+                    <a href="">Tutorials</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="tutorial-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/tutorials">Workshop</a>
+                      </li>
+                    </ul>
+</dd>
                 </dl>
 <script>
                     $(document).ready(function(){
@@ -669,6 +682,10 @@ Cylon.start();
                         $(this).addClass("active");
                       });
                     });
+                </script><script>
+                  $("#tutorial-panel").addClass("active-panel");
+                  $("#tutorial-panel li:nth-child(1)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(15) a:nth-child(2) img").addClass("rotate");
                 </script>
 </div>
             </div>
