@@ -20,6 +20,11 @@ active_menu_docs: true
 
   %p
     Cylon also has its own CLI to generate new robots, adaptors, and drivers.
+    
+  %p
+    Gort
+    =link_to "(http://gort.io)", "http://gort.io", target: :blank
+    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
 
   %h2 How to Install
   %p
@@ -35,7 +40,7 @@ active_menu_docs: true
   %h2 How can I use it?
   %p
     :markdown
-      The Cylon.JS CLI generators are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the `cylon-cli` module installed globally, the generators will be available at all times. 
+      The Cylon.JS CLI generators are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the `cylon-cli` module installed globally, the generators will be available at all times.
 
   %h3 Printing a list of available commands
   :markdown
@@ -48,21 +53,21 @@ active_menu_docs: true
 
           generate [module|driver|robot|tessel] [name]
               Generate new Cylon components or modules
-              
+
               Usage:
-                
+
                 cylon generate module [name] # generates a new cylon module
                 cylon generate driver [name] # generates a new driver class in ./lib
                 cylon generate robot [name] # generates a new robot in ./dir, complete with Test-Driven-Robotics harness
                 cylon generate tessel [name] # generates a new robot in ./dir, ready to go with Tessel
-  
+
 
   %h2 What Cylon CLI commands are available?
   %p
     If you have only installed cylon, the list of available commands is the one printed in the section above,
     let's review them one by one.
 
-  
+
   %h3 $ cylon generate &#91;module|driver&#93; &#91;name&#93;
   %h4 Description
   %p Generate new Cylon components or modules.
@@ -115,7 +120,7 @@ active_menu_docs: true
   %h5 $ cylon generate driver [name]
   :markdown
     Generates a new driver class in `./lib` .
-  
+
         :::bash
         $ cylon generate driver octobot
         $ cat lib/octobot.js
@@ -149,7 +154,7 @@ active_menu_docs: true
   %h5 $ cylon generate robot [name]
   :markdown
     Generates a new robot in `./name`, complete with Test-Driven-Robotics harness.
-  
+
         :::bash
         $ cylon generate robot ./myRobot
         Creating new robot in ./myRobot
@@ -157,8 +162,7 @@ active_menu_docs: true
   %h5 $ cylon generate tessel [name]
   :markdown
     Generates a new robot in ./name, ready to go with Tessel
-  
+
         :::bash
         $ cylon generate tessel ./myRobot
         Creating new Tessel-ready robot in ./myRobot
-
