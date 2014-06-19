@@ -14,13 +14,14 @@ subnavjs: true
 
 arduino_platform: true
 spark_platform: true
+beaglebone_platform: true
 ---
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#gpio li:nth-child(1)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
-    
+
 %section.intro
   = image_tag "/images/devices/analog-sensor.jpg", class: "display"
   .info-intro
@@ -28,12 +29,12 @@ spark_platform: true
       Makes it possible to interact with analog inputs on your device and obtain values that represent the analog input send by the sensors.
       The value received from an analog input read from the sensor goes from 0 to 1027.
 
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://en.wikipedia.org/wiki/Sensor", target: "_blank"
-    
+
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -46,10 +47,10 @@ spark_platform: true
           device: {name: 'sensor', driver: 'analogSensor', pin: 0, lowerLimit: 100, upperLimit: 900},
           ...
 
-          
+
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example detects lower and upper limits on a photoresistor sensor.
   :markdown
         :::javascript
@@ -89,14 +90,14 @@ spark_platform: true
     = partial "/documentation/drivers/partials/gpio/events_analog_sensor"
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
     %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/analog_sensor_bb.png", :alt => ""}/ 
-  .clear 
-  
-    
+    %img{:src => "/documentation/drivers/breadboards/gpio/analog_sensor_bb.png", :alt => ""}/
+  .clear
+
+
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.

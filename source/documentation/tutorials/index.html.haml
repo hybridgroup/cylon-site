@@ -1,11 +1,17 @@
 ---
-title: Cylon.js - JSConf 2014
+title: Cylon.js - Tutorials
 author: The Hybrid Group
-page_title: JSConf 2014
+page_title: Tutorials
 page_subtitle: Workshop
 layout: documentation
 page_title_show: true
 ---
+
+-content_for :js_accordeon do
+  :javascript
+    $("#tutorial-panel").addClass("active-panel");
+    $("#tutorial-panel li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(15) a:nth-child(2) img").addClass("rotate");
 
 %section.thingscon
   %h2 Installation
@@ -15,7 +21,7 @@ page_title_show: true
         First, install
         =link_to "Node.js","http://nodejs.org/download/"
       %p
-        If you are on Linux, follow 
+        If you are on Linux, follow
         =link_to "these instructions", "https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager"
       %p
         If you already have Node.js installed, you can skip to the next step.
@@ -85,14 +91,14 @@ page_title_show: true
         Cylon.start();
 
   %p Please note that you might need to change the value for port.
-  %p 
+  %p
     On OSX or Linux, use
     %code cylon scan serial
     to find your connection info and serial port address:
     :markdown
             $ cylon scan serial
 
-  %p 
+  %p
     On Windows, follow the following procedure:
     %ul
       %li Go to the "Start" menu
@@ -189,8 +195,8 @@ page_title_show: true
         var Cylon = require('cylon');
         var time = 0;
         var calibration = false;
-         
-         
+
+
         Cylon.robot({
           connections: [
             { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
@@ -214,7 +220,7 @@ page_title_show: true
           work: function(my) {
             my.checkCalibration(my);
             my.sphero.setBackLED(255);
-         
+
             my.forward.on('push', function() {
               console.log("forward");
               my.checkCalibration(my);
@@ -223,7 +229,7 @@ page_title_show: true
             my.forward.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.back.on('push', function() {
               console.log("back");
               my.checkCalibration(my);
@@ -232,7 +238,7 @@ page_title_show: true
             my.back.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.right.on('push', function() {
               console.log("right");
               var t = Date.now();
@@ -249,7 +255,7 @@ page_title_show: true
             my.right.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.left.on('push', function() {
               console.log("left");
               my.checkCalibration(my);
