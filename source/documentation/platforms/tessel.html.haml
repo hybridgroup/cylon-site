@@ -75,6 +75,7 @@ tessel_servo_module: true
 
 %section.how-to#HowToUse
   %h2 How to use
+  %h3 Blink
   %p This small program lets you toggle an LED on and off.
   :markdown
         :::javascript
@@ -88,7 +89,8 @@ tessel_servo_module: true
             every((1).seconds(), function() { my.led.toggle() });
           }
         }).start();
-  %p Climate
+  %h3 Climate
+  %p This small program shows how to use the Tessel Climate module.
   :markdown
         :::javascript
         var Cylon = require('cylon');
@@ -131,12 +133,12 @@ tessel_servo_module: true
 
   .hardware
     // TODO: Update drivers list at the top of the page.
+    %h2 Tessel Modules
+    .devices
+      = partial "documentation/partials/devices_tessel_modules"
     %h2 GPIO Drivers
     .devices
       = partial "documentation/partials/devices_gpio_drivers"
     %h2 i2c Drivers
     .devices
       = partial "documentation/partials/devices_i2c_drivers"
-    %h2 Modules
-    .devices
-      = partial "documentation/partials/devices_tessel_modules"
