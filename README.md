@@ -38,6 +38,7 @@ If you want to help us with the documentation of the site, you can follow this s
 		  git checkout "new_name"
 
   or
+  
       git checkout -b "new_name"
 
 - 3) Open the project with your favourite text editor.
