@@ -74,6 +74,173 @@
                         Jun
                       </div>
                       <div class="day">
+                        20
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a>
+                    </h3>
+                    <div class="author">
+                      by Adrian Zankich
+                    </div>
+                  </div>
+                </header><p>We are happy to announce full support for the <a href="https://tessel.io/">Tessel</a>
+                JavaScript microcontroller! The Tessel is a new JavaScript powered
+                microcontroller which runs your JavaScript programs directly on the board, so
+                there's no need for an external PC to control the board. It features 4 build
+                in LEDs, 1 button, and 5 banks of GPIO ports, i2c, spi and uart.</p>
+                
+                <p>Using Cylon.js on your Tessel gives you access to all of our existing
+                <a href="https://github.com/hybridgroup/cylon-gpio">GPIO</a> and
+                <a href="https://github.com/hybridgroup/cylon-i2c">I2C</a> driver support as well as the
+                official Tessel <a href="https://tessel.io/modules">Modules</a>.</p>
+                
+                <p>We currently support the following Modules:</p>
+                
+                <ul>
+<li><a href="https://tessel.io/modules#module-accelerometer">Accelerometer</a></li>
+                  <li><a href="https://tessel.io/modules#module-ambient">Ambient Light + Sound</a></li>
+                  <li><a href="https://tessel.io/modules#module-audio">Audio</a></li>
+                  <li><a href="https://tessel.io/modules#module-ble">Bluetooth Low Energy</a></li>
+                  <li><a href="https://tessel.io/modules#module-camera">Camera</a></li>
+                  <li><a href="https://tessel.io/modules#module-climate">Climate</a></li>
+                  <li><a href="https://tessel.io/modules#module-gps">GPS</a></li>
+                  <li><a href="https://tessel.io/modules#module-infrared">Infrared</a></li>
+                  <li><a href="https://tessel.io/modules#module-relay">Relay</a></li>
+                  <li><a href="https://tessel.io/modules#module-servo">Servo</a></li>
+                </ul>
+<p>With more on the way!</p>
+                
+                <p>Getting started with Cylon.js is as easy as:</p>
+                
+                <ul>
+<li>Follow the Tessel install <a href="http://start.tessel.io/install">instructions</a>
+</li>
+                  <li><code>$ npm install -g cylon-cli</code></li>
+                  <li><code>$ cylon generate tessel my-tessel-project</code></li>
+                  <li><code>$ cd my-tessel-project</code></li>
+                  <li><code>$ npm install</code></li>
+                  <li><code>$ tessel run blink.js</code></li>
+                </ul>
+<p>The supplied <code>blink.js</code> example uses the one of the Tessel's built-in LEDs.</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+      my.led.toggle()
+    });
+  }
+}).start();
+</pre>
+                
+                <p>Now for an example with user interaction! Here's a button example using the
+                built-in <code>config</code> button and a built-in LED. Copy this example into your
+                <code>my-tessel-project</code> directory as <code>button.js</code></p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
+  }
+}).start();
+</pre>
+                
+                <p>And run with <code>$ tessel run button.js</code>. When you press the <code>config</code> button, the
+                light will toggle on and off, neat!</p>
+                
+                <p>Now for something interesting. Here's an example using the built-in <code>config</code>
+                button, a built-in LED and the <code>camera-vc0706</code> Camera module! Copy this
+                example into your <code>my-tessel-project</code> directory as <code>camera.js</code></p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  ],
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera-vc0706</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Camera error: </span><span class="delimiter">"</span></span>, err);
+    });
+
+    my.camera.setCompression(<span class="float">0.4</span>, <span class="keyword">function</span>(err) {
+      <span class="keyword">if</span> (err) console.log(<span class="string"><span class="delimiter">"</span><span class="content">error setting compression: </span><span class="delimiter">"</span></span>, err);
+    });
+
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.led.turnOn();
+      my.camera.takePicture(<span class="keyword">function</span>(err, image) {
+        <span class="keyword">if</span> (err) {
+          console.log(<span class="string"><span class="delimiter">'</span><span class="content">error taking image</span><span class="delimiter">'</span></span>, err);
+        } <span class="keyword">else</span> {
+          <span class="comment">// Name the image</span>
+          <span class="keyword">var</span> name = <span class="string"><span class="delimiter">'</span><span class="content">picture-</span><span class="delimiter">'</span></span> + Math.floor(Date.now()*<span class="integer">1000</span>) + <span class="string"><span class="delimiter">'</span><span class="content">.jpg</span><span class="delimiter">'</span></span>;
+          <span class="comment">// Save the image</span>
+          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Picture saving as</span><span class="delimiter">'</span></span>, name, <span class="string"><span class="delimiter">'</span><span class="content">...</span><span class="delimiter">'</span></span>);
+          process.sendfile(name, image);
+        }
+        my.led.turnOff();
+      });
+    });
+  }
+}).start();
+</pre>
+                
+                <p>This example will take a picture every time you press the <code>config</code> button
+                while the indicator LED will tell you when it's finished!   </p>
+                
+                <p>You can run this example with <code>$ tessel run camera.js --upload-dir .</code><br>
+                The <code>--upload-dir .</code> tells the Tessel to save the pictures to your current directory.</p>
+                
+                <p><img src="/images/blog/cylonjs-from-tessel.png" alt="Taken from my Tessel" style="margin: 10px 0;"></p>
+                
+                <p>Cylon.js makes developing your Tessel applications easy and fun! Be sure to
+                checkout out our examples for each Tessel module
+                <a href="https://github.com/hybridgroup/cylon-tessel/tree/master/examples">here</a>. As
+                well as the 18 other different hardware platforms currently
+                <a href="http://cylonjs.com/documentation/platforms/">supported</a> in Cylon.js.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+</div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header"><div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Jun
+                      </div>
+                      <div class="day">
                         13
                       </div>
                     </div>
@@ -793,7 +960,8 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
+<li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+                <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
                 <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
                 <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
                 <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>

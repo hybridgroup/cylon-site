@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Cylon.js - Tessel Audio</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Tessel Module</h1>
+          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Tessel Audio</h1>
+                    <h2 class="subtitle">Module</h2>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav"><div class="container">
+                    <nav><a href="#HowToConnect">How to Connect</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#Commands">Commands</a>
+                      <a href="#Events">Events</a>
+                      <a href="#Compatability">Compatibility</a>
+                      <a href="#top">Top</a>
+                    </nav>
+</div>
+                </section><br><section class="intro"><img class="display" src="/images/devices/tessel-audio.jpg"><div class="info-intro">
+                    <p>Decode audio files or streams and output; record audio.</p>
+                    <p>Make your Tessel play a tune, or listen in...</p>
+                    <ul>
+<li>Decodes MP3/AAC/WMA/MIDI/FLAC/Ogg Vorbis files</li>
+                      <li>Supports files and streams</li>
+                      <li>Supports both headphones and line-out</li>
+                      <li>Can record audio through an on-board microphone or line-in jack</li>
+                    </ul>
+<p>
+                      For more info visit
+                      <a target="blank" href="http://start.tessel.io/modules/audio">here.</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  ],
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio-vs1053b</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
+  ],
+...
+</pre>
+                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                  <p>Example using a Direct Pin.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  ],
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio-vs1053b</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="keyword">var</span> chunks = [];
+    <span class="keyword">var</span> recording = <span class="predefined-constant">false</span>;
+
+    my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+      console.log(err)
+    });
+
+    <span class="comment">// When we get data, push it into our array</span>
+    my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      chunks.push(data);
+    });
+
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Hold the config button to record...</span><span class="delimiter">'</span></span>);
+
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      <span class="comment">// Tell the audio module to start recording</span>
+      <span class="keyword">if</span> (!recording) {
+        my.audio.startRecording(<span class="string"><span class="delimiter">'</span><span class="content">voice</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err) {
+          <span class="keyword">if</span> (err) {
+            console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error while startRecording: </span><span class="delimiter">"</span></span>, err);
+          }
+          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Recording...</span><span class="delimiter">'</span></span>);
+          recording = <span class="predefined-constant">true</span>;
+        });
+      }
+    });
+
+    <span class="comment">// Once the button is released, stop recording</span>
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      <span class="comment">// Tell the audio module to stop recording</span>
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">stopping the recording...</span><span class="delimiter">'</span></span>);
+      recording = <span class="predefined-constant">false</span>;
+      my.audio.stopRecording(<span class="keyword">function</span>(err) {
+        <span class="keyword">if</span> (err) {
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error while stopRecording: </span><span class="delimiter">"</span></span>, err);
+        }
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing it back...</span><span class="delimiter">'</span></span>);
+        <span class="comment">// Concat the data and play it</span>
+        my.audio.play(Buffer.concat(chunks), <span class="keyword">function</span>(err) {
+          <span class="keyword">if</span> (err) {
+            console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error during playback: </span><span class="delimiter">"</span></span>, err);
+          }
+          <span class="comment">// When we're done playing, clear recordings</span>
+          chunks = [];
+          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Hold the config button to record...</span><span class="delimiter">'</span></span>);
+        });
+      });
+    });
+  }
+}).start();
+</pre>
+                </section><section class="public-methods"><div class="commands-api" id="Commands">
+                    <h1>Commands</h1>
+                    <h2>audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )</h2>
+                    <p>Set the output volume. Level is a Number from 0.0 to 1.0</p>
+                    <h2>audio.setInput( input, callback(err) )</h2>
+                    <p>Set the input to either 'lineIn' or 'mic'. Defaults to 'lineIn'.</p>
+                    <h2>audio.setOutput( output, callback(err) )</h2>
+                    <p>Set the output to either 'lineOut' or 'headPhones'. Defaults to 'lineOut'.</p>
+                    <h2>audio.startRecording( [profile] callback(err) )</h2>
+                    <p>Start recording sound from the input. (Receive data in the 'data' event) Callback called after recording initialized (not stopped ) .quality is an optional argument that can be 'voice', 'wideband-voice', 'wideband-stereo', 'hifi-voice', or 'stereo-music'. Default is 'hifi-voice'.</p>
+                    <h2>audio.stopRecording( callback(err) )</h2>
+                    <p>Stop recording sound (note that may receive one more 'data' event before this completes when the buffer is flushed. )</p>
+                    <h2>audio.play( [audioBuff], callback(err) )</h2>
+                    <p>Play a buffer. If no buffer is passed in, the module will attempt to resume a buffer that was paused.</p>
+                    <h2>audio.pause( callback(err) )</h2>
+                    <p>Pause the buffer.</p>
+                    <h2>audio.stop( callback(err) )</h2>
+                    <p>Stop playing and flush the buffer.</p>
+                    <h2>audio.createPlayStream()</h2>
+                    <p>Returns a stream that a buffer can be piped into to play audio.</p>
+                    <h2>audio.createRecordStream()</h2>
+                    <p>Returns a readable stream of mic data.</p>
+                    <h2>audio.availableRecordingProfiles()</h2>
+                    <p>Returns an array of available profiles.</p>
+                  </div>
+                  <div class="commands-api" id="Events">
+                    <h1>Events</h1>
+                    <h2>audio.on( 'ready', callback() )</h2>
+                    <p>The audio module is ready to use.</p>
+                    <h2>audio.on( 'error', callback(err) )</h2>
+                    <p>The audio module had an error on connection.</p>
+                    <h2>audio.on( 'volume', callback(volume) )</h2>
+                    <p>Volume was set.</p>
+                    <h2>audio.on( 'input', callback(input) )</h2>
+                    <p>The input mode was set.</p>
+                    <h2>audio.on( 'output', callback(output) )</h2>
+                    <p>The output mode was set.</p>
+                    <h2>audio.on( 'startRecording', callback() )</h2>
+                    <p>Started recording from the input.</p>
+                    <h2>audio.on( 'data', callback(audioBuff) )</h2>
+                    <p>Received recorded data.</p>
+                    <h2>audio.on( 'stopRecording', callback() )</h2>
+                    <p>Stopped recording on the input.</p>
+                    <h2>audio.on( play', callback() )</h2>
+                    <p>A buffer is beginning to be played.</p>
+                    <h2>audio.on( 'pause', callback() )</h2>
+                    <p>Playback was paused.</p>
+                    <h2>audio.on( 'stop', callback() )</h2>
+                    <p>Playback was stopped.</p>
+                    <h2>audio.on( 'end', callback(err) )</h2>
+                    <p>The buffer finished playing.</p>
+                  </div>
+                </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
+                  <div class="devices">
+                    <!-- /Platforms Parts -->
+                    <!-- // Tessel -->
+                    <a class="device" href="/documentation/platforms/tessel" title="Tessel">
+                      <img src="/images/devices/tessel.jpg"></a>
+                  </div>
+                </section>
+</div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+                    Tessel Modules
+                    <ul id="tessel">
+<li>
+                        <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_ambient">Tessel Ambient</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_audio">Tessel Audio</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_bluetooth">Tessel Bluetooth</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_camera">Tessel Camera</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_climate">Tessel Climate</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_gps">Tessel GPS</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_infrared">Tessel Infrared</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_relay">Tessel Relay</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Tutorials</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="tutorial-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/tutorials">Workshop</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#driver-panel").addClass("active-panel");
+                  $("#tessel li:nth-child(3)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

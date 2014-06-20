@@ -92,28 +92,52 @@
                   </p>
                   <div class="clear"></div>
                 </section><section class="how-to" id="HowToInstall"><h2>How to install</h2>
-                  <p>Installing cylon.js with Tessel support is pretty easy.</p>
                   <p>
                     Follow the installation instructions detailed
-                    <a href="https://tessel.io/install/">here</a>
+                    <a target="blank" href="http://start.tessel.io/install">here</a>
                   </p>
-                  <pre class="CodeRay">sudo npm install -g cylon-cli
-cylon generate tessel my-tessel-project
-cd my-tessel-project
-npm install
-tessel push blink.js
+                  <p>You may now use the Cylon command line interface to generate a new Tessel project.</p>
+                  <pre class="CodeRay"> <span class="predefined">$</span> sudo npm install -g cylon-cli
+ <span class="predefined">$</span> cylon generate tessel my-tessel-project
+ <span class="predefined">$</span> cd my-tessel-project
+ <span class="predefined">$</span> npm install
+ <span class="predefined">$</span> tessel run blink.js
 </pre>
                   <p>If the blue light starts to blink, then you're all set!</p>
                 </section><section class="how-to" id="HowToUse"><h2>How to use</h2>
+                  <h3>Blink</h3>
                   <p>This small program lets you toggle an LED on and off.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">LED</span><span class="delimiter">'</span></span> },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).seconds(), my.led.toggle);
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() { my.led.toggle() });
+  }
+}).start();
+</pre>
+                  <h3>Climate</h3>
+                  <p>This small program shows how to use the Tessel Climate module.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate-si7005</span><span class="delimiter">'</span></span> },
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.climate.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+      console.log(err)
+    });
+
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+      my.climate.readHumidity(<span class="keyword">function</span> (err, humid) {
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Humidity:</span><span class="delimiter">'</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">%RH</span><span class="delimiter">'</span></span>);
+      });
+      my.climate.readTemperature(<span class="string"><span class="delimiter">'</span><span class="content">f</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err, temp) {
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Degrees:</span><span class="delimiter">'</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">F</span><span class="delimiter">'</span></span>);
+      });
+    });
   }
 }).start();
 </pre>
@@ -122,7 +146,7 @@ Cylon.robot({
                     As mentioned in the section above (How to install) connecting to the Tessel is easy,
                     you just need to follow the detailed instructions provided in the tessel site:
                   </p>
-                  <a href="https://tessel.io/install/">https://tessel.io/install/</a>
+                  <a href="http://start.tessel.io/install">http://start.tessel.io/install</a>
                   <p>
                     If you followed the instructions in the previous two sections, your Tessel should be already connected,
                     and ready to run Cylon.js, you can skip ahead and start coding, if you skipped on the Tessel site instructions,
@@ -134,20 +158,80 @@ Cylon.robot({
                   <p>Available drivers for the Tessel platform are listed below.</p>
                   <div class="hardware">
                     <!-- / TODO: Update drivers list at the top of the page. -->
+                    <h2>Tessel Modules</h2>
+                    <div class="devices">
+                      <!-- // Tessel Accelerometer -->
+                      <a class="device" href="/documentation/drivers/tessel_accelerometer" title="Tessel Accelerometer">
+                        <img src="/images/devices/tessel-accelerometer.jpg"></a>
+                      <!-- // Tessel Ambient -->
+                      <a class="device" href="/documentation/drivers/tessel_ambient" title="Tessel Ambient">
+                        <img src="/images/devices/tessel-ambient.jpg"></a>
+                      <!-- // Tessel Audio -->
+                      <a class="device" href="/documentation/drivers/tessel_audio" title="Tessel Audio">
+                        <img src="/images/devices/tessel-audio.jpg"></a>
+                      <!-- // Tessel Bluetooth -->
+                      <a class="device" href="/documentation/drivers/tessel_bluetooth" title="Tessel Bluetooth">
+                        <img src="/images/devices/tessel-bluetooth.jpg"></a>
+                      <!-- // Tessel Camera -->
+                      <a class="device" href="/documentation/drivers/tessel_camera" title="Tessel Camera">
+                        <img src="/images/devices/tessel-camera.jpg"></a>
+                      <!-- // Tessel Climate -->
+                      <a class="device" href="/documentation/drivers/tessel_climate" title="Tessel Climate">
+                        <img src="/images/devices/tessel-climate.jpg"></a>
+                      <!-- // Tessel GPS -->
+                      <a class="device" href="/documentation/drivers/tessel_gps" title="Tessel GPS">
+                        <img src="/images/devices/tessel-gps.jpg"></a>
+                      <!-- // Tessel Infrared -->
+                      <a class="device" href="/documentation/drivers/tessel_infrared" title="Tessel Infrared">
+                        <img src="/images/devices/tessel-infrared.jpg"></a>
+                      <!-- // Tessel Relay -->
+                      <a class="device" href="/documentation/drivers/tessel_relay" title="Tessel Relay">
+                        <img src="/images/devices/tessel-relay.jpg"></a>
+                      <!-- // Tessel Servo -->
+                      <a class="device" href="/documentation/drivers/tessel_servo" title="Tessel Servo">
+                        <img src="/images/devices/tessel-servo.jpg"></a>
+                    </div>
                     <h2>GPIO Drivers</h2>
                     <div class="devices">
+                      <!-- // Analog Sensor -->
+                      <a class="device" href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <img src="/images/devices/analog-sensor.jpg"></a>
                       <!-- // Button -->
                       <a class="device" href="/documentation/drivers/button" title="Button">
                         <img src="/images/devices/button.jpg"></a>
+                      <!-- // Ir Range Finder -->
+                      <a class="device" href="/documentation/drivers/ir-range-finder" title="Ir Range Finder">
+                        <img src="/images/devices/ir-range-finder.jpg"></a>
                       <!-- // LED -->
                       <a class="device" href="/documentation/drivers/led" title="LED">
                         <img src="/images/devices/LED.jpg"></a>
+                      <!-- // Makey Button -->
+                      <a class="device" href="/documentation/drivers/makey-button" title="Maxbotix Range Finder">
+                        <img src="/images/devices/makey-button.jpg"></a>
+                      <!-- // Maxbotix -->
+                      <a class="device" href="/documentation/drivers/maxbotix" title="Maxbotix Range Finder">
+                        <img src="/images/devices/maxbotix.jpg"></a>
                     </div>
                     <h2>i2c Drivers</h2>
                     <div class="devices">
                       <!-- // Blinkm -->
                       <a class="device" href="/documentation/drivers/blinkm" title="Blinkm">
                         <img src="/images/devices/blinkm.jpg"></a>
+                      <!-- // Blinkm -->
+                      <a class="device" href="/documentation/drivers/bmp180" title="bmp180">
+                        <img src="/images/devices/bmp180.jpg"></a>
+                      <!-- // Hmc6352 Compass -->
+                      <a class="device" href="/documentation/drivers/hmc6352-compass" title="Wii Nunchuck">
+                        <img src="/images/devices/hmc6352-compass.jpg"></a>
+                      <!-- // LCD -->
+                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
+                        <img src="/images/devices/lcd.jpg"></a>
+                      <!-- // mpl115a2 -->
+                      <a class="device" href="/documentation/drivers/mpl115a2" title="Digital Barometer/Thermometer">
+                        <img src="/images/devices/mpl115a2.jpg"></a>
+                      <!-- // mpu6050 -->
+                      <a class="device" href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <img src="/images/devices/mpu6050.jpg"></a>
                     </div>
                   </div>
                 </section>
@@ -389,6 +473,39 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+                    Tessel Modules
+                    <ul id="tessel">
+<li>
+                        <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_ambient">Tessel Ambient</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_audio">Tessel Audio</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_bluetooth">Tessel Bluetooth</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_camera">Tessel Camera</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_climate">Tessel Climate</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_gps">Tessel GPS</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_infrared">Tessel Infrared</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_relay">Tessel Relay</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
                       </li>
                     </ul>
 </dd>

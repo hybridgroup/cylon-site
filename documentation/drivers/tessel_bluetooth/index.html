@@ -1,0 +1,608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Cylon.js - Tessel Bluetooth</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Tessel Module</h1>
+          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Tessel Bluetooth</h1>
+                    <h2 class="subtitle">Module</h2>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav"><div class="container">
+                    <nav><a href="#HowToConnect">How to Connect</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#Commands">Commands</a>
+                      <a href="#Events">Events</a>
+                      <a href="#Compatability">Compatibility</a>
+                      <a href="#top">Top</a>
+                    </nav>
+</div>
+                </section><br><section class="intro"><img class="display" src="/images/devices/tessel-bluetooth.jpg"><div class="info-intro">
+                    <p>Allows your tesselation to work as a Bluetooth LE master or slave device.</p>
+                    <p>Connect to your phone, FitBit, or other low-powered device.</p>
+                    <ul>
+<li>Compatible with iOS 5+, Android 4.3+</li>
+                      <li>Supports master mode to connect to other BLE devices and Tessels</li>
+                    </ul>
+<p>
+                      For more info visit
+                      <a target="blank" href="http://start.tessel.io/modules/ble">here.</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-ble113a</span><span class="delimiter">'</span></span> },
+...
+</pre>
+                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                  <p>Example using a Direct Pin.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-ble113a</span><span class="delimiter">'</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.ble.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+      console.log(err)
+    });
+
+    my.ble.on(<span class="string"><span class="delimiter">'</span><span class="content">discover</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(peripheral) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Discovered peripheral!</span><span class="delimiter">"</span></span>, peripheral.toString());
+    });
+
+    after((<span class="integer">2</span>).seconds, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">scanning...</span><span class="delimiter">"</span></span>);
+      my.ble.startScanning();
+    });
+  }
+}).start();
+</pre>
+                </section><section class="public-methods"><div class="commands-api" id="Commands">
+                    <h1>Commands</h1>
+                    <h1>Master Commands</h1>
+                    <h2>bluetooth.startScanning( [options], callback(err))</h2>
+                    <p>Start searching for BLE peripherals (options dict is... optional ).</p>
+                    <h2>bluetooth.stopScanning( callback(err) )</h2>
+                    <p>Stop Searching for BLE peripherals.</p>
+                    <h2>bluetooth.connect( peripheral, callback(err) )</h2>
+                    <h2>bluetooth.disconnect( peripheral, callback(err )</h2>
+                    <h2>bluetooth.discoverServices( peripheral, [serviceUUIDs], callback(err, services) )</h2>
+                    <p>Search for specific Services by passing in array of uuids. Returns array of Service objects.</p>
+                    <h2>bluetooth.discoverAllServices( peripheral, callback(err, services) )</h2>
+                    <p>Search for all Services of a peripheral. Returns array of Service objects.</p>
+                    <h2>bluetooth.discoverIncludedServices( periphreal, serviceUUID, callback(err, includedServices))</h2>
+                    <p>Find what services are included in this service, if any (pretty rare).</p>
+                    <h2>bluetooth.discoverCharacteristics( peripheral, [characteristicsUUIDs], callback(err, characteristics) )</h2>
+                    <p>Search for specific Characteristics by passing in array of uuids. Returns array of Characteristic objects.</p>
+                    <h2>bluetooth.discoverAllCharacteristics( peripheral, callback(err, characteristics) )</h2>
+                    <p>Search for all Characteristics of a peripheral. Returns array of Characteristic objects.</p>
+                    <h2>bluetooth.discoverAllServicesAndCharacteristics( peripheral, callback(err, results) )</h2>
+                    <p>Return all services and characteristics of a peripheral.</p>
+                    <h2>bluetooth.discoverCharacteristicsOfService( service, [characteristicUUIDs], callback(err, characteristics) )</h2>
+                    <p>Discover specific UUIDs of a service.</p>
+                    <h2>bluetooth.discoverAllCharacteristicsOfService( service, callback(err, characteristics) )</h2>
+                    <p>Discover the characteristics of a specific service.</p>
+                    <h2>bluetooth.discoverDescriptorsOfCharacteristic( characteristic, callback(err, descriptors) )</h2>
+                    <p>Discover the descriptors of a specific service.</p>
+                    <h2>bluetooth.discoverAllAttributes( peripheral, callback(err, attributes) )</h2>
+                    <p>Read all the services, characteristics, and descriptors of a peripheral.</p>
+                    <h2>bluetooth.read( characteristic, callback(err, value) )</h2>
+                    <p>Get the value of a remote characteristic.</p>
+                    <h2>bluetooth.write( characteristic, value, callback(err) )</h2>
+                    <p>Write the value of a remote characteristic. Value should be a buffer.</p>
+                    <h2>bluetooth.readDescriptor( descriptor, callback(err, value) )</h2>
+                    <p>Get the value of a remote descriptor.</p>
+                    <h2>bluetooth.writeDescriptor( descriptor, value callback(err) )</h2>
+                    <p>Get the value of a remote descriptor.</p>
+                    <h2>bluetooth.startNotifications( characteristic, callback(err) )</h2>
+                    <p>Subscribe to remote characteristic updates without having to indicate it was received.</p>
+                    <h2>bluetooth.stopNotifications( characteristic, callback(err) )</h2>
+                    <p>Stop being notified about remote characteristic updates.</p>
+                    <h2>bluetooth.startIndications( characteristic, callback(err) )</h2>
+                    <p>Subscribe to remote characteristic updates and indicate it was received.</p>
+                    <h2>bluetooth.stopIndications( characteristic, callback(err) )</h2>
+                    <p>Stop receiving remote characteristic updates and indicate it was received.</p>
+                    <h2>bluetooth.updateRSSI( peripheral, callback(err, rssi) )</h2>
+                    <p>Get signal strength of peripheral that we're connected to.</p>
+                    <h2>bluetooth.reset( callback(err))</h2>
+                    <p>Reset the module (useful in case of unexpected state ).</p>
+                    <h1>Slave Commands</h1>
+                    <h2>bluetooth.startAdvertising(callback(err))</h2>
+                    <p>Begin advertising to master devices.</p>
+                    <h2>bluetooth.stopAdvertising( callback(err) )</h2>
+                    <p>Stop advertising.</p>
+                    <h2>bluetooth.setAdvertisingData( data, callback(err) )</h2>
+                    <p>Set the data the master receives in advertising packet.</p>
+                    <h2>bluetooth.writeLocalValue( index, data, callback(err) )</h2>
+                    <p>Write a local value to be read by a master.</p>
+                    <h2>bluetooth.readLocalValue( index, offset, callback(err, value))</h2>
+                    <p>Read local values that have been written. Offset is how many bytes in to read (reads in 32 byte chunks max ).</p>
+                    <h2>bluetooth.sendReadResponse( connection, errorCode, value, callback(err) )</h2>
+                    <p>If a master device requests to read a "user" attribute, you'll need to manually send it to them. This should be called after the "remoteReadRequest" event. If errorCode is zero, it will send the value, else it will send the error code back.</p>
+                    <h2>bluetooth.maxNumValues( callback(err, maxNumValues))</h2>
+                    <p>Get max number of values (V1.0.1  is 12 ).</p>
+                    <h1>Security Commands</h1>
+                    <h2>bluetooth.setBondable( peripheral, bondable, callback(err))</h2>
+                    <p>Set whether a peripheral can be bonded to (not sure if this pertains to master mode as well ).</p>
+                    <h2>bluetooth.getBonds( callback(err, bonds) )</h2>
+                    <p>Get bonds with current devices.</p>
+                    <h2>bluetooth.deleteBonds( peripheral, callback(err) )</h2>
+                    <p>Delete any bonds with devices.</p>
+                    <h2>bluetooth.startEncryption( peripheral, callback(err) )</h2>
+                    <p>Start the encryption process.</p>
+                    <h2>bluetooth.enterPasskey( peripheral, callback(err) )</h2>
+                    <p>When a remote requests a passkey, you'll need to enter it.</p>
+                    <h2>bluetooth.setEncryptionKeySize( keysize, callback(err) )</h2>
+                    <p>Set the size of the encryption key.</p>
+                    <h2>bluetooth.setOOBData( data, callback(err) )</h2>
+                    <p>Set the out of band data.</p>
+                    <h2>bluetooth.enableMITMProtection( enable, callback(err) )</h2>
+                    <p>Choose whether to enable or disable MITM protection.</p>
+                    <h1>System Commands</h1>
+                    <h2>bluetooth.getBluetoothAddress( callback(err, address) )</h2>
+                    <p>Get the current address of the device.</p>
+                    <h2>bluetooth.getMaxConnections( callback(err, maxConnections))</h2>
+                    <p>Get how many connections are supported by the module (currently at 4 ).</p>
+                    <h2>bluetooth.reset( callback(err) )</h2>
+                    <p>Reset the module.</p>
+                  </div>
+                  <div class="commands-api" id="Events">
+                    <h1>Events</h1>
+                    <h1>Master Events</h1>
+                    <h2>bluetooth.on( 'error', callback(err) )</h2>
+                    <p>Emitted on error.</p>
+                    <h2>bluetooth.on( 'scanStart', callback() )</h2>
+                    <h2>bluetooth.on( 'scanStop', callback() )</h2>
+                    <h2>bluetooth.on( 'discover', callback(peripheral) )</h2>
+                    <h2>bluetooth.on( 'connect', callback(peripheral) )</h2>
+                    <h2>bluetooth.on( 'disconnect', callback(peripheral, reason) )</h2>
+                    <h2>bluetooth.on( 'servicesDiscover', callback(services) )</h2>
+                    <h2>bluetooth.on( 'characteristicsDiscover', callback(characteristics) )</h2>
+                    <h2>bluetooth.on( 'descriptorsDiscover', callback(descriptors) )</h2>
+                    <h2>bluetooth.on( 'characteristicRead', callback(characteristicRead, valueRead) )</h2>
+                    <h2>bluetooth.on( 'characteristicWrite', callback(characteristicWritten, valueWritten) )</h2>
+                    <h2>bluetooth.on( 'descriptorRead', callback(descriptorRead, valueRead) )</h2>
+                    <h2>bluetooth.on( 'descriptorWrite', callback(descriptorWritten, valueWritten) )</h2>
+                    <h2>bluetooth.on( 'notification', callback(characteristic, valueUpdated) )</h2>
+                    <h2>bluetooth.on( 'indication', callback(characteristic, valueUpdated) )</h2>
+                    <h2>bluetooth.on( 'rssiUpdate', callback(peripheral, rssi) )</h2>
+                    <h1>Slave Events</h1>
+                    <h2>bluetooth.on( 'startAdvertising', callback() )</h2>
+                    <h2>bluetooth.on( 'stopAdvertising', callback() )</h2>
+                    <h2>bluetooth.on( 'connect', callback(connection) )</h2>
+                    <h2>bluetooth.on( 'disconnect', callback(connection, reason) )</h2>
+                    <h2>bluetooth.on( 'remoteWrite', callback(connection, index, valueWritten) )</h2>
+                    <h2>bluetooth.on( 'remoteReadRequest', callback(connection, index) )</h2>
+                    <h2>bluetooth.on( 'remoteNotification', callback(connection, index) )</h2>
+                    <h2>bluetooth.on( 'remoteIndication', callback(connection, index) )</h2>
+                    <h2>bluetooth.on( 'remoteUpdateStop', callback(connection, index) )</h2>
+                    <h2>bluetooth.on( 'indicated', callback(connection, index) )</h2>
+                  </div>
+                </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
+                  <div class="devices">
+                    <!-- /Platforms Parts -->
+                    <!-- // Tessel -->
+                    <a class="device" href="/documentation/platforms/tessel" title="Tessel">
+                      <img src="/images/devices/tessel.jpg"></a>
+                  </div>
+                </section>
+</div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotic</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+                    Tessel Modules
+                    <ul id="tessel">
+<li>
+                        <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_ambient">Tessel Ambient</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_audio">Tessel Audio</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_bluetooth">Tessel Bluetooth</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_camera">Tessel Camera</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_climate">Tessel Climate</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_gps">Tessel GPS</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_infrared">Tessel Infrared</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_relay">Tessel Relay</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Tutorials</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="tutorial-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/tutorials">Workshop</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#driver-panel").addClass("active-panel");
+                  $("#tessel li:nth-child(4)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
