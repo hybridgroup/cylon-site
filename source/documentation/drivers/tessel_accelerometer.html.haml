@@ -1,0 +1,53 @@
+---
+title: Cylon.js - Tessel Accelerometer
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Accelerometer
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-accelerometer.jpg", class: "display"
+  .info-intro
+    %p Detect orientation and movement of your Tessel by measuring gravity / acceleration.
+    %p Control by tilt!
+    %ul
+      %li 3-Axis Digital Accelerometer
+      %li 12-bit resolution
+      %li Selectable ±2g/±4g/±8g scales
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the module with `npm install cylon-tessel`
+  :markdown
+        :::javascript
+        ..
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        ..
+
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

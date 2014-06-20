@@ -14,6 +14,8 @@ subnavjs: true
 led_driver: true
 button_driver: true
 blinkm_driver: true
+
+tessel_accelerometer_module: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -96,3 +98,6 @@ blinkm_driver: true
     %h2 i2c Drivers
     .devices
       = partial "documentation/partials/devices_i2c_drivers"
+    %h2 Modules
+    .devices
+      = partial "documentation/partials/devices_tessel_modules"
