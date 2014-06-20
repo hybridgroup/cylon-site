@@ -1,0 +1,200 @@
+---
+title: Cylon.js - Tessel Audio
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Audio
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(3)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-audio.jpg", class: "display"
+  .info-intro
+    %p Decode audio files or streams and output; record audio.
+    %p Make your Tessel play a tune, or listen in...
+    %ul
+      %li Decodes MP3/AAC/WMA/MIDI/FLAC/Ogg Vorbis files
+      %li Supports files and streams
+      %li Supports both headphones and line-out
+      %li Can record audio through an on-board microphone or line-in jack
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/audio", target: :blank
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'tessel', adaptor: 'tessel' },
+            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
+          ],
+          devices: [
+            { name: 'button', driver: 'button', connection: 'tessel' },
+            { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
+          ],
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'tessel', adaptor: 'tessel' },
+            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
+          ],
+          devices: [
+            { name: 'button', driver: 'button', connection: 'tessel' },
+            { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
+          ],
+
+          work: function(my) {
+            var chunks = [];
+            var recording = false;
+
+            my.audio.on('error', function (err) {
+              console.log(err)
+            });
+
+            // When we get data, push it into our array
+            my.audio.on('data', function(data) {
+              chunks.push(data);
+            });
+
+            console.log('Hold the config button to record...');
+
+            my.button.on('push', function() {
+              // Tell the audio module to start recording
+              if (!recording) {
+                my.audio.startRecording('voice', function(err) {
+                  if (err) {
+                    console.log("Error while startRecording: ", err);
+                  }
+                  console.log('Recording...');
+                  recording = true;
+                });
+              }
+            });
+
+            // Once the button is released, stop recording
+            my.button.on('release', function() {
+              // Tell the audio module to stop recording
+              console.log('stopping the recording...');
+              recording = false;
+              my.audio.stopRecording(function(err) {
+                if (err) {
+                  console.log("Error while stopRecording: ", err);
+                }
+                console.log('Playing it back...');
+                // Concat the data and play it
+                my.audio.play(Buffer.concat(chunks), function(err) {
+                  if (err) {
+                    console.log("Error during playback: ", err);
+                  }
+                  // When we're done playing, clear recordings
+                  chunks = [];
+                  console.log('Hold the config button to record...');
+                });
+              });
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )
+    %p Set the output volume. Level is a Number from 0.0 to 1.0
+
+    %h2 audio.setInput( input, callback(err) )
+    %p Set the input to either 'lineIn' or 'mic'. Defaults to 'lineIn'.
+
+    %h2 audio.setOutput( output, callback(err) )
+    %p Set the output to either 'lineOut' or 'headPhones'. Defaults to 'lineOut'.
+
+    %h2 audio.startRecording( [profile] callback(err) )
+    %p Start recording sound from the input. (Receive data in the 'data' event) Callback called after recording initialized (not stopped ) .quality is an optional argument that can be 'voice', 'wideband-voice', 'wideband-stereo', 'hifi-voice', or 'stereo-music'. Default is 'hifi-voice'.
+
+    %h2 audio.stopRecording( callback(err) )
+    %p Stop recording sound (note that may receive one more 'data' event before this completes when the buffer is flushed. )
+
+    %h2 audio.play( [audioBuff], callback(err) )
+    %p Play a buffer. If no buffer is passed in, the module will attempt to resume a buffer that was paused.
+
+    %h2 audio.pause( callback(err) )
+    %p Pause the buffer.
+
+    %h2 audio.stop( callback(err) )
+    %p Stop playing and flush the buffer.
+
+    %h2 audio.createPlayStream()
+    %p Returns a stream that a buffer can be piped into to play audio.
+
+    %h2 audio.createRecordStream()
+    %p Returns a readable stream of mic data.
+
+    %h2 audio.availableRecordingProfiles()
+    %p Returns an array of available profiles.
+  .commands-api#Events
+    %h1 Events
+    %h2 audio.on( 'ready', callback() )
+    %p The audio module is ready to use.
+
+    %h2 audio.on( 'error', callback(err) )
+    %p The audio module had an error on connection.
+
+    %h2 audio.on( 'volume', callback(volume) )
+    %p Volume was set.
+
+    %h2 audio.on( 'input', callback(input) )
+    %p The input mode was set.
+
+    %h2 audio.on( 'output', callback(output) )
+    %p The output mode was set.
+
+    %h2 audio.on( 'startRecording', callback() )
+    %p Started recording from the input.
+
+    %h2 audio.on( 'data', callback(audioBuff) )
+    %p Received recorded data.
+
+    %h2 audio.on( 'stopRecording', callback() )
+    %p Stopped recording on the input.
+
+    %h2 audio.on( play', callback() )
+    %p A buffer is beginning to be played.
+
+    %h2 audio.on( 'pause', callback() )
+    %p Playback was paused.
+
+    %h2 audio.on( 'stop', callback() )
+    %p Playback was stopped.
+
+    %h2 audio.on( 'end', callback(err) )
+    %p The buffer finished playing.
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

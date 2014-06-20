@@ -14,6 +14,17 @@ subnavjs: true
 led_driver: true
 button_driver: true
 blinkm_driver: true
+
+tessel_accelerometer_module: true
+tessel_ambient_module: true
+tessel_audio_module: true
+tessel_bluetooth_module: true
+tessel_camera_module: true
+tessel_climate_module: true
+tessel_gps_module: true
+tessel_infrared_module: true
+tessel_relay_module: true
+tessel_servo_module: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -96,3 +107,6 @@ blinkm_driver: true
     %h2 i2c Drivers
     .devices
       = partial "documentation/partials/devices_i2c_drivers"
+    %h2 Modules
+    .devices
+      = partial "documentation/partials/devices_tessel_modules"

@@ -1,0 +1,113 @@
+---
+title: Cylon.js - Tessel Infrared
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Infrared
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(8)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-infrared.jpg", class: "display"
+  .info-intro
+    %p The Infrared (IR) Module can send and detect IR signals.
+    %p Use a Tessel as a remote for your TV, radio, or even another Tessel.
+    %ul
+      %li Transmits and receives from 30+ feet (line of sight)
+      %li Detects max 38kHz
+      %li IR Receiver
+      %li IR LED
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/ir", target: :blank
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'ir', driver: 'ir-attx4' },
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'ir', driver: 'ir-attx4' },
+
+          work: function(my) {
+            my.ir.on('error', function (err) {
+              console.log(err)
+            });
+
+            my.ir.on('data', function(data) {
+              console.log("Received RX Data: ", data);
+            });
+
+            every((3).seconds(), function() {
+              /*********************************************
+              This infrared module example transmits the
+              power signal sequence of an Insignia brand
+              television every three seconds, while also
+              listening for (and logging) any incoming
+              infrared data.
+              *********************************************/
+              // Make a buffer of on/off durations (each duration is 16 bits)
+              var powerBuffer = new Buffer([0, 178, 255, 168, 0, 12, 255, 246, 0, 13, 255, 225, 0, 13, 255, 224, 0, 12, 255, 246, 0, 12, 255, 246, 0, 13, 255, 247, 0, 13, 255, 247, 0, 13, 255, 224, 0, 12, 255, 224, 0, 13, 255, 247, 0, 13, 255, 224, 0, 12, 255, 246, 0, 12, 255, 246, 0, 12, 255, 246, 0, 12, 255, 246, 0, 13, 255, 247, 0, 13, 255, 224, 0, 12, 255, 224, 0, 13, 255, 225, 0, 13, 255, 224, 0, 12, 255, 246, 0, 12, 255, 246, 0, 13, 255, 247, 0, 13, 255, 247, 0, 13, 255, 246, 0, 12, 255, 246, 0, 12, 255, 246, 0, 12, 255, 246, 0, 12, 255, 224, 0, 13, 255, 224, 0, 12, 255, 224, 0, 12, 255, 224, 0, 12]);
+              // Send the signal at 38 kHz
+              my.ir.sendRawSignal(38, powerBuffer, function(err) {
+                if (err) {
+                  console.log("Unable to send signal: ", err);
+                } else {
+                  console.log("Signal sent!");
+                }
+              });
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 infrared.sendRawSignal(frequency, signalDurations, callback)
+    %p The primary method for sending data. The first argument is a frequency of signal in Hz, typically 38 but can range from 36 to 40. The second argument is a buffer of unsigned 16 bit integers representing the number of microseconds the transmission should be on. The max length of the signal durations is 100 durations.
+
+    %h2 infrared.setListening(set, callback)
+    %p Determines whether the module is listening for incoming signals. Will automatically be set and unset depending on listeners for the data event.
+  .commands-api#Events
+    %h1 Events
+    %h2 infrared.on('data', callback(data))
+    %p Emitted when an infrared signal is detected.
+
+    %h2 infrared.on('error', callback(err))
+    %p Emitted when there is an error communicating with the module.
+
+    %h2 infrared.on('ready', callback())
+    %p Emitted upon first successful communication between the Tessel and the module.
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

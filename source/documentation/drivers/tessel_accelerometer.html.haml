@@ -1,0 +1,109 @@
+---
+title: Cylon.js - Tessel Accelerometer
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Accelerometer
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-accelerometer.jpg", class: "display"
+  .info-intro
+    %p Detect orientation and movement of your Tessel by measuring gravity / acceleration.
+    %p Control by tilt!
+    %ul
+      %li 3-Axis Digital Accelerometer
+      %li 12-bit resolution
+      %li Selectable ±2g/±4g/±8g scales
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/accelerometer", target: :blank
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'accel', driver: 'accel-mma84' },
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'accel', driver: 'accel-mma84' },
+
+          work: function(my) {
+            my.accel.on('error', function (err) {
+              console.log(err)
+            });
+
+            my.accel.on('data', function (xyz) {
+              console.log('x:', xyz[0].toFixed(2),
+                'y:', xyz[1].toFixed(2),
+                'z:', xyz[2].toFixed(2));
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 accel.availableOutputRates()
+    %p Logs the available interrupt rates in Hz.
+
+    %h2 accel.availableScaleRanges()
+    %p Logs the available accelerometer ranges (in units of Gs).
+
+    %h2 accel.enableDataInterrupts( trueOrFalse, callback(err) )
+    %p Enables or disables data interrupts. Set the first param truthy to enable, falsy to disable.
+
+    %h2 accel.getAcceleration( callback(err, xyz) )
+    %p Gets the acceleration from the device, outputs as array [x, y, z].
+
+    %h2 accel.setOutputRate( rateInHz, callback(err) )
+    %p  Sets the output rate of the data (1.56-800 Hz).
+
+    %h2 accel.setScaleRange( scaleRange, callback(err) )
+    %p Sets the accelerometer to read up to 2, 4, or 8 Gs of acceleration (smaller range = better precision).
+  .commands-api#Events
+    %h1 Events
+    %h2 accel.on( 'data', callback(xyz) )
+    %p Emitted when data is available. xyz is an array in the form of [x, y, z].
+
+    %h2 accel.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 accel.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
+
+
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

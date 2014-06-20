@@ -1,0 +1,110 @@
+---
+title: Cylon.js - Tessel Relay
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Relay
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(9)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-relay.jpg", class: "display"
+  .info-intro
+    %p Control high-current devices, such as power cords and appliances.
+    %p Turn your coffee maker on when the Ambient module detects light, or based on input from an app.
+    %ul
+      %li Rated for 240V and 5A
+      %li AC or DC current
+      %li Secure and remove wires with the help of a ballpoint pen. No more loose wires or screwdrivers.
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/relay", target: :blank
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'relay', driver: 'relay-mono' },
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'relay', driver: 'relay-mono' },
+
+          work: function(my) {
+            my.relay.on('error', function (err) {
+              console.log(err)
+            });
+
+            my.relay.on('latch', function(channel, value) {
+              console.log('latch on relay channel ' + channel + ' switched to', value);
+            });
+
+            every((2).seconds(), function() {
+              // Toggle relay channel 1
+              my.relay.toggle(1, function toggleOneResult(err) {
+                if (err) console.log("Err toggling 1", err);
+              });
+              // Toggle relay channel 2
+              my.relay.toggle(2, function toggleTwoResult(err) {
+                if (err) console.log("Err toggling 2", err);
+              });
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 relay.getState( relayChannel, callback(err, state) )
+    %p Gets the state of the specified relay channel: "true" for on and "false" for off.
+
+    %h2 relay.toggle( relayChannel, callback(err) )
+    %p Switches the state of the specified relay channel: on if it's off; off if it's on.
+
+    %h2 relay.turnOff( relayChannel, callback(err) )
+    %p Switches off the specified relay channel.
+
+    %h2 relay.turnOn( relayChannel, callback(err) )
+    %p Switches on the specified relay channel.
+  .commands-api#Events
+    %h1 Events
+    %h2 relay.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 relay.on( 'latch', callback(channel, state))
+    %p Emitted when the latch state (boolean on or off ) is changed for a channel.
+
+    %h2 relay.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"
