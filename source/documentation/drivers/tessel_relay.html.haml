@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -27,6 +28,9 @@ tessel_platform: true
       %li Rated for 240V and 5A
       %li AC or DC current
       %li Secure and remove wires with the help of a ballpoint pen. No more loose wires or screwdrivers.
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/relay", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -75,6 +79,30 @@ tessel_platform: true
         }).start();
 
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 relay.getState( relayChannel, callback(err, state) )
+    %p Gets the state of the specified relay channel: "true" for on and "false" for off.
+
+    %h2 relay.toggle( relayChannel, callback(err) )
+    %p Switches the state of the specified relay channel: on if it's off; off if it's on.
+
+    %h2 relay.turnOff( relayChannel, callback(err) )
+    %p Switches off the specified relay channel.
+
+    %h2 relay.turnOn( relayChannel, callback(err) )
+    %p Switches on the specified relay channel.
+  .commands-api#Events
+    %h1 Events
+    %h2 relay.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 relay.on( 'latch', callback(channel, state))
+    %p Emitted when the latch state (boolean on or off ) is changed for a channel.
+
+    %h2 relay.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

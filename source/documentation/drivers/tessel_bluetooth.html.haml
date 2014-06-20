@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -26,6 +27,9 @@ tessel_platform: true
     %ul
       %li Compatible with iOS 5+, Android 4.3+
       %li Supports master mode to connect to other BLE devices and Tessels
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/ble", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -67,7 +71,193 @@ tessel_platform: true
           }
         }).start();
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h1 Master Commands
+    %h2 bluetooth.startScanning( [options], callback(err))
+    %p Start searching for BLE peripherals (options dict is... optional ).
 
+    %h2 bluetooth.stopScanning( callback(err) )
+    %p Stop Searching for BLE peripherals.
+
+    %h2 bluetooth.connect( peripheral, callback(err) )
+
+    %h2 bluetooth.disconnect( peripheral, callback(err )
+
+    %h2 bluetooth.discoverServices( peripheral, [serviceUUIDs], callback(err, services) )
+    %p Search for specific Services by passing in array of uuids. Returns array of Service objects.
+
+    %h2 bluetooth.discoverAllServices( peripheral, callback(err, services) )
+    %p Search for all Services of a peripheral. Returns array of Service objects.
+
+    %h2 bluetooth.discoverIncludedServices( periphreal, serviceUUID, callback(err, includedServices))
+    %p Find what services are included in this service, if any (pretty rare).
+
+    %h2 bluetooth.discoverCharacteristics( peripheral, [characteristicsUUIDs], callback(err, characteristics) )
+    %p Search for specific Characteristics by passing in array of uuids. Returns array of Characteristic objects.
+
+    %h2 bluetooth.discoverAllCharacteristics( peripheral, callback(err, characteristics) )
+    %p Search for all Characteristics of a peripheral. Returns array of Characteristic objects.
+
+    %h2 bluetooth.discoverAllServicesAndCharacteristics( peripheral, callback(err, results) )
+    %p Return all services and characteristics of a peripheral.
+
+    %h2 bluetooth.discoverCharacteristicsOfService( service, [characteristicUUIDs], callback(err, characteristics) )
+    %p Discover specific UUIDs of a service.
+
+    %h2 bluetooth.discoverAllCharacteristicsOfService( service, callback(err, characteristics) )
+    %p Discover the characteristics of a specific service.
+
+    %h2 bluetooth.discoverDescriptorsOfCharacteristic( characteristic, callback(err, descriptors) )
+    %p Discover the descriptors of a specific service.
+
+    %h2 bluetooth.discoverAllAttributes( peripheral, callback(err, attributes) )
+    %p Read all the services, characteristics, and descriptors of a peripheral.
+
+    %h2 bluetooth.read( characteristic, callback(err, value) )
+    %p Get the value of a remote characteristic.
+
+    %h2 bluetooth.write( characteristic, value, callback(err) )
+    %p Write the value of a remote characteristic. Value should be a buffer.
+
+    %h2 bluetooth.readDescriptor( descriptor, callback(err, value) )
+    %p Get the value of a remote descriptor.
+
+    %h2 bluetooth.writeDescriptor( descriptor, value callback(err) )
+    %p Get the value of a remote descriptor.
+
+    %h2 bluetooth.startNotifications( characteristic, callback(err) )
+    %p Subscribe to remote characteristic updates without having to indicate it was received.
+
+    %h2 bluetooth.stopNotifications( characteristic, callback(err) )
+    %p Stop being notified about remote characteristic updates.
+
+    %h2 bluetooth.startIndications( characteristic, callback(err) )
+    %p Subscribe to remote characteristic updates and indicate it was received.
+
+    %h2 bluetooth.stopIndications( characteristic, callback(err) )
+    %p Stop receiving remote characteristic updates and indicate it was received.
+
+    %h2 bluetooth.updateRSSI( peripheral, callback(err, rssi) )
+    %p Get signal strength of peripheral that we're connected to.
+
+    %h2 bluetooth.reset( callback(err))
+    %p Reset the module (useful in case of unexpected state ).
+
+    %h1 Slave Commands
+    %h2 bluetooth.startAdvertising(callback(err))
+    %p Begin advertising to master devices.
+
+    %h2 bluetooth.stopAdvertising( callback(err) )
+    %p Stop advertising.
+
+    %h2 bluetooth.setAdvertisingData( data, callback(err) )
+    %p Set the data the master receives in advertising packet.
+
+    %h2 bluetooth.writeLocalValue( index, data, callback(err) )
+    %p Write a local value to be read by a master.
+
+    %h2 bluetooth.readLocalValue( index, offset, callback(err, value))
+    %p Read local values that have been written. Offset is how many bytes in to read (reads in 32 byte chunks max ).
+
+    %h2 bluetooth.sendReadResponse( connection, errorCode, value, callback(err) )
+    %p If a master device requests to read a "user" attribute, you'll need to manually send it to them. This should be called after the "remoteReadRequest" event. If errorCode is zero, it will send the value, else it will send the error code back.
+
+    %h2 bluetooth.maxNumValues( callback(err, maxNumValues))
+    %p Get max number of values (V1.0.1  is 12 ).
+
+    %h1 Security Commands
+    %h2  bluetooth.setBondable( peripheral, bondable, callback(err))
+    %p Set whether a peripheral can be bonded to (not sure if this pertains to master mode as well ).
+
+    %h2 bluetooth.getBonds( callback(err, bonds) )
+    %p Get bonds with current devices.
+
+    %h2  bluetooth.deleteBonds( peripheral, callback(err) )
+    %p Delete any bonds with devices.
+
+    %h2  bluetooth.startEncryption( peripheral, callback(err) )
+    %p Start the encryption process.
+
+    %h2  bluetooth.enterPasskey( peripheral, callback(err) )
+    %p When a remote requests a passkey, you'll need to enter it.
+
+    %h2  bluetooth.setEncryptionKeySize( keysize, callback(err) )
+    %p Set the size of the encryption key.
+
+    %h2  bluetooth.setOOBData( data, callback(err) )
+    %p Set the out of band data.
+
+    %h2  bluetooth.enableMITMProtection( enable, callback(err) )
+    %p Choose whether to enable or disable MITM protection.
+
+    %h1 System Commands
+    %h2 bluetooth.getBluetoothAddress( callback(err, address) )
+    %p Get the current address of the device.
+
+    %h2 bluetooth.getMaxConnections( callback(err, maxConnections))
+    %p Get how many connections are supported by the module (currently at 4 ).
+
+    %h2 bluetooth.reset( callback(err) )
+    %p Reset the module.
+
+  .commands-api#Events
+    %h1 Events
+    %h1 Master Events
+    %h2 bluetooth.on( 'error', callback(err) )
+    %p Emitted on error.
+
+    %h2 bluetooth.on( 'scanStart', callback() )
+
+    %h2 bluetooth.on( 'scanStop', callback() )
+
+    %h2 bluetooth.on( 'discover', callback(peripheral) )
+
+    %h2 bluetooth.on( 'connect', callback(peripheral) )
+
+    %h2 bluetooth.on( 'disconnect', callback(peripheral, reason) )
+
+    %h2 bluetooth.on( 'servicesDiscover', callback(services) )
+
+    %h2 bluetooth.on( 'characteristicsDiscover', callback(characteristics) )
+
+    %h2 bluetooth.on( 'descriptorsDiscover', callback(descriptors) )
+
+    %h2 bluetooth.on( 'characteristicRead', callback(characteristicRead, valueRead) )
+
+    %h2 bluetooth.on( 'characteristicWrite', callback(characteristicWritten, valueWritten) )
+
+    %h2 bluetooth.on( 'descriptorRead', callback(descriptorRead, valueRead) )
+
+    %h2 bluetooth.on( 'descriptorWrite', callback(descriptorWritten, valueWritten) )
+
+    %h2 bluetooth.on( 'notification', callback(characteristic, valueUpdated) )
+
+    %h2 bluetooth.on( 'indication', callback(characteristic, valueUpdated) )
+
+    %h2 bluetooth.on( 'rssiUpdate', callback(peripheral, rssi) )
+
+    %h1 Slave Events
+    %h2 bluetooth.on( 'startAdvertising', callback() )
+
+    %h2 bluetooth.on( 'stopAdvertising', callback() )
+
+    %h2 bluetooth.on( 'connect', callback(connection) )
+
+    %h2 bluetooth.on( 'disconnect', callback(connection, reason) )
+
+    %h2 bluetooth.on( 'remoteWrite', callback(connection, index, valueWritten) )
+
+    %h2 bluetooth.on( 'remoteReadRequest', callback(connection, index) )
+
+    %h2 bluetooth.on( 'remoteNotification', callback(connection, index) )
+
+    %h2 bluetooth.on( 'remoteIndication', callback(connection, index) )
+
+    %h2 bluetooth.on( 'remoteUpdateStop', callback(connection, index) )
+
+    %h2 bluetooth.on( 'indicated', callback(connection, index) )
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

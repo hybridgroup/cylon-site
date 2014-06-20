@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -26,6 +27,9 @@ tessel_platform: true
     %ul
       %li Measure 0 to 70 °C (32 to 160 °F) with ±1° accuracy
       %li Measure 0% to 80% relative humidity
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/climate", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -67,7 +71,33 @@ tessel_platform: true
           }
         }).start();
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 climate.use ( interface[, csn] )
+    %p Takes in the port bank that the module is connected to. Returns the Climate object.
 
+    %h2 climate.readTemperature ( [format,] callback(err, temp) )
+    %p Returns the temperature in degrees Celcius or Fahrenheit.
+
+    %h2 climate.readHumidity ( callback(err, humidity) )
+    %p Returns the relative humidity.
+
+    %h2 climate.setHeater ( bool[, callback(err)] )
+    %p Sets the HEAT config register. The heater evaporates off any moisture that may condense on the sensor in high humidty environments. Enabling the heater will inreases the accuracy of humidity measurements but will interfere with temperature measurement.
+
+    %h2 climate.setFastMeasure ( bool[, callback(err)] )
+    %p Sets the FAST config register.
+  .commands-api#Events
+    %h1 Events
+    %h2 climate.on ( 'ready' )
+    %p Emitted when upon first successful communication between the Tessel and the module.
+
+    %h2 climate.on ( 'temperature'[,callback(temperature, temp_type)] )
+    %p Emitted when temperature data is received. Internal to the readTeperature method, useful when another module is triggered by climate data.
+
+    %h2 climate.on ( 'humidity'[,callback(humidity)] )
+    %p Emitted when humidity data is received. Internal to the readHumidity method, useful when another module is triggered by climate data.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

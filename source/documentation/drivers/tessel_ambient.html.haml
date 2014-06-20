@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -26,6 +27,9 @@ tessel_platform: true
     %ul
       %li The microphone is optimized for detecting the ambient noise level in a room or building a sound-activated device.
       %li The ambient light sensor and can be used for detecting fine-grain brightness in a room.
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/ambient", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -73,6 +77,52 @@ tessel_platform: true
             });
           }
         }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 ambient.clearLightTrigger( callback(err, triggerVal) )
+    %p Clears trigger listener for light trigger.
+
+    %h2 ambient.clearSoundTrigger( callback(err, triggerVal) )
+    %p Clears trigger listener for sound trigger.
+
+    %h2 ambient.getLightBuffer( callback(err, data) )
+    %p Gets the last 10 light readings.
+
+    %h2 ambient.getLightLevel( callback(err, data) )
+    %p Gets a single data point of light level.
+
+    %h2 ambient.getSoundBuffer( callback(err, data) )
+    %p Gets the last 10 sound readings.
+
+    %h2 ambient.getSoundLevel( callback(err, data) )
+    %p Gets a single data point of sound level.
+
+    %h2 ambient.setLightTrigger( triggerVal, callback(err, triggerVal) )
+    %p Sets a trigger to emit a 'light-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+
+    %h2 ambient.setSoundTrigger( triggerVal, callback(err, triggerVal) )
+    %p Sets a trigger to emit a 'sound-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+  .commands-api#Events
+    %h1 Events
+    %h2 ambient.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 ambient.on( 'light', callback(lightData) )
+    %p Get a stream of light data.
+
+    %h2 ambient.on( 'light-trigger', callback(lightTriggerValue) )
+    %p Emitted upon crossing light trigger threshold.
+
+    %h2 ambient.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
+
+    %h2 ambient.on( 'sound', callback(soundData) )
+    %p Get a stream of sound level data.
+
+    %h2 ambient.on( 'sound-trigger', callback(soundTriggerValue) )
+    %p Emitted upon crossing sound trigger threshold.
 
 
 

@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -28,6 +29,9 @@ tessel_platform: true
       %li Takes a separate barrel jack power connection (included with US shipments)
       %li Comes with an ES3001 YinYan Servo and a 5V external power jack (US-style plug)
       %li Can also be used as an LED driver.
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/servo", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -82,6 +86,30 @@ tessel_platform: true
           }
         }).start();
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 servo.configure( whichServo, minPWM, maxPWM, callback() )
+    %p Sets the PWM max and min for the specified servo.
+
+    %h2 servo.move( whichServo, positionOrSpeed, callback() )
+    %p positionOrSpeed is a value between 0 and 1. On a normal servo, this value is the position to move to as a percent of the total available rotational range. On a continuous rotation servo, this value represents the rotation speed: 0 is fast in one direction, 1 is fast in the other direction, and 0.5 is stopped.
+
+    %h2 servo.read( whichServo, callback() )
+    %p Reads the current approximate position target for the specified servo.
+
+    %h2 servo.setDutyCycle( whichServo, on, callback() )
+    %p Sets the duty cycle for the specified servo. on is duty cycle uptime, range from 0-1.
+
+    %h2 servo.setModuleFrequency( Hertz, callback() )
+    %p Sets the PWM frequency in Hz for the PCA9685 chip.
+  .commands-api#Events
+    %h1 Events
+    %h2 servo.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 servo.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
 
 
 %section.compatability.hardware#Compatability

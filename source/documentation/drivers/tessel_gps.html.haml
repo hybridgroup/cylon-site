@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -27,6 +28,9 @@ tessel_platform: true
       %li Up to 1.8m accuracy
       %li 66 search channels, 22 tracking channels, -165dBM sensitivity
       %li Max 10Hz update rate
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/gps", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -86,7 +90,53 @@ tessel_platform: true
           }
         }).start();
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 gps.powerOff( callback() )
+    %p Turns the GPS chip off.
 
+    %h2 gps.powerOn( callback() )
+    %p Turns the GPS chip on.
+
+    %h2 gps.setCoordinateFormat( format, callback() )
+    %p Configure how the module reports latitude and longitude: options are 'deg-min-sec', 'deg-min-dec', and 'deg-dec'.
+  .commands-api#Events
+    %h1 Events
+    %h2 gps.on( 'altitude', callback(altitudeObj) )
+    %p Emitted when altitude data is available. Emitted in the form {altitude in meters, timestamp}.
+
+    %h2 gps.on( 'coordinates', callback(coordinateObj) )
+    %p Emitted when coordinate data is available. Emitted in the form {latitude, longitude, timestamp}.
+
+    %h2 gps.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 gps.on( 'powerOff', callback() )
+    %p Emitted when the module has been powered off.
+
+    %h2 gps.on( 'powerOn', callback() )
+    %p Emitted when the module has been powered on.
+
+    %h2 gps.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
+
+    %h4 Also emits parsed NMEA objects by type:
+
+    %h2 gps.on( 'active-satellites', callback(data) )
+    %p NMEA GPGSA: GPS DOP and active satellites.
+
+    %h2 gps.on( 'fix', callback(data) )
+    %p NMEA GPGGA: Global positioning system fix data.
+
+    %h2 gps.on( 'nav-info', callback(data) )
+    %p NMEA GPRMC: Recommended minimum specific GPS/Transit data.
+
+    %h2 gps.on( 'satellite-list-partial', callback(data) )
+    %p NMEA GPGSV: GPS satellites in view.
+
+    %h2 gps.on( 'track-info', callback(data) )
+    %p NMEA GPVTG: Track made good and ground speed.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

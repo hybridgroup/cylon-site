@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -28,6 +29,9 @@ tessel_platform: true
       %li Detects max 38kHz
       %li IR Receiver
       %li IR LED
+    %p
+      For more info visit
+      = link_to "here.", "http://start.tessel.io/modules/ir", target: :blank
   .clear
 
 %section.how-to#HowToConnect
@@ -84,7 +88,24 @@ tessel_platform: true
           }
         }).start();
 
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 infrared.sendRawSignal(frequency, signalDurations, callback)
+    %p The primary method for sending data. The first argument is a frequency of signal in Hz, typically 38 but can range from 36 to 40. The second argument is a buffer of unsigned 16 bit integers representing the number of microseconds the transmission should be on. The max length of the signal durations is 100 durations.
 
+    %h2 infrared.setListening(set, callback)
+    %p Determines whether the module is listening for incoming signals. Will automatically be set and unset depending on listeners for the data event.
+  .commands-api#Events
+    %h1 Events
+    %h2 infrared.on('data', callback(data))
+    %p Emitted when an infrared signal is detected.
+
+    %h2 infrared.on('error', callback(err))
+    %p Emitted when there is an error communicating with the module.
+
+    %h2 infrared.on('ready', callback())
+    %p Emitted upon first successful communication between the Tessel and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

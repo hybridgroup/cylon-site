@@ -9,6 +9,7 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 subnavjs: true
+subnav_driver: true
 
 tessel_platform: true
 ---
@@ -71,8 +72,33 @@ tessel_platform: true
 %section.public-methods
   .commands-api#Commands
     %h1 Commands
+    %h2 accel.availableOutputRates()
+    %p Logs the available interrupt rates in Hz.
+
+    %h2 accel.availableScaleRanges()
+    %p Logs the available accelerometer ranges (in units of Gs).
+
+    %h2 accel.enableDataInterrupts( trueOrFalse, callback(err) )
+    %p Enables or disables data interrupts. Set the first param truthy to enable, falsy to disable.
+
+    %h2 accel.getAcceleration( callback(err, xyz) )
+    %p Gets the acceleration from the device, outputs as array [x, y, z].
+
+    %h2 accel.setOutputRate( rateInHz, callback(err) )
+    %p  Sets the output rate of the data (1.56-800 Hz).
+
+    %h2 accel.setScaleRange( scaleRange, callback(err) )
+    %p Sets the accelerometer to read up to 2, 4, or 8 Gs of acceleration (smaller range = better precision).
   .commands-api#Events
     %h1 Events
+    %h2 accel.on( 'data', callback(xyz) )
+    %p Emitted when data is available. xyz is an array in the form of [x, y, z].
+
+    %h2 accel.on( 'error', callback(err) )
+    %p Emitted upon error.
+
+    %h2 accel.on( 'ready', callback() )
+    %p Emitted upon first successful communication between the Tessel and the module.
 
 
 
