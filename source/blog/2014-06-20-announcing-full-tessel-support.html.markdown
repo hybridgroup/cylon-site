@@ -1,0 +1,124 @@
+---
+page_title_show: true
+title: Announcing full Tessel support!
+page_title: Blog
+date: 2014-06-20
+tags: robots
+author: Adrian Zankich
+active_menu_blog: true
+---
+
+We are happy to announce full support for the [Tessel](https://tessel.io/) JavaScript microcontroller! The Tessel is a new JavaScript powered microcontroller which runs your JavaScript programs directly on the board, so there's no need for an external PC to control the board. It features 4 build in LEDs, 1 button, and 5 banks of GPIO ports, i2c, spi and uart. 
+
+Using Cylon.js on your Tessel gives you access to all of our existing [GPIO](https://github.com/hybridgroup/cylon-gpio) and [I2C](https://github.com/hybridgroup/cylon-i2c) driver support as well as the official Tessel [Modules](https://tessel.io/modules).
+
+We currently support the following Modules:  
+- Accelerometer
+- Ambient
+- Audio
+- Bluetooth
+- Camera
+- Climate
+- GPS
+- Infarared
+- Relay
+- Servo
+
+With more on the way!
+
+Getting started with Cylon.js is as easy as:
+- Follow the Tessel install [instructions](http://start.tessel.io/install)  
+- `$ npm install -g cylon-cli`  
+- `$ cylon generate tessel my-tessel-project`  
+- `$ cd my-tessel-project`  
+- `$ npm install`  
+- `$ tessel run blink.js`  
+
+The supplied `blink.js` example uses the one of the Tessel's built-in LEDs.
+
+```javascript  
+var Cylon = require('cylon');  
+
+Cylon.robot({
+  connection: { name: 'tessel', adaptor: 'tessel' },
+  device: { name: 'led', driver: 'led', pin: 1 },
+
+  work: function(my) {
+    every((1).seconds(), function() { 
+      my.led.toggle() 
+    });
+  }
+}).start();
+```
+
+Now for an example with user interaction! Here's a button example using the built- in `config` button and a built-in LED. Copy this example into your `my-tessel-project` directory as `button.js`
+
+```javascript
+var Cylon = require('cylon');
+
+Cylon.robot({
+  connection: { name: 'tessel', adaptor: 'tessel' },
+  devices: [
+    { name: 'led', driver: 'led', pin: 1 },
+    { name: 'button', driver: 'button' }
+  ],
+
+  work: function(my) {
+    my.button.on('push', function() {
+      my.led.toggle();
+    });
+  }
+}).start();
+```
+
+And run with `$ tessel run button.js`. When you press the `config` button, the light will toggle on and off, neat!
+
+
+Now for something interesting. Here's an example using the built-in `config` button, a built-in LED and the `camera-vc0706` Camera module! Copy this example into your `my-tessel-project` directory as `camera.js`
+
+```javascript
+var Cylon = require('cylon');
+
+Cylon.robot({
+  connections: [
+    { name: 'tessel', adaptor: 'tessel' },
+    { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
+  ],
+  devices: [
+    { name: 'led', driver: 'led', pin: 1, connection: 'tessel' },
+    { name: 'button', driver: 'button', connection: 'tessel' },
+    { name: 'camera', driver: 'camera-vc0706', connection: 'tessel_A' },
+  ],
+
+  work: function(my) {
+    my.camera.on('error', function (err) {
+      console.log("Camera error: ", err);
+    });
+
+    my.camera.setCompression(0.4, function(err) {
+      if (err) console.log("error setting compression: ", err);
+    });
+
+    my.button.on('push', function() {
+      my.led.turnOn();
+      my.camera.takePicture(function(err, image) {
+        if (err) {
+          console.log('error taking image', err);
+        } else {
+          // Name the image
+          var name = 'picture-' + Math.floor(Date.now()*1000) + '.jpg';
+          // Save the image
+          console.log('Picture saving as', name, '...');
+          process.sendfile(name, image);
+        }
+        my.led.turnOff();
+      });
+    });
+  }
+}).start();
+```
+This example will take a picture every time you press the `config` button while the indicator LED will tell you when it's finished! You can run this example with `tessel run camera.js --upload-dir .`. The `--upload-dir .` tells the Tessel to save the pictures to your current directory.
+
+<img src="/images/blog/picture-1.4032894052856e_15.png" alt="Taken from my Tessel" style="margin: 10px 0;"/>
+
+Cylon.js makes developing your Tessel applications easy and fun! Be sure to checkout out our examples for each Tessel module [here](https://github.com/hybridgroup/cylon-tessel/tree/master/examples). As well as the 19 different hardware platforms currently [support](http://cylonjs.com/documentation/platforms/) in Cylon.js.
