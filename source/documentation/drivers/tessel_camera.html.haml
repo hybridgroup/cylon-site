@@ -1,0 +1,100 @@
+---
+title: Cylon.js - Tessel Camera
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Camera
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(5)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-camera.jpg", class: "display"
+  .info-intro
+    %p Add the sense of sight to Tessel!
+    %p Take pictures of your projects, from your projects.
+    %ul
+      %li Supports 640x480, 320x240, and 160x120
+      %li Still image camera.
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'tessel', adaptor: 'tessel' },
+            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
+          ],
+          devices: [
+            { name: 'led', driver: 'led', pin: 1, connection: 'tessel' },
+            { name: 'button', driver: 'button', connection: 'tessel' },
+            { name: 'camera', driver: 'camera-vc0706', connection: 'tessel_A' },
+          ],
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'tessel', adaptor: 'tessel' },
+            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
+          ],
+          devices: [
+            { name: 'led', driver: 'led', pin: 1, connection: 'tessel' },
+            { name: 'button', driver: 'button', connection: 'tessel' },
+            { name: 'camera', driver: 'camera-vc0706', connection: 'tessel_A' },
+          ],
+
+          work: function(my) {
+            my.camera.on('error', function (err) {
+              console.log("Camera error: ", err);
+            });
+
+            my.camera.setCompression(0.4, function(err) {
+              if (err) console.log("error setting compression: ", err);
+            });
+
+            my.button.on('push', function() {
+              my.led.turnOn();
+              my.camera.takePicture(function(err, image) {
+                if (err) {
+                  console.log('error taking image', err);
+                } else {
+                  // Name the image
+                  var name = 'picture-' + Math.floor(Date.now()*1000) + '.jpg';
+                  // Save the image
+                  console.log('Picture saving as', name, '...');
+                  process.sendfile(name, image);
+                }
+                my.led.turnOff();
+              });
+            });
+          }
+        }).start();
+
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

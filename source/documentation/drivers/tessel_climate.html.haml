@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Tessel Accelerometer
+title: Cylon.js - Tessel Climate
 author: The Hybrid Group
 page_title: Tessel Module
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: Tessel Accelerometer
+page_title_docs: Tessel Climate
 page_subtitle_docs: Module
 layout: documentation
 page_title_show: true
@@ -15,21 +15,17 @@ tessel_platform: true
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $("#tessel li:nth-child(1)").addClass("active-link");
+    $("#tessel li:nth-child(6)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
-  =image_tag "/images/devices/tessel-accelerometer.jpg", class: "display"
+  =image_tag "/images/devices/tessel-climate.jpg", class: "display"
   .info-intro
-    %p Detect orientation and movement of your Tessel by measuring gravity / acceleration.
-    %p Control by tilt!
+    %p Detect humidity and temperature from your environment.
+    %p Monitor your plants or exotic pets. Pull weather data from the internet and replicate a climate by hooking up relays to fan/heater/humidifiers.
     %ul
-      %li 3-Axis Digital Accelerometer
-      %li 12-bit resolution
-      %li Selectable ±2g/±4g/±8g scales
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/accelerometer", target: :blank
+      %li Measure 0 to 70 °C (32 to 160 °F) with ±1° accuracy
+      %li Measure 0% to 80% relative humidity
   .clear
 
 %section.how-to#HowToConnect
@@ -40,7 +36,8 @@ tessel_platform: true
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
-          device: { name: 'accel', driver: 'accel-mma84' },
+          device: { name: 'climate', driver: 'climate-si7005' },
+          work: function(my) {
         ...
 
 
@@ -53,27 +50,22 @@ tessel_platform: true
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
-          device: { name: 'accel', driver: 'accel-mma84' },
-
+          device: { name: 'climate', driver: 'climate-si7005' },
           work: function(my) {
-            my.accel.on('error', function (err) {
+            my.climate.on('error', function (err) {
               console.log(err)
             });
 
-            my.accel.on('data', function (xyz) {
-              console.log('x:', xyz[0].toFixed(2),
-                'y:', xyz[1].toFixed(2),
-                'z:', xyz[2].toFixed(2));
+            every((1).seconds(), function() {
+              my.climate.readHumidity(function (err, humid) {
+                console.log('Humidity:', humid.toFixed(4) + '%RH');
+              });
+              my.climate.readTemperature('f', function (err, temp) {
+                console.log('Degrees:', temp.toFixed(4) + 'F');
+              });
             });
           }
         }).start();
-
-%section.public-methods
-  .commands-api#Commands
-    %h1 Commands
-  .commands-api#Events
-    %h1 Events
-
 
 
 

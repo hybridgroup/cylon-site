@@ -1,0 +1,90 @@
+---
+title: Cylon.js - Tessel Servo
+author: The Hybrid Group
+page_title: Tessel Module
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Tessel Servo
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+
+tessel_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#tessel li:nth-child(10)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/tessel-servo.jpg", class: "display"
+  .info-intro
+    %p Control up to 16 hobbyist/RC servos.
+    %p Make it move! Control locks, wheels, cords, or anything else you can think of.
+    %ul
+      %li Standard PWM output is compatible with servos of all sizes
+      %li Takes a separate barrel jack power connection (included with US shipments)
+      %li Comes with an ES3001 YinYan Servo and a 5V external power jack (US-style plug)
+      %li Can also be used as an LED driver.
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'servo', driver: 'servo-pca9685' },
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Example using a Direct Pin.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
+          device: { name: 'servo', driver: 'servo-pca9685' },
+
+          work: function(my) {
+            var servo1 = 1; // We have a servo plugged in at position 1
+            var position = 0;  //  Target position of the servo between 0 (min) and 1 (max).
+
+            my.servo.on('error', function (err) {
+              console.log(err)
+            });
+
+            //  Set the minimum and maximum duty cycle for servo 1.
+            //  If the servo doesn't move to its full extent or stalls out
+            //  and gets hot, try tuning these values (0.05 and 0.12).
+            //  Moving them towards each other = less movement range
+            //  Moving them apart = more range, more likely to stall and burn out
+            my.servo.configure(servo1, 0.05, 0.12, function () {
+              every((0.5).seconds(), function() {
+                console.log('Position (in range 0-1):', position);
+                //  Set servo #1 to position pos.
+                my.servo.move(servo1, position);
+
+                // Increment by 10% (~18 deg for a normal servo)
+                position += 0.1;
+                if (position > 1) {
+                  position = 0; // Reset servo position
+                }
+              });
+            });
+          }
+        }).start();
+
+
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

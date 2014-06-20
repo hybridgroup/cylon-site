@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Tessel Accelerometer
+title: Cylon.js - Tessel Bluetooth
 author: The Hybrid Group
 page_title: Tessel Module
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: Tessel Accelerometer
+page_title_docs: Tessel Bluetooth
 page_subtitle_docs: Module
 layout: documentation
 page_title_show: true
@@ -15,21 +15,17 @@ tessel_platform: true
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $("#tessel li:nth-child(1)").addClass("active-link");
+    $("#tessel li:nth-child(4)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
-  =image_tag "/images/devices/tessel-accelerometer.jpg", class: "display"
+  =image_tag "/images/devices/tessel-bluetooth.jpg", class: "display"
   .info-intro
-    %p Detect orientation and movement of your Tessel by measuring gravity / acceleration.
-    %p Control by tilt!
+    %p Allows your tesselation to work as a Bluetooth LE master or slave device.
+    %p Connect to your phone, FitBit, or other low-powered device.
     %ul
-      %li 3-Axis Digital Accelerometer
-      %li 12-bit resolution
-      %li Selectable ±2g/±4g/±8g scales
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/accelerometer", target: :blank
+      %li Compatible with iOS 5+, Android 4.3+
+      %li Supports master mode to connect to other BLE devices and Tessels
   .clear
 
 %section.how-to#HowToConnect
@@ -40,7 +36,7 @@ tessel_platform: true
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
-          device: { name: 'accel', driver: 'accel-mma84' },
+          device: { name: 'ble', driver: 'ble-ble113a' },
         ...
 
 
@@ -53,27 +49,23 @@ tessel_platform: true
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
-          device: { name: 'accel', driver: 'accel-mma84' },
+          device: { name: 'ble', driver: 'ble-ble113a' },
 
           work: function(my) {
-            my.accel.on('error', function (err) {
+            my.ble.on('error', function (err) {
               console.log(err)
             });
 
-            my.accel.on('data', function (xyz) {
-              console.log('x:', xyz[0].toFixed(2),
-                'y:', xyz[1].toFixed(2),
-                'z:', xyz[2].toFixed(2));
+            my.ble.on('discover', function(peripheral) {
+              console.log("Discovered peripheral!", peripheral.toString());
+            });
+
+            after((2).seconds, function() {
+              console.log("scanning...");
+              my.ble.startScanning();
             });
           }
         }).start();
-
-%section.public-methods
-  .commands-api#Commands
-    %h1 Commands
-  .commands-api#Events
-    %h1 Events
-
 
 
 
