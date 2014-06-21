@@ -68,18 +68,24 @@ lcd_driver: true
   %h2 How To Connect
   %h3 Setting up the Galileo bigger Linux image, connecting and updating node.js.
   %p Setting up Intel's Galileo board takes a bit more work than it should, but it is not difficult, luckily you only have to do it once (we hope :-)... ).
-  %p The first step is to install the bigger linux image into an SD card and boot the Galileo from it, you can accomplish this by following the instructions on the galileo getting started page here:
+  %p
+    The first step is to check we have the latest firmware and update if not.
+    You can find instructions to update the firmware here:
 
   %p
-    Unfortunately the bigger linux image listed in the official Galileo drivers page (
+    = link_to 'Galileo firmware update', 'https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware'
+
+  %p
+    Next step is to install the bigger linux image into a MicroSD card and boot the
+    Galileo from it.
+
+  %p
+    You can find the bigger linux image listed in the official Galileo drivers page (
     = link_to 'Galileo drivers', 'https://communities.intel.com/docs/DOC-22226'
-    ) has been removed, but there is a better bigger linux image that includes dev tools here:
+    ), the one named:
 
   %p
-    = link_to 'Bigger linux image for SD with dev tools.', 'http://ph0b.com/adding-dev-tools-gcc-make-to-galileo-sd-image/'
-
-  %p
-    Thanks to Xavier Hallade for building that image.
+    = link_to 'LINUX IMAGE FOR SD for Intel Galileo', 'http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z'
 
   %p
     Please feel free to read through the getting started page, so you can get familiar with the board features.
