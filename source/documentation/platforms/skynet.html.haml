@@ -17,7 +17,7 @@ skynet_driver: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(16)").addClass("active-link");
+    $("#platform-panel ul li:nth-child(17)").addClass("active-link");
     $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -32,7 +32,7 @@ skynet_driver: true
 
 %section.how-to#HowToInstall
   %h2 How To Install
-  %p Install the module with: 
+  %p Install the module with:
   :markdown
         :::bash
         npm install cylon-skynet
@@ -79,11 +79,9 @@ skynet_driver: true
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p Available drivers for the Skynet platform are listed below. 
+  %p Available drivers for the Skynet platform are listed below.
 
   .hardware
     .devices
       // TODO: Update drivers list at the top of the page.
       = partial "documentation/partials/devices_skynet_drivers"
-
-  

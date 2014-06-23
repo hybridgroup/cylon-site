@@ -17,7 +17,7 @@ rapiro_driver: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(14)").addClass("active-link");
+    $("#platform-panel ul li:nth-child(15)").addClass("active-link");
     $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -31,7 +31,7 @@ rapiro_driver: true
       Go to the Rapiro web site at
       = link_to "http://www.rapiro.com/.", "http://www.rapiro.com/"
   .clear
-  
+
 %section.how-to#HowToInstall
   %h2 How To Install
   %p Installing cylon.js with Rapiro support is easy.
@@ -67,7 +67,7 @@ rapiro_driver: true
 
 %section.how-to#HowToConnect
   %h2 How To Connect
-  %p 
+  %p
   :markdown
     If you are connected from a Raspberry Pi to the Rapiro board, it will appear as serial port `/dev/ttyACM0`. You can find out by running the `cylon scan serial` command.
 

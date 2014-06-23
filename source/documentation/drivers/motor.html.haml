@@ -15,6 +15,7 @@ subnavjs: trues
 arduino_platform: true
 raspberry_platform: true
 spark_platform: true
+pinoccio_platform: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -28,11 +29,11 @@ spark_platform: true
     %p
       Provides motor manipulation tools for Cylon.js like on/off, speed modulation using PWM,
       use of bidirectional motors using forward/backward pins.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://en.wikipedia.org/wiki/Motor_controller", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -79,17 +80,15 @@ spark_platform: true
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p  
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/gpio/motor_bb.png", :alt => ""}/ 
-  .clear 
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/gpio/motor_bb.png", :alt => ""}/
+  .clear
 
-  
+
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
     = partial "documentation/partials/devices_platforms"
-
-

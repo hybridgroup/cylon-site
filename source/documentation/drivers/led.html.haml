@@ -17,6 +17,7 @@ beaglebone_platform: true
 raspberry_platform: true
 spark_platform: true
 digispark_platform: true
+pinoccio_platform: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -28,11 +29,11 @@ digispark_platform: true
   =image_tag "/images/devices/LED.jpg", class: "display"
   .info-intro
     %p Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://es.wikipedia.org/wiki/Led", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -75,11 +76,11 @@ digispark_platform: true
     = partial "/documentation/drivers/partials/gpio/events_led"
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
-    %p 
+    %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/led_bb.png", :alt => ""}/ 
+    %img{:src => "/documentation/drivers/breadboards/gpio/led_bb.png", :alt => ""}/
   .clear
 
 %section.compatability.hardware#Compatability

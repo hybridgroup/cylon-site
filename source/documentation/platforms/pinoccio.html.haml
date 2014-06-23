@@ -1,0 +1,123 @@
+---
+title: Pinoccio with Cylon.js
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Pinoccio
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-pinoccio' class='repository' target='blank'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/cylon-pinoccio/issues'  target='blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+
+analog_sensor_driver: true
+button_driver: true
+continuous_servo_driver: true
+direct_pin_driver: true
+ir_range_finder: true
+led_driver: true
+makey_driver: true
+maxbotix_driver: true
+motor_driver: true
+servo_driver: true
+
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#platform-panel").addClass("active-panel");
+    $("#platform-panel ul li:nth-child(14)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/pinoccio.jpg", class: "display"
+  .info-intro
+    %p Build wireless, web-enabled projects in minutes.
+
+    %p
+      For more info about the Pinoccio platform click
+      = succeed "." do
+        = link_to "here", "https://pinocc.io/", target: :blank
+
+  .clear
+
+%section.how_to#HowToInstall
+  %h2 How To Install
+  %p Installing Cylon.js with Pinoccio support is pretty easy.
+  :markdown
+        :::bash
+        npm install cylon-pinoccio
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Blink
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: '[your token]',
+            troop: '[your troop ID]',
+            scout: '[your scout ID]' },
+          device: {name: 'led', driver: 'led', pin: 'D5'},
+
+          work: function(my) {
+            every((1).second(), my.led.toggle);
+          }
+        }).start();
+
+  %h3 Built-In Features
+  %p You can also access the built-in features of the Pinoccio such as the LED and Power status:
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: '[your token]',
+            troop: '[your troop ID]',
+            scout: '[your scout ID]' },
+          device: {name: 'led', driver: 'pinoccio-led'},
+          device: {name: 'power', driver: 'pinoccio-power'},
+
+          work: function(my) {
+            every((1).second(),
+            my.led.toggle);
+          }
+        }).start();
+
+
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  %p You need to have an access token generated using the Pinoccio cloud. The easiest way to do this is to use curl:
+  :markdown
+        :::bash
+        curl -X POST -v --data 'email=your@email.com&password=yourpassword' https://api.pinocc.io/v1/login
+
+    It will return a JSON payload that contains the access token:
+
+        :::bash
+        < HTTP/1.1 200 OK
+        < content-type: application/json
+        < Date: Sat, 21 Jun 2014 16:08:05 GMT
+        < Connection: close
+        < Transfer-Encoding: chunked
+        <
+        {"data":{"token":"thisisthetokenhere","account":1234,"perms":true}}
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p Available drivers for the joystick platform are listed below:
+  -#%p There are 3 driver for different joysticks, as listed below:
+
+  .hardware
+    %h2 GPIO Drivers
+    .devices
+      // TODO: Update drivers list at the top of the page.
+      = partial "documentation/partials/devices_gpio_drivers"

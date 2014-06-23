@@ -15,6 +15,7 @@ subnavjs: true
 arduino_platform: true
 beaglebone_platform: true
 raspberry_platform: true
+pinoccio_platform: true
 spark_platform: true
 ---
 -content_for :js_accordeon do
@@ -27,11 +28,11 @@ spark_platform: true
   = image_tag "/images/devices/button.jpg", class: "display"
   .info-intro
     %p Simple interface that makes it possible to register clicks through physical input.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://en.wikipedia.org/wiki/Switch", target: "_blank"
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -48,7 +49,7 @@ spark_platform: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example detects when a button has been pushed.
 
   :markdown
@@ -78,9 +79,9 @@ spark_platform: true
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
+    %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/button_bb.png", :alt => ""}/ 
+    %img{:src => "/documentation/drivers/breadboards/gpio/button_bb.png", :alt => ""}/
   .clear
 
 %section.compatability.hardware#Compatability
@@ -88,4 +89,3 @@ spark_platform: true
   =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
     = partial "documentation/partials/devices_platforms"
-    

@@ -15,6 +15,7 @@ subnavjs: true
 arduino_platform: true
 raspberry_platform: true
 spark_platform: true
+pinoccio_platform: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -26,11 +27,11 @@ spark_platform: true
   = image_tag "/images/devices/continuous-servo.jpg", class: "display"
   .info-intro
     %p Provides an interface for making servos easy to work and interact with from Cylon.js.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://en.wikipedia.org/wiki/Servomechanism", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -78,12 +79,12 @@ spark_platform: true
     = partial "/documentation/drivers/partials/gpio/events_continuous_servo"
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
     %p
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/gpio/servo_bb.png", :alt => ""}/ 
-  .clear 
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/gpio/servo_bb.png", :alt => ""}/
+  .clear
 
 
 
