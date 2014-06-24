@@ -79,18 +79,38 @@ pinoccio_platform: true
 %section.public-methods
   .commands-api#Commands
     %h1 Commands
-    %h2 isCharging()
+    %h2 isCharging(cb)
     %p Returns a value if the drivers is charging
-    %h2 percent()
+    :markdown
+      - **cb** - The value for which to return data
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 percent(cb)
     %p Returns the percent
-    %h2 voltage()
+    :markdown
+      - **cb** - The value for which to return data
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 voltage(cb)
     %p Returns the voltage
+    :markdown
+      - **cb** - The value for which to return data
+    %h5 Returns
+    :markdown
+      `nil`
     %h2 enableVcc()
     %p Enables the VCC
     %h2 disableVcc()
     %p Disables the VCC
-    %h2 report()
+    %h2 report(cb)
     %p Returns a report of the driver
+    :markdown
+      - **cb** - The value for which to return data
+    %h5 Returns
+    :markdown
+      `nil`
   .commands-api#Events
     %h1 Events
     %p no commands

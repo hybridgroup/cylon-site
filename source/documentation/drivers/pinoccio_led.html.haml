@@ -109,14 +109,44 @@ pinoccio_platform: true
     %p Sets the LED into a white color
     %h2 torch()
     %p Sets the torch of the LED
-    %h2 hex()
+    %h2 hex(value)
     %p Sets an hexa color to the LED
-    %h2 rgb()
+    %h5 Params
+    :markdown
+      - **value** - The value for which to return data
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 rgb(r, g, b)
     %p Sets an RGB color to the LED
-    %h2 saveTorch()
+    %h5 Params
+    :markdown
+      - **r** - The value for the red color
+      - **g** - The value for the green color
+      - **b** - The value for the blue color
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 saveTorch(r, g, b)
     %p Saves the torch of the LED
-    %h2 blink()
+    %h5 Params
+    :markdown
+      - **r** - The value for the red color
+      - **g** - The value for the green color
+      - **b** - The value for the blue color
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 blink(r, g, b)
     %p Makes the LED blink
+    %h5 Params
+    :markdown
+      - **r** - The value for the red color
+      - **g** - The value for the green color
+      - **b** - The value for the blue color
+    %h5 Returns
+    :markdown
+      `nil`
 
   .commands-api#Events
     %h1 Events
