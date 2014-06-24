@@ -22,6 +22,9 @@ maxbotix_driver: true
 motor_driver: true
 servo_driver: true
 
+pinoccio_led_driver: true
+pinoccio_power_driver: true
+
 ---
 -content_for :js_accordeon do
   :javascript
@@ -121,3 +124,7 @@ servo_driver: true
     .devices
       // TODO: Update drivers list at the top of the page.
       = partial "documentation/partials/devices_gpio_drivers"
+    %h2 Pinoccio Drivers
+    .devices
+      // TODO: Update drivers list at the top of the page.
+      = partial "documentation/partials/devices_pinoccio_drivers"
