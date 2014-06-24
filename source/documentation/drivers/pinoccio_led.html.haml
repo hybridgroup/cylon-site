@@ -1,0 +1,128 @@
+---
+title: Cylon.js - Pinoccio LED Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Pinoccio LED
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+
+pinoccio_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#pinoccio li:nth-child(1)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/pinoccio_led.jpg", class: "display"
+  .info-intro
+    %p
+    %p
+      For more information click
+      = link_to "here", "https://pinocc.io/", target: "_blank"
+
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the module with: `npm install cylon-pinoccio`
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+          	name: 'pinoccio',
+          	adaptor: 'pinoccio',
+          	token: 'XXX',
+          	troop: '1',
+          	scout: '1' },
+          device: {name: 'led', driver: 'pinoccio-led'},
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Example
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: 'XXX',
+            troop: '1',
+            scout: '1' },
+          device: {name: 'led', driver: 'pinoccio-led'},
+
+          work: function(my) {
+            var isOn = false;
+            my.led.blink(127, 127, 127);
+            every((1).second(), function() {
+              if (isOn === true) {
+                isOn = false;
+                my.led.turnOff();
+              } else {
+                isOn = true;
+                my.led.turnOn();
+              }
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 turnOn()
+    %p Turns on the LED
+    %h2 turnOff()
+    %p Turns off the LED
+    %h2 red()
+    %p Sets the LED into a red color
+    %h2 green()
+    %p Sets the LED into a green color
+    %h2 blue()
+    %p Sets the LED into a blue color
+    %h2 cyan()
+    %p Sets the LED into a cyan color
+    %h2 purple()
+    %p Sets the LED into a purple color
+    %h2 magenta()
+    %p Sets the LED into a magenta color
+    %h2 yellow()
+    %p Sets the LED into a yellow color
+    %h2 orange()
+    %p Sets the LED into a orange color
+    %h2 white()
+    %p Sets the LED into a white color
+    %h2 torch()
+    %p Sets the torch of the LED
+    %h2 hex()
+    %p Sets an hexa color to the LED
+    %h2 rgb()
+    %p Sets an RGB color to the LED
+    %h2 saveTorch()
+    %p Saves the torch of the LED
+    %h2 blink()
+    %p Makes the LED blink
+
+  .commands-api#Events
+    %h1 Events
+    %p no commands
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

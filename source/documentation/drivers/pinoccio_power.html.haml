@@ -1,0 +1,101 @@
+---
+title: Cylon.js - Pinoccio Power Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Pinoccio Power
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+
+pinoccio_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#pinoccio li:nth-child(2)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  =image_tag "/images/devices/pinoccio_power.jpg", class: "display"
+  .info-intro
+    %p
+    %p
+      For more information click
+      = link_to "here", "https://pinocc.io/", target: "_blank"
+
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  :markdown
+    Install the module with: `npm install cylon-pinoccio`
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: 'XXX',
+            troop: '1',
+            scout: '1' },
+          device: {name: 'power', driver: 'pinoccio-power'},
+        ...
+
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %h3 Example
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+          	name: 'pinoccio',
+          	adaptor: 'pinoccio',
+          	token: 'XXX',
+          	troop: '1',
+          	scout: '1' },
+          device: {name: 'power', driver: 'pinoccio-power'},
+
+          work: function(my) {
+            every((3).seconds(), function() {
+              my.power.voltage(function(err, data){
+                console.log(err);
+                console.log(data);
+              });
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    %h2 isCharging()
+    %p Returns a value if the drivers is charging
+    %h2 percent()
+    %p Returns the percent
+    %h2 voltage()
+    %p Returns the voltage
+    %h2 enableVcc()
+    %p Enables the VCC
+    %h2 disableVcc()
+    %p Disables the VCC
+    %h2 report()
+    %p Returns a report of the driver
+  .commands-api#Events
+    %h1 Events
+    %p no commands
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "documentation/partials/devices_platforms"

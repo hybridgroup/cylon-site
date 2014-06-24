@@ -50,11 +50,12 @@ tessel_gps_module: true
 tessel_infrared_module: true
 tessel_relay_module: true
 tessel_servo_module: true
-
+pinoccio_led_driver: true
+pinoccio_power_driver: true
 ---
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 = partial "../drivers"
