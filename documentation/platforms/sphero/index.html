@@ -106,7 +106,7 @@ Cylon.robot({
   <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() { 
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
     });
   }
@@ -263,6 +263,9 @@ Cylon.robot({
                         <a href="/documentation/platforms/pebble">Pebble</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/rapiro">Rapiro</a>
                       </li>
                       <li>
@@ -397,6 +400,15 @@ Cylon.robot({
                         <a href="/documentation/drivers/sphero">Sphero</a>
                       </li>
                     </ul>
+                    Pinoccio Drivers
+                    <ul id="pinoccio">
+<li>
+                        <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pinoccio_power">Pinoccio Power</a>
+                      </li>
+                    </ul>
                     Tessel Modules
                     <ul id="tessel">
 <li>
@@ -483,7 +495,7 @@ Cylon.robot({
                     });
                 </script><script>
                   $("#platform-panel").addClass("active-panel");
-                  $("#platform-panel ul li:nth-child(18)").addClass("active-link");
+                  $("#platform-panel ul li:nth-child(19)").addClass("active-link");
                   $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
                 </script>
 </div>
