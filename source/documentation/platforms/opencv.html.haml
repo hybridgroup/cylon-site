@@ -15,7 +15,7 @@ subnavjs: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(12)").addClass("active-link");
+    $("#platform-panel ul li:nth-child(13)").addClass("active-link");
     $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -25,12 +25,12 @@ subnavjs: true
     %p OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.
 
     %p
-      For more info about OpenCV click 
+      For more info about OpenCV click
       = succeed "." do
         = link_to "here", "http://opencv.org/", target: :blank
 
   .clear
-  
+
 %section.how-to#HowToInstall
   %h2 How To Install
   %p Installing Cylon.js with Opencv support is pretty easy.
@@ -131,4 +131,3 @@ subnavjs: true
             });
           }
         }).start();
-

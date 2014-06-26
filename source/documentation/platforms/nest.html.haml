@@ -1,0 +1,81 @@
+---
+title: Nest with Cylon.js
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Nest
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-nest' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/cylon-nest/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+
+nest_thermostat_driver: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#platform-panel").addClass("active-panel");
+    $("#platform-panel ul li:nth-child(11)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+
+
+%section.intro
+  = image_tag "/images/devices/nest.jpg", class: "display"
+  .info-intro
+    %p Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
+    %p
+      For more info about the Nest platform click
+      = succeed "." do
+        = link_to "here", "https://nest.com/thermostat/life-with-nest-thermostat/", target: :blank
+  .clear
+
+%section.how-to#HowToInstall
+  %h2 How To Install
+  %p Installing cylon.js with NEst support is pretty easy.
+  :markdown
+        :::javascript
+        npm install cylon-nest
+
+%section.how-to#HowToUse
+  %h2 How To Use
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'nest',
+            adaptor: 'nest',
+            accessToken: 'XXX',
+            deviceId: 'ABC123'
+          },
+          device: {name: 'thermostat', driver: 'nest-thermostat'},
+
+          work: function(my) {
+            every((60).seconds(), function(){
+              console.log(my.thermostat.ambientTemperatureC());
+            });
+          }
+        }).start();
+
+
+%section.how-to#HowToConnect
+  %h2 How To Connect
+  %p
+    You need to obtain an access token for your Nest account in order to authenticate, as instructed here:
+    = link_to "https://developer.nest.com/documentation/how-to-auth", "https://developer.nest.com/documentation/how-to-auth", target: :blank
+  :markdown
+    Once you have done this, you should be able to use the `access_token` from the Nest developer website "Clients" page to make API calls from Cylon.js
+
+
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p Available drivers for the Nest  platform are listed below.
+
+  .hardware
+    .devices
+      // TODO: Update drivers list at the top of the page.
+      = partial "documentation/partials/devices_nest_drivers"

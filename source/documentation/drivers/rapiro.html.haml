@@ -16,7 +16,7 @@ rapiro_platform: true
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $("#others li:nth-child(5)").addClass("active-link");
+    $("#others li:nth-child(6)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -27,7 +27,7 @@ rapiro_platform: true
       For more information click
       = link_to "here", "http://www.rapiro.com/", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   %p
@@ -46,7 +46,7 @@ rapiro_platform: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     Example of a simple program that makes the Rapiro's LED blink.
 
     :markdown
@@ -82,4 +82,3 @@ rapiro_platform: true
   %h2 Compatibility
   .devices
     = partial "documentation/partials/devices_platforms"
-
