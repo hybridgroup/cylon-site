@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - XBox360 Controller Driver
+title: Cylon.js - Xbox 360 Controller Driver
 author: The Hybrid Group
 page_title: Drivers
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: XBox360 Controller
+page_title_docs: Xbox 360 Controller
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -22,13 +22,10 @@ joystick_platform: true
 %section.intro
   =image_tag "/images/devices/xbox360.jpg", class: "display"
   .info-intro
-    %p Allows user to interact with Cylon.js devices using a XBox360 game controller.
+    %p Allows user to interact with Cylon.js devices using a Xbox 360 controller.
 
-    %p
-      For more information click
-      = link_to "here", "http://en.wikipedia.org/wiki/Joystick", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -37,27 +34,62 @@ joystick_platform: true
 
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
-          device: {name: 'joystick', driver: 'xbox360'}
-        ..
-
+          device: { name: 'controller', driver: 'xbox-360' }
+          // [...]
+        });
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p Example receiving button events from XBox360 controller joystick.
+
+  %p
+    What follows is an example of button and joystick input for the DualShock 3.
+
   :markdown
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
-          device: {name: 'joystick', driver: 'xbox360'},
+          device: { name: 'controller', driver: 'dualshock-3' },
 
           work: function(my) {
-            my.joystick.on("left:move", function(position) { 
-              console.log(position);
+            ["a", "b", "x", "y"].forEach(function(button) {
+              my.controller.on(button + ":press", function() {
+                console.log("Button " + button + " pressed.");
+              });
+
+              my.controller.on(button + ":release", function() {
+                console.log("Button " + button + " released.");
+              });
+            });
+
+            my.controller.on("left_x:move", function(pos) {
+              console.log("Left Stick - X:", pos);
+            });
+
+            my.controller.on("left_y:move", function(pos) {
+              console.log("Left Stick - Y:", pos);
+            });
+
+            my.controller.on("right_x:move", function(pos) {
+              console.log("Right Stick - X:", pos);
+            });
+
+            my.controller.on("right_y:move", function(pos) {
+              console.log("Right Stick - Y:", pos);
+            });
+
+            my.controller.on("lt:move", function(pos) {
+              console.log("Left Trigger: ", pos);
+            });
+
+            my.controller.on("rt:move", function(pos) {
+              console.log("Right Trigger: ", pos);
             });
           }
-        }).start();
+        });
+
+        Cylon.start();
 
 %section.public-methods
   .commands-api#Commands
