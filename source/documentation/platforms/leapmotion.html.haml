@@ -29,15 +29,15 @@ leapmotion_driver: true
       = succeed "." do
         = link_to "here", "https://www.leapmotion.com/", target: :blank
   .clear
-  
+
 %section.how-to#HowToInstall
   %h2 How To Install
   %p Installing Cylon.js with leapmotion support is pretty easy.
   :markdown
         :::bash
         npm install cylon-leapmotion
-  %p 
-    In order to use this module , you need to install the drivers/software from the Leapmotion site 
+  %p
+    In order to use this module , you need to install the drivers/software from the Leapmotion site
     =link_to "https://www.leapmotion.com/setup", "https://www.leapmotion.com/setup"
     , make sure that is installed before use the commands and events (and SDK too if you want, but the SDK is not needed for cylon.js).
 
@@ -60,8 +60,8 @@ leapmotion_driver: true
             driver: 'leapmotion'
           },
           work: function(my) {
-            return my.leapmotion.on('hand', function(hand) {
-              return Logger.info("" + hand.palmX + "," + hand.palmY + "," + hand.palmZ);
+            my.leapmotion.on('hand', function(hand) {
+              console.log(hand.palmPosition);
             });
           }
         }).start();
@@ -71,20 +71,20 @@ leapmotion_driver: true
   %h2 How To Connect
   %h3 OSX
   %p
-    This driver works out of the box with the vanilla installation of the Leap Motion Software that you get in their 
+    This driver works out of the box with the vanilla installation of the Leap Motion Software that you get in their
     =link_to "Setup Guide." ,"https://www.leapmotion.com/setup"
 
   %p The main steps are:
 
   %ul
-    %li Run Leap Motion.app to open a websocket connection in port 6437. 
+    %li Run Leap Motion.app to open a websocket connection in port 6437.
     %li Connect your Computer and Leap Motion Controller.
     %li Connect to the device via Cylon.js.
 
   %h3 Ubuntu
   %p
     The Linux download of the Leap Motion software can be obtained from
-    =link_to "Leap Motion Dev Center", "https://developer.leapmotion.com/downloads"  
+    =link_to "Leap Motion Dev Center", "https://developer.leapmotion.com/downloads"
     (requires free signup)
   %p The main steps are:
   %ul
