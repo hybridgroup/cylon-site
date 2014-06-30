@@ -12,6 +12,7 @@ active_menu_platforms: true
 subnavjs: true
 
 nest_thermostat_driver: true
+nest_home_driver: true
 ---
 -content_for :js_accordeon do
   :javascript
@@ -49,13 +50,24 @@ nest_thermostat_driver: true
             name: 'nest',
             adaptor: 'nest',
             accessToken: 'XXX',
-            deviceId: 'ABC123'
           },
-          device: {name: 'thermostat', driver: 'nest-thermostat'},
+
+          device: {
+            name: 'thermostat',
+            driver: 'nest-thermostat',
+            deviceId: 'XXX'
+          },
 
           work: function(my) {
+            // Listen to the status event to obtain all thermostat
+            // related data in a single object.
+            my.thermostat.on('status', function(data) {
+              console.log('The Thermostat at a glance--->', data);
+            });
+
             every((60).seconds(), function(){
-              console.log(my.thermostat.ambientTemperatureC());
+              console.log('NEST ambient temp C:', my.thermostat.ambientTemperatureC());
+              console.log('NEST ambient temp F:', my.thermostat.ambientTemperatureF());
             });
           }
         }).start();
@@ -63,14 +75,15 @@ nest_thermostat_driver: true
 
 %section.how-to#HowToConnect
   %h2 How To Connect
+  %p First tou need to setup a developer account with Nest Labs:
   %p
-    You need to obtain an access token for your Nest account in order to authenticate, as instructed here:
+    = link_to "https://developer.nest.com/", "https://developer.nest.com/", target: :blank
+  %p Once the account is created you need to create a client app, the developer portal UI will guide you through it, you do not need to add an OAuth redirect URL, since we are going be using the pin generated when no redirect URL is provided to get an access token that will let us connect to the API.
+  %p
+    Next step is to obtain the access token for your Nest account in order to authenticate, as instructed here:
     = link_to "https://developer.nest.com/documentation/how-to-auth", "https://developer.nest.com/documentation/how-to-auth", target: :blank
   :markdown
-    Once you have done this, you should be able to use the `access_token` from the Nest developer website "Clients" page to make API calls from Cylon.js
-
-
-
+    Once you have done this, you should be able to use the `access_token` you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js
 %section.drivers#Drivers
   %h2 Drivers
   %p Available drivers for the Nest  platform are listed below.

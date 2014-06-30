@@ -1,0 +1,180 @@
+---
+title: Cylon.js - Nest Home Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Nest Home
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+nest_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#others li:nth-child(4)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/nest_home.jpg", class: "display"
+  .info-intro
+    %p Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
+    %p
+      For more information click
+      = link_to "here", "https://nest.com/", target: "_blank"
+
+  .clear
+
+%section.how_to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'nest',
+            adaptor: 'nest',
+            accessToken: 'c.1f7QA8se2tx5xOaKJYk2VUj3lkUiNClxhsbQczQiODTHUrHH4Sx0qEyN7K9kVw6NZ6xtMmyvTPpnEHXWPrTK4ZLygam5rJYH6tachF7Qw885DUHnsW9wiGXmaU8Q0yk68isxVExP4gPubB71'
+          },
+
+          device: {
+            name: 'home',
+            driver: 'nest-home'
+          },
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'nest',
+            adaptor: 'nest',
+            accessToken: 'c.1f7QA8se2tx5xOaKJYk2VUj3lkUiNClxhsbQczQiODTHUrHH4Sx0qEyN7K9kVw6NZ6xtMmyvTPpnEHXWPrTK4ZLygam5rJYH6tachF7Qw885DUHnsW9wiGXmaU8Q0yk68isxVExP4gPubB71'
+          },
+
+          device: {
+            name: 'home',
+            driver: 'nest-home'
+          },
+
+          work: function(my) {
+
+            my.home.on('status', function(data) {
+              console.log('The Nest Home at a glance --->', data);
+            });
+
+            var sId = 'l38p6_vVeF9R7yl6GJgLuyHbEuVU_1ui7KAofiXXa5wZ9PBb-0AJaw';
+
+            every((10).seconds(), function(){
+              console.log('Nest home structures:', my.home.structures());
+              console.log('Nest home structure name:', my.home.structureName(sId));
+              console.log('Nest home thermostats:', my.home.thermostats(sId));
+              console.log('Nest home smokeCoAlarms:', my.home.smokeCoAlarms(sId));
+              console.log('Nest home away status:', my.home.away(sId));
+              console.log('Nest home eta:', my.home.eta(sId));
+
+              my.home.read('country_code', sId, function(data) {
+                console.log("Nest home country id: ", data);
+              });
+
+              my.home.away(sId, 'away');
+
+              /*
+              my.home.write('away', 'home', sId, function(err) {
+                if (err) {
+                  console.log('Away status was NOT updated!')
+                } else {
+                  console.log('Away status updated!')
+                }
+              });
+             */
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commads
+    %h2 structures()
+    %p Gets all the structures of your home.
+    %h2 structureName(structureId)
+    %p Gets the name of a specific structure.
+    %h5 Params
+    :markdown
+      - **structureId** - The ID of the structure
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 thermostats(structureId)
+    %p Gets the thermostat of a specific structure.
+    %h5 Params
+    :markdown
+      - **structureId** - The ID of the structure
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 smokeCoAlarms(structureId)
+    %p Gets the smoke alarms of a specific structure.
+    %h5 Params
+    :markdown
+      - **structureId** - The ID of the structure
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 away(structureId, val)
+    %p Sets the device in away mode.
+    %h5 Params
+    :markdown
+      - **structureId** - The ID of the structure
+      - **val**  - The value of the device
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 eta(structureId)
+    %p Sets the device a signal to prepare the home for the user's arrival.
+    %h5 Params
+    :markdown
+      - **structureId** - The ID of the structure
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 read(key, structureId, callback)
+    %p Reads a specific device.
+    %h5 Params
+    :markdown
+      - **key** - The key of the device
+      - **value** - The value of the device
+      - **callback** - The data of the callback
+    %h5 Returns
+    :markdown
+      `nil`
+    %h2 write(key, value, structureId, callback)
+    %p Writes a specific device.
+    %h5 Params
+    :markdown
+      - **key** - The key of the device
+      - **value** - The value of the device
+      - **callback** - The data of the callback
+    %h5 Returns
+    :markdown
+      `nil`
+
+  .commands-api#Events
+    %h1 Events
+    %p no events
+
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  =# TODO: Update platform list with all that work with this driver in Cylon.js.
+  .devices
+    = partial "documentation/partials/devices_platforms"
