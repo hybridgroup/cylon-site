@@ -29,7 +29,7 @@ dualshock_driver: true
       For more info about the Joystick platform click
       = succeed "." do
         = link_to "here", "http://en.wikipedia.org/wiki/Joystick", target: :blank
-  
+
   .clear
 
 %section.how_to#HowToInstall
@@ -38,12 +38,8 @@ dualshock_driver: true
   :markdown
         :::bash
         npm install cylon-joystick
-  %h3 Note for OS X Users
-  %p 
-    You'll need to install OS X Drivers for the Xbox Controller from 
-    = link_to "http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver", "http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver" , target: :blank
-    if you want to use it.
-
+  %h3 Note
+  %p If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.
 %section.how-to#HowToUse
   %h2 How To Use
   %p This small program receives joystick and button press events from an XBox 360 game controller.
@@ -53,14 +49,38 @@ dualshock_driver: true
 
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
-          device: {name: 'joystick', driver: 'xbox360'},
+          device: { name: 'controller', driver: 'dualshock-3' },
 
           work: function(my) {
-            my.joystick.on("left:move", function(position) { 
-              console.log(position);
+            ["square", "circle", "x", "triangle"].forEach(function(button) {
+              my.controller.on(button + ":press", function() {
+                console.log("Button " + button + " pressed.");
+              });
+
+              my.controller.on(button + ":release", function() {
+                console.log("Button " + button + " released.");
+              });
+            });
+
+            my.controller.on("left_x:move", function(pos) {
+              console.log("Left Stick - X:", pos);
+            });
+
+            my.controller.on("right_x:move", function(pos) {
+              console.log("Right Stick - X:", pos);
+            });
+
+            my.controller.on("left_y:move", function(pos) {
+              console.log("Left Stick - Y:", pos);
+            });
+
+            my.controller.on("right_y:move", function(pos) {
+              console.log("Right Stick - Y:", pos);
             });
           }
-        }).start();
+        });
+
+        Cylon.start();
 
 
 %section.how-to#HowToConnect
@@ -75,4 +95,3 @@ dualshock_driver: true
   .hardware
     .devices
       = partial "/documentation/partials/devices_joystick_drivers"
-
