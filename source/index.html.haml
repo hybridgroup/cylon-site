@@ -116,7 +116,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
   %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing system, and software platforms, are currently supported:
 
   %p.important-title
-    20 Platforms
+    21 Platforms
 
   %ul.homepage-platform
     %li
@@ -189,6 +189,14 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
         %img{src: "/images/devices/leap_motion.jpg", style: "width: 90%"}
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-leapmotion", target:"_blank"
+
+    %li
+      .title
+        = link_to "Nest", "http://nest.com", target:"_blank"
+      %a{:href => "/documentation/platforms/nest"}
+        %img{src: "/images/devices/nest.jpg", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-nest", target:"_blank"
 
     %li
       .title
@@ -282,7 +290,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
 
 %p.important-title
-  9
+  10
   = link_to "GPIO", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
   drivers
 
@@ -308,6 +316,14 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       %img{src: "/images/devices/continuous-servo.jpg", style: "width: 90%"}
     .repo
       = link_to "repo", "https://github.com/hybridgroup/cylon-gpio", target:"_blank"
+  %li
+    .title
+      = link_to "Direct Pin", "/documentation/drivers/direct-pin"
+    %a{:href => "/documentation/drivers/direct-pin"}
+      %img{src: "/images/devices/direct-pin.jpg", style: "width: 90%"}
+    .repo
+      = link_to "repo", "https://github.com/hybridgroup/cylon-gpio", target:"_blank"
+
   %li
     .title
       = link_to "IR Rangefinder", "/documentation/drivers/ir-range-finder"

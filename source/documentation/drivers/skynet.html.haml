@@ -3,7 +3,7 @@ title: Cylon.js - Skynet Driver
 author: The Hybrid Group
 page_title: Drivers
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: Skynet 
+page_title_docs: Skynet
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -16,7 +16,7 @@ skynet_platform: true
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $("#others li:nth-child(6)").addClass("active-link");
+    $("#others li:nth-child(8)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -28,7 +28,7 @@ skynet_platform: true
       = succeed "." do
         = link_to "http://skynet.im/", "http://skynet.im/", target: :blank
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -44,7 +44,7 @@ skynet_platform: true
           device: { name: 'led', driver: 'led', pin: 13, connection: 'arduino' },
         ...
 
-          
+
 %section.how-to#HowToUse
   %h2 How To Use
   %p This small program use the Skynet with the LED.
@@ -77,7 +77,7 @@ skynet_platform: true
     = partial "/documentation/drivers/partials/skynet/commands"
   .commands-api#Events
     = partial "/documentation/drivers/partials/skynet/events"
-    
+
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.

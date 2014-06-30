@@ -17,7 +17,7 @@ sphero_platform: true
 -content_for :js_accordeon do
   :javascript
     $("#driver-panel").addClass("active-panel");
-    $("#others li:nth-child(7)").addClass("active-link");
+    $("#others li:nth-child(9)").addClass("active-link");
     $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
@@ -28,7 +28,7 @@ sphero_platform: true
       For more information click
       = link_to "here", "http://www.gosphero.com/", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   %p
@@ -47,7 +47,7 @@ sphero_platform: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example rolls the sphero in a random direction and change direction every second.
 
     :markdown
@@ -72,789 +72,789 @@ sphero_platform: true
     = partial "/documentation/drivers/partials/sphero/commands"
     %h5
       Note: for more information about the documentation of the Sphero driver click
-      =link_to "here.", "https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf" 
+      =link_to "here.", "https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf"
   .commands-api#Events
     = partial "/documentation/drivers/partials/sphero/events"
 
 %section#SpheroColors
-  %h2 Sphero Colors 
+  %h2 Sphero Colors
 
-  %table.commands 
-    %tr 
+  %table.commands
+    %tr
       %th Example
       %th Name
       %th Code
       %th Example
       %th Name
       %th Code
-    %tr 
+    %tr
       %td
         .aliceblue.square
-      %td.command 
+      %td.command
         %span aliceblue
       %td 0xF0F8FF
       %td
         .antiquewhite.square
-      %td.command 
+      %td.command
         %span antiquewhite
       %td 0xFAEBD7
-    %tr 
+    %tr
       %td
         .square.aqua
-      %td.command 
+      %td.command
         %span aqua
       %td 0x00FFFF
       %td
-        .square.aquamarine 
-      %td.command 
+        .square.aquamarine
+      %td.command
         %span aquamarine
       %td 0x7FFFD4
-    %tr 
+    %tr
       %td
         .square.azure
-      %td.command 
+      %td.command
         %span azure
       %td 0xF0FFFF
       %td
         .square.beige
-      %td.command 
+      %td.command
         %span beige
       %td 0xF5F5DC
-    %tr 
+    %tr
       %td
         .square.bisque
-      %td.command 
+      %td.command
         %span bisque
       %td 0xFFE4C4
       %td
         .square.black
-      %td.command 
+      %td.command
         %span black
       %td 0x000000
-    %tr 
+    %tr
       %td
         .square.blanchedalmond
-      %td.command 
+      %td.command
         %span blanchedalmond
       %td 0xFFEBCD
       %td
         .square.blue
-      %td.command 
+      %td.command
         %span blue
       %td 0x0000FF
-    %tr 
+    %tr
       %td
         .square.blueviolet
-      %td.command 
+      %td.command
         %span blueviolet
       %td 0x8A2BE2
       %td
         .square.brown
-      %td.command 
+      %td.command
         %span brown
       %td 0xA52A2A
-    %tr 
+    %tr
       %td
         .square.burlywood
-      %td.command 
+      %td.command
         %span burlywood
       %td 0xDEB887
       %td
         .square.cadetblue
-      %td.command 
+      %td.command
         %span cadetblue
       %td 0x5F9EA0
-    %tr 
+    %tr
       %td
         .square.chartreuse
-      %td.command 
+      %td.command
         %span chartreuse
       %td 0x7FFF00
       %td
         .square.chocolate
-      %td.command 
+      %td.command
         %span chocolate
       %td 0xD2691E
-    %tr 
+    %tr
       %td
         .square.coral
-      %td.command 
+      %td.command
         %span coral
       %td 0xFF7F50
       %td
         .square.cornflowerblue
-      %td.command 
+      %td.command
         %span cornflowerblue
       %td 0x6495ED
-    %tr 
+    %tr
       %td
         .square.cornsilk
-      %td.command 
+      %td.command
         %span cornsilk
       %td 0xFFF8DC
       %td
         .square.crimson
-      %td.command 
+      %td.command
         %span crimson
       %td 0xDC143C
-    %tr 
+    %tr
       %td
         .square.cyan
-      %td.command 
+      %td.command
         %span cyan
       %td 0x00FFFF
       %td
         .square.darkblue
-      %td.command 
+      %td.command
         %span darkblue
       %td 0x00008B
-    %tr 
+    %tr
       %td
         .square.darkcyan
-      %td.command 
+      %td.command
         %span darkcyan
       %td 0x008B8B
       %td
         .square.darkgoldenrod
-      %td.command 
+      %td.command
         %span darkgoldenrod
       %td 0xB8860B
-    %tr 
+    %tr
       %td
         .square.darkgray
-      %td.command 
+      %td.command
         %span darkgray
       %td 0xA9A9A9
       %td
         .square.darkgreen
-      %td.command 
+      %td.command
         %span darkgreen
       %td 0x006400
-    %tr 
+    %tr
       %td
         .square.darkkhaki
-      %td.command 
+      %td.command
         %span darkkhaki
       %td 0xBDB76B
       %td
         .square.darkmagenta
-      %td.command 
+      %td.command
         %span darkmagenta
       %td 0x8B008B
-    %tr 
+    %tr
       %td
         .square.darkolivegreen
-      %td.command 
+      %td.command
         %span darkolivegreen
       %td 0x556B2F
       %td
         .square.darkorange
-      %td.command 
+      %td.command
         %span darkorange
       %td 0xFF8C00
-    %tr 
+    %tr
       %td
         .square.darkorchid
-      %td.command 
+      %td.command
         %span darkorchid
       %td 0x9932CC
       %td
         .square.darkred
-      %td.command 
+      %td.command
         %span darkred
       %td 0x8B0000
-    %tr 
+    %tr
       %td
         .square.darksalmon
-      %td.command 
+      %td.command
         %span darksalmon
       %td 0xE9967A
       %td
         .square.darkseagreen
-      %td.command 
+      %td.command
         %span darkseagreen
       %td 0x8FBC8F
-    %tr 
+    %tr
       %td
         .square.darkslateblue
-      %td.command 
+      %td.command
         %span darkslateblue
       %td 0x483D8B
       %td
         .square.darkslategray
-      %td.command 
+      %td.command
         %span darkslategray
       %td 0x2F4F4F
-    %tr 
+    %tr
       %td
         .square.darkturquoise
-      %td.command 
+      %td.command
         %span darkturquoise
       %td 0x00CED1
       %td
         .square.darkviolet
-      %td.command 
+      %td.command
         %span darkviolet
       %td 0x9400D3
-    %tr 
+    %tr
       %td
         .square.deeppink
-      %td.command 
+      %td.command
         %span deeppink
       %td 0xFF1493
       %td
         .square.deepskyblue
-      %td.command 
+      %td.command
         %span deepskyblue
       %td 0x00BFFF
-    %tr 
+    %tr
       %td
         .square.dimgray
-      %td.command 
+      %td.command
         %span dimgray
       %td 0x696969
       %td
         .square.dodgerblue
-      %td.command 
+      %td.command
         %span dodgerblue
       %td 0x1E90FF
-    %tr 
+    %tr
       %td
         .square.firebrick
-      %td.command 
+      %td.command
         %span firebrick
       %td 0xB22222
       %td
         .square.floralwhite
-      %td.command 
+      %td.command
         %span floralwhite
       %td 0xFFFAF0
-    %tr 
+    %tr
       %td
         .square.forestgreen
-      %td.command 
+      %td.command
         %span forestgreen
       %td 0x228B22
       %td
         .square.fuchsia
-      %td.command 
+      %td.command
         %span fuchsia
       %td 0xFF00FF
-    %tr 
+    %tr
       %td
         .square.gainsboro
-      %td.command 
+      %td.command
         %span gainsboro
       %td 0xDCDCDC
       %td
         .square.ghostwhite
-      %td.command 
+      %td.command
         %span ghostwhite
       %td 0xF8F8FF
-    %tr 
+    %tr
       %td
         .square.gold
-      %td.command 
+      %td.command
         %span gold
       %td 0xFFD700
       %td
         .square.goldenrod
-      %td.command 
+      %td.command
         %span goldenrod
       %td 0xDAA520
-    %tr 
+    %tr
       %td
         .square.gray
-      %td.command 
+      %td.command
         %span gray
       %td 0x808080
       %td
         .square.green
-      %td.command 
+      %td.command
         %span green
       %td 0x008000
-    %tr 
+    %tr
       %td
         .square.greenyellow
-      %td.command 
+      %td.command
         %span greenyellow
       %td 0xADFF2F
       %td
         .square.honeydew
-      %td.command 
+      %td.command
         %span honeydew
       %td 0xF0FFF0
-    %tr 
+    %tr
       %td
         .square.hotpink
-      %td.command 
+      %td.command
         %span hotpink
       %td 0xFF69B4
       %td
         .square.indianred
-      %td.command 
+      %td.command
         %span indianred
       %td 0xCD5C5C
-    %tr 
+    %tr
       %td
         .square.indigo
-      %td.command 
+      %td.command
         %span indigo
       %td 0x4B0082
       %td
         .square.ivory
-      %td.command 
+      %td.command
         %span ivory
       %td 0xFFFFF0
-    %tr 
+    %tr
       %td
         .square.khaki
-      %td.command 
+      %td.command
         %span khaki
       %td 0xF0E68C
       %td
         .square.lavender
-      %td.command 
+      %td.command
         %span lavender
       %td 0xE6E6FA
-    %tr 
+    %tr
       %td
         .square.lavenderblush
-      %td.command 
+      %td.command
         %span lavenderblush
       %td 0xFFF0F5
       %td
         .square.lawngreen
-      %td.command 
+      %td.command
         %span lawngreen
       %td 0x7CFC00
-    %tr 
+    %tr
       %td
         .square.lemonchiffon
-      %td.command 
+      %td.command
         %span lemonchiffon
       %td 0xFFFACD
       %td
         .square.lightblue
-      %td.command 
+      %td.command
         %span lightblue
       %td 0xADD8E6
-    %tr 
+    %tr
       %td
         .square.lightcoral
-      %td.command 
+      %td.command
         %span lightcoral
       %td 0xF08080
       %td
         .square.lightcyan
-      %td.command 
+      %td.command
         %span lightcyan
       %td 0xE0FFFF
-    %tr 
+    %tr
       %td
         .square.lightgoldenrodyellow
-      %td.command 
+      %td.command
         %span lightgoldenrodyellow
       %td 0xFAFAD2
       %td
         .square.lightgreen
-      %td.command 
+      %td.command
         %span lightgreen
       %td 0x90EE90
-    %tr 
+    %tr
       %td
         .square.lightgrey
-      %td.command 
+      %td.command
         %span lightgrey
       %td 0xD3D3D3
       %td
         .square.lightpink
-      %td.command 
+      %td.command
         %span lightpink
       %td 0xFFB6C1
-    %tr 
+    %tr
       %td
         .square.lightsalmon
-      %td.command 
+      %td.command
         %span lightsalmon
       %td 0xFFA07A
       %td
         .square.lightseagreen
-      %td.command 
+      %td.command
         %span lightseagreen
       %td 0x20B2AA
-    %tr 
+    %tr
       %td
         .square.lightskyblue
-      %td.command 
+      %td.command
         %span lightskyblue
       %td 0x87CEFA
       %td
         .square.lightslategray
-      %td.command 
+      %td.command
         %span lightslategray
       %td 0x778899
-    %tr 
+    %tr
       %td
         .square.lightsteelblue
-      %td.command 
+      %td.command
         %span lightsteelblue
       %td 0xB0C4DE
       %td
         .square.lightyellow
-      %td.command 
+      %td.command
         %span lightyellow
       %td 0xFFFFE0
-    %tr 
+    %tr
       %td
         .square.lime
-      %td.command 
+      %td.command
         %span lime
       %td 0x00FF00
       %td
         .square.limegreen
-      %td.command 
+      %td.command
         %span limegreen
       %td 0x32CD32
-    %tr 
+    %tr
       %td
         .square.linen
-      %td.command 
+      %td.command
         %span linen
       %td 0xFAF0E6
       %td
         .square.magenta
-      %td.command 
+      %td.command
         %span magenta
       %td 0xFF00FF
-    %tr 
+    %tr
       %td
         .square.maroon
-      %td.command 
+      %td.command
         %span maroon
       %td 0x800000
       %td
         .square.mediumaquamarine
-      %td.command 
+      %td.command
         %span mediumaquamarine
       %td 0x66CDAA
-    %tr 
+    %tr
       %td
         .square.mediumblue
-      %td.command 
+      %td.command
         %span mediumblue
       %td 0x0000CD
       %td
         .square.mediumorchid
-      %td.command 
+      %td.command
         %span mediumorchid
       %td 0xBA55D3
-    %tr 
+    %tr
       %td
         .square.mediumpurple
-      %td.command 
+      %td.command
         %span mediumpurple
       %td 0x9370DB
       %td
         .square.mediumseagreen
-      %td.command 
+      %td.command
         %span mediumseagreen
       %td 0x3CB371
-    %tr 
+    %tr
       %td
         .square.mediumslateblue
-      %td.command 
+      %td.command
         %span mediumslateblue
       %td 0x7B68EE
       %td
         .square.mediumspringgreen
-      %td.command 
+      %td.command
         %span mediumspringgreen
       %td 0x00FA9A
-    %tr 
+    %tr
       %td
         .square.mediumturquoise
-      %td.command 
+      %td.command
         %span mediumturquoise
       %td 0x48D1CC
       %td
         .square.mediumvioletred
-      %td.command 
+      %td.command
         %span mediumvioletred
       %td 0xC71585
-    %tr 
+    %tr
       %td
         .square.midnightblue
-      %td.command 
+      %td.command
         %span midnightblue
       %td 0x191970
       %td
         .square.mintcream
-      %td.command 
+      %td.command
         %span mintcream
       %td 0xF5FFFA
-    %tr 
+    %tr
       %td
         .square.mistyrose
-      %td.command 
+      %td.command
         %span mistyrose
       %td 0xFFE4E1
       %td
         .square.moccasin
-      %td.command 
+      %td.command
         %span moccasin
       %td 0xFFE4B5
-    %tr 
+    %tr
       %td
         .square.navajowhite
-      %td.command 
+      %td.command
         %span navajowhite
       %td 0xFFDEAD
       %td
         .square.navy
-      %td.command 
+      %td.command
         %span navy
       %td 0x000080
-    %tr 
+    %tr
       %td
         .square.oldlace
-      %td.command 
+      %td.command
         %span oldlace
       %td 0xFDF5E6
       %td
         .square.olive
-      %td.command 
+      %td.command
         %span olive
       %td 0x808000
-    %tr 
+    %tr
       %td
         .square.olivedrab
-      %td.command 
+      %td.command
         %span olivedrab
       %td 0x6B8E23
       %td
         .square.orange
-      %td.command 
+      %td.command
         %span orange
       %td 0xFFA500
-    %tr 
+    %tr
       %td
         .square.orangered
-      %td.command 
+      %td.command
         %span orangered
       %td 0xFF4500
       %td
         .square.orchid
-      %td.command 
+      %td.command
         %span orchid
       %td 0xDA70D6
-    %tr 
+    %tr
       %td
         .square.palegoldenrod
-      %td.command 
+      %td.command
         %span palegoldenrod
       %td 0xEEE8AA
       %td
         .square.palegreen
-      %td.command 
+      %td.command
         %span palegreen
       %td 0x98FB98
-    %tr 
+    %tr
       %td
         .square.paleturquoise
-      %td.command 
+      %td.command
         %span paleturquoise
       %td 0xAFEEEE
       %td
         .square.palevioletred
-      %td.command 
+      %td.command
         %span palevioletred
       %td 0xDB7093
-    %tr 
+    %tr
       %td
         .square.papayawhip
-      %td.command 
+      %td.command
         %span papayawhip
       %td 0xFFEFD5
       %td
         .square.peachpuff
-      %td.command 
+      %td.command
         %span peachpuff
       %td 0xFFDAB9
-    %tr 
+    %tr
       %td
         .square.peru
-      %td.command 
+      %td.command
         %span peru
       %td 0xCD853F
       %td
         .square.pink
-      %td.command 
+      %td.command
         %span pink
       %td 0xFFC0CB
-    %tr 
+    %tr
       %td
         .square.plum
-      %td.command 
+      %td.command
         %span plum
       %td 0xDDA0DD
       %td
         .square.powderblue
-      %td.command 
+      %td.command
         %span powderblue
       %td 0xB0E0E6
-    %tr 
+    %tr
       %td
         .square.purple
-      %td.command 
+      %td.command
         %span purple
       %td 0x800080
       %td
         .square.red
-      %td.command 
+      %td.command
         %span red
       %td 0xFF0000
-    %tr 
+    %tr
       %td
         .square.rosybrown
-      %td.command 
+      %td.command
         %span rosybrown
       %td 0xBC8F8F
       %td
         .square.royalblue
-      %td.command 
+      %td.command
         %span royalblue
       %td 0x4169E1
-    %tr 
+    %tr
       %td
         .square.saddlebrown
-      %td.command 
+      %td.command
         %span saddlebrown
       %td 0x8B4513
       %td
         .square.salmon
-      %td.command 
+      %td.command
         %span salmon
       %td 0xFA8072
-    %tr 
+    %tr
       %td
         .square.sandybrown
-      %td.command 
+      %td.command
         %span sandybrown
       %td 0xF4A460
       %td
         .square.seagreen
-      %td.command 
+      %td.command
         %span seagreen
       %td 0x2E8B57
-    %tr 
+    %tr
       %td
         .square.seashell
-      %td.command 
+      %td.command
         %span seashell
       %td 0xFFF5EE
       %td
         .square.sienna
-      %td.command 
+      %td.command
         %span sienna
       %td 0xA0522D
-    %tr 
+    %tr
       %td
         .square.silver
-      %td.command 
+      %td.command
         %span silver
       %td 0xC0C0C0
       %td
         .square.skyblue
-      %td.command 
+      %td.command
         %span skyblue
       %td 0x87CEEB
-    %tr 
+    %tr
       %td
         .square.slateblue
-      %td.command 
+      %td.command
         %span slateblue
       %td 0x6A5ACD
       %td
         .square.slategray
-      %td.command 
+      %td.command
         %span slategray
       %td 0x708090
-    %tr 
+    %tr
       %td
         .square.snow
-      %td.command 
+      %td.command
         %span snow
       %td 0xFFFAFA
       %td
         .square.springgreen
-      %td.command 
+      %td.command
         %span springgreen
       %td 0x00FF7F
-    %tr 
+    %tr
       %td
         .square.steelblue
-      %td.command 
+      %td.command
         %span steelblue
       %td 0x4682B4
       %td
         .square.tan
-      %td.command 
+      %td.command
         %span tan
       %td 0xD2B48C
-    %tr 
+    %tr
       %td
         .square.teal
-      %td.command 
+      %td.command
         %span teal
       %td 0x008080
       %td
         .square.thistle
-      %td.command 
+      %td.command
         %span thistle
       %td 0xD8BFD8
-    %tr 
+    %tr
       %td
         .square.tomato
-      %td.command 
+      %td.command
         %span tomato
       %td 0xFF6347
       %td
         .square.turquoise
-      %td.command 
+      %td.command
         %span turquoise
       %td 0x40E0D0
-    %tr 
+    %tr
       %td
         .square.violet
-      %td.command 
+      %td.command
         %span violet
       %td 0xEE82EE
       %td
         .square.wheat
-      %td.command 
+      %td.command
         %span wheat
       %td 0xF5DEB3
-    %tr 
+    %tr
       %td
         .square.white
-      %td.command 
+      %td.command
         %span white
       %td 0xFFFFFF
       %td
         .square.whitesmoke
-      %td.command 
+      %td.command
         %span whitesmoke
       %td 0xF5F5F5
-    %tr 
+    %tr
       %td
         .square.yellow
-      %td.command 
+      %td.command
         %span yellow
       %td 0xFFFF00
       %td
         .square.yellowgreen
-      %td.command 
+      %td.command
         %span yellowgreen
       %td 0x9ACD32
 
