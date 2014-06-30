@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: nest API Support!
+title: "Nest API Support!"
 page_title: Blog
 date: 2014-06-27
 tags: robots
@@ -9,29 +9,36 @@ active_menu_blog: true
 ---
 
 :markdown
-  Today we are announcing support for the [Nest](https://developer.nest.com/) thermostat.
-  With this new adaptor and drivers you may now allow your robots, microcontrollers or SBCs
-  interacat with your smart home devices (supported by nest of course). We currently
-  have support for the nest Thermostat and nest-home, the latter of the two
-  allows you to check the status of all your smart devices in your home at a glance, check
-  more than one house and set the status to either 'away' or 'home'.
+  Today we are announcing support for the [Nest](https://developer.nest.com/)
+  Thermostat. With this new set of adaptors and drivers, you can allow your
+  robots, microcontrollers or single-board computers to interact with your
+  Nest-supported smart home devices.
 
-  Getting started with Cylon.js and the Nest is very easy, all you need to do is
-  install the cylon-nest module:
+  We currently have two Nest-related drivers supported, `nest-thermostat` and
+  `nest-home`. `nest-home` allows you to check the status of all of your home's
+  smart devices at a glance. you can also check on more than one house, and set
+  your status to 'away' or 'home'.
 
-  - `$ npm install cylon-nest`
+  Getting started with Cylon.js and Nest is easy, all you need to do is install
+  the cylon-nest module:
 
-  After that follow these [instructions](https://developer.nest.com/documentation/how-to-auth) to setup your Nest developer account
+      $ npm install cylon-nest
 
-  From there create a read-temp.js file and paste the following code (also available
-  in the repo cylon-nest repo examples [cylon-nest repo](https://github.com/hybridgroup/cylon-nest/master/examples)):
+  After that, follow these [instructions][] to get a Nest developer account set
+  up.
+
+  [instructions]: https://developer.nest.com/documentation/how-to-auth
+
+  Once you're done with that, you can try your Nest integration out with the
+  following code example (also made available in the [cylon-nest examples][]):
+
+  [cylon-nest examples]: https://github.com/hybridgroup/cylon-nest/master/examples
 
       :::javascript
       var Cylon = require('cylon');
 
       Cylon.robot({
-        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKEN'},
-
+        connection: { name: 'nest', adaptor: 'nest', accessToken: 'ACCESS_TOKEN'},
         device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID' },
 
         work: function(my) {
@@ -50,78 +57,19 @@ active_menu_blog: true
         }
       }).start();
 
-  Notice that in the previous example you need to provide the access_token and device_id,
-  obtained when you setup authorization, to be able to communicate with the API.
+  Please note that to get this example to work, you'll need to provide an
+  `access_token` and `device_id`. These are both obtained when you set up
+  authorization, and are needed to communicate with the Nest API.
 
-  Using the `nest-thermostat` driver you can control the nest from within your JavaScript code
-  using Cylon.JS! How cool is that!? You can have some sensors attached to an
-  arduino, spark core, digispark, beaglebone black, or all of them! You name it;
-  any of the platforms supported by Cylon.JS.
+  The `nest-home` driver can also be used in cool ways too! Imagine you're in
+  a different room from your Nest Thermostat, and the away state has kicked in.
+  You'd like to remind the Nest that you're still home, but you don't have
+  a smartphone on you.
 
-  Imagine that the Nest thermostat is in another room, the away state kicks in after some time,
-  you do not have your smart phone and feel lazy to go to the website and turn the away state off,
-  you can add a button to an arduino set it up by your desk and have it turn the away status off
-  by clicking the button, cool huh! Add some leds, some motion detector and a spark core, and you can
-  make the away state very accurate, automagically now you have nest wireless motion detection cover
-  any the rooms in the house you want, now that's a cool DIY weekend project.
-
-  Ok I hear you, but show me some code! How do we actually do this with Cylon.JS and some Javascript, let's first
-  check how to modify the target temperature of the thermostat.
+  As a fun weekend DIY project, you can hook up an Arduino such that pressing
+  a button tells your Nest that you're still home:
 
       :::javascript
-      var Cylon = require('cylon');
-
-      Cylon.robot({
-        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKE' },
-
-        device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID' },
-
-        work: function(my) {
-
-          my.thermostat.on('value', function(data) {
-            console.log('The Thermostat at a glance:', data);
-          });
-
-          my.thermostat.setTargetTemperatureC(24);
-        }
-      }).start();
-
-  Run this code with `node nest-set-temp.js` (or whatever you named your program) and see
-  the magic happen and the thermostat adjust its temperature, neat!
-
-  Ok, looking good so far, now how do we change the state of the thermostat from away to
-  home and vice versa? easy, we use the nest-home driver, let's take a look at the code below:
-
-      :::javascript
-      var Cylon = require('cylon');
-
-      Cylon.robot({
-        connection: { name: 'nest', adaptor: 'nest', accessToken: 'ACCESS_TOKEN' },
-
-        device: { name: 'home', driver: 'nest-home' },
-
-        work: function(my) {
-
-          my.home.on('status', function(data) {
-            console.log('The Nest Home at a glance: data);
-          });
-
-          var sId = 'STRUCTURE_ID';
-
-          my.home.away(sId, 'away');
-
-          every((30).seconds(), function(){
-            console.log('Nest home away status:', my.home.away(sId));
-          });
-        }
-      }).start();
-
-
-  Seems like we now have all the code pieces in place to build our
-  one-button-to-turn-away-off-using-arduino program, let's dive into the code and check
-  how to implement this simple program.
-
-      :::Javascript
       var Cylon = require('cylon');
 
       Cylon.robot({
@@ -136,25 +84,27 @@ active_menu_blog: true
         ],
 
         work: function(my) {
-          var sId = 'STRUCTURE_ID';
+          var structureId = 'STRUCTURE_ID';
 
           my.button.on('push', function() {
-            my.home.away(sId, 'home');
+            my.home.away(structureId, 'home');
             console.log('nest thermostat `away` state set to home!');
           });
         }
       }).start();
 
-  As we can see in this very small and easy example of a program, Cylon.js
-  makes interacting with the nest Labs API and adding multiple devices a piece of cake,
-  we were able to create a program that controls a functioning device (an arduino and
-  a button in this case) and interacts with your home smart devices in less than 20
-  lines, if you ask me I'll say that's pretty cool, now the questions is, what would you make
-  using Cylon.JS and all these tools?
+  This is a pretty straightforward integration, but you can expand on this in
+  a number of ways. Maybe add an LED that changes color when your Nest thinks
+  you're not home? Or make the button toggle your Nest home/away status?
 
-  Let us know @CylonJS on twitter.
+  Hopefully running through these quick examples has given you some cool ideas
+  of ways you can interact with your smart home. And if you build something
+  awesome with Cylon and Nest, please let us know on [Twitter][]!
 
-  Easy and fun! Be sure to checkout the full examples
-  [here](https://github.com/hybridgroup/cylon-nest/master/examples). As
-  well as the 19 other different hardware platforms currently
-  [supported](http://cylonjs.com/documentation/platforms/) in Cylon.js.
+  [Twitter]: https://twitter.com/cylonjs
+
+  If you want to see more of what can be done with Cylon.js and Nest, check out
+  the rest of the [cylon-nest examples][]! Also be sure to take a look at the
+  [19 other different hardware platforms][platforms] we currently support.
+
+  [platforms]: http://cylonjs.com/documentation/platforms
