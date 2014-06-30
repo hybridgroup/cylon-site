@@ -9,21 +9,19 @@ active_menu_blog: true
 ---
 
 :markdown
-  Today we are announcing support for the [nest Labs API](https://developer.nest.com/).
-  With this new adaptor and drivers now you make your robots, microcontrollers or SBCs
-  interacat with your smart home devices (supported by nest of course), we currently
-  have drivers that support for the nest Thermostat and nest-home, the latter of the two
-  allows you to check the status of all your smart devices i your home at a glance, check
+  Today we are announcing support for the [Nest](https://developer.nest.com/) thermostat.
+  With this new adaptor and drivers you may now allow your robots, microcontrollers or SBCs
+  interacat with your smart home devices (supported by nest of course). We currently
+  have support for the nest Thermostat and nest-home, the latter of the two
+  allows you to check the status of all your smart devices in your home at a glance, check
   more than one house and set the status to either 'away' or 'home'.
 
-  Getting started with Cylon.js and the nest api is very easy, all you need to do is
+  Getting started with Cylon.js and the Nest is very easy, all you need to do is
   install the cylon-nest module:
 
   - `$ npm install cylon-nest`
 
-  After that follo the instructions to setup your nest developer account:
-
-  [cylon-nest repo](https://github.com/hybridgroup/cylon-nest)
+  After that follow these [instructions](https://developer.nest.com/documentation/how-to-auth) to setup your Nest developer account
 
   From there create a read-temp.js file and paste the following code (also available
   in the repo cylon-nest repo examples [cylon-nest repo](https://github.com/hybridgroup/cylon-nest/master/examples)):
@@ -32,7 +30,7 @@ active_menu_blog: true
       var Cylon = require('cylon');
 
       Cylon.robot({
-        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKEN'c},
+        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKEN'},
 
         device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID' },
 
@@ -60,10 +58,10 @@ active_menu_blog: true
   arduino, spark core, digispark, beaglebone black, or all of them! You name it;
   any of the platforms supported by Cylon.JS.
 
-  Imagine this the Nest thermostat is in another room, the away state kicks in after some time,
+  Imagine that the Nest thermostat is in another room, the away state kicks in after some time,
   you do not have your smart phone and feel lazy to go to the website and turn the away state off,
   you can add a button to an arduino set it up by your desk and have it turn the away status off
-  by clicking the button, cool uh! Add some leds, some motion detector and a spark core, and you can
+  by clicking the button, cool huh! Add some leds, some motion detector and a spark core, and you can
   make the away state very accurate, automagically now you have nest wireless motion detection cover
   any the rooms in the house you want, now that's a cool DIY weekend project.
 
@@ -74,9 +72,9 @@ active_menu_blog: true
       var Cylon = require('cylon');
 
       Cylon.robot({
-        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKE },
+        connection: { name: 'nest', adaptor: 'nest', accessToken: 'MY_ACCESS_TOKE' },
 
-        device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID },
+        device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID' },
 
         work: function(my) {
 
@@ -148,11 +146,11 @@ active_menu_blog: true
       }).start();
 
   As we can see in this very small and easy example of a program, Cylon.js
-  makes interacting with the nest Labs API and adding multiple devices piece of cake,
+  makes interacting with the nest Labs API and adding multiple devices a piece of cake,
   we were able to create a program that controls a functioning device (an arduino and
   a button in this case) and interacts with your home smart devices in less than 20
   lines, if you ask me I'll say that's pretty cool, now the questions is, what would you make
-  using Cylon.JS and all this tools?
+  using Cylon.JS and all these tools?
 
   Let us know @CylonJS on twitter.
 
