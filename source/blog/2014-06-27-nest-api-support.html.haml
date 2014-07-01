@@ -46,7 +46,15 @@ active_menu_blog: true
             console.log('The Thermostat at a glance:', data);
           });
 
+          // We set the target temperature of the thermostat
+          // and we check the change took place when the status
+          // changes and the event gets triggered.
+          my.thermostat.setTargetTemperatureC(24);
+
           every((60).seconds(), function(){
+            // Alternatively to reading the status of the nest
+            // we can call one of the read temp functions directly
+            // on the thermostat.
             console.log('NEST ambient temp C:', my.thermostat.ambientTemperatureC());
             console.log('NEST ambient temp F:', my.thermostat.ambientTemperatureF());
 
@@ -66,8 +74,9 @@ active_menu_blog: true
   You'd like to remind the Nest that you're still home, but you don't have
   a smartphone on you.
 
-  As a fun weekend DIY project, you can hook up an Arduino such that pressing
-  a button tells your Nest that you're still home:
+  As a fun weekend DIY project, you can hook up an Arduino such that a couple of
+  LEDs tell you the away status of the nest in your home office, and pressing
+  a button tells your Nest that you're still home, let's check the code:
 
       :::javascript
       var Cylon = require('cylon');
@@ -79,15 +88,26 @@ active_menu_blog: true
         ],
 
         devices: [
+          { name: 'blue', driver: 'led', pin: 13 },
+          { name: 'red', driver: 'button', pin: 12 },
           { name: 'button', driver: 'button', pin: 2 },
-          { name: 'home', driver: 'nest-home' }
+          { name: 'home', driver: 'nest-home', structureId: '' }
         ],
 
         work: function(my) {
-          var structureId = 'STRUCTURE_ID';
+          my.home.on('status', function(data) {
+            console.log('Nest home at a glance:', data);
+            if ('away' == my.home.away()) {
+              my.blue.turnOff();
+              my.red.turnOn();
+            } else {
+              my.red.turnOff();
+              my.blue.turnOn();
+            }
+          });
 
           my.button.on('push', function() {
-            my.home.away(structureId, 'home');
+            my.home.away('home');
             console.log('nest thermostat `away` state set to home!');
           });
         }
