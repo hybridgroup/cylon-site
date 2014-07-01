@@ -23,13 +23,10 @@ dualshock_driver: true
 %section.intro
   = image_tag "/images/devices/joystick.jpg", class: "display"
   .info-intro
-    %p A joystick is an input device consisting of a stick that pivots on a base and reports its angle or direction to the device it is controlling.
-    %p You can use Cylon.js with an Xbox 360 game controller. The goal is to also support any other joysticks and game controllers that are HID devices.
+    %p You can use Cylon.js with a DualShock 3 controller, the XBox360 controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick or game controller.
     %p
-      For more info about the Joystick platform click
-      = succeed "." do
-        = link_to "here", "http://en.wikipedia.org/wiki/Joystick", target: :blank
-
+      For more info about SDL, go to
+      = link_to "http://www.libsdl.org/", "http://www.libsdl.org/", target: :blank
   .clear
 
 %section.how_to#HowToInstall
@@ -38,11 +35,17 @@ dualshock_driver: true
   :markdown
         :::bash
         npm install cylon-joystick
+
   %h3 Note
   %p If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.
+
 %section.how-to#HowToUse
   %h2 How To Use
-  %p This small program receives joystick and button press events from an XBox 360 game controller.
+
+  %p
+    This short Cylon.js program will respond to joystick input, as well as
+    button presses:
+
   :markdown
         :::javascript
         var Cylon = require('cylon');
@@ -85,12 +88,14 @@ dualshock_driver: true
 
 %section.how-to#HowToConnect
   %h2 How To Connect
-  %p Plug your USB joystick or game controller into your USB port.
+
+  %p
+    Plug your USB joystick or game controller into your USB port. If your device
+    is supported by SDL, you are now ready.
 
 %section.drivers#Drivers
   %h2 Drivers
   %p Available drivers for the joystick platform are listed below:
-  -#%p There are 3 driver for different joysticks, as listed below:
 
   .hardware
     .devices

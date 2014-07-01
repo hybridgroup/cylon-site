@@ -24,65 +24,59 @@ joystick_platform: true
   .info-intro
     %p Allows user to interact with Cylon.js devices using a Dualshock 3 controller.
 
-    %p
-      For more information click
-      = link_to "here", "http://en.wikipedia.org/wiki/Joystick", target: "_blank"
-      
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
         :::javascript
-        Cylon = require('cylon');
+        var Cylon = require('cylon');
 
         Cylon.robot({
-          name: "NewBot",
-          connection: {
-            name: 'joystick',
-            adaptor: 'joystick',
-            controller: 'dualshock3'
-          },
-          device: {
-            name: 'controller',
-            driver: 'dualshock3'
-          }
-        ...
+          connection: { name: 'joystick', adaptor: 'joystick' },
+          device: { name: 'controller', driver: 'dualshock-3' }
+          // [...]
+        });
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %h3 Example receiving button events from Dualshock 3 joystick.
+
+  %p
+    What follows is an example of button and joystick input for the DualShock 3.
+
   :markdown
         :::javascript
-        Cylon = require('cylon');
+        var Cylon = require('cylon');
 
         Cylon.robot({
-          name: "NewBot",
-          connection: {
-            name: 'joystick',
-            adaptor: 'joystick',
-            controller: 'dualshock3'
-          },
-          device: {
-            name: 'controller',
-            driver: 'dualshock3'
-          },
+          connection: { name: 'joystick', adaptor: 'joystick' },
+          device: { name: 'controller', driver: 'dualshock-3' },
+
           work: function(my) {
-            var button_states, buttons;
-            button_states = ["press", "release"];
-            buttons = ["x", "square", "circle", "triangle", "l1", "r1", "l2", "r2", "left", "right", "select", "start", "dpad:left", "dpad:right", "dpad:up", "dpad:down", "psbutton"];
-            buttons.forEach(function(button) {
-              return button_states.forEach(function(state) {
-                return my.controller.on("" + button + ":" + state, function() {
-                  return console.log(button, state);
-                });
+            ["square", "circle", "x", "triangle"].forEach(function(button) {
+              my.controller.on(button + ":press", function() {
+                console.log("Button " + button + " pressed.");
+              });
+
+              my.controller.on(button + ":release", function() {
+                console.log("Button " + button + " released.");
               });
             });
-            my.controller.on("left:move", function(pos) {
-              return console.log("left:", pos);
+
+            my.controller.on("left_x:move", function(pos) {
+              console.log("Left Stick - X:", pos);
             });
-            return my.controller.on("right:move", function(pos) {
-              return console.log("right:", pos);
+
+            my.controller.on("left_y:move", function(pos) {
+              console.log("Left Stick - Y:", pos);
+            });
+
+            my.controller.on("right_x:move", function(pos) {
+              console.log("Right Stick - X:", pos);
+            });
+
+            my.controller.on("right_y:move", function(pos) {
+              console.log("Right Stick - Y:", pos);
             });
           }
         });
