@@ -60,15 +60,6 @@ ir_range_finder: true
     = link_to "(http://gort.io).", "http://gort.io"
     This routes all of your calls thru the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.
   %p Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device. This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.
-  %h2 Uploading
-  %h3 Uploading Code To Your Spark Core Using the Cylon CLI
-
-  :markdown
-        :::bash
-        $ cylon spark upload [access_token] [device_id] new_firmware.cpp
-
-  %p The <code>cylon spark upload</code> command can help if you want to upload new source code directly to your Spark Core.
-
   %p
     For more information on how to program your Spark, please see
     = link_to "Spark's examples", "http://docs.spark.io/#/examples", target: :blank
