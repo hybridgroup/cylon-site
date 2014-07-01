@@ -1,0 +1,126 @@
+---
+page_title_show: true
+title: "Nest API Support!"
+page_title: Blog
+date: 2014-06-27
+tags: robots
+author: Edgar Silva
+active_menu_blog: true
+---
+
+:markdown
+  Today we are announcing support for the [Nest](https://developer.nest.com/)
+  Thermostat. With this new set of adaptors and drivers, you can allow your
+  robots, microcontrollers or single-board computers to interact with your
+  Nest-supported smart home devices.
+
+  We currently have two Nest-related drivers supported, `nest-thermostat` and
+  `nest-home`. `nest-home` allows you to check the status of all of your home's
+  smart devices at a glance. you can also check on more than one house, and set
+  your status to 'away' or 'home'.
+
+  Getting started with Cylon.js and Nest is easy, all you need to do is install
+  the cylon-nest module:
+
+      $ npm install cylon-nest
+
+  After that, follow these [instructions][] to get a Nest developer account set
+  up.
+
+  [instructions]: https://developer.nest.com/documentation/how-to-auth
+
+  Once you're done with that, you can try your Nest integration out with the
+  following code example (also made available in the [cylon-nest examples][]):
+
+  [cylon-nest examples]: https://github.com/hybridgroup/cylon-nest/master/examples
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connection: { name: 'nest', adaptor: 'nest', accessToken: 'ACCESS_TOKEN'},
+        device: { name: 'thermostat', driver: 'nest-thermostat', deviceId: 'DEVICE_ID' },
+
+        work: function(my) {
+          my.thermostat.on('status', function(data) {
+            console.log('The Thermostat at a glance:', data);
+          });
+
+          // We set the target temperature of the thermostat
+          // and we check the change took place when the status
+          // changes and the event gets triggered.
+          my.thermostat.setTargetTemperatureC(24);
+
+          every((60).seconds(), function(){
+            // Alternatively to reading the status of the nest
+            // we can call one of the read temp functions directly
+            // on the thermostat.
+            console.log('NEST ambient temp C:', my.thermostat.ambientTemperatureC());
+            console.log('NEST ambient temp F:', my.thermostat.ambientTemperatureF());
+
+            my.thermostat.read('away_temperature_high_c', function(data) {
+              console.log("Away Temp High C on read callback -->", data);
+            });
+          });
+        }
+      }).start();
+
+  Please note that to get this example to work, you'll need to provide an
+  `access_token` and `device_id`. These are both obtained when you set up
+  authorization, and are needed to communicate with the Nest API.
+
+  The `nest-home` driver can also be used in cool ways too! Imagine you're in
+  a different room from your Nest Thermostat, and the away state has kicked in.
+  You'd like to remind the Nest that you're still home, but you don't have
+  a smartphone on you.
+
+  As a fun weekend DIY project, you can hook up an Arduino such that a couple of
+  LEDs tell you the away status of the nest in your home office, and pressing
+  a button tells your Nest that you're still home, let's check the code:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connections: [
+          { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          { name: 'nest', adaptor: 'nest', accessToken: 'ACCESS_TOKEN' }
+        ],
+
+        devices: [
+          { name: 'blue', driver: 'led', pin: 13 },
+          { name: 'red', driver: 'button', pin: 12 },
+          { name: 'button', driver: 'button', pin: 2 },
+          { name: 'home', driver: 'nest-home', structureId: '' }
+        ],
+
+        work: function(my) {
+          my.home.on('status', function(data) {
+            console.log('Nest home at a glance:', data);
+            if ('away' == my.home.away()) {
+              my.blue.turnOff();
+              my.red.turnOn();
+            } else {
+              my.red.turnOff();
+              my.blue.turnOn();
+            }
+          });
+
+          my.button.on('push', function() {
+            my.home.away('home');
+            console.log('nest thermostat `away` state set to home!');
+          });
+        }
+      }).start();
+
+  Hopefully running through these quick examples has given you some cool ideas
+  of ways you can interact with your smart home. And if you build something
+  awesome with Cylon and Nest, please let us know on [Twitter][]!
+
+  [Twitter]: https://twitter.com/cylonjs
+
+  If you want to see more of what can be done with Cylon.js and Nest, check out
+  the rest of the [cylon-nest examples][]! Also be sure to take a look at the
+  [19 other different hardware platforms][platforms] we currently support.
+
+  [platforms]: http://cylonjs.com/documentation/platforms
