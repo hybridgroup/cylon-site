@@ -89,28 +89,28 @@ ir_range_finder: true
         :::bash
         $ npm install cylon-firmata
 
-  %p Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+    Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
 
   :markdown
         :::bash
-        $ cylon arduino scan
+        $  cylon scan serial
 
-  %p
+  :markdown
     Use the `cylon firmata install` command to install avrdude,
     this will allow you to upload firmata to the arduino:
 
   :markdown
         :::bash
-        $ cylon arduino install
+        $ cylon firmata install
 
-  %p
+  :markdown
     Once the avrdude uploader is installed we upload the firmata protocol to
     the arduino, use the arduino serial port address found when you ran
     `cylon scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
 
   :markdown
         :::bash
-        $ cylon arduino upload /dev/ttyACM0
+        $ cylon firmata upload /dev/ttyACM0
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
@@ -131,45 +131,30 @@ ir_range_finder: true
         :::bash
         $ npm install cylon-firmata
 
-  %p Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+    Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
 
   :markdown
         :::bash
-        $ cylon arduino scan
+        $ cylon scan serial
 
-  %p
+  :markdown
     Use the `cylon firmata install` command to install avrdude,
     this will allow you to upload firmata to the arduino:
 
   :markdown
         :::bash
-        $ cylon arduino install
+        $ cylon firmata install
 
-  %p
     Once the avrdude uploader is installed we upload the firmata protocol to
     the arduino, use the arduino serial port address found when you ran
     `cylon scan serial`, or leave it blank to use the default address `ttyACM0`:
 
-  :markdown
         :::bash
-        $ cylon arduino upload ttyACM0
+        $ cylon firmata upload ttyACM0
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
-  %h3 Windows
-
-  %p To connect your Arduino to your computer, you will need to install the system drivers which are part of the <a href="http://arduino.cc/en/main/software#toc2">Arduino IDE</a> software.
-
-  %p
-    Once you have done this, to find which port your Arduino is connected to, follow the following procedure:
-    %ul
-      %li Go to the "Start" menu
-      %li Right click on "Computer"
-      %li Click on "Properties"
-      %li Open "Device Manager" on the "Properties" tab
-      %li Expand the tree controller listed in the "Device Manager" labeled "Ports (COM & LPT)"
-      %li Note the port listed next to the "Arduino" entry. For example, "Arduino Uno (COM4)", you would use the value "COM4" as the port in your Cylon.js code.
-
+  
 %section.drivers#Drivers
   %h2 Drivers
   %p
