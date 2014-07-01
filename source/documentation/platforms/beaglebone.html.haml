@@ -51,28 +51,16 @@ ir_range_finder: true
   %p This small program causes an LED and a button.
   :markdown
         :::javascript
-        Cylon = require('cylon');
+        var Cylon = require('cylon');
 
+        // Initialize the robot
         Cylon.robot({
-          connection: {
-            name: 'beaglebone',
-            adaptor: 'beaglebone'
-          },
-          devices: [
-            {
-              name: 'led',
-              driver: 'led',
-              pin: 'P9_12'
-            }, {
-              name: 'button',
-              driver: 'button',
-              pin: 'P9_14'
-            }
-          ],
+          connection: { name: 'beaglebone', adaptor: 'beaglebone' },
+          devices: [{name: 'led', driver: 'led', pin: 'P9_12'},
+                    {name: 'button', driver: 'button', pin: 'P9_14'}],
+
           work: function(my) {
-            return my.button.on('push', function() {
-              return my.led.toggle();
-            });
+            my.button.on('push', function() {my.led.toggle()});
           }
         }).start();
 
