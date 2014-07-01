@@ -94,12 +94,13 @@
                   </div>
                   <div class="clear"></div>
                 </section><section class="how_to" id="HowToInstall"><h2>How To Install</h2>
+                  <h3>Installation - All Platforms</h3>
                   <p>Install the module with:</p>
                   <pre class="CodeRay">npm install cylon-crazyflie
 </pre>
                   <p>
                     You will also need to install the latest beta of firmware to the Crazyflie itself to use the 'hover' mode from
-                    <a target="blank" href="https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2013.11-beta1.bin">https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2013.11-beta1.bin</a>
+                    <a target="blank" href="https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin">https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin</a>
                   </p>
                   <h3>Ubuntu</h3>
                   <p>
@@ -107,9 +108,15 @@
                   </p>
                   <pre class="CodeRay">sudo apt-get install build-essential pkg-config libusb-1.0-0-dev
 </pre>
-                  <p>
-                    before you will be able to run `npm install cylon-crazyflie'
-                  </p>
+                  
+                  <p>before you will be able to run <code>npm install cylon-crazyflie</code></p>
+                  <h3>OSX</h3>
+                  <p>On OSX, you will need to run:</p>
+                  
+                  <pre class="CodeRay">brew install libusb
+</pre>
+                  
+                  <p>before you will be able to run <code>npm install cylon-crazyflie</code></p>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>This small program causes the Crazyflie to takeoff for 10 seconds.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);

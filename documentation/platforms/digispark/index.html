@@ -91,9 +91,19 @@
                   </div>
                   <div class="clear"></div>
                 </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                  <p>Installing Cylon.js with digispark support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-digispark
+                  <p>Installing the cylon-digispark requires the <code>libusb</code> package already be installed.</p>
+                  <h3>OSX</h3>
+                  <p>To install libusb on OSX using Homebrew:</p>
+                  <pre class="CodeRay">$ brew install libusb
 </pre>
+                  <h3>Ubuntu</h3>
+                  <p>To install libusb on linux:</p>
+                  <pre class="CodeRay">$ sudo apt-get install libusb-dev
+</pre>
+                  
+                  <p>Now you can install the module with: <code>npm install cylon-digispark</code></p>
+                  
+                  <p>If you're experiencing the <code>AttributeError: 'module' object has no attribute 'script_main'</code> build issue, then please refer to this <a href="https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812">comment</a></p>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>This small program lets you toggle an LED on and off.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
@@ -120,6 +130,7 @@ Cylon.robot({
                     digispark as simple as possible, after littlewire has been uploaded you can connect and communicate using Cylon.
                   </p>
                   <h3>OSX</h3>
+                  <p>IMPORTANT: 2012 MBP The USB ports on the 2012 MBPs (Retina and non) cause issues due to their USB3 controllers, currently the best work around is to use a cheap USB hub (non USB3) - we are working on future solutions. The hub on a Cinema display will work as well.</p>
                   <p>The main steps are:</p>
                   <ul>
 <li>Install the cylon-digispark npm module</li>

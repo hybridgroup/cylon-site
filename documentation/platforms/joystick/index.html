@@ -83,11 +83,7 @@
                     </nav>
 </div>
                 </section><br><section class="intro"><img class="display" src="/images/devices/joystick.jpg"><div class="info-intro">
-                    <p>
-                      You can use Cylon.js with a DualShock 3 controller, the Xbox 360
-                      controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick
-                      or game controller.
-                    </p>
+                    <p>You can use Cylon.js with a DualShock 3 controller, the XBox360 controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick or game controller.</p>
                     <p>
                       For more info about SDL, go to
                       <a target="blank" href="http://www.libsdl.org/">http://www.libsdl.org/</a>
@@ -98,6 +94,8 @@
                   <p>Installing Cylon.js with Joystick support is pretty easy.</p>
                   <pre class="CodeRay">npm install cylon-joystick
 </pre>
+                  <h3>Note</h3>
+                  <p>If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.</p>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>
                     This short Cylon.js program will respond to joystick input, as well as
@@ -107,10 +105,10 @@
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox-360</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    [<span class="string"><span class="delimiter">"</span><span class="content">a</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">b</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">y</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
+    [<span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
       my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);
       });
@@ -124,11 +122,21 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - X:</span><span class="delimiter">"</span></span>, pos);
     });
 
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - X:</span><span class="delimiter">"</span></span>, pos);
+    });
+
     my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
+    });
   }
-}).start();
+});
+
+Cylon.start();
 </pre>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
                   <p>

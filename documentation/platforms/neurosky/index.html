@@ -95,7 +95,7 @@
                   <pre class="CodeRay">npm install cylon-neurosky
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>This small program let you connect the Neurosky an load data.</p>
+                  <p>This example displays the Attention and Meditation data reading sent by the Mindwave Headset:</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -106,8 +106,11 @@ Cylon.robot({
     {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">headset</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">packet</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(data);
+    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">attention</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
+    });
+    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">meditation</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
     });
   }
 });

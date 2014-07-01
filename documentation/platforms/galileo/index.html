@@ -106,6 +106,42 @@ Cylon.robot({
         }
 }).start();
 </pre>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="comment">// Be carefull with your servo angles or you might DAMAGE the servo!</span>
+    <span class="comment">// Cylon uses a 50hz/s (20ms period) frequency and a Duty Cycle</span>
+    <span class="comment">// of 0.5ms to 2.5ms to control the servo angle movement.</span>
+    <span class="comment">//</span>
+    <span class="comment">// This means:</span>
+    <span class="comment">// 1. 0.5ms == 0 degrees</span>
+    <span class="comment">// 2. 1.5ms == 90 degrees</span>
+    <span class="comment">// 3. 2.5ms == 180 degrees</span>
+    <span class="comment">// (It is usually safe to start with a 90 degree angle, 1.5ms duty</span>
+    <span class="comment">// cycle in most servos)</span>
+    <span class="comment">//</span>
+    <span class="comment">// Please review your servo datasheet to make sure of correct</span>
+    <span class="comment">// angle range and the Freq/MS Duty cycle it requires.</span>
+    <span class="comment">// If more servo support is needed leave us a comment, raise an</span>
+    <span class="comment">// issue or help us add more support.</span>
+
+    <span class="keyword">var</span> angle = <span class="integer">30</span>;
+    <span class="keyword">var</span> increment = <span class="integer">40</span>;
+
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+      angle += increment;
+      my.servo.angle(angle);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span> + my.servo.currentAngle());
+
+      <span class="keyword">if</span> ((angle === <span class="integer">30</span>) || (angle === <span class="integer">150</span>)) { increment = -increment; }
+    });
+  }
+}).start();
+</pre>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
                   <h3>Setting up the Galileo bigger Linux image, connecting and updating node.js.</h3>
                   <p>Setting up Intel's Galileo board takes a bit more work than it should, but it is not difficult, luckily you only have to do it once (we hope :-)... ).</p>
@@ -197,6 +233,7 @@ Cylon.robot({
 </pre>
                   
                   <p>Let's confirm node.js version by running <code>node -v</code></p>
+                  
                   <pre class="CodeRay">        $ node -v
         v0.10.25
 </pre>
@@ -230,7 +267,7 @@ $ tar -cf galileo-blink.tar ./galileo-blink
 $ scp galileo-blink.tar root@192.168.0.5:/home/root/
 </pre>
                   <p>Once the project package finishes copying we go to our galileo session, and in the terminal we run the following:</p>
-                  <pre class="CodeRay">$ cd ~ 
+                  <pre class="CodeRay">$ cd ~
 $ tar -xf galileo-blink.tar
 $ cd galileo-blink
 $ vi blink.js

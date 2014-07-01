@@ -94,7 +94,10 @@
                   <p>Installing Cylon.js with Opencv support is pretty easy.</p>
                   <pre class="CodeRay">npm install cylon-opencv
 </pre>
-                  <p>If you don't already have OpenCV installed</p>
+                  <p>
+                    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:
+                    <a target="blank" href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">you can see the docs here.</a>
+                  </p>
                   <h3>Ubuntu</h3>
                   <pre class="CodeRay">#!/bin/bash
 sudo apt-get -y install autoconf automake build-essential git libass-dev libgpac-dev \
@@ -138,49 +141,58 @@ make
 sudo make install
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>Example using face detection.</p>
+                  <p>Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.</p>
+                  <p>The following example shows how to connect to a camera and display the video feed in a window.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
+
   <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span> },
+    {
+      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>,
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>
+    },
     {
       <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
       <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
       <span class="key">camera</span>: <span class="integer">1</span>,
-      <span class="key">haarcascade</span>: __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>
+      <span class="key">haarcascade</span>: __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/examples/opencv/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>
     }
   ],
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.camera.once(<span class="string"><span class="delimiter">'</span><span class="content">cameraReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The camera is ready!</span><span class="delimiter">'</span></span>);
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The camera is ready!</span><span class="delimiter">'</span></span>)
 
-      my.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">facesDetected</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im, faces) {
-        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; faces.length; i++) {
-          <span class="keyword">var</span> face = faces[i];
-          im.rectangle(
-            [face.x, face.y],
-            [face.x + face.width, face.y + face.height],
-            [<span class="integer">0</span>, <span class="integer">255</span>, <span class="integer">0</span>],
-            <span class="integer">2</span>
-          );
-        }
-
-        my.window.show(im, <span class="integer">40</span>);
-
-        my.camera.readFrame();
-      });
-
+      <span class="comment">// We listen for frame ready event, when triggered</span>
+      <span class="comment">// we display the frame/image passed as an argument</span>
+      <span class="comment">// and we tell the window to wait 40 milliseconds</span>
       my.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">frameReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im) {
-        my.camera.detectFaces(im);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">FRAMEREADY!</span><span class="delimiter">"</span></span>);
+        my.window.show(im, <span class="integer">40</span>);
       });
 
-      my.camera.readFrame();
+      <span class="comment">// Here we have two options to start reading frames from</span>
+      <span class="comment">// the camera feed.</span>
+      <span class="comment">// 1. As fast as possible triggering the next frame read</span>
+      <span class="comment">//    in the listener for frameReady, if you need video</span>
+      <span class="comment">//    as smooth as possible uncomment #my.camera.readFrame()</span>
+      <span class="comment">//    in the listener above and the one below this comment.</span>
+      <span class="comment">//</span>
+      <span class="comment">// my.camera.readFrame()</span>
+      <span class="comment">//</span>
+      <span class="comment">// 2. Use an interval of time to try and get aset amount</span>
+      <span class="comment">//    of frames per second  (FPS), in the next example</span>
+      <span class="comment">//    we are trying to get 1 frame every 50 milliseconds</span>
+      <span class="comment">//    (20 FPS).</span>
+      <span class="comment">//</span>
+      every(<span class="integer">50</span>, <span class="keyword">function</span>() { my.camera.readFrame(); });
     });
   }
-}).start();
+});
+
+Cylon.start();
 </pre>
                 </section>
 </div>

@@ -125,21 +125,18 @@ Cylon.robot({
                   <p>Install the cylon-firmata module:</p>
                   <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
-                  <p>Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:</p>
-                  <pre class="CodeRay">$ cylon arduino scan
+                  
+                  <p>Once plugged in, use the <code>cylon scan serial</code> command to find out your connection info and serial port address:</p>
+                  <pre class="CodeRay">$  cylon scan serial
 </pre>
-                  <p>
-                    Use the `cylon firmata install` command to install avrdude,
-                    this will allow you to upload firmata to the arduino:
-                  </p>
-                  <pre class="CodeRay">$ cylon arduino install
+                  <p>Use the <code>cylon firmata install</code> command to install avrdude,
+                  this will allow you to upload firmata to the arduino:</p>
+                  <pre class="CodeRay">$ cylon firmata install
 </pre>
-                  <p>
-                    Once the avrdude uploader is installed we upload the firmata protocol to
-                    the arduino, use the arduino serial port address found when you ran
-                    `cylon scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
-                  </p>
-                  <pre class="CodeRay">$ cylon arduino upload /dev/ttyACM0
+                  <p>Once the avrdude uploader is installed we upload the firmata protocol to
+                  the arduino, use the arduino serial port address found when you ran
+                  <code>cylon scan serial</code>, or leave it blank to use the default address <code>/dev/ttyACM0</code>:</p>
+                  <pre class="CodeRay">$ cylon firmata upload /dev/ttyACM0
 </pre>
                   <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
                   <h3>Ubuntu</h3>
@@ -154,36 +151,23 @@ Cylon.robot({
                   <p>Install the cylon-firmata module:</p>
                   <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
-                  <p>Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:</p>
-                  <pre class="CodeRay">$ cylon arduino scan
+                  
+                  <p>Once plugged in, use the <code>cylon scan serial</code> command to find out your connection info and serial port address:</p>
+                  <pre class="CodeRay">$ cylon scan serial
 </pre>
-                  <p>
-                    Use the `cylon firmata install` command to install avrdude,
-                    this will allow you to upload firmata to the arduino:
-                  </p>
-                  <pre class="CodeRay">$ cylon arduino install
+                  <p>Use the <code>cylon firmata install</code> command to install avrdude,
+                  this will allow you to upload firmata to the arduino:</p>
+                  <pre class="CodeRay">$ cylon firmata install
 </pre>
-                  <p>
-                    Once the avrdude uploader is installed we upload the firmata protocol to
-                    the arduino, use the arduino serial port address found when you ran
-                    `cylon scan serial`, or leave it blank to use the default address `ttyACM0`:
-                  </p>
-                  <pre class="CodeRay">$ cylon arduino upload ttyACM0
+                  
+                  <p>Once the avrdude uploader is installed we upload the firmata protocol to
+                  the arduino, use the arduino serial port address found when you ran
+                  <code>cylon scan serial</code>, or leave it blank to use the default address <code>ttyACM0</code>:</p>
+                  
+                  <pre class="CodeRay">$ cylon firmata upload ttyACM0
 </pre>
                   <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
-                  <h3>Windows</h3>
-                  <p>To connect your Arduino to your computer, you will need to install the system drivers which are part of the <a href="http://arduino.cc/en/main/software#toc2">Arduino IDE</a> software.</p>
-                  <p>
-                    Once you have done this, to find which port your Arduino is connected to, follow the following procedure:
-                    </p>
-<ul>
-<li>Go to the "Start" menu</li>
-                      <li>Right click on "Computer"</li>
-                      <li>Click on "Properties"</li>
-                      <li>Open "Device Manager" on the "Properties" tab</li>
-                      <li>Expand the tree controller listed in the "Device Manager" labeled "Ports (COM &amp; LPT)"</li>
-                      <li>Note the port listed next to the "Arduino" entry. For example, "Arduino Uno (COM4)", you would use the value "COM4" as the port in your Cylon.js code.</li>
-                    </ul></section><section class="drivers" id="Drivers"><h2>Drivers</h2>
+                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                   <p>
                     Thanks to
                     <b>cylon.js</b>

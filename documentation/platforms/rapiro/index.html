@@ -97,25 +97,32 @@
                   <pre class="CodeRay">npm install cylon-rapiro
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>Example of a simple program that makes the Rapiro's LED blink.</p>
+                  <p>Example of a simple program that makes the Rapiro walk.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
+<span class="comment">// Initialize the robot</span>
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">var</span> on = <span class="predefined-constant">false</span>;
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (on == <span class="predefined-constant">true</span>) {
-        my.rapiro.led(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">0</span>);
-        on = <span class="predefined-constant">false</span>;
-      } <span class="keyword">else</span> {
-        my.rapiro.led(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>);
-        on = <span class="predefined-constant">true</span>;
-      }
+    my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">false</span> ;
+
+    my.rapiro.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">forward</span><span class="delimiter">"</span></span>);
+
+      every(<span class="integer">1</span>..second(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] == <span class="predefined-constant">false</span>)
+          my.rapiro.forward();
+      });
+      after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
+        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">halt</span><span class="delimiter">"</span></span>);
+        my.rapiro.halt();
+        my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">true</span>;
+      });
     });
   }
+}).start();
 </pre>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
                   <p></p>

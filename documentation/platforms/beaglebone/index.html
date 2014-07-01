@@ -96,28 +96,16 @@
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>This small program causes an LED and a button.</p>
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
+<span class="comment">// Initialize the robot</span>
 Cylon.robot({
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>
-  },
-  <span class="key">devices</span>: [
-    {
-      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,
-      <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_12</span><span class="delimiter">'</span></span>
-    }, {
-      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>,
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>,
-      <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>
-    }
-  ],
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_12</span><span class="delimiter">'</span></span>},
+            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>}],
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">return</span> my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      <span class="keyword">return</span> my.led.toggle();
-    });
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {my.led.toggle()});
   }
 }).start();
 </pre>

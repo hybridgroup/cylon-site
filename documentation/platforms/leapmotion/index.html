@@ -101,7 +101,7 @@
                   </p>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>This small program uses a Leap Motion to detect the user's hand position</p>
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: {
@@ -109,13 +109,15 @@ Cylon.robot({
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>,
     <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1:6437</span><span class="delimiter">'</span></span>
   },
+
   <span class="key">device</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>,
     <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>
   },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
-      console.log(hand.palmPosition);
+    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(payload) {
+      Logger.info(payload.toString());
     });
   }
 }).start();
