@@ -83,59 +83,52 @@
 </div>
                 </section><br><section class="intro"><img class="display" src="/images/devices/dualshock.jpg"><div class="info-intro">
                     <p>Allows user to interact with Cylon.js devices using a Dualshock 3 controller.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://en.wikipedia.org/wiki/Joystick">here</a>
-                    </p>
                   </div>
                   <div class="clear"></div>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">NewBot</span><span class="delimiter">"</span></span>,
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>,
-    <span class="key">controller</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock3</span><span class="delimiter">'</span></span>
-  },
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock3</span><span class="delimiter">'</span></span>
-  }
-...
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> }
+  <span class="comment">// [...]</span>
+});
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <h3>Example receiving button events from Dualshock 3 joystick.</h3>
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  <p>
+                    What follows is an example of button and joystick input for the DualShock 3.
+                  </p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">NewBot</span><span class="delimiter">"</span></span>,
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>,
-    <span class="key">controller</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock3</span><span class="delimiter">'</span></span>
-  },
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock3</span><span class="delimiter">'</span></span>
-  },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">var</span> button_states, buttons;
-    button_states = [<span class="string"><span class="delimiter">"</span><span class="content">press</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>];
-    buttons = [<span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">l1</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">r1</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">l2</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">r2</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">right</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">select</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">dpad:left</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">dpad:right</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">dpad:up</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">dpad:down</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">psbutton</span><span class="delimiter">"</span></span>];
-    buttons.forEach(<span class="keyword">function</span>(button) {
-      <span class="keyword">return</span> button_states.forEach(<span class="keyword">function</span>(state) {
-        <span class="keyword">return</span> my.controller.on(<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content">:</span><span class="delimiter">"</span></span> + state, <span class="keyword">function</span>() {
-          <span class="keyword">return</span> console.log(button, state);
-        });
+    [<span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);
+      });
+
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:release</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> released.</span><span class="delimiter">"</span></span>);
       });
     });
-    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
-      <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">left:</span><span class="delimiter">"</span></span>, pos);
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - X:</span><span class="delimiter">"</span></span>, pos);
     });
-    <span class="keyword">return</span> my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
-      <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">right:</span><span class="delimiter">"</span></span>, pos);
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - Y:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - X:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
   }
 });
@@ -150,149 +143,165 @@ Cylon.start();
                   <div class="commands-api" id="Events">
                     <h1 id="events">Events</h1>
                     
+                    <h2 id="leftxmove">left_x:move</h2>
+                    
+                    <p>Gets triggered when the left stick is moved on the X axis.</p>
+                    
+                    <h2 id="leftymove">left_y:move</h2>
+                    
+                    <p>Gets triggered when the left stick is moved on the Y axis.</p>
+                    
+                    <h2 id="rightxmove">right_x:move</h2>
+                    
+                    <p>Gets triggered when the right stick is moved on the X axis.</p>
+                    
+                    <h2 id="rightymove">right_y:move</h2>
+                    
+                    <p>Gets triggered when the right stick is moved on the Y axis.</p>
+                    
                     <h2 id="r1press">r1:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>r1</code> button is pressed.</p>
-                    
-                    <h2 id="l1press">l1:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>l1</code> button is pressed.</p>
-                    
-                    <h2 id="r2press">r2:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>r2</code> button is pressed.</p>
-                    
-                    <h2 id="l2press">l2:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>l2</code> button is pressed.</p>
-                    
-                    <h2 id="startpress">start:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>start</code> button is pressed.</p>
-                    
-                    <h2 id="selectpress">select:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>select</code> button is pressed.</p>
-                    
-                    <h2 id="xpress">x:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>x</code> button is pressed.</p>
-                    
-                    <h2 id="trianglepress">triangle:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>triangle</code> button is pressed.</p>
-                    
-                    <h2 id="circlepress">circle:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>circle</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>R1</code> button on the controller is pressed.</p>
                     
                     <h2 id="squarepress">square:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>square</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>square</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="trianglepress">triangle:press</h2>
+                    
+                    <p>Gets triggered when the <code>triangle</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="circlepress">circle:press</h2>
+                    
+                    <p>Gets triggered when the <code>circle</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="xpress">x:press</h2>
+                    
+                    <p>Gets triggered when the <code>x</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="uppress">up:press</h2>
+                    
+                    <p>Gets triggered when the <code>up</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="downpress">down:press</h2>
+                    
+                    <p>Gets triggered when the <code>down</code> button on the controller is pressed.</p>
                     
                     <h2 id="leftpress">left:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>left</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>left</code> button on the controller is pressed.</p>
                     
                     <h2 id="rightpress">right:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>right</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>right</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpadleftpress">dpad:left:press</h2>
+                    <h2 id="leftstickpress">left_stick:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:left</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>left_stick</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpadrightpress">dpad:right:press</h2>
+                    <h2 id="rightstickpress">right_stick:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:right</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>right_stick</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpaduppress">dpad:up:press</h2>
+                    <h2 id="l1press">l1:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:up</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>l1</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpaddownpress">dpad:down:press</h2>
+                    <h2 id="l2press">l2:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:down</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>l2</code> button on the controller is pressed.</p>
                     
-                    <h2 id="psbuttonpress">psbutton:press</h2>
+                    <h2 id="r1press-1">r1:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>psbutton</code> button is pressed.</p>
+                    <p>Gets triggered when the <code>r1</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="r2press">r2:press</h2>
+                    
+                    <p>Gets triggered when the <code>r2</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="startpress">start:press</h2>
+                    
+                    <p>Gets triggered when the <code>start</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="selectpress">select:press</h2>
+                    
+                    <p>Gets triggered when the <code>select</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="homepress">home:press</h2>
+                    
+                    <p>Gets triggered when the <code>home</code> button on the controller is pressed.</p>
                     
                     <h2 id="r1release">r1:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>r1</code> button is released.</p>
-                    
-                    <h2 id="l1release">l1:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>l1</code> button is released.</p>
-                    
-                    <h2 id="r2release">r2:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>r2</code> button is released.</p>
-                    
-                    <h2 id="l2release">l2:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>l2</code> button is released.</p>
-                    
-                    <h2 id="startrelease">start:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>start</code> button is released.</p>
-                    
-                    <h2 id="selectrelease">select:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>select</code> button is released.</p>
-                    
-                    <h2 id="xrelease">x:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>x</code> button is released.</p>
-                    
-                    <h2 id="trianglerelease">triangle:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>triangle</code> button is released.</p>
-                    
-                    <h2 id="circlerelease">circle:release</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the <code>circle</code> button is released.</p>
+                    <p>Gets triggered when the <code>R1</code> button on the controller is released.</p>
                     
                     <h2 id="squarerelease">square:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>square</code> button is released.</p>
+                    <p>Gets triggered when the <code>square</code> button on the controller is released.</p>
+                    
+                    <h2 id="trianglerelease">triangle:release</h2>
+                    
+                    <p>Gets triggered when the <code>triangle</code> button on the controller is released.</p>
+                    
+                    <h2 id="circlerelease">circle:release</h2>
+                    
+                    <p>Gets triggered when the <code>circle</code> button on the controller is released.</p>
+                    
+                    <h2 id="xrelease">x:release</h2>
+                    
+                    <p>Gets triggered when the <code>x</code> button on the controller is released.</p>
+                    
+                    <h2 id="uprelease">up:release</h2>
+                    
+                    <p>Gets triggered when the <code>up</code> button on the controller is released.</p>
+                    
+                    <h2 id="downrelease">down:release</h2>
+                    
+                    <p>Gets triggered when the <code>down</code> button on the controller is released.</p>
                     
                     <h2 id="leftrelease">left:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>left</code> button is released.</p>
+                    <p>Gets triggered when the <code>left</code> button on the controller is released.</p>
                     
                     <h2 id="rightrelease">right:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>right</code> button is released.</p>
+                    <p>Gets triggered when the <code>right</code> button on the controller is released.</p>
                     
-                    <h2 id="dpadleftrelease">dpad:left:release</h2>
+                    <h2 id="leftstickrelease">left_stick:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:left</code> button is released.</p>
+                    <p>Gets triggered when the <code>left_stick</code> button on the controller is released.</p>
                     
-                    <h2 id="dpadrightrelease">dpad:right:release</h2>
+                    <h2 id="rightstickrelease">right_stick:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:right</code> button is released.</p>
+                    <p>Gets triggered when the <code>right_stick</code> button on the controller is released.</p>
                     
-                    <h2 id="dpaduprelease">dpad:up:release</h2>
+                    <h2 id="l1release">l1:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:up</code> button is released.</p>
+                    <p>Gets triggered when the <code>l1</code> button on the controller is released.</p>
                     
-                    <h2 id="dpaddownrelease">dpad:down:release</h2>
+                    <h2 id="l2release">l2:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>dpad:down</code> button is released.</p>
+                    <p>Gets triggered when the <code>l2</code> button on the controller is released.</p>
                     
-                    <h2 id="psbuttonrelease">psbutton:release</h2>
+                    <h2 id="r1release-1">r1:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>psbutton</code> button is released.</p>
+                    <p>Gets triggered when the <code>r1</code> button on the controller is released.</p>
                     
-                    <h2 id="leftmove">left:move</h2>
+                    <h2 id="r2release">r2:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>left</code> button moves.</p>
+                    <p>Gets triggered when the <code>r2</code> button on the controller is released.</p>
                     
-                    <h2 id="rightmove">right:move</h2>
+                    <h2 id="startrelease">start:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the <code>right</code> button moves.</p>
+                    <p>Gets triggered when the <code>start</code> button on the controller is released.</p>
+                    
+                    <h2 id="selectrelease">select:release</h2>
+                    
+                    <p>Gets triggered when the <code>select</code> button on the controller is released.</p>
+                    
+                    <h2 id="homerelease">home:release</h2>
+                    
+                    <p>Gets triggered when the <code>home</code> button on the controller is released.</p>
                   </div>
                 </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
                   <div class="devices">
@@ -397,6 +406,9 @@ Cylon.start();
                       </li>
                       <li>
                         <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
@@ -528,6 +540,12 @@ Cylon.start();
                       </li>
                       <li>
                         <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
                       </li>
                       <li>
                         <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>

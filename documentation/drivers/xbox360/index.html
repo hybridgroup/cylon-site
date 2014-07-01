@@ -7,7 +7,7 @@
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Cylon.js - XBox360 Controller Driver</title>
+<title>Cylon.js - Xbox 360 Controller Driver</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -68,7 +68,7 @@
               <div class="container-documentation">
                 <div class="page-title-docs">
                   <div class="w">
-                    <h1 class="title">XBox360 Controller</h1>
+                    <h1 class="title">Xbox 360 Controller</h1>
                     <h2 class="subtitle">Driver</h2>
                   </div>
                 </div>
@@ -82,11 +82,7 @@
                     </nav>
 </div>
                 </section><br><section class="intro"><img class="display" src="/images/devices/xbox360.jpg"><div class="info-intro">
-                    <p>Allows user to interact with Cylon.js devices using a XBox360 game controller.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://en.wikipedia.org/wiki/Joystick">here</a>
-                    </p>
+                    <p>Allows user to interact with Cylon.js devices using a Xbox 360 controller.</p>
                   </div>
                   <div class="clear"></div>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
@@ -94,181 +90,226 @@
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox360</span><span class="delimiter">'</span></span>}
-..
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox-360</span><span class="delimiter">'</span></span> }
+  <span class="comment">// [...]</span>
+});
 </pre>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>Example receiving button events from XBox360 controller joystick.</p>
+                  <p>
+                    What follows is an example of button and joystick input for the DualShock 3.
+                  </p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox360</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.joystick.on(<span class="string"><span class="delimiter">"</span><span class="content">left:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(position) { 
-      console.log(position);
+    [<span class="string"><span class="delimiter">"</span><span class="content">a</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">b</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">y</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);
+      });
+
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:release</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> released.</span><span class="delimiter">"</span></span>);
+      });
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - X:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - Y:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - X:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">lt:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Trigger: </span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">rt:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Trigger: </span><span class="delimiter">"</span></span>, pos);
     });
   }
-}).start();
+});
+
+Cylon.start();
 </pre>
                 </section><section class="public-methods"><div class="commands-api" id="Commands">
                     <h1 id="commands">Commands</h1>
                     
-                    <h2 id="rumble">rumble()</h2>
-                    
-                    <p>coming soon</p>
-                    
-                    <h5 id="returns">Returns</h5>
-                    
-                    <h2 id="setled">setLed()</h2>
-                    
-                    <p>coming soon</p>
-                    
-                    <h5 id="returns-1">Returns</h5>
+                    <p>No commands</p>
                   </div>
                   <div class="commands-api" id="Events">
                     <h1 id="events">Events</h1>
                     
-                    <h2 id="dpaduppress">dpad:up:press</h2>
+                    <h2 id="ltmove">lt:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad up button is pressed.</p>
+                    <p>Gets triggered when the left trigger is moved.</p>
                     
-                    <h2 id="dpaddownpress">dpad:down:press</h2>
+                    <h2 id="rtmove">rt:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad down button is pressed.</p>
+                    <p>Gets triggered when the right trigger is moved.</p>
                     
-                    <h2 id="dpadleftpress">dpad:left:press</h2>
+                    <h2 id="leftxmove">left_x:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad left button is pressed.</p>
+                    <p>Gets triggered when the left stick is moved on the X axis.</p>
                     
-                    <h2 id="dpadrightpress">dpad:right:press</h2>
+                    <h2 id="leftymove">left_y:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad right button is pressed.</p>
+                    <p>Gets triggered when the left stick is moved on the Y axis.</p>
                     
-                    <h2 id="xboxbuttonpress">xboxbutton:press</h2>
+                    <h2 id="rightxmove">right_x:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the xboxbutton button is pressed.</p>
+                    <p>Gets triggered when the right stick is moved on the X axis.</p>
                     
-                    <h2 id="startpress">start:press</h2>
+                    <h2 id="rightymove">right_y:move</h2>
                     
-                    <p>Gets triggered every interval amount of time if the start button is pressed.</p>
+                    <p>Gets triggered when the right stick is moved on the Y axis.</p>
                     
-                    <h2 id="backpress">back:press</h2>
+                    <h2 id="rbpress">rb:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the back button is pressed.</p>
-                    
-                    <h2 id="leftpress">left:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the left stick button is pressed.</p>
-                    
-                    <h2 id="rightpress">right:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the righ tstick button is pressed.</p>
-                    
-                    <h2 id="leftshoulderpress">leftshoulder:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the leftshoulder button is pressed.</p>
-                    
-                    <h2 id="rightshoulderpress">rightshoulder:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the rightshoulder button is pressed.</p>
-                    
-                    <h2 id="apress">a:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the a button is pressed.</p>
-                    
-                    <h2 id="bpress">b:press</h2>
-                    
-                    <p>Gets triggered every interval amount of time if the b button is pressed.</p>
+                    <p>Gets triggered when the <code>RB</code> button on the controller is pressed.</p>
                     
                     <h2 id="xpress">x:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the x button is pressed.</p>
+                    <p>Gets triggered when the <code>x</code> button on the controller is pressed.</p>
                     
-                    <h2 id="ypress">y:press</h2>
+                    <h2 id="trianglepress">triangle:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the y button is pressed.</p>
+                    <p>Gets triggered when the <code>triangle</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpaduprelease">dpad:up:release</h2>
+                    <h2 id="circlepress">circle:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad up button is released.</p>
+                    <p>Gets triggered when the <code>circle</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpaddownrelease">dpad:down:release</h2>
+                    <h2 id="xpress-1">x:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad down button is released.</p>
+                    <p>Gets triggered when the <code>x</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpadleftrelease">dpad:left:release</h2>
+                    <h2 id="uppress">up:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad left button is released.</p>
+                    <p>Gets triggered when the <code>up</code> button on the controller is pressed.</p>
                     
-                    <h2 id="dpadrightrelease">dpad:right:release</h2>
+                    <h2 id="downpress">down:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the dpad right button is released.</p>
+                    <p>Gets triggered when the <code>down</code> button on the controller is pressed.</p>
                     
-                    <h2 id="xboxbuttonrelease">xboxbutton:release</h2>
+                    <h2 id="leftpress">left:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the xboxbutton button is released.</p>
+                    <p>Gets triggered when the <code>left</code> button on the controller is pressed.</p>
                     
-                    <h2 id="startrelease">start:release</h2>
+                    <h2 id="rightpress">right:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the start button is released.</p>
+                    <p>Gets triggered when the <code>right</code> button on the controller is pressed.</p>
                     
-                    <h2 id="backrelease">back:release</h2>
+                    <h2 id="leftstickpress">left_stick:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the back button is released.</p>
+                    <p>Gets triggered when the <code>left_stick</code> button on the controller is pressed.</p>
                     
-                    <h2 id="leftrelease">left:release</h2>
+                    <h2 id="rightstickpress">right_stick:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the leftstick button is released.</p>
+                    <p>Gets triggered when the <code>right_stick</code> button on the controller is pressed.</p>
                     
-                    <h2 id="rightrelease">right:release</h2>
+                    <h2 id="lbpress">lb:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the rightstick button is released.</p>
+                    <p>Gets triggered when the <code>lb</code> button on the controller is pressed.</p>
                     
-                    <h2 id="leftshoulderrelease">leftshoulder:release</h2>
+                    <h2 id="l2press">l2:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the leftshoulder button is released.</p>
+                    <p>Gets triggered when the <code>l2</code> button on the controller is pressed.</p>
                     
-                    <h2 id="rightshoulderrelease">rightshoulder:release</h2>
+                    <h2 id="rbpress-1">rb:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the rightshoulder button is released.</p>
+                    <p>Gets triggered when the <code>rb</code> button on the controller is pressed.</p>
                     
-                    <h2 id="arelease">a:release</h2>
+                    <h2 id="r2press">r2:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the a button is released.</p>
+                    <p>Gets triggered when the <code>r2</code> button on the controller is pressed.</p>
                     
-                    <h2 id="brelease">b:release</h2>
+                    <h2 id="startpress">start:press</h2>
                     
-                    <p>Gets triggered every interval amount of time if the b button is released.</p>
+                    <p>Gets triggered when the <code>start</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="selectpress">select:press</h2>
+                    
+                    <p>Gets triggered when the <code>select</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="homepress">home:press</h2>
+                    
+                    <p>Gets triggered when the <code>home</code> button on the controller is pressed.</p>
+                    
+                    <h2 id="rbrelease">rb:release</h2>
+                    
+                    <p>Gets triggered when the <code>RB</code> button on the controller is released.</p>
                     
                     <h2 id="xrelease">x:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the x button is released.</p>
+                    <p>Gets triggered when the <code>x</code> button on the controller is released.</p>
                     
                     <h2 id="yrelease">y:release</h2>
                     
-                    <p>Gets triggered every interval amount of time if the y button is released.</p>
+                    <p>Gets triggered when the <code>y</code> button on the controller is released.</p>
                     
-                    <h2 id="lefttrigger">lefttrigger</h2>
+                    <h2 id="brelease">b:release</h2>
                     
-                    <p>Left trigger emits the current amount pressed, from 0-250.</p>
+                    <p>Gets triggered when the <code>b</code> button on the controller is released.</p>
                     
-                    <h2 id="righttrigger">righttrigger</h2>
+                    <h2 id="arelease">a:release</h2>
                     
-                    <p>Right trigger emits the current amount pressed, from 0-250.</p>
+                    <p>Gets triggered when the <code>a</code> button on the controller is released.</p>
                     
-                    <h2 id="leftmove">left:move</h2>
+                    <h2 id="uprelease">up:release</h2>
                     
-                    <p>Gets triggered every left movement.</p>
+                    <p>Gets triggered when the <code>up</code> button on the controller is released.</p>
                     
-                    <h2 id="rightmove">right:move</h2>
+                    <h2 id="downrelease">down:release</h2>
                     
-                    <p>Gets triggered every right movement.</p>
+                    <p>Gets triggered when the <code>down</code> button on the controller is released.</p>
                     
-                    <h2 id="start">start</h2>
+                    <h2 id="leftrelease">left:release</h2>
                     
-                    <p>Sent when the device has been started and is ready to use.</p>
+                    <p>Gets triggered when the <code>left</code> button on the controller is released.</p>
+                    
+                    <h2 id="rightrelease">right:release</h2>
+                    
+                    <p>Gets triggered when the <code>right</code> button on the controller is released.</p>
+                    
+                    <h2 id="leftstickrelease">left_stick:release</h2>
+                    
+                    <p>Gets triggered when the <code>left_stick</code> button on the controller is released.</p>
+                    
+                    <h2 id="rightstickrelease">right_stick:release</h2>
+                    
+                    <p>Gets triggered when the <code>right_stick</code> button on the controller is released.</p>
+                    
+                    <h2 id="lbrelease">lb:release</h2>
+                    
+                    <p>Gets triggered when the <code>lb</code> button on the controller is released.</p>
+                    
+                    <h2 id="rbrelease-1">rb:release</h2>
+                    
+                    <p>Gets triggered when the <code>rb</code> button on the controller is released.</p>
+                    
+                    <h2 id="startrelease">start:release</h2>
+                    
+                    <p>Gets triggered when the <code>start</code> button on the controller is released.</p>
+                    
+                    <h2 id="selectrelease">select:release</h2>
+                    
+                    <p>Gets triggered when the <code>select</code> button on the controller is released.</p>
+                    
+                    <h2 id="homerelease">home:release</h2>
+                    
+                    <p>Gets triggered when the <code>home</code> button on the controller is released.</p>
                   </div>
                 </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
                   <div class="devices">
@@ -373,6 +414,9 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
@@ -504,6 +548,12 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
                       </li>
                       <li>
                         <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>

@@ -108,13 +108,74 @@ Cylon.robot({
 </pre>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
                   <h3>Setting up the Galileo bigger Linux image, connecting and updating node.js.</h3>
-                  <p>Setting up Intel's Galileo board takes a bit of work, but luckily you only have to do it once (we hope :-)... )</p>
-                  <p>The first step is to install the bigger linux image into an SD card and boot the Galileo from it, you can accomplish this by following the instructions on the galileo getting started page here:</p>
-                  <p>https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/bigger-linux-image</p>
-                  <p>Please feel free to read through the getting started page, so you can get familiar with the board features.</p>
-                  <p>Once we have the bigger linux image in the sd card, and the galileo booting up from it, we need to connect and enable networking (turned off by default in the Galieleo bigger linux image).</p>
-                  <p>We can accomplish this by using a serialport to terminal program, you can read more about it in the getting started page here:</p>
-                  <p>https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/using-the-terminal</p>
+                  <p>Setting up Intel's Galileo board takes a bit more work than it should, but it is not difficult, luckily you only have to do it once (we hope :-)... ).</p>
+                  <p>
+                    The first step is to check we have the latest firmware and update if not.
+                    You can find instructions to update the firmware here:
+                  </p>
+                  <p>
+                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware">Galileo firmware update</a>
+                  </p>
+                  <p>
+                    Next step is to install the bigger linux image into a MicroSD card and boot the
+                    Galileo from it.
+                  </p>
+                  <p>
+                    You can find the bigger linux image listed in the official Galileo drivers page (
+                    <a href="https://communities.intel.com/docs/DOC-22226">Galileo drivers</a>
+                    ), the one named:
+                  </p>
+                  <p>
+                    <a href="http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z">LINUX IMAGE FOR SD for Intel Galileo</a>
+                  </p>
+                  <p>
+                    Please feel free to read through the getting started page, so you can get familiar with the board features.
+                    You can find all getting started info by clicking the following link:
+                  </p>
+                  <p>
+                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">Official getting started guide</a>
+                  </p>
+                  <p>Once we have the bigger linux image in the sd card, and the galileo booting up from it, we need to connect and enable networking (turned off by default in the Galileo bigger linux image).</p>
+                  <p>
+                    We can accomplish this by using a serialport to terminal program, for this we have to use the Galileo Arduino IDE
+                    provided in the Galileo drivers page,
+                    <a href="https://communities.intel.com/docs/DOC-22226">Intel Galileo Arduino SW 1.5.3</a>
+                    , make sure to download and uncompress the correct one for your OS, after that upload the
+                    following sketch to the galileo board:
+                  </p>
+                  <pre class="CodeRay"><span class="directive">void</span> setup()
+{
+  system(<span class="string"><span class="delimiter">"</span><span class="content">cp /etc/inittab /etc/inittab.bak</span><span class="delimiter">"</span></span>);  <span class="comment">// Back up inittab</span>
+  <span class="comment">// Replace all "S:2345" with "S0:2345"'s (switching serial ports):</span>
+  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/S:2345/S0:2345/g' /etc/inittab</span><span class="delimiter">"</span></span>);
+  <span class="comment">// Replace all "ttyS1" with "ttyGS0"'s (switching serial ports):</span>
+  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/ttyS1/ttyGS0/g' /etc/inittab</span><span class="delimiter">"</span></span>);
+  <span class="comment">// Replace all "grst" with "#grst"'s to comment that line out:</span>
+  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/grst/#grst/g' /etc/inittab</span><span class="delimiter">"</span></span>);
+  <span class="comment">// Replace all "clld" with "#clld"'s to comment that line out:</span>
+  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/clld/#clld/g' /etc/inittab</span><span class="delimiter">"</span></span>);
+  system(<span class="string"><span class="delimiter">"</span><span class="content">kill -SIGHUP 1</span><span class="delimiter">"</span></span>);
+}
+
+<span class="directive">void</span> loop()
+{
+
+}
+</pre>
+                  <p>
+                    Once the board is connected to your computer, open up a serial terminal program
+                    (like
+                    <a href="https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows">Tera Term</a>
+                    for Windows,
+                    <a href="https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux">Cool Term</a>
+                    for Mac, or
+                    <a href="https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/">Serial port terminal</a>
+                    for Ubuntu/Linux). Set the serial port number, and change the baud rate to 115200 bps.
+                  </p>
+                  <p>You can read more about serial to terminal communication in the getting started page here:</p>
+                  <p>
+                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/using-the-terminal">Serial to terminal</a>
+                  </p>
                   <p>When you have connected successfully to the Galileo run this command to enable networking (make sure to connect the board to the network using an ethernet cable first):</p>
                   <pre class="CodeRay">$ /etc/init.d/networking start
 </pre>
@@ -122,7 +183,9 @@ Cylon.robot({
                   <pre class="CodeRay">$ ssh root@192.168.0.5
 </pre>
                   <p>The final step of the setup is to update the node.js version included in the galileo bigger linux image, you can download a more up to date package from  here:</p>
-                  <p>https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip</p>
+                  <p>
+                    <a href="https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip">Node.JS 10.25</a>
+                  </p>
                   <p>Then we need to uncompress the file in the host computer:</p>
                   <pre class="CodeRay">$ unzip nodejs_0.10.25-r0_i586.ipk.zip
 </pre>
@@ -139,7 +202,9 @@ Cylon.robot({
 </pre>
                   <p>Nice! We are good to go! With this we are pretty much setup to use Cylon.js in the Galileo.</p>
                   <p>More details regarding updating node.js can be found here:</p>
-                  <p>https://communities.intel.com/thread/48416</p>
+                  <p>
+                    <a href="https://communities.intel.com/thread/48416">How to update node.js in the SD card image</a>
+                  </p>
                   <p>Install the module with: <code>npm install cylon-galileo</code></p>
                   <h3>How to push code to your Galileo</h3>
                   <p>The Galileo is a special case (compared to Beaglebone black and Raspberry Pi) since it lacks dev tools in the biggel Linux image, so at this time we do not have a different distribution to run in the sd card that does contain dev tools, so we'll have to make it work with what we have.</p>
@@ -300,6 +365,9 @@ $ node blink.js
                         <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
                       </li>
                       <li>
@@ -429,6 +497,12 @@ $ node blink.js
                       </li>
                       <li>
                         <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
                       </li>
                       <li>
                         <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>

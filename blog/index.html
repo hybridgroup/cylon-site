@@ -73,6 +73,145 @@
                         Jun
                       </div>
                       <div class="day">
+                        27
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/06/27/nest-api-support/">Nest API Support!</a>
+                    </h3>
+                    <div class="author">
+                      by Edgar Silva
+                    </div>
+                  </div>
+                </header><p>Today we are announcing support for the <a href="https://developer.nest.com/">Nest</a>
+                Thermostat. With this new set of adaptors and drivers, you can allow your
+                robots, microcontrollers or single-board computers to interact with your
+                Nest-supported smart home devices.</p>
+                
+                <p>We currently have two Nest-related drivers supported, <code>nest-thermostat</code> and
+                <code>nest-home</code>. <code>nest-home</code> allows you to check the status of all of your home's
+                smart devices at a glance. you can also check on more than one house, and set
+                your status to 'away' or 'home'.</p>
+                
+                <p>Getting started with Cylon.js and Nest is easy, all you need to do is install
+                the cylon-nest module:</p>
+                
+                <pre class="CodeRay">$ npm install cylon-nest
+</pre>
+                
+                <p>After that, follow these <a href="https://developer.nest.com/documentation/how-to-auth">instructions</a> to get a Nest developer account set
+                up.</p>
+                
+                <p>Once you're done with that, you can try your Nest integration out with the
+                following code example (also made available in the <a href="https://github.com/hybridgroup/cylon-nest/master/examples">cylon-nest examples</a>):</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">thermostat</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">DEVICE_ID</span><span class="delimiter">'</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.thermostat.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Thermostat at a glance:</span><span class="delimiter">'</span></span>, data);
+    });
+
+    <span class="comment">// We set the target temperature of the thermostat</span>
+    <span class="comment">// and we check the change took place when the status</span>
+    <span class="comment">// changes and the event gets triggered.</span>
+    my.thermostat.setTargetTemperatureC(<span class="integer">24</span>);
+
+    every((<span class="integer">60</span>).seconds(), <span class="keyword">function</span>(){
+      <span class="comment">// Alternatively to reading the status of the nest</span>
+      <span class="comment">// we can call one of the read temp functions directly</span>
+      <span class="comment">// on the thermostat.</span>
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp C:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureC());
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp F:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureF());
+
+      my.thermostat.read(<span class="string"><span class="delimiter">'</span><span class="content">away_temperature_high_c</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Away Temp High C on read callback --&gt;</span><span class="delimiter">"</span></span>, data);
+      });
+    });
+  }
+}).start();
+</pre>
+                
+                <p>Please note that to get this example to work, you'll need to provide an
+                <code>access_token</code> and <code>device_id</code>. These are both obtained when you set up
+                authorization, and are needed to communicate with the Nest API.</p>
+                
+                <p>The <code>nest-home</code> driver can also be used in cool ways too! Imagine you're in
+                a different room from your Nest Thermostat, and the away state has kicked in.
+                You'd like to remind the Nest that you're still home, but you don't have
+                a smartphone on you.</p>
+                
+                <p>As a fun weekend DIY project, you can hook up an Arduino such that a couple of
+                LEDs tell you the away status of the nest in your home office, and pressing
+                a button tells your Nest that you're still home, let's check the code:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">red</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">12</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">home</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-home</span><span class="delimiter">'</span></span>, <span class="key">structureId</span>: <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.home.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home at a glance:</span><span class="delimiter">'</span></span>, data);
+      <span class="keyword">if</span> (<span class="string"><span class="delimiter">'</span><span class="content">away</span><span class="delimiter">'</span></span> == my.home.away()) {
+        my.blue.turnOff();
+        my.red.turnOn();
+      } <span class="keyword">else</span> {
+        my.red.turnOff();
+        my.blue.turnOn();
+      }
+    });
+
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.home.away(<span class="string"><span class="delimiter">'</span><span class="content">home</span><span class="delimiter">'</span></span>);
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">nest thermostat `away` state set to home!</span><span class="delimiter">'</span></span>);
+    });
+  }
+}).start();
+</pre>
+                
+                <p>Hopefully running through these quick examples has given you some cool ideas
+                of ways you can interact with your smart home. And if you build something
+                awesome with Cylon and Nest, please let us know on <a href="https://twitter.com/cylonjs">Twitter</a>!</p>
+                
+                <p>If you want to see more of what can be done with Cylon.js and Nest, check out
+                the rest of the <a href="https://github.com/hybridgroup/cylon-nest/master/examples">cylon-nest examples</a>! Also be sure to take a look at the
+                <a href="http://cylonjs.com/documentation/platforms">19 other different hardware platforms</a> we currently support.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+</div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header"><div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Jun
+                      </div>
+                      <div class="day">
                         20
                       </div>
                     </div>
@@ -1354,7 +1493,8 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+<li><a href="/blog/2014/06/27/nest-api-support/">Nest API Support!</a></li>
+                <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
                 <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
                 <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
                 <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>

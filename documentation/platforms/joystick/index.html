@@ -83,11 +83,14 @@
                     </nav>
 </div>
                 </section><br><section class="intro"><img class="display" src="/images/devices/joystick.jpg"><div class="info-intro">
-                    <p>A joystick is an input device consisting of a stick that pivots on a base and reports its angle or direction to the device it is controlling.</p>
-                    <p>You can use Cylon.js with an Xbox 360 game controller. The goal is to also support any other joysticks and game controllers that are HID devices.</p>
                     <p>
-                      For more info about the Joystick platform click
-                      <a target="blank" href="http://en.wikipedia.org/wiki/Joystick">here</a>.
+                      You can use Cylon.js with a DualShock 3 controller, the Xbox 360
+                      controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick
+                      or game controller.
+                    </p>
+                    <p>
+                      For more info about SDL, go to
+                      <a target="blank" href="http://www.libsdl.org/">http://www.libsdl.org/</a>
                     </p>
                   </div>
                   <div class="clear"></div>
@@ -95,29 +98,43 @@
                   <p>Installing Cylon.js with Joystick support is pretty easy.</p>
                   <pre class="CodeRay">npm install cylon-joystick
 </pre>
-                  <h3>Note for OS X Users</h3>
-                  <p>
-                    You'll need to install OS X Drivers for the Xbox Controller from
-                    <a target="blank" href="http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver">http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver</a>
-                    if you want to use it.
-                  </p>
                 </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>This small program receives joystick and button press events from an XBox 360 game controller.</p>
+                  <p>
+                    This short Cylon.js program will respond to joystick input, as well as
+                    button presses:
+                  </p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox360</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox-360</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.joystick.on(<span class="string"><span class="delimiter">"</span><span class="content">left:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(position) { 
-      console.log(position);
+    [<span class="string"><span class="delimiter">"</span><span class="content">a</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">b</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">y</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);
+      });
+
+      my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:release</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> released.</span><span class="delimiter">"</span></span>);
+      });
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - X:</span><span class="delimiter">"</span></span>, pos);
+    });
+
+    my.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(pos) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Left Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
   }
 }).start();
 </pre>
                 </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <p>Plug your USB joystick or game controller into your USB port.</p>
+                  <p>
+                    Plug your USB joystick or game controller into your USB port. If your device
+                    is supported by SDL, you are now ready.
+                  </p>
                 </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
                   <p>Available drivers for the joystick platform are listed below:</p>
                   <div class="hardware">
@@ -226,6 +243,9 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
@@ -357,6 +377,12 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
                       </li>
                       <li>
                         <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>

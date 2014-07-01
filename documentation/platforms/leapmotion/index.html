@@ -114,8 +114,8 @@ Cylon.robot({
     <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>
   },
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">return</span> my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
-      <span class="keyword">return</span> Logger.info(<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + hand.palmX + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span> + hand.palmY + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span> + hand.palmZ);
+    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
+      console.log(hand.palmPosition);
     });
   }
 }).start();
@@ -251,6 +251,9 @@ Cylon.robot({
                         <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
                       </li>
                       <li>
@@ -380,6 +383,12 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
                       </li>
                       <li>
                         <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
