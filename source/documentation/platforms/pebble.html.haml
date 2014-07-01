@@ -41,6 +41,12 @@ pebble_driver: true
         :::bash
         npm install cylon-pebble
 
+  %p Install Pebble 2.0 iOS or Android app. (If you haven't already)
+  %p
+    Follow README to install and configure "watchbot" on your watch:
+    = link_to "https://github.com/hybridgroup/watchbot", "https://github.com/hybridgroup/watchbot", target: :blank
+
+
 %section.how-to#HowToUse
   %h2 How To Use
   %p This small program receives message queue events from a Pebble smart watch.
@@ -51,7 +57,7 @@ pebble_driver: true
         Cylon.api({
           host: '0.0.0.0',
           port: '8080',
-          ssl:  false
+          ssl: false
         });
 
         pebbleRobot = {
@@ -73,6 +79,10 @@ pebble_driver: true
             my.pebble.on('button', function(data) {
               console.log("Button pushed: " + data);
             });
+
+            my.pebble.on('tap', function() {
+              console.log("Tap event detected");
+            });
           }
 
         }
@@ -91,6 +101,14 @@ pebble_driver: true
     %li= link_to "Install watchbot by following this instructions", "https://github.com/hybridgroup/watchbot/raw/master/README.md"
     %li After app is installed, click on "Settings" and configure robot name, robot api host, and robot api port
     %li Configuration settings must match with your program, in this example, api host would be your computer IP, robot name is 'pebble', and robot api port is 8080
+
+  %h3 Supported Features
+  %ul
+    %li Event detection of 3 main pebble buttons
+    %li Tap event
+    %li Accelerometer support
+    %li Sending text notification to pebble
+
 
 %section.drivers#Drivers
   %h2 Drivers

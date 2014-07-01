@@ -23,15 +23,10 @@ dualshock_driver: true
 %section.intro
   = image_tag "/images/devices/joystick.jpg", class: "display"
   .info-intro
-    %p
-      You can use Cylon.js with a DualShock 3 controller, the Xbox 360
-      controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick
-      or game controller.
-
+    %p You can use Cylon.js with a DualShock 3 controller, the XBox360 controller, or any SDL (Simple DirectMedia Layer) compatible USB joystick or game controller.
     %p
       For more info about SDL, go to
       = link_to "http://www.libsdl.org/", "http://www.libsdl.org/", target: :blank
-
   .clear
 
 %section.how_to#HowToInstall
@@ -40,6 +35,9 @@ dualshock_driver: true
   :markdown
         :::bash
         npm install cylon-joystick
+
+  %h3 Note
+  %p If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.
 
 %section.how-to#HowToUse
   %h2 How To Use
@@ -54,10 +52,10 @@ dualshock_driver: true
 
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
-          device: { name: 'joystick', driver: 'xbox-360' },
+          device: { name: 'controller', driver: 'dualshock-3' },
 
           work: function(my) {
-            ["a", "b", "x", "y"].forEach(function(button) {
+            ["square", "circle", "x", "triangle"].forEach(function(button) {
               my.controller.on(button + ":press", function() {
                 console.log("Button " + button + " pressed.");
               });
@@ -71,11 +69,21 @@ dualshock_driver: true
               console.log("Left Stick - X:", pos);
             });
 
+            my.controller.on("right_x:move", function(pos) {
+              console.log("Right Stick - X:", pos);
+            });
+
             my.controller.on("left_y:move", function(pos) {
               console.log("Left Stick - Y:", pos);
             });
+
+            my.controller.on("right_y:move", function(pos) {
+              console.log("Right Stick - Y:", pos);
+            });
           }
-        }).start();
+        });
+
+        Cylon.start();
 
 
 %section.how-to#HowToConnect
@@ -92,4 +100,3 @@ dualshock_driver: true
   .hardware
     .devices
       = partial "/documentation/partials/devices_joystick_drivers"
-

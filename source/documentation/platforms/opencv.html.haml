@@ -39,7 +39,9 @@ subnavjs: true
         npm install cylon-opencv
 
 
-  %p If you don't already have OpenCV installed
+  %p
+    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:
+    = link_to "you can see the docs here.", "http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction", target: :blank
   %h3 Ubuntu
   :markdown
         :::bash
@@ -84,50 +86,60 @@ subnavjs: true
         make
         sudo make install
 
+
 %section.how-to#HowToUse
   %h2 How To Use
-  %p Example using face detection.
+  %p Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.
+  %p The following example shows how to connect to a camera and display the video feed in a window.
   :markdown
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'opencv', adaptor: 'opencv' },
+
           devices: [
-            { name: 'window', driver: 'window' },
+            {
+              name: 'window',
+              adaptor: 'opencv'
+            },
             {
               name: 'camera',
               driver: 'camera',
               camera: 1,
-              haarcascade: __dirname + "/haarcascade_frontalface_alt.xml"
+              haarcascade: __dirname + "/examples/opencv/haarcascade_frontalface_alt.xml"
             }
           ],
 
           work: function(my) {
             my.camera.once('cameraReady', function() {
-              console.log('The camera is ready!');
+              console.log('The camera is ready!')
 
-              my.camera.on('facesDetected', function(err, im, faces) {
-                for (var i = 0; i < faces.length; i++) {
-                  var face = faces[i];
-                  im.rectangle(
-                    [face.x, face.y],
-                    [face.x + face.width, face.y + face.height],
-                    [0, 255, 0],
-                    2
-                  );
-                }
-
-                my.window.show(im, 40);
-
-                my.camera.readFrame();
-              });
-
+              // We listen for frame ready event, when triggered
+              // we display the frame/image passed as an argument
+              // and we tell the window to wait 40 milliseconds
               my.camera.on('frameReady', function(err, im) {
-                my.camera.detectFaces(im);
+                console.log("FRAMEREADY!");
+                my.window.show(im, 40);
               });
 
-              my.camera.readFrame();
+              // Here we have two options to start reading frames from
+              // the camera feed.
+              // 1. As fast as possible triggering the next frame read
+              //    in the listener for frameReady, if you need video
+              //    as smooth as possible uncomment #my.camera.readFrame()
+              //    in the listener above and the one below this comment.
+              //
+              // my.camera.readFrame()
+              //
+              // 2. Use an interval of time to try and get aset amount
+              //    of frames per second  (FPS), in the next example
+              //    we are trying to get 1 frame every 50 milliseconds
+              //    (20 FPS).
+              //
+              every(50, function() { my.camera.readFrame(); });
             });
           }
-        }).start();
+        });
+
+        Cylon.start();

@@ -35,6 +35,7 @@ crazyflie_flight_driver: true
 
 %section.how_to#HowToInstall
   %h2 How To Install
+  %h3 Installation - All Platforms
   %p Install the module with:
   :markdown
         :::bash
@@ -42,7 +43,7 @@ crazyflie_flight_driver: true
 
   %p
     You will also need to install the latest beta of firmware to the Crazyflie itself to use the 'hover' mode from
-    =link_to "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2013.11-beta1.bin", "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2013.11-beta1.bin", target: :blank
+    =link_to "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin", "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin", target: :blank
 
   %h3 Ubuntu
 
@@ -53,8 +54,18 @@ crazyflie_flight_driver: true
         :::bash
         sudo apt-get install build-essential pkg-config libusb-1.0-0-dev
 
-  %p
-    before you will be able to run `npm install cylon-crazyflie'
+    before you will be able to run `npm install cylon-crazyflie`
+
+  %h3 OSX
+  :markdown
+    On OSX, you will need to run:
+
+        :::bash
+        brew install libusb
+
+    before you will be able to run `npm install cylon-crazyflie`
+
+
 
 %section.how-to#HowToUse
   %h2 How To Use

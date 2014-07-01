@@ -41,28 +41,35 @@ rapiro_driver: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p Example of a simple program that makes the Rapiro's LED blink.
+  %p Example of a simple program that makes the Rapiro walk.
 
   :markdown
         :::javascript
         var Cylon = require('cylon');
 
+        // Initialize the robot
         Cylon.robot({
           connection: { name: 'rapiro', adaptor: 'rapiro', port: '/dev/ttyUSB0' },
           device: {name: 'rapiro', driver: 'rapiro'},
 
           work: function(my) {
-            var on = false;
-            every((1).second(), function() {
-              if (on == true) {
-                my.rapiro.led(0, 0, 0);
-                on = false;
-              } else {
-                my.rapiro.led(255, 0, 0);
-                on = true;
-              }
+            my['doneWalking'] = false ;
+
+            my.rapiro.on('start', function() {
+              Logger.info("forward");
+
+              every(1..second(), function() {
+                if (my['doneWalking'] == false)
+                  my.rapiro.forward();
+              });
+              after(10..seconds(), function() {
+                Logger.info("halt");
+                my.rapiro.halt();
+                my['doneWalking'] = true;
+              });
             });
           }
+        }).start();
 
 
 %section.how-to#HowToConnect
