@@ -101,18 +101,17 @@ direct_pin_driver: true
         $ npm install cylon-digispark
 
   %p
-    After installing the cylon-digispark npm module run the following command to
+    After installing the cylon-digispark npm module run the Gort´s following command to
     upload littlewire to the digispark, plug it to a USB port when prompted:
   :markdown
         :::bash
-        $ cylon digispark upload
+        $ gort digispark upload [littlewire]
 
-  %p Once plugged in, use the `cylon scan usb` command to verify your connection info:
-  :markdown
+    Once plugged in, use the Gort´s  `gort scan usb` command to verify your connection info:
+
         :::bash
-        $ cylon digispark scan
+        $ gort scan usb
 
-  %p
     Now use the `ID` info returned to find the `product` and `vendor` ID's required
     to establish a connection with the Digispark in your Cylon code.
 
@@ -123,8 +122,9 @@ direct_pin_driver: true
   %ul
     %li Install the cylon-digispark npm module
     %li
-      Add a udev rule to allow access to the Digispark device (Do not worry
-      about this, the `cylon littlewire upload` command does it for you if none is detected)
+      :markdown
+        Add a udev rule to allow access to the Digispark device (Do not worry
+        about this, the `gort digispark upload [littlewire]` command does it for you if none is detected)
     %li Plug in the Digispark to the USB port
     %li Connect to the device using Cylon
 
@@ -136,33 +136,29 @@ direct_pin_driver: true
         :::bash
         $ npm install cylon-digispark
 
-  %p
-    After installing the cylon-digispark module run the following command to
+    After installing the cylon-digispark module run the  Gort´s following command to
     upload littlewire to the digispark, plug it to a USB port when
     prompted. You might be asked to enter your sudo password, since
     uploading littlewire to the digispark requires some new udev rules, you
     can check and review them in `/etc/udev/rules.d/49-micronucleus.rules`
-    after running the `cylon littlewire upload` command:
+    after running the `gort digispark upload [littlewire]` command:
 
-  :markdown
         :::bash
-        $ cylon littlewire upload
+        $ gort digispark upload [littlewire]
 
-  %p Once plugged in, use the `cylon scan usb` command to verify your connection info:
+    Once plugged in, use Gort´s `gort scan usb` command to verify your connection info:
 
-  :markdown
         :::bash
-        $ cylon scan usb
+        $ gort scan usb
 
-  %p
     Now use the `ID` info returned to find the `product` and `vendor` ID's required to
     establish a connection with the Digispark in your cylon code.
 
   %p That is it, you are set to start running Cylon digispark examples.
 
   %p
-    Thanks to [@bluebie]
-    =link_to "https://github.com/Bluebie", "https://github.com/Bluebie"
+    Thanks to
+    =link_to "@bluebie", "https://github.com/Bluebie"
     for the help with udev rules used when uploading littlewire to the digispark!
     =link_to "(https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)", "https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux"
 
