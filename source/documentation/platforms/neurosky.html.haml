@@ -73,22 +73,25 @@ neurosky_driver: true
 
   %h3  Ubuntu
 
-  %p Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using CylonJS CLI commands. Here are the steps.
+  %p
+    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using
+    = link_to "Gort", "http://gort.io"
+    commands. Here are the steps:
 
   %p Find the address of the Mindwave, by using:
   :markdown
         :::bash
-        cylon scan bluetooth
+        gort scan bluetooth
 
   %p Pair to Mindwave using this command (substituting the actual address of your Mindwave):
   :markdown
         :::bash
-        cylon bluetooth pair <address>
+        gort bluetooth pair <address>
 
   %p Connect to the Mindwave using this command (substituting the actual address of your Mindwave):
   :markdown
         :::bash
-        cylon bluetooth connect <address>
+        gort bluetooth connect <address>
 
 
   %h3  Windows

@@ -72,22 +72,25 @@ sphero_driver: true
 
   %h3 Ubuntu
 
-  %p Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line. Here are the steps:
+  %p
+    Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line with
+    = link_to "Gort", "http://gort.io"
+    \. Here are the steps:
 
   %p Find the address of the Sphero, by using:
   :markdown
         :::bash
-        cylon bluetooth scan
+        gort bluetooth scan
 
   %p Pair to Sphero using this command (substituting the actual address of your Sphero):
   :markdown
         :::bash
-        cylon bluetooth pair <address>
+        gort bluetooth pair <address>
 
   %p Connect to the Sphero using this command (substituting the actual address of your Sphero):
   :markdown
         :::bash
-        cylon bluetooth connect <address>
+        gort bluetooth connect <address>
 
   %h3 Windows
 

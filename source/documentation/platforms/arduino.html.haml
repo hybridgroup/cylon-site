@@ -89,28 +89,28 @@ ir_range_finder: true
         :::bash
         $ npm install cylon-firmata
 
-    Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+    Once plugged in, use [Gort][]'s' `gort scan serial` command to find out your connection info and serial port address:
 
   :markdown
         :::bash
-        $  cylon scan serial
+        $  gort scan serial
 
   :markdown
-    Use the `cylon firmata install` command to install avrdude,
+    Use the `gort firmata install` command to install avrdude,
     this will allow you to upload firmata to the arduino:
 
   :markdown
         :::bash
-        $ cylon firmata install
+        $ gort firmata install
 
   :markdown
     Once the avrdude uploader is installed we upload the firmata protocol to
     the arduino, use the arduino serial port address found when you ran
-    `cylon scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
+    `gort scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
 
   :markdown
         :::bash
-        $ cylon firmata upload /dev/ttyACM0
+        $ gort firmata upload /dev/ttyACM0
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
@@ -131,26 +131,26 @@ ir_range_finder: true
         :::bash
         $ npm install cylon-firmata
 
-    Once plugged in, use the `cylon scan serial` command to find out your connection info and serial port address:
+    Once plugged in, use the `gort scan serial` command to find out your connection info and serial port address:
 
   :markdown
         :::bash
-        $ cylon scan serial
+        $ gort scan serial
 
   :markdown
-    Use the `cylon firmata install` command to install avrdude,
+    Use the `gort firmata install` command to install avrdude,
     this will allow you to upload firmata to the arduino:
 
   :markdown
         :::bash
-        $ cylon firmata install
+        $ gort firmata install
 
     Once the avrdude uploader is installed we upload the firmata protocol to
     the arduino, use the arduino serial port address found when you ran
-    `cylon scan serial`, or leave it blank to use the default address `ttyACM0`:
+    `gort scan serial`, or leave it blank to use the default address `ttyACM0`:
 
         :::bash
-        $ cylon firmata upload ttyACM0
+        $ gort firmata upload ttyACM0
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
