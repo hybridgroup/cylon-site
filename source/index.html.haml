@@ -2,6 +2,7 @@
 hero: true
 social: true
 catcher: true
+menu_fixed: true
 
 title: Cylon.js - JavaScript framework for robotics, physical computing, and the Internet of Things using Node.js
 author: The Hybrid Group
@@ -10,45 +11,23 @@ layout: home
 
 hero_title: "JavaScript Robotics, By Your Command"
 hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>21 different platforms</a>"
-
-img_character: "<img src='images/elements/cylon.png'>"
-
 catcher_phrase: Ready to build the next big thing with JavaScript?
 getting_started_button: "<a href='/documentation/getting-started' class='cta'> Get Started</a>"
 
 ---
+-content_for :black_top_title do
 
-.index-content
-  %h2 About
+  %h2 Meet The Code
 
-  %p Cylon.js is a JavaScript framework for robotics, physical computing, and the Internet of Things using Node.js.
+  %p Cylon.js makes it incredibly simple and fun to command robots.
+  :markdown
 
-  %p It provides a simple, yet powerful way to create JavaScript robots that incorporate multiple, different hardware devices at the same time.
+    All you need to get started is the `cylon` npm module:
 
-  %p
-    Want to use Ruby on robots? Check out our sister project Artoo
-    =link_to "(http://artoo.io)", "http://artoo.io", target: :blank
+        :::javascript
+        npm install cylon
 
-  %p
-    Want to use the Go programming language to power your robots? Check out our sister project Gobot
-    =link_to "(http://gobot.io)", "http://gobot.io", target: :blank
-
-.aside.right
-  = current_page.data.img_character
-
-.clear
-
-%h2 Meet The Code
-
-%p Cylon.js makes it incredibly simple and fun to command robots.
-
-%p All you need to get started is the `cylon` npm module:
-
-:markdown
-      :::javascript
-      npm install cylon
-
-%p Then install modules for whatever hardware support you want to use from your robot.
+  %p Then install modules for whatever hardware support you want to use from your robot.
 
 %h2 Examples
 
@@ -61,6 +40,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       npm install cylon-firmata
 
 %p This example connects to an Arduino, and every second turns the LED either on, or off.
+
 :markdown
       :::javascript
       var Cylon = require("cylon");
@@ -89,6 +69,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       npm install cylon-ardrone
 
 %p This example connects to an ARDrone, and then simply takes off, and lands.
+
 :markdown
       :::javascript
       var Cylon = require('cylon');

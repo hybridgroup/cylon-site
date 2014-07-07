@@ -10,5 +10,6 @@ gem "therubyracer"
 gem 'bourbon'
 gem "middleman-neat"
 gem 'rack-google-analytics'
+gem "middleman-livereload", "~> 3.1.0"
 
 gem 'git'

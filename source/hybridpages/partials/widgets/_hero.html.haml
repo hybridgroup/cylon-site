@@ -1,10 +1,32 @@
 - unless current_page.data.hero.nil?
   .hero
     .container
-      %h1.title
-        = current_page.data.hero_title
-        
-      %h2.subtitle
-        = current_page.data.hero_subtitle
-        
-      = current_page.data.getting_started_button
+      .left-side
+        %h1.title
+          = current_page.data.hero_title
+
+        %h2.subtitle
+          = current_page.data.hero_subtitle
+
+        = current_page.data.getting_started_button
+
+        - if current_page.data.social == true
+          = partial "/hybridpages/partials/widgets/social"
+
+      .right-side
+        = image_tag("/images/elements/soldier.svg")
+
+  .hero-black
+    .triangles
+      .triangle-left-black
+      .triangle-right-black
+    .clear
+
+    .hero-black-container
+      .container
+        = yield_content :black_top_title
+
+    .triangles
+      .triangle-left-grey
+      .triangle-right-grey
+    .clear

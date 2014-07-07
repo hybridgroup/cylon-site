@@ -1,3 +1,12 @@
+#top-header {
+
+  background: url($header-background-src) top center no-repeat;
+  background-color: $menu-background-color;
+  padding: 10px 0 0 0;
+
+}
+
+
 .app-logo {
 
   width: $logo-size + 50;
@@ -20,7 +29,7 @@
 .app-header {
 
   @include outer-container;
-  margin: 9px 0 15px 0;
+  padding: 9px 0 15px 0;
 
   .display, .subtitle, .menu, h1 {
 
@@ -67,7 +76,7 @@
 
     .active {
 
-      color: $blog-title-color; 
+      color: $blog-title-color;
       font-size: 15px;
       font-weight: bold;
       margin: 10px;
@@ -83,7 +92,7 @@
 
       &, &:visited, &:active {
 
-        color: $header-subtitle-color;
+        color: $menu-item-color;
       }
 
       &:hover, &:focus {
@@ -157,7 +166,7 @@
       @include span-columns(12);
 
       .item {
-      
+
         margin: 0;
         padding: 0 2px;
       }
