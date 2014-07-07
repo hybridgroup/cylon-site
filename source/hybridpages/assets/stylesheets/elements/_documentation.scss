@@ -9,9 +9,24 @@
 
     .info-intro {
 
-      float: left;
+      float: right;
       width: 60%;
       margin: 0;
+
+      p:last-of-type {
+
+        background: $green-info;
+        padding: 10px;
+
+        a {
+
+          color: $cta-color;
+          &:hover {
+
+            color: $link-hover-color;
+          }
+        }
+      }
 
       @media only screen and (max-width: $medium-screen) {
 
@@ -29,7 +44,7 @@
 
       margin: 0 auto;
       @include span-columns(3 of 9.5);
-      background: $cta-hover-color;
+      background: $cta-color;
       height: 130px;
       margin-bottom: 20px;
       border-radius: 2px;
@@ -48,20 +63,20 @@
 
       &:hover {
 
-        background: darken($cta-hover-color, 5);
+        background: darken($cta-color, 5);
       }
 
       .title {
 
-        color: $hero-title-color;
+        color: white;
         font-weight: bold;
-        background: darken($blog-title-color, 4);
+        background: darken($cta-color, 5);
         padding: 5px 10px;
       }
 
       .description {
 
-        color: $hero-title-color;
+        color: white;
         font-size: 10pt;
       }
     }
@@ -99,8 +114,7 @@
   .display {
 
     width: 35%;
-    float: right;
-    border: 1px solid rgba($hero-color, 0.14);
+    float: left;
     margin: 0 0 19px 20px;
 
     @media only screen and (max-width: $medium-screen) {
@@ -282,12 +296,12 @@
       font-size: 10px
     }
   }
-  
+
   @media only screen and (max-width: $medium-screen) {
 
     @include span-columns(12);
   }
-    
+
   dt {
 
     font-weight: bold;
@@ -305,7 +319,7 @@
     display: block;
 
     p {
-    
+
       margin: 0;
       line-height: 50px;
     }

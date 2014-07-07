@@ -1,7 +1,10 @@
 .side-documentation {
 
   @include span-columns(3);
-  background: darken($body-bg-color,2); 
+  background: darken($body-bg-color,5);
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0 10px;
 
   @media only screen and (max-width: $medium-screen) {
 
@@ -57,7 +60,7 @@
         background: white;
       }
     }
-    
+
   }
 
   @media only screen and (max-width: $medium-screen) {
@@ -67,15 +70,15 @@
     }
   }
 
-  .accordion-docs { 
+  .accordion-docs {
 
-    
+
     @media only screen and (max-width: $medium-screen) {
 
       margin: 0;
     }
 
-    
+
 
     ul {
 
@@ -88,7 +91,7 @@
 
         a {
 
-          color: darken($hero-color,30);
+          color: $cta-color;
         }
       }
     }
@@ -109,22 +112,27 @@
 
       padding: 10px;
       margin: 0;
-      font-size: 1em; 
+      font-size: em(14);
+      border-bottom: solid 1px white;
 
       @media only screen and (max-width: $medium-screen) {
 
-          border-bottom: 2px solid $title-color;   
+          border-bottom: 2px solid $title-color;
           padding-bottom: 10px;
-      }   
+      }
 
       a {
 
           display: block;
-          color: $title-color;
+          color: #333;
+
+          &:hover {
+            color:  $cta-color;
+          }
 
           @media only screen and (max-width: $medium-screen) {
 
-            font-size: 1.3em;      
+            font-size: 1.3em;
           }
         }
     }
@@ -133,48 +141,60 @@
     dt, dd {
 
         padding: 10px;
-        border-bottom: 0; 
+        border-bottom: 0;
 
         @media only screen and (max-width: $medium-screen) {
 
-          border-bottom: 2px solid $title-color;   
+          border-bottom: 2px solid $title-color;
         }
-         
+
 
         a {
 
           display: block;
-          color: $hero-color;
+          color:  #333;
+          font-size: em(14);
+
+          &:hover {
+
+            color:  $cta-color;
+          }
         }
     }
 
     dt {
 
+      border-bottom: solid 1px white;
+
+      &:last-of-type {
+        border: none;
+      }
       a {
 
-        color: $title-color;
+        color:  #333;
         float: left;
 
         &:hover {
           cursor: pointer;
+          color:  $cta-color;
         }
 
         @media only screen and (max-width: $medium-screen) {
 
-          font-size: 1.3em;      
+          font-size: em(14);
         }
       }
     }
 
     dd {
-       border-top: 0; 
+       border-top: 0;
        margin-left: 0;
 
        a {
 
-        color: $hero-color;
+        color: #333;
        }
-       
+
 
        &:last-of-type {
          position: relative;
@@ -192,7 +212,7 @@
             font-size: 10pt;
             @media only screen and (max-width: $medium-screen) {
 
-              font-size: 1em;      
+              font-size: 1em;
             }
 
             span {
@@ -209,7 +229,7 @@
 .container-documentation {
   @include span-columns(9);
   padding-top: 20px;
-  
+
   @media only screen and (max-width: $medium-screen) {
 
     @include span-columns(12);

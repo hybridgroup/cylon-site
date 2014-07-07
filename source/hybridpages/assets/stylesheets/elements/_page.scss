@@ -20,7 +20,7 @@
 
 .page-title {
 
-  background: $hero-color;
+  background: #000;
   padding: 25px 0;
 
   .title {
@@ -28,7 +28,7 @@
     font-family: $page-title-font;
     font-weight: 700;
     font-size: 33px;
-    color: $hero-title-color;
+    color: $cta-color;
     line-height: 28px;
     clear: both;
     opacity: 0.94;
@@ -37,7 +37,7 @@
 
   .subtitle {
 
-    @include title-font(21px, $hero-subtitle-color);
+    @include title-font(21px, white);
     font-weight: 550;
     opacity: 0.94;
     margin: 0;
@@ -62,6 +62,8 @@
   top: 0;
   z-index: 99;
   padding: 0 !important;
+  background: darken($cta-color, 10);
+  border: none !important;
 
   .app-logo {
 
@@ -88,12 +90,14 @@
 
     float: left;
     margin: 20px 0;
+
+    a {
+      color: white !important;
+      margin: 20px 10px !important;
+    }
   }
 
-  a {
 
-    margin: 20px 10px !important;
-  }
 }
 
 .marginTopSubnav {
@@ -105,7 +109,8 @@
 
 .subnav-drivers {
 
-  background: $hero-subtitle-color;
+  border-top: solid 1px #333;
+  border-bottom: solid 1px #333;
   padding: 20px 0;
 
   @media only screen and (max-width: $medium-screen) {
@@ -141,22 +146,15 @@
       &:hover {
 
         color: white;
-        background: $color-text-subnav-drivers;
+        background: $cta-color;
       }
     }
 
     .active {
 
       color: white;
-      background: $color-text-subnav-drivers;
+      background: $cta-color;
     }
 
-    a:last-child {
-
-      &:hover {
-
-        background: none;
-      }
-    }
   }
 }
