@@ -15,6 +15,11 @@ catcher_phrase: Ready to build the next big thing with JavaScript?
 getting_started_button: "<a href='/documentation/getting-started' class='cta'> Get Started</a>"
 
 ---
+:javascript
+  $(document).ready(function(){
+    $("#top-header").addClass("back-index-top");
+  });
+
 -content_for :black_top_title do
 
   %h2 Meet The Code
@@ -60,31 +65,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       // start working
       robot.start();
 
-%h3 ARDrone:
-
-%p For this example, you need to install the module with the adaptor and drivers for the ARDrone from Parrot:
-
-:markdown
-      :::javascript
-      npm install cylon-ardrone
-
-%p This example connects to an ARDrone, and then simply takes off, and lands.
-
-:markdown
-      :::javascript
-      var Cylon = require('cylon');
-
-      Cylon.robot({
-        connection: { name: 'ardrone', adaptor: 'ardrone', port: '192.168.1.1' },
-        device: { name: 'drone', driver: 'ardrone' },
-
-        work: function(my) {
-          my.drone.takeoff();
-          after(10..seconds(), function() { my.drone.land(); });
-          after(15..seconds(), function() { my.drone.stop(); });
-        }
-      }).start();
-
 %h3 More Examples
 
 %p
@@ -95,9 +75,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 %h2#platforms Platform Support
 %div
   %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing system, and software platforms, are currently supported:
-
-  %p.important-title
-    21 Platforms
 
   %ul.homepage-platform
     %li
@@ -270,10 +247,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
 %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
 
-%p.important-title
-  10
-  = link_to "GPIO", "https://en.wikipedia.org/wiki/General_Purpose_Input/Output" , target:"_blank"
-  drivers
 
 %ul.homepage-platform
   %li
@@ -351,11 +324,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
 %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
 
-%p.important-title
-  6
-  = link_to "I2C", "https://en.wikipedia.org/wiki/I%C2%B2C", target:"_blank"
-  drivers
-
 %ul.homepage-platform
   %li
     .title
@@ -405,11 +373,6 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
   .clear
 
-%p.important-title
-  See more drivers
-  = link_to "here", "/documentation/drivers"
-
-%p More platforms and drivers are coming soon...
 
 %h2 CLI
 %p Cylon uses the Gort (<a href="http://gort.io">http://gort.io</a>) Command Line Interface (CLI) so you can access important features right from the command line. We call it "RobotOps", aka "DevOps For Robotics". You can scan, connect, update device firmware, and more!

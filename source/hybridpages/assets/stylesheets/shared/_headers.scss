@@ -1,9 +1,10 @@
 #top-header {
 
-  background: url($header-background-src) top center no-repeat;
-  background-color: $menu-background-color;
-  padding: 10px 0 0 0;
-
+    background: url($header-background-menu-src) $menu-background-color top center no-repeat;
+    padding: 10px 0 0 0;
+    &.back-index-top {
+      background: url($header-background-src) $menu-background-color top center no-repeat;
+    }
 }
 
 

@@ -29,7 +29,7 @@
 
     display: inline-block;
     width: 19%;
-    padding: 10px;
+    margin: 20px 0;
 
     img {
 
@@ -43,16 +43,14 @@
 
       a {
 
-        color: $hero-title-color;
-        background: $title-color;
+        color: $lesser-title-color;
         padding:10px;
-        color: $hero-title-color;
         display: block;
         width: 100%;
 
         &:hover {
 
-          background: darken($title-color, 5);
+          color: $title-color;
         }
       }
     }
@@ -61,15 +59,15 @@
 
       a {
 
-        color: $hero-title-color;
-        background: $hero-subtitle-color;
-        padding:10px;
+        color: white;
+        background: url(/images/elements/repo_icon.svg) center center no-repeat;
+        padding: 20px 0;
         display: block;
         width: 100%;
 
         &:hover {
 
-          background: darken($hero-subtitle-color, 5);
+          color: $hero-link-color;
         }
       }
     }
@@ -118,7 +116,7 @@
 }
 
 .hero-black {
-  margin-top: -60px;
+  margin-top: -85px;
   position: relative;
   z-index: 2;
   .hero-black-container {
@@ -146,7 +144,7 @@
 
 
   margin: 15px 0 0 0;
-  padding: 10px 0;
+  padding: 20px 0 10px 0;
 
   @include small-screen {
 
@@ -162,6 +160,7 @@
     @include span-columns(5);
     img {
       width: 100%;
+      margin-top: 35px;
     }
   }
 

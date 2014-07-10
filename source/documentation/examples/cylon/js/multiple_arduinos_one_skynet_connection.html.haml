@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 .example
   :markdown
@@ -46,16 +45,16 @@ active_menu_docs: true
               console.log(data);
               if (data.payload != null){
                 var robot,
+                    bot,
                     robots = data.payload.robots;
                 for(var index in robots){
                   robot = robots[index];
                   console.log(robot);
-                  my.master.findRobot(robot.name, function(err, bot){
-                    if (robot.cmd == 'on')
-                      bot.devices[robot.device].turnOn();
-                    else
-                      bot.devices[robot.device].turnOff();
-                  });
+                  bot = Cylon.robots[robot.name];
+                  if (robot.cmd == 'on')
+                    bot.devices[robot.device].turnOn();
+                  else
+                    bot.devices[robot.device].turnOff();
                 }
               }
             });

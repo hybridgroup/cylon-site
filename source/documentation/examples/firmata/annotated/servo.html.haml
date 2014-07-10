@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 :markdown
   # Servo
@@ -40,7 +39,13 @@ active_menu_docs: true
 
       :::javascript
         connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-        device: { name: 'servo', driver: 'servo', pin: 3, range: { min: 30, max: 150 } },
+        device: {
+          name: 'servo',
+          driver: 'servo',
+          pin: 3,
+          limits: { bottom: 20, top: 160 }
+        },
+
 
   We'll start defining the work for our robot next:
 
@@ -51,8 +56,8 @@ active_menu_docs: true
   angle will change:
 
       :::javascript
-          var angle = 30;
-          var increment = 40;
+          var angle = 30,
+              increment = 40;
 
   Every second, we'll increment the `angle`, set the servo to run at that angle,
   and log the angle we're running at to the console. We'll also make sure to
@@ -62,11 +67,14 @@ active_menu_docs: true
       :::javascript
           every((1).seconds(), function() {
             angle += increment;
+
             my.servo.angle(angle);
 
             console.log("Current Angle: " + (my.servo.currentAngle()));
 
-            if ((angle === 30) || (angle === 150)) { increment = -increment; }
+            if ((angle === 30) || (angle === 150)) {
+              increment = -increment;
+            }
           });
         }
 

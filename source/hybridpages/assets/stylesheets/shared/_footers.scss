@@ -1,24 +1,60 @@
 .app-footer {
 
   @include title-font(12px, $footer-text-color);
-  line-height: 39px;
-  background: $hero-color;
-  font-weight: normal;
+  background: url(/images/elements/space.png) black center center;
+  color: white;
+  margin-top: 20px;
+}
 
-  a {
-  
-    @extend .hero-anchors;
+.frameworks {
+
+  padding: 100px 0;
+
+  h4 {
+    color: white;
+  }
+
+  .column-footer {
+
+    .img {
+      text-align: center;
+      height: 150px;
+    }
+
+    @include span-columns(4);
+    padding-bottom: 100px;
+
+    .button {
+
+      background: black;
+      border: none;
+      float: right;
+      a {
+        color: white;
+      }
+      &:hover {
+
+        background: $cta-color;
+      }
+    }
+
+    @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+
+      @include span-columns(12);
+    }
   }
 }
 
 .copyright {
-	
+
 	clear: both;
-	
+  border-top: solid 1px $cta-color;
+  padding: 20px 0;
+
 	.left-side {
 
 		float: left;
-	}	
+	}
 
 	.right-side {
 
@@ -28,6 +64,7 @@
 		a {
 
 			color: $footer-text-color;
+
 			&:hover {
 
 				color: darken($footer-text-color,5);

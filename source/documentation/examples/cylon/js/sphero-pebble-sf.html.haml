@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 .example
   :markdown
@@ -75,9 +74,8 @@ active_menu_docs: true
 
                 console.log(msg);
 
-                me.master.findRobot(name, function(err, spheroBot) {
-                  spheroBot.react(spheroBot.devices.sphero);
-                });
+                var spheroBot = Cylon.robots[name];
+                spheroBot.react(spheroBot.devices.sphero);
 
                 me.spheroReport[name] = bucks;
                 toPebble = "";
@@ -89,9 +87,8 @@ active_menu_docs: true
                   toPebble += "" + key + ": $" + val + "\n";
                 }
 
-                me.master.findRobot('pebble', function(error, pebbleBot) {
-                  pebbleBot.message(pebbleBot.devices.pebble, toPebble);
-                });
+                var pebbleBot = Cylon.robots['pebble'];
+                pebbleBot.message(pebbleBot.devices.pebble, toPebble);
               });
             });
           };
@@ -159,9 +156,8 @@ active_menu_docs: true
                 bucks: "" + (me.totalBucks++)
               });
 
-              me.master.findRobot('salesforce', function(err, sf) {
-                sf.devices.salesforce.push("SpheroController", "POST", data);
-              });
+              var sf = Cylon.robots['salesforce'];
+              sf.devices.salesforce.push("SpheroController", "POST", data);
             });
           };
 

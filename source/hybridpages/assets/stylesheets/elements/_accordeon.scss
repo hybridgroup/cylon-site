@@ -96,18 +96,6 @@
       }
     }
 
-    .arrowDown {
-
-      float: right;
-
-      .rotate {
-
-        transform:rotate(180deg);
-        -ms-transform:rotate(180deg); /* IE 9 */
-        -webkit-transform:rotate(180deg); /* Opera, Chrome, and Safari */
-      }
-    }
-
     .doc-button {
 
       padding: 10px;
@@ -172,7 +160,6 @@
       a {
 
         color:  #333;
-        float: left;
 
         &:hover {
           cursor: pointer;

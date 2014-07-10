@@ -7,10 +7,14 @@
     = partial "layouts/layout-contents"
     .app
       #top-header
-        = partial "/layouts/partials/menu_fixed"
+        .container-hero
+          = partial "/layouts/partials/menu_fixed"
 
-        - if current_page.data.hero == true
-          = partial "/hybridpages/partials/widgets/hero"
+          - if current_page.data.hero == true
+            = partial "/hybridpages/partials/widgets/hero"
+
+      - if current_page.data.hero == true
+        = partial "/hybridpages/partials/widgets/hero_black"
 
       - if current_page.data.page_title_show == true
         = partial "/hybridpages/partials/widgets/page_title"
@@ -21,8 +25,8 @@
       - if current_page.data.catcher == true
         = partial "/hybridpages/partials/widgets/catcher"
 
-    %footer.app-footer
-      = yield_content :footer
+    %footer.app-footer.parallax{"data-xrange" => "10", "data-yrange" => "10"}
+      = partial "/layouts/partials/footer"
 
   - if is_blog_article?
     %script{:src => "/hybridpages/assets/javascript/disqus.js"}

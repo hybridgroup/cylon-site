@@ -44,7 +44,7 @@
 
       margin: 0 auto;
       @include span-columns(3 of 9.5);
-      background: $cta-color;
+      background: darken($cta-color, 5);
       height: 130px;
       margin-bottom: 20px;
       border-radius: 2px;
@@ -63,14 +63,14 @@
 
       &:hover {
 
-        background: darken($cta-color, 5);
+        background: darken($cta-color, 10);
       }
 
       .title {
 
         color: white;
         font-weight: bold;
-        background: darken($cta-color, 5);
+        background: darken($cta-color, 10);
         padding: 5px 10px;
       }
 
