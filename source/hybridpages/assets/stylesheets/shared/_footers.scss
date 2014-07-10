@@ -1,74 +1,74 @@
 .app-footer {
 
-  @include title-font(12px, $footer-text-color);
-  background: url(/images/elements/space.png) black center center;
+  background: url(/images/elements/space.png) black ;
   color: white;
   margin-top: 20px;
-}
 
-.frameworks {
+  .frameworks {
 
-  padding: 100px 0;
+    padding: 50px 0;
 
-  h4 {
-    color: white;
-  }
-
-  .column-footer {
-
-    .img {
-      text-align: center;
-      height: 150px;
+    h4 {
+      color: white;
     }
 
-    @include span-columns(4);
-    padding-bottom: 100px;
+    .column-footer {
 
-    .button {
+      .img {
+        text-align: center;
+        height: 150px;
+      }
 
-      background: black;
-      border: none;
+      width: 33%;
+      float: left;
+      padding: 20px;
+
+      .button {
+
+        background: black;
+        border: none;
+        float: right;
+        a {
+          color: white;
+        }
+        &:hover {
+
+          background: $cta-color;
+        }
+      }
+
+      @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+
+        @include span-columns(12);
+      }
+    }
+  }
+
+  .copyright {
+
+    clear: both;
+    border-top: solid 1px $cta-color;
+    padding: 20px 0;
+
+    .left-side {
+
+      float: left;
+    }
+
+    .right-side {
+
       float: right;
+      text-align: right;
+
       a {
-        color: white;
+
+        color: $footer-text-color;
+
+        &:hover {
+
+          color: darken($footer-text-color,5);
+        }
       }
-      &:hover {
-
-        background: $cta-color;
-      }
-    }
-
-    @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
-
-      @include span-columns(12);
     }
   }
-}
-
-.copyright {
-
-	clear: both;
-  border-top: solid 1px $cta-color;
-  padding: 20px 0;
-
-	.left-side {
-
-		float: left;
-	}
-
-	.right-side {
-
-		float: right;
-		text-align: right;
-
-		a {
-
-			color: $footer-text-color;
-
-			&:hover {
-
-				color: darken($footer-text-color,5);
-			}
-		}
-	}
 }

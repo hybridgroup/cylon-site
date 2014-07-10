@@ -1,6 +1,6 @@
 .frameworks
   .container
-    .column-footer
+    .column-footer.parallax{"data-xrange" => "10", "data-yrange" => "10"}
       .img
         %img{src: "/images/elements/cylon_footer.png"}/
       %h4  Multiple solutions
@@ -19,7 +19,8 @@
       %p Want to use the Go programming language to power your robots? Check out our sister project Gobot
       .button
         = link_to "View Project", "http://gobot.io", target: :blank
-
+    .clear
+    
 .copyright
   .container
     .left-side
