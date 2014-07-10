@@ -126,17 +126,17 @@ Cylon.robot({
                   <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
                   
-                  <p>Once plugged in, use the <code>cylon scan serial</code> command to find out your connection info and serial port address:</p>
-                  <pre class="CodeRay">$  cylon scan serial
+                  <p>Once plugged in, use [Gort][]'s' <code>gort scan serial</code> command to find out your connection info and serial port address:</p>
+                  <pre class="CodeRay">$  gort scan serial
 </pre>
-                  <p>Use the <code>cylon firmata install</code> command to install avrdude,
+                  <p>Use the <code>gort firmata install</code> command to install avrdude,
                   this will allow you to upload firmata to the arduino:</p>
-                  <pre class="CodeRay">$ cylon firmata install
+                  <pre class="CodeRay">$ gort firmata install
 </pre>
                   <p>Once the avrdude uploader is installed we upload the firmata protocol to
                   the arduino, use the arduino serial port address found when you ran
-                  <code>cylon scan serial</code>, or leave it blank to use the default address <code>/dev/ttyACM0</code>:</p>
-                  <pre class="CodeRay">$ cylon firmata upload /dev/ttyACM0
+                  <code>gort scan serial</code>, or leave it blank to use the default address <code>/dev/ttyACM0</code>:</p>
+                  <pre class="CodeRay">$ gort firmata upload /dev/ttyACM0
 </pre>
                   <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
                   <h3>Ubuntu</h3>
@@ -152,19 +152,19 @@ Cylon.robot({
                   <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
                   
-                  <p>Once plugged in, use the <code>cylon scan serial</code> command to find out your connection info and serial port address:</p>
-                  <pre class="CodeRay">$ cylon scan serial
+                  <p>Once plugged in, use the <code>gort scan serial</code> command to find out your connection info and serial port address:</p>
+                  <pre class="CodeRay">$ gort scan serial
 </pre>
-                  <p>Use the <code>cylon firmata install</code> command to install avrdude,
+                  <p>Use the <code>gort firmata install</code> command to install avrdude,
                   this will allow you to upload firmata to the arduino:</p>
-                  <pre class="CodeRay">$ cylon firmata install
+                  <pre class="CodeRay">$ gort firmata install
 </pre>
                   
                   <p>Once the avrdude uploader is installed we upload the firmata protocol to
                   the arduino, use the arduino serial port address found when you ran
-                  <code>cylon scan serial</code>, or leave it blank to use the default address <code>ttyACM0</code>:</p>
+                  <code>gort scan serial</code>, or leave it blank to use the default address <code>ttyACM0</code>:</p>
                   
-                  <pre class="CodeRay">$ cylon firmata upload ttyACM0
+                  <pre class="CodeRay">$ gort firmata upload ttyACM0
 </pre>
                   <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
                 </section><section class="drivers" id="Drivers"><h2>Drivers</h2>

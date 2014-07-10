@@ -121,15 +121,19 @@ Cylon.start();
                   <h3>OSX</h3>
                   <p>In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
                   <h3>Ubuntu</h3>
-                  <p>Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using CylonJS CLI commands. Here are the steps.</p>
+                  <p>
+                    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using
+                    <a href="http://gort.io">Gort</a>
+                    commands. Here are the steps:
+                  </p>
                   <p>Find the address of the Mindwave, by using:</p>
-                  <pre class="CodeRay">cylon scan bluetooth
+                  <pre class="CodeRay">gort scan bluetooth
 </pre>
                   <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">cylon bluetooth pair &lt;address&gt;
+                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
 </pre>
                   <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">cylon bluetooth connect &lt;address&gt;
+                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
 </pre>
                   <h3>Windows</h3>
                   <p>

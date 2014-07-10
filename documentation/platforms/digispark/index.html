@@ -142,26 +142,27 @@ Cylon.robot({
                   <pre class="CodeRay">$ npm install cylon-digispark
 </pre>
                   <p>
-                    After installing the cylon-digispark npm module run the following command to
+                    After installing the cylon-digispark npm module run the Gort´s following command to
                     upload littlewire to the digispark, plug it to a USB port when prompted:
                   </p>
-                  <pre class="CodeRay">$ cylon digispark upload
+                  <pre class="CodeRay">$ gort digispark upload [littlewire]
 </pre>
-                  <p>Once plugged in, use the `cylon scan usb` command to verify your connection info:</p>
-                  <pre class="CodeRay">$ cylon digispark scan
+                  
+                  <p>Once plugged in, use the Gort´s  <code>gort scan usb</code> command to verify your connection info:</p>
+                  
+                  <pre class="CodeRay">$ gort scan usb
 </pre>
-                  <p>
-                    Now use the `ID` info returned to find the `product` and `vendor` ID's required
-                    to establish a connection with the Digispark in your Cylon code.
-                  </p>
+                  
+                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required
+                  to establish a connection with the Digispark in your Cylon code.</p>
                   <p>That is it, you are set to start running Cylon digispark examples.</p>
                   <h3>Ubuntu</h3>
                   <p>The main steps are:</p>
                   <ul>
 <li>Install the cylon-digispark npm module</li>
                     <li>
-                      Add a udev rule to allow access to the Digispark device (Do not worry
-                      about this, the `cylon littlewire upload` command does it for you if none is detected)
+                      <p>Add a udev rule to allow access to the Digispark device (Do not worry
+                      about this, the <code>gort digispark upload [littlewire]</code> command does it for you if none is detected)</p>
                     </li>
                     <li>Plug in the Digispark to the USB port</li>
                     <li>Connect to the device using Cylon</li>
@@ -170,27 +171,28 @@ Cylon.robot({
                   <p>Install the cylon-digispark npm module:</p>
                   <pre class="CodeRay">$ npm install cylon-digispark
 </pre>
-                  <p>
-                    After installing the cylon-digispark module run the following command to
-                    upload littlewire to the digispark, plug it to a USB port when
-                    prompted. You might be asked to enter your sudo password, since
-                    uploading littlewire to the digispark requires some new udev rules, you
-                    can check and review them in `/etc/udev/rules.d/49-micronucleus.rules`
-                    after running the `cylon littlewire upload` command:
-                  </p>
-                  <pre class="CodeRay">$ cylon littlewire upload
+                  
+                  <p>After installing the cylon-digispark module run the  Gort´s following command to
+                  upload littlewire to the digispark, plug it to a USB port when
+                  prompted. You might be asked to enter your sudo password, since
+                  uploading littlewire to the digispark requires some new udev rules, you
+                  can check and review them in <code>/etc/udev/rules.d/49-micronucleus.rules</code>
+                  after running the <code>gort digispark upload [littlewire]</code> command:</p>
+                  
+                  <pre class="CodeRay">$ gort digispark upload [littlewire]
 </pre>
-                  <p>Once plugged in, use the `cylon scan usb` command to verify your connection info:</p>
-                  <pre class="CodeRay">$ cylon scan usb
+                  
+                  <p>Once plugged in, use Gort´s <code>gort scan usb</code> command to verify your connection info:</p>
+                  
+                  <pre class="CodeRay">$ gort scan usb
 </pre>
-                  <p>
-                    Now use the `ID` info returned to find the `product` and `vendor` ID's required to
-                    establish a connection with the Digispark in your cylon code.
-                  </p>
+                  
+                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required to
+                  establish a connection with the Digispark in your cylon code.</p>
                   <p>That is it, you are set to start running Cylon digispark examples.</p>
                   <p>
-                    Thanks to [@bluebie]
-                    <a href="https://github.com/Bluebie">https://github.com/Bluebie</a>
+                    Thanks to
+                    <a href="https://github.com/Bluebie">@bluebie</a>
                     for the help with udev rules used when uploading littlewire to the digispark!
                     <a href="https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux">(https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)</a>
                   </p>

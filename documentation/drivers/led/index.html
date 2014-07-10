@@ -111,7 +111,7 @@ Cylon.robot({
   <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       my.led.toggle();
     });
   }

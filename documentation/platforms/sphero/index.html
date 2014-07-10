@@ -121,15 +121,19 @@ Cylon.robot({
                     for the above connnection info.
                   </p>
                   <h3>Ubuntu</h3>
-                  <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line. Here are the steps:</p>
+                  <p>
+                    Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line with
+                    <a href="http://gort.io">Gort</a>
+                    . Here are the steps:
+                  </p>
                   <p>Find the address of the Sphero, by using:</p>
-                  <pre class="CodeRay">cylon bluetooth scan
+                  <pre class="CodeRay">gort bluetooth scan
 </pre>
                   <p>Pair to Sphero using this command (substituting the actual address of your Sphero):</p>
-                  <pre class="CodeRay">cylon bluetooth pair &lt;address&gt;
+                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
 </pre>
                   <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):</p>
-                  <pre class="CodeRay">cylon bluetooth connect &lt;address&gt;
+                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
 </pre>
                   <h3>Windows</h3>
                   <p>
