@@ -123,38 +123,26 @@ Cylon.robot({
                   <div class="commands-api" id="Events">
                     <h1 id="events">Events</h1>
                     
+                    <h2 id="frame">frame</h2>
+                    
+                    <p>Gets triggered on every frame the Leap sends. Passes the related frame for use
+                    in event handlers.</p>
+                    
+                    <p>For an example of a frame JS object, please see <a href="https://gist.github.com/stewart/24981316929dcfd8480a">this gist</a>.</p>
+                    
                     <h2 id="hand">hand</h2>
                     
-                    <p>Gets triggered when doing a hand motion, makes hand input available.</p>
-                    
-                    <p>Leap Hand contains:</p>
-                    
-                    <ul>
-<li>position (palm x-y-z coords)</li>
-                      <li>wrist rotation (axis,angle,matrix)</li>
-                    </ul>
-<h5 id="params">Params</h5>
-                    
-                    <p>-<strong>frame</strong>- parsed Leap Motion frame</p>
-                    
-                    <h5 id="returns">Returns</h5>
-                    
-                    <p>Hand</p>
-                    
-                    <h5 id="example-json">Example JSON</h5>
+                    <p>Gets triggered on every hand the Leap detects. Passes the related hand for use
+                    in event handlers.</p>
                     
                     <p>For an example of a hand JS object, please see <a href="https://gist.github.com/stewart/bc5b4fe7736617965d0c">this gist</a>.</p>
                     
-                    <h2 id="frame">frame</h2>
+                    <h2 id="gesture">gesture</h2>
                     
-                    <p>Gets triggered with every motion detected, makes frame input available.</p>
+                    <p>Gets triggered when the Leap picks up gestures. Passes the related gesture for
+                    use in event handlers.</p>
                     
-                    <p>Call the <code>addObjectRelations</code> function on a frame, and you can get relations
-                    added between frame elements. For example: a <code>hand</code> can tell what <code>pointables</code>
-                    it has, as well as what <code>gestures</code> it's involved in. These relations work both
-                    ways.</p>
-                    
-                    <p>For an example of a frame JS object, please see <a href="https://gist.github.com/stewart/24981316929dcfd8480a">this gist</a>.</p>
+                    <p>For an example of a gesture JS object, please see <a href="https://gist.github.com/stewart/ed49d2cac9a63a75e09c">this gist</a>.</p>
                   </div>
                 </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
                   <div class="devices">
