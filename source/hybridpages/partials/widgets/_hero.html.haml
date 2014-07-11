@@ -1,7 +1,7 @@
 - unless current_page.data.hero.nil?
   .hero
     .container
-      .left-side.parallax{"data-xrange" => "10", "data-yrange" => "10"}
+      .left-side.parallax-top-left
         %h1.title
           = current_page.data.hero_title
 
@@ -13,5 +13,5 @@
         - if current_page.data.social == true
           = partial "/hybridpages/partials/widgets/social"
 
-      .right-side
-        %img{"data-xrange" => "40", "data-yrange" => "40", src: "/images/elements/soldier.svg", class: "parallax"}/
+      .right-side.parallax-top-right
+        %img{src: "/images/elements/soldier.svg"}/

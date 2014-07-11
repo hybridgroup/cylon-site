@@ -1,8 +1,12 @@
 .app-footer {
 
-  background: url(/images/elements/space.png) black ;
+  background: black;
   color: white;
   margin-top: 20px;
+
+  .background-footer {
+    background: url(/images/elements/space.png) black center center;
+  }
 
   .frameworks {
 
@@ -37,7 +41,7 @@
         }
       }
 
-      @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+      @media only screen  and (max-width: $medium-screen) {
 
         @include span-columns(12);
       }
@@ -53,6 +57,7 @@
     .left-side {
 
       float: left;
+
     }
 
     .right-side {
@@ -63,6 +68,11 @@
       a {
 
         color: $footer-text-color;
+
+        p {
+          text-align: center;
+          margin: 0;
+        }
 
         &:hover {
 

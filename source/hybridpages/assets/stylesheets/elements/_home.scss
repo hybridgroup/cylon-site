@@ -119,6 +119,12 @@
   margin-top: -85px;
   position: relative;
   z-index: 2;
+
+  @media only screen and (max-width: $medium-screen) {
+
+    margin-top: -35px;
+  }
+
   .hero-black-container {
       background: #000;
       padding: 20px 0 40px 0;
@@ -156,17 +162,34 @@
       @include outer-container;
   }
 
+
   .right-side {
     @include span-columns(5);
     img {
       width: 100%;
       margin-top: 35px;
     }
+    @media only screen and (max-width: $medium-screen) {
+
+      display: none;
+    }
+    @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+
+      img {
+        width: 80%;
+        margin-top: 15px;
+      }
+    }
   }
 
   .left-side {
 
     @include span-columns(7);
+    @media only screen and (max-width: $medium-screen) {
+
+      @include span-columns(12);
+      text-align: center;
+    }
 
     .title {
 
@@ -176,6 +199,10 @@
       clear: both;
       opacity: 0.94;
       margin: 0;
+      @media only screen and (max-width: $medium-screen) {
+
+        font-size: 20pt !important;
+      }
 
       @include small-screen {
 
@@ -197,6 +224,11 @@
     }
 
     .subtitle {
+
+      @media only screen and (max-width: $medium-screen) {
+
+        @include title-font(15px, white);
+      }
 
       @include title-font(20px, white);
       font-weight: 550;

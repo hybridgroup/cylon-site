@@ -7,11 +7,12 @@
     = partial "layouts/layout-contents"
     .app
       #top-header
-        .container-hero
-          = partial "/layouts/partials/menu_fixed"
+        .background-header.parallax-top-back
+          .container-hero
+            = partial "/layouts/partials/menu_fixed"
 
-          - if current_page.data.hero == true
-            = partial "/hybridpages/partials/widgets/hero"
+            - if current_page.data.hero == true
+              = partial "/hybridpages/partials/widgets/hero"
 
       - if current_page.data.hero == true
         = partial "/hybridpages/partials/widgets/hero_black"
@@ -25,8 +26,9 @@
       - if current_page.data.catcher == true
         = partial "/hybridpages/partials/widgets/catcher"
 
-    .app-footer
-      = partial "/layouts/partials/footer"
+      .app-footer
+        .background-footer.parallax-bottom-back
+          = partial "/layouts/partials/footer"
 
   - if is_blog_article?
     %script{:src => "/hybridpages/assets/javascript/disqus.js"}
