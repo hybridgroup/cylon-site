@@ -105,7 +105,7 @@ active_menu_blog: true
       }).start();
 
   Before running this example, be sure to go to the WatchBot settings, turn
-  accelerometer support on, and reopen watch app.
+  accelerometer support on, and reopen WatchApp.
 
   When you run this example, Cylon will begin logging your Pebble's accelerometer
   data to the screen.
