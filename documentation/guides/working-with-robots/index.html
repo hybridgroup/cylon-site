@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta content="A Cylon.JS code example" name="description">
+<meta name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Cylon.JS Example - BlinkM</title>
+<title>Cylon.js - Working With Robots</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -58,8 +58,8 @@
 </div>
       <div class="page-title">
         <div class="w">
-          <h1 class="title">Example: BlinkM</h1>
-          <h2 class="subtitle"><a href="https://github.com/hybridgroup/cylon-firmata/tree/master/examples/blinkm" target="_blank">View In Repo</a></h2>
+          <h1 class="title">Guide - Working With Robots</h1>
+          <h2 class="subtitle">A Guide by Humans, for Humans</h2>
         </div>
       </div>
       <div class="container">
@@ -67,38 +67,234 @@
           <section class="content full"><div class="documentation">
               <div class="container-documentation">
                 
-                <div class="example">
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                <p>This guide should help you interact with Cylon's Robot class.</p>
+                
+                <p>Here's the example Robot we'll be using:</p>
+                
+                <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> },
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  ],
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.blinkm.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-
-      my.blinkm.stopScript();
-
-      my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
-      });
-
-      my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
-      my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data)
-      });
-
-      every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-        my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
-        });
-        my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
-      });
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.led.toggle();
     });
   }
-}).start();
+});
 </pre>
-                </div>
+                
+                <h2 id="my-vs-this">
+<code>my</code> vs. <code>this</code>
+</h2>
+                
+                <p>Inside a Robot's work block, <code>this</code> is set to the Robot.
+                To make code with closures and other nesting work better, we also pass it as an argument to the work block.
+                So these two works blocks are equivalent in behaviour:</p>
+                
+                <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.button.on(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.led.toggle();
+    }.bind(<span class="local-variable">this</span>));
+  }
+
+  <span class="comment">// is equal to</span>
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.button.on(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
+  }
+</pre>
+                
+                <p>Programmers preferring more idiomatic JavaScript might prefer to use <code>this</code>, but to simplify things in our examples, we will use the <code>my</code>-argument style.</p>
+                
+                <h2 id="connections">Connections</h2>
+                
+                <p>When initializing a robot, you can either pass a <code>connection</code> object for a single connection, or a <code>connections</code> array for multiple connections:</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>
+  }
+});
+
+<span class="comment">// vs</span>
+
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+  ]
+});
+</pre>
+                
+                <p>Inside a work block, the Robot's connections can be accessed through the <code>connections</code> attribute, which contains a mapping of names to connections.</p>
+                
+                <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+  ],
+
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> }
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.connections;
+    <span class="comment">// {</span>
+    <span class="comment">//   loopback: [Connection],</span>
+    <span class="comment">//   arduino:  [Connection]</span>
+    <span class="comment">// }</span>
+
+    my.arduino;  <span class="comment">// [Connection]</span>
+    my.loopback; <span class="comment">// [Device]</span>
+  }
+});
+</pre>
+                
+                <h2 id="devices">Devices</h2>
+                
+                <p>Devices, for the most part, behave similarly to Connections.
+                When initializing a robot, you can either pass a <code>device</code> object for a single device, or a <code>devices</code> array for multiple devices:</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">device</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>,
+    <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>
+  }
+});
+
+<span class="comment">// vs</span>
+
+Cylon.robot({
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  ]
+});
+</pre>
+                
+                <p>Inside a work block, the Robot's devices can be accessed through the <code>devices</code> attribute, which contains a mapping of names to devices.</p>
+                
+                <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
+                Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.devices;
+    <span class="comment">// {</span>
+    <span class="comment">//   led: [Device],</span>
+    <span class="comment">//   button: [Device],</span>
+    <span class="comment">//   loopback: [Device],</span>
+    <span class="comment">// }</span>
+
+    my.led;      <span class="comment">// [Device]</span>
+    my.button;   <span class="comment">// [Device]</span>
+
+    my.loopback; <span class="comment">// [Device]</span>
+    my.arduino;  <span class="comment">// [Connection]</span>
+  }
+});
+</pre>
+                
+                <h2 id="utilities">Utilities</h2>
+                
+                <p>Cylon provides a few helpful utility functions that can be used in your Robot's work block.</p>
+                
+                <p><strong>Number#seconds</strong> is a new prototype method on <code>Number</code>, allowing for easier setting of intervals/timeouts.
+                For example:</p>
+                
+                <pre class="CodeRay">(<span class="integer">10</span>).seconds(); <span class="comment">// 10000</span>
+(<span class="integer">60</span>).seconds(); <span class="comment">// 60000</span>
+
+setInterval(randomFunction, (<span class="integer">5</span>).seconds()); <span class="comment">// will repeat every 5s</span>
+</pre>
+                
+                <p>The Number being used needs a wrapper set of parentheses, due to how JS the JS parser works.
+                Alternatively, <code>10..seconds()</code> will have the same effect.</p>
+                
+                <p><strong>Number#second</strong> functions the same, but is meant to make calling it on <code>1</code> look more natural.
+                e.g. <code>(1).seconds();</code> vs. <code>(1).second();</code></p>
+                
+                <p><strong>Number#fromScale</strong> converts a number from a provided scale to a (0..1) scale.
+                If the number exceeds the provided scale, either 0 or 1 will be returned.
+                For example:</p>
+                
+                <pre class="CodeRay">(<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 0.5</span>
+(<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);  <span class="comment">// 1</span>
+(-<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>); <span class="comment">// 0</span>
+</pre>
+                
+                <p><strong>Number#toScale</strong> converts a number from a (0..1) scale to the provided scale.
+                If the number exceeds the provided scale, either the min or max end of the scale will be returned.
+                For example:</p>
+                
+                <pre class="CodeRay">(<span class="float">0.5</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 100</span>
+(<span class="integer">10</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 50</span>
+(-<span class="integer">1</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 0</span>
+</pre>
+                
+                <p><strong>every</strong> is a wrapper around <code>setInterval</code>, with the aim of making the semantics easier for new developers.
+                It's intended to be used with the <code>Number#seconds</code> helper method.
+                Examples:</p>
+                
+                <pre class="CodeRay">every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+});
+
+<span class="comment">// is equivalent to:</span>
+
+setInterval(<span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+}, <span class="integer">5000</span>)
+</pre>
+                
+                <p><strong>after</strong> is a wrapper around <code>setTimeout</code>, with similar semantics to <code>every</code>.
+                Examples:</p>
+                
+                <pre class="CodeRay">after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+});
+
+<span class="comment">// is equivalent to:</span>
+
+setTimeout(<span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+}, <span class="integer">5000</span>)
+</pre>
+                
+                <p><strong>constantly</strong> is a wrapper around <code>setInterval</code>, with a specified <code>interval</code> of 0 ms.
+                Examples:</p>
+                
+                <pre class="CodeRay">constantly(<span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+});
+
+<span class="comment">// is equivalent to:</span>
+
+setTimeout(<span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+}, <span class="integer">0</span>)
+</pre>
               </div>
               <div class="side-documentation">
                 <div class="mobile-menu">
@@ -450,8 +646,9 @@ Cylon.robot({
                       });
                     });
                 </script><script>
-                  $("#example-panel").addClass("active-panel");
-                  $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
+                  $("#guides-panel").addClass("active-panel");
+                  $("#guides-panel ul li:nth-child(2)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
                 </script>
 </div>
             </div>
