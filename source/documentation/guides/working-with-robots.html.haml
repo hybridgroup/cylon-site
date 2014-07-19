@@ -1,0 +1,242 @@
+---
+title: Cylon.js - Working With Robots
+author: The Hybrid Group
+page_title: Guide - Working With Robots
+page_subtitle: A Guide by Humans, for Humans
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#guides-panel").addClass("active-panel");
+    $("#guides-panel ul li:nth-child(2)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
+
+:markdown
+  This guide should help you interact with Cylon's Robot class.
+
+  Here's the example Robot we'll be using:
+
+      :::javascript
+      Cylon.robot({
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+
+        devices: [
+          { name: 'led', driver: 'led', pin: 13 },
+          { name: 'button', driver: 'button', pin: 2 }
+        ],
+
+        work: function(my) {
+          my.button.on('push', function() {
+            my.led.toggle();
+          });
+        }
+      });
+
+  ## `my` vs. `this`
+
+  Inside a Robot's work block, `this` is set to the Robot.
+  To make code with closures and other nesting work better, we also pass it as an argument to the work block.
+  So these two works blocks are equivalent in behaviour:
+
+      :::javascript
+        work: function() {
+          this.button.on("push", function() {
+            this.led.toggle();
+          }.bind(this));
+        }
+
+        // is equal to
+
+        work: function(my) {
+          my.button.on("push", function() {
+            my.led.toggle();
+          });
+        }
+
+  Programmers preferring more idiomatic JavaScript might prefer to use `this`, but to simplify things in our examples, we will use the `my`-argument style.
+
+  ## Connections
+
+  When initializing a robot, you can either pass a `connection` object for a single connection, or a `connections` array for multiple connections:
+
+      :::javascript
+      Cylon.robot({
+        connection: {
+          name: "arduino",
+          adaptor: "firmata",
+          port: "/dev/ttyACM0"
+        }
+      });
+
+      // vs
+
+      Cylon.robot({
+        connections: [
+          { name: "loopback", adaptor: "loopback" },
+          { name: "arduino", adaptor: "firmata", port: "/dev/ttyACM0" }
+        ]
+      });
+
+  Inside a work block, the Robot's connections can be accessed through the `connections` attribute, which contains a mapping of names to connections.
+
+  Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
+
+      :::javascript
+      Cylon.robot({
+        connections: [
+          { name: "loopback", adaptor: "loopback" },
+          { name: "arduino", adaptor: "firmata", port: "/dev/ttyACM0" }
+        ],
+
+        device: { name: 'loopback', driver: 'ping', connection: 'loopback' }
+
+        work: function(my) {
+          my.connections;
+          // {
+          //   loopback: [Connection],
+          //   arduino:  [Connection]
+          // }
+
+          my.arduino;  // [Connection]
+          my.loopback; // [Device]
+        }
+      });
+
+  ## Devices
+
+  Devices, for the most part, behave similarly to Connections.
+  When initializing a robot, you can either pass a `device` object for a single device, or a `devices` array for multiple devices:
+
+      :::javascript
+      Cylon.robot({
+        device: {
+          name: "led",
+          driver: "led",
+          pin: "13"
+        }
+      });
+
+      // vs
+
+      Cylon.robot({
+        devices: [
+          { name: 'led', driver: 'led', pin: 13 },
+          { name: 'button', driver: 'button', pin: 2 }
+        ]
+      });
+
+  Inside a work block, the Robot's devices can be accessed through the `devices` attribute, which contains a mapping of names to devices.
+
+  Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
+  Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name
+
+      :::javascript
+      Cylon.robot({
+        connections: [
+          { name: 'loopback', adaptor: 'loopback' },
+          { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' }
+        ],
+
+        devices: [
+          { name: 'led', driver: 'led', pin: 13 },
+          { name: 'button', driver: 'button', pin: 2 },
+          { name: 'loopback', driver: 'ping' }
+        ],
+
+        work: function(my) {
+          my.devices;
+          // {
+          //   led: [Device],
+          //   button: [Device],
+          //   loopback: [Device],
+          // }
+
+          my.led;      // [Device]
+          my.button;   // [Device]
+
+          my.loopback; // [Device]
+          my.arduino;  // [Connection]
+        }
+      });
+
+  ## Utilities
+
+  Cylon provides a few helpful utility functions that can be used in your Robot's work block.
+
+  **Number#seconds** is a new prototype method on `Number`, allowing for easier setting of intervals/timeouts.
+  For example:
+
+      :::javascript
+      (10).seconds(); // 10000
+      (60).seconds(); // 60000
+
+      setInterval(randomFunction, (5).seconds()); // will repeat every 5s
+
+  The Number being used needs a wrapper set of parentheses, due to how JS the JS parser works.
+  Alternatively, `10..seconds()` will have the same effect.
+
+  **Number#second** functions the same, but is meant to make calling it on `1` look more natural.
+  e.g. `(1).seconds();` vs. `(1).second();`
+
+  **Number#fromScale** converts a number from a provided scale to a (0..1) scale.
+  If the number exceeds the provided scale, either 0 or 1 will be returned.
+  For example:
+
+      :::javascript
+      (100).fromScale(0, 200); // 0.5
+      (100).fromScale(0, 50);  // 1
+      (-100).fromScale(0, 50); // 0
+
+  **Number#toScale** converts a number from a (0..1) scale to the provided scale.
+  If the number exceeds the provided scale, either the min or max end of the scale will be returned.
+  For example:
+
+      :::javascript
+      (0.5).fromScale(0, 200); // 100
+      (10).fromScale(0, 50);   // 50
+      (-1).fromScale(0, 50);   // 0
+
+  **every** is a wrapper around `setInterval`, with the aim of making the semantics easier for new developers.
+  It's intended to be used with the `Number#seconds` helper method.
+  Examples:
+
+      :::javascript
+      every((5).seconds(), function() {
+        console.log("Hello world!");
+      });
+
+      // is equivalent to:
+
+      setInterval(function() {
+        console.log("Hello world!");
+      }, 5000)
+
+  **after** is a wrapper around `setTimeout`, with similar semantics to `every`.
+  Examples:
+
+      :::javascript
+      after((5).seconds(), function() {
+        console.log("Hello world!");
+      });
+
+      // is equivalent to:
+
+      setTimeout(function() {
+        console.log("Hello world!");
+      }, 5000)
+
+  **constantly** is a wrapper around `setInterval`, with a specified `interval` of 0 ms.
+  Examples:
+
+      :::javascript
+      constantly(function() {
+        console.log("Hello world!");
+      });
+
+      // is equivalent to:
+
+      setTimeout(function() {
+        console.log("Hello world!");
+      }, 0)
