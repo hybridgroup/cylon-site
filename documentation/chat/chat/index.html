@@ -7,9 +7,9 @@
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
 <meta content="The Hybrid Group" name="author">
-<title>Neurosky with Cylon.js</title>
+<title>Cylon IRC Chat</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
 <script type="text/javascript">
 
@@ -48,8 +48,8 @@
             </span>
           </div>
           <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a class="active" href="/documentation/platforms">Platforms</a>
+            <a class="active" href="/documentation">Docs</a>
+            <a href="/documentation/platforms" class="item">Platforms</a>
             <a href="/videos" class="item">Videos</a>
             <a href="/blog" class="item">Blog</a>
             <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
@@ -58,100 +58,23 @@
 </div>
       <div class="page-title">
         <div class="w">
-          <h1 class="title">Platforms</h1>
-          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+          <h1 class="title">Live Chat</h1>
+          <h2 class="subtitle">Chat with the Cylon team.</h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
           <section class="content full"><div class="documentation">
               <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Neurosky</h1>
-                    <h2 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-neurosky" target="_blank" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-neurosky/issues" target="_blank">Issues</a>
-</h2>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav"><div class="container">
-                    <nav><a href="#HowToInstall">How To Install</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#HowToConnect">How To Connect</a>
-                      <a href="#Drivers">Drivers</a>
-                      <a href="#top">Top</a>
-                    </nav>
-</div>
-                </section><br><section class="intro"><img class="display" src="/images/devices/neurosky.jpg"><div class="info-intro">
-                    <p>NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.</p>
-                    <p>
-                      For more info about the Neurosky platform click
-                      <a target="blank" href="http://neurosky.com/products-markets/eeg-biosensors/hardware/">here</a>.
-                    </p>
-                  </div>
-                  <div class="clear"></div>
-                </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                  <p>Installing cylon.js with Neurosky support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-neurosky
-</pre>
-                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>This example displays the Attention and Meditation data reading sent by the Mindwave Headset:</p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>},
-
-  <span class="key">device</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">headset</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>},
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">attention</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
-    });
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">meditation</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
-    });
-  }
-});
-
-Cylon.start();
-</pre>
-                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <h3>OSX</h3>
-                  <p>In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
-                  <h3>Ubuntu</h3>
-                  <p>
-                    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using
-                    <a href="http://gort.io">Gort</a>
-                    commands. Here are the steps:
-                  </p>
-                  <p>Find the address of the Mindwave, by using:</p>
-                  <pre class="CodeRay">gort scan bluetooth
-</pre>
-                  <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
-</pre>
-                  <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
-</pre>
-                  <h3>Windows</h3>
-                  <p>
-                    </p>
-<p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
-                  
-                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
-                  <p>Available drivers for the Neurosky Mindwave platform are listed below.</p>
-                  <div class="hardware">
-                    <div class="devices">
-                      <!-- / TODO: Update drivers list at the top of the page. -->
-                      <!-- // neurosky -->
-                      <a class="device" href="/documentation/drivers/neurosky" title="Neurosky">
-                        <img src="/images/devices/neurosky.jpg"></a>
-                    </div>
-                  </div>
-                </section>
-</div>
+                
+                <h1>IRC</h1>
+                <p>
+                  Join us on IRC:
+                  <code>#cylon @ freenode.net</code>
+                  or use the built-in IRC client below.
+                </p>
+                <iframe height="400" src="http://webchat.freenode.net?channels=%23cylon&amp;uio=d4" width="700"></iframe>
+              </div>
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">
@@ -515,9 +438,9 @@ Cylon.start();
                       });
                     });
                 </script><script>
-                  $("#platform-panel").addClass("active-panel");
-                  $("#platform-panel ul li:nth-child(12)").addClass("active-link");
-                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+                  $("#chat-panel").addClass("active-panel");
+                  $("#chat-panel li:nth-child(2)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(11) a:nth-child(2) img").addClass("rotate");
                 </script>
 </div>
             </div>
