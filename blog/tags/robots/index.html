@@ -74,6 +74,139 @@
                         Jul
                       </div>
                       <div class="day">
+                        22
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a>
+                    </h3>
+                    <div class="author">
+                      by Javier Cervantes
+                    </div>
+                  </div>
+                </header><p>Have you ever wanted to control robots from your wrist? This is now possible, thanks to Cylon.js support for the <a href="https://getpebble.com/">Pebble</a> smart watch.</p>
+                
+                <p>Using Cylon and a Pebble app that we have created called <a href="http://watchbot.io/">WatchBot</a> app, you can very easily send notifications, receive events, and access accelerometer data.</p>
+                
+                <h3 id="how-does-it-work">How Does It Work?</h3>
+                
+                <p>Once you've loaded WatchBot onto your Pebble watch, the app can communicate directly with the Cylon API, and use this to send commands and receive events from your connected devices.</p>
+                
+                <p><img alt="watchbot" src="http://watchbot.io/images/infographic.png"></p>
+                
+                <h3 id="get-started">Get Started</h3>
+                
+                <p>Getting started with Cylon.js and Pebble is easy, all you need to do is install the cylon-pebble module:</p>
+                
+                <pre class="CodeRay">$ npm install cylon-pebble
+</pre>
+                
+                <p>With that done, download WatchBot from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.</p>
+                
+                <h3 id="configuration">Configuration</h3>
+                
+                <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's
+                Pebble app. Once there, configure the following settings:</p>
+                
+                <ul>
+<li>
+<strong>robot name:</strong> leave this blank.</li>
+                  <li>
+<strong>robot api host:</strong> IP address of the computer that will be running the Cylon API.</li>
+                  <li>
+<strong>robot api port:</strong> port number for the Cylon API</li>
+                  <li>
+<strong>publish command:</strong> leave this blank</li>
+                  <li>
+<strong>message command:</strong> leave this blank</li>
+                  <li>
+<strong>accelerometer:</strong> leave this unchecked.</li>
+                </ul>
+<h3 id="examples">Examples</h3>
+                
+                <p>Here's a simple example of a Cylon robot your Pebble can talk to:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.api({
+  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>,
+  <span class="key">ssl</span>:  <span class="predefined-constant">false</span>
+});
+
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>  },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.pebble.send_notification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>);
+
+    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data);
+    });
+
+    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">tap</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>);
+    });
+  }
+}).start();
+</pre>
+                
+                <p>Re-open the WatchBot app on your Pebble (to update it with the new settings), and run this example. Your Pebble will now get a notification, and Cylon will log when your Pebble registers a button press or tap.</p>
+                
+                <p>For more fun, let's track accelerometer data from the Pebble with Cylon:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.api({
+  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>,
+  <span class="key">ssl</span>:  <span class="predefined-constant">false</span>
+});
+
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>  },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">accel</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(data);
+    });
+  }
+
+}).start();
+</pre>
+                
+                <p>Before running this example, be sure to go to the WatchBot settings, turn accelerometer support on, and reopen WatchApp.</p>
+                
+                <p>When you run this example, Cylon will begin logging your Pebble's accelerometer data to the screen.</p>
+                
+                <p>This is just the start. Now your Pebble can be used to interact with any of the many other hardware and software platforms that Cylon.js currently supports. For more info about the Pebble support, please check out the <a href="http://cylonjs.com/documentation/platforms/pebble">docs</a>. And check out the <a href="http://cylonjs.com/documentation/platforms">platforms</a> page for info on the other hardware we support.</p>
+                
+                <p>Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - <a href="https://twitter.com/cylonjs">@CylonJS</a></p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+</div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header"><div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Jul
+                      </div>
+                      <div class="day">
                         14
                       </div>
                     </div>
@@ -1142,7 +1275,8 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+<li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
+                <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
                 <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
                 <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
                 <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
