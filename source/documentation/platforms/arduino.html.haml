@@ -154,7 +154,6 @@ ir_range_finder: true
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
-  
 %section.drivers#Drivers
   %h2 Drivers
   %p
@@ -177,3 +176,14 @@ ir_range_finder: true
     %h2 i2c Drivers
     .devices
       = partial "documentation/partials/devices_i2c_drivers"
+
+%section.drivers#yun
+  %h2 Arduino YUN
+  = image_tag "http://placehold.it/350x250", class: "display"
+  .info-intro
+    %p
+      It is possible to run cylon.js code on the Linux side of the arduino YUN and have it communicate with the arduino
+      side using the same firmata protocol and serialport communication.
+    %p
+      We need to do some hacking in order to accomplish this, we've put together a guide on to how to do this here:
+      = link_to 'Hackinig the Arduino YUN to run cylon.js', './yun'
