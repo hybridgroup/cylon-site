@@ -1,0 +1,223 @@
+---
+title: Arduino YUN with Cylon.js
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Arduino
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-firmata' target='_blank' class='repository'>Repository</a> <a class+'issues' href='https://github.com/hybridgroup/cylon-firmata/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+
+analog_sensor_driver: true
+button_driver: true
+continuous_servo_driver: true
+led_driver: true
+makey_driver: true
+maxbotix_driver: true
+motor_driver: true
+servo_driver: true
+blinkm_driver: true
+hmc6352_compass_driver: true
+mpl115a2_driver: true
+lcd_driver: true
+ir_range_finder: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#platform-panel").addClass("active-panel");
+    $("#platform-panel ul li:nth-child(2)").addClass("active-link");
+    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+
+%section.intro
+  = image_tag "/images/devices/arduino-yun.jpg", class: "display"
+  %h2 Arduino YUN
+  .info-intro
+    %p
+      The Arduino Yún is a microcontroller board based on the ATmega32u4 (datasheet) and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun.
+    %p
+      You can find more info about it
+      = link_to 'here', 'http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN'
+  .clear
+
+%section.how-to#HowToConnect
+  %h2 Hackin the Arduino YUN to run cylon.js
+  %h3 Upgrade and increase available storage
+  %p
+    The first step is to upgrade to the latest firmware, you can find the latest
+    arduino software
+    = link_to 'here.', 'http://arduino.cc/en/main/software'
+  %p
+    Next step is to increase the available storage space available to the Linux OpenWrt distro,
+    you can find a pretty good guide on how to do this here:
+
+    = link_to 'Expanding YUN Disk Space', 'http://arduino.cc/en/Tutorial/ExpandingYunDiskSpace'
+
+  %h3 Installing node.js, node-serialport and firmata
+  %p
+    Next comes installing the latest stable version of node.js:
+
+    = link_to 'Installing node.js in the YUN', 'http://blog.arduino.cc/2014/05/06/time-to-expand-your-yun-disk-space-and-install-node-js/'
+
+  %p
+    Since we are going to be using node.js in the Linux side of the YUN to communicate with the arduino side of it using
+    a serial port connection and the Firmata protocol, we need to install node-serialport in the YUN.
+    Good thing there is an available pre-compiled package for the YUN, follow
+    = link_to 'this guide', 'http://www.appsaloon.be/blog/node-js-arduino-yun/'
+    put together by @david on how to install both node-serialport and firmata module.
+
+  %p
+    But we'll make it even simpler, to install node-serialport all you need to do is run the commands below on an SSH
+    session terminal with the YUN. This will install node-serialport as a global module in the YUN.
+
+  :markdown
+        :::bash
+        $ opkg update
+        $ opkg install node-serialport
+  %p
+    We'll also need to upload a modified version of the StandardFirmata Sketch to the arduino, since we have already
+    disabled the bridge, we need to do this through the wifi port using the Arduino IDE. You can find the modified version of the sketch
+    following this link:
+    = link_to ' StandardFirmataForYUNATH0.ino', 'https://gist.github.com/edgarsilva/e73c15a019396d6aaef2'
+
+  %p
+    The YUN lacks enough memory to install npm modules directly to it, so we need to download them on the host computer
+    and the copy them over using SCP or manually to the SD card. The first module we'll need is firmata.
+
+  :markdown
+        :::bash
+        $ npm install firmata
+  %p
+    After downloaded, and before copying it over to the YUN, we need to delete the serialport module from the firmata
+    dependencies (node_modules folder), since it is compiled for your host computer, and remember we already have the correct
+    pre-compiled node-serialport module installed globally on the YUN. This will install the npm firmata module as a global
+    module making it available for any of your proyects.
+
+  :markdown
+        :::bash
+        $ rm -rf ./node_modules/firmata/node_modules/serialport
+        $ scp ./node_modules/firmata root@arduino.local:/usr/lib/node_modules/
+
+  %h3 Disabling the bridge script
+  %p
+    We need to disable the bridge in the YUN so we can take control of the serialport interface that allows communication
+    from both sides of the YUN, since we'll be using the serialport interface used by arduino to connect the bridge
+    we need to tell it to not set it up when the YUN boots, that way we can take control of it afterwards.
+
+    We need to remove the bridge setup from the boot up inittab script and we do it as follows:
+    %ol
+      %li SSH into the YUN
+      %li Edit the file `/etc/inittab` and comment out the `ttyATH0` line by putting a # before it, as shown below, the file should look like this:
+
+  :markdown
+        :::bash
+        ::sysinit:/etc/init.d/rcS S boot
+        ::shutdown:/etc/init.d/rcS K shutdown
+        #ttyATH0::askfirst:/bin/ash --login
+
+  %p
+    Restart the YUN by long pressing the YUN RST button.
+
+  %h3 Testing communication between both sides of the YUN
+  %p
+    Let's test if both firmata on the Arduino and the firmata module are installed and working as expected,
+    we'll be using a modified version of @david's www-blink.js program, to do this create a www-blink.js
+    file and copy the following code into it.
+
+  :markdown
+        :::javascript
+        console.log('WWW blink start ...');
+
+        var ledPin = 13;
+        var firmata = require('firmata');
+
+        var board = new firmata.Board("/dev/ttyATH0", function(err) {
+          if (err) {
+            console.log(err);
+            board.reset();
+            return;
+          } else {
+            console.log('connected...');
+            console.log('board.firmware: ', board.firmware);
+            board.pinMode(ledPin, board.MODES.OUTPUT);
+            var url = require('url');
+            var http = require('http');
+            http.createServer(function(request, response) {
+              var params = url.parse(request.url, true).query;
+              if (params.value.toLowerCase() == 'high') {
+                board.digitalWrite(ledPin, board.HIGH);
+              } else {
+                board.digitalWrite(ledPin, board.LOW);
+              }
+              response.writeHead(200);
+              response.write("The value written was: " + params.value);
+              response.end();
+            }.bind(this)).listen(8080);
+            console.log('Listening on port 8080 ...');
+          }
+        });
+
+  %p
+    Basically, if you see the `listening on port 8080` log message and you can hit the endpoints you are good to go,
+    communication between the linux and arduino side of things has been established.
+
+  %h3 Installing Cylon on the YUN
+  %p
+    Last step is to download the cylon npm modules needed and copy them over to the YUN.
+    Same as before we need to make sure to delete the firmata module dependency from the cylon-firmata module,
+    since we already have it as a global module in the YUN's linux instalation.
+
+  :markdown
+        :::bash
+        $ npm install cylon
+        $ npm install cylon-gpio
+        $ npm install cylon-i2c
+        $ npm install cylon-firmata
+        $ rm -rf ./node_modules/cylon-firmata/node_modules/firmata
+
+  %p
+    You can now copy the cylon modules to your project folder or just copy the entire project folder over to the arduino yun.
+
+  :markdown
+        :::bash
+        # on host computer:
+        cd ./
+        tar -cvf yun_project.tar ./yun_project
+        scp ./yun_project.tar root@arduino.local:/root
+
+        # on YUN Linux:
+        tar -xvf yun_project.tar
+        cd yun_project
+        node index.js #or whatever the name of the main file is.
+
+  %p
+    At this point your project folder should contain your program files and the node_modules folder with the
+    cylon modules cylon, cylon-firmata, cylon-gpio, cylon-i2c. And you should have node-serialport and firmata
+    as global modules in /usr/lib/node_modules.
+
+  %p
+    You can now create and run programs inside the Linux side of the YUN and run them as you would any other
+    cylon-firmata program, with the advantage of everything being in one little board and not needing and external
+    computer.
+
+  %p
+    Let's give it a spin using the following example.
+    This small program lets you push a button on the arduino board to turn a LED on or off.
+    In less than 10 lines of code using Cylon.js. Just create a blink.js file in your project
+    folder and copy the contents over.
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyATH0' },
+          devices: [{name: 'led', driver: 'led', pin: 13},
+                   {name: 'button', driver: 'button', pin: 2}],
+
+          work: function(my) {
+            my.button.on('push', function() {my.led.toggle()});
+          }
+        }).start();
