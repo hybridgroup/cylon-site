@@ -1,0 +1,54 @@
+---
+page_title_show: true
+title: "Cylon.js Fun With The Arduino Yun"
+page_title: Blog
+date: 2014-07-29
+tags: robots
+author: Edgar Silva
+active_menu_blog: true
+---
+
+:markdown
+  ## Hacking the Arduino Yun to run cylon.js
+
+  The real fun with the Yun comes in putting the Yun's little OpenWRT Linux distro to use, making it run node.js, Cylon.JS and communicate with the arduino side of the board.
+
+  It is kind of on the long side of setup processes, as far as setup processes for different SBCs go, but thankfully it is not that complex, and where's the fun of hacking if you just need to click the 'continue' button right?
+
+  For most projects that require Cylon.JS to be run on the board itself a [Raspberri-Pi](/documentation/platforms/raspberry-pi)
+  or even better a [Beaglebone-Black](/documentation/platforms/beaglebone)
+  (in my humble opinion, it has a bit more power under the hood, both boards are awesome!) would be a better option.
+  But since we are here it means you want to hack and use your Yun to full extent, let us not digress any further,
+  we have full platform support and step by step guide here:
+
+  [Cylon.js: Arduino Yun](/documentation/platforms/yun)
+
+  So that you can hack the Yun to run Cylon.JS and communicate with the Arduino, on the same board!
+
+  Here's a small example of the `hello_world` program of robotics, `blink_led.js`, running on the Linux
+  side of the Arduino Yun using Cylon.JS:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyATH0' },
+        device: {name: 'led', driver: 'led', pin: 13},
+
+        work: function(my) {
+          every((1).second(), function(){
+            my.led.toggle();
+          });
+        }
+      }).start();
+
+  Happy hacking :-) !
+
+  Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - [@CylonJS][]
+
+  [@CylonJS]: https://twitter.com/cylonjs
+  [Pebble App Store]: https://apps.getpebble.com/applications/52b11885b0661fb292000004
+  [Pebble]: http://getpebble.com
+  [WatchBot]: http://watchbot.io
+  [docs]: http://cylonjs.com/documentation/platforms/pebble
+  [platforms]: http://cylonjs.com/documentation/platforms
