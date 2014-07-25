@@ -24,6 +24,23 @@ active_menu_blog: true
 
   So that you can hack the YUN to run Cylon.JS and communicate with the Arduino, on the same board!
 
+  Here's a small example of the `hello_world` program of robotics, `blink_led.js`, running on the Linux
+  side of the Arduino YUN using Cylon.JS:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyATH0' },
+        device: {name: 'led', driver: 'led', pin: 13},
+
+        work: function(my) {
+          every((1).second(), function(){
+            my.led.toggle();
+          });
+        }
+      }).start();
+
   Happy hacking :-) !
 
   Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - [@CylonJS][]
