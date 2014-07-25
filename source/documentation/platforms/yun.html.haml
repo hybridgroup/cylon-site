@@ -42,8 +42,49 @@ ir_range_finder: true
       = link_to 'here', 'http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN'
   .clear
 
+%section.how_to#HowToInstall
+  %h2 How To Install
+  %p Installing Cylon.js with Arduino YUN support is pretty easy if you are just going to use it as an Arduino UNO.
+  :markdown
+        :::ruby
+        npm install cylon-firmata
+
+%section.how_to#HowToUse
+  %h2 How To Use
+  %p This small program lets you push a button on the arduino board to turn a LED on or off. In less than 10 lines of code using Cylon.js.
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          devices: [{name: 'led', driver: 'led', pin: 13},
+                   {name: 'button', driver: 'button', pin: 2}],
+
+          work: function(my) {
+            my.button.on('push', function() {my.led.toggle()});
+          }
+        }).start();
+
 %section.how-to#HowToConnect
-  %h2 Hackin the Arduino YUN to run cylon.js
+  %h2 Hacking the Arduino YUN to run cylon.js
+  %p
+    The real fun with the YUN comes in putting the YUN's little OpenWRT Linux distro to use,
+    making it run node.js, Cylon.JS and communicate with the arduino side of the board.
+
+  %p
+    It is kind of on the long side of setup processes, as far as setup processes for different SBCs go, but
+    it is not that complex and where's the fun of hacking if you just need to click the 'continue' button right?
+
+  %p For most projects that require Cylon.JS to be run on the board itself a
+  =link_to 'Raspberri-pi', './raspberry-pi'
+  %p or even better a
+  =link_to 'Beaglebone-Black', './beaglebone'
+  %p
+    (in my humble opinion, it has a bit more power under the hood, but both boards are awesome!).
+    Since we are here we want to hack and use our YUN to full extent let us not digress any further
+    and let's get to it.
+
   %h3 Upgrade and increase available storage
   %p
     The first step is to upgrade to the latest firmware, you can find the latest
@@ -221,3 +262,26 @@ ir_range_finder: true
             my.button.on('push', function() {my.led.toggle()});
           }
         }).start();
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p
+    Thanks to
+    %b cylon.js
+    and
+    %b node.js
+    it is possible to interact with several I/O hardware devices and interfaces connected to the arduino
+    using a set of already defined and easy to use drivers, all of this thanks to the cylon.js architecture, in conjuction with the cylon-firmata
+    adaptor (using the firmata communication protocol),
+    which makes it even possible to swap the entire platform for something else like digispark, and keep using the same code you just wrote for
+    arduino, this just by swapping a couple of lines in your program.
+  %p Available drivers for the arduino platform are listed below, the drivers contain detailed documentation and examples of what kind physical computing (using cylon.js and node.js) you could be doing:
+
+  .hardware
+    %h2 GPIO Drivers
+    .devices
+      // TODO: Update drivers list at the top of the page.
+      = partial "documentation/partials/devices_gpio_drivers"
+    %h2 i2c Drivers
+    .devices
+      = partial "documentation/partials/devices_i2c_drivers"
