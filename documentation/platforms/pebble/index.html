@@ -97,12 +97,43 @@
                   </p>
                   <pre class="CodeRay">npm install cylon-pebble
 </pre>
-                  <p>Install Pebble 2.0 iOS or Android app. (If you haven't already)</p>
+                  <h3>Install Pebble 2.0 iOS or Android app. (If you haven't already)</h3>
+                  <h3>Install Watchbot</h3>
                   <p>
-                    Follow README to install and configure "watchbot" on your watch:
-                    <a target="blank" href="https://github.com/hybridgroup/watchbot">https://github.com/hybridgroup/watchbot</a>
+                    With that done, download WatchBot from the
+                    <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>
                   </p>
-                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
+                  <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">
+                    <img src="/images/blog/2014-07-22/watchbot_appstore.png" width="100%"></a>
+                  <h3>Configuration</h3>
+                  <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's Pebble app. Once there, configure the following settings:</p>
+                  <ul>
+<li>
+                      <strong>robot name:</strong>
+                      leave this blank.
+                    </li>
+                    <li>
+                      <strong>robot api host:</strong>
+                      IP address of the computer that will be running the Cylon API.
+                    </li>
+                    <li>
+                      <strong>robot api port:</strong>
+                      port number for the Cylon API
+                    </li>
+                    <li>
+                      <strong>publish command:</strong>
+                      leave this blank
+                    </li>
+                    <li>
+                      <strong>message command:</strong>
+                      leave this blank
+                    </li>
+                    <li>
+                      <strong>accelerometer:</strong>
+                      leave this unchecked.
+                    </li>
+                  </ul>
+<img src="/images/blog/2014-07-22/watchbot_config.png" width="50%"></section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
                   <p>This small program receives message queue events from a Pebble smart watch.</p>
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -301,6 +332,9 @@ Cylon.start();
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/yun">Yun</a>
                       </li>
                     </ul>
 </dd>

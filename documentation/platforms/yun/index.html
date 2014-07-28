@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta name="description">
+<meta content="The Hybrid Group" name="author">
+<title>Arduino YUN with Cylon.js</title>
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+<script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+<body>
+    
+    <div class="app">
+      <div class="w">
+        <header class="app-header" role="banner"><div class="display">
+            <h1 class="app-logo">
+              <a href="/">Cylon</a>
+            </h1>
+            <span class="subtitle">
+              <div class="main"></div>
+            </span>
+          </div>
+          <span class="menu">
+            <a href="/documentation" class="item">Docs</a>
+            <a class="active" href="/documentation/platforms">Platforms</a>
+            <a href="/videos" class="item">Videos</a>
+            <a href="/blog" class="item">Blog</a>
+            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+          </span>
+        </header>
+</div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Platforms</h1>
+          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full"><div class="documentation">
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Arduino</h1>
+                    <h2 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-firmata" target="_blank" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-firmata/issues" target="_blank">Issues</a>
+</h2>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav"><div class="container">
+                    <nav><a href="#HowToInstall">How To Install</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
+                      <a href="#top">Top</a>
+                    </nav>
+</div>
+                </section><br><section class="intro"><img class="display" src="/images/devices/arduino-yun.jpg"><h2>Arduino YUN</h2>
+                  <div class="info-intro">
+                    <p>
+                      The Arduino Yún is a microcontroller board based on the ATmega32u4 (datasheet) and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun.
+                    </p>
+                    <p>
+                      You can find more info about it
+                      <a href="http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN">here</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section><section class="how-to" id="HowToConnect"><h2>Hackin the Arduino YUN to run cylon.js</h2>
+                  <h3>Upgrade and increase available storage</h3>
+                  <p>
+                    The first step is to upgrade to the latest firmware, you can find the latest
+                    arduino software
+                    <a href="http://arduino.cc/en/main/software">here.</a>
+                  </p>
+                  <p>
+                    Next step is to increase the available storage space available to the Linux OpenWrt distro,
+                    you can find a pretty good guide on how to do this here:
+                    <a href="http://arduino.cc/en/Tutorial/ExpandingYunDiskSpace">Expanding YUN Disk Space</a>
+                  </p>
+                  <h3>Installing node.js, node-serialport and firmata</h3>
+                  <p>
+                    Next comes installing the latest stable version of node.js:
+                    <a href="http://blog.arduino.cc/2014/05/06/time-to-expand-your-yun-disk-space-and-install-node-js/">Installing node.js in the YUN</a>
+                  </p>
+                  <p>
+                    Since we are going to be using node.js in the Linux side of the YUN to communicate with the arduino side of it using
+                    a serial port connection and the Firmata protocol, we need to install node-serialport in the YUN.
+                    Good thing there is an available pre-compiled package for the YUN, follow
+                    <a href="http://www.appsaloon.be/blog/node-js-arduino-yun/">this guide</a>
+                    put together by @david on how to install both node-serialport and firmata module.
+                  </p>
+                  <p>
+                    But we'll make it even simpler, to install node-serialport all you need to do is run the commands below on an SSH
+                    session terminal with the YUN. This will install node-serialport as a global module in the YUN.
+                  </p>
+                  <pre class="CodeRay">$ opkg update
+$ opkg install node-serialport
+</pre>
+                  <p>
+                    We'll also need to upload a modified version of the StandardFirmata Sketch to the arduino, since we have already
+                    disabled the bridge, we need to do this through the wifi port using the Arduino IDE. You can find the modified version of the sketch
+                    following this link:
+                    <a href="https://gist.github.com/edgarsilva/e73c15a019396d6aaef2"> StandardFirmataForYUNATH0.ino</a>
+                  </p>
+                  <p>
+                    The YUN lacks enough memory to install npm modules directly to it, so we need to download them on the host computer
+                    and the copy them over using SCP or manually to the SD card. The first module we'll need is firmata.
+                  </p>
+                  <pre class="CodeRay">$ npm install firmata
+</pre>
+                  <p>
+                    After downloaded, and before copying it over to the YUN, we need to delete the serialport module from the firmata
+                    dependencies (node_modules folder), since it is compiled for your host computer, and remember we already have the correct
+                    pre-compiled node-serialport module installed globally on the YUN. This will install the npm firmata module as a global
+                    module making it available for any of your proyects.
+                  </p>
+                  <pre class="CodeRay">$ rm -rf ./node_modules/firmata/node_modules/serialport
+$ scp ./node_modules/firmata root@arduino.local:/usr/lib/node_modules/
+</pre>
+                  <h3>Disabling the bridge script</h3>
+                  <p>
+                    We need to disable the bridge in the YUN so we can take control of the serialport interface that allows communication
+                    from both sides of the YUN, since we'll be using the serialport interface used by arduino to connect the bridge
+                    we need to tell it to not set it up when the YUN boots, that way we can take control of it afterwards.
+                    We need to remove the bridge setup from the boot up inittab script and we do it as follows:
+                    </p>
+<ol>
+<li>SSH into the YUN</li>
+                      <li>Edit the file `/etc/inittab` and comment out the `ttyATH0` line by putting a # before it, as shown below, the file should look like this:</li>
+                    </ol>
+<pre class="CodeRay">::sysinit:/etc/init.d/rcS S boot
+::shutdown:/etc/init.d/rcS K shutdown
+#ttyATH0::askfirst:/bin/ash --login
+</pre>
+                  <p>
+                    Restart the YUN by long pressing the YUN RST button.
+                  </p>
+                  <h3>Testing communication between both sides of the YUN</h3>
+                  <p>
+                    Let's test if both firmata on the Arduino and the firmata module are installed and working as expected,
+                    we'll be using a modified version of @david's www-blink.js program, to do this create a www-blink.js
+                    file and copy the following code into it.
+                  </p>
+                  <pre class="CodeRay">console.log(<span class="string"><span class="delimiter">'</span><span class="content">WWW blink start ...</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> ledPin = <span class="integer">13</span>;
+<span class="keyword">var</span> firmata = require(<span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> board = <span class="keyword">new</span> firmata.Board(<span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyATH0</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err) {
+  <span class="keyword">if</span> (err) {
+    console.log(err);
+    board.reset();
+    <span class="keyword">return</span>;
+  } <span class="keyword">else</span> {
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">connected...</span><span class="delimiter">'</span></span>);
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">board.firmware: </span><span class="delimiter">'</span></span>, board.firmware);
+    board.pinMode(ledPin, board.MODES.OUTPUT);
+    <span class="keyword">var</span> url = require(<span class="string"><span class="delimiter">'</span><span class="content">url</span><span class="delimiter">'</span></span>);
+    <span class="keyword">var</span> http = require(<span class="string"><span class="delimiter">'</span><span class="content">http</span><span class="delimiter">'</span></span>);
+    http.createServer(<span class="keyword">function</span>(request, response) {
+      <span class="keyword">var</span> params = url.parse(request.url, <span class="predefined-constant">true</span>).query;
+      <span class="keyword">if</span> (params.value.toLowerCase() == <span class="string"><span class="delimiter">'</span><span class="content">high</span><span class="delimiter">'</span></span>) {
+        board.digitalWrite(ledPin, board.HIGH);
+      } <span class="keyword">else</span> {
+        board.digitalWrite(ledPin, board.LOW);
+      }
+      response.writeHead(<span class="integer">200</span>);
+      response.write(<span class="string"><span class="delimiter">"</span><span class="content">The value written was: </span><span class="delimiter">"</span></span> + params.value);
+      response.end();
+    }.bind(<span class="local-variable">this</span>)).listen(<span class="integer">8080</span>);
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Listening on port 8080 ...</span><span class="delimiter">'</span></span>);
+  }
+});
+</pre>
+                  <p>
+                    Basically, if you see the `listening on port 8080` log message and you can hit the endpoints you are good to go,
+                    communication between the linux and arduino side of things has been established.
+                  </p>
+                  <h3>Installing Cylon on the YUN</h3>
+                  <p>
+                    Last step is to download the cylon npm modules needed and copy them over to the YUN.
+                    Same as before we need to make sure to delete the firmata module dependency from the cylon-firmata module,
+                    since we already have it as a global module in the YUN's linux instalation.
+                  </p>
+                  <pre class="CodeRay">$ npm install cylon
+$ npm install cylon-gpio
+$ npm install cylon-i2c
+$ npm install cylon-firmata
+$ rm -rf ./node_modules/cylon-firmata/node_modules/firmata
+</pre>
+                  <p>
+                    You can now copy the cylon modules to your project folder or just copy the entire project folder over to the arduino yun.
+                  </p>
+                  <pre class="CodeRay"># on host computer:
+cd ./
+tar -cvf yun_project.tar ./yun_project
+scp ./yun_project.tar root@arduino.local:/root
+
+# on YUN Linux:
+tar -xvf yun_project.tar
+cd yun_project
+node index.js #or whatever the name of the main file is.
+</pre>
+                  <p>
+                    At this point your project folder should contain your program files and the node_modules folder with the
+                    cylon modules cylon, cylon-firmata, cylon-gpio, cylon-i2c. And you should have node-serialport and firmata
+                    as global modules in /usr/lib/node_modules.
+                  </p>
+                  <p>
+                    You can now create and run programs inside the Linux side of the YUN and run them as you would any other
+                    cylon-firmata program, with the advantage of everything being in one little board and not needing and external
+                    computer.
+                  </p>
+                  <p>
+                    Let's give it a spin using the following example.
+                    This small program lets you push a button on the arduino board to turn a LED on or off.
+                    In less than 10 lines of code using Cylon.js. Just create a blink.js file in your project
+                    folder and copy the contents over.
+                  </p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyATH0</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>},
+           {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>}],
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {my.led.toggle()});
+  }
+}).start();
+</pre>
+                </section>
+</div>
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a href="#" id="menu-docs">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <dl class="accordion-docs hide">
+<h5 class="doc-button">
+                    <a href="/documentation">Docs</a>
+                  </h5>
+                  <span></span>
+                  <dt>
+                    <a href="">Getting Started</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="getting-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/getting-started">Setup your environment</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Guides</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="guides-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/guides/what_is_cylon">
+                          About Cylon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/working-with-robots">
+                          Working With Robots
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/api">
+                          API
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/cli">
+                          CLI
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/test-driven-robotics">Test Driven Robotics</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/guides/helpers">Helper Methods</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Platforms</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="platform-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/arduino">Arduino</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/digispark">Digispark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/joystick">Joystick</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/force">Force</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/nest">Nest</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/opencv">OpenCV</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/spark">Spark</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/sphero">Sphero</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/tessel">Tessel</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/yun">Yun</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Drivers</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="driver-panel">
+                    GPIO
+                    <ul id="gpio">
+<li>
+                        <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/button">Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/continuous-servo">Continuos Servo</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/led">LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/motor">Motor</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/servo">Servo</a>
+                      </li>
+                    </ul>
+                    I2C
+                    <ul id="i2c">
+<li>
+                        <a href="/documentation/drivers/blinkm">Blinkm</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/bmp180">BPM180</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/lcd">LCD</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      </li>
+                    </ul>
+                    ARDrone
+                    <ul id="ardrone">
+<li>
+                        <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/ardrone-navigation">Ardrone Navigation</a>
+                      </li>
+                    </ul>
+                    Crazyflie
+                    <ul id="crazyflie">
+<li>
+                        <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
+                      </li>
+                    </ul>
+                    Force
+                    <ul id="force">
+<li>
+                        <a href="/documentation/drivers/force">Force</a>
+                      </li>
+                    </ul>
+                    Joystick
+                    <ul id="joystick">
+<li>
+                        <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/xbox360">XBox360 Controller</a>
+                      </li>
+                    </ul>
+                    Other Drivers
+                    <ul id="others">
+<li>
+                        <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_thermostat">Nest Thermostat</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/nest_home">Nest Home</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/neurosky">Neurosky Mindware</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pebble">Pebble</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/skynet">Skynet</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/sphero">Sphero</a>
+                      </li>
+                    </ul>
+                    Pinoccio Drivers
+                    <ul id="pinoccio">
+<li>
+                        <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/pinoccio_power">Pinoccio Power</a>
+                      </li>
+                    </ul>
+                    Tessel Modules
+                    <ul id="tessel">
+<li>
+                        <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_ambient">Tessel Ambient</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_audio">Tessel Audio</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_bluetooth">Tessel Bluetooth</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_camera">Tessel Camera</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_climate">Tessel Climate</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_gps">Tessel GPS</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_infrared">Tessel Infrared</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_relay">Tessel Relay</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Contribute</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="contribute-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/contribute/contact-us">Contact us</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Examples</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="example-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/examples">All examples</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Tutorials</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="tutorial-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/tutorials">Workshop</a>
+                      </li>
+                    </ul>
+</dd>
+                  <dt>
+                    <a href="">Live Chat</a>
+                    <a class="arrowDown">
+                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
+                    <div class="clear"></div>
+                  </dt>
+                  <dd id="chat-panel">
+                    <ul>
+<li>
+                        <a href="/documentation/chat/chat">IRC</a>
+                      </li>
+                    </ul>
+</dd>
+                </dl>
+<script>
+                    $(document).ready(function(){
+                      $("#menu-docs").click(function(){
+                        $(".accordion-docs").removeClass("hide");
+                        $(this).addClass("active");
+                      });
+                    });
+                </script><script>
+                  $("#platform-panel").addClass("active-panel");
+                  $("#platform-panel ul li:nth-child(2)").addClass("active-link");
+                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+                </script>
+</div>
+            </div>
+          </section>
+</div>
+      </div>
+    </div>
+    <footer class="app-footer"><div class="w">
+        <div class="copyright">
+          <div class="left-side">
+            © Copyright 2012-2014
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+          </div>
+          <div class="right-side">
+            <a href="#top">Top</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>
