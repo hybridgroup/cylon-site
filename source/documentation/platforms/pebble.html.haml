@@ -41,10 +41,43 @@ pebble_driver: true
         :::bash
         npm install cylon-pebble
 
-  %p Install Pebble 2.0 iOS or Android app. (If you haven't already)
+  %h3 Install Pebble 2.0 iOS or Android app. (If you haven't already)
+  %h3 Install Watchbot
+
   %p
-    Follow README to install and configure "watchbot" on your watch:
-    = link_to "https://github.com/hybridgroup/watchbot", "https://github.com/hybridgroup/watchbot", target: :blank
+    With that done, download WatchBot from the
+    %a{href: "https://apps.getpebble.com/applications/52b11885b0661fb292000004"} Pebble App Store
+
+
+  %a{href: "https://apps.getpebble.com/applications/52b11885b0661fb292000004"}
+    %img{src: "/images/blog/2014-07-22/watchbot_appstore.png", width: "100%"}
+
+  %h3 Configuration
+
+  %p Once you've got WatchBot installed, go to "My Pebble" on your smartphone's Pebble app. Once there, configure the following settings:
+
+  %ul
+    %li
+      %strong robot name:
+      leave this blank.
+    %li
+      %strong robot api host:
+      IP address of the computer that will be running the Cylon API.
+    %li
+      %strong robot api port:
+      port number for the Cylon API
+    %li
+      %strong publish command:
+      leave this blank
+    %li
+      %strong message command:
+      leave this blank
+    %li
+      %strong accelerometer:
+      leave this unchecked.
+
+  %img{src: "/images/blog/2014-07-22/watchbot_config.png", width: "50%"}
+
 
 
 %section.how-to#HowToUse
