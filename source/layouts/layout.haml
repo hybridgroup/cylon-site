@@ -8,7 +8,8 @@
     .app
       #top-header
         .back-index-top
-          .background-header.parallax-top
+          - if current_page.data.parallaxTop == true
+            .background-header.parallax-top
           .container-hero 
             = partial "/layouts/partials/menu_fixed"
 
