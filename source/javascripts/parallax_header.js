@@ -1,5 +1,5 @@
 $(document).ready(function(){ 
-        $('.parallax-top').plaxify({"xRange":10,"yRange":40}); 
+        $('.parallax-top').plaxify({"xRange":10,"yRange":20}); 
         $.plax.enable();
 });
  
