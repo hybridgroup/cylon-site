@@ -28,9 +28,9 @@
       - if current_page.data.catcher == true
         = partial "/hybridpages/partials/widgets/catcher"
 
-      .app-footer
-        .background-footer.parallax-bottom-back
-          = partial "/layouts/partials/footer"
+    .app-footer
+      .background-footer.parallax-bottom-back
+        = partial "/layouts/partials/footer"
 
   - if is_blog_article?
     %script{:src => "/hybridpages/assets/javascript/disqus.js"}

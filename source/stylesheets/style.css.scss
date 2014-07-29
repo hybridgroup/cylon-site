@@ -1,6 +1,16 @@
 @import "../hybridpages/assets/stylesheets/main.scss";
 
 // Custom
+html, body {
+  height: 100%;
+}
+
+.app {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+
 .app-logo {
 
   a {
