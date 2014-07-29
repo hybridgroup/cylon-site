@@ -112,11 +112,11 @@ ir_range_finder: true
   %h4 Downloading the Linux image
   %p Pretty straight forward when you have a direct link to download, here it is:
 
-  %a{href: "https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz"} Beaglebone Black Linux image
+  %a{href: "http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz"} Beaglebone Black Debian Linux image
 
   %p If you preffer to use the terminal (we know you do :-) ):
   :markdown
-        $ curl -O https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+        $ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
 
   %h4 Uncompressing the image file
   %p
@@ -124,14 +124,14 @@ ir_range_finder: true
     use your favorite command line interface and run this command.
 
   :markdown
-        $ tar -xJf robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
+        $ tar -xJf bone-debian-7.5-2014-05-14-2gb.img.xz
 
   %h4 Flashing the SD card
   %p
     The final step in setting up the SD card is to actually flashing the image we just downloaded and uncompressed into the sd card. You can accomplish just that by running the following command(make sure to specify the appropiate `/dev/sdX` device that represents your SD Card).
 
   :markdown
-        $ sudo dd bs=1M count=3950 if=./robot-ubuntu_13.10-armv7-1394437089.img of=/dev/sdb && sudo sync
+        $ sudo dd bs=1M count=3950 if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
   %h4 Download, uncompress and flash Linux image in three commands
   %p
@@ -139,9 +139,9 @@ ir_range_finder: true
     a working Beaglebone Black OS flashed to the SD card.
 
   :markdown
-        $ curl -O https://s3.amazonaws.com/artoo-images/beaglebone/robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
-        $ tar -xJf robot-ubuntu_13.10-armv7-1394437089.img.tar.xz
-        $ sudo dd bs=1M count=3950 if=./robot-ubuntu_13.10-armv7-1394437089.img of=/dev/sdb && sudo sync
+        $ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
+        $ tar -xJf bone-debian-7.5-2014-05-14-2gb.img.xz
+        $ sudo dd bs=1M count=3950 if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
 
 %section.how-to#HowToConnect
