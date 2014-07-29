@@ -6,8 +6,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <meta name="description">
-<meta content="Ron Evans" name="author">
-<title>This One Goes To 0.11 Of Pure JavaScript</title>
+<meta content="Edgar Silva" name="author">
+<title>Cylon.js Fun With The Arduino Yun</title>
 <link href="/stylesheets/style.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
 <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
@@ -69,10 +69,10 @@
               <header class="header"><div class="date">
                   <div class="blue">
                     <div class="month">
-                      Mar
+                      Jul
                     </div>
                     <div class="day">
-                      04
+                      29
                     </div>
                   </div>
                   <div class="red">
@@ -83,28 +83,41 @@
                 </div>
                 <div class="data">
                   <h3>
-                    <a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a>
+                    <a href="/blog/2014/07/29/arduino-yun-support/">Cylon.js Fun With The Arduino Yun</a>
                   </h3>
                   <div class="author">
-                    by Ron Evans
+                    by Edgar Silva
                   </div>
                 </div>
-              </header><p>Immediately after our <a href="http://cylonjs.com/blog/2014/02/24/tipping-scale12x" target="blank">SCaLE 12x talk</a>, Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> made a big push forward, and we've released version 0.11 of our JavaScript framework for open source robotics and the Internet of Things. The major focus of this release has been refactoring the core into pure JavaScript, away from the CoffeeScript that we had previously been using. </p>
+              </header><p>We've been working on adding support for the <a href="http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN">Arduino Yun</a> for a while, and we've finally released it into the wild. If you are not familiar with this member of the Arduino family, it is a Single Board Computer (SBC) that runs Linux, and that also has a built-in microcontroller. The real fun with the Yun comes in putting the Yun's little <a href="https://openwrt.org/">OpenWRT Linux distro</a> to use, making it run Node.js + Cylon.js, and then communicate with the Arduino side of the board.</p>
               
-              <p>There are a number of key reasons why we've gone to a pure JavaScript code base:</p>
+              <p>It is kind of on the long side of setup processes, as far as setup processes for different Single Board Computers (SBC) go, but thankfully it is not that complex, and where's the fun of hacking if you just need to click the 'continue' button, right?</p>
               
-              <ul>
-<li>Performance is better when the toolchain is simpler. Not only are we now using just JavaScript, we've also removed Grunt. So how are we running our builds? We're using <code>make</code> now, and we can run our tests in around 40ms.</li>
-                <li>When spelunking the code, there is less code to look thru and search thru to find what you need. Many programmers use search tools like awk or grep as a key part of their workflow.</li>
-                <li>Debugging easier, especially when looking for problems in broken tests.</li>
-                <li>We do not really need any compiled language features of CoffeeScript. By writing better and more modular JavaScript, we can get many of the same benefits. Even when ES6 comes out, many lower-powered SoC devices might take a while to support all the new language features.</li>
-                <li>We want to make it even easier for people to use Cylon.js and contribute back to it. Not as many people know CoffeeScript compared to plain JavaScript people. The open source project Discourse has had a <a href="https://meta.discourse.org/t/is-it-better-for-discourse-to-use-javascript-or-coffeescript/3153" target="blank">lot of attention recently because of their switch</a>.</li>
-              </ul>
-<p>We had already done the needed work to create a test suite to support such a serious refactor. Even with that prep, it took some dedicated effort, and a lot of coffee to remove all the CoffeeScript from core. But by keeping things green and clean, we made remarkable progress. We even refactored all of our adaptors and drivers into pure JavaScript too.</p>
+              <p>For most projects that require Cylon.js to be run on the board itself a <a href="/documentation/platforms/raspberry-pi">Raspberry-Pi</a> or even better a <a href="/documentation/platforms/beaglebone">Beaglebone-Black</a> (in my humble opinion, it has a bit more power under the hood, both boards are awesome!) would be a better option. But since we are here it means you want to hack and use your Yun to full extent, let us not digress any further, we have full platform support and step by step guide here:</p>
               
-              <p>For those who adore CoffeeScript, you can still continue to develop your robotic applications that way. And we will continue to provide examples for both JavaScript and CoffeeScript. But for the purists among us, Cylon.js is now leaner and tighter than ever.</p>
+              <p><a href="/documentation/platforms/yun">Cylon.js: Arduino Yun</a></p>
               
-              <p>Make sure to follow us on Twitter at <a href="http://twitter.com/cylonjs">@cylonjs</a> for the latest updates. We think that release 0.11 was a big step forward for the code and the project. We hope you agree. Please let us know what you think!</p>
+              <p>These instructions will help you setup the Yun to run Cylon.js and communicate with the Arduino, all on the same board!</p>
+              
+              <p>Here's a small example of the <code>Hello, World</code> program of robotics, <code>blink_led.js</code>, running on the Linux side of the Arduino Yun using Cylon.js:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyATH0</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>},
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>(){
+      my.led.toggle();
+    });
+  }
+}).start();
+</pre>
+              
+              <p>Happy hacking :-) !</p>
+              
+              <p>Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - <a href="https://twitter.com/cylonjs">@CylonJS</a></p>
             </div>
             <div class="comments">
               <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
