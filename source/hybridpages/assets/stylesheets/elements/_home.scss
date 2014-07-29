@@ -17,7 +17,6 @@
 
   list-style: none !important;
   margin: 0;
-  text-align: center;
 
   li {
 
@@ -30,6 +29,7 @@
     display: inline-block;
     width: 19%;
     margin: 20px 0;
+    text-align: center;
 
     img {
 
@@ -39,20 +39,18 @@
       }
     }
 
-    .title {
+    a {
 
-      a {
-
+      p.title {
         color: $lesser-title-color;
         padding:10px;
         display: block;
         width: 100%;
-
-        &:hover {
-
-          color: $title-color;
-        }
       }
+      &:hover p.title {
+        color: $title-color;
+      }
+      
     }
 
     .repo {
@@ -66,7 +64,7 @@
         width: 100%;
 
         &:hover {
-
+          background: url(/images/elements/repo_icon_hover.svg) center center no-repeat;
           color: $hero-link-color;
         }
       }
