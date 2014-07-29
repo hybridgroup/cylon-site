@@ -1,7 +1,7 @@
 - unless current_page.data.hero.nil?
   .hero
     .container
-      .left-side.parallax-top-left
+      .left-side
         %h1.title
           = current_page.data.hero_title
 
@@ -13,5 +13,5 @@
         - if current_page.data.social == true
           = partial "/hybridpages/partials/widgets/social"
 
-      .right-side.parallax-top-right
+      .right-side
         %img{src: "/images/elements/soldier.svg"}/

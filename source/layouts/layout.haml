@@ -7,8 +7,9 @@
     = partial "layouts/layout-contents"
     .app
       #top-header
-        .background-header.parallax-top-back
-          .container-hero
+        .back-index-top
+          .background-header.parallax-top
+          .container-hero 
             = partial "/layouts/partials/menu_fixed"
 
             - if current_page.data.hero == true

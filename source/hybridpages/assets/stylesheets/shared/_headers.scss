@@ -2,6 +2,9 @@
 
   .background-header {
       background: url($header-background-menu-src) $menu-background-color top center no-repeat;
+      height: 478px;
+      width: 100%;
+      position: absolute;
       &.back-index-top {
         background: url($header-background-src) $menu-background-color top center no-repeat;
       }
