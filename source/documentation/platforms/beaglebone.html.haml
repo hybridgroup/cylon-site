@@ -124,7 +124,7 @@ ir_range_finder: true
     use your favorite command line interface and run this command.
 
   :markdown
-        $ tar -xJf bone-debian-7.5-2014-05-14-2gb.img.xz
+        $ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
 
   %h4 Flashing the SD card
   %p
@@ -140,7 +140,7 @@ ir_range_finder: true
 
   :markdown
         $ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
-        $ tar -xJf bone-debian-7.5-2014-05-14-2gb.img.xz
+        $ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
         $ sudo dd bs=1M count=3950 if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
 
