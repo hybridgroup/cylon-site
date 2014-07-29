@@ -131,7 +131,7 @@ ir_range_finder: true
     The final step in setting up the SD card is to actually flashing the image we just downloaded and uncompressed into the sd card. You can accomplish just that by running the following command(make sure to specify the appropiate `/dev/sdX` device that represents your SD Card).
 
   :markdown
-        $ sudo dd bs=1M count=3950 if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
+        $ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
   %h4 Download, uncompress and flash Linux image in three commands
   %p
@@ -141,7 +141,7 @@ ir_range_finder: true
   :markdown
         $ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
         $ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
-        $ sudo dd bs=1M count=3950 if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
+        $ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
 
 %section.how-to#HowToConnect
@@ -158,18 +158,40 @@ ir_range_finder: true
         #!/bin/bash
         sudo -- sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
         sudo iptables -A POSTROUTING -t nat -j MASQUERADE
-        ssh ubuntu@192.168.7.2
+        ssh root@192.168.7.2
 
   %p After the script is saved in your computer it is pretty easy to connect by just running it.
 
   :markdown
         $ sudo sh bbb_ssh.sh
 
-  %h4 How to connect on OSX
-  %p Just SSH into the beaglebone black, the IP address is 192.168.1.2
+  %p
+    Now, SSH in to the Beaglebone Black using the `bbb_ssh.sh` script you just created. Once you are connected, save the following script as bbb_net.sh (or whatever name you prefer) ON THE BEAGLEBONE BLACK and use this script to allow your Beaglebone Black to share your computer's Internet connection.
 
   :markdown
-        $ ssh ubuntu@192.168.1.2
+        #!/bin/bash
+        ROUTE=`route | grep 0.0.0.0 | wc -l`
+        if [ $ROUTE -eq 0 ]
+        then
+            sudo -- sh -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
+            sudo /sbin/route add default gw 192.168.7.1
+            ping www.google.com -q -c2 > /dev/null
+            if [ $? -eq 0 ]; then
+                sudo ntpdate ntp.ubuntu.com
+            fi
+        fi
+
+  %p After the script is saved on the BBB run it each time you boot the BBB.
+
+  :markdown
+        $ sh bbb_net.sh
+
+
+  %h4 How to connect on OSX
+  %p Just SSH into the beaglebone black, the IP address is 192.168.7.2
+
+  :markdown
+        $ ssh root@192.168.7.2
 
   %h4 How to connect on Windows
   %p The process in Windows requires more steps to setup, but when done should be equaly easy to connect to the board.
@@ -185,7 +207,7 @@ ir_range_finder: true
     %li Finally, you can ssh into the Beaglebone Black using Putty (or the SSH client you installed) in the same way we do it in OSX, The Beaglebone Black's IP address is 192.168.7.2
 
   :markdown
-        $ ssh ubuntu@192.168.1.2
+        $ ssh root@192.168.7.2
 
   %h4 Login Credentials
   %p After all the previous work and connecting through SSH you are going to need some credentials to login to the Beaglebone Black OS, the creds are as follows:
@@ -207,9 +229,9 @@ ir_range_finder: true
     just a bit on the long side, now you have a full Linux system running in you Beaglebone Black! Congrats... now on to the next
     and final part, resising the SD card partition.
 
-  %h4 Resising the SD Card partition
+  %h4 Resizing the SD Card partition
   %p
-    We now have our full Ubuntu Linux OS setup, ready and working in our Beaglebone Black, and we are able to connect using SSH, so what's next? well we need
+    We now have our full Debian Linux OS setup, ready and working in our Beaglebone Black, and we are able to connect using SSH, so what's next? well we need
     some space in that SD card partition to do all of our work and install all of our code, thankfully that is quite simple, all that we require is to run
     some commands and reboot the board a couple of times, so let's dive into it.
 
