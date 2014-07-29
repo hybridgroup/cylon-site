@@ -67,12 +67,22 @@ ir_range_finder: true
 
 %section.how-to#HowToConnect
   %h2 How to Setup the Beaglebone Black.
-  %h3 Installing Beaglebone Black drivers.
+  %h3 Installing Beaglebone Black drivers on OSX.
   %p
-    For OSX and Windows some drivers need to be installed, for Linux you only need to setup some udev-rules.
-    You can find all driver related docs in the beaglebone site:
+    For OSX some drivers need to be installed. You can find all driver related docs in the beaglebone site:
   %a{href: "http://beagleboard.org/Getting+Started#step2"} Beaglebone Driver Docs
 
+  %h3 Installing Beaglebone Black drivers on Linux.
+  %p
+    For OSX some drivers need to be installed. You can find all driver related docs in the beaglebone site:
+  %a{href: "http://beagleboard.org/Getting+Started#step2"} Beaglebone Driver Docs
+
+  %h3 Installing Beaglebone Black drivers on Windows.
+  %p
+    For Windows some drivers need to be installed. You can find all driver related docs in the beaglebone site:
+  %a{href: "http://beagleboard.org/Getting+Started#step2"} Beaglebone Driver Docs
+
+  %h2 Creating the SD Card With Debian Linux
   %h3 Finding the SD card disk name
   %ul
     %li Insert your SD card into your host computer
@@ -143,16 +153,13 @@ ir_range_finder: true
         $ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
         $ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb && sudo sync
 
-
-%section.how-to#HowToConnect
   %h2 How to Connect
   %p
-    Connecting to the Beaglebone Black is quite simple when you have everything setup, you can connect using SSH
-    and share the internet connection of your host computer (the computer the BBB is connected to).
+    Connecting to the Beaglebone Black is quite simple once you have everything setup. You can connect using SSH and share the Internet connection of your host computer (the computer the BBB is connected to).
 
   %h4 How to connect on Linux
   %p
-    Save the following script as bbb_sh.sh (or whatever name you preffer) and use this script to ssh into your Beaglebone Black.
+    Save the following script as bbb_sh.sh (or whatever name you prefer) and use this script to ssh into your Beaglebone Black.
 
   :markdown
         #!/bin/bash
@@ -264,7 +271,7 @@ ir_range_finder: true
 
 %section.drivers#Drivers
   %h2 Drivers
-  %p All Cylon.js digital and PWM GPIO drivers listed below should work with the BeagleBone:
+  %p All Cylon.js Digital, Analog & PWM GPIO drivers, as well as i2c drivers listed below should work with the BeagleBone:
 
   .hardware
     %h2 GPIO Drivers
