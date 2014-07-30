@@ -126,7 +126,7 @@ ir_range_finder: true
 
   %h3 Configuring the Beaglebone Black
   %p
-    Now, SSH in to the Beaglebone Black using the `bbb_ssh.sh` script you just created. Once you are connected, save the following script as bbb_net.sh (or whatever name you prefer) ON THE BEAGLEBONE BLACK and use this script to allow your Beaglebone Black to share your computer's Internet connection.
+    Now, SSH in to the Beaglebone Black using the <code>bbb_ssh.sh</code> script you just created. Once you are connected, save the following script into your <code>~/.profile</code> file ON THE BEAGLEBONE BLACK which will allow your Beaglebone Black to share your computer's Internet connection.
 
   :markdown
         #!/bin/bash
@@ -141,10 +141,7 @@ ir_range_finder: true
             fi
         fi
 
-  %p After the script is saved on the BBB run it each time you boot the BBB.
-
-  :markdown
-        $ sh bbb_net.sh
+  %p After the script is saved it will automatically run each time you boot the BBB, so you only have to do this once.
 
   %h3 Login Credentials
   %p After all the previous work and connecting through SSH you are going to need some credentials to login to the Beaglebone Black OS, the creds are as follows:
