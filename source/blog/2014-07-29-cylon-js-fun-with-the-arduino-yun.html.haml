@@ -1,0 +1,43 @@
+---
+page_title_show: true
+title: "Cylon.js Fun With The Arduino Yun"
+page_title: Blog
+date: 2014-07-29
+tags: robots
+author: Edgar Silva
+active_menu_blog: true
+---
+
+:markdown
+  We've been working on adding support for the [Arduino Yun](http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN) for a while, and we've finally released it into the wild. If you are not familiar with this member of the Arduino family, it is a Single Board Computer (SBC) that runs Linux, and that also has a built-in microcontroller. The real fun with the Yun comes in putting the Yun's little [OpenWRT Linux distro](https://openwrt.org/) to use, making it run Node.js + Cylon.js, and then communicate with the Arduino side of the board.
+
+  It is kind of on the long side of setup processes, as far as setup processes for different Single Board Computers (SBC) go, but thankfully it is not that complex, and where's the fun of hacking if you just need to click the 'continue' button, right?
+
+  For projects that require Cylon.js to be run on the board itself, you have been able to use a [Raspberry-Pi](/documentation/platforms/raspberry-pi) or a [Beaglebone-Black](/documentation/platforms/beaglebone) for a while. Now you can also choose to use your Yun to its full extent and run Cylon.js on it as well. Let us not digress any further, we have full platform support and step by step guide here:
+
+  [Cylon.js: Arduino Yun](/documentation/platforms/yun)
+
+  These instructions will help you setup the Yun to run Cylon.js and communicate with the Arduino, all on the same board!
+
+  Here's a small example of the `Hello, World` program of robotics, `blink_led.js`, running on the Linux side of the Arduino Yun using Cylon.js:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyATH0' },
+        device: {name: 'led', driver: 'led', pin: 13},
+
+        work: function(my) {
+          every((1).second(), function(){
+            my.led.toggle();
+          });
+        }
+      }).start();
+
+  Happy hacking :-) !
+
+  Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - [@CylonJS][]
+
+  [@CylonJS]: https://twitter.com/cylonjs
+  [platforms]: http://cylonjs.com/documentation/platforms
