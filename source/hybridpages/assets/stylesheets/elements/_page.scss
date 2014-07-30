@@ -52,7 +52,7 @@
 }
 
 
-//subnav drivers
+/*subnav drivers*/
 
 .marginTopSubnav {
 
@@ -60,11 +60,10 @@
 
 }
 
-
 .subnav-drivers {
 
-  border-top: solid 1px #CECECE;
-  border-bottom: solid 1px #CECECE;
+  border-top: solid 1px $doc-border;
+  border-bottom: solid 1px $doc-border;
   padding: 20px 0;
 
   @media only screen and (max-width: $medium-screen) {
@@ -88,8 +87,6 @@
   }
 
   nav {
-
-    
 
     a {
 
@@ -119,7 +116,6 @@
       color: white;
       background: $cta-color;
     }
-
   }
 }
 
@@ -130,9 +126,9 @@
   position: fixed;
   top: 0;
   z-index: 99;
-  padding: 0 !important;
+  padding: 0;
   background: darken($cta-color, 10);
-  border: none !important;
+  border: none;
   height: 53px;
 
   .app-logo {
@@ -155,6 +151,7 @@
       padding: 0 15px;
     }
   }
+
   h5 {
     @include span-columns(3);
     color: white;
@@ -166,6 +163,7 @@
       font-size: .8em;
     }
   }
+
   nav {
     @include span-columns(9);
     float: left;

@@ -104,7 +104,7 @@
       padding: 10px;
       margin: 0;
       font-size: em(14);
-      border-bottom: solid 1px white;
+      border-bottom: 1px solid $doc-border;
 
       @media only screen and (max-width: $medium-screen) {
 
@@ -135,7 +135,7 @@
 
         @media only screen and (max-width: $medium-screen) {
 
-          border-bottom: 1px solid white;
+          border-bottom: 1px solid $doc-border;
         }
 
 
@@ -154,7 +154,7 @@
 
     dt {
 
-      border-bottom: solid 1px white;
+      border-bottom: solid 1px $doc-border;
 
       &:last-of-type {
         border: none;
@@ -218,6 +218,11 @@
 .container-documentation {
   @include span-columns(9);
   padding-top: 20px;
+
+  .how-to{
+  
+    padding-top: 65px;
+  }
 
   @media only screen and (max-width: $medium-screen) {
 
