@@ -54,63 +54,6 @@
 
 //subnav drivers
 
-.subNavfixed {
-
-  width: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  z-index: 99;
-  padding: 0 !important;
-  background: darken($cta-color, 10);
-  border: none !important;
-  height: 53px;
-
-  .app-logo {
-
-    display: inline-block !important;
-  }
-
-  .container-subnav {
-
-    width: $big-screen;
-    margin: 0 auto;
-
-    @include medium-screen($medium-screen, "") {
-
-      padding: 0 15px;
-    }
-
-    @include small-screen(100%, "") {
-
-      padding: 0 15px;
-    }
-  }
-  h5{
-    @include span-columns(3);
-    color: white;
-    float: left;
-    margin: 15px 0;
-    white-space: nowrap;
-    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
-      font-size: .8em;
-    }
-  }
-  nav {
-    @include span-columns(9);
-    float: left;
-    margin: 15px 0 15px 10px;
-
-    a {
-      color: white !important;
-      margin: 20px 5px !important;
-
-    }
-  }
-
-
-}
-
 .marginTopSubnav {
 
   padding-top: 65px;
@@ -120,8 +63,8 @@
 
 .subnav-drivers {
 
-  border-top: solid 1px #333;
-  border-bottom: solid 1px #333;
+  border-top: solid 1px #CECECE;
+  border-bottom: solid 1px #CECECE;
   padding: 20px 0;
 
   @media only screen and (max-width: $medium-screen) {
@@ -139,8 +82,14 @@
       display: none;
   }
 
+  h5{
+
+    display: none;
+  }
+
   nav {
 
+    
 
     a {
 
@@ -159,6 +108,10 @@
         color: white;
         background: $cta-color;
       }
+
+      &:last-child{
+        display: none;
+      }
     }
 
     .active {
@@ -167,5 +120,64 @@
       background: $cta-color;
     }
 
+  }
+}
+
+.subNavfixed {
+
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  padding: 0 !important;
+  background: darken($cta-color, 10);
+  border: none !important;
+  height: 53px;
+
+  .app-logo {
+
+    display: inline-block;
+  }
+
+  .container-subnav {
+
+    width: $big-screen;
+    margin: 0 auto;
+
+    @include medium-screen($medium-screen, "") {
+
+      padding: 0 15px;
+    }
+
+    @include small-screen(100%, "") {
+
+      padding: 0 15px;
+    }
+  }
+  h5 {
+    @include span-columns(3);
+    color: white;
+    display: block;
+    float: left;
+    margin: 15px 0;
+    white-space: nowrap;
+    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+      font-size: .8em;
+    }
+  }
+  nav {
+    @include span-columns(9);
+    float: left;
+    margin: 15px 0 15px 10px;
+
+    a {
+      color: white;
+      margin: 20px 5pxz;
+
+      &:last-child{
+        display: initial;
+      }
+    }
   }
 }

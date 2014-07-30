@@ -72,13 +72,16 @@
 
   .accordion-docs {
 
-
     @media only screen and (max-width: $medium-screen) {
 
       margin: 0;
     }
 
-
+    @include small-screen(100%, "") {
+      z-index: 1;
+      position: relative;
+      background-color: darken($body-bg-color,5);
+    }
 
     ul {
 
@@ -105,7 +108,6 @@
 
       @media only screen and (max-width: $medium-screen) {
 
-          border-bottom: 2px solid $title-color;
           padding-bottom: 10px;
       }
 
@@ -133,7 +135,7 @@
 
         @media only screen and (max-width: $medium-screen) {
 
-          border-bottom: 2px solid $title-color;
+          border-bottom: 1px solid white;
         }
 
 
