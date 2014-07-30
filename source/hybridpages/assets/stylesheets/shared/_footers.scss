@@ -6,9 +6,9 @@
   position: relative;
 
   .background-footer {
-    background: url(/images/elements/space.png) black center center;
+    background: url(/images/elements/space.jpg) black center center;
     width: 100%;
-    height: 442px;
+    height: 100%;
     position: absolute;
     top: 0;
   }
@@ -24,10 +24,10 @@
     .column-footer {
 
       .img {
-        text-align: center;
         height: 150px;
       }
 
+      text-align: center;
       width: 33%;
       float: left;
       padding: 20px;
@@ -58,10 +58,16 @@
     clear: both;
     border-top: solid 1px $cta-color;
     padding: 20px 0;
+    position: relative;
+    z-index: 0;
 
     .left-side {
 
       float: left;
+      
+      span{
+        vertical-align: text-top;
+      }
 
     }
 

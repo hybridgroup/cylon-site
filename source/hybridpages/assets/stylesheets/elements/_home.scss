@@ -75,43 +75,45 @@
 .triangles {
 
   width: 100%;
+  height: 3.5vw;
+
   .triangle-left-black {
-
     float: left;
-    width: 50%;
-    height: 50px;
+    width: 50%; 
     background: url('/images/elements/triangle_left_black.svg') top left no-repeat;
-
+    height: 100%; 
+    background-size: cover;
   }
 
   .triangle-right-black {
 
     float: right;
     width: 50%;
-    height: 50px;
     background: url('/images/elements/triangle_right_black.svg') right top no-repeat;
-
+    height: 100%; 
+    background-size: cover;
   }
 
   .triangle-left-grey {
 
     float: left;
     width: 50%;
-    height: 50px;
     background: url('/images/elements/triangle_left_grey.svg') top left no-repeat;
     background-color: #000;
-
+    height: 100%; 
+    background-size: cover;
   }
 
   .triangle-right-grey {
 
     float: right;
     width: 50%;
-    height: 50px;
     background: url('/images/elements/triangle_right_grey.svg') right top no-repeat;
     background-color: #000;
+    height: 100%; 
+    background-size: cover;
   }
-}
+ }
 
 .hero-black {
   margin-top: -85px;
@@ -119,6 +121,8 @@
   z-index: 2;
 
   @media only screen and (max-width: $medium-screen) {
+
+    background-size: 99% 100%;
 
     margin-top: -35px;
   }
