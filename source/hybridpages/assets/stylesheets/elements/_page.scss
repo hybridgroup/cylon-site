@@ -64,6 +64,7 @@
   padding: 0 !important;
   background: darken($cta-color, 10);
   border: none !important;
+  height: 53px;
 
   .app-logo {
 
@@ -85,15 +86,25 @@
       padding: 0 15px;
     }
   }
-
-  nav {
-
+  h5{
+    @include span-columns(3);
+    color: white;
     float: left;
-    margin: 20px 0;
+    margin: 15px 0;
+    white-space: nowrap;
+    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+      font-size: .8em;
+    }
+  }
+  nav {
+    @include span-columns(9);
+    float: left;
+    margin: 15px 0 15px 10px;
 
     a {
       color: white !important;
-      margin: 20px 10px !important;
+      margin: 20px 5px !important;
+
     }
   }
 
