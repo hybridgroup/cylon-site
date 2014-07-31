@@ -39,8 +39,6 @@ active_menu_blog: true
   - **robot name:** leave this blank.
   - **robot api host:** IP address of the computer that will be running the Cylon API.
   - **robot api port:** port number for the Cylon API
-  - **publish command:** leave this blank
-  - **message command:** leave this blank
   - **accelerometer:** leave this unchecked.
 
   ![watchbot-config](/images/blog/2014-07-22/watchbot_config.png)
@@ -64,7 +62,7 @@ active_menu_blog: true
         device: { name: 'pebble', driver: 'pebble'  },
 
         work: function(my) {
-          my.pebble.send_notification("Hello Pebble!");
+          my.pebble.sendNotification("Hello Pebble!");
 
           my.pebble.on('button', function(data) {
             console.log("Button pushed: " + data);
