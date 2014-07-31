@@ -166,17 +166,17 @@
   function inViewport(element) {
     if (element.offsetWidth === 0 || element.offsetHeight === 0) return false;
 
-	var height = document.documentElement.clientHeight,
+  var height = document.documentElement.clientHeight,
       rects  = element.getClientRects();
 
-	for (var i = 0, l = rects.length; i < l; i++) {
+  for (var i = 0, l = rects.length; i < l; i++) {
 
     var r           = rects[i],
         in_viewport = r.top > 0 ? r.top <= height : (r.bottom > 0 && r.bottom <= height);
 
     if (in_viewport) return true;
-	}
-	return false;
+  }
+  return false;
   }
 
   // Check support for 3dTransform

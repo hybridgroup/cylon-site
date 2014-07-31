@@ -9,7 +9,7 @@
       #top-header
         .back-index-top
           - if current_page.data.parallaxTop == true
-            .background-header.parallax-top
+            .background-header.parallax-top.parallax-fx
           %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" } 
             = partial "/layouts/partials/menu_fixed"
 
@@ -29,7 +29,6 @@
         = partial "/hybridpages/partials/widgets/catcher"
 
     .app-footer
-      .background-footer.parallax-bottom
       = partial "/layouts/partials/footer"
 
   - if is_blog_article?
