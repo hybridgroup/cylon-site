@@ -44,14 +44,14 @@ ir_range_finder: true
         = link_to "here", "http://arduino.cc/", target: :blank
   .clear
 
-%section.how_to#HowToInstall
+%section.how-to#HowToInstall
   %h2 How To Install
   %p Installing Cylon.js with Arduino support is pretty easy.
   :markdown
         :::ruby
         npm install cylon-firmata
 
-%section.how_to#HowToUse
+%section.how-to#HowToUse
   %h2 How To Use
   %p This small program lets you push a button on the arduino board to turn a LED on or off. In less than 10 lines of code using Cylon.js.
   :markdown
@@ -64,7 +64,7 @@ ir_range_finder: true
                    {name: 'button', driver: 'button', pin: 2}],
 
           work: function(my) {
-            my.button.on('push', function() {my.led.toggle()});
+            every((1).second(), my.led.toggle);
           }
         }).start();
 
@@ -108,11 +108,11 @@ ir_range_finder: true
   :markdown
     Once the avrdude uploader is installed we upload the firmata protocol to
     the arduino, use the arduino serial port address found when you ran
-    `gort scan serial`, or leave it blank to use the default address `/dev/ttyACM0`:
+    `gort scan serial`:
 
   :markdown
         :::bash
-        $ gort firmata upload /dev/ttyACM0
+        $ gort firmata upload /dev/tty.usbmodem1421
 
   %p Now you are ready to connect and communicate with the Arduino using serial port connection
 
@@ -133,7 +133,7 @@ ir_range_finder: true
         :::bash
         $ npm install cylon-firmata
 
-    Once plugged in, use the `gort scan serial` command to find out your connection info and serial port address:
+    Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
 
   :markdown
         :::bash

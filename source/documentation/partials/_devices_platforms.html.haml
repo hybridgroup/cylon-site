@@ -14,6 +14,14 @@
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-firmata", target:"_blank"
 
+  - if current_page.data.sphero_platform == true  
+    %li 
+      %a{:href => "/documentation/platforms/yun"}
+        %p.title Arduino Yun
+        %img{src: "/images/devices/arduino.jpg", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-firmata", target:"_blank"
+
   - if current_page.data.sphero_platform == true
     %li
       %a{:href => "/documentation/platforms/beaglebone"}
