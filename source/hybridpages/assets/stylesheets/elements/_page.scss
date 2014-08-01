@@ -1,5 +1,5 @@
 .page-title-docs {
-  
+
   .w {
 
     .title {
@@ -11,7 +11,7 @@
     .subtitle {
 
       a {
-      
+
         color: $blog-title-color;
       }
     }
@@ -20,16 +20,15 @@
 
 .page-title {
 
-  background: $hero-color;
+  background: #000;
   padding: 25px 0;
-  margin: 10px 0 0 0;
 
   .title {
 
     font-family: $page-title-font;
     font-weight: 700;
     font-size: 33px;
-    color: $hero-title-color;
+    color: $cta-color;
     line-height: 28px;
     clear: both;
     opacity: 0.94;
@@ -38,7 +37,7 @@
 
   .subtitle {
 
-    @include title-font(21px, $hero-subtitle-color);
+    @include title-font(21px, white);
     font-weight: 550;
     opacity: 0.94;
     margin: 0;
@@ -53,7 +52,72 @@
 }
 
 
-//subnav drivers
+/*subnav drivers*/
+
+.marginTopSubnav {
+
+  padding-top: 65px;
+
+}
+
+.subnav-drivers {
+
+  border-top: solid 1px $doc-border;
+  border-bottom: solid 1px $doc-border;
+  padding: 20px 0;
+
+  @media only screen and (max-width: $medium-screen) {
+
+     display: none;
+  }
+
+  .app-logo {
+
+      color: $blog-title-color;
+      font-size: 2em;
+      float: left;
+      font-family: "Russo One", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      margin-top: 5px;
+      display: none;
+  }
+
+  h5{
+
+    display: none;
+  }
+
+  nav {
+
+    a {
+
+      padding: 5px 10px;
+      margin: 20px 2px;
+      color: $color-text-subnav-drivers;
+      font-size: .9em;
+
+      @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+
+        font-size: .7em;
+      }
+
+      &:hover {
+
+        color: white;
+        background: $cta-color;
+      }
+
+      &:last-child{
+        display: none;
+      }
+    }
+
+    .active {
+
+      color: white;
+      background: $cta-color;
+    }
+  }
+}
 
 .subNavfixed {
 
@@ -62,11 +126,14 @@
   position: fixed;
   top: 0;
   z-index: 99;
-  padding: 0 !important;
+  padding: 0;
+  background: darken($cta-color, 10);
+  border: none;
+  height: 53px;
 
   .app-logo {
 
-    display: inline-block !important;
+    display: inline-block;
   }
 
   .container-subnav {
@@ -85,78 +152,29 @@
     }
   }
 
-  nav {
-  
+  h5 {
+    @include span-columns(3);
+    color: white;
+    display: block;
     float: left;
-    margin: 20px 0;
-  }
-
-  a {
-
-    margin: 20px 10px !important;
-  }
-}
-
-.marginTopSubnav {
-
-  padding-top: 65px;
-
-}
-
-
-.subnav-drivers {
-
-  background: $hero-subtitle-color;
-  padding: 20px 0;
-
-  @media only screen and (max-width: $medium-screen) {
-
-     display: none;
-  }
-
-  .app-logo {
-
-      color: $blog-title-color;
-      font-size: 2em;
-      float: left;
-      font-family: "Russo One", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      margin-top: 5px;
-      display: none;
+    margin: 15px 0;
+    white-space: nowrap;
+    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+      font-size: .8em;
+    }
   }
 
   nav {
-
+    @include span-columns(9);
+    float: left;
+    margin: 15px 0 15px 10px;
 
     a {
-
-      padding: 5px 10px;
-      margin: 20px 2px;
-      color: $color-text-subnav-drivers;
-      font-size: .9em;
-
-      @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
-
-        font-size: .7em;
-      }
-
-      &:hover {
-
-        color: white;
-        background: $color-text-subnav-drivers;
-      }
-    }
-
-    .active {
-    
       color: white;
-      background: $color-text-subnav-drivers;
-    }
+      margin: 20px 5pxz;
 
-    a:last-child {
-
-      &:hover {
-
-        background: none;
+      &:last-child{
+        display: initial;
       }
     }
   }

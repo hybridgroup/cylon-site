@@ -22,19 +22,18 @@ digispark_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(2)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   = image_tag "/images/devices/bmp180.jpg", class: "display"
   .info-intro
     %p
-      This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer. The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode. It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability. 
-    %p 
+      This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer. The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode. It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability.
+    %p
       For more information click
       = link_to "here.", "http://www.adafruit.com/products/1603", target: "_blank"
-    
+
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -46,10 +45,10 @@ digispark_platform: true
             device:{name:'bmp180', driver:'bmp180'},
         ...
 
-          
+
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example let you get the temperature, pressure and altitude.
   :markdown
         :::javascript
@@ -102,14 +101,14 @@ digispark_platform: true
     = partial "/documentation/drivers/partials/i2c/events_bmp180"
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
     %p
   .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/i2c/bmp085-180_bb.png", :alt => ""}/ 
-  .clear 
-  
-    
+    %img{:src => "/documentation/drivers/breadboards/i2c/bmp085-180_bb.png", :alt => ""}/
+  .clear
+
+
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.

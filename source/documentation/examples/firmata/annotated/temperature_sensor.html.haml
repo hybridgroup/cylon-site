@@ -1,0 +1,64 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - Temperature sensor"
+page_title: "Example: Temperature sensor"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/temperature_sensor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#example-panel").addClass("active-panel");
+
+:markdown
+  # Temperature sensor
+
+  A quick example of using a temperature sensor with Cylon and Arduino.
+  The program will log to the console when the sensor has hit it's upper and lower limits.
+
+  Before you run this program, make sure you have the `cylon-firmata` module
+  installed.
+
+  First, let's load up Cylon:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+  Now that we have Cylon imported, we can start defining our robot
+
+      :::javascript
+      Cylon.robot({
+
+  Let's define the connection to our Arduino:
+
+      :::javascript
+      connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/cu.usbmodem1451' },
+
+  Now we can define the analog sensor we're going to use (TMP36)
+
+      :::javascript
+      device: { name: 'sensor', driver: 'analogSensor', pin: 0, },
+
+  Now that Cylon knows about the necessary hardware we're going to be using,
+  we read from sensor and calculate temperature every 5 seconds:
+
+      :::javascript
+      work: function(my) {
+        var analogValue = 0;
+
+        every((5).second(), function() {
+          analogValue = my.sensor.analogRead();
+          voltage     = (analogValue * 5.0) / 1024;
+          temperature = (voltage - 0.5) * 100;
+
+          console.log('Current Temperature => ', temperature);
+        });
+      }
+
+  Finally start the program:
+
+      :::javascript
+      }).start();
+

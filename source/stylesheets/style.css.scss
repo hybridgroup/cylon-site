@@ -1,6 +1,16 @@
 @import "../hybridpages/assets/stylesheets/main.scss";
 
 // Custom
+html, body {
+  height: 100%;
+}
+
+.app {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+
 .app-logo {
 
   a {
@@ -8,6 +18,10 @@
     @extend .hidden-text;
     margin-top: 10px;
   }
+}
+
+.section-nav {
+  background: url($header-background-menu-src) no-repeat top center;
 }
 
 .content {
@@ -52,4 +66,17 @@
 .makerland-hide {
 
   display:none;
+}
+
+.column-footer>.img>img {
+  max-width: 144px;
+}
+
+.parallax-container {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }

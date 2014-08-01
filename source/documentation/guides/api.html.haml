@@ -11,8 +11,7 @@ active_menu_docs: true
   :javascript
     $("#guides-panel").addClass("active-panel");
     $("#guides-panel ul li:nth-child(3)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
-
+    
 .api
   :markdown
     # How To Connect with the API
@@ -46,7 +45,7 @@ active_menu_docs: true
     In your scripts, you can set it up like this:
 
         :::javascript
-        Cylon.api(
+        Cylon.api({
           host: '127.0.0.1',
           port: '4321',
 
@@ -58,7 +57,7 @@ active_menu_docs: true
             user: 'admin',
             pass: 'pass'
           }
-        )
+        });
 
     If you run a Cylon script with this code in it, it will start an API server
     listening on `https://127.0.0.1:4321`, that will require basic auth for all

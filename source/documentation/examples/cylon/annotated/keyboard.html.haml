@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 :markdown
   # Keyboard
@@ -39,8 +38,8 @@ active_menu_docs: true
   keyboard and let us know when it's been pressed.
 
       :::javascript
-        work: (my) function() {
-          my.keyboard.on('a', function(key) { console.log "A PRESSED!" });
+        work: function(my) {
+          my.keyboard.on('a', function(key) { console.log("A PRESSED!") });
         }
 
   With that done, let's get started!

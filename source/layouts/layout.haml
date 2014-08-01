@@ -6,36 +6,31 @@
   %body
     = partial "layouts/layout-contents"
     .app
-      .w
-        %header.app-header{role: "banner"}
-          .display
-            = partial "/hybridpages/partials/layouts/app-logo"
+      #top-header
+        .back-index-top
+          - if current_page.data.parallaxTop == true
+            .background-header.parallax-top.parallax-fx
+          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" } 
+            = partial "/layouts/partials/menu_fixed"
 
-          %span.menu
-            = yield_content :menu
+            - if current_page.data.hero == true
+              = partial "/hybridpages/partials/widgets/hero"
 
       - if current_page.data.hero == true
-        = partial "/hybridpages/partials/widgets/hero"
+        = partial "/hybridpages/partials/widgets/hero_black"
 
-      - if current_page.data.social == true
-        = partial "/hybridpages/partials/widgets/social"
-      
-      - if current_page.data.page_title_show == true
-        = partial "/hybridpages/partials/widgets/page_title"      
-      
+      - if current_page.data.page_title_show == true && (current_page.data.layout != 'documentation' || current_page.data.main_nav == true)
+        = partial "/hybridpages/partials/widgets/page_title"
+
       .container
         = yield
-        
-      - if current_page.data.catcher == true
-        = partial "/hybridpages/partials/widgets/catcher" 
 
-    %footer.app-footer
-      = yield_content :footer
+      - if current_page.data.catcher == true
+        = partial "/hybridpages/partials/widgets/catcher"
+
+    .app-footer
+      = partial "/layouts/partials/footer"
 
   - if is_blog_article?
     %script{:src => "/hybridpages/assets/javascript/disqus.js"}
     %script{src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564", type: "text/javascript"}
-
-    
-
-

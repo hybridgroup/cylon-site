@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 :markdown
   # Hand Position
@@ -43,7 +42,7 @@ active_menu_docs: true
       :::javascript
         work: function(my) {
           my.leapmotion.on('hand', function(hand) {
-            console.log(hand.palmX + "," + hand.palmY + "," + hand.palmZ);
+            console.log(hand.palmPosition.join(','));
           });
         }
 

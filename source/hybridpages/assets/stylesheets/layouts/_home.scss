@@ -16,7 +16,7 @@ html {
 
     &:hover {
 
-      background: darken($hero-color, 5);
+      background: darken($cta-color, 5);
     }
   }
 }
@@ -25,6 +25,7 @@ html {
 
   width: $big-screen;
   margin: 0 auto;
+  position: relative;
 
   @include medium-screen($medium-screen, "") {
 
@@ -104,7 +105,7 @@ html {
       }
     }
   }
-  
+
   .content {
 
     &.full {
@@ -115,12 +116,12 @@ html {
 
     h1, h2 {
 
-      color: $title-color;
+      color: $cta-color;
     }
 
     h1 {
 
-      font-size: 35pt;
+      font-size: 28pt;
       padding: 10px 0;
 
     }
@@ -143,7 +144,7 @@ html {
   section.content {
 
     .index-content {
-    
+
       @include margin-not-last-child;
       @include span-columns(8);
     }

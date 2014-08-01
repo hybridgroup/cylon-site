@@ -21,17 +21,16 @@ digispark_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(1)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   =image_tag "/images/devices/blinkm.jpg", class: "display"
   .info-intro
     %p Allows user to control BlinkM RGB LED via i2c interface.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://thingm.com/products/blinkm/", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -70,16 +69,14 @@ digispark_platform: true
     = partial "/documentation/drivers/partials/i2c/events_blinkm"
 
 %section.circuit#Circuit
-  %h2 Circuit 
+  %h2 Circuit
   .description-circuit
     %p
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/i2c/blinkm_bb.png", :alt => ""}/ 
-  .clear 
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/blinkm_bb.png", :alt => ""}/
+  .clear
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
     = partial "documentation/partials/devices_platforms"
-    
-

@@ -17,7 +17,6 @@ ardrone_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#ardrone li:nth-child(1)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   =image_tag "/images/devices/ardrone-flight.jpg", class: "display"
@@ -29,12 +28,12 @@ ardrone_platform: true
       = link_to "here", "http://ardrone2.parrot.com/", target: "_blank"
 
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   %p
     Communication with the ARDrone's flight control interface takes place using a WiFi connection. The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
-  
+
   :markdown
         :::javascript
         var Cylon = require('cylon');
@@ -49,7 +48,7 @@ ardrone_platform: true
 
 %section.how-to#HowToUse
   %h2 How To Use
-  %p 
+  %p
     This example controls an ARDrone to take off, and then land.
 
   :markdown

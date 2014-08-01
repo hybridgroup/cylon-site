@@ -17,15 +17,14 @@ force_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#force li:nth-child(1)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   = image_tag "/images/devices/force.jpg", class: "display"
   .info-intro
-    %p 
+    %p
       -# I put this description but if you need to change it, no problem ;)  *************
-      This module provides an adaptor and drivers for Force.com .It uses the nforce module 
-      =link_to "(https://github.com/kevinohara80/nforce)" , "https://github.com/kevinohara80/nforce" 
+      This module provides an adaptor and drivers for Force.com .It uses the nforce module
+      =link_to "(https://github.com/kevinohara80/nforce)" , "https://github.com/kevinohara80/nforce"
       created by @kevinohara80 thank you!
 
     %p
@@ -33,7 +32,7 @@ force_platform: true
       = succeed "." do
         = link_to "http://www.force.com/", "http://www.salesforce.com/platform/overview/", target: :blank
   .clear
-  
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   -#here we need the connection and device in JS(coming soon ..)  *************

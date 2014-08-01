@@ -3,6 +3,9 @@ $(document).ready(function(){
     var allPanels = $('.accordion-docs > dd').hide();
     
   $('.accordion-docs > dt > a').click(function() {
+    if($(this).parent().next().is(':visible')){
+      return false;
+    }
     allPanels.slideUp();
     $(this).parent().next().slideDown();
     $(".accordion-docs > dt > a > img").removeClass("rotate");

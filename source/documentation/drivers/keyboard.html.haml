@@ -17,7 +17,6 @@ keyboard_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(1)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   =image_tag "/images/devices/keyboard.jpg", class: "display"
@@ -27,7 +26,7 @@ keyboard_platform: true
       For more information click
       = link_to "here", "http://en.wikipedia.org/wiki/Computer_keyboard", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -51,12 +50,12 @@ keyboard_platform: true
           device: {name: 'keyboard', driver: 'keyboard'},
 
           work: function(my) {
-            my.keyboard.on('a', function(key) { 
+            my.keyboard.on('a', function(key) {
               console.log("A PRESSED!");
             });
           }
         }).start();
- 
+
 %section.public-methods
   .commands-api#Events
     = partial "/documentation/drivers/partials/keyboard/events"
