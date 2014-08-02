@@ -66,6 +66,12 @@ pebble_driver: true
       %strong robot api port:
       port number for the Cylon API
     %li
+      %strong publish command:
+      leave this blank
+    %li
+      %strong message command:
+      leave this blank
+    %li
       %strong accelerometer:
       leave this unchecked.
 
@@ -100,7 +106,7 @@ pebble_driver: true
           },
 
           work: function(my) {
-            my.pebble.sendNotification("Hello Pebble!");
+            my.pebble.send_notification("Hello Pebble!");
 
             my.pebble.on('button', function(data) {
               console.log("Button pushed: " + data);
