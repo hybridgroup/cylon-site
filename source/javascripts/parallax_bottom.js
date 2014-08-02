@@ -1,4 +1,8 @@
 $(document).ready(function(){
 	$('.parallax-bottom').plaxify({"xRange":10, "yRange":10, "invert":true});
-    $.plax.enable();
+	if ($('.parallax-top').length) {
+		$.plax.enable();
+	} else {
+		$.plax.enable({ "activityTarget" : $('.app-footer') });
+	}
 });
