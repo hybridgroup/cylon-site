@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    var allPanels = $('.accordion-docs > dd').hide();
+  var allPanels = $('.accordion-docs > dd').hide();
     
   $('.accordion-docs > dt > a').click(function() {
     if($(this).parent().next().is(':visible')){
@@ -14,6 +14,6 @@ $(document).ready(function(){
     return false;
   });
 
-  $(".active-panel").slideDown();
+  $(".active-panel").show();
 
 });
