@@ -2,9 +2,9 @@
   %a{href: '/'} Cylon
 
 -content_for :logo_subtitle do
-  .main   
+  .main
 
--content_for :menu do 
+-content_for :menu do
   - if current_page.data.active_menu_docs == true
     = link_to "Docs", "/documentation", (menu_item("documentation")), class: "active"
   -else
@@ -14,12 +14,12 @@
     = link_to "Platforms", "/documentation/platforms", (menu_item("documentation/platforms")), class: "active"
   -else
     = link_to "Platforms", "", (menu_item("documentation/platforms"))
-  
+
   - if current_page.data.active_menu_videos == true
     = link_to "Videos", "/videos", (menu_item("videos")), class: "active"
   -else
     = link_to "Videos", "", (menu_item("videos"))
-  
+
   - if current_page.data.active_menu_blog == true
     = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
   -else
@@ -38,18 +38,3 @@
     %a.twitter-follow-button{"data-dnt" => "true", "data-show-count" => "false", :href => "https://twitter.com/cylonjs"} Follow @Cylon.jsio
     :javascript
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
--content_for :footer do 
-  .w
-    .copyright
-      .left-side
-        &copy; Copyright 2012-2014
-        %a#THG-logo{href: "http://hybridgroup.com", target: "_blank"}
-          %img{src: "/images/elements/THG_logo.png", alt: "The Hybrid Group"}/ 
-      .right-side
-        %a{:href => "#top"} Top
-      .clear 
-
-
-
-

@@ -29,8 +29,7 @@ pinoccio_power_driver: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(15)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(17)").addClass("active-link");
 
 %section.intro
   = image_tag "/images/devices/pinoccio.jpg", class: "display"
@@ -44,7 +43,7 @@ pinoccio_power_driver: true
 
   .clear
 
-%section.how_to#HowToInstall
+%section.how-to#HowToInstall
   %h2 How To Install
   %p Installing Cylon.js with Pinoccio support is pretty easy.
   :markdown

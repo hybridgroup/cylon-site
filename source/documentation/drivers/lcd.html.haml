@@ -20,17 +20,16 @@ raspberry_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(4)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   = image_tag "/images/devices/lcd.jpg", class: "display"
   .info-intro
     %p Used for display characters.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://en.wikipedia.org/wiki/Liquid-crystal_display", target: "_blank"
   .clear
-     
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -72,14 +71,13 @@ raspberry_platform: true
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/i2c/lcd_bb.png", :alt => ""}/ 
-  .clear 
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/lcd_bb.png", :alt => ""}/
+  .clear
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
     = partial "documentation/partials/devices_platforms"
-    

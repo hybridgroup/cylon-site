@@ -1,37 +1,95 @@
 .app-footer {
 
-  @include title-font(12px, $footer-text-color);
-  line-height: 39px;
-  background: $hero-color;
-  font-weight: normal;
+  background: black;
+  color: white;
+  margin-top: 20px;
+  position: relative;
 
-  a {
-  
-    @extend .hero-anchors;
+  .background-footer {
+    background: url(/images/elements/space.jpg) black center center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
   }
-}
 
-.copyright {
-	
-	clear: both;
-	
-	.left-side {
+  .frameworks {
 
-		float: left;
-	}	
+    padding: 50px 0;
 
-	.right-side {
+    h4 {
+      color: white;
+    }
 
-		float: right;
-		text-align: right;
+    .column-footer {
 
-		a {
+      .img {
+        height: 150px;
+      }
 
-			color: $footer-text-color;
-			&:hover {
+      text-align: center;
+      width: 33%;
+      float: left;
+      padding: 20px;
 
-				color: darken($footer-text-color,5);
-			}
-		}
-	}
+      .button {
+
+        background: black;
+        border: none;
+        float: right;
+        a {
+          color: white;
+        }
+        &:hover {
+
+          background: $cta-color;
+        }
+      }
+
+      @media only screen  and (max-width: $medium-screen) {
+
+        @include span-columns(12);
+      }
+    }
+  }
+
+  .copyright {
+
+    clear: both;
+    border-top: solid 1px $cta-color;
+    padding: 20px 0;
+    position: relative;
+    z-index: 0;
+
+    .left-side {
+
+      float: left;
+      
+      span{
+        vertical-align: text-top;
+      }
+
+    }
+
+    .right-side {
+
+      float: right;
+      text-align: right;
+
+      a {
+
+        color: $footer-text-color;
+
+        p {
+          text-align: center;
+          margin: 0;
+        }
+
+        &:hover {
+
+          color: darken($footer-text-color,5);
+        }
+      }
+    }
+  }
 }

@@ -17,8 +17,7 @@ rapiro_driver: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(16)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(18)").addClass("active-link");
 
 %section.intro
   =image_tag "/images/devices/rapiro.jpg", class: "display"
@@ -77,7 +76,7 @@ rapiro_driver: true
   %p
   :markdown
     If you are connected from a Raspberry Pi to the Rapiro board, it will appear as serial port `/dev/ttyACM0`.
-    You can find out by running the `gort scan serial` command.
+    You can find out by running [Gort](http://gort.io)'s `gort scan serial` command.
 
 
 %section.drivers#Drivers

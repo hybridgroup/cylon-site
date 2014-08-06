@@ -11,7 +11,6 @@ active_menu_docs: true
 -content_for :js_accordeon do
   :javascript
     $("#example-panel").addClass("active-panel");
-    $(".accordion-docs dt:nth-child(13) a:nth-child(2) img").addClass("rotate");
 
 .example
   :markdown
@@ -47,9 +46,8 @@ active_menu_docs: true
                 msg += "Bucks: " + data.sobject.Bucks__c + ",";
                 msg += "SM_Id: " + data.sobject.Id;
                 console.log(msg);
-                me.master.findRobot(data.sobject.Sphero_Name__c, function(err, spheroBot) {
-                  spheroBot.react(spheroBot.devices.sphero);
-                });
+                var spheroBot = Cylon.robots[data.sobject.Sphero_Name__c];
+                spheroBot.react(spheroBot.devices.sphero);
               });
             });
           };
@@ -88,9 +86,8 @@ active_menu_docs: true
                 spheroName: "" + me.name,
                 bucks: "" + (me.totalBucks++)
               });
-              me.master.findRobot('salesforce', function(err, sf) {
-                sf.devices.salesforce.push('SpheroController', 'POST', data);
-              });
+              var sf = Cylon.robots['salesforce'];
+              sf.devices.salesforce.push('SpheroController', 'POST', data);
             });
           };
 

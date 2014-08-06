@@ -22,8 +22,7 @@ direct_pin_driver: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(5)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(7)").addClass("active-link");
 
 %section.intro
   = image_tag "/images/devices/digispark.jpg", class: "display"
@@ -107,7 +106,7 @@ direct_pin_driver: true
         :::bash
         $ gort digispark upload [littlewire]
 
-    Once plugged in, use the Gort´s  `gort scan usb` command to verify your connection info:
+    Once plugged in, run [Gort](http://gort.io)'s `gort scan usb` command to verify your connection info:
 
         :::bash
         $ gort scan usb
@@ -146,7 +145,7 @@ direct_pin_driver: true
         :::bash
         $ gort digispark upload [littlewire]
 
-    Once plugged in, use Gort´s `gort scan usb` command to verify your connection info:
+    Once plugged in, run [Gort](http://gort.io)'s `gort scan usb` command to verify your connection info:
 
         :::bash
         $ gort scan usb

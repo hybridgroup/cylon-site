@@ -1,0 +1,55 @@
+---
+title: Audio with Cylon.js
+author: The Hybrid Group
+page_title: Platforms
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Audio
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-audio' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-audio/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_nodriver_platform: true
+active_menu_platforms: true
+subnavjs: true
+
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#platform-panel").addClass("active-panel");
+    $("#platform-panel ul li:nth-child(4)").addClass("active-link");
+
+%section.intro
+  = image_tag "/images/devices/audio.jpg", class: "display"
+  .info-intro
+    %p This is the Cylon adaptor for Audio reproduction capabilities.
+  .clear
+
+%section.how-to#HowToInstall
+  %h2 How To Install
+  %p  Install the module with:
+  :markdown
+        :::bash
+        $ npm install cylon-audio 
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  %p Using the cylon-audio module is pretty easy, pretty much just install the npm module and you are good to go, use it as you would any other device passing along the audio you wish to reproduce. See the example below for further details.
+
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'audio', adaptor: 'audio' },
+          device: {name: 'audio', driver: 'audio'},
+
+          work: function(my) {
+
+            my.audio.on('playing', function(song){
+              console.log('Playing this nice tune: "' + song + '"');
+            });
+
+            // You can also pass a string with a full or relative path here,
+            my.audio.play('./audio_samples/audio-sample.mp3');
+          }
+        }).start(); 
+

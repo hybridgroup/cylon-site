@@ -1,8 +1,11 @@
 $(document).ready(function(){
 
-    var allPanels = $('.accordion-docs > dd').hide();
+  var allPanels = $('.accordion-docs > dd').hide();
     
   $('.accordion-docs > dt > a').click(function() {
+    if($(this).parent().next().is(':visible')){
+      return false;
+    }
     allPanels.slideUp();
     $(this).parent().next().slideDown();
     $(".accordion-docs > dt > a > img").removeClass("rotate");
@@ -11,6 +14,6 @@ $(document).ready(function(){
     return false;
   });
 
-  $(".active-panel").slideDown();
+  $(".active-panel").show();
 
 });

@@ -1,5 +1,5 @@
 .important-title {
-  
+
   color: $hero-title-color;
   background: $title-color;
   text-align: center;
@@ -17,7 +17,6 @@
 
   list-style: none !important;
   margin: 0;
-  text-align: center;
 
   li {
 
@@ -29,7 +28,8 @@
 
     display: inline-block;
     width: 19%;
-    padding: 10px;
+    margin: 20px 0;
+    text-align: center;
 
     img {
 
@@ -39,98 +39,219 @@
       }
     }
 
-    .title {
+    a {
 
-      a {
-
-        color: $hero-title-color;
-        background: $title-color;
+      p.title {
+        color: $lesser-title-color;
         padding:10px;
-        color: $hero-title-color;
         display: block;
         width: 100%;
-
-        &:hover {
-
-          background: darken($title-color, 5);
-        }
       }
+      &:hover p.title {
+        color: $title-color;
+      }
+      
     }
 
     .repo {
 
       a {
 
-        color: $hero-title-color;
-        background: $hero-subtitle-color;
-        padding:10px;
+        color: white;
+        background: url(/images/elements/repo_icon.svg) center center no-repeat;
+        padding: 20px 0;
         display: block;
         width: 100%;
 
         &:hover {
-
-          background: darken($hero-subtitle-color, 5);
+          background: url(/images/elements/repo_icon_hover.svg) center center no-repeat;
+          color: $hero-link-color;
         }
       }
     }
   }
 }
 
+.triangles {
+
+  width: 100%;
+  height: 3vw;
+
+  .triangle-left-black {
+    float: left;
+    width: 50%; 
+    background: url('/images/elements/triangle_left_black.svg') top left no-repeat;
+    height: 100%; 
+    background-size: cover;
+  }
+
+  .triangle-right-black {
+
+    float: right;
+    width: 50%;
+    background: url('/images/elements/triangle_right_black.svg') right top no-repeat;
+    height: 100%; 
+    background-size: cover;
+  }
+
+  .triangle-left-grey {
+
+    float: left;
+    width: 50%;
+    background: url('/images/elements/triangle_left_grey.svg') top left no-repeat;
+    background-color: #000;
+    height: 100%; 
+    background-size: cover;
+  }
+
+  .triangle-right-grey {
+
+    float: right;
+    width: 50%;
+    background: url('/images/elements/triangle_right_grey.svg') right top no-repeat;
+    background-color: #000;
+    height: 100%; 
+    background-size: cover;
+  }
+ }
+
+.hero-black {
+  top: -85px;
+  position: relative;
+  z-index: 2;
+
+  @media only screen and (max-width: $medium-screen) {
+
+    background-size: 99% 100%;
+
+    margin-top: -35px;
+  }
+
+  .hero-black-container {
+      background: #000;
+      padding: 20px 0 40px 0;
+      color: $body-bg-color;
+
+      h2 {
+        color: $cta-color;
+      }
+      .CodeRay {
+        background-color: #000;
+        border: 1px solid $body-bg-color;
+        color: $cta-color;
+      }
+      code, pre {
+        background: #000;
+        border: 1px solid $body-bg-color;
+        color: $cta-color;
+      }
+  }
+}
+
 .hero {
 
+
   margin: 15px 0 0 0;
-  background: $hero-color;
-  padding: 25px 0;
+  padding: 20px 0 10px 0;
 
   @include small-screen {
 
     margin-top: -8px;
   }
 
-  .title {
+  .container {
 
-    @include title-font(47px, $hero-title-color);
-    line-height: 54px;
-    width: 100%;
-    clear: both;
-    opacity: 0.94;
-    margin: 0;
+      @include outer-container;
+  }
 
-    @include small-screen {
 
-      font-size: 23px;
-      line-height: 27px;
-      padding: 0;
-
-      br {
-
-        display: none;
-      }
+  .right-side {
+    @include span-columns(5);
+    img {
+      width: 100%;
+      margin-top: 35px;
     }
+    @media only screen and (max-width: $medium-screen) {
 
-    @include medium-screen {
+      display: none;
+    }
+    @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
 
-      font-size: 33px;
-      line-height: 42px;
+      img {
+        width: 80%;
+        margin-top: 15px;
+      }
     }
   }
 
-  .subtitle {
+  .left-side {
 
-    @include title-font(24px, $hero-subtitle-color);
-    font-weight: 550;
-    opacity: 0.94;
-    margin: 0;
-    line-height: 36px;
-    margin-top: 3px;
+    @include span-columns(7);
+    @media only screen and (max-width: $medium-screen) {
 
-    @include small-screen {
-
-      font-size: 18px;
-      line-height: 22px;
-      margin-top: 4px;
-      padding: 0;
+      @include span-columns(12);
+      text-align: center;
     }
+
+    .title {
+
+      @include title-font(35px, white);
+      line-height: 40px;
+      width: 100%;
+      clear: both;
+      opacity: 0.94;
+      margin: 0;
+      @media only screen and (max-width: $medium-screen) {
+
+        font-size: 20pt !important;
+      }
+
+      @include small-screen {
+
+        font-size: 23px;
+        line-height: 27px;
+        padding: 0;
+
+        br {
+
+          display: none;
+        }
+      }
+
+      @include medium-screen {
+
+        font-size: 33px;
+        line-height: 42px;
+      }
+    }
+
+    .subtitle {
+
+      @media only screen and (max-width: $medium-screen) {
+
+        @include title-font(15px, white);
+      }
+
+      @include title-font(20px, white);
+      font-weight: 550;
+      opacity: 0.94;
+      margin: 0;
+      line-height: 36px;
+      margin-top: 3px;
+
+      @include small-screen {
+
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 4px;
+        padding: 0;
+      }
+    }
+  }
+
+  a.cta {
+
+    @extend .cta;
   }
 
   a {
@@ -142,8 +263,7 @@
 .social {
 
   line-height: 0;
-  padding: 10px 0;
-  background: $social-catcher-background-color;
+  padding: 20px 0;
 
   .twitter-follow-button {
 
@@ -193,13 +313,7 @@
   }
 }
 
-.hero {
 
-  a.cta {
-
-    @extend .cta;
-  }
-}
 
 .catcher {
 
@@ -213,7 +327,7 @@
   }
 
   .cta {
-  
+
     margin-top: 8px;
   }
 }

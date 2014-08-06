@@ -20,17 +20,16 @@ raspberry_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(6)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   = image_tag "/images/devices/mpu6050.jpg", class: "display"
   .info-intro
     %p The MPU-6050 is a serious little piece of motion processing tech! By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ (DMP™) capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts.
-    %p 
+    %p
       For more information click
       = link_to "here.", "http://playground.arduino.cc/Main/MPU-6050", target: "_blank"
   .clear
-   
+
 %section.how_to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -58,7 +57,7 @@ raspberry_platform: true
               my.mpu6050.getMotionAndTemp(function(data) {
                 Logger.info(data);
               });
-              
+
             });
           }
         }).start();
@@ -74,14 +73,13 @@ raspberry_platform: true
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/i2c/mpu6050_bb.png", :alt => ""}/ 
-  .clear 
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/mpu6050_bb.png", :alt => ""}/
+  .clear
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
     = partial "documentation/partials/devices_platforms"
-    

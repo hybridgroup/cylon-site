@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog_sensor_with_led"
+page_title: "Example: analog_sensor_with_led"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-beaglebone/tree/master/examples/analog_sensor_with_led' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#example-panel").addClass("active-panel");
+
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'beaglbone', adaptor: 'beaglebone' },
+          devices: [
+            { name: 'sensor', driver: 'analogSensor', pin: "P9_33" },
+            { name: 'led', driver: 'led', pin: "P9_14" },
+          ],
+          work: function(my) {
+            every((0.1).seconds(), function() {
+              brightness = my.sensor.analogRead().fromScale(0, 1799).toScale(0, 255) | 0;
+              Cylon.Logger.info('brightness => ', brightness);
+              my.led.brightness(brightness)
+            });
+          }
+        }).start();
+
+

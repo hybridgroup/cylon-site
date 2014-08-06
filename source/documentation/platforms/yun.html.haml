@@ -31,12 +31,10 @@ ir_range_finder: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(2)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(3)").addClass("active-link");
 
 %section.intro
   = image_tag "/images/devices/arduino-yun.jpg", class: "display"
-  %h2 Arduino YUN
   .info-intro
     %p
       The Arduino Yún is a microcontroller board based on the ATmega32u4 (datasheet) and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun.
@@ -45,14 +43,14 @@ ir_range_finder: true
       = link_to 'here', 'http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN'
   .clear
 
-%section.how_to#HowToInstall
+%section.how-to#HowToInstall
   %h2 How To Install
   %p Installing Cylon.js with Arduino YUN support is pretty easy if you are just going to use it as an Arduino UNO.
   :markdown
         :::ruby
         npm install cylon-firmata
 
-%section.how_to#HowToUse
+%section.how-to#HowToUse
   %h2 How To Use
   %p This small program lets you push a button on the arduino board to turn a LED on or off. In less than 10 lines of code using Cylon.js.
   :markdown

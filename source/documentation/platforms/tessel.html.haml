@@ -38,21 +38,20 @@ tessel_servo_module: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(21)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(24)").addClass("active-link");
 
 %section.intro
-  = image_tag "/images/tessel.jpg", class: "display"
+  = image_tag "/images/devices/tessel.jpg", class: "display"
   .info-intro
     %p Tessel runs JavaScript—no server necessary. Just like web or mobile development, use your own IDE and libraries to program physical applications.
 
-  :markdown
-    Tessel supports packages from `npm` to leverage the growing Node.js community and capabilities. That's HTTP, Twitter, web server, color, and async support right out of the box. Uploading new code is as easy as `tessel push`!
+    :markdown
+      Tessel supports packages from `npm` to leverage the growing Node.js community and capabilities. That's HTTP, Twitter, web server, color, and async support right out of the box. Uploading new code is as easy as `tessel push`!
 
-  %p
-    For more info about the Tessel platform click
-    = succeed "." do
-      = link_to "here", "http://tessel.io/", target: :blank
+    %p
+      For more info about the Tessel platform click
+      = succeed "." do
+        = link_to "here", "http://tessel.io/", target: :blank
 
   .clear
 

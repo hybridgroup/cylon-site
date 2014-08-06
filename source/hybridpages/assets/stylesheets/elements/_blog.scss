@@ -58,7 +58,7 @@
       .blue {
 
         padding: 5px;
-        background-color: $blog-date-top-color;
+        background-color: black;
 
         .month {
 
@@ -131,7 +131,7 @@
 
     vertical-align: top;
     margin-bottom: 20px;
-    
+
     a {
 
       color: black;
@@ -156,7 +156,7 @@
 
       list-style: none;
       margin: 0;
-    } 
+    }
 
     li {
 
@@ -166,7 +166,7 @@
 
       &:hover {
 
-        background: $hero-color;
+        background: $cta-color;
 
         a {
 
@@ -174,7 +174,7 @@
           text-decoration: none;
         }
       }
-    }    
+    }
   }
 
   .network {
@@ -208,7 +208,7 @@
 @include tiny-screen {
 
   .twitter-share-button {
-  
+
     margin-bottom: 10px;
   }
 }

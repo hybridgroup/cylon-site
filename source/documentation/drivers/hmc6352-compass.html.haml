@@ -20,17 +20,16 @@ raspberry_platform: true
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(3)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
 
 %section.intro
   =image_tag "/images/devices/hmc6352-compass.jpg", class: "display"
-  .info-intro  
+  .info-intro
     %p Allows user to read heading from HMC6352 Digital Compass via i2c interface.
-    %p 
+    %p
       For more information click
       = link_to "here.", "https://www.sparkfun.com/products/7915", target: "_blank"
   .clear
-  
+
 %section.how-to#HowToConnect
   %h2 How To Connect
   :markdown
@@ -43,7 +42,7 @@ raspberry_platform: true
 
           device:
             {name: 'hmc6352', driver: 'hmc6352'},
-        ... 
+        ...
 
 %section.how-to#HowToUse
   %h2 How To Use
@@ -78,13 +77,12 @@ raspberry_platform: true
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
-    %p 
-  .image-circuit 
-    %img{:src => "/documentation/drivers/breadboards/i2c/hmc6352_bb.png", :alt => ""}/ 
-  .clear 
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/hmc6352_bb.png", :alt => ""}/
+  .clear
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
     = partial "documentation/partials/devices_platforms"
-   
