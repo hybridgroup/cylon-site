@@ -31,12 +31,10 @@ ir_range_finder: true
 -content_for :js_accordeon do
   :javascript
     $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(2)").addClass("active-link");
-    $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
+    $("#platform-panel ul li:nth-child(3)").addClass("active-link");
 
 %section.intro
   = image_tag "/images/devices/arduino-yun.jpg", class: "display"
-  %h2 Arduino YUN
   .info-intro
     %p
       The Arduino Yún is a microcontroller board based on the ATmega32u4 (datasheet) and the Atheros AR9331. The Atheros processor supports a Linux distribution based on OpenWrt named OpenWrt-Yun.

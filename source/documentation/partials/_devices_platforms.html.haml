@@ -22,6 +22,14 @@
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-firmata", target:"_blank"
 
+  - if current_page.data.tessel_platform == true
+    %li
+      %a{:href => "/documentation/platforms/audio"}
+        %p.title Audio
+        %img{src: "/images/devices/audio.jpg", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-audio", target:"_blank"
+
   - if current_page.data.beaglebone_platform == true
     %li
       %a{:href => "/documentation/platforms/beaglebone"}
@@ -164,6 +172,14 @@
         %img{src: "/images/devices/sphero.jpg", style: "width: 90%"}
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-sphero", target:"_blank"
+
+  - if current_page.data.tessel_platform == true
+    %li
+      %a{:href => "/documentation/platforms/speech"}
+        %p.title Speech
+        %img{src: "/images/devices/espeak.png", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-speech", target:"_blank"
 
   - if current_page.data.tessel_platform == true
     %li

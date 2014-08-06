@@ -12,7 +12,7 @@ layout: home
 
 hero_title: "JavaScript Robotics, By Your Command"
 
-hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>22 different platforms</a>"
+hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>24 different platforms</a>"
 
 
 catcher_phrase: Ready to build the next big thing with JavaScript?
@@ -100,6 +100,13 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
         %img{src: "/images/devices/arduino-yun.jpg", style: "width: 90%"}
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-firmata", target:"_blank"
+
+    %li
+      %a{:href => "/documentation/platforms/audio"}
+        %p.title Audio
+        %img{src: "/images/devices/audio.jpg", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-audio", target:"_blank"
 
     %li
       %a{:href => "/documentation/platforms/beaglebone"}
@@ -225,6 +232,13 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
         %img{src: "/images/devices/sphero.jpg", style: "width: 90%"}
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-sphero", target:"_blank"
+
+    %li
+      %a{:href => "/documentation/platforms/speech"}
+        %p.title Speech
+        %img{src: "/images/devices/espeak.png", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-speech", target:"_blank"
 
     %li
       %a{:href => "/documentation/platforms/tessel"}
