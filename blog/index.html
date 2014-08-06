@@ -1,17 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta content="Cylon.js blog entries." name="description">
-<meta name="author">
-<title>Blog</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="Cylon.js blog entries." name="description">
+    <meta name="author">
+    <title>Blog</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,31 +35,43 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a href="/documentation" class="item">Docs</a>
+                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a class="active" href="/blog">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a class="active" href="/blog">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
+        </div>
+      </div>
       <div class="page-title">
         <div class="w">
           <h1 class="title">Blog</h1>
@@ -67,7 +83,8 @@
           <div class="articles">
             <div class="article">
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jul
@@ -90,7 +107,8 @@
                       by Edgar Silva
                     </div>
                   </div>
-                </header><p>We've been working on adding support for the <a href="http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN">Arduino Yun</a> for a while, and we've finally released it into the wild. If you are not familiar with this member of the Arduino family, it is a Single Board Computer (SBC) that runs Linux, and that also has a built-in microcontroller. The real fun with the Yun comes in putting the Yun's little <a href="https://openwrt.org/">OpenWRT Linux distro</a> to use, making it run Node.js + Cylon.js, and then communicate with the Arduino side of the board.</p>
+                </header>
+                <p>We've been working on adding support for the <a href="http://arduino.cc/en/Main/ArduinoBoardYun?from=Products.ArduinoYUN">Arduino Yun</a> for a while, and we've finally released it into the wild. If you are not familiar with this member of the Arduino family, it is a Single Board Computer (SBC) that runs Linux, and that also has a built-in microcontroller. The real fun with the Yun comes in putting the Yun's little <a href="https://openwrt.org/">OpenWRT Linux distro</a> to use, making it run Node.js + Cylon.js, and then communicate with the Arduino side of the board.</p>
                 
                 <p>It is kind of on the long side of setup processes, as far as setup processes for different Single Board Computers (SBC) go, but thankfully it is not that complex, and where's the fun of hacking if you just need to click the 'continue' button, right?</p>
                 
@@ -122,12 +140,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jul
@@ -150,7 +169,8 @@ Cylon.robot({
                       by Javier Cervantes
                     </div>
                   </div>
-                </header><p>Have you ever wanted to control robots from your wrist? This is now possible, thanks to Cylon.js support for the <a href="https://getpebble.com/">Pebble</a> smart watch.</p>
+                </header>
+                <p>Have you ever wanted to control robots from your wrist? This is now possible, thanks to Cylon.js support for the <a href="https://getpebble.com/">Pebble</a> smart watch.</p>
                 
                 <p>Using Cylon and a Pebble app that we have created called <a href="http://watchbot.io/">WatchBot</a> app, you can very easily send notifications, receive events, and access accelerometer data.</p>
                 
@@ -179,7 +199,7 @@ Cylon.robot({
                 Pebble app. Once there, configure the following settings:</p>
                 
                 <ul>
-<li>
+                  <li>
 <strong>robot name:</strong> leave this blank.</li>
                   <li>
 <strong>robot api host:</strong> IP address of the computer that will be running the Cylon API.</li>
@@ -192,7 +212,8 @@ Cylon.robot({
                   <li>
 <strong>accelerometer:</strong> leave this unchecked.</li>
                 </ul>
-<p><img alt="watchbot-config" src="/images/blog/2014-07-22/watchbot_config.png"></p>
+                
+                <p><img alt="watchbot-config" src="/images/blog/2014-07-22/watchbot_config.png"></p>
                 
                 <h3 id="examples">Examples</h3>
                 
@@ -261,12 +282,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jul
@@ -289,7 +311,8 @@ Cylon.robot({
                       by Edgar Silva
                     </div>
                   </div>
-                </header><p>We are happy to announce support for the <a href="http://www.intel.com/content/www/us/en/intelligent-systems/galileo/galileo-overview.html">Intel Galileo</a> an Arduino compatible microcontroller/SBC (Single Board Computer).</p>
+                </header>
+                <p>We are happy to announce support for the <a href="http://www.intel.com/content/www/us/en/intelligent-systems/galileo/galileo-overview.html">Intel Galileo</a> an Arduino compatible microcontroller/SBC (Single Board Computer).</p>
                 
                 <p>The Galileo has the advantage of running on a Intel Quark SoC X1000 application processor, a 32-bit Intel Pentium brand system on a chip (SoC), and being able to run a bigger Linux image that lets you access the full Linux distro.</p>
                 
@@ -303,13 +326,14 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                   <a href="/blog/tags/sbc/">SBC</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jul
@@ -332,7 +356,8 @@ Cylon.robot({
                       by Edgar Silva
                     </div>
                   </div>
-                </header><p>We are excited to announce support for the <a href="https://developer.nest.com/">Nest</a>
+                </header>
+                <p>We are excited to announce support for the <a href="https://developer.nest.com/">Nest</a>
                 Thermostat. With this new set of adaptors and drivers, you can allow your JavaScript robots, microcontrollers or single-board computers to interact with your Nest-supported smart home devices using Cylon.js.</p>
                 
                 <p>We currently have two Nest-related drivers supported, <code>nest-thermostat</code> and
@@ -441,12 +466,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jun
@@ -469,7 +495,8 @@ Cylon.robot({
                       by Adrian Zankich
                     </div>
                   </div>
-                </header><p>We are happy to announce full support for the <a href="https://tessel.io/">Tessel</a>
+                </header>
+                <p>We are happy to announce full support for the <a href="https://tessel.io/">Tessel</a>
                 JavaScript microcontroller! The Tessel is a new JavaScript powered
                 microcontroller which runs your JavaScript programs directly on the board, so
                 there's no need for an external PC to control the board. It features 4 build
@@ -487,7 +514,7 @@ Cylon.robot({
                 <p>We currently support the following Modules:</p>
                 
                 <ul>
-<li><a href="https://tessel.io/modules#module-accelerometer">Accelerometer</a></li>
+                  <li><a href="https://tessel.io/modules#module-accelerometer">Accelerometer</a></li>
                   <li><a href="https://tessel.io/modules#module-ambient">Ambient Light + Sound</a></li>
                   <li><a href="https://tessel.io/modules#module-audio">Audio</a></li>
                   <li><a href="https://tessel.io/modules#module-ble">Bluetooth Low Energy</a></li>
@@ -498,12 +525,13 @@ Cylon.robot({
                   <li><a href="https://tessel.io/modules#module-relay">Relay</a></li>
                   <li><a href="https://tessel.io/modules#module-servo">Servo</a></li>
                 </ul>
-<p>With more on the way!</p>
+                
+                <p>With more on the way!</p>
                 
                 <p>Getting started with Cylon.js is as easy as:</p>
                 
                 <ul>
-<li>Follow the Tessel install <a href="http://start.tessel.io/install">instructions</a>
+                  <li>Follow the Tessel install <a href="http://start.tessel.io/install">instructions</a>
 </li>
                   <li><code>$ npm install -g cylon-cli</code></li>
                   <li><code>$ cylon generate tessel my-tessel-project</code></li>
@@ -511,7 +539,8 @@ Cylon.robot({
                   <li><code>$ npm install</code></li>
                   <li><code>$ tessel run blink.js</code></li>
                 </ul>
-<p>The supplied <code>blink.js</code> example uses the one of the Tessel's built-in LEDs.</p>
+                
+                <p>The supplied <code>blink.js</code> example uses the one of the Tessel's built-in LEDs.</p>
                 
                 <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -610,12 +639,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jun
@@ -638,7 +668,8 @@ Cylon.robot({
                       by Andrew Stewart
                     </div>
                   </div>
-                </header><p>Cylon 0.15.0 has just been released, as part of our run-up to <code>1.0.0</code>. It has
+                </header>
+                <p>Cylon 0.15.0 has just been released, as part of our run-up to <code>1.0.0</code>. It has
                 a number of small changes, mainly effecting how modules are written. Don't
                 worry, there's still a lot of changes for end-users as well!</p>
                 
@@ -646,7 +677,7 @@ Cylon.robot({
                 <a href="http://github.com/hybridgroup/cylon/compare/v0.14.0...HEAD">compare view</a> on GitHub.</p>
                 
                 <ul>
-<li>
+                  <li>
                     <p><strong>Better halting:</strong> - Halting Cylon programs with Ctrl-C should now be more
                 reliable, with a forced quit if the program can't gracefully stop within
                 a couple seconds.</p>
@@ -695,7 +726,8 @@ Cylon.robot({
                 the Cylon.Utils namespace.</p>
                   </li>
                 </ul>
-<h2 id="contributors">Contributors</h2>
+                
+                <h2 id="contributors">Contributors</h2>
                 
                 <p>A huge thanks to our contributors who made this release possible. And a special
                 thanks to new contributors <a href="https://github.com/andrew">Andrew Nesbitt</a>, <a href="https://github.com/chrisbodhi">Chris Boette</a>, and <a href="https://github.com/fabito">Fábio
@@ -714,12 +746,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -742,7 +775,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We were on our way home from <a href="http://2014.jsconf.us/">JSConf 2014</a> in sunny Florida, when the good news hit, that we were one of the things covered in <a href="http://makezine.com/2014/06/01/robot-week-wrap-up/">Make Magazine's Robot Week</a> series of articles. Yeah!</p>
+                </header>
+                <p>We were on our way home from <a href="http://2014.jsconf.us/">JSConf 2014</a> in sunny Florida, when the good news hit, that we were one of the things covered in <a href="http://makezine.com/2014/06/01/robot-week-wrap-up/">Make Magazine's Robot Week</a> series of articles. Yeah!</p>
                 
                 <p><a href="http://makezineblog.files.wordpress.com/2014/05/cylon-feat.jpg"><img src="http://makezineblog.files.wordpress.com/2014/05/cylon-feat.jpg" alt="Cylon.js Noderockets JSConf 2014" style="margin: 10px 0;"></a></p>
                 
@@ -752,12 +786,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -780,7 +815,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We had just enough time to recharge a few batteries from <a href="http://makerfaire.com">MakerFaire 2014</a>, when we packed up Team Cylon.js and headed to <a href="http://2014.jsconf.us/">JSConf 2014</a> in sunny Florida. JSConf is one of the centers of innovation (and fun!) in the JavaScript world. </p>
+                </header>
+                <p>We had just enough time to recharge a few batteries from <a href="http://makerfaire.com">MakerFaire 2014</a>, when we packed up Team Cylon.js and headed to <a href="http://2014.jsconf.us/">JSConf 2014</a> in sunny Florida. JSConf is one of the centers of innovation (and fun!) in the JavaScript world. </p>
                 
                 <p>Thanks to organizer <a href="https://twitter.com/voodootikigod">Chris Williams</a> and the ongoing efforts of the <a href="http://nodebots.io/">Nodebots</a> team, there is already a well-established tradition of hardware hacking that has been going on. This means lots of cool people ready to take a look at what Cylon.js can offer to the community.</p>
                 
@@ -804,12 +840,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -832,7 +869,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>After our wonderful experiences at <a href="http://scotlandjs.com/">Scotland.js</a> and a cameo at the <a href="http://2014.scottishrubyconference.com/">Scottish Ruby Conference</a>, we flew a long haul all the way to San Franciso airport heading to <a href="http://makerfaire.com">MakerFaire 2014</a>! Hailed as the "greatest show and tell on Earth", we were greatly excited and honored to speak about <a href="http://makerfaire.com/makers/cylon-js-the-javascript-evolution-of-open-source-robotics/">Cylon.js on the Make:Electronics stage</a>.</p>
+                </header>
+                <p>After our wonderful experiences at <a href="http://scotlandjs.com/">Scotland.js</a> and a cameo at the <a href="http://2014.scottishrubyconference.com/">Scottish Ruby Conference</a>, we flew a long haul all the way to San Franciso airport heading to <a href="http://makerfaire.com">MakerFaire 2014</a>! Hailed as the "greatest show and tell on Earth", we were greatly excited and honored to speak about <a href="http://makerfaire.com/makers/cylon-js-the-javascript-evolution-of-open-source-robotics/">Cylon.js on the Make:Electronics stage</a>.</p>
                 
                 <p><img src="/images/blog/cylonjs-makerfaire-2014.jpg" alt="MakerFaire 2014" style="margin: 10px 0;"></p>
                 
@@ -848,12 +886,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -876,7 +915,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We said farewell to Germany after <a href="http://nextberlin.eu/">NextBerlin 2014</a>, then headed off to that learned city Edinburgh, Scotland for <a href="http://scotlandjs.com/">Scotland.js</a>. Taking place in the remarkable museum <a href="http://www.dynamicearth.co.uk/">Dynamic Earth</a>, the conference featured excellent speakers, and a very interactive format with a question track taking place immediately after each of the talks.</p>
+                </header>
+                <p>We said farewell to Germany after <a href="http://nextberlin.eu/">NextBerlin 2014</a>, then headed off to that learned city Edinburgh, Scotland for <a href="http://scotlandjs.com/">Scotland.js</a>. Taking place in the remarkable museum <a href="http://www.dynamicearth.co.uk/">Dynamic Earth</a>, the conference featured excellent speakers, and a very interactive format with a question track taking place immediately after each of the talks.</p>
                 
                 <p><img src="/images/blog/scotland-js-2014.png" alt="Scotland.js 2014" style="margin: 10px 0;"></p>
                 
@@ -890,12 +930,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -918,7 +959,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Our next stop on the robot world tour was <a href="http://nextberlin.eu/">NextBerlin 2014</a>. Taking place as part of the massive <a href="http://berlinwebweek.de/">Web Week Berlin</a>, this conference connected business people from startups and large companies, media, and technologists from all over Europe.</p>
+                </header>
+                <p>Our next stop on the robot world tour was <a href="http://nextberlin.eu/">NextBerlin 2014</a>. Taking place as part of the massive <a href="http://berlinwebweek.de/">Web Week Berlin</a>, this conference connected business people from startups and large companies, media, and technologists from all over Europe.</p>
                 
                 <p>Team Cylon.js had a special place to demo our JavaScript robots, and we spoke to many people while demoing a <a href="https://www.leapmotion.com/">Leap Motion</a> connection to a <a href="http://www.gosphero.com/sphero-2-0/">Sphero</a>. Everyone wanted to play with it, and we were happy to spark a sense of fun and wonder to the business oriented crowd. Of course, it also happed to showcase the power of the platform too!</p>
                 
@@ -932,12 +974,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         May
@@ -960,7 +1003,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>The first leg of our spring tour to Europe began in Berlin at <a href="http://2014.thingscon.com/">Thingscon</a>. Taking place right before <a href="http://berlinwebweek.de/">Web Week Berlin</a>, the brand new conference brought together both international visitors and Berliner locals who are the early adopters in the new hardware scene rapidly forming in the city already becoming known for startups.</p>
+                </header>
+                <p>The first leg of our spring tour to Europe began in Berlin at <a href="http://2014.thingscon.com/">Thingscon</a>. Taking place right before <a href="http://berlinwebweek.de/">Web Week Berlin</a>, the brand new conference brought together both international visitors and Berliner locals who are the early adopters in the new hardware scene rapidly forming in the city already becoming known for startups.</p>
                 
                 <p>The conference opened up with a keynote from the insightful <a href="https://twitter.com/brady">Brady Forrest</a>, who is currently helping run <a href="http://highway1.io/">Highway1</a>, a new hardware incubator being launched out of <a href="http://www.pchintl.com/">PCH International</a>. <a href="https://twitter.com/deadprogram/status/462135215029489664">"Software still matters. Hardware companies, you still need software"</a> he told the rapt audience. We quite agree!</p>
                 
@@ -974,12 +1018,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Apr
@@ -1002,7 +1047,8 @@ Cylon.robot({
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Wrapping up our <a href="http://nationalroboticsweek.org">National Robotics Week</a> robot road show, we brought Cylon.js (<a href="http://cylonjs.com">http://cylonjs.com</a>) back to SoCal to speak to the <a href="http://www.rssc.org/">Robotics Society of Southern California</a>. The venerable organization was established in 1989, and we were honored to be able to bring our JavaScript powered robots into the halls of academia.</p>
+                </header>
+                <p>Wrapping up our <a href="http://nationalroboticsweek.org">National Robotics Week</a> robot road show, we brought Cylon.js (<a href="http://cylonjs.com">http://cylonjs.com</a>) back to SoCal to speak to the <a href="http://www.rssc.org/">Robotics Society of Southern California</a>. The venerable organization was established in 1989, and we were honored to be able to bring our JavaScript powered robots into the halls of academia.</p>
                 
                 <p><img src="/images/blog/2014-04-12/cylon-socal-robotics.png" alt="" style="margin: 10px 0;"></p>
                 
@@ -1014,12 +1060,13 @@ Cylon.robot({
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Apr
@@ -1042,7 +1089,8 @@ Cylon.robot({
                       by Andrew Stewart
                     </div>
                   </div>
-                </header><p><a href="https://github.com/Gozala/wisp">Wisp</a> is a really cool project for compiling a subset of Clojure syntax to
+                </header>
+                <p><a href="https://github.com/Gozala/wisp">Wisp</a> is a really cool project for compiling a subset of Clojure syntax to
                 JavaScript, without having to go through all the hoops that <a href="https://github.com/clojure/clojurescript">ClojureScript</a>
                 forces you through.</p>
                 
@@ -1184,12 +1232,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Mar
@@ -1212,9 +1261,12 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>The sun never sets (or rises maybe?) here on Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a>. After many more lessons learned from you, our dear users, and especially after our great experience at <a href="http://cylonjs.com/blog/2014/03/24/making-waves-at-makerland/" target="blank">Makerland</a>, we've just released version 0.12 of our JavaScript framework for open source robotics, physical computing, and the Internet of Things. </p>
+                </header>
+                <p>The sun never sets (or rises maybe?) here on Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a>. After many more lessons learned from you, our dear users, and especially after our great experience at <a href="http://cylonjs.com/blog/2014/03/24/making-waves-at-makerland/" target="blank">Makerland</a>, we've just released version 0.12 of our JavaScript framework for open source robotics, physical computing, and the Internet of Things. </p>
                 
-                <script type="text/javascript" src="https://asciinema.org/a/8517.js" id="asciicast-8517" async=""></script><p>You might have heard us talking about "RobotOps" or "DevOps for Robotics". We've completely rewritten our Command Line Interface (CLI), and it is now better faster and stronger than ever. First of all, we've put it into its <a href="https://github.com/hybridgroup/cylon-cli" target="blank">own node module and repository</a>. This makes it easier to use the Cylon.js CLI tools to flash Firmata on a few dozen Arduinos, scan serial interfaces for bluetooth devices, and much more. Even if you are not using Cylon.js for anything else, this is really useful!</p>
+                <script type="text/javascript" src="https://asciinema.org/a/8517.js" id="asciicast-8517" async=""></script>
+                
+                <p>You might have heard us talking about "RobotOps" or "DevOps for Robotics". We've completely rewritten our Command Line Interface (CLI), and it is now better faster and stronger than ever. First of all, we've put it into its <a href="https://github.com/hybridgroup/cylon-cli" target="blank">own node module and repository</a>. This makes it easier to use the Cylon.js CLI tools to flash Firmata on a few dozen Arduinos, scan serial interfaces for bluetooth devices, and much more. Even if you are not using Cylon.js for anything else, this is really useful!</p>
                 
                 <p>We've also greatly improved our <a href="http://cylonjs.com/documentation/examples/" target="blank">code examples</a>, with both clean and fully-annotated versions. Many of the demos that we show in our road tour can be found here, and lots more besides. We think Cylon.js is the most powerful, flexible, and easy to use JavaScript framework for Node robotics. Our examples help show how you can be using it right now.</p>
                 
@@ -1222,12 +1274,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Mar
@@ -1250,25 +1303,30 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> has just returned from a remarkable trip to <a href="http://makerland.org" target="blank">Makerland</a> in Poland. Billed as a "theme park for makers", the really fun and informative 3 day conference lived up to its name. Held in Warsaw, Poland, at the ultra-modern <a href="http://www.kopernik.org.pl/en/" target="blank">Copernicus Science Center</a>, Makerland packed in many kinds of robots, 3D printers, drones, submarines, and in our case, popsicle sticks.</p>
+                </header>
+                <p>Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> has just returned from a remarkable trip to <a href="http://makerland.org" target="blank">Makerland</a> in Poland. Billed as a "theme park for makers", the really fun and informative 3 day conference lived up to its name. Held in Warsaw, Poland, at the ultra-modern <a href="http://www.kopernik.org.pl/en/" target="blank">Copernicus Science Center</a>, Makerland packed in many kinds of robots, 3D printers, drones, submarines, and in our case, popsicle sticks.</p>
                 
                 <p><a href="/images/blog/cylonjs-makerland-bigm.jpg" target="_blank">
-                  <img class="full-width" alt="makerland-bigm" src="/images/blog/cylonjs-makerland-bigm.jpg"></a></p>
+                  <img class="full-width" alt="makerland-bigm" src="/images/blog/cylonjs-makerland-bigm.jpg">
+                </a></p>
                 
                 <p>We were leading the first major version of our brand new "Think Outside The Bot" workshop, that explores different modalities of human interaction with robotic devices. We used our favorite "minimum viable robot" the <a href="http://gosphero.com/" target="blank">Sphero</a>, along with 2 different control surfaces. Over the first 2 afternoons of the conference, we held continuous workshops. It was so popular, that many times we had a line of people waiting for the next opening. Thank you everyone for your patience!</p>
                 
                 <p><a href="/images/blog/cylonjs-makerland-workshop1.jpg" target="_blank">
-                  <img class="full-width" alt="makerland-workshop1" src="/images/blog/cylonjs-makerland-workshop1.jpg"></a></p>
+                  <img class="full-width" alt="makerland-workshop1" src="/images/blog/cylonjs-makerland-workshop1.jpg">
+                </a></p>
                 
                 <p>The first workshop activity in the workshop, was each person constructed their own handmade wrist-mounted touch controller. Each workshop participant received a "Makey Button Kit" (inspired by the awesome <a href="http://www.makeymakey.com" target="blank">MakeyMakey</a>) with popsicle sticks, a pipe cleaner, copper foil tape, and high-ohm resistors. Programmed using the "Makey Button" driver, they were able to drive around Spheros by becoming "one with the machine" in a literal sense!</p>
                 
                 <p><a href="/images/blog/cylonjs-makerland-workshop2.jpg" target="_blank">
-                  <img class="full-width" alt="makerland-workshop2" src="/images/blog/cylonjs-makerland-workshop2.jpg"></a></p>
+                  <img class="full-width" alt="makerland-workshop2" src="/images/blog/cylonjs-makerland-workshop2.jpg">
+                </a></p>
                 
                 <p>The second workshop activity used <a href="http://leapmotion.com/" target="blank">Leap Motion</a> controllers to interact with the Spheros. The Leap Motion is the exact opposite end of the spectrum, having no wires at all, as opposed to people "wiring themselves in" to the Makey Button. Participants really enjoyed it, and also were able to think differently about Human Machine Interfaces (HMI) and all this thanks to the power and flexibility of the Cylon.js framework, along with how easy it is to program using JavaScript.</p>
                 
                 <p><a href="/images/blog/cylonjs-makerland-hackathon.jpg" target="_blank">
-                  <img class="full-width" alt="makerland-hackathon" src="/images/blog/cylonjs-makerland-hackathon.jpg"></a></p>
+                  <img class="full-width" alt="makerland-hackathon" src="/images/blog/cylonjs-makerland-hackathon.jpg">
+                </a></p>
                 
                 <p>The last day of Makerland was a hackathon, and quite a few teams were using Cylon.js to get things done quickly. One comment we really appreciated from one of the teams, that created a labyrinth game. "We were doing direct Arduino programming, but when we switched to using Cylon.js, we got more done in 40 minutes, then the previous six hours, and even added the Leap Motion controller too." It was really fun to get to help so many people work on their projects, we really enjoyed it.</p>
                 
@@ -1276,12 +1334,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Mar
@@ -1304,18 +1363,20 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Immediately after our <a href="http://cylonjs.com/blog/2014/02/24/tipping-scale12x" target="blank">SCaLE 12x talk</a>, Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> made a big push forward, and we've released version 0.11 of our JavaScript framework for open source robotics and the Internet of Things. The major focus of this release has been refactoring the core into pure JavaScript, away from the CoffeeScript that we had previously been using. </p>
+                </header>
+                <p>Immediately after our <a href="http://cylonjs.com/blog/2014/02/24/tipping-scale12x" target="blank">SCaLE 12x talk</a>, Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> made a big push forward, and we've released version 0.11 of our JavaScript framework for open source robotics and the Internet of Things. The major focus of this release has been refactoring the core into pure JavaScript, away from the CoffeeScript that we had previously been using. </p>
                 
                 <p>There are a number of key reasons why we've gone to a pure JavaScript code base:</p>
                 
                 <ul>
-<li>Performance is better when the toolchain is simpler. Not only are we now using just JavaScript, we've also removed Grunt. So how are we running our builds? We're using <code>make</code> now, and we can run our tests in around 40ms.</li>
+                  <li>Performance is better when the toolchain is simpler. Not only are we now using just JavaScript, we've also removed Grunt. So how are we running our builds? We're using <code>make</code> now, and we can run our tests in around 40ms.</li>
                   <li>When spelunking the code, there is less code to look thru and search thru to find what you need. Many programmers use search tools like awk or grep as a key part of their workflow.</li>
                   <li>Debugging easier, especially when looking for problems in broken tests.</li>
                   <li>We do not really need any compiled language features of CoffeeScript. By writing better and more modular JavaScript, we can get many of the same benefits. Even when ES6 comes out, many lower-powered SoC devices might take a while to support all the new language features.</li>
                   <li>We want to make it even easier for people to use Cylon.js and contribute back to it. Not as many people know CoffeeScript compared to plain JavaScript people. The open source project Discourse has had a <a href="https://meta.discourse.org/t/is-it-better-for-discourse-to-use-javascript-or-coffeescript/3153" target="blank">lot of attention recently because of their switch</a>.</li>
                 </ul>
-<p>We had already done the needed work to create a test suite to support such a serious refactor. Even with that prep, it took some dedicated effort, and a lot of coffee to remove all the CoffeeScript from core. But by keeping things green and clean, we made remarkable progress. We even refactored all of our adaptors and drivers into pure JavaScript too.</p>
+                
+                <p>We had already done the needed work to create a test suite to support such a serious refactor. Even with that prep, it took some dedicated effort, and a lot of coffee to remove all the CoffeeScript from core. But by keeping things green and clean, we made remarkable progress. We even refactored all of our adaptors and drivers into pure JavaScript too.</p>
                 
                 <p>For those who adore CoffeeScript, you can still continue to develop your robotic applications that way. And we will continue to provide examples for both JavaScript and CoffeeScript. But for the purists among us, Cylon.js is now leaner and tighter than ever.</p>
                 
@@ -1323,12 +1384,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Feb
@@ -1351,10 +1413,12 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We were really pleased to present <a href="http://cylonjs.com/" target="blank">Cylon.js</a> at the venerable <a href="https://www.socallinuxexpo.org/scale12x" target="blank">Southern California Linux Expo (SCaLE 12x)</a> now in its 12th year! SCaLE is one of the biggest regional open source conferences, and we were delighted to be on the same bill as of open source's biggest advocates, <a href="http://www.lessig.org/" target="blank">Lawrence Lessig</a>, who gave the <a href="https://www.youtube.com/watch?v=D3O1MC1AqvM" target="blank">opening keynote</a>.</p>
+                </header>
+                <p>We were really pleased to present <a href="http://cylonjs.com/" target="blank">Cylon.js</a> at the venerable <a href="https://www.socallinuxexpo.org/scale12x" target="blank">Southern California Linux Expo (SCaLE 12x)</a> now in its 12th year! SCaLE is one of the biggest regional open source conferences, and we were delighted to be on the same bill as of open source's biggest advocates, <a href="http://www.lessig.org/" target="blank">Lawrence Lessig</a>, who gave the <a href="https://www.youtube.com/watch?v=D3O1MC1AqvM" target="blank">opening keynote</a>.</p>
                 
                 <p><a href="/images/blog/cylonjs-scale12x.jpg" target="_blank">
-                  <img class="full-width" alt="scale12x" src="/images/blog/cylonjs-scale12x.jpg"></a></p>
+                  <img class="full-width" alt="scale12x" src="/images/blog/cylonjs-scale12x.jpg">
+                </a></p>
                 
                 <p>Our own talk the next day was standing-room as well! That plus the very low ceiling, made it a real challenge for our daring test pilot during our demo. However, the show must fly on! We had a great time, and all of our equipment worked really well. We even got to include the latest platform that we've added, Skynet (<a href="http://skynet.im">http://skynet.im</a>), the new machine to machine instant messaging protocol. Lots more on that coming soon…</p>
                 
@@ -1362,12 +1426,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/events/">events</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Feb
@@ -1390,7 +1455,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We've been hard at work since <a href="http://ng-conf.org/">ng-conf</a> last month here on Team Cylon.js, and we've just released version 0.10 of our JavaScript framework for robotics and the Internet of Things. We've added many powerful new features, as well as support for ever more hardware.</p>
+                </header>
+                <p>We've been hard at work since <a href="http://ng-conf.org/">ng-conf</a> last month here on Team Cylon.js, and we've just released version 0.10 of our JavaScript framework for robotics and the Internet of Things. We've added many powerful new features, as well as support for ever more hardware.</p>
                 
                 <p>Last release, we added a web-based user interface to the Cylon.js API based on AngularJS (<a href="http://angularjs.org/">http://angularjs.org/</a>). That idea was so powerful, that we've extracted it into a new separate library. Called Robeaux (<a href="http://robeaux.io">http://robeaux.io</a>), we think of it like a universal dashboard to all your robotic systems. Similar to how a router has built-in pages to help administer it, and verify connectivity. We're now using it within the newest releases of Cylon.js, Artoo (<a href="http://artoo.io">http://artoo.io</a>), and Gobot (<a href="http://gobot.io">http://gobot.io</a>).</p>
                 
@@ -1408,12 +1474,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jan
@@ -1436,30 +1503,34 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We conducted the official robot hackathon at <a href="http://ng-conf.org" target="blank">ng-conf</a>, the first conference dedicated to <a href="http://angularjs.org/" target="blank">AngularJS</a>, that took place last week in Salt Lake City, Utah. It was perfect timing, given that the release of 0.9.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) our JavaScript open source robotics framework, had just added a AngularJS-based web UI to our API.</p>
+                </header>
+                <p>We conducted the official robot hackathon at <a href="http://ng-conf.org" target="blank">ng-conf</a>, the first conference dedicated to <a href="http://angularjs.org/" target="blank">AngularJS</a>, that took place last week in Salt Lake City, Utah. It was perfect timing, given that the release of 0.9.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) our JavaScript open source robotics framework, had just added a AngularJS-based web UI to our API.</p>
                 
                 <p>Over 120 people registered for the evening event that featured <a href="http://gosphero.com" target="blank">Sphero</a> robots kindly provided by our friends at Orbotix. We also brought a bunch of our new Arduino Starter Kits, some Makey Makey's, and some Leap Motion controllers. Combining them together into something useful, fun, and/or creative had the participants completely captivated!</p>
                 
                 <p><a href="/images/screenshots/ng-conf-hackathon.jpg" target="_blank">
-                  <img class="full-width" alt="ng-conf Robot Hackathon" src="/images/screenshots/ng-conf-hackathon.jpg"></a></p>
+                  <img class="full-width" alt="ng-conf Robot Hackathon" src="/images/screenshots/ng-conf-hackathon.jpg">
+                </a></p>
                 
                 <p>There were many teams that were able to complete something demoable during the few short hours of the hackathon, thanks in part to how easy it is to integrate different devices together using Cylon.js. The 3 winners got to walk away with Sphero robots of their own to keep playing with at home! It was a tough competition, but after lots of great demos, our judges were able to make a decision. The winners were: </p>
                 
                 <ul>
-<li>Team "Beam Me Up Spotty" with a "Simon"-like game that used the Sphero &amp; Makey Makey.</li>
+                  <li>Team "Beam Me Up Spotty" with a "Simon"-like game that used the Sphero &amp; Makey Makey.</li>
                   <li>Team "Bananastand" that used Twitter tweets to control a Sphero in a "tug of war" called "Red Vs Blue".</li>
                   <li>Team "Beerbot" that used drinking glasses of beer to control the color and movement of a Sphero.</li>
                 </ul>
-<p>The robot hackathon was a great way to start out the conference, and the attendees agreed that it was also a fun introduction to robotics. Thank you very much to Orbotix for providing the Sphero robots, to the organizers of ng-conf, and especially to all the people who took part.</p>
+                
+                <p>The robot hackathon was a great way to start out the conference, and the attendees agreed that it was also a fun introduction to robotics. Thank you very much to Orbotix for providing the Sphero robots, to the organizers of ng-conf, and especially to all the people who took part.</p>
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Jan
@@ -1482,12 +1553,14 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Our team is kicking off our first release of 2014, with the brand new version 0.9.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>), the powerful JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>. This release adds a web-based UI to our API, support for 3 more platforms, and a big upgrade to our command line tools.</p>
+                </header>
+                <p>Our team is kicking off our first release of 2014, with the brand new version 0.9.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>), the powerful JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>. This release adds a web-based UI to our API, support for 3 more platforms, and a big upgrade to our command line tools.</p>
                 
                 <p>First of all, the new Cylon user interface. Wouldn't it be great to be able to browse to a web page, and check on the status of your running robots, and even send them commands? Now you can, with our shiny new single-page web-based user interface written using <a href="http://angularjs.org/" target="blank">AngularJS</a>, that is now built right in to the Cylon API! The great thing is that it uses the same RESTful and web sockets calls that you can use to control your robotic minions over the web. Yes, of <em>course</em> you can command entire swarms of robots using Cylon.js!</p>
                 
                 <p><a href="/images/screenshots/api-ng-app.png" target="_blank">
-                  <img class="full-width" alt="Angular App Screenshot" src="/images/screenshots/api-ng-app.png"></a></p>
+                  <img class="full-width" alt="Angular App Screenshot" src="/images/screenshots/api-ng-app.png">
+                </a></p>
                 
                 <p>We've now added <a href="https://github.com/hybridgroup/cylon-joystick" target="blank">cylon-joystick</a> an adaptor for USB joysticks, along with a driver that supports the <a href="http://en.wikipedia.org/wiki/Xbox_360_Controller" target="blank">Xbox 360 controller</a>. This is only the first of several joystick drivers that we will be adding soon. We've also added <a href="https://github.com/hybridgroup/cylon-keyboard" target="blank">cylon-keyboard</a> an adaptor and driver for standard keyboard control of your robots. And perhaps most excitingly, we now have <a href="https://github.com/hybridgroup/cylon-opencv" target="blank">cylon-opencv</a>, adaptor and drivers for <a href="http://opencv.org/" target="blank">OpenCV</a> support, which is a powerful open source platform for computer vision.</p>
                 
@@ -1499,12 +1572,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Dec
@@ -1527,7 +1601,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>After plenty of effort and a lot of help from our friends, we've just released version 0.8.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) the powerful new JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>. This release brings us up to 10 different hardware and software platforms that we support! Even simultaneously!</p>
+                </header>
+                <p>After plenty of effort and a lot of help from our friends, we've just released version 0.8.0 of Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) the powerful new JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>. This release brings us up to 10 different hardware and software platforms that we support! Even simultaneously!</p>
                 
                 <p>From single board Linux computers such as the <a href="http://www.raspberrypi.org/" target="blank">Raspberry Pi</a> and <a href="http://beagleboard.org/Products/BeagleBone+Black/" target="blank">BeagleBone Black</a>, to next generation wireless micro-controllers such as the <a href="http://spark.io" target="blank">Spark</a>, to gestural controllers such as the <a href="https://www.leapmotion.com/" target="blank">Leap Motion</a>, we've been working hard to make it easy for you to develop multi-hardware robotics and physical computing solutions using Cylon.js. We have also been working just as hard on making it easy for anyone to add support for new hardware platforms quickly.</p>
                 
@@ -1539,12 +1614,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Dec
@@ -1567,7 +1643,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> got back a few days ago from the first ever <a href="http://www.robotsconf.com/" target="blank">RobotsConf</a> last week. The brainchild of the influential Chris Williams aka <a href="https://twitter.com/voodootikigod" target="blank">@VoodooTikiGod</a> of <a href="http://www.jsconf.com/" target="blank">JSConf</a> renown, RobotsConf was planned to be the first conference to bring open source software developers in and have them leave as new hardware makers.</p>
+                </header>
+                <p>Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a> got back a few days ago from the first ever <a href="http://www.robotsconf.com/" target="blank">RobotsConf</a> last week. The brainchild of the influential Chris Williams aka <a href="https://twitter.com/voodootikigod" target="blank">@VoodooTikiGod</a> of <a href="http://www.jsconf.com/" target="blank">JSConf</a> renown, RobotsConf was planned to be the first conference to bring open source software developers in and have them leave as new hardware makers.</p>
                 
                 <p>Unlike a "normal" conference, the format for RobotsConf was to have just a few sessions to inspire creativity and provide some background on the first day, and then devote the rest of the conference to actually making things. Teams of language/subject matter experts (such as ourselves) had been invited to come and help everyone implement whatever it was they wanted to over the the 2 days of the conference. At the end, there would then be a "science faire" where everyone would get to show off their creations, and the "experts" would then judge the "winners". Very fun!</p>
                 
@@ -1593,12 +1670,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Nov
@@ -1621,7 +1699,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>As mentioned in our last blog post, we had a team demonstrating <a href="http://cylonjs.com/" target="blank">Cylon.js</a> at the <a href="http://www.salesforce.com/dreamforce/DF13/" target="blank">Dreamforce</a> conference in San Francisco last week. At over 130,000 people registered, it is one of the largest tech conferences in the world! We had received a special invitation to be part of the first <a href="http://blogs.developerforce.com/developer-relations/2013/10/every-internet-of-things-thing-at-dreamforce-2013.html" target="blank">Connected Device Lab</a> which was a unique location within the conference dedicated to important companies in the emerging "Internet of Things".</p>
+                </header>
+                <p>As mentioned in our last blog post, we had a team demonstrating <a href="http://cylonjs.com/" target="blank">Cylon.js</a> at the <a href="http://www.salesforce.com/dreamforce/DF13/" target="blank">Dreamforce</a> conference in San Francisco last week. At over 130,000 people registered, it is one of the largest tech conferences in the world! We had received a special invitation to be part of the first <a href="http://blogs.developerforce.com/developer-relations/2013/10/every-internet-of-things-thing-at-dreamforce-2013.html" target="blank">Connected Device Lab</a> which was a unique location within the conference dedicated to important companies in the emerging "Internet of Things".</p>
                 
                 <p>The first day of the conference, we "unleashed" <a href="https://github.com/hybridgroup/cylon-force" target="blank">cylon-force</a>, an open-source adaptor that lets you connect a Cylon.js program to a Salesforce connected application. While many companies are still talking about the future, our hardworking team of humans and robots is already building the platform.</p>
                 
@@ -1637,12 +1716,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Nov
@@ -1665,7 +1745,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>We're really excited because next week is <a href="http://www.salesforce.com/dreamforce/DF13/" target="blank">Dreamforce</a>, and Team Cylon will be there in "full force" as it were! We have a workspace in the Developer Zone at the <a href="http://blogs.developerforce.com/developer-relations/2013/10/every-internet-of-things-thing-at-dreamforce-2013.html" target="blank">Connected Device Lab</a> on the second floor of Moscone West, and we're also <a href="https://dreamevent.my.salesforce.com/apex/ActivityList#a093000000XfGjrAAF" target="blank">leading a workshop</a> on the opening day of the conference. Both will include lots of <a href="http://gosphero.com/" target="blank">Sphero</a> fun thanks to our friends at Orbotix. We will have a bunch of great giveaways too! </p>
+                </header>
+                <p>We're really excited because next week is <a href="http://www.salesforce.com/dreamforce/DF13/" target="blank">Dreamforce</a>, and Team Cylon will be there in "full force" as it were! We have a workspace in the Developer Zone at the <a href="http://blogs.developerforce.com/developer-relations/2013/10/every-internet-of-things-thing-at-dreamforce-2013.html" target="blank">Connected Device Lab</a> on the second floor of Moscone West, and we're also <a href="https://dreamevent.my.salesforce.com/apex/ActivityList#a093000000XfGjrAAF" target="blank">leading a workshop</a> on the opening day of the conference. Both will include lots of <a href="http://gosphero.com/" target="blank">Sphero</a> fun thanks to our friends at Orbotix. We will have a bunch of great giveaways too! </p>
                 
                 <p>But don't be fooled, we're talking serious business, even if it comes in a rolling package. We will show you how easily you can use Cylon.js and Force.com together to integrate all kinds of devices that provide real-time business information. Cylon.js unleashes the power of JavaScript and <a href="http://nodejs.org/" target="blank">Node.js</a> to help build the Internet of Things, and we will be using Spheros in a fun way, to teach developers how they can start making use of these new technologies.</p>
                 
@@ -1673,12 +1754,13 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
               <div class="article">
-                <header class="header"><div class="date">
+                <header class="header">
+                  <div class="date">
                     <div class="blue">
                       <div class="month">
                         Nov
@@ -1701,7 +1783,8 @@ Cylon.Robot(robot).start();
                       by Ron Evans
                     </div>
                   </div>
-                </header><p>Welcome to the next era of open source robotics! This blog is where we will discuss new and interesting developments on Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) the new JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>, as well as anything else interesting to the robot community at large.</p>
+                </header>
+                <p>Welcome to the next era of open source robotics! This blog is where we will discuss new and interesting developments on Cylon.js (<a href="http://cylonjs.com" target="blank">http://cylonjs.com</a>) the new JavaScript robotics framework based on <a href="http://nodejs.org/" target="blank">Node.js</a>, as well as anything else interesting to the robot community at large.</p>
                 
                 <p>We first introduced Cylon.js to the world at the <a href="http://js.la/" target="blank">Los Angeles JavaScript</a> meetup last month, held appropriately at <a href="http://www.idealab.com/" target="blank">Idealab</a> in Pasadena, CA. Yes, the same Pasadena where the legendary <a href="http://www.jpl.nasa.gov/index.php" target="blank">Jet Propulsion Laboratory (JPL)</a> controls NASA robots currently on Mars. It was a great chance to share our work with the local community, and we were really excited and grateful for the wonderful response.</p>
                 
@@ -1709,7 +1792,7 @@ Cylon.Robot(robot).start();
                 <div class="tags">
                   <div class="img">
                     <img src="/images/elements/tag.png">
-</div>
+                  </div>
                   <a href="/blog/tags/robots/">robots</a>
                 </div>
               </div>
@@ -1719,10 +1802,10 @@ Cylon.Robot(robot).start();
             <div class="categories">
               <h4>Tags</h4>
               <ul>
-<li><a href="/blog/tags/robots/">Robots</a></li>
+                <li><a href="/blog/tags/robots/">Robots</a></li>
                 <li><a href="/blog/tags/events/">Events</a></li>
               </ul>
-</div>
+            </div>
             <div class="network">
               <h4>Network</h4>
               <div class="network-links">
@@ -1733,7 +1816,7 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+                <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
                 <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
                 <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
                 <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
@@ -1760,24 +1843,64 @@ Cylon.Robot(robot).start();
                 <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
                 <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
               </ul>
-</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

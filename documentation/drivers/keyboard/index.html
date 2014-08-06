@@ -1,17 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
-<meta content="The Hybrid Group" name="author">
-<title>Cylon.js - Keyboard Driver</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Cylon.js - Keyboard Driver</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,107 +35,47 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a class="active" href="/documentation">Docs</a>
+                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a href="/blog" class="item">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a class="active" href="/documentation">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
-      <div class="page-title">
-        <div class="w">
-          <h1 class="title">Drivers</h1>
-          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
-          <section class="content full"><div class="documentation">
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Keyboard</h1>
-                    <h2 class="subtitle">Driver</h2>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav"><div class="container">
-                    <nav><a href="#HowToConnect">How to Connect</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#Commands">Commands</a>
-                      <a href="#Events">Events</a>
-                      <a href="#Compatability">Compatibility</a>
-                      <a href="#top">Top</a>
-                    </nav>
-</div>
-                </section><br><section class="intro"><img class="display" src="/images/devices/keyboard.jpg"><div class="info-intro">
-                    <p>The Cylon adaptor for keyboard input.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://en.wikipedia.org/wiki/Computer_keyboard">here</a>
-                    </p>
-                  </div>
-                  <div class="clear"></div>
-                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>}
-...
-</pre>
-                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>Example receiving button events from a generic joystick.</p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>},
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) { 
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">A PRESSED!</span><span class="delimiter">"</span></span>);
-    });
-  }
-}).start();
-</pre>
-                </section><section class="public-methods"><div class="commands-api" id="Events">
-                    <h1 id="events">Events</h1>
-                    
-                    <h2 id="key">key</h2>
-                    
-                    <p>Gets triggered when we press a key on the keyboard.</p>
-                    
-                    <h2 id="start">start</h2>
-                    
-                    <p>Sent when the device has been started and is ready to use.</p>
-                  </div>
-                </section><section class="compatability hardware" id="Compatability"><h2>Compatibility</h2>
-                  <div class="devices">
-                    <!-- /Platforms Parts -->
-                    <!-- //Keyboard -->
-                    <a class="device" href="/documentation/platforms/keyboard" title="AR Drone">
-                      <img src="/images/devices/keyboard.jpg"></a>
-                  </div>
-                </section>
-</div>
+          <section class="content full">
+            <div class="documentation">
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">
@@ -141,32 +85,26 @@ Cylon.robot({
                   </a>
                 </div>
                 <dl class="accordion-docs hide">
-<h5 class="doc-button">
+                  <h5 class="doc-button">
                     <a href="/documentation">Docs</a>
                   </h5>
                   <span></span>
                   <dt>
                     <a href="">Getting Started</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="getting-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/getting-started">Setup your environment</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Guides</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="guides-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/guides/what_is_cylon">
                           About Cylon
                         </a>
@@ -193,16 +131,13 @@ Cylon.robot({
                         <a href="/documentation/guides/helpers">Helper Methods</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Platforms</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="platform-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/platforms/ardrone">Ardrone</a>
                       </li>
                       <li>
@@ -210,6 +145,9 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/platforms/yun">Arduino Yun</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/audio">Audio</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">Beaglebone</a>
@@ -266,20 +204,20 @@ Cylon.robot({
                         <a href="/documentation/platforms/sphero">Sphero</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/speech">Speech</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/tessel">Tessel</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Drivers</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="driver-panel">
                     GPIO
                     <ul id="gpio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       </li>
                       <li>
@@ -312,7 +250,7 @@ Cylon.robot({
                     </ul>
                     I2C
                     <ul id="i2c">
-<li>
+                      <li>
                         <a href="/documentation/drivers/blinkm">Blinkm</a>
                       </li>
                       <li>
@@ -333,7 +271,7 @@ Cylon.robot({
                     </ul>
                     ARDrone
                     <ul id="ardrone">
-<li>
+                      <li>
                         <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
                       </li>
                       <li>
@@ -342,19 +280,19 @@ Cylon.robot({
                     </ul>
                     Crazyflie
                     <ul id="crazyflie">
-<li>
+                      <li>
                         <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
                       </li>
                     </ul>
                     Force
                     <ul id="force">
-<li>
+                      <li>
                         <a href="/documentation/drivers/force">Force</a>
                       </li>
                     </ul>
                     Joystick
                     <ul id="joystick">
-<li>
+                      <li>
                         <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
                       </li>
                       <li>
@@ -363,7 +301,7 @@ Cylon.robot({
                     </ul>
                     Other Drivers
                     <ul id="others">
-<li>
+                      <li>
                         <a href="/documentation/drivers/keyboard">Keyboard</a>
                       </li>
                       <li>
@@ -393,7 +331,7 @@ Cylon.robot({
                     </ul>
                     Pinoccio Drivers
                     <ul id="pinoccio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
                       </li>
                       <li>
@@ -402,7 +340,7 @@ Cylon.robot({
                     </ul>
                     Tessel Modules
                     <ul id="tessel">
-<li>
+                      <li>
                         <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
                       </li>
                       <li>
@@ -433,94 +371,210 @@ Cylon.robot({
                         <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Contribute</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="contribute-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/contribute/guidelines">Guidelines</a>
                       </li>
                       <li>
                         <a href="/documentation/contribute/contact-us">Contact us</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Examples</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="example-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/examples">All examples</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Tutorials</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="tutorial-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/tutorials">Workshop</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Live Chat</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="chat-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/chat/chat">IRC</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                 </dl>
-<script>
+                <script>
                     $(document).ready(function(){
                       $("#menu-docs").click(function(){
                         $(".accordion-docs").removeClass("hide");
                         $(this).addClass("active");
                       });
                     });
-                </script><script>
+                </script>
+                <script>
                   $("#driver-panel").addClass("active-panel");
                   $("#others li:nth-child(1)").addClass("active-link");
-                  $(".accordion-docs dt:nth-child(9) a:nth-child(2) img").addClass("rotate");
                 </script>
-</div>
+              </div>
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Keyboard</h1>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav">
+                  <div class="container">
+                    <h5>Keyboard</h5>
+                    <nav>
+                      <a href="#HowToConnect">How to Connect</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#Commands">Commands</a>
+                      <a href="#Events">Events</a>
+                      <a href="#Compatability">Compatibility</a>
+                      <a href="#top">Top</a>
+                    </nav>
+                  </div>
+                </section>
+                <br>
+                <section class="intro">
+                  <img class="display" src="/images/devices/keyboard.jpg">
+                  <div class="info-intro">
+                    <p>The Cylon adaptor for keyboard input.</p>
+                    <p>
+                      For more information click
+                      <a target="_blank" href="http://en.wikipedia.org/wiki/Computer_keyboard">here</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section>
+                <section class="how-to" id="HowToConnect">
+                  <h2>How To Connect</h2>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>}
+...
+</pre>
+                </section>
+                <section class="how-to" id="HowToUse">
+                  <h2>How To Use</h2>
+                  <p>Example receiving button events from a generic joystick.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>},
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">A PRESSED!</span><span class="delimiter">"</span></span>);
+    });
+  }
+}).start();
+</pre>
+                </section>
+                <section class="public-methods">
+                  <div class="commands-api" id="Events">
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="key">key</h2>
+                    
+                    <p>Gets triggered when we press a key on the keyboard.</p>
+                    
+                    <h2 id="start">start</h2>
+                    
+                    <p>Sent when the device has been started and is ready to use.</p>
+                  </div>
+                </section>
+                <section class="compatability hardware" id="Compatability">
+                  <h2>Compatibility</h2>
+                  <div class="devices">
+                    <ul class="doc-platform">
+                      <li>
+                        <a href="/documentation/platforms/keyboard">
+                          <p class="title">Keyboard</p>
+                          <img src="/images/devices/keyboard.jpg" style="width: 90%">
+                        </a>
+                        <div class="repo">
+                          <a target="_blank" href="https://github.com/hybridgroup/cylon-keyboard">repo</a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+              </div>
             </div>
           </section>
-</div>
+        </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,17 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
-<meta content="The Hybrid Group" name="author">
-<title>Sphero with Cylon.js</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Sphero with Cylon.js</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/hybridpages/assets/javascript/subnav.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,137 +36,47 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a href="/documentation" class="item">Docs</a>
+                  <a class="active" href="/documentation/platforms">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a href="/blog" class="item">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a class="active" href="/documentation/platforms">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
-      <div class="page-title">
-        <div class="w">
-          <h1 class="title">Platforms</h1>
-          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
-          <section class="content full"><div class="documentation">
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Sphero</h1>
-                    <h2 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-sphero" target="_blank" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-sphero/issues" target="_blank">Issues</a>
-</h2>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav"><div class="container">
-                    <nav><a href="#HowToInstall">How To Install</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#HowToConnect">How To Connect</a>
-                      <a href="#Drivers">Drivers</a>
-                      <a href="#top">Top</a>
-                    </nav>
-</div>
-                </section><br><section class="intro"><img class="display" src="/images/devices/sphero.jpg"><div class="info-intro">
-                    <h4>What is Sphero?</h4>
-                    <p>Sphero is a sophisticated and programmable robot housed in a polycarbonate sphere shell.</p>
-                    <p>The cylon-sphero adaptor makes it easy to interact with Sphero using Node.js, once you have your Sphero setup and connected to your computer you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some code when they occur.</p>
-                    <h4>Where can I get a Sphero or find more info about it?</h4>
-                    <p>
-                      Go to the Orbotix web site at
-                      <a target="_blank" href="http://www.gosphero.com/">http://www.gosphero.com/</a>
-                    </p>
-                  </div>
-                  <div class="clear"></div>
-                </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                  <p>Installing cylon.js with sphero support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-sphero
-</pre>
-                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>Example of a simple program that makes the Sphero roll.</p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>},
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-    });
-  }
-}).start();
-</pre>
-                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <h3>OSX</h3>
-                  <p>In order to allow Cylon.js running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
-                  <p>
-                    Thank you to
-                    <a target="_blank" href="https://github.com/kopipejst">@kopipejst</a>
-                    for the above connnection info.
-                  </p>
-                  <h3>Ubuntu</h3>
-                  <p>
-                    Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line with
-                    <a href="http://gort.io">Gort</a>
-                    . Here are the steps:
-                  </p>
-                  <p>Find the address of the Sphero, by using:</p>
-                  <pre class="CodeRay">gort bluetooth scan
-</pre>
-                  <p>Pair to Sphero using this command (substituting the actual address of your Sphero):</p>
-                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
-</pre>
-                  <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):</p>
-                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
-</pre>
-                  <h3>Windows</h3>
-                  <p>
-                    </p>
-<p>You should be able to simply pair your Sphero using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
-                  
-                  <h2>How To Calibrate Sphero</h2>
-                  <p>You might want to calibrate the orientation of the Sphero so that it is pointed 'forward'. There are 2 functions that have been added to the Sphero driver to help with this.</p>
-                  <p>
-                    </p>
-<p>Call <code>startCalibration()</code> to put the Sphero into 'calibration mode' by turning on the tail LED and turning off the auto-stablization. You can now manually turn the Sphero to so the tail LED is pointed to the rear of the direction in which you want the Sphero to go.</p>
-                  
-                  <p>
-                    </p>
-<p>Call <code>finishCalibration()</code> to turn off 'calibration mode' by turning off the tail LED and turning back on the auto-stablization. Whichever direction that the tail LED was pointed, is now the rear direction for the Sphero.</p>
-                  
-                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
-                  <p>There is only one driver for the Sphero. Click on the image below:</p>
-                  <div class="hardware">
-                    <div class="devices">
-                      <!-- / TODO: Update drivers list at the top of the page. -->
-                      <!-- // Sphero -->
-                      <a class="device" href="/documentation/drivers/sphero" title="Sphero">
-                        <img src="/images/devices/sphero.jpg"></a>
-                    </div>
-                  </div>
-                </section>
-</div>
+          <section class="content full">
+            <div class="documentation">
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">
@@ -171,32 +86,26 @@ Cylon.robot({
                   </a>
                 </div>
                 <dl class="accordion-docs hide">
-<h5 class="doc-button">
+                  <h5 class="doc-button">
                     <a href="/documentation">Docs</a>
                   </h5>
                   <span></span>
                   <dt>
                     <a href="">Getting Started</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="getting-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/getting-started">Setup your environment</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Guides</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="guides-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/guides/what_is_cylon">
                           About Cylon
                         </a>
@@ -223,16 +132,13 @@ Cylon.robot({
                         <a href="/documentation/guides/helpers">Helper Methods</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Platforms</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="platform-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/platforms/ardrone">Ardrone</a>
                       </li>
                       <li>
@@ -240,6 +146,9 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/platforms/yun">Arduino Yun</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/audio">Audio</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">Beaglebone</a>
@@ -296,20 +205,20 @@ Cylon.robot({
                         <a href="/documentation/platforms/sphero">Sphero</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/speech">Speech</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/tessel">Tessel</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Drivers</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="driver-panel">
                     GPIO
                     <ul id="gpio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       </li>
                       <li>
@@ -342,7 +251,7 @@ Cylon.robot({
                     </ul>
                     I2C
                     <ul id="i2c">
-<li>
+                      <li>
                         <a href="/documentation/drivers/blinkm">Blinkm</a>
                       </li>
                       <li>
@@ -363,7 +272,7 @@ Cylon.robot({
                     </ul>
                     ARDrone
                     <ul id="ardrone">
-<li>
+                      <li>
                         <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
                       </li>
                       <li>
@@ -372,19 +281,19 @@ Cylon.robot({
                     </ul>
                     Crazyflie
                     <ul id="crazyflie">
-<li>
+                      <li>
                         <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
                       </li>
                     </ul>
                     Force
                     <ul id="force">
-<li>
+                      <li>
                         <a href="/documentation/drivers/force">Force</a>
                       </li>
                     </ul>
                     Joystick
                     <ul id="joystick">
-<li>
+                      <li>
                         <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
                       </li>
                       <li>
@@ -393,7 +302,7 @@ Cylon.robot({
                     </ul>
                     Other Drivers
                     <ul id="others">
-<li>
+                      <li>
                         <a href="/documentation/drivers/keyboard">Keyboard</a>
                       </li>
                       <li>
@@ -423,7 +332,7 @@ Cylon.robot({
                     </ul>
                     Pinoccio Drivers
                     <ul id="pinoccio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
                       </li>
                       <li>
@@ -432,7 +341,7 @@ Cylon.robot({
                     </ul>
                     Tessel Modules
                     <ul id="tessel">
-<li>
+                      <li>
                         <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
                       </li>
                       <li>
@@ -463,94 +372,232 @@ Cylon.robot({
                         <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Contribute</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="contribute-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/contribute/guidelines">Guidelines</a>
                       </li>
                       <li>
                         <a href="/documentation/contribute/contact-us">Contact us</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Examples</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="example-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/examples">All examples</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Tutorials</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="tutorial-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/tutorials">Workshop</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Live Chat</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="chat-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/chat/chat">IRC</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                 </dl>
-<script>
+                <script>
                     $(document).ready(function(){
                       $("#menu-docs").click(function(){
                         $(".accordion-docs").removeClass("hide");
                         $(this).addClass("active");
                       });
                     });
-                </script><script>
-                  $("#platform-panel").addClass("active-panel");
-                  $("#platform-panel ul li:nth-child(20)").addClass("active-link");
-                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
                 </script>
-</div>
+                <script>
+                  $("#platform-panel").addClass("active-panel");
+                  $("#platform-panel ul li:nth-child(23)").addClass("active-link");
+                </script>
+              </div>
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Sphero</h1>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav">
+                  <div class="container">
+                    <h5>Sphero</h5>
+                    <nav>
+                      <a href="#HowToInstall">How To Install</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
+                      <a href="#top">Top</a>
+                    </nav>
+                  </div>
+                </section>
+                <br>
+                <section class="intro">
+                  <img class="display" src="/images/devices/sphero.jpg">
+                  <div class="info-intro">
+                    <h4>What is Sphero?</h4>
+                    <p>Sphero is a sophisticated and programmable robot housed in a polycarbonate sphere shell.</p>
+                    <p>The cylon-sphero adaptor makes it easy to interact with Sphero using Node.js, once you have your Sphero setup and connected to your computer you can start writing code to make Sphero move, change direction, speed and colors, or detect Sphero events and execute some code when they occur.</p>
+                    <h4>Where can I get a Sphero or find more info about it?</h4>
+                    <p>
+                      Go to the Orbotix web site at
+                      <a target="_blank" href="http://www.gosphero.com/">http://www.gosphero.com/</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section>
+                <section class="how-to" id="HowToInstall">
+                  <h2>How To Install</h2>
+                  <p>Installing cylon.js with sphero support is pretty easy.</p>
+                  <pre class="CodeRay">npm install cylon-sphero
+</pre>
+                </section>
+                <section class="how-to" id="HowToUse">
+                  <h2>How To Use</h2>
+                  <p>Example of a simple program that makes the Sphero roll.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>},
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+    });
+  }
+}).start();
+</pre>
+                </section>
+                <section class="how-to" id="HowToConnect">
+                  <h2>How To Connect</h2>
+                  <h3>OSX</h3>
+                  <p>In order to allow Cylon.js running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
+                  <p>
+                    Thank you to
+                    <a target="_blank" href="https://github.com/kopipejst">@kopipejst</a>
+                    for the above connnection info.
+                  </p>
+                  <h3>Ubuntu</h3>
+                  <p>
+                    Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line with
+                    <a href="http://gort.io">Gort</a>
+                    . Here are the steps:
+                  </p>
+                  <p>Find the address of the Sphero, by using:</p>
+                  <pre class="CodeRay">gort bluetooth scan
+</pre>
+                  <p>Pair to Sphero using this command (substituting the actual address of your Sphero):</p>
+                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
+</pre>
+                  <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):</p>
+                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
+</pre>
+                  <h3>Windows</h3>
+                  <p>
+                    </p>
+<p>You should be able to simply pair your Sphero using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
+                  
+                  <h2>How To Calibrate Sphero</h2>
+                  <p>You might want to calibrate the orientation of the Sphero so that it is pointed 'forward'. There are 2 functions that have been added to the Sphero driver to help with this.</p>
+                  <p>
+                    </p>
+<p>Call <code>startCalibration()</code> to put the Sphero into 'calibration mode' by turning on the tail LED and turning off the auto-stablization. You can now manually turn the Sphero to so the tail LED is pointed to the rear of the direction in which you want the Sphero to go.</p>
+                  
+                  <p>
+                    </p>
+<p>Call <code>finishCalibration()</code> to turn off 'calibration mode' by turning off the tail LED and turning back on the auto-stablization. Whichever direction that the tail LED was pointed, is now the rear direction for the Sphero.</p>
+                  
+                </section>
+                <section class="drivers" id="Drivers">
+                  <h2>Drivers</h2>
+                  <p>There is only one driver for the Sphero. Click on the image below:</p>
+                  <div class="hardware">
+                    <div class="devices">
+                      <!-- / TODO: Update drivers list at the top of the page. -->
+                      <!-- // Sphero -->
+                      <a class="device" href="/documentation/drivers/sphero" title="Sphero">
+                        <img src="/images/devices/sphero.jpg">
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
           </section>
-</div>
+        </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

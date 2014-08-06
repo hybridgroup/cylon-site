@@ -1,17 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
-<meta content="Ron Evans" name="author">
-<title>Release 0.12 Is For RobotOps</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="Ron Evans" name="author">
+    <title>Release 0.12 Is For RobotOps</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,31 +35,43 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a href="/documentation" class="item">Docs</a>
+                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a class="active" href="/blog">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a class="active" href="/blog">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
+        </div>
+      </div>
       <div class="page-title">
         <div class="w">
           <h1 class="title">Blog</h1>
@@ -66,7 +82,8 @@
         <div class="main blog" role="main">
           <div class="articles">
             <div class="article">
-              <header class="header"><div class="date">
+              <header class="header">
+                <div class="date">
                   <div class="blue">
                     <div class="month">
                       Mar
@@ -89,9 +106,12 @@
                     by Ron Evans
                   </div>
                 </div>
-              </header><p>The sun never sets (or rises maybe?) here on Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a>. After many more lessons learned from you, our dear users, and especially after our great experience at <a href="http://cylonjs.com/blog/2014/03/24/making-waves-at-makerland/" target="blank">Makerland</a>, we've just released version 0.12 of our JavaScript framework for open source robotics, physical computing, and the Internet of Things. </p>
+              </header>
+              <p>The sun never sets (or rises maybe?) here on Team <a href="http://cylonjs.com/" target="blank">Cylon.js</a>. After many more lessons learned from you, our dear users, and especially after our great experience at <a href="http://cylonjs.com/blog/2014/03/24/making-waves-at-makerland/" target="blank">Makerland</a>, we've just released version 0.12 of our JavaScript framework for open source robotics, physical computing, and the Internet of Things. </p>
               
-              <script type="text/javascript" src="https://asciinema.org/a/8517.js" id="asciicast-8517" async=""></script><p>You might have heard us talking about "RobotOps" or "DevOps for Robotics". We've completely rewritten our Command Line Interface (CLI), and it is now better faster and stronger than ever. First of all, we've put it into its <a href="https://github.com/hybridgroup/cylon-cli" target="blank">own node module and repository</a>. This makes it easier to use the Cylon.js CLI tools to flash Firmata on a few dozen Arduinos, scan serial interfaces for bluetooth devices, and much more. Even if you are not using Cylon.js for anything else, this is really useful!</p>
+              <script type="text/javascript" src="https://asciinema.org/a/8517.js" id="asciicast-8517" async=""></script>
+              
+              <p>You might have heard us talking about "RobotOps" or "DevOps for Robotics". We've completely rewritten our Command Line Interface (CLI), and it is now better faster and stronger than ever. First of all, we've put it into its <a href="https://github.com/hybridgroup/cylon-cli" target="blank">own node module and repository</a>. This makes it easier to use the Cylon.js CLI tools to flash Firmata on a few dozen Arduinos, scan serial interfaces for bluetooth devices, and much more. Even if you are not using Cylon.js for anything else, this is really useful!</p>
               
               <p>We've also greatly improved our <a href="http://cylonjs.com/documentation/examples/" target="blank">code examples</a>, with both clean and fully-annotated versions. Many of the demos that we show in our road tour can be found here, and lots more besides. We think Cylon.js is the most powerful, flexible, and easy to use JavaScript framework for Node robotics. Our examples help show how you can be using it right now.</p>
               
@@ -121,10 +141,10 @@
             <div class="categories">
               <h4>Tags</h4>
               <ul>
-<li><a href="/blog/tags/robots/">Robots</a></li>
+                <li><a href="/blog/tags/robots/">Robots</a></li>
                 <li><a href="/blog/tags/events/">Events</a></li>
               </ul>
-</div>
+            </div>
             <div class="network">
               <h4>Network</h4>
               <div class="network-links">
@@ -135,7 +155,7 @@
             <div class="titles">
               <h4>Posts</h4>
               <ul>
-<li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+                <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
                 <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
                 <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
                 <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
@@ -162,25 +182,66 @@
                 <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
                 <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
               </ul>
-</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
-<script src="/hybridpages/assets/javascript/disqus.js"></script><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564" type="text/javascript"></script>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/hybridpages/assets/javascript/disqus.js"></script>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564" type="text/javascript"></script>
 </html>

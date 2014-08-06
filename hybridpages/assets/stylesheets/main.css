@@ -878,7 +878,7 @@ fieldset > legend {
 /* line 1, ../hybridpages/assets/stylesheets/coderay.scss */
 .CodeRay {
   background-color: white;
-  border: 1px solid #CCC;
+  border: 1px solid #c51f3c;
   font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
   color: black;
   padding: 1em 0px 1em 1em;
@@ -1303,81 +1303,90 @@ ol.CodeRay li {
 
 /* line 1, ../hybridpages/assets/stylesheets/shared/_base.scss */
 body {
-  background-color: #f8f4ef;
-  background-image: url("../images/elements/back.png");
-  background-repeat: no-repeat;
-  background-position: top; }
+  background-color: #e8e8e8;
+  margin: 0 !important;
+  padding: 0; }
 
-/* line 9, ../hybridpages/assets/stylesheets/shared/_base.scss */
+/* line 8, ../hybridpages/assets/stylesheets/shared/_base.scss */
 .app {
   min-height: 100%;
   margin-bottom: -38px; }
 
-/* line 15, ../hybridpages/assets/stylesheets/shared/_base.scss */
+/* line 14, ../hybridpages/assets/stylesheets/shared/_base.scss */
 h3, h4, h5, ul, ol {
   color: #523d47; }
 
-/* line 22, ../hybridpages/assets/stylesheets/shared/_base.scss */
+/* line 21, ../hybridpages/assets/stylesheets/shared/_base.scss */
 a, a:visited {
-  color: #9e162e; }
-/* line 27, ../hybridpages/assets/stylesheets/shared/_base.scss */
+  color: #ee2a4a; }
+/* line 26, ../hybridpages/assets/stylesheets/shared/_base.scss */
 a:hover, a:focus {
   color: #580a25; }
 
 @media only screen and (max-width: 767px) {
-  /* line 33, ../hybridpages/assets/stylesheets/shared/_base.scss */
+  /* line 32, ../hybridpages/assets/stylesheets/shared/_base.scss */
   pre {
     white-space: pre;
     overflow: scroll;
     word-wrap: normal; } }
 
-/* line 40, ../hybridpages/assets/stylesheets/shared/_base.scss */
-.hero-anchors, .app-footer a, .hero a, .page-title a, .hero-anchors:active, .app-footer a:active, .hero a:active, .page-title a:active, .hero-anchors:visited, .app-footer a:visited, .hero a:visited, .page-title a:visited {
+/* line 39, ../hybridpages/assets/stylesheets/shared/_base.scss */
+.hero-anchors, .hero a, .page-title a, .hero-anchors:active, .hero a:active, .page-title a:active, .hero-anchors:visited, .hero a:visited, .page-title a:visited {
   color: #fffbda; }
-/* line 45, ../hybridpages/assets/stylesheets/shared/_base.scss */
-.hero-anchors:hover, .app-footer a:hover, .hero a:hover, .page-title a:hover, .hero-anchors:focus, .app-footer a:focus, .hero a:focus, .page-title a:focus {
+/* line 44, ../hybridpages/assets/stylesheets/shared/_base.scss */
+.hero-anchors:hover, .hero a:hover, .page-title a:hover, .hero-anchors:focus, .hero a:focus, .page-title a:focus {
   color: white; }
 
-/* line 51, ../hybridpages/assets/stylesheets/shared/_base.scss */
+/* line 50, ../hybridpages/assets/stylesheets/shared/_base.scss */
 .notice {
   background: white;
   padding: 20px 25px; }
 
 /* line 1, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+#top-header {
+  background: #7b1526; }
+  /* line 3, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  #top-header .background-header {
+    background: url("/images/elements/back_menu_blur.png") #7b1526 top center no-repeat;
+    height: 478px;
+    width: 100%;
+    position: absolute; }
+    /* line 8, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    #top-header .background-header.back-index-top {
+      background: url("/images/elements/back.png") #7b1526 top center no-repeat; }
+
+/* line 16, ../hybridpages/assets/stylesheets/shared/_headers.scss */
 .app-logo {
   width: 276px; }
-  /* line 5, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 20, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-logo a {
     display: block;
     width: 100%;
     color: #ee274a; }
 
-/* line 13, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+/* line 28, ../hybridpages/assets/stylesheets/shared/_headers.scss */
 .hidden-text {
-  background: url("/images/elements/logo.png") left top no-repeat;
+  background: url("/images/elements/logo.svg") left top no-repeat;
   text-indent: -99999px;
-  height: 27px; }
+  height: 30px; }
 
-/* line 20, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+/* line 35, ../hybridpages/assets/stylesheets/shared/_headers.scss */
 .app-header {
-  *zoom: 1;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto;
-  margin: 9px 0 15px 0; }
-  /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
-  .app-header:before, .app-header:after {
-    content: " ";
-    display: table; }
-  /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  padding: 9px 0 15px 0; }
+  /* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
   .app-header:after {
+    content: "";
+    display: table;
     clear: both; }
-  /* line 25, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 40, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .display, .app-header .subtitle, .app-header .menu, .app-header h1 {
     vertical-align: middle;
     margin: 0;
     display: inline-block; }
-  /* line 32, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 47, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .display {
     float: left;
     display: block;
@@ -1387,7 +1396,7 @@ a:hover, a:focus {
     /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-header .display:last-child {
       margin-right: 0; }
-  /* line 38, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 53, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .subtitle {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
@@ -1395,10 +1404,10 @@ a:hover, a:focus {
     color: #505252;
     padding: 8px 0 0 15px;
     width: 190px; }
-  /* line 45, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 60, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .easter {
     display: none; }
-  /* line 50, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 65, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .heart {
     color: red;
     font-size: 20px;
@@ -1407,7 +1416,7 @@ a:hover, a:focus {
     display: inline-block;
     width: 38px;
     text-align: center; }
-  /* line 61, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  /* line 76, ../hybridpages/assets/stylesheets/shared/_headers.scss */
   .app-header .menu {
     float: left;
     display: block;
@@ -1419,27 +1428,27 @@ a:hover, a:focus {
     /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .app-header .menu:last-child {
       margin-right: 0; }
-    /* line 68, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 83, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .menu .active {
       color: #ee274a;
       font-size: 15px;
       font-weight: bold;
       margin: 10px;
       padding: 8px 4px; }
-    /* line 77, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 92, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .menu .item {
       font-size: 15px;
       font-weight: bold;
       margin: 10px;
       padding: 8px 4px; }
-      /* line 84, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+      /* line 99, ../hybridpages/assets/stylesheets/shared/_headers.scss */
       .app-header .menu .item, .app-header .menu .item:visited, .app-header .menu .item:active {
-        color: #505252; }
-      /* line 89, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+        color: #eeeaec; }
+      /* line 104, ../hybridpages/assets/stylesheets/shared/_headers.scss */
       .app-header .menu .item:hover, .app-header .menu .item:focus {
         color: #ee274a; }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 61, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 76, ../hybridpages/assets/stylesheets/shared/_headers.scss */
       .app-header .menu {
         float: left;
         display: block;
@@ -1449,12 +1458,12 @@ a:hover, a:focus {
         /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .app-header .menu:last-child {
           margin-right: 0; }
-        /* line 100, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+        /* line 115, ../hybridpages/assets/stylesheets/shared/_headers.scss */
         .app-header .menu .item {
           margin: 0;
           padding: 0 5px; } }
-  @media only screen and (min-width: 767px) and (max-width: 964px) {
-    /* line 110, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+  @media only screen and (min-width: 767px) and (max-width: 960px) {
+    /* line 125, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .display {
       float: left;
       display: block;
@@ -1464,17 +1473,17 @@ a:hover, a:focus {
       .app-header .display:last-child {
         margin-right: 0; } }
   @media only screen and (max-width: 767px) {
-    /* line 118, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 133, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .subtitle, .app-header .menu {
       width: auto;
       display: block; }
-    /* line 124, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 139, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .display, .app-header .app-logo {
       display: inline-block; }
-    /* line 129, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 144, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .app-logo, .app-header .subtitle, .app-header .menu {
       margin: 0 0 5px 0; }
-    /* line 134, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 149, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .display {
       float: left;
       display: block;
@@ -1485,15 +1494,15 @@ a:hover, a:focus {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .app-header .display:last-child {
         margin-right: 0; }
-    /* line 141, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 156, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .app-logo a {
       background-position: center center; }
-    /* line 146, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 161, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .subtitle {
       font-size: 19px;
       line-height: 15px;
       padding: 0; }
-    /* line 153, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+    /* line 168, ../hybridpages/assets/stylesheets/shared/_headers.scss */
     .app-header .menu {
       margin: 5px 0 0 0;
       text-align: center;
@@ -1504,37 +1513,87 @@ a:hover, a:focus {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .app-header .menu:last-child {
         margin-right: 0; }
-      /* line 159, ../hybridpages/assets/stylesheets/shared/_headers.scss */
+      /* line 174, ../hybridpages/assets/stylesheets/shared/_headers.scss */
       .app-header .menu .item {
         margin: 0;
         padding: 0 2px; } }
 
 /* line 1, ../hybridpages/assets/stylesheets/shared/_footers.scss */
 .app-footer {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  color: #e6d6d6;
-  line-height: 39px;
-  background: #580a25;
-  font-weight: normal; }
-
-/* line 14, ../hybridpages/assets/stylesheets/shared/_footers.scss */
-.copyright {
-  clear: both; }
-  /* line 18, ../hybridpages/assets/stylesheets/shared/_footers.scss */
-  .copyright .left-side {
-    float: left; }
-  /* line 23, ../hybridpages/assets/stylesheets/shared/_footers.scss */
-  .copyright .right-side {
-    float: right;
-    text-align: right; }
-    /* line 28, ../hybridpages/assets/stylesheets/shared/_footers.scss */
-    .copyright .right-side a {
-      color: #e6d6d6; }
-      /* line 31, ../hybridpages/assets/stylesheets/shared/_footers.scss */
-      .copyright .right-side a:hover {
-        color: #dcc6c6; }
+  background: black;
+  color: white;
+  margin-top: 20px;
+  position: relative; }
+  /* line 8, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+  .app-footer .background-footer {
+    background: url(/images/elements/space.jpg) black center center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; }
+  /* line 16, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+  .app-footer .frameworks {
+    padding: 50px 0; }
+    /* line 20, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+    .app-footer .frameworks h4 {
+      color: white; }
+    /* line 24, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+    .app-footer .frameworks .column-footer {
+      text-align: center;
+      width: 33%;
+      float: left;
+      padding: 20px; }
+      /* line 26, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+      .app-footer .frameworks .column-footer .img {
+        height: 150px; }
+      /* line 35, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+      .app-footer .frameworks .column-footer .button {
+        background: black;
+        border: none;
+        float: right; }
+        /* line 40, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+        .app-footer .frameworks .column-footer .button a {
+          color: white; }
+        /* line 43, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+        .app-footer .frameworks .column-footer .button:hover {
+          background: #ee2a4a; }
+      @media only screen and (max-width: 767px) {
+        /* line 24, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+        .app-footer .frameworks .column-footer {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 100%; }
+          /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+          .app-footer .frameworks .column-footer:last-child {
+            margin-right: 0; } }
+  /* line 56, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+  .app-footer .copyright {
+    clear: both;
+    border-top: solid 1px #ee2a4a;
+    padding: 20px 0;
+    position: relative;
+    z-index: 0; }
+    /* line 64, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+    .app-footer .copyright .left-side {
+      float: left; }
+      /* line 68, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+      .app-footer .copyright .left-side span {
+        vertical-align: text-top; }
+    /* line 74, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+    .app-footer .copyright .right-side {
+      float: right;
+      text-align: right; }
+      /* line 79, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+      .app-footer .copyright .right-side a {
+        color: #e6d6d6; }
+        /* line 83, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+        .app-footer .copyright .right-side a p {
+          text-align: center;
+          margin: 0; }
+        /* line 88, ../hybridpages/assets/stylesheets/shared/_footers.scss */
+        .app-footer .copyright .right-side a:hover {
+          color: #dcc6c6; }
 
 /* line 1, ../hybridpages/assets/stylesheets/shared/_coderay.scss */
 .CodeRay {
@@ -1558,13 +1617,14 @@ html {
   padding: 5px; }
   /* line 17, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   #THG-logo img:hover {
-    background: #41071b; }
+    background: #ec1336; }
 
 /* line 24, ../hybridpages/assets/stylesheets/layouts/_home.scss */
 .container, .w {
-  width: 964px;
-  margin: 0 auto; }
-  @media only screen and (min-width: 767px) and (max-width: 964px) {
+  width: 960px;
+  margin: 0 auto;
+  position: relative; }
+  @media only screen and (min-width: 767px) and (max-width: 960px) {
     /* line 24, ../hybridpages/assets/stylesheets/layouts/_home.scss */
     .container, .w {
       width: 767px;
@@ -1575,21 +1635,18 @@ html {
       width: 100%;
       padding: 0 15px; } }
 
-/* line 40, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+/* line 41, ../hybridpages/assets/stylesheets/layouts/_home.scss */
 .main[role="main"] {
   padding-bottom: 40px;
-  *zoom: 1;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto; }
-  /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
-  .main[role="main"]:before, .main[role="main"]:after {
-    content: " ";
-    display: table; }
-  /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
   .main[role="main"]:after {
+    content: "";
+    display: table;
     clear: both; }
-  /* line 47, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 48, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .videos .video {
     float: left;
     display: block;
@@ -1599,19 +1656,19 @@ html {
     /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .main[role="main"] .videos .video:last-child {
       margin-right: 0; }
-    /* line 52, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    /* line 53, ../hybridpages/assets/stylesheets/layouts/_home.scss */
     .main[role="main"] .videos .video h3 {
       font-size: 16px; }
-    /* line 56, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    /* line 57, ../hybridpages/assets/stylesheets/layouts/_home.scss */
     .main[role="main"] .videos .video iframe, .main[role="main"] .videos .video object {
       width: 100%;
       height: 300px; }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 64, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 65, ../hybridpages/assets/stylesheets/layouts/_home.scss */
       .main[role="main"] .videos .video iframe, .main[role="main"] .videos .video object {
         height: 240px; } }
     @media only screen and (max-width: 767px) {
-      /* line 47, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+      /* line 48, ../hybridpages/assets/stylesheets/layouts/_home.scss */
       .main[role="main"] .videos .video {
         float: left;
         display: block;
@@ -1620,10 +1677,10 @@ html {
         /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .main[role="main"] .videos .video:last-child {
           margin-right: 0; }
-        /* line 73, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+        /* line 74, ../hybridpages/assets/stylesheets/layouts/_home.scss */
         .main[role="main"] .videos .video iframe, .main[role="main"] .videos .video object {
           height: 240px; } }
-  /* line 80, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 81, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .videos .video-index {
     float: left;
     display: block;
@@ -1632,30 +1689,30 @@ html {
     /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .main[role="main"] .videos .video-index:last-child {
       margin-right: 0; }
-    /* line 84, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    /* line 85, ../hybridpages/assets/stylesheets/layouts/_home.scss */
     .main[role="main"] .videos .video-index iframe, .main[role="main"] .videos .video-index object {
       width: 100%;
       height: 400px; }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 92, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 93, ../hybridpages/assets/stylesheets/layouts/_home.scss */
       .main[role="main"] .videos .video-index iframe, .main[role="main"] .videos .video-index object {
         height: 300px; } }
     @media only screen and (max-width: 767px) {
-      /* line 100, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+      /* line 101, ../hybridpages/assets/stylesheets/layouts/_home.scss */
       .main[role="main"] .videos .video-index iframe, .main[role="main"] .videos .video-index object {
         height: 180px; } }
-  /* line 110, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 111, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .content.full {
     width: 100%;
     clear: both; }
-  /* line 116, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 117, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .content h1, .main[role="main"] .content h2 {
-    color: #971542; }
-  /* line 121, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    color: #ee2a4a; }
+  /* line 122, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .content h1 {
-    font-size: 35pt;
+    font-size: 28pt;
     padding: 10px 0; }
-  /* line 129, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 130, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] .aside.right {
     float: left;
     display: block;
@@ -1666,12 +1723,12 @@ html {
     /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .main[role="main"] .aside.right:last-child {
       margin-right: 0; }
-    /* line 135, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+    /* line 136, ../hybridpages/assets/stylesheets/layouts/_home.scss */
     .main[role="main"] .aside.right img {
       width: 100%;
       margin-top: 20px;
       margin-left: 20px; }
-  /* line 145, ../hybridpages/assets/stylesheets/layouts/_home.scss */
+  /* line 146, ../hybridpages/assets/stylesheets/layouts/_home.scss */
   .main[role="main"] section.content .index-content {
     float: left;
     display: block;
@@ -1686,17 +1743,14 @@ html {
 
 /* line 3, ../hybridpages/assets/stylesheets/layouts/_hardware.scss */
 .hardware .devices {
-  *zoom: 1;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto;
   text-align: center; }
-  /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
-  .hardware .devices:before, .hardware .devices:after {
-    content: " ";
-    display: table; }
-  /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
   .hardware .devices:after {
+    content: "";
+    display: table;
     clear: both; }
   /* line 8, ../hybridpages/assets/stylesheets/layouts/_hardware.scss */
   .hardware .devices .device {
@@ -1704,7 +1758,7 @@ html {
     width: 225px; }
     /* line 13, ../hybridpages/assets/stylesheets/layouts/_hardware.scss */
     .hardware .devices .device:hover {
-      background: #b39f89; }
+      background: #9c9c9c; }
       /* line 15, ../hybridpages/assets/stylesheets/layouts/_hardware.scss */
       .hardware .devices .device:hover img {
         opacity: .9; }
@@ -1715,7 +1769,7 @@ html {
 /* line 1, ../hybridpages/assets/stylesheets/elements/_home.scss */
 .important-title {
   color: #fafaf1;
-  background: #971542;
+  background: #ee2a4a;
   text-align: center;
   text-transform: uppercase;
   padding: 20px 0; }
@@ -1724,146 +1778,270 @@ html {
     color: #b39f89; }
 
 /* line 16, ../hybridpages/assets/stylesheets/elements/_home.scss */
-.homepage-platform {
+.homepage-platform, .doc-platform {
   list-style: none !important;
-  margin: 0;
-  text-align: center; }
-  /* line 22, ../hybridpages/assets/stylesheets/elements/_home.scss */
-  .homepage-platform li {
+  margin: 0; }
+  /* line 21, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .homepage-platform li, .doc-platform li {
     display: inline-block;
     width: 19%;
-    padding: 10px; }
+    margin: 20px 0;
+    text-align: center; }
     @media only screen and (max-width: 767px) {
-      /* line 22, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .homepage-platform li {
+      /* line 21, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .homepage-platform li, .doc-platform li {
         width: 100%;
         float: none; } }
     /* line 36, ../hybridpages/assets/stylesheets/elements/_home.scss */
-    .homepage-platform li img:hover {
+    .homepage-platform li img:hover, .doc-platform li img:hover {
       opacity: .8; }
     /* line 44, ../hybridpages/assets/stylesheets/elements/_home.scss */
-    .homepage-platform li .title a {
-      color: #fafaf1;
-      background: #971542;
-      padding: 10px;
-      color: #fafaf1;
-      display: block;
-      width: 100%; }
-      /* line 53, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .homepage-platform li .title a:hover {
-        background: #811238; }
-    /* line 62, ../hybridpages/assets/stylesheets/elements/_home.scss */
-    .homepage-platform li .repo a {
-      color: #fafaf1;
-      background: #b39f89;
+    .homepage-platform li a p.title, .doc-platform li a p.title {
+      color: #523d47;
       padding: 10px;
       display: block;
       width: 100%; }
-      /* line 70, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .homepage-platform li .repo a:hover {
-        background: #a99279; }
+    /* line 50, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .homepage-platform li a:hover p.title, .doc-platform li a:hover p.title {
+      color: #ee2a4a; }
+    /* line 58, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .homepage-platform li .repo a, .doc-platform li .repo a {
+      color: white;
+      background: url(/images/elements/repo_icon.svg) center center no-repeat;
+      padding: 20px 0;
+      display: block;
+      width: 100%; }
+      /* line 66, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .homepage-platform li .repo a:hover, .doc-platform li .repo a:hover {
+        background: url(/images/elements/repo_icon_hover.svg) center center no-repeat;
+        color: #fffbda; }
 
-/* line 79, ../hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 75, ../hybridpages/assets/stylesheets/elements/_home.scss */
+.triangles {
+  width: 100%;
+  height: 3vw; }
+  /* line 80, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .triangles .triangle-left-black {
+    float: left;
+    width: 50%;
+    background: url("/images/elements/triangle_left_black.svg") top left no-repeat;
+    height: 100%;
+    background-size: cover; }
+  /* line 88, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .triangles .triangle-right-black {
+    float: right;
+    width: 50%;
+    background: url("/images/elements/triangle_right_black.svg") right top no-repeat;
+    height: 100%;
+    background-size: cover; }
+  /* line 97, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .triangles .triangle-left-grey {
+    float: left;
+    width: 50%;
+    background: url("/images/elements/triangle_left_grey.svg") top left no-repeat;
+    background-color: #000;
+    height: 100%;
+    background-size: cover; }
+  /* line 107, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .triangles .triangle-right-grey {
+    float: right;
+    width: 50%;
+    background: url("/images/elements/triangle_right_grey.svg") right top no-repeat;
+    background-color: #000;
+    height: 100%;
+    background-size: cover; }
+
+/* line 118, ../hybridpages/assets/stylesheets/elements/_home.scss */
+.hero-black {
+  top: -85px;
+  position: relative;
+  z-index: 2; }
+  @media only screen and (max-width: 767px) {
+    /* line 118, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero-black {
+      background-size: 99% 100%;
+      margin-top: -35px; } }
+  /* line 130, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .hero-black .hero-black-container {
+    background: #000;
+    padding: 20px 0 40px 0;
+    color: #e8e8e8; }
+    /* line 135, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero-black .hero-black-container h2 {
+      color: #ee2a4a; }
+    /* line 138, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero-black .hero-black-container .CodeRay {
+      background-color: #000;
+      border: 1px solid #e8e8e8;
+      color: #ee2a4a; }
+    /* line 143, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero-black .hero-black-container code, .hero-black .hero-black-container pre {
+      background: #000;
+      border: 1px solid #e8e8e8;
+      color: #ee2a4a; }
+
+/* line 151, ../hybridpages/assets/stylesheets/elements/_home.scss */
 .hero {
   margin: 15px 0 0 0;
-  background: #580a25;
-  padding: 25px 0; }
+  padding: 20px 0 10px 0; }
   @media only screen and (max-width: 767px) {
-    /* line 79, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 151, ../hybridpages/assets/stylesheets/elements/_home.scss */
     .hero {
       margin-top: -8px; } }
-  /* line 90, ../hybridpages/assets/stylesheets/elements/_home.scss */
-  .hero .title {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 47px;
-    color: #fafaf1;
-    line-height: 54px;
-    width: 100%;
-    clear: both;
-    opacity: 0.94;
-    margin: 0; }
+  /* line 162, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .hero .container {
+    max-width: 68em;
+    margin-left: auto;
+    margin-right: auto; }
+    /* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
+    .hero .container:after {
+      content: "";
+      display: table;
+      clear: both; }
+  /* line 168, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .hero .right-side {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 40.29137%; }
+    /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+    .hero .right-side:last-child {
+      margin-right: 0; }
+    /* line 170, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero .right-side img {
+      width: 100%;
+      margin-top: 35px; }
     @media only screen and (max-width: 767px) {
-      /* line 90, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .hero .title {
-        font-size: 23px;
-        line-height: 27px;
-        padding: 0; }
-        /* line 105, ../hybridpages/assets/stylesheets/elements/_home.scss */
-        .hero .title br {
-          display: none; } }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 90, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .hero .title {
-        font-size: 33px;
-        line-height: 42px; } }
-  /* line 118, ../hybridpages/assets/stylesheets/elements/_home.scss */
-  .hero .subtitle {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #b39f89;
-    font-weight: 550;
-    opacity: 0.94;
-    margin: 0;
-    line-height: 36px;
-    margin-top: 3px; }
+      /* line 168, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .hero .right-side {
+        display: none; } }
+    @media only screen and (min-width: 479px) and (max-width: 767px) {
+      /* line 180, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .hero .right-side img {
+        width: 80%;
+        margin-top: 15px; } }
+  /* line 187, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  .hero .left-side {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 57.35098%; }
+    /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+    .hero .left-side:last-child {
+      margin-right: 0; }
     @media only screen and (max-width: 767px) {
-      /* line 118, ../hybridpages/assets/stylesheets/elements/_home.scss */
-      .hero .subtitle {
-        font-size: 18px;
-        line-height: 22px;
-        margin-top: 4px;
-        padding: 0; } }
+      /* line 187, ../hybridpages/assets/stylesheets/elements/_home.scss */
+      .hero .left-side {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 100%;
+        text-align: center; }
+        /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+        .hero .left-side:last-child {
+          margin-right: 0; } }
+    /* line 196, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero .left-side .title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 35px;
+      color: white;
+      line-height: 40px;
+      width: 100%;
+      clear: both;
+      opacity: 0.94;
+      margin: 0; }
+      @media only screen and (max-width: 767px) {
+        /* line 196, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        .hero .left-side .title {
+          font-size: 20pt !important; } }
+      @media only screen and (max-width: 767px) {
+        /* line 196, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        .hero .left-side .title {
+          font-size: 23px;
+          line-height: 27px;
+          padding: 0; }
+          /* line 215, ../hybridpages/assets/stylesheets/elements/_home.scss */
+          .hero .left-side .title br {
+            display: none; } }
+      @media only screen and (min-width: 767px) and (max-width: 960px) {
+        /* line 196, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        .hero .left-side .title {
+          font-size: 33px;
+          line-height: 42px; } }
+    /* line 228, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero .left-side .subtitle {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: white;
+      font-weight: 550;
+      opacity: 0.94;
+      margin: 0;
+      line-height: 36px;
+      margin-top: 3px; }
+      @media only screen and (max-width: 767px) {
+        /* line 228, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        .hero .left-side .subtitle {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 700;
+          font-size: 15px;
+          color: white; } }
+      @media only screen and (max-width: 767px) {
+        /* line 228, ../hybridpages/assets/stylesheets/elements/_home.scss */
+        .hero .left-side .subtitle {
+          font-size: 18px;
+          line-height: 22px;
+          margin-top: 4px;
+          padding: 0; } }
 
-/* line 142, ../hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 263, ../hybridpages/assets/stylesheets/elements/_home.scss */
 .social {
   line-height: 0;
-  padding: 10px 0;
-  background: #fdfcf5; }
-  /* line 148, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  padding: 20px 0; }
+  /* line 268, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .social .twitter-follow-button {
     vertical-align: top; }
-  /* line 153, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 273, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .social .splitter {
     display: inline-block;
     height: 21px; }
   @media only screen and (max-width: 767px) {
-    /* line 161, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 281, ../hybridpages/assets/stylesheets/elements/_home.scss */
     .social .splitter {
       display: block;
       margin-bottom: 5px; } }
 
-/* line 169, ../hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 289, ../hybridpages/assets/stylesheets/elements/_home.scss */
 .cta, .hero a.cta {
   padding: 10px 20px;
   display: inline-block;
   margin: 17px 0 0 0;
   font-size: 19px;
   font-weight: bold; }
-  /* line 177, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 297, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .cta, .hero a.cta, .cta:visited, .hero a.cta:visited, .cta:active, .hero a.cta:active {
-    background: #c51f3c;
+    background: #ee2a4a;
     color: #fffbda; }
-  /* line 183, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 303, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .cta:hover, .hero a.cta:hover, .cta:focus, .hero a.cta:focus {
-    background: #a7011e;
+    background: #d00c2c;
     color: white; }
   @media only screen and (max-width: 767px) {
-    /* line 169, ../hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 289, ../hybridpages/assets/stylesheets/elements/_home.scss */
     .cta, .hero a.cta {
       font-size: 16px;
       padding: 8px 15px; } }
 
-/* line 204, ../hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 318, ../hybridpages/assets/stylesheets/elements/_home.scss */
 .catcher {
   margin: 0 0 38px 0;
   background: #fdfcf5;
   padding: 20px; }
-  /* line 210, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 324, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .catcher .phrase {
     margin: 0; }
-  /* line 215, ../hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 329, ../hybridpages/assets/stylesheets/elements/_home.scss */
   .catcher .cta, .catcher .hero a.cta, .hero .catcher a.cta {
     margin-top: 8px; }
 
@@ -1924,7 +2102,7 @@ html {
       /* line 58, ../hybridpages/assets/stylesheets/elements/_blog.scss */
       .articles .article .date .blue {
         padding: 5px;
-        background-color: #b39f89; }
+        background-color: black; }
         /* line 63, ../hybridpages/assets/stylesheets/elements/_blog.scss */
         .articles .article .date .blue .month {
           text-transform: uppercase;
@@ -2007,7 +2185,7 @@ html {
     padding: 2px 5px; }
     /* line 167, ../hybridpages/assets/stylesheets/elements/_blog.scss */
     .side-column .titles li:hover {
-      background: #580a25; }
+      background: #ee2a4a; }
       /* line 171, ../hybridpages/assets/stylesheets/elements/_blog.scss */
       .side-column .titles li:hover a {
         color: white;
@@ -2041,77 +2219,45 @@ html {
 
 /* line 21, ../hybridpages/assets/stylesheets/elements/_page.scss */
 .page-title {
-  background: #580a25;
-  padding: 25px 0;
-  margin: 10px 0 0 0; }
-  /* line 27, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  background: #000;
+  padding: 25px 0; }
+  /* line 26, ../hybridpages/assets/stylesheets/elements/_page.scss */
   .page-title .title {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 33px;
-    color: #fafaf1;
+    color: #ee2a4a;
     line-height: 28px;
     clear: both;
     opacity: 0.94;
     margin: 0; }
-  /* line 39, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  /* line 38, ../hybridpages/assets/stylesheets/elements/_page.scss */
   .page-title .subtitle {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 21px;
-    color: #b39f89;
+    color: white;
     font-weight: 550;
     opacity: 0.94;
     margin: 0;
     line-height: 21px;
     margin-top: 7px; }
 
-/* line 58, ../hybridpages/assets/stylesheets/elements/_page.scss */
-.subNavfixed {
-  width: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  z-index: 99;
-  padding: 0 !important; }
-  /* line 67, ../hybridpages/assets/stylesheets/elements/_page.scss */
-  .subNavfixed .app-logo {
-    display: inline-block !important; }
-  /* line 72, ../hybridpages/assets/stylesheets/elements/_page.scss */
-  .subNavfixed .container-subnav {
-    width: 964px;
-    margin: 0 auto; }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 72, ../hybridpages/assets/stylesheets/elements/_page.scss */
-      .subNavfixed .container-subnav {
-        width: 767px;
-        padding: 0 15px; } }
-    @media only screen and (max-width: 767px) {
-      /* line 72, ../hybridpages/assets/stylesheets/elements/_page.scss */
-      .subNavfixed .container-subnav {
-        width: 100%;
-        padding: 0 15px; } }
-  /* line 88, ../hybridpages/assets/stylesheets/elements/_page.scss */
-  .subNavfixed nav {
-    float: left;
-    margin: 20px 0; }
-  /* line 94, ../hybridpages/assets/stylesheets/elements/_page.scss */
-  .subNavfixed a {
-    margin: 20px 10px !important; }
-
-/* line 100, ../hybridpages/assets/stylesheets/elements/_page.scss */
+/*subnav drivers*/
+/* line 57, ../hybridpages/assets/stylesheets/elements/_page.scss */
 .marginTopSubnav {
   padding-top: 65px; }
 
-/* line 107, ../hybridpages/assets/stylesheets/elements/_page.scss */
+/* line 63, ../hybridpages/assets/stylesheets/elements/_page.scss */
 .subnav-drivers {
-  background: #b39f89;
+  border-top: solid 1px #cecece;
+  border-bottom: solid 1px #cecece;
   padding: 20px 0; }
   @media only screen and (max-width: 767px) {
-    /* line 107, ../hybridpages/assets/stylesheets/elements/_page.scss */
+    /* line 63, ../hybridpages/assets/stylesheets/elements/_page.scss */
     .subnav-drivers {
       display: none; } }
-  /* line 117, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  /* line 74, ../hybridpages/assets/stylesheets/elements/_page.scss */
   .subnav-drivers .app-logo {
     color: #ee274a;
     font-size: 2em;
@@ -2119,27 +2265,95 @@ html {
     font-family: "Russo One", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 5px;
     display: none; }
-  /* line 130, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  /* line 84, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  .subnav-drivers h5 {
+    display: none; }
+  /* line 91, ../hybridpages/assets/stylesheets/elements/_page.scss */
   .subnav-drivers nav a {
     padding: 5px 10px;
     margin: 20px 2px;
     color: #504338;
     font-size: .9em; }
-    @media only screen and (min-width: 767px) and (max-width: 964px) {
-      /* line 130, ../hybridpages/assets/stylesheets/elements/_page.scss */
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 91, ../hybridpages/assets/stylesheets/elements/_page.scss */
       .subnav-drivers nav a {
         font-size: .7em; } }
-    /* line 142, ../hybridpages/assets/stylesheets/elements/_page.scss */
+    /* line 103, ../hybridpages/assets/stylesheets/elements/_page.scss */
     .subnav-drivers nav a:hover {
       color: white;
-      background: #504338; }
-  /* line 149, ../hybridpages/assets/stylesheets/elements/_page.scss */
+      background: #ee2a4a; }
+    /* line 109, ../hybridpages/assets/stylesheets/elements/_page.scss */
+    .subnav-drivers nav a:last-child {
+      display: none; }
+  /* line 114, ../hybridpages/assets/stylesheets/elements/_page.scss */
   .subnav-drivers nav .active {
     color: white;
-    background: #504338; }
-  /* line 157, ../hybridpages/assets/stylesheets/elements/_page.scss */
-  .subnav-drivers nav a:last-child:hover {
-    background: none; }
+    background: #ee2a4a; }
+
+/* line 122, ../hybridpages/assets/stylesheets/elements/_page.scss */
+.subNavfixed {
+  width: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  padding: 0;
+  background: #d41131;
+  border: none;
+  height: 53px; }
+  /* line 134, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  .subNavfixed .app-logo {
+    display: inline-block; }
+  /* line 139, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  .subNavfixed .container-subnav {
+    width: 960px;
+    margin: 0 auto; }
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 139, ../hybridpages/assets/stylesheets/elements/_page.scss */
+      .subNavfixed .container-subnav {
+        width: 767px;
+        padding: 0 15px; } }
+    @media only screen and (max-width: 767px) {
+      /* line 139, ../hybridpages/assets/stylesheets/elements/_page.scss */
+      .subNavfixed .container-subnav {
+        width: 100%;
+        padding: 0 15px; } }
+  /* line 155, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  .subNavfixed h5 {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%;
+    color: white;
+    display: block;
+    float: left;
+    margin: 15px 0;
+    white-space: nowrap; }
+    /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+    .subNavfixed h5:last-child {
+      margin-right: 0; }
+    @media only screen and (min-width: 767px) and (max-width: 960px) {
+      /* line 155, ../hybridpages/assets/stylesheets/elements/_page.scss */
+      .subNavfixed h5 {
+        font-size: .8em; } }
+  /* line 167, ../hybridpages/assets/stylesheets/elements/_page.scss */
+  .subNavfixed nav {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 74.41059%;
+    float: left;
+    margin: 15px 0 15px 10px; }
+    /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
+    .subNavfixed nav:last-child {
+      margin-right: 0; }
+    /* line 172, ../hybridpages/assets/stylesheets/elements/_page.scss */
+    .subNavfixed nav a {
+      color: white;
+      margin: 20px 5pxz; }
+      /* line 176, ../hybridpages/assets/stylesheets/elements/_page.scss */
+      .subNavfixed nav a:last-child {
+        display: initial; }
 
 /* line 1, ../hybridpages/assets/stylesheets/elements/_hardware.scss */
 .more {
@@ -2158,37 +2372,55 @@ html {
 .repository {
   margin-right: 10px; }
 
-/* line 10, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 6, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+.doc-platform {
+  text-align: left; }
+  /* line 10, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  .doc-platform li {
+    width: 24%; }
+    @media only screen and (max-width: 767px) {
+      /* line 10, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      .doc-platform li {
+        width: 49%; } }
+
+/* line 22, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .documentation .intro .info-intro {
-  float: left;
+  float: right;
   width: 60%;
   margin: 0; }
+  /* line 28, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  .documentation .intro .info-intro p:last-of-type {
+    background: #bbdd9e;
+    padding: 10px; }
+    /* line 33, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    .documentation .intro .info-intro p:last-of-type a {
+      color: #ee2a4a; }
+      /* line 36, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      .documentation .intro .info-intro p:last-of-type a:hover {
+        color: #580a25; }
   @media only screen and (max-width: 767px) {
-    /* line 10, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 22, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .intro .info-intro {
       width: 100%; } }
-/* line 23, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 50, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .documentation .index {
-  *zoom: 1;
   max-width: 68em;
   margin-left: auto;
   margin-right: auto;
   padding-left: 30px; }
-  /* line 18, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
-  .documentation .index:before, .documentation .index:after {
-    content: " ";
-    display: table; }
-  /* line 23, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  /* line 15, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
   .documentation .index:after {
+    content: "";
+    display: table;
     clear: both; }
-  /* line 28, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 55, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .documentation .index section {
     margin: 0 auto;
     float: left;
     display: block;
     margin-right: 2.99668%;
     width: 29.52859%;
-    background: #a7011e;
+    background: #ec1336;
     height: 130px;
     margin-bottom: 20px;
     border-radius: 2px; }
@@ -2196,7 +2428,7 @@ html {
     .documentation .index section:last-child {
       margin-right: 0; }
     @media only screen and (max-width: 767px) {
-      /* line 28, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 55, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .documentation .index section {
         float: left;
         display: block;
@@ -2205,26 +2437,26 @@ html {
         /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .documentation .index section:last-child {
           margin-right: 0; } }
-    /* line 42, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 69, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .index section a {
       width: 100%;
       height: 100%;
       display: block; }
-    /* line 49, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 76, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .index section:hover {
-      background: #8e0119; }
-    /* line 54, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      background: #d41131; }
+    /* line 81, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .index section .title {
-      color: #fafaf1;
+      color: white;
       font-weight: bold;
-      background: #ed143a;
+      background: #d41131;
       padding: 5px 10px; }
-    /* line 62, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 89, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .index section .description {
-      color: #fafaf1;
+      color: white;
       font-size: 10pt; }
 
-/* line 72, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 99, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .documentation {
   float: left;
   display: block;
@@ -2233,96 +2465,95 @@ html {
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .documentation:last-child {
     margin-right: 0; }
-  /* line 76, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 103, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .documentation .index {
     padding: 0 0 0 8px; }
-    /* line 80, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 107, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .documentation .index li {
       margin: 8px 0; }
-  /* line 86, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 113, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .documentation .link {
     font-size: 20px; }
-  /* line 91, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 118, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .documentation .description {
     color: gray;
     font-size: 14px;
     line-height: 21px;
     margin: 10px; }
-  /* line 99, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 126, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .documentation .display {
     width: 35%;
-    float: right;
-    border: 1px solid rgba(88, 10, 37, 0.14);
+    float: left;
     margin: 0 0 19px 20px; }
     @media only screen and (max-width: 767px) {
-      /* line 99, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 126, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .documentation .display {
         width: 100%; } }
 
-/* line 113, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 139, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .clear {
   clear: both; }
 
-/* line 120, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 146, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .circuit .image-circuit {
   width: 50%;
   float: left; }
-  /* line 125, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 151, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .circuit .image-circuit img {
     height: 300px; }
-/* line 130, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 156, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .circuit .description-circuit {
   width: 50%;
   float: right; }
 
-/* line 137, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 163, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .image-size-300 {
   width: 200px; }
 
-/* line 144, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 170, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api h2 {
-  background: #971542;
+  background: #ee2a4a;
   color: white !important;
   padding: 5px 10px;
   font-size: 12pt;
   margin: 20px 0 0 0; }
-/* line 154, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 180, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api h4 {
   background: transparent;
   font-size: 11pt;
   font-weight: normal; }
-/* line 161, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 187, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api h3 {
   background: white;
   padding: 10px;
   margin: 0;
   font-size: 11pt; }
-/* line 169, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 195, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api h5 {
   background: white;
   padding: 10px;
   margin: 0;
   font-size: 10pt; }
-/* line 177, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 203, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api pre {
   background: white;
   margin: 0; }
-/* line 183, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 209, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api p, .commands-api ul {
   background: white;
   font-size: 10.5pt;
   margin: 0;
   padding: 10px;
   font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace; }
-/* line 192, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 218, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands-api li {
   margin-left: 20px; }
 
-/* line 198, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 224, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .commands {
   background: white;
   font-size: 10.5pt; }
-  /* line 203, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 229, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .commands span {
     font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace;
     font-size: 14px;
@@ -2331,25 +2562,25 @@ html {
     border: 1px solid #ccc;
     color: #444;
     padding: 5px; }
-  /* line 214, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 240, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .commands th {
-    background: #971542;
+    background: #ee2a4a;
     color: white; }
-  /* line 220, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 246, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .commands td {
     border-bottom: 1px solid #d4d4d4; }
-  /* line 225, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 251, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .commands .command {
     font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
     font-weight: bold;
     font-size: 11pt; }
-  /* line 236, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 262, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .commands .param .markdown span {
     background: none;
     border: none;
     padding: 0; }
 
-/* line 248, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 274, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .methods dt {
   font-weight: bold;
   background: white;
@@ -2359,15 +2590,15 @@ html {
   font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
   font-size: 17px;
   border: aliceblue; }
-/* line 260, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 286, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .methods dd {
   margin-bottom: 29px;
   padding-left: 10px; }
-/* line 266, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 292, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .methods li {
   font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace; }
 
-/* line 272, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+/* line 298, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
 .colors {
   float: left;
   display: block;
@@ -2376,8 +2607,8 @@ html {
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .colors:last-child {
     margin-right: 0; }
-  @media only screen and (min-width: 767px) and (max-width: 964px) {
-    /* line 272, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  @media only screen and (min-width: 767px) and (max-width: 960px) {
+    /* line 298, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .colors {
       float: left;
       display: block;
@@ -2386,11 +2617,11 @@ html {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .colors:last-child {
         margin-right: 0; }
-      /* line 280, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+      /* line 306, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
       .colors p {
         font-size: 10px; } }
   @media only screen and (max-width: 767px) {
-    /* line 272, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 298, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .colors {
       float: left;
       display: block;
@@ -2399,7 +2630,7 @@ html {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .colors:last-child {
         margin-right: 0; } }
-  /* line 291, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 317, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .colors dt {
     font-weight: bold;
     padding: 5px;
@@ -2408,11 +2639,11 @@ html {
     font-size: 15px;
     border: aliceblue;
     margin-top: 15px; }
-  /* line 302, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+  /* line 328, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
   .colors dd {
     margin-bottom: 20px;
     display: block; }
-    /* line 307, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
+    /* line 333, ../hybridpages/assets/stylesheets/elements/_documentation.scss */
     .colors dd p {
       margin: 0;
       line-height: 50px; }
@@ -2991,7 +3222,10 @@ html {
   display: block;
   margin-right: 2.35765%;
   width: 23.23176%;
-  background: #f5efe8; }
+  background: #dbdbdb;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0 10px; }
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .side-documentation:last-child {
     margin-right: 0; }
@@ -3008,134 +3242,144 @@ html {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .side-documentation:last-child {
         margin-right: 0; } }
-  /* line 14, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+  /* line 17, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
   .side-documentation .mobile-menu {
-    background: #971542;
+    background: #ee2a4a;
     text-align: right;
     display: none; }
     @media only screen and (max-width: 767px) {
-      /* line 14, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 17, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .mobile-menu {
         display: block; } }
-    /* line 25, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 28, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .mobile-menu .active {
       background: white; }
-      /* line 29, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 32, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .mobile-menu .active .line {
-        background: #971542; }
-    /* line 35, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        background: #ee2a4a; }
+    /* line 38, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .mobile-menu a {
       border: solid 2px white;
       padding: 10px;
       width: 55px;
       display: inline-block; }
-      /* line 42, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 45, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .mobile-menu a:hover {
         background: white; }
-        /* line 46, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        /* line 49, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
         .side-documentation .mobile-menu a:hover .line {
-          background: #971542; }
-      /* line 52, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+          background: #ee2a4a; }
+      /* line 55, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .mobile-menu a .line {
         height: 2px;
         width: 30px;
         margin: 5px 0;
         background: white; }
   @media only screen and (max-width: 767px) {
-    /* line 64, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 67, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .hide {
       display: none; } }
   @media only screen and (max-width: 767px) {
-    /* line 70, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 73, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs {
       margin: 0; } }
-  /* line 80, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+  @media only screen and (max-width: 767px) {
+    /* line 73, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    .side-documentation .accordion-docs {
+      width: 100%;
+      z-index: 1;
+      position: relative;
+      background-color: #dbdbdb; } }
+  /* line 86, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
   .side-documentation .accordion-docs ul {
     list-style: none; }
-    /* line 84, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 90, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs ul .active-link {
       list-style: square;
       font-weight: bold; }
-      /* line 89, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 95, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .accordion-docs ul .active-link a {
-        color: black; }
-  /* line 96, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
-  .side-documentation .accordion-docs .arrowDown {
-    float: right; }
-    /* line 100, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
-    .side-documentation .accordion-docs .arrowDown .rotate {
-      transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      /* IE 9 */
-      -webkit-transform: rotate(180deg);
-      /* Opera, Chrome, and Safari */ }
-  /* line 108, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        color: #ee2a4a; }
+  /* line 102, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
   .side-documentation .accordion-docs .doc-button {
     padding: 10px;
     margin: 0;
-    font-size: 1em; }
+    font-size: 0.875em;
+    border-bottom: 1px solid #cecece; }
     @media only screen and (max-width: 767px) {
-      /* line 108, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 102, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .accordion-docs .doc-button {
-        border-bottom: 2px solid #971542;
         padding-bottom: 10px; } }
-    /* line 120, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 114, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs .doc-button a {
       display: block;
-      color: #971542; }
+      color: #333; }
+      /* line 119, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      .side-documentation .accordion-docs .doc-button a:hover {
+        color: #ee2a4a; }
       @media only screen and (max-width: 767px) {
-        /* line 120, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        /* line 114, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
         .side-documentation .accordion-docs .doc-button a {
           font-size: 1.3em; } }
-  /* line 133, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+  /* line 131, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
   .side-documentation .accordion-docs dt, .side-documentation .accordion-docs dd {
     padding: 10px;
     border-bottom: 0; }
     @media only screen and (max-width: 767px) {
-      /* line 133, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 131, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .accordion-docs dt, .side-documentation .accordion-docs dd {
-        border-bottom: 2px solid #971542; } }
-    /* line 144, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        border-bottom: 1px solid #cecece; } }
+    /* line 142, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs dt a, .side-documentation .accordion-docs dd a {
       display: block;
-      color: #580a25; }
-  /* line 153, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
-  .side-documentation .accordion-docs dt a {
-    color: #971542;
-    float: left; }
-    /* line 158, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
-    .side-documentation .accordion-docs dt a:hover {
-      cursor: pointer; }
-    @media only screen and (max-width: 767px) {
-      /* line 153, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
-      .side-documentation .accordion-docs dt a {
-        font-size: 1.3em; } }
-  /* line 169, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      color: #333;
+      font-size: 0.875em; }
+      /* line 148, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      .side-documentation .accordion-docs dt a:hover, .side-documentation .accordion-docs dd a:hover {
+        color: #ee2a4a; }
+  /* line 155, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+  .side-documentation .accordion-docs dt {
+    border-bottom: solid 1px #cecece; }
+    /* line 159, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    .side-documentation .accordion-docs dt:last-of-type {
+      border: none; }
+    /* line 162, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    .side-documentation .accordion-docs dt a {
+      color: #333; }
+      /* line 166, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      .side-documentation .accordion-docs dt a:hover {
+        cursor: pointer;
+        color: #ee2a4a; }
+      @media only screen and (max-width: 767px) {
+        /* line 162, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        .side-documentation .accordion-docs dt a {
+          font-size: 0.875em; } }
+  /* line 178, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
   .side-documentation .accordion-docs dd {
     border-top: 0;
     margin-left: 0; }
-    /* line 173, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 182, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs dd a {
-      color: #580a25; }
-    /* line 179, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      color: #333; }
+    /* line 188, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs dd:last-of-type {
       position: relative;
       top: -1px; }
-    /* line 186, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 195, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .side-documentation .accordion-docs dd ul li {
       margin: 5px 0; }
-      /* line 190, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+      /* line 199, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
       .side-documentation .accordion-docs dd ul li a {
         font-size: 10pt; }
         @media only screen and (max-width: 767px) {
-          /* line 190, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+          /* line 199, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
           .side-documentation .accordion-docs dd ul li a {
             font-size: 1em; } }
-        /* line 198, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+        /* line 207, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
         .side-documentation .accordion-docs dd ul li a span {
           color: black; }
 
-/* line 209, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+/* line 218, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
 .container-documentation {
   float: left;
   display: block;
@@ -3145,8 +3389,11 @@ html {
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation:last-child {
     margin-right: 0; }
+  /* line 222, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+  .container-documentation .how-to {
+    padding-top: 65px; }
   @media only screen and (max-width: 767px) {
-    /* line 209, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
+    /* line 218, ../hybridpages/assets/stylesheets/elements/_accordeon.scss */
     .container-documentation {
       float: left;
       display: block;

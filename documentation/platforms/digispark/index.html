@@ -1,17 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta name="description">
-<meta content="The Hybrid Group" name="author">
-<title>Digispark with Cylon.js</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><script src="/hybridpages/assets/javascript/subnav.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Digispark with Cylon.js</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/hybridpages/assets/javascript/subnav.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,217 +36,47 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a href="/documentation" class="item">Docs</a>
+                  <a class="active" href="/documentation/platforms">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a href="/blog" class="item">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a href="/documentation" class="item">Docs</a>
-            <a class="active" href="/documentation/platforms">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
-      <div class="page-title">
-        <div class="w">
-          <h1 class="title">Platforms</h1>
-          <h2 class="subtitle">Cylon has a extensible system for connecting to hardware devices.</h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
-          <section class="content full"><div class="documentation">
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Digispark</h1>
-                    <h2 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-digispark" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-digispark/issues">Issues</a>
-</h2>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav"><div class="container">
-                    <nav><a href="#HowToInstall">How To Install</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#HowToConnect">How To Connect</a>
-                      <a href="#Drivers">Drivers</a>
-                      <a href="#top">Top</a>
-                    </nav>
-</div>
-                </section><br><section class="intro"><img class="display" src="/images/devices/digispark.jpg"><div class="info-intro">
-                    <p>The Digispark is an Attiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful. With a whole host of shields to extend its functionality and the ability to use the familiar Arduino IDE the Digispark is a great way to jump into electronics, or perfect for when an Arduino is too big or too much.</p>
-                    <p>
-                      For more info about the Digispark platform click
-                      <a target="blank" href="http://digistump.com/category/1">here</a>.
-                    </p>
-                  </div>
-                  <div class="clear"></div>
-                </section><section class="how-to" id="HowToInstall"><h2>How To Install</h2>
-                  <p>Installing the cylon-digispark requires the <code>libusb</code> package already be installed.</p>
-                  <h3>OSX</h3>
-                  <p>To install libusb on OSX using Homebrew:</p>
-                  <pre class="CodeRay">$ brew install libusb
-</pre>
-                  <h3>Ubuntu</h3>
-                  <p>To install libusb on linux:</p>
-                  <pre class="CodeRay">$ sudo apt-get install libusb-dev
-</pre>
-                  
-                  <p>Now you can install the module with: <code>npm install cylon-digispark</code></p>
-                  
-                  <p>If you're experiencing the <code>AttributeError: 'module' object has no attribute 'script_main'</code> build issue, then please refer to this <a href="https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812">comment</a></p>
-                </section><section class="how-to" id="HowToUse"><h2>How To Use</h2>
-                  <p>This small program lets you toggle an LED on and off.</p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() { my.led.toggle() });
-  }
-}).start();
-</pre>
-                </section><section class="how-to" id="HowToConnect"><h2>How To Connect</h2>
-                  <p>
-                    It is very easy to setup and connect to the Digispark using cylon CLI commands.
-                  </p>
-                  <p>
-                    Connecting to the Digispark
-                    <a href="http://www.kickstarter.com/projects/digistump/digispark-the-tiny-arduino-enabled-usb-dev-board">(Kickstarter Campaign)</a>
-                    ATTiny-based USB development board is very easy using Cylon, first we need to install the littlewire
-                    <a href="http://littlewire.cc/">(http://littlewire.cc)</a>
-                    protocol to communicate with the digispark, Cylon includes CLI commands to make the process of uploading littlewire to the
-                    digispark as simple as possible, after littlewire has been uploaded you can connect and communicate using Cylon.
-                  </p>
-                  <h3>OSX</h3>
-                  <p>IMPORTANT: 2012 MBP The USB ports on the 2012 MBPs (Retina and non) cause issues due to their USB3 controllers, currently the best work around is to use a cheap USB hub (non USB3) - we are working on future solutions. The hub on a Cinema display will work as well.</p>
-                  <p>The main steps are:</p>
-                  <ul>
-<li>Install the cylon-digispark npm module</li>
-                    <li>Upload the Littlewire protocol to the digispark</li>
-                    <li>Connect to the device using Cylon</li>
-                  </ul>
-<h4>DO NOT plug in the Digispark to your computer's USB port until prompted.</h4>
-                  <p>Install the cylon-digispark module:</p>
-                  <pre class="CodeRay">$ npm install cylon-digispark
-</pre>
-                  <p>
-                    After installing the cylon-digispark npm module run the Gort´s following command to
-                    upload littlewire to the digispark, plug it to a USB port when prompted:
-                  </p>
-                  <pre class="CodeRay">$ gort digispark upload [littlewire]
-</pre>
-                  
-                  <p>Once plugged in, use the Gort´s  <code>gort scan usb</code> command to verify your connection info:</p>
-                  
-                  <pre class="CodeRay">$ gort scan usb
-</pre>
-                  
-                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required
-                  to establish a connection with the Digispark in your Cylon code.</p>
-                  <p>That is it, you are set to start running Cylon digispark examples.</p>
-                  <h3>Ubuntu</h3>
-                  <p>The main steps are:</p>
-                  <ul>
-<li>Install the cylon-digispark npm module</li>
-                    <li>
-                      <p>Add a udev rule to allow access to the Digispark device (Do not worry
-                      about this, the <code>gort digispark upload [littlewire]</code> command does it for you if none is detected)</p>
-                    </li>
-                    <li>Plug in the Digispark to the USB port</li>
-                    <li>Connect to the device using Cylon</li>
-                  </ul>
-<h4>DO NOT plug in the Digispark to your computer's USB port until prompted.</h4>
-                  <p>Install the cylon-digispark npm module:</p>
-                  <pre class="CodeRay">$ npm install cylon-digispark
-</pre>
-                  
-                  <p>After installing the cylon-digispark module run the  Gort´s following command to
-                  upload littlewire to the digispark, plug it to a USB port when
-                  prompted. You might be asked to enter your sudo password, since
-                  uploading littlewire to the digispark requires some new udev rules, you
-                  can check and review them in <code>/etc/udev/rules.d/49-micronucleus.rules</code>
-                  after running the <code>gort digispark upload [littlewire]</code> command:</p>
-                  
-                  <pre class="CodeRay">$ gort digispark upload [littlewire]
-</pre>
-                  
-                  <p>Once plugged in, use Gort´s <code>gort scan usb</code> command to verify your connection info:</p>
-                  
-                  <pre class="CodeRay">$ gort scan usb
-</pre>
-                  
-                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required to
-                  establish a connection with the Digispark in your cylon code.</p>
-                  <p>That is it, you are set to start running Cylon digispark examples.</p>
-                  <p>
-                    Thanks to
-                    <a href="https://github.com/Bluebie">@bluebie</a>
-                    for the help with udev rules used when uploading littlewire to the digispark!
-                    <a href="https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux">(https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)</a>
-                  </p>
-                </section><section class="drivers" id="Drivers"><h2>Drivers</h2>
-                  <p>
-                    Thanks to
-                    <b>Cylon.js</b>
-                    and
-                    <b>Node.js</b>
-                    it is possible to interact with several I/O hardware devices and interfaces connected to the digispark
-                    using a set of already defined and easy to use drivers, all of this thanks to the Cylon.js architecture,
-                    in conjuction with Cylon.js-digispark adaptor (using the littlewire communication protocol),
-                    which makes it even possible to swap the entire platform for something else like arduino,
-                    and keep using the same code you just wrote for digispark, this just by swapping a couple
-                    of lines in your program.
-                  </p>
-                  <p>Available drivers for the digispark platform are listed below, the drivers contain detailed documentation and examples of what kind physical computing (using Cylon.js and Node.js) you could be doing:</p>
-                  <div class="hardware">
-                    <!-- / TODO: Update drivers list at the top of the page. -->
-                    <h2>GPIO Drivers</h2>
-                    <div class="devices">
-                      <!-- // Continuos Servo -->
-                      <a class="device" href="/documentation/drivers/direct-pin" title="Direct Pin">
-                        <img src="/images/devices/direct-pin.jpg"></a>
-                      <!-- // LED -->
-                      <a class="device" href="/documentation/drivers/led" title="LED">
-                        <img src="/images/devices/LED.jpg"></a>
-                      <!-- // Makey Button -->
-                      <a class="device" href="/documentation/drivers/makey-button" title="Maxbotix Range Finder">
-                        <img src="/images/devices/makey-button.jpg"></a>
-                      <!-- // Servo -->
-                      <a class="device" href="/documentation/drivers/servo" title="Servo">
-                        <img src="/images/devices/servo.jpg"></a>
-                    </div>
-                    <h2>i2c Drivers</h2>
-                    <div class="devices">
-                      <!-- // Blinkm -->
-                      <a class="device" href="/documentation/drivers/blinkm" title="Blinkm">
-                        <img src="/images/devices/blinkm.jpg"></a>
-                      <!-- // LCD -->
-                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
-                        <img src="/images/devices/lcd.jpg"></a>
-                      <!-- // mpl115a2 -->
-                      <a class="device" href="/documentation/drivers/mpl115a2" title="Digital Barometer/Thermometer">
-                        <img src="/images/devices/mpl115a2.jpg"></a>
-                    </div>
-                  </div>
-                </section>
-</div>
+          <section class="content full">
+            <div class="documentation">
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">
@@ -251,32 +86,26 @@ Cylon.robot({
                   </a>
                 </div>
                 <dl class="accordion-docs hide">
-<h5 class="doc-button">
+                  <h5 class="doc-button">
                     <a href="/documentation">Docs</a>
                   </h5>
                   <span></span>
                   <dt>
                     <a href="">Getting Started</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="getting-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/getting-started">Setup your environment</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Guides</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="guides-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/guides/what_is_cylon">
                           About Cylon
                         </a>
@@ -303,16 +132,13 @@ Cylon.robot({
                         <a href="/documentation/guides/helpers">Helper Methods</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Platforms</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="platform-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/platforms/ardrone">Ardrone</a>
                       </li>
                       <li>
@@ -320,6 +146,9 @@ Cylon.robot({
                       </li>
                       <li>
                         <a href="/documentation/platforms/yun">Arduino Yun</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/audio">Audio</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">Beaglebone</a>
@@ -376,20 +205,20 @@ Cylon.robot({
                         <a href="/documentation/platforms/sphero">Sphero</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/speech">Speech</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/tessel">Tessel</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Drivers</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="driver-panel">
                     GPIO
                     <ul id="gpio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       </li>
                       <li>
@@ -422,7 +251,7 @@ Cylon.robot({
                     </ul>
                     I2C
                     <ul id="i2c">
-<li>
+                      <li>
                         <a href="/documentation/drivers/blinkm">Blinkm</a>
                       </li>
                       <li>
@@ -443,7 +272,7 @@ Cylon.robot({
                     </ul>
                     ARDrone
                     <ul id="ardrone">
-<li>
+                      <li>
                         <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
                       </li>
                       <li>
@@ -452,19 +281,19 @@ Cylon.robot({
                     </ul>
                     Crazyflie
                     <ul id="crazyflie">
-<li>
+                      <li>
                         <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
                       </li>
                     </ul>
                     Force
                     <ul id="force">
-<li>
+                      <li>
                         <a href="/documentation/drivers/force">Force</a>
                       </li>
                     </ul>
                     Joystick
                     <ul id="joystick">
-<li>
+                      <li>
                         <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
                       </li>
                       <li>
@@ -473,7 +302,7 @@ Cylon.robot({
                     </ul>
                     Other Drivers
                     <ul id="others">
-<li>
+                      <li>
                         <a href="/documentation/drivers/keyboard">Keyboard</a>
                       </li>
                       <li>
@@ -503,7 +332,7 @@ Cylon.robot({
                     </ul>
                     Pinoccio Drivers
                     <ul id="pinoccio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
                       </li>
                       <li>
@@ -512,7 +341,7 @@ Cylon.robot({
                     </ul>
                     Tessel Modules
                     <ul id="tessel">
-<li>
+                      <li>
                         <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
                       </li>
                       <li>
@@ -543,94 +372,318 @@ Cylon.robot({
                         <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Contribute</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="contribute-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/contribute/guidelines">Guidelines</a>
                       </li>
                       <li>
                         <a href="/documentation/contribute/contact-us">Contact us</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Examples</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="example-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/examples">All examples</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Tutorials</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="tutorial-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/tutorials">Workshop</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Live Chat</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="chat-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/chat/chat">IRC</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                 </dl>
-<script>
+                <script>
                     $(document).ready(function(){
                       $("#menu-docs").click(function(){
                         $(".accordion-docs").removeClass("hide");
                         $(this).addClass("active");
                       });
                     });
-                </script><script>
-                  $("#platform-panel").addClass("active-panel");
-                  $("#platform-panel ul li:nth-child(5)").addClass("active-link");
-                  $(".accordion-docs dt:nth-child(7) a:nth-child(2) img").addClass("rotate");
                 </script>
-</div>
+                <script>
+                  $("#platform-panel").addClass("active-panel");
+                  $("#platform-panel ul li:nth-child(7)").addClass("active-link");
+                </script>
+              </div>
+              <div class="container-documentation">
+                <div class="page-title-docs">
+                  <div class="w">
+                    <h1 class="title">Digispark</h1>
+                  </div>
+                </div>
+                <section class="subnav-drivers" id="mainsubnav">
+                  <div class="container">
+                    <h5>Digispark</h5>
+                    <nav>
+                      <a href="#HowToInstall">How To Install</a>
+                      <a href="#HowToUse">How To Use</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
+                      <a href="#top">Top</a>
+                    </nav>
+                  </div>
+                </section>
+                <br>
+                <section class="intro">
+                  <img class="display" src="/images/devices/digispark.jpg">
+                  <div class="info-intro">
+                    <p>The Digispark is an Attiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful. With a whole host of shields to extend its functionality and the ability to use the familiar Arduino IDE the Digispark is a great way to jump into electronics, or perfect for when an Arduino is too big or too much.</p>
+                    <p>
+                      For more info about the Digispark platform click
+                      <a target="blank" href="http://digistump.com/category/1">here</a>.
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </section>
+                <section class="how-to" id="HowToInstall">
+                  <h2>How To Install</h2>
+                  <p>Installing the cylon-digispark requires the <code>libusb</code> package already be installed.</p>
+                  <h3>OSX</h3>
+                  <p>To install libusb on OSX using Homebrew:</p>
+                  <pre class="CodeRay">$ brew install libusb
+</pre>
+                  <h3>Ubuntu</h3>
+                  <p>To install libusb on linux:</p>
+                  <pre class="CodeRay">$ sudo apt-get install libusb-dev
+</pre>
+                  
+                  <p>Now you can install the module with: <code>npm install cylon-digispark</code></p>
+                  
+                  <p>If you're experiencing the <code>AttributeError: 'module' object has no attribute 'script_main'</code> build issue, then please refer to this <a href="https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812">comment</a></p>
+                </section>
+                <section class="how-to" id="HowToUse">
+                  <h2>How To Use</h2>
+                  <p>This small program lets you toggle an LED on and off.</p>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() { my.led.toggle() });
+  }
+}).start();
+</pre>
+                </section>
+                <section class="how-to" id="HowToConnect">
+                  <h2>How To Connect</h2>
+                  <p>
+                    It is very easy to setup and connect to the Digispark using cylon CLI commands.
+                  </p>
+                  <p>
+                    Connecting to the Digispark
+                    <a href="http://www.kickstarter.com/projects/digistump/digispark-the-tiny-arduino-enabled-usb-dev-board">(Kickstarter Campaign)</a>
+                    ATTiny-based USB development board is very easy using Cylon, first we need to install the littlewire
+                    <a href="http://littlewire.cc/">(http://littlewire.cc)</a>
+                    protocol to communicate with the digispark, Cylon includes CLI commands to make the process of uploading littlewire to the
+                    digispark as simple as possible, after littlewire has been uploaded you can connect and communicate using Cylon.
+                  </p>
+                  <h3>OSX</h3>
+                  <p>IMPORTANT: 2012 MBP The USB ports on the 2012 MBPs (Retina and non) cause issues due to their USB3 controllers, currently the best work around is to use a cheap USB hub (non USB3) - we are working on future solutions. The hub on a Cinema display will work as well.</p>
+                  <p>The main steps are:</p>
+                  <ul>
+                    <li>Install the cylon-digispark npm module</li>
+                    <li>Upload the Littlewire protocol to the digispark</li>
+                    <li>Connect to the device using Cylon</li>
+                  </ul>
+                  <h4>DO NOT plug in the Digispark to your computer's USB port until prompted.</h4>
+                  <p>Install the cylon-digispark module:</p>
+                  <pre class="CodeRay">$ npm install cylon-digispark
+</pre>
+                  <p>
+                    After installing the cylon-digispark npm module run the Gort´s following command to
+                    upload littlewire to the digispark, plug it to a USB port when prompted:
+                  </p>
+                  <pre class="CodeRay">$ gort digispark upload [littlewire]
+</pre>
+                  
+                  <p>Once plugged in, run <a href="http://gort.io">Gort</a>'s <code>gort scan usb</code> command to verify your connection info:</p>
+                  
+                  <pre class="CodeRay">$ gort scan usb
+</pre>
+                  
+                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required
+                  to establish a connection with the Digispark in your Cylon code.</p>
+                  <p>That is it, you are set to start running Cylon digispark examples.</p>
+                  <h3>Ubuntu</h3>
+                  <p>The main steps are:</p>
+                  <ul>
+                    <li>Install the cylon-digispark npm module</li>
+                    <li>
+                      <p>Add a udev rule to allow access to the Digispark device (Do not worry
+                      about this, the <code>gort digispark upload [littlewire]</code> command does it for you if none is detected)</p>
+                    </li>
+                    <li>Plug in the Digispark to the USB port</li>
+                    <li>Connect to the device using Cylon</li>
+                  </ul>
+                  <h4>DO NOT plug in the Digispark to your computer's USB port until prompted.</h4>
+                  <p>Install the cylon-digispark npm module:</p>
+                  <pre class="CodeRay">$ npm install cylon-digispark
+</pre>
+                  
+                  <p>After installing the cylon-digispark module run the  Gort´s following command to
+                  upload littlewire to the digispark, plug it to a USB port when
+                  prompted. You might be asked to enter your sudo password, since
+                  uploading littlewire to the digispark requires some new udev rules, you
+                  can check and review them in <code>/etc/udev/rules.d/49-micronucleus.rules</code>
+                  after running the <code>gort digispark upload [littlewire]</code> command:</p>
+                  
+                  <pre class="CodeRay">$ gort digispark upload [littlewire]
+</pre>
+                  
+                  <p>Once plugged in, run <a href="http://gort.io">Gort</a>'s <code>gort scan usb</code> command to verify your connection info:</p>
+                  
+                  <pre class="CodeRay">$ gort scan usb
+</pre>
+                  
+                  <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required to
+                  establish a connection with the Digispark in your cylon code.</p>
+                  <p>That is it, you are set to start running Cylon digispark examples.</p>
+                  <p>
+                    Thanks to
+                    <a href="https://github.com/Bluebie">@bluebie</a>
+                    for the help with udev rules used when uploading littlewire to the digispark!
+                    <a href="https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux">(https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)</a>
+                  </p>
+                </section>
+                <section class="drivers" id="Drivers">
+                  <h2>Drivers</h2>
+                  <p>
+                    Thanks to
+                    <b>Cylon.js</b>
+                    and
+                    <b>Node.js</b>
+                    it is possible to interact with several I/O hardware devices and interfaces connected to the digispark
+                    using a set of already defined and easy to use drivers, all of this thanks to the Cylon.js architecture,
+                    in conjuction with Cylon.js-digispark adaptor (using the littlewire communication protocol),
+                    which makes it even possible to swap the entire platform for something else like arduino,
+                    and keep using the same code you just wrote for digispark, this just by swapping a couple
+                    of lines in your program.
+                  </p>
+                  <p>Available drivers for the digispark platform are listed below, the drivers contain detailed documentation and examples of what kind physical computing (using Cylon.js and Node.js) you could be doing:</p>
+                  <div class="hardware">
+                    <!-- / TODO: Update drivers list at the top of the page. -->
+                    <h2>GPIO Drivers</h2>
+                    <div class="devices">
+                      <!-- // Continuos Servo -->
+                      <a class="device" href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <img src="/images/devices/direct-pin.jpg">
+                      </a>
+                      <!-- // LED -->
+                      <a class="device" href="/documentation/drivers/led" title="LED">
+                        <img src="/images/devices/LED.jpg">
+                      </a>
+                      <!-- // Makey Button -->
+                      <a class="device" href="/documentation/drivers/makey-button" title="Maxbotix Range Finder">
+                        <img src="/images/devices/makey-button.jpg">
+                      </a>
+                      <!-- // Servo -->
+                      <a class="device" href="/documentation/drivers/servo" title="Servo">
+                        <img src="/images/devices/servo.jpg">
+                      </a>
+                    </div>
+                    <h2>i2c Drivers</h2>
+                    <div class="devices">
+                      <!-- // Blinkm -->
+                      <a class="device" href="/documentation/drivers/blinkm" title="Blinkm">
+                        <img src="/images/devices/blinkm.jpg">
+                      </a>
+                      <!-- // LCD -->
+                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
+                        <img src="/images/devices/lcd.jpg">
+                      </a>
+                      <!-- // mpl115a2 -->
+                      <a class="device" href="/documentation/drivers/mpl115a2" title="Digital Barometer/Thermometer">
+                        <img src="/images/devices/mpl115a2.jpg">
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
           </section>
-</div>
+        </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

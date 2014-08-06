@@ -1,17 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-<head>
+  <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-<meta content="Cylon.js Helpers" name="description">
-<meta content="The Hybrid Group" name="author">
-<title>Helpers</title>
-<link href="/stylesheets/style.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/hybridpages/assets/javascript/accordeon.js"></script><link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
-<link href="/favicon.ico" rel="shortcut icon" type="image/gif">
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="Cylon.js Helpers" name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Helpers</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
 
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,216 +35,47 @@
 
 
 
+
+
+
+
+
    ga('send', 'pageview');
 
 
 </script></head>
-<body>
+  <body>
     
     <div class="app">
-      <div class="w">
-        <header class="app-header" role="banner"><div class="display">
-            <h1 class="app-logo">
-              <a href="/">Cylon</a>
-            </h1>
-            <span class="subtitle">
-              <div class="main"></div>
-            </span>
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a class="active" href="/documentation">Docs</a>
+                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/videos" class="item">Videos</a>
+                  <a href="/blog" class="item">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
           </div>
-          <span class="menu">
-            <a class="active" href="/documentation">Docs</a>
-            <a href="/documentation/platforms" class="item">Platforms</a>
-            <a href="/videos" class="item">Videos</a>
-            <a href="/blog" class="item">Blog</a>
-            <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-          </span>
-        </header>
-</div>
-      <div class="page-title">
-        <div class="w">
-          <h1 class="title">Guides</h1>
-          <h2 class="subtitle">A Guide by Humans, for Humanscurrently running robots.</h2>
         </div>
       </div>
       <div class="container">
         <div class="main" role="main">
-          <section class="content full"><div class="documentation">
-              <div class="container-documentation">
-                
-                <h1 id="helpers">Helpers</h1>
-                
-                <h2 id="everyinterval-action">every(interval, action)</h2>
-                
-                <p>Alias to JavaScript's setInterval() function, combined with monkeypatches to
-                Number detailed below.</p>
-                
-                <ul>
-<li>
-<strong>interval</strong> - interval to run action on</li>
-                  <li>
-<strong>action</strong> - action to perform on interval</li>
-                </ul>
-<p>Returns a setInterval</p>
-                
-                <h3 id="examples">Examples:</h3>
-                
-                <pre class="CodeRay">every(<span class="integer">5</span>..seconds(), <span class="keyword">function</span>() {
-  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world! (and again in 5 seconds)</span><span class="delimiter">"</span></span>);
-});
-</pre>
-                
-                <h2 id="afterinterval-action">after(interval, action)</h2>
-                
-                <p>Alias to JavaScript's setTimeout() function, combined with monkeypatches to
-                Number detailed below.</p>
-                
-                <ul>
-<li>
-<strong>interval</strong> - interval to run action after</li>
-                  <li>
-<strong>action</strong> - action to perform after interval</li>
-                </ul>
-<p>Returns a setTimeout</p>
-                
-                <h3 id="examples-1">Examples:</h3>
-                
-                <pre class="CodeRay">after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
-  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
-});
-</pre>
-                
-                <h2 id="proxyfunctionstoobjectmethods-target-base--this-force--false">proxyFunctionsToObject(methods, target, base = this, force = false)</h2>
-                
-                <p>Proxies a list of methods from one object to another. It will not overwrite
-                existing methods unless told to.</p>
-                
-                <ul>
-<li>
-<strong>methods</strong> - array of functions to proxy</li>
-                  <li>
-<strong>target</strong> - object to proxy the functions to</li>
-                  <li>
-<strong>base</strong> - (optional) object that proxied functions will be declared on.
-                Defaults to <code>this</code>
-</li>
-                  <li>
-<strong>force</strong> - (optional) boolean - whether or not to force method assignment.
-                Defaults to <code>false</code>
-</li>
-                </ul>
-<h3 id="examples-2">Examples:</h3>
-                
-                <pre class="CodeRay"><span class="keyword">var</span> BaseClass, ProxyClass, klass;
-
-ProxyClass = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">ProxyClass</span>() {}
-
-  ProxyClass.prototype.<span class="function">reverse</span> = <span class="keyword">function</span>(string) {
-    <span class="keyword">return</span> string.split(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>).reverse().join(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
-  };
-
-  <span class="keyword">return</span> ProxyClass;
-
-})();
-
-BaseClass = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">BaseClass</span>() {
-    <span class="local-variable">this</span>.proxy = <span class="keyword">new</span> ProxyClass;
-    proxyFunctionsToObject([<span class="string"><span class="delimiter">'</span><span class="content">reverse</span><span class="delimiter">'</span></span>], <span class="local-variable">this</span>.proxy);
-  }
-
-  <span class="keyword">return</span> BaseClass;
-
-})();
-
-klass = <span class="keyword">new</span> BaseClass;
-
-klass.reverse(<span class="string"><span class="delimiter">"</span><span class="content">Hello, World!</span><span class="delimiter">"</span></span>);
-</pre>
-                
-                <h2 id="numberseconds">Number::seconds</h2>
-                
-                <p>A monkey-patch to Number that allows for using numbers to represent time in
-                terms of seconds.</p>
-                
-                <p>Note that while using this in JavaScript, you have to use it in one of these
-                ways:</p>
-                
-                <pre class="CodeRay"><span class="integer">10</span>..seconds()
-<span class="comment">// or</span>
-(<span class="integer">10</span>).seconds()
-</pre>
-                
-                <p>Otherwise, the JavaScript interpreter will get confused and think you're
-                trying to represent a float.</p>
-                
-                <p>In CoffeeScript you can use <code>10.seconds()</code>, as the compiler will turn it into 
-                <code>10..seconds()</code> for you.</p>
-                
-                <p>Returns a Number representing the time in milliseconds</p>
-                
-                <h3 id="examples-3">Examples:</h3>
-                
-                <pre class="CodeRay"><span class="integer">10</span>..seconds();
-</pre>
-                
-                <h2 id="numbersecond">Number::second</h2>
-                
-                <p>Aliases to <code>Number::seconds</code>. See that method for more information</p>
-                
-                <p>Returns a Number representing the time in milliseconds</p>
-                
-                <h3 id="examples-4">Examples:</h3>
-                
-                <pre class="CodeRay"><span class="integer">1</span>..second();
-</pre>
-                
-                <h2 id="numberfromscalestart-end">Number::fromScale(start, end)</h2>
-                
-                <p>Monkey-patch on Number, converts a value from an old number scale (start, end)
-                to (0..1) scale.</p>
-                
-                <ul>
-<li>
-<strong>start</strong> - starting number of the scale</li>
-                  <li>
-<strong>end</strong> - top number number of the scale</li>
-                </ul>
-<p>Returns a number representing the scaled value.</p>
-                
-                <h3 id="examples-5">Examples:</h3>
-                
-                <pre class="CodeRay"><span class="integer">150</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>);
-
-<span class="integer">5</span>..fromScale(<span class="integer">0</span>, <span class="integer">10</span>);
-</pre>
-                
-                <h2 id="numbertoscalestart-end">Number::toScale(start, end)</h2>
-                
-                <p>Monkey-patch on Number, converts a value from (0..1) scale to a new (start,
-                end) scale.</p>
-                
-                <ul>
-<li>
-<strong>start</strong> - starting number of the scale</li>
-                  <li>
-<strong>end</strong> - top number number of the scale</li>
-                </ul>
-<p>This can be chained together with <code>Number::fromScale</code> to quickly and handily
-                convert numbers between scales. e.g</p>
-                
-                <pre class="CodeRay"><span class="integer">100</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>).toScale(<span class="integer">0</span>, <span class="integer">100</span>);
-</pre>
-                
-                <p>Returns a number representing the scaled value.</p>
-                
-                <h3 id="examples-6">Examples:</h3>
-                
-                <pre class="CodeRay"><span class="float">0.75</span>.toScale(<span class="integer">0</span>, <span class="integer">200</span>);
-
-<span class="float">0.5</span>.toScale(<span class="integer">0</span>, <span class="integer">10</span>);
-</pre>
-              </div>
+          <section class="content full">
+            <div class="documentation">
               <div class="side-documentation">
                 <div class="mobile-menu">
                   <a href="#" id="menu-docs">
@@ -250,32 +85,26 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                   </a>
                 </div>
                 <dl class="accordion-docs hide">
-<h5 class="doc-button">
+                  <h5 class="doc-button">
                     <a href="/documentation">Docs</a>
                   </h5>
                   <span></span>
                   <dt>
                     <a href="">Getting Started</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="getting-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/getting-started">Setup your environment</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Guides</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="guides-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/guides/what_is_cylon">
                           About Cylon
                         </a>
@@ -302,16 +131,13 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                         <a href="/documentation/guides/helpers">Helper Methods</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Platforms</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="platform-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/platforms/ardrone">Ardrone</a>
                       </li>
                       <li>
@@ -319,6 +145,9 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                       </li>
                       <li>
                         <a href="/documentation/platforms/yun">Arduino Yun</a>
+                      </li>
+                      <li>
+                        <a href="/documentation/platforms/audio">Audio</a>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">Beaglebone</a>
@@ -375,20 +204,20 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                         <a href="/documentation/platforms/sphero">Sphero</a>
                       </li>
                       <li>
+                        <a href="/documentation/platforms/speech">Speech</a>
+                      </li>
+                      <li>
                         <a href="/documentation/platforms/tessel">Tessel</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Drivers</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="driver-panel">
                     GPIO
                     <ul id="gpio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
                       </li>
                       <li>
@@ -421,7 +250,7 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     I2C
                     <ul id="i2c">
-<li>
+                      <li>
                         <a href="/documentation/drivers/blinkm">Blinkm</a>
                       </li>
                       <li>
@@ -442,7 +271,7 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     ARDrone
                     <ul id="ardrone">
-<li>
+                      <li>
                         <a href="/documentation/drivers/ardrone">Ardrone Flight</a>
                       </li>
                       <li>
@@ -451,19 +280,19 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     Crazyflie
                     <ul id="crazyflie">
-<li>
+                      <li>
                         <a href="/documentation/drivers/crazyflie">Crazyflie Flight</a>
                       </li>
                     </ul>
                     Force
                     <ul id="force">
-<li>
+                      <li>
                         <a href="/documentation/drivers/force">Force</a>
                       </li>
                     </ul>
                     Joystick
                     <ul id="joystick">
-<li>
+                      <li>
                         <a href="/documentation/drivers/dualshock">Dualshock3 Controller</a>
                       </li>
                       <li>
@@ -472,7 +301,7 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     Other Drivers
                     <ul id="others">
-<li>
+                      <li>
                         <a href="/documentation/drivers/keyboard">Keyboard</a>
                       </li>
                       <li>
@@ -502,7 +331,7 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     Pinoccio Drivers
                     <ul id="pinoccio">
-<li>
+                      <li>
                         <a href="/documentation/drivers/pinoccio_led">Pinoccio LED</a>
                       </li>
                       <li>
@@ -511,7 +340,7 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                     </ul>
                     Tessel Modules
                     <ul id="tessel">
-<li>
+                      <li>
                         <a href="/documentation/drivers/tessel_accelerometer">Tessel Accelerometer</a>
                       </li>
                       <li>
@@ -542,94 +371,303 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
                         <a href="/documentation/drivers/tessel_servo">Tessel Servo</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Contribute</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="contribute-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/contribute/guidelines">Guidelines</a>
                       </li>
                       <li>
                         <a href="/documentation/contribute/contact-us">Contact us</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Examples</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="example-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/examples">All examples</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Tutorials</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="tutorial-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/tutorials">Workshop</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                   <dt>
                     <a href="">Live Chat</a>
-                    <a class="arrowDown">
-                      <img alt="Arrow" src="/images/elements/arrowSide.png" width="20px"></a>
-                    <div class="clear"></div>
                   </dt>
                   <dd id="chat-panel">
                     <ul>
-<li>
+                      <li>
                         <a href="/documentation/chat/chat">IRC</a>
                       </li>
                     </ul>
-</dd>
+                  </dd>
                 </dl>
-<script>
+                <script>
                     $(document).ready(function(){
                       $("#menu-docs").click(function(){
                         $(".accordion-docs").removeClass("hide");
                         $(this).addClass("active");
                       });
                     });
-                </script><script>
+                </script>
+                <script>
                   $("#guides-panel").addClass("active-panel");
                   $("#guides-panel ul li:nth-child(6)").addClass("active-link");
-                  $(".accordion-docs dt:nth-child(5) a:nth-child(2) img").addClass("rotate");
                 </script>
-</div>
+              </div>
+              <div class="container-documentation">
+                
+                <h1 id="helpers">Helpers</h1>
+                
+                <h2 id="everyinterval-action">every(interval, action)</h2>
+                
+                <p>Alias to JavaScript's setInterval() function, combined with monkeypatches to
+                Number detailed below.</p>
+                
+                <ul>
+                  <li>
+<strong>interval</strong> - interval to run action on</li>
+                  <li>
+<strong>action</strong> - action to perform on interval</li>
+                </ul>
+                
+                <p>Returns a setInterval</p>
+                
+                <h3 id="examples">Examples:</h3>
+                
+                <pre class="CodeRay">every(<span class="integer">5</span>..seconds(), <span class="keyword">function</span>() {
+  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world! (and again in 5 seconds)</span><span class="delimiter">"</span></span>);
+});
+</pre>
+                
+                <h2 id="afterinterval-action">after(interval, action)</h2>
+                
+                <p>Alias to JavaScript's setTimeout() function, combined with monkeypatches to
+                Number detailed below.</p>
+                
+                <ul>
+                  <li>
+<strong>interval</strong> - interval to run action after</li>
+                  <li>
+<strong>action</strong> - action to perform after interval</li>
+                </ul>
+                
+                <p>Returns a setTimeout</p>
+                
+                <h3 id="examples-1">Examples:</h3>
+                
+                <pre class="CodeRay">after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
+  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
+});
+</pre>
+                
+                <h2 id="proxyfunctionstoobjectmethods-target-base--this-force--false">proxyFunctionsToObject(methods, target, base = this, force = false)</h2>
+                
+                <p>Proxies a list of methods from one object to another. It will not overwrite
+                existing methods unless told to.</p>
+                
+                <ul>
+                  <li>
+<strong>methods</strong> - array of functions to proxy</li>
+                  <li>
+<strong>target</strong> - object to proxy the functions to</li>
+                  <li>
+<strong>base</strong> - (optional) object that proxied functions will be declared on.
+                Defaults to <code>this</code>
+</li>
+                  <li>
+<strong>force</strong> - (optional) boolean - whether or not to force method assignment.
+                Defaults to <code>false</code>
+</li>
+                </ul>
+                
+                <h3 id="examples-2">Examples:</h3>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> BaseClass, ProxyClass, klass;
+
+ProxyClass = (<span class="keyword">function</span>() {
+  <span class="keyword">function</span> <span class="function">ProxyClass</span>() {}
+
+  ProxyClass.prototype.<span class="function">reverse</span> = <span class="keyword">function</span>(string) {
+    <span class="keyword">return</span> string.split(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>).reverse().join(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
+  };
+
+  <span class="keyword">return</span> ProxyClass;
+
+})();
+
+BaseClass = (<span class="keyword">function</span>() {
+  <span class="keyword">function</span> <span class="function">BaseClass</span>() {
+    <span class="local-variable">this</span>.proxy = <span class="keyword">new</span> ProxyClass;
+    proxyFunctionsToObject([<span class="string"><span class="delimiter">'</span><span class="content">reverse</span><span class="delimiter">'</span></span>], <span class="local-variable">this</span>.proxy);
+  }
+
+  <span class="keyword">return</span> BaseClass;
+
+})();
+
+klass = <span class="keyword">new</span> BaseClass;
+
+klass.reverse(<span class="string"><span class="delimiter">"</span><span class="content">Hello, World!</span><span class="delimiter">"</span></span>);
+</pre>
+                
+                <h2 id="numberseconds">Number::seconds</h2>
+                
+                <p>A monkey-patch to Number that allows for using numbers to represent time in
+                terms of seconds.</p>
+                
+                <p>Note that while using this in JavaScript, you have to use it in one of these
+                ways:</p>
+                
+                <pre class="CodeRay"><span class="integer">10</span>..seconds()
+<span class="comment">// or</span>
+(<span class="integer">10</span>).seconds()
+</pre>
+                
+                <p>Otherwise, the JavaScript interpreter will get confused and think you're
+                trying to represent a float.</p>
+                
+                <p>In CoffeeScript you can use <code>10.seconds()</code>, as the compiler will turn it into
+                <code>10..seconds()</code> for you.</p>
+                
+                <p>Returns a Number representing the time in milliseconds</p>
+                
+                <h3 id="examples-3">Examples:</h3>
+                
+                <pre class="CodeRay"><span class="integer">10</span>..seconds();
+</pre>
+                
+                <h2 id="numbersecond">Number::second</h2>
+                
+                <p>Aliases to <code>Number::seconds</code>. See that method for more information</p>
+                
+                <p>Returns a Number representing the time in milliseconds</p>
+                
+                <h3 id="examples-4">Examples:</h3>
+                
+                <pre class="CodeRay"><span class="integer">1</span>..second();
+</pre>
+                
+                <h2 id="numberfromscalestart-end">Number::fromScale(start, end)</h2>
+                
+                <p>Monkey-patch on Number, converts a value from an old number scale (start, end)
+                to (0..1) scale.</p>
+                
+                <ul>
+                  <li>
+<strong>start</strong> - starting number of the scale</li>
+                  <li>
+<strong>end</strong> - top number number of the scale</li>
+                </ul>
+                
+                <p>Returns a number representing the scaled value.</p>
+                
+                <h3 id="examples-5">Examples:</h3>
+                
+                <pre class="CodeRay"><span class="integer">150</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>);
+
+<span class="integer">5</span>..fromScale(<span class="integer">0</span>, <span class="integer">10</span>);
+</pre>
+                
+                <h2 id="numbertoscalestart-end">Number::toScale(start, end)</h2>
+                
+                <p>Monkey-patch on Number, converts a value from (0..1) scale to a new (start,
+                end) scale.</p>
+                
+                <ul>
+                  <li>
+<strong>start</strong> - starting number of the scale</li>
+                  <li>
+<strong>end</strong> - top number number of the scale</li>
+                </ul>
+                
+                <p>This can be chained together with <code>Number::fromScale</code> to quickly and handily
+                convert numbers between scales. e.g</p>
+                
+                <pre class="CodeRay"><span class="integer">100</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>).toScale(<span class="integer">0</span>, <span class="integer">100</span>);
+</pre>
+                
+                <p>Returns a number representing the scaled value.</p>
+                
+                <h3 id="examples-6">Examples:</h3>
+                
+                <pre class="CodeRay"><span class="float">0.75</span>.toScale(<span class="integer">0</span>, <span class="integer">200</span>);
+
+<span class="float">0.5</span>.toScale(<span class="integer">0</span>, <span class="integer">10</span>);
+</pre>
+              </div>
             </div>
           </section>
-</div>
+        </div>
       </div>
     </div>
-    <footer class="app-footer"><div class="w">
-        <div class="copyright">
-          <div class="left-side">
-            © Copyright 2012-2014
-            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
-              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png"></a>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
           </div>
-          <div class="right-side">
-            <a href="#top">Top</a>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-    </footer>
-</body>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
