@@ -81,6 +81,7 @@
     float: left;
     width: 50%; 
     background: url('/images/elements/triangle_left_black.svg') top left no-repeat;
+    min-height:  30px;
     height: 100%; 
     background-size: cover;
   }
@@ -128,23 +129,20 @@
   }
 
   .hero-black-container {
-      background: #000;
-      padding: 20px 0 40px 0;
-      color: $body-bg-color;
+    background: #000;
+    padding: 20px 0 40px 0;
+    color: $body-bg-color;
 
-      h2 {
-        color: $cta-color;
-      }
-      .CodeRay {
-        background-color: #000;
-        border: 1px solid $body-bg-color;
-        color: $cta-color;
-      }
-      code, pre {
-        background: #000;
-        border: 1px solid $body-bg-color;
-        color: $cta-color;
-      }
+    h2 {
+      color: $cta-color;
+    }
+
+    .CodeRay, code, pre {
+      background-color: #000;
+      border: 1px solid $body-bg-color; 
+      color: $cta-code-color;
+      font-weight: 700;
+    } 
   }
 }
 
