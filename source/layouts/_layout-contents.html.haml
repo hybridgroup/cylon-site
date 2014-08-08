@@ -30,7 +30,7 @@
 -content_for :social_links do
   .splitter
     %iframe{:allowtransparency => "true", :frameborder => "0", :height => "20", :scrolling => "0", :src => "http://ghbtns.com/github-btn.html?user=hybridgroup&repo=cylon&type=watch&count=true", :width => "95"}
-    %iframe{:allowtransparency => "true", :frameborder => "0", :height => "20", :scrolling => "0", :src => "http://ghbtns.com/github-btn.html?user=hybridgroup&repo=cylon&type=fork&count=true", :width => "95"}
+    %iframe.fork{:allowtransparency => "true", :frameborder => "0", :height => "20", :scrolling => "0", :src => "http://ghbtns.com/github-btn.html?user=hybridgroup&repo=cylon&type=fork&count=true", :width => "95"}
   .splitter
     %a.twitter-share-button{"data-dnt" => "true", "data-text" => "JavaScript Robotics, By Your Command.", "data-url" => "http://cylonjs.com", "data-via" => "cylonjs", :href => "https://twitter.com/share"} Tweet
     :javascript
