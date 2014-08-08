@@ -1819,76 +1819,80 @@ html {
 /* line 75, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .triangles {
   width: 100%;
-  height: 3vw; }
-  /* line 80, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  height: 4vw;
+  position: relative; }
+  /* line 81, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .triangles .triangle-left-black {
-    float: left;
+    position: absolute;
     width: 50%;
     background: url("/images/elements/triangle_left_black.svg") top left no-repeat;
+    min-height: 30px;
     height: 100%;
     background-size: cover; }
-  /* line 88, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 90, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .triangles .triangle-right-black {
-    float: right;
+    position: absolute;
+    right: 0;
     width: 50%;
     background: url("/images/elements/triangle_right_black.svg") right top no-repeat;
+    min-height: 30px;
     height: 100%;
     background-size: cover; }
-  /* line 97, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 101, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .triangles .triangle-left-grey {
-    float: left;
+    position: absolute;
     width: 50%;
     background: url("/images/elements/triangle_left_grey.svg") top left no-repeat;
     background-color: #000;
+    min-height: 30px;
     height: 100%;
     background-size: cover; }
-  /* line 107, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 112, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .triangles .triangle-right-grey {
-    float: right;
+    position: absolute;
+    right: 0;
     width: 50%;
     background: url("/images/elements/triangle_right_grey.svg") right top no-repeat;
     background-color: #000;
+    min-height: 30px;
     height: 100%;
     background-size: cover; }
 
-/* line 118, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 124, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .hero-black {
+  width: 100%;
   top: -85px;
   position: relative;
   z-index: 2; }
   @media only screen and (max-width: 767px) {
-    /* line 118, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 124, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero-black {
       background-size: 99% 100%;
       margin-top: -35px; } }
-  /* line 130, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 137, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .hero-black .hero-black-container {
     background: #000;
     padding: 20px 0 40px 0;
     color: #e8e8e8; }
-    /* line 135, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 142, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero-black .hero-black-container h2 {
       color: #ee2a4a; }
-    /* line 138, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
-    .hero-black .hero-black-container .CodeRay {
+    /* line 146, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    .hero-black .hero-black-container .CodeRay, .hero-black .hero-black-container code, .hero-black .hero-black-container pre {
       background-color: #000;
       border: 1px solid #e8e8e8;
-      color: #ee2a4a; }
-    /* line 143, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
-    .hero-black .hero-black-container code, .hero-black .hero-black-container pre {
-      background: #000;
-      border: 1px solid #e8e8e8;
-      color: #ee2a4a; }
+      color: #ff8196;
+      font-weight: 700; }
 
-/* line 151, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 155, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .hero {
   margin: 15px 0 0 0;
   padding: 20px 0 10px 0; }
   @media only screen and (max-width: 767px) {
-    /* line 151, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 155, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero {
       margin-top: -8px; } }
-  /* line 162, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 166, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .hero .container {
     max-width: 68em;
     margin-left: auto;
@@ -1898,7 +1902,7 @@ html {
       content: "";
       display: table;
       clear: both; }
-  /* line 168, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 172, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .hero .right-side {
     float: left;
     display: block;
@@ -1907,20 +1911,20 @@ html {
     /* line 38, /Users/mario/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .hero .right-side:last-child {
       margin-right: 0; }
-    /* line 170, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 174, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero .right-side img {
       width: 100%;
       margin-top: 35px; }
     @media only screen and (max-width: 767px) {
-      /* line 168, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 172, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
       .hero .right-side {
         display: none; } }
     @media only screen and (min-width: 479px) and (max-width: 767px) {
-      /* line 180, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 184, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
       .hero .right-side img {
         width: 80%;
         margin-top: 15px; } }
-  /* line 187, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 191, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .hero .left-side {
     float: left;
     display: block;
@@ -1930,7 +1934,7 @@ html {
     .hero .left-side:last-child {
       margin-right: 0; }
     @media only screen and (max-width: 767px) {
-      /* line 187, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+      /* line 191, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
       .hero .left-side {
         float: left;
         display: block;
@@ -1940,7 +1944,7 @@ html {
         /* line 38, /Users/mario/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .hero .left-side:last-child {
           margin-right: 0; } }
-    /* line 196, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 200, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero .left-side .title {
       font-family: "Montserrat", sans-serif;
       font-weight: 700;
@@ -1952,24 +1956,24 @@ html {
       opacity: 0.94;
       margin: 0; }
       @media only screen and (max-width: 767px) {
-        /* line 196, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 200, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
         .hero .left-side .title {
           font-size: 20pt !important; } }
       @media only screen and (max-width: 767px) {
-        /* line 196, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 200, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
         .hero .left-side .title {
           font-size: 23px;
           line-height: 27px;
           padding: 0; }
-          /* line 215, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+          /* line 219, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
           .hero .left-side .title br {
             display: none; } }
       @media only screen and (min-width: 767px) and (max-width: 960px) {
-        /* line 196, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 200, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
         .hero .left-side .title {
           font-size: 33px;
           line-height: 42px; } }
-    /* line 228, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 232, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .hero .left-side .subtitle {
       font-family: "Montserrat", sans-serif;
       font-weight: 700;
@@ -1981,67 +1985,67 @@ html {
       line-height: 36px;
       margin-top: 3px; }
       @media only screen and (max-width: 767px) {
-        /* line 228, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 232, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
         .hero .left-side .subtitle {
           font-family: "Montserrat", sans-serif;
           font-weight: 700;
           font-size: 15px;
           color: white; } }
       @media only screen and (max-width: 767px) {
-        /* line 228, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+        /* line 232, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
         .hero .left-side .subtitle {
           font-size: 18px;
           line-height: 22px;
           margin-top: 4px;
           padding: 0; } }
 
-/* line 263, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 267, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .social {
   line-height: 0;
   padding: 20px 0; }
-  /* line 268, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 272, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .social .twitter-follow-button {
     vertical-align: top; }
-  /* line 273, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 277, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .social .splitter {
     display: inline-block;
     height: 21px; }
   @media only screen and (max-width: 767px) {
-    /* line 281, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 285, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .social .splitter {
       display: block;
       margin-bottom: 5px; } }
 
-/* line 289, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 293, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .cta, .hero a.cta {
   padding: 10px 20px;
   display: inline-block;
   margin: 17px 0 0 0;
   font-size: 19px;
   font-weight: bold; }
-  /* line 297, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 301, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .cta, .hero a.cta, .cta:visited, .hero a.cta:visited, .cta:active, .hero a.cta:active {
     background: #ee2a4a;
     color: #fffbda; }
-  /* line 303, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 307, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .cta:hover, .hero a.cta:hover, .cta:focus, .hero a.cta:focus {
     background: #d00c2c;
     color: white; }
   @media only screen and (max-width: 767px) {
-    /* line 289, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+    /* line 293, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
     .cta, .hero a.cta {
       font-size: 16px;
       padding: 8px 15px; } }
 
-/* line 318, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+/* line 322, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
 .catcher {
   margin: 0 0 38px 0;
   background: #fdfcf5;
   padding: 20px; }
-  /* line 324, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 328, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .catcher .phrase {
     margin: 0; }
-  /* line 329, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
+  /* line 333, /Users/mario/Dev/hybridgroup/cylon-site/source/hybridpages/assets/stylesheets/elements/_home.scss */
   .catcher .cta, .catcher .hero a.cta, .hero .catcher a.cta {
     margin-top: 8px; }
 
