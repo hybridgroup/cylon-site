@@ -22,7 +22,7 @@
 
     @include small-screen {
 
-      width: 100%;
+      width: 49%;
       float: none;
     }
 
@@ -130,7 +130,6 @@
   @media only screen and (max-width: $medium-screen) {
 
     background-size: 99% 100%;
-
     margin-top: -35px;
   }
 
@@ -174,6 +173,11 @@
     img {
       width: 100%;
       margin-top: 35px;
+
+      @media only screen and (max-width: $big-screen) {
+
+        margin-top: 85px;
+      }
     }
     @media only screen and (max-width: $medium-screen) {
 
@@ -268,6 +272,17 @@
 
   line-height: 0;
   padding: 20px 0;
+    @media only screen and (max-width: $big-screen) {
+
+      margin-bottom: 85px;
+    }
+
+  .container{
+    @media only screen and (min-width: $medium-screen) and (max-width: $big-screen) {
+
+      padding-left: 0;
+    }
+  }
 
   .twitter-follow-button {
 
