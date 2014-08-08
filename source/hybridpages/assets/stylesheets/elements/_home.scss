@@ -268,23 +268,6 @@
   }
 }
 
-@include small-screen {
-
-    #twitter-widget-1{
-
-      display: none;
-    }
-    #twitter-widget-0{
-      width: 99px !important;
-    }
-
-    .fork{
-
-      display: none;
-    }
-  }
-
-
 .social {
 
   line-height: 0;
@@ -318,6 +301,21 @@
 
       display: block;
       margin-bottom: 5px;
+    }
+
+    #twitter-widget-1{
+
+      display: none;
+    }
+
+    #twitter-widget-0{
+      
+      width: 99px !important;
+    }
+
+    .fork{
+
+      display: none;
     }
   }
 }
