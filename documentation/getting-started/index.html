@@ -431,87 +431,113 @@
               </div>
               <div class="container-documentation">
                 
-                <section>
-                  <h1>Setup your environment.</h1>
-                  <h2>How to Install Node.js</h2>
-                  <h3>OSX</h3>
-                  <p></p>
-                  Go to the Node.js downloads page at
-                  <a target="blank" href="http://nodejs.org/download/">http://nodejs.org/download/</a>
-                  download the installer file and run it.
-                  <h3>Ubuntu</h3>
-                  <p></p>
-                  Follow the installation instructions at
-                  <a target="_blank" href="https://github.com/joyent/node/wiki/Installation">https://github.com/joyent/node/wiki/Installation</a>
-                  to install the latest Node.js
-                  <h3>Windows</h3>
-                  <p></p>
-                  Go to the Node.js downloads page at
-                  <a target="blank" href="http://nodejs.org/download/">http://nodejs.org/download/</a>
-                  download the installer file and run it.
-                  <h2>How to Install CoffeeScript (Optional)</h2>
-                  <p>
-                    If you want to program Cylon.js using CoffeeScript, it is easy to install using NPM, the Node Package Manager:
-                  </p>
-                  <pre class="CodeRay">npm install -g coffee-script
+                <div class="getting-started">
+                  <section>
+                    <h1 id="setup-your-environment">Setup Your Environment</h1>
+                    
+                    <h2 id="installing-nodejs">Installing Node.js</h2>
+                    
+                    <h3 id="os-x">OS X</h3>
+                    
+                    <p>To install Node on OS X, you can use Homebrew (<code>brew install node</code>), or download the package directly from the
+                    <a href="http://nodejs.org/download/" target="_blank">Node website</a>.</p>
+                    
+                    <h3 id="ubuntu">Ubuntu</h3>
+                    
+                    <p>On Ubuntu, you can install Node via apt-get (<code>sudo apt-get install nodejs</code>), or via the instructions on the
+                    <a href="http://nodejs.org/download/" target="_blank">Joyent wiki page</a>.</p>
+                    
+                    <h3 id="windows">Windows</h3>
+                    
+                    <p>For a Windows machine, your best bet is to download a Node installer directly from the 
+                    <a href="http://nodejs.org/download/" target="_blank">Node website</a>.</p>
+                  </section>
+                  <section class="installation">
+                    <h2 id="how-to-install-cylonjs">How To Install Cylon.JS</h2>
+                    
+                    <p>To get Cylon.JS up and running, you'll need the necessary modules for your hardware.
+                    For instance, if you're working with an Arduino, you'll most likely want the <code>cylon-firmata</code> module.</p>
+                    
+                    <p>Install it with NPM, and you'll also get the core Cylon.JS module, along with the <code>cylon-gpio</code> and <code>cylon-i2c</code> packages to make sure everything works:</p>
+                    
+                    <pre class="CodeRay">$ npm install cylon-firmata
+$ npm ls --depth 0
+  ├── cylon
+  ├── cylon-firmata
+  ├── cylon-gpio
+  └── cylon-i2c
 </pre>
-                  <p>
-                    You might need to install under the 'root' user by running the above install command using `sudo`.
-                  </p>
-                </section>
-                <section class="installation">
-                  <h2>How to Install Cylon.js</h2>
-                  <p>
-                    In order to use Cylon.js, you must install the Cylon.js node modules needed to control your particular hardware setup. For example, to use Cylon.js with an Arduino, you will need to install the `cylon-firmata` module. Check out this example:
-                  </p>
-                  <pre class="CodeRay">npm install cylon
-npm install cylon-firmata
+                  </section>
+                  <section class="running">
+                    <h2 id="writing-and-running-cylonjs-robots">Writing And Running Cylon.JS Robots</h2>
+                    
+                    <p>With the Cylon modules installed, you're ready to start writing your own code.
+                    You can take a look at some of the examples below, or read the guide page on
+                    <a href="/documentation/guides/working-with-robots/" target="_blank">Working with Robots</a>.</p>
+                    
+                    <p>Additionally, if you want to find more examples of how to write robots with Cylon.JS, check out our
+                    <a href="/documentation/guides/working-with-robots/" target="_blank">Examples page</a>.</p>
+                    
+                    <p>To run your robots, just pass the script to the <code>node</code> binary:</p>
+                    
+                    <pre class="CodeRay">$ node robot.js
 </pre>
-                  <section class="running"></section>
-                  <h2>Cylon.js Robots</h2>
-                  <h3>Writing your robot code:</h3>
-                  <p></p>
-                  Now you are ready to write your own code. Take a look at the examples below, or go to the
-                  <a target="blank" href="https://github.com/hybridgroup/cylon/tree/master/examples">examples</a>
-                  directory for a whole bunch of code you can use to help get started. We recommend using Test-Driven Robotics (TDR) with your preferred test frameworks.
-                  <h3>Running your robot:</h3>
-                  <pre class="CodeRay">node robotfilename.js
-</pre>
-                </section>
-                <section class="app-code">
-                  <h2>Cylon.js Code Examples</h2>
-                  <h3>Example: Hello</h3>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  </section>
+                  <section class="app-code">
+                    <h2 id="cylonjs-code-examples">Cylon.JS Code Examples</h2>
+                    
+                    <h3 id="hello">Hello</h3>
+                    
+                    <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">looped</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>},
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>() {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() { Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>); });
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>);
+    });
   }
 }).start();
 </pre>
-                  <h3>Example: Arduino with LED and a button</h3>
-                  <p>To use this example, you must first run <code>npm install cylon-firmata</code></p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                    
+                    <h3 id="arduino---led--button">Arduino - LED + Button</h3>
+                    
+                    <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>},
-            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>}],
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  ],
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {my.led.toggle()});
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.led.toggle()
+    });
   }
 }).start();
 </pre>
-                  <h3>Parrot ARDrone 2.0</h3>
-                  <p>To use this example, you must first run <code>npm install cylon-ardrone</code></p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                    
+                    <h3 id="parrot-ardrone-20">Parrot ARDrone 2.0</h3>
+                    
+                    <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span>},
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>},
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.takeoff();
 
@@ -525,48 +551,76 @@ Cylon.robot({
   }
 }).start();
 </pre>
-                </section>
-                <h2>CLI</h2>
-                <p>Cylon has a Command Line Interface (CLI) so you can access important features right from the command line.</p>
-                <pre class="CodeRay">Usage: cylon [command] [options]
+                  </section>
+                  <section class="CLI">
+                    <h2 id="cli">CLI</h2>
+                    
+                    <p>To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
+                    <a href="http://gort.io" target="_blank">Gort</a>.</p>
+                    
+                    <pre class="CodeRay">$ ./gort
+NAME:
+  gort - Command Line Utility for RobotOps
 
-  Commands:
-     arduino [subcommand] [opts]
-        Install avrdude, and upload sketches to your Arduino
+USAGE:
+  gort [global options] command [command options] [arguments...]
 
-     bluetooth [pair|unpair|connect]
-        Scan, pair, unpair bluetooth devices. Establishes serial to Bluetooth connection.
+VERSION:
+  0.2.2
 
-     crazyflie [subcommand] [opts]
-        Set udev rules for Crazyflie
+COMMANDS:
+  scan   Scan for connected devices on Serial, USB, or Bluetooth ports
+  bluetooth  Pair, unpair &amp; connect to bluetooth devices.
+  arduino  Install avrdude, and upload sketches to your Arduino
+  spark  Upload sketches to your Spark
+  digispark  Configure your Digispark microcontroller
+  crazyflie  Configure your Crazyflie
+  klaatu barada nikto
+  help, h  Shows a list of commands or help for one command
 
-     digispark [subcommand]
-        Set udev rules, and upload the Littlewire protocol to your Digispark
-
-     help
-        Prints help for using the Cylon-CLI commands.
-
-     scan [type]
-        Scans serial, Bluetooth, or USB for connected devices
-
-     spark upload [access_token] [device_id] [firmware_file]
-        Upload new firmare to your Spark Core
+GLOBAL OPTIONS:
+  --version, -v  print the version
+  --help, -h   show help
 </pre>
-                <section class="contributing">
-                  <h2>Contributing</h2>
-                  <p>
-                    You can help cylon grow by contributing your code, new drivers or platforms to the project, check the Github page
-                    <a href="https://github.com/hybridgroup/cylon">cylon on github.</a>
-                  </p>
-                  <ul>
-                    <li>Fork it</li>
-                    <li>Create your feature branch (git checkout -b my-new-feature)</li>
-                    <li>Commit your changes (git commit -am 'Add some feature')</li>
-                    <li>Push to the branch (git push origin my-new-feature)</li>
-                    <li>Create new Pull Request</li>
-                  </ul>
-                </section>
-                <section class="footer"></section>
+                    
+                    <p>There's also a separate
+                    <a href="https://github.com/hybridgroup/cylon-cli" target="_blank">Cylon CLI</a>
+                    tool, used to generate new modules, robots, drivers, etc.</p>
+                  </section>
+                  <section class="where-next">
+                    <h2 id="where-next">Where Next?</h2>
+                    
+                    <p>Where do we go from here?</p>
+                    
+                    <p>Well, if you're interested in seeing some more examples of Cylon.JS in action, check out our <a href="/documentation/examples">Examples</a> page.</p>
+                    
+                    <p>If you'd like to find out more about a specific platform, our <a href="/documentation/platforms">Platforms</a> page will point you in the right direction.</p>
+                    
+                    <p>Instead, if you'd rather explore at your documentation, the sidebar should help you find what you're looking for.</p>
+                    
+                    <p>If you have any questions, please don't hesitate to get in touch with us and we'll try to help as best we can.</p>
+                  </section>
+                  <section class="contributing">
+                    <h2 id="contributing">Contributing</h2>
+                    
+                    <p>We welcome your contributions!
+                    If you want to make Cylon.JS even better (even fixing typos!), check out the
+                    <a href="https://github.com/hybridgroup/cylon" target="_blank">GitHub page</a>!</p>
+                    
+                    <p>Have you noticed an error in our docs site?
+                    Think a paragraph could be worded better?
+                    Please send us an issue or pull request!
+                    The site has it's own
+                    <a href="https://github.com/hybridgroup/cylon-site" target="_blank">GitHub page</a> too!</p>
+                    
+                    <p>Want to suggest a feature? Report a bug? Show us something cool you made? Just say hi?
+                    You can also get in touch with us directly on
+                    <a href="https://twitter.com/CylonJS" target="_blank">Twitter</a>,
+                    or ping us on
+                    <a href="/documentation/chat/chat/" target="_blank">IRC</a>.</p>
+                  </section>
+                  <section class="footer"></section>
+                </div>
               </div>
             </div>
           </section>
