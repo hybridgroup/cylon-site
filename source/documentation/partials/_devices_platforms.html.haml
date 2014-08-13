@@ -188,3 +188,20 @@
         %img{src: "/images/devices/tessel.jpg", style: "width: 90%"}
       .repo
         = link_to "repo", "https://github.com/hybridgroup/cylon-tessel", target:"_blank"
+
+  - if current_page.data.audio_platform == true
+    %li
+      %a{:href => "/documentation/platforms/audio"}
+        %p.title Audio
+        %img{src: "/images/devices/audio.jpg", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-audio", target:"_blank" 
+
+  - if current_page.data.speech_platform == true
+    %li
+      %a{:href => "/documentation/platforms/speech"}
+        %p.title Speech
+        %img{src: "/images/devices/espeak.png", style: "width: 90%"}
+      .repo
+        = link_to "repo", "https://github.com/hybridgroup/cylon-speech", target:"_blank" 
+

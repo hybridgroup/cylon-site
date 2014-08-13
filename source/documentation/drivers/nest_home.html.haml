@@ -37,7 +37,7 @@ nest_platform: true
           connection: {
             name: 'nest',
             adaptor: 'nest',
-            accessToken: 'c.1f7QA8se2tx5xOaKJYk2VUj3lkUiNClxhsbQczQiODTHUrHH4Sx0qEyN7K9kVw6NZ6xtMmyvTPpnEHXWPrTK4ZLygam5rJYH6tachF7Qw885DUHnsW9wiGXmaU8Q0yk68isxVExP4gPubB71'
+            accessToken: 'your_own_access_token'
           },
 
           device: {
@@ -56,7 +56,7 @@ nest_platform: true
           connection: {
             name: 'nest',
             adaptor: 'nest',
-            accessToken: 'c.1f7QA8se2tx5xOaKJYk2VUj3lkUiNClxhsbQczQiODTHUrHH4Sx0qEyN7K9kVw6NZ6xtMmyvTPpnEHXWPrTK4ZLygam5rJYH6tachF7Qw885DUHnsW9wiGXmaU8Q0yk68isxVExP4gPubB71'
+            accessToken: 'your_own_access_token'
           },
 
           device: {
@@ -103,8 +103,10 @@ nest_platform: true
 %section.public-methods
   .commands-api#Commands
     %h1 Commads
+
     %h2 structures()
     %p Gets all the structures of your home.
+
     %h2 structureName(structureId)
     %p Gets the name of a specific structure.
     %h5 Params
@@ -113,6 +115,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 thermostats(structureId)
     %p Gets the thermostat of a specific structure.
     %h5 Params
@@ -121,6 +124,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 smokeCoAlarms(structureId)
     %p Gets the smoke alarms of a specific structure.
     %h5 Params
@@ -129,6 +133,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 away(structureId, val)
     %p Sets the device in away mode.
     %h5 Params
@@ -138,6 +143,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 eta(structureId)
     %p Sets the device a signal to prepare the home for the user's arrival.
     %h5 Params
@@ -146,6 +152,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 read(key, structureId, callback)
     %p Reads a specific device.
     %h5 Params
@@ -156,6 +163,7 @@ nest_platform: true
     %h5 Returns
     :markdown
       `nil`
+
     %h2 write(key, value, structureId, callback)
     %p Writes a specific device.
     %h5 Params
