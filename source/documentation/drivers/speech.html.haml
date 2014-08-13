@@ -1,0 +1,81 @@
+---
+title: Cylon.js - Speech Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Text to Speech
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-speech' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-speech/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+speech_platform: true
+---
+-content_for :js_accordeon do
+  :javascript
+    $("#driver-panel").addClass("active-panel");
+    $("#others li:nth-child(4)").addClass("active-link");
+
+%section.intro
+  = image_tag "/images/devices/espeak.png", class: "display"
+  .info-intro
+    %p eSpeak is a compact open source software speech synthesizer for English and other languages, for Linux and Windows. 
+    %p Learn more about eSpeak <a href='http://espeak.sourceforge.net' target='_blank'>here</a>.
+
+  .clear
+
+%section.how_to#HowToConnect
+  %h2 How To Connect
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'speech',
+            adaptor: 'speech'
+          },
+
+          device: {
+            name: 'mouth',
+            driver: 'speech'
+          },
+        ...
+
+%section.how-to#HowToUse
+  %h2 How To Use
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          // voice for espeak can be specified either in one string or as params for the adaptor.
+          // both connections below will reproduce with the same voice.
+          // connection: { name: 'speech', adaptor: 'speech', language: 'en, gender: 'f', 'voice: '3' },
+          connection: { name: 'speech', adaptor: 'speech', voice: 'en-f3', speed: 130 },
+          device: {name: 'mouth', driver: 'speech'},
+
+          work: function(my) {
+            my.mouth.say("This is awesome!");
+            my.mouth.say("I'm a Cylon.JS robot, and I'm talking!");
+          }
+        }).start(); 
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commads
+
+    %h2 say(message)
+    %p Reproduces the text string passed as audio, text to speech.
+
+  .commands-api#Events
+    %h1 Events
+    %p no events
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  =# TODO: Update platform list with all that work with this driver in Cylon.js.
+  .devices
+    = partial "documentation/partials/devices_platforms" 
