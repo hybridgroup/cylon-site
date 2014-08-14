@@ -8,18 +8,16 @@ layout: documentation
 active_menu_docs: true
 ---
 -content_for :js_accordeon do
-	:javascript
-		$("#contribute-panel").addClass("active-panel");
-		$("#contribute-panel li:nth-child(2)").addClass("active-link");
+  :javascript
+    $("#contribute-panel").addClass("active-panel");
+    $("#contribute-panel li:nth-child(2)").addClass("active-link");
 
-%h1 Contact Us
+:markdown
+  # Contact Us
 
-%p
-	To subscribe for announcements of releases, important changes and so on, please follow
-	= link_to "@cylonjs", "https://twitter.com/cylonjs", target: :blank
-	on Twitter.
+  To subscribe for new release announcements, important changes, or just what we're up to, you can follow us on Twitter - [@CylonJS](https://twitter.com/cylonjs).
 
-%h3 Open a new issue
-%p
-	If you need help or you feel we can improve something, let us know! Open a
-	= link_to "new issue.", "https://github.com/hybridgroup/cylon/issues/new", target: :blank
+  ### Open a New Issue
+
+  If you need help, feel we can improve something, or have a feature suggestion, let us know!
+  Open a [new issue](https://github.com/hybridgroup/cylon/issues/new)
