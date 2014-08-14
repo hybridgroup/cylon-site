@@ -116,12 +116,15 @@
         <div class="clear"></div>
         <div class="hero-black-container">
           <div class="container">
-            <h2>Meet The Code</h2>
-            <p>Cylon.js makes it incredibly simple and fun to command robots.</p>
-            <p>All you need to get started is the <code>cylon</code> npm module:</p>
+            <h2 id="meet-the-code">Meet The Code</h2>
             
-            <pre class="CodeRay">npm install cylon
+            <p>Cylon.js makes in incredibly simple and fun to commands robots.</p>
+            
+            <p>All you need to get started is the <code>cylon</code> NPM module:</p>
+            
+            <pre class="CodeRay">$ npm install cylon
 </pre>
+            
             <p>Then install modules for whatever hardware support you want to use from your robot.</p>
           </div>
         </div>
@@ -139,12 +142,18 @@
                 $(".background-header").addClass("back-index-top");
               });
             </script>
-            <h2>Examples</h2>
-            <h3>Arduino:</h3>
-            <p>Install modules for whatever hardware support you want to use from your robot. For the example below, an Arduino using the Firmata protocol:</p>
-            <pre class="CodeRay">npm install cylon-firmata
+            <h2 id="examples">Examples</h2>
+            
+            <h3 id="arduino">Arduino</h3>
+            
+            <p>Install modules for whatever hardware support you want to use from your robot.
+            For the example below, an Arduino using the Firmata protocol:</p>
+            
+            <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
+            
             <p>This example connects to an Arduino, and every second turns the LED either on, or off.</p>
+            
             <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 <span class="comment">// Initialize the robot</span>
@@ -162,12 +171,10 @@
 <span class="comment">// start working</span>
 robot.start();
 </pre>
-            <h3>More Examples</h3>
-            <p>
-              We've got
-              <a href="/documentation/examples">lots more examples here</a>
-              to help you get started.
-            </p>
+            
+            <h3 id="more-examples">More Examples</h3>
+            
+            <p>We've got <a href="/documentation/examples">lots more examples here</a> to help you get started.</p>
             <h2 id="platforms">Platform Support</h2>
             <div>
               <p>Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing system, and software platforms, are currently supported:</p>
@@ -543,20 +550,23 @@ robot.start();
               </li>
               <div class="clear"></div>
             </ul>
-            <h2>CLI</h2>
-            <p>Cylon uses the Gort (<a href="http://gort.io">http://gort.io</a>) Command Line Interface (CLI) so you can access important features right from the command line. We call it "RobotOps", aka "DevOps For Robotics". You can scan, connect, update device firmware, and more!</p>
-            <p>Cylon also has its own CLI to generate new robots, adaptors, and drivers.</p>
-            <p><a href="/documentation/guides/cli">Check out the Cylon CLI docs here</a>.</p>
-            <h2>Be Part Of The Robot Evolution</h2>
-            <ul>
-              <li>Code on Github:   <a href="https://github.com/hybridgroup/cylon">https://github.com/hybridgroup/cylon</a>
-</li>
-              <li>Follow us on Twitter:   <a href="http://twitter.com/cylonjs">@cylonjs</a>
-</li>
-              <li>Join us on IRC:   <code>#cylon @ irc.freenode.net</code>
-</li>
-              <li>Join us on our <a href="https://trello.com/b/l1aEuqMU/cylon">Trello Board</a>.</li>
-            </ul>
+            <h2 id="cli">CLI</h2>
+            
+            <p>Cylon uses the <a href="http://gort.io">Gort</a> toolkit, so you can access important features from the command line.
+            You can scan, connect to devices, update firmware, and more!
+            We call it "RobotOps", a.k.a. "DevOps for Robotics".</p>
+            
+            <p>Cylon also has it's own CLI tool to generate new modules, robots, and drivers.</p>
+            
+            <p>You can check out the Cylon CLI docs <a href="/documentation/guides/cli">here</a>.</p>
+            
+            <h2 id="be-part-of-the-robot-evolution">Be Part of the Robot Evolution</h2>
+            
+            <p>If you'd like to find out more, you can check out our code on <a href="https://github.com/hybridgroup/cylon">GitHub</a>.</p>
+            
+            <p>Want updates on what we're working on, follow us on <a href="https://twitter.com/CylonJS">Twitter</a>, or check out our <a href="https://trello.com/b/l1aEuqMU/cylon">Trello board</a>.</p>
+            
+            <p>If you want to talk to us, we can be found hanging out on IRC, <code>#cylon</code> on <code>irc.freenode.net</code></p>
           </section>
         </div>
       </div>
