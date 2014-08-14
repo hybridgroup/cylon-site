@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.js - Nest Home Driver</title>
+    <title>Cylon.js - Speech Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/hybridpages/assets/javascript/accordeon.js"></script>
@@ -433,12 +433,12 @@
               <div class="container-documentation">
                 <div class="page-title-docs">
                   <div class="w">
-                    <h1 class="title">Nest Home</h1>
+                    <h1 class="title">Text to Speech</h1>
                   </div>
                 </div>
                 <section class="subnav-drivers" id="mainsubnav">
                   <div class="container">
-                    <h5>Nest Home</h5>
+                    <h5>Text to Speech</h5>
                     <nav>
                       <a href="#HowToConnect">How to Connect</a>
                       <a href="#HowToUse">How To Use</a>
@@ -451,13 +451,10 @@
                 </section>
                 <br>
                 <section class="intro">
-                  <img class="display" src="/images/devices/nest_home.jpg">
+                  <img class="display" src="/images/devices/espeak.png">
                   <div class="info-intro">
-                    <p>Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="https://nest.com/">here</a>
-                    </p>
+                    <p>eSpeak is a compact open source software speech synthesizer for English and other languages, for Linux and Windows.</p>
+                    <p>Learn more about eSpeak <a href="http://espeak.sourceforge.net" target="_blank">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
@@ -467,14 +464,13 @@
 
 Cylon.robot({
   <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">your_own_access_token</span><span class="delimiter">'</span></span>
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>
   },
 
   <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">home</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-home</span><span class="delimiter">'</span></span>
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">mouth</span><span class="delimiter">'</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>
   },
 ...
 </pre>
@@ -484,131 +480,24 @@ Cylon.robot({
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">your_own_access_token</span><span class="delimiter">'</span></span>
-  },
-
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">home</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-home</span><span class="delimiter">'</span></span>
-  },
+  <span class="comment">// voice for espeak can be specified either in one string or as params for the adaptor.</span>
+  <span class="comment">// both connections below will reproduce with the same voice.</span>
+  <span class="comment">// connection: { name: 'speech', adaptor: 'speech', language: 'en, gender: 'f', 'voice: '3' },</span>
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>, <span class="key">voice</span>: <span class="string"><span class="delimiter">'</span><span class="content">en-f3</span><span class="delimiter">'</span></span>, <span class="key">speed</span>: <span class="integer">130</span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">mouth</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-
-    my.home.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Nest Home at a glance ---&gt;</span><span class="delimiter">'</span></span>, data);
-    });
-
-    <span class="keyword">var</span> sId = <span class="string"><span class="delimiter">'</span><span class="content">l38p6_vVeF9R7yl6GJgLuyHbEuVU_1ui7KAofiXXa5wZ9PBb-0AJaw</span><span class="delimiter">'</span></span>;
-
-    every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>(){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home structures:</span><span class="delimiter">'</span></span>, my.home.structures());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home structure name:</span><span class="delimiter">'</span></span>, my.home.structureName(sId));
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home thermostats:</span><span class="delimiter">'</span></span>, my.home.thermostats(sId));
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home smokeCoAlarms:</span><span class="delimiter">'</span></span>, my.home.smokeCoAlarms(sId));
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home away status:</span><span class="delimiter">'</span></span>, my.home.away(sId));
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home eta:</span><span class="delimiter">'</span></span>, my.home.eta(sId));
-
-      my.home.read(<span class="string"><span class="delimiter">'</span><span class="content">country_code</span><span class="delimiter">'</span></span>, sId, <span class="keyword">function</span>(data) {
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home country id: </span><span class="delimiter">"</span></span>, data);
-      });
-
-      my.home.away(sId, <span class="string"><span class="delimiter">'</span><span class="content">away</span><span class="delimiter">'</span></span>);
-
-      <span class="comment">/*
-      my.home.write('away', 'home', sId, function(err) {
-        if (err) {
-          console.log('Away status was NOT updated!')
-        } else {
-          console.log('Away status updated!')
-        }
-      });
-     */</span>
-    });
+    my.mouth.say(<span class="string"><span class="delimiter">"</span><span class="content">This is awesome!</span><span class="delimiter">"</span></span>);
+    my.mouth.say(<span class="string"><span class="delimiter">"</span><span class="content">I'm a Cylon.JS robot, and I'm talking!</span><span class="delimiter">"</span></span>);
   }
-}).start();
+}).start(); 
 </pre>
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
                     <h1>Commads</h1>
-                    <h2>structures()</h2>
-                    <p>Gets all the structures of your home.</p>
-                    <h2>structureName(structureId)</h2>
-                    <p>Gets the name of a specific structure.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>structureId</strong> - The ID of the structure</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>thermostats(structureId)</h2>
-                    <p>Gets the thermostat of a specific structure.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>structureId</strong> - The ID of the structure</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>smokeCoAlarms(structureId)</h2>
-                    <p>Gets the smoke alarms of a specific structure.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>structureId</strong> - The ID of the structure</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>away(structureId, val)</h2>
-                    <p>Sets the device in away mode.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>structureId</strong> - The ID of the structure</li>
-                      <li>
-<strong>val</strong>  - The value of the device</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>eta(structureId)</h2>
-                    <p>Sets the device a signal to prepare the home for the user's arrival.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>structureId</strong> - The ID of the structure</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>read(key, structureId, callback)</h2>
-                    <p>Reads a specific device.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>key</strong> - The key of the device</li>
-                      <li>
-<strong>value</strong> - The value of the device</li>
-                      <li>
-<strong>callback</strong> - The data of the callback</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>write(key, value, structureId, callback)</h2>
-                    <p>Writes a specific device.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>key</strong> - The key of the device</li>
-                      <li>
-<strong>value</strong> - The value of the device</li>
-                      <li>
-<strong>callback</strong> - The data of the callback</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
+                    <h2>say(message)</h2>
+                    <p>Reproduces the text string passed as audio, text to speech.</p>
                   </div>
                   <div class="commands-api" id="Events">
                     <h1>Events</h1>
@@ -617,16 +506,15 @@ Cylon.robot({
                 </section>
                 <section class="compatibility hardware" id="Compatability">
                   <h2>Compatibility</h2>
-                  
                   <div class="devices">
                     <ul class="doc-platform">
                       <li>
-                        <a href="/documentation/platforms/nest">
-                          <p class="title">Nest</p>
-                          <img src="/images/devices/nest.jpg" style="width: 90%">
+                        <a href="/documentation/platforms/speech">
+                          <p class="title">Speech</p>
+                          <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
                         <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-nest">repo</a>
+                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
                         </div>
                       </li>
                     </ul>
