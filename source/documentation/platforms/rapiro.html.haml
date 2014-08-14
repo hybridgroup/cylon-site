@@ -56,14 +56,14 @@ rapiro_driver: true
             my['doneWalking'] = false ;
 
             my.rapiro.on('start', function() {
-              Logger.info("forward");
+              console.log("forward");
 
               every(1..second(), function() {
                 if (my['doneWalking'] == false)
                   my.rapiro.forward();
               });
               after(10..seconds(), function() {
-                Logger.info("halt");
+                console.log("halt");
                 my.rapiro.halt();
                 my['doneWalking'] = true;
               });
