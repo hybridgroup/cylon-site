@@ -57,10 +57,10 @@ neurosky_platform: true
 
           work: function(my) {
             my.headset.on('attention', function(data) {
-              Logger.info("attention:" + data);
+              console.log("attention:" + data);
             });
             my.headset.on('meditation', function(data) {
-              Logger.info("meditation:" + data);
+              console.log("meditation:" + data);
             });
           }
         });

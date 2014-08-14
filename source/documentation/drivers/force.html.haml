@@ -80,7 +80,7 @@ force_platform: true
             var toSend;
             me.salesforce.on('start', function() {
               return me.salesforce.subscribe('/topic/SpheroMsgOutbound', function(data) {
-                return Logger.info("Sphero: " + data.sobject.Sphero_Name__c + ", data Content: " + data.sobject.Content__c + ", SM_Id: " + data.sobject.Id);
+                return console.log("Sphero: " + data.sobject.Sphero_Name__c + ", data Content: " + data.sobject.Content__c + ", SM_Id: " + data.sobject.Id);
               });
             });
             toSend = "{ \"identifier\" :\"" + me.name + "\", \"msg\": \"" + 'Salesforce Bot #2' + "\" }";

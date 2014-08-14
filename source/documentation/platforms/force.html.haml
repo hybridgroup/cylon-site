@@ -73,7 +73,7 @@ force_drivers: true
           work: function(me) {
             me.salesforce.on('start', function() {
               me.salesforce.subscribe('/topic/SpheroMsgOutbound', function(data) {
-                Logger.info("Sphero:"+data.sobject.Sphero_Name__c+", Bucks: "+data.sobject.Bucks__c+", SM_Id: "+data.sobject.Id);
+                console.log("Sphero:"+data.sobject.Sphero_Name__c+", Bucks: "+data.sobject.Bucks__c+", SM_Id: "+data.sobject.Id);
               });
             });
 
