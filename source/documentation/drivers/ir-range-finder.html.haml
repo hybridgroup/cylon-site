@@ -25,43 +25,53 @@ pinoccio_platform: true
 %section.intro
   = image_tag "/images/devices/ir-range-finder.jpg", class: "display"
   .info-intro
-    %p
+    :markdown
       Infrared proximity sensor made by Sharp. Part # GP2Y0A21YK has an analog output that varies from 3.1V at 10cm to 0.4V at 80cm. The sensor has a Japanese Solderless Terminal (JST) Connector.
-    %p
-      For more information click
-      = link_to "here.", "https://www.sparkfun.com/products/242", target: "_blank"
+
+      For more information click [here](https://www.sparkfun.com/products/242).
 
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-
-        device: {
-          name: 'sensor',
-          driver: 'ir-range-sensor',
-          pin: 0,
-          model: 'gp2y0a41sk0f'
-        },
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p
-  :markdown
-        :::javascript
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          connection: {
+            name: 'arduino',
+            adaptor: 'firmata',
+            port: '/dev/ttyACM0'
+          },
 
           device: {
             name: 'sensor',
             driver: 'ir-range-sensor',
             pin: 0,
             model: 'gp2y0a41sk0f'
+          }
+        });
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'arduino',
+            adaptor: 'firmata',
+            port: '/dev/ttyACM0'
           },
+
+          device: {
+            name: 'sensor',
+            driver: 'ir-range-sensor',
+            pin: 0,
+            model: 'gp2y0a41sk0f'
+          }
 
           work: function(my) {
             every((1).seconds(), function(){

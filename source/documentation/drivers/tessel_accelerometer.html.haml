@@ -21,33 +21,34 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-accelerometer.jpg", class: "display"
   .info-intro
-    %p Detect orientation and movement of your Tessel by measuring gravity / acceleration.
-    %p Control by tilt!
-    %ul
-      %li 3-Axis Digital Accelerometer
-      %li 12-bit resolution
-      %li Selectable ±2g/±4g/±8g scales
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/accelerometer", target: :blank
+    :markdown
+      Detect orientation and movement of your Tessel by measuring gravity / acceleration.
+
+      Control by tilt!
+
+      - 3-Axis Digital Accelerometer
+      - 12-bit resolution
+      - Selectable ±2g/±4g/±8g scales
+
+      For more info visit [here](http://start.tessel.io/modules/accelerometer).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'accel', driver: 'accel-mma84' },
-        ...
-
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -70,37 +71,47 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 accel.availableOutputRates()
-    %p Logs the available interrupt rates in Hz.
+    :markdown
+      # Commands
 
-    %h2 accel.availableScaleRanges()
-    %p Logs the available accelerometer ranges (in units of Gs).
+      ## accel.availableOutputRates()
 
-    %h2 accel.enableDataInterrupts( trueOrFalse, callback(err) )
-    %p Enables or disables data interrupts. Set the first param truthy to enable, falsy to disable.
+      Logs the available interrupt rates in Hz.
 
-    %h2 accel.getAcceleration( callback(err, xyz) )
-    %p Gets the acceleration from the device, outputs as array [x, y, z].
+      ## accel.availableScaleRanges()
 
-    %h2 accel.setOutputRate( rateInHz, callback(err) )
-    %p  Sets the output rate of the data (1.56-800 Hz).
+      Logs the available accelerometer ranges (in units of Gs).
 
-    %h2 accel.setScaleRange( scaleRange, callback(err) )
-    %p Sets the accelerometer to read up to 2, 4, or 8 Gs of acceleration (smaller range = better precision).
+      ## accel.enableDataInterrupts( trueOrFalse, callback(err) )
+
+      Enables or disables data interrupts. Set the first param truthy to enable, falsy to disable.
+
+      ## accel.getAcceleration( callback(err, xyz) )
+
+      Gets the acceleration from the device, outputs as array [x, y, z].
+
+      ## accel.setOutputRate( rateInHz, callback(err) )
+
+       Sets the output rate of the data (1.56-800 Hz).
+
+      ## accel.setScaleRange( scaleRange, callback(err) )
+
+      Sets the accelerometer to read up to 2, 4, or 8 Gs of acceleration (smaller range = better precision).
   .commands-api#Events
-    %h1 Events
-    %h2 accel.on( 'data', callback(xyz) )
-    %p Emitted when data is available. xyz is an array in the form of [x, y, z].
+    :markdown
+      # Events
 
-    %h2 accel.on( 'error', callback(err) )
-    %p Emitted upon error.
+      ## 'data'
 
-    %h2 accel.on( 'ready', callback() )
-    %p Emitted upon first successful communication between the Tessel and the module.
+      Emitted when data is available. xyz is an array in the form of [x, y, z].
 
+      ## 'error'
 
+      Emitted upon error.
 
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

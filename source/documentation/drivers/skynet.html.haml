@@ -21,19 +21,17 @@ skynet_platform: true
 %section.intro
   = image_tag "/images/devices/skynet.jpg", class: "display"
   .info-intro
-    %p Open Communications Network and API for the internet of things.
-    %p
-      For more info about the Skynet platform click
-      = succeed "." do
-        = link_to "http://skynet.im/", "http://skynet.im/", target: :blank
+    :markdown
+      Open Communications Network and API for the internet of things.
+
+      For more info about the Skynet platform click [here](http://skynet.im/).
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connections: [
             { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
@@ -41,13 +39,15 @@ skynet_platform: true
           ],
 
           device: { name: 'led', driver: 'led', pin: 13, connection: 'arduino' },
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program use the Skynet with the LED.
   :markdown
+    ## How To Use
+
+    This small program use the Skynet with the LED.
+
         :::javascript
         var Cylon = require('cylon');
 

@@ -26,31 +26,29 @@ audio_platform: true
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-
           connection: { name: 'audio', adaptor: 'audio' },
-
-          device: {name: 'audio', driver: 'audio'},
-
-        ...
+          device: { name: 'audio', driver: 'audio' },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'audio', adaptor: 'audio' },
-          device: {name: 'audio', driver: 'audio'},
+          device: { name: 'audio', driver: 'audio' },
 
           work: function(my) {
-
             my.audio.on('playing', function(song){
               console.log('Playing this nice tune: "' + song + '"');
             });
@@ -62,14 +60,18 @@ audio_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commads
+    :markdown
+      # Commands
 
-    %h2 play(audioFilePath)
-    %p Plays the audio file passed as parameter.
+      ## play(path)
+
+      Plays the audio file passed as parameter.
 
   .commands-api#Events
-    %h1 Events
-    %p no events
+    :markdown
+      # Events
+
+      no events
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
