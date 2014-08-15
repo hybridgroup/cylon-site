@@ -21,17 +21,17 @@ pebble_platform: true
 %section.intro
   =image_tag "/images/devices/pebble.jpg", class: "display"
   .info-intro
-    %p Allows user to interact with Cylon.js devices using a Pebble smart watch.
-    %p
-      For more information click
-      = link_to "here", "https://getpebble.com", target: "_blank"
+    :markdown
+      Allows user to interact with Cylon.js devices using a Pebble smart watch.
+
+      For more information click [here](https://getpebble.com).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-        var Cylon = require('cylon');
 
         Cylon.api({
           host: '0.0.0.0',
@@ -39,24 +39,17 @@ pebble_platform: true
           ssl:  false
         });
 
-        pebbleRobot = {
+        Cylon.robot({
           name: 'pebble',
 
-          connection: {
-            name: 'pebble',
-            adaptor: 'pebble'
-          },
-
-          device: {
-            name: 'pebble',
-            driver: 'pebble'
-          },
-        ...
+          connection: { name: 'pebble', adaptor: 'pebble' },
+          device: { name: 'pebble', driver: 'pebble' },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %h3 Example receiving message queue from a Pebble smart watch.
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -66,18 +59,11 @@ pebble_platform: true
           ssl:  false
         });
 
-        pebbleRobot = {
+        Cylon.robot({
           name: 'pebble',
 
-          connection: {
-            name: 'pebble',
-            adaptor: 'pebble'
-          },
-
-          device: {
-            name: 'pebble',
-            driver: 'pebble'
-          },
+          connection: { name: 'pebble', adaptor: 'pebble' },
+          device: { name: 'pebble', driver: 'pebble' },
 
           work: function(my) {
             my.pebble.send_notification("Hello Pebble!");
@@ -87,9 +73,8 @@ pebble_platform: true
             });
           }
 
-        }
+        });
 
-        Cylon.robot(pebbleRobot);
         Cylon.start();
 
 

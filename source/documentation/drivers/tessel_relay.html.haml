@@ -21,33 +21,34 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-relay.jpg", class: "display"
   .info-intro
-    %p Control high-current devices, such as power cords and appliances.
-    %p Turn your coffee maker on when the Ambient module detects light, or based on input from an app.
-    %ul
-      %li Rated for 240V and 5A
-      %li AC or DC current
-      %li Secure and remove wires with the help of a ballpoint pen. No more loose wires or screwdrivers.
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/relay", target: :blank
+    :markdown
+
+      Control high-current devices, such as power cords and appliances.
+      Turn your coffee maker on when the Ambient module detects light, or based on input from an app.
+
+      - Rated for 240V and 5A
+      - AC or DC current
+      - Secure and remove wires with the help of a ballpoint pen. No more loose wires or screwdrivers.
+
+      For more info visit [here](http://start.tessel.io/modules/relay).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'relay', driver: 'relay-mono' },
-        ...
-
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -77,31 +78,43 @@ tessel_platform: true
           }
         }).start();
 
-
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 relay.getState( relayChannel, callback(err, state) )
-    %p Gets the state of the specified relay channel: "true" for on and "false" for off.
+    :markdown
+      # Commands
 
-    %h2 relay.toggle( relayChannel, callback(err) )
-    %p Switches the state of the specified relay channel: on if it's off; off if it's on.
+      ## relay.getState( relayChannel, callback(err, state) )
 
-    %h2 relay.turnOff( relayChannel, callback(err) )
-    %p Switches off the specified relay channel.
+      Gets the state of the specified relay channel: "true" for on and "false" for off.
 
-    %h2 relay.turnOn( relayChannel, callback(err) )
-    %p Switches on the specified relay channel.
+      ## relay.toggle( relayChannel, callback(err) )
+
+      Switches the state of the specified relay channel: on if it's off; off if it's on.
+
+      ## relay.turnOff( relayChannel, callback(err) )
+
+      Switches off the specified relay channel.
+
+      ## relay.turnOn( relayChannel, callback(err) )
+
+      Switches on the specified relay channel.
+
   .commands-api#Events
-    %h1 Events
-    %h2 relay.on( 'error', callback(err) )
-    %p Emitted upon error.
+    :markdown
 
-    %h2 relay.on( 'latch', callback(channel, state))
-    %p Emitted when the latch state (boolean on or off ) is changed for a channel.
+      # Events
 
-    %h2 relay.on( 'ready', callback() )
-    %p Emitted upon first successful communication between the Tessel and the module.
+      ## 'error'
+
+      Emitted upon error.
+
+      ## 'latch'
+
+      Emitted when the latch state (boolean on or off ) is changed for a channel.
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

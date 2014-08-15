@@ -27,39 +27,34 @@ pinoccio_platform: true
 %section.intro
   =image_tag "/images/devices/LED.jpg", class: "display"
   .info-intro
-    %p Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
-    %p
-      For more information click
-      = link_to "here.", "http://es.wikipedia.org/wiki/Led", target: "_blank"
+    :markdown
+      Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
+
+      For more information click [here](http://es.wikipedia.org/wiki/Led).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'led', driver: 'led', pin: 13},
-          ...
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'led', driver: 'led', pin: 13 },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
+  :markdown
+    ## How To Use
+
     This example turns an LED on and off.
 
-  :markdown
         :::javascript
-
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'led', driver: 'led', pin: 13},
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'led', driver: 'led', pin: 13 },
 
           work: function(my) {
             every((1).second(), function() {

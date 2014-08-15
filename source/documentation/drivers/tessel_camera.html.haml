@@ -21,39 +21,42 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-camera.jpg", class: "display"
   .info-intro
-    %p Add the sense of sight to Tessel!
-    %p Take pictures of your projects, from your projects.
-    %ul
-      %li Supports 640x480, 320x240, and 160x120
-      %li Still image camera.
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/camera", target: :blank
+    :markdown
+      Add the sense of sight to Tessel!
+
+      Take pictures of your projects, from your projects.
+
+      - Supports 640x480, 320x240, and 160x120
+      - Still image camera.
+
+      For more info visit [here](http://start.tessel.io/modules/camera).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connections: [
             { name: 'tessel', adaptor: 'tessel' },
             { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
           ],
+
           devices: [
             { name: 'led', driver: 'led', pin: 1, connection: 'tessel' },
             { name: 'button', driver: 'button', connection: 'tessel' },
             { name: 'camera', driver: 'camera-vc0706', connection: 'tessel_A' },
           ],
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -62,6 +65,7 @@ tessel_platform: true
             { name: 'tessel', adaptor: 'tessel' },
             { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
           ],
+
           devices: [
             { name: 'led', driver: 'led', pin: 1, connection: 'tessel' },
             { name: 'button', driver: 'button', connection: 'tessel' },
@@ -97,37 +101,60 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Properties
-    %h2 camera.resolutions()
-    %p An object which maps resolution labels to their dimensions. The string labels can be used to configure the camera's resolution.
-    %h1 Commands
-    %h2 camera.disable()
-    %p Disable UART connection to camera. Closes connection & ends process.
+    :markdown
+      # Properties
 
-    %h2 camera.setCompression( compressionFactor, callback(err) )
-    %p Determine the amount of compression on each image. Should be a number between 0 and 1. Default is 0.2. Note that the compression is saved in Flash and will be persistent between power cycles.
+      ## camera.resolutions()
 
-    %h2 camera.setResolution( resolution, callback(err) )
-    %p Set  the size of images. Options are 'vga' (640x320), 'qvga'(320x240) or  'qqvga' (160x120 ). Default is 'vga'. Note that the resolution is saved in Flash and will be persistent between power cycles.
+      An object which maps resolution labels to their dimensions.
+      The string labels can be used to configure the camera's resolution.
 
-    %h2 camera.takePicture( callback(err, picture) )
-    %p Take a still picture. Returns raw buffer data which you can pipe into a raw http stream or save in memory.
+      ## camera.disable()
+
+      Disable UART connection to camera. Closes connection & ends process.
+
+      ## camera.setCompression( compressionFactor, callback(err) )
+
+      Determine the amount of compression on each image.
+      Should be a number between 0 and 1.
+      Default is 0.2.
+      Note that the compression is saved in Flash and will be persistent between power cycles.
+
+      ## camera.setResolution( resolution, callback(err) )
+
+      Set the size of images.
+      Options are 'vga' (640x320), 'qvga'(320x240) or  'qqvga' (160x120 ).
+      Default is 'vga'.
+      Note that the resolution is saved in Flash and will be persistent between power cycles.
+
+      ## camera.takePicture( callback(err, picture) )
+
+      Take a still picture.
+      Returns raw buffer data which you can pipe into a raw http stream or save in memory.
+
   .commands-api#Events
-    %h1 Events
-    %h2 camera.on( 'compression', callback(xyz) )
-    %p Emitted when compression is set.
+    :markdown
+      # Events
 
-    %h2 camera.on( 'error', callback(err) )
-    %p Emitted upon error.
+      ## 'compression'
 
-    %h2 camera.on( 'picture', callback(picture) )
-    %p Emitted when a photo is taken. Returns buffer of image.
+      Emitted when compression is set.
 
-    %h2 camera.on( 'ready', callback() )
-    %p Emitted upon first successful communication between the Tessel and the module.
+      ## 'error'
 
-    %h2 camera.on( 'resolution', callback(resolution) )
-    %p Emitted when resolution is set.
+      Emitted upon error.
+
+      ## 'picture'
+
+      Emitted when a photo is taken. Returns buffer of image.
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
+
+      ## 'resolution'
+
+      Emitted when resolution is set.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
