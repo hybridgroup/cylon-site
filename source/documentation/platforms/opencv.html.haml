@@ -21,29 +21,29 @@ subnavjs: true
   = image_tag "/images/devices/opencv.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p OpenCV is a real-time computer vision library.
-    %p OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.
+    :markdown
 
-    %p
-      For more info about OpenCV click
-      = succeed "." do
-        = link_to "here", "http://opencv.org/", target: :blank
+      OpenCV is a real-time computer vision library.
 
+      OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library.
+      OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products.
+      Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.
+
+      For more info about OpenCV click [here](http://opencv.org/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Cylon.js with Opencv support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-opencv
+    ## How To Install
 
+        $ npm install cylon-opencv
 
-  %p
-    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:
-    = link_to "you can see the docs here.", "http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction", target: :blank
-  %h3 Ubuntu
-  :markdown
+    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer.
+    You can follow the tutorials in the [OpenCV site][site] to install it in your particular OS:
+
+    [site]: http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction
+
+    ### Ubuntu
         :::bash
         #!/bin/bash
         sudo apt-get -y install autoconf automake build-essential git libass-dev libgpac-dev \
@@ -88,62 +88,62 @@ subnavjs: true
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.
-  %p The following example shows how to connect to a camera and display the video feed in a window.
-  %p
-    Before running it be sure that "haarcascade_frontalface_alt.xml" file is referenced to the correct location,
-    you can download the file
-    = link_to 'here', 'https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml'
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
 
-        Cylon.robot({
-          connection: { name: 'opencv', adaptor: 'opencv' },
+    ## How To Use
 
-          devices: [
-            {
-              name: 'window',
-              adaptor: 'opencv'
-            },
-            {
-              name: 'camera',
-              driver: 'camera',
-              camera: 1,
-              haarcascade: __dirname + "/examples/opencv/haarcascade_frontalface_alt.xml"
-            }
-          ],
+    Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.
 
-          work: function(my) {
-            my.camera.once('cameraReady', function() {
-              console.log('The camera is ready!')
+    The following example shows how to connect to a camera and display the video feed in a window.
 
-              // We listen for frame ready event, when triggered
-              // we display the frame/image passed as an argument
-              // and we tell the window to wait 40 milliseconds
-              my.camera.on('frameReady', function(err, im) {
-                console.log("FRAMEREADY!");
-                my.window.show(im, 40);
+    Before running it be sure that "haarcascade_frontalface_alt.xml" file is referenced to the correct location.
+    You can download the file [here](https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml).
+
+          :::javascript
+          var Cylon = require('cylon');
+
+          Cylon.robot({
+            connection: { name: 'opencv', adaptor: 'opencv' },
+
+            devices: [
+              { name: 'window', adaptor: 'opencv' },
+              {
+                name: 'camera',
+                driver: 'camera',
+                camera: 1,
+                haarcascade: __dirname + "/examples/opencv/haarcascade_frontalface_alt.xml"
+              }
+            ],
+
+            work: function(my) {
+              my.camera.once('cameraReady', function() {
+                console.log('The camera is ready!')
+
+                // We listen for frame ready event, when triggered
+                // we display the frame/image passed as an argument
+                // and we tell the window to wait 40 milliseconds
+                my.camera.on('frameReady', function(err, im) {
+                  console.log("FRAMEREADY!");
+                  my.window.show(im, 40);
+                });
+
+                // Here we have two options to start reading frames from
+                // the camera feed.
+                // 1. As fast as possible triggering the next frame read
+                //    in the listener for frameReady, if you need video
+                //    as smooth as possible uncomment #my.camera.readFrame()
+                //    in the listener above and the one below this comment.
+                //
+                // my.camera.readFrame()
+                //
+                // 2. Use an interval of time to try and get aset amount
+                //    of frames per second  (FPS), in the next example
+                //    we are trying to get 1 frame every 50 milliseconds
+                //    (20 FPS).
+                //
+                every(50, function() { my.camera.readFrame(); });
               });
+            }
+          });
 
-              // Here we have two options to start reading frames from
-              // the camera feed.
-              // 1. As fast as possible triggering the next frame read
-              //    in the listener for frameReady, if you need video
-              //    as smooth as possible uncomment #my.camera.readFrame()
-              //    in the listener above and the one below this comment.
-              //
-              // my.camera.readFrame()
-              //
-              // 2. Use an interval of time to try and get aset amount
-              //    of frames per second  (FPS), in the next example
-              //    we are trying to get 1 frame every 50 milliseconds
-              //    (20 FPS).
-              //
-              every(50, function() { my.camera.readFrame(); });
-            });
-          }
-        });
-
-        Cylon.start();
+          Cylon.start();
