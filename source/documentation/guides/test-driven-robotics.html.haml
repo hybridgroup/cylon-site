@@ -13,66 +13,67 @@ active_menu_docs: true
     $("#guides-panel ul li:nth-child(5)").addClass("active-link");
 
 .test
-  # Test-Driven Robotics
+  :markdown
+    # Test-Driven Robotics
 
-  Test-Driven Robotics (TDR) is our nickname for applying the principles of Test-Driven-Development to hardware/software solutions.
+    Test-Driven Robotics (TDR) is our nickname for applying the principles of Test-Driven-Development to hardware/software solutions.
 
-  Cylon.js, as an example of a modernized robotics development framework, has support for TDR built-in.
+    Cylon.js, as an example of a modernized robotics development framework, has support for TDR built-in.
 
-  Here's an example robot:
+    Here's an example robot:
 
-      :::javascript
-      var Cylon = require("cylon");
+        :::javascript
+        var Cylon = require("cylon");
 
-      Cylon.robot({
-        name: 'TEstBot',
+        Cylon.robot({
+          name: 'TestBot',
 
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-        device: { name: 'led', driver: 'led', pin: 13 },
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'led', driver: 'led', pin: 13 },
 
-        work: function(my) {
-          my.led.toggle();
-
-          every((1).second(), function() {
+          work: function(my) {
             my.led.toggle();
+
+            every((1).second(), function() {
+              my.led.toggle();
+            });
+          }
+        }.start());
+
+    And here's a test, set up with a combination of the Mocha, Sinon, and Chai test frameworks:
+
+        :::javascript
+        "use strict";
+
+        // setting this env var tells Cylon to stub connections to adaptors and devices
+        process.env.CYLON_TEST = 'test';
+        process.env.NODE_ENV = 'test';
+
+        // setup for tests
+        var chai = require('chai'),
+            sinon = require('sinon'),
+            sinonChai = require('sinon-chai');
+
+        chai.use(sinonChai);
+
+        var clock = sinon.useFakeTimers;
+
+        // load the robot, in test mode
+        var Cylon = require('cylon');
+        require('./robot.js');
+
+        describe("TestBot", function() {
+          var robot = Cylon.robots["TestBot"];
+
+          it("should have work", function() {
+            expect(robot.work).to.be.a('function');
           });
-        }
-      }.start());
 
-  And here's a test, set up with a combination of the Mocha, Sinon, and Chai test frameworks:
+          it("should toggle the LED after one second", function() {
+            var led = robot.led,
+                toggle = sinon.stub(led, 'toggle');
 
-      :::javascript
-      "use strict";
-
-      // setting this env var tells Cylon to stub connections to adaptors and devices
-      process.env.CYLON_TEST = 'test';
-      process.env.NODE_ENV = 'test';
-
-      // setup for tests
-      var chai = require('chai'),
-          sinon = require('sinon'),
-          sinonChai = require('sinon-chai');
-
-      chai.use(sinonChai);
-
-      var clock = sinon.useFakeTimers;
-
-      // load the robot, in test mode
-      var Cylon = require('cylon');
-      require('./robot.js');
-
-      describe("TestBot", function() {
-        var robot = Cylon.robots["TestBot"];
-
-        it("should have work", function() {
-          expect(robot.work).to.be.a('function');
+            clock.tick(1000);
+            expect(toggle).to.have.been.called;
+          });
         });
-
-        it("should toggle the LED after one second", function() {
-          var led = robot.led,
-              toggle = sinon.stub(led, 'toggle');
-
-          clock.tick(1000);
-          expect(toggle).to.have.been.called;
-        });
-      });

@@ -33,37 +33,25 @@ lcd_driver: true
   = image_tag "/images/devices/galileo.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor. It is intended to be compatible with shields designed for the Arduino Uno R3 or above.
-    %p
-      For more info about the Galileo platform click
-      = succeed "." do
-        = link_to "here", "http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html", target: :blank
+    :markdown
+      The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor.
+      It is intended to be compatible with shields designed for the Arduino Uno R3 or above.
+
+      For more info about the Galileo platform click [here](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Install the module with:
   :markdown
-        :::bash
-        npm install cylon-galileo
+    ## How To Install
 
+    Install the module with:
+
+        $ npm install cylon-galileo
 
 %section.how-to#HowToUse
-  %h2 How To Use
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Use
 
-        Cylon.robot({
-        	connection: { name: 'galileo', adaptor: 'galileo' },
-        	device: {name: 'galileo', driver: 'galileo'},
-
-        	work: function(my) {
-        		// provide an example of your module here
-        	}
-        }).start();
-
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 
@@ -100,7 +88,6 @@ lcd_driver: true
             });
           }
         }).start();
-
 
 %section.how-to#HowToConnect
   %h2 How To Connect

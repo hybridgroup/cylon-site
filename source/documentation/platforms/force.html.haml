@@ -22,65 +22,54 @@ force_drivers: true
   = image_tag "/images/devices/force.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p
-    -# I put this description but if you need to change it, no problem ;)  *************
-    This module provides an adaptor and drivers for Force.com
+    :markdown
+      This modules provides an adaptor + driver combination for communicating with the SalesForce Force.com platform.
 
-    %p
-      It uses the nforce module
-      =link_to "(https://github.com/kevinohara80/nforce)" , "https://github.com/kevinohara80/nforce"
-      created by @kevinohara80 thank you!
+      It uses the [nforce](https://github.com/kevinohara80/nforce) module created by @kevinohara80.
 
-    %p
-      For more info about the Force platform go to
-      = succeed "." do
-        = link_to "http://www.force.com/", "http://www.salesforce.com/platform/overview/", target: :blank
+      For more info about the Force platform, click [here](http://www.salesforce.com/platform/overview/).
 
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-
-  %p
-    Installing cylon.js with Force support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-force
+    ## How To Install
+
+        $ npm install cylon-force
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
-  -# here the description of the example *************
-    This example uses the sphero and the cylonjs-force
-  -# here the code of the example in JS(coming soon..)*************
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'sfcon',
-                        adaptor: 'force',
-                        sfuser: process.env.SF_USERNAME,
-                        sfpass: process.env.SF_SECURITY_TOKEN,
-                        orgCreds: {
-                          clientId: process.env.SF_CLIENT_ID,
-                          clientSecret: process.env.SF_CLIENT_SECRET,
-                          redirectUri: 'http://localhost:3000/oauth/_callback'
-                        }
-                      },
-          device: {name: 'salesforce', driver: 'force'},
+          connection: {
+            name: 'sfcon',
+            adaptor: 'force',
+            sfuser: process.env.SF_USERNAME,
+            sfpass: process.env.SF_SECURITY_TOKEN,
+            orgCreds: {
+              clientId: process.env.SF_CLIENT_ID,
+              clientSecret: process.env.SF_CLIENT_SECRET,
+              redirectUri: 'http://localhost:3000/oauth/_callback'
+            }
+          },
+
+          device: { name: 'salesforce', driver: 'force' },
 
           work: function(me) {
             me.salesforce.on('start', function() {
               me.salesforce.subscribe('/topic/SpheroMsgOutbound', function(data) {
-                console.log("Sphero:"+data.sobject.Sphero_Name__c+", Bucks: "+data.sobject.Bucks__c+", SM_Id: "+data.sobject.Id);
+                console.log("Sphero:" + data.sobject.Sphero_Name__c + ", Bucks: " + data.sobject.Bucks__c + ", SM_Id: " + data.sobject.Id);
               });
             });
 
             var i = 0;
 
             every((2).seconds(), function() {
-              var toSend = "{ 'spheroName' :'"+me.name+"', 'bucks': "+i+" }"
+              var toSend = "{ 'spheroName' :'" + me.name + "', 'bucks': " + i + " }"
               me.salesforce.push('SpheroController', 'POST', toSend);
             });
           }
@@ -88,79 +77,83 @@ force_drivers: true
 
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h2 Salesforce Setup
-  %h3 Getting Started
-  %ul
-    %li
-      First you'll need an account on DeveloperForce. If you don't already have one, you can create one at:
-      = link_to "http://developer.force.com/join", "http://developer.force.com/join", target: :blank
-    %br/
-    %li
-      Next, you need to configure a new connected app in your developer profile in order to retrieve all the keys, tokens, urls nedded to
-      connect your app with SalesForce. In order to do this:
-      %ul
-        %br/
-        %li Go to -> Setup (top) > Create (side) > Apps > Connected Apps (scroll down ) > New Check "Enable Oauth Settings".
-        %li Next, add all permissions. Use "http://localhost:3000/oauth/_callback" as your callback URL. You'll be using the Oauth2 web server flow, so you need your personal security code. If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.
-        %li Setup > My Personal Information > Reset My Security Code, you'll need your password + security token to be able to login (PASSWORDsecurityCode (concatenated, no space)).
-    %br/
-    %li
-      Now we need to setup an object with a couple of custom fields for streaming communication. In this example we'll create a new object and call it 'Sphero_Message': We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.
-      %ul
-        %br/
-        %li Go to Setup -> Create -> Object -> New and name it Sphero_Message
-        %li Create custom attributes "Sphero_Name" and "Bucks" both text type.
-        %li
-          We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it
-          =link_to "here", "https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN"
-    %br/
-    %li
-      Setup apexRest code so we can create new objects using RESTfull implementation:
-      %ul
-        %br/
-        %li Go click in My Profile -> Developer Console, when the developer console opens up go to:
-        %li Click File -> New -> Apex Class and the following code to that:
-        %li
-          We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it
-          =link_to "here", "https://login.salesforce.com/?ec=302&startURL=%2Fpackaging%2FinstallPackage.apexp%3Fp0%3D04ti00000004IoN"
-        :markdown
-              :::bash
-              @RestResource(urlMapping='/SpheroController/*')
-              global with sharing class SpheroController {
-                @HttpPost
-                  global static void create(String spheroName, String bucks) {
-                    SpheroController.handleSpheroMessage(spheroName, bucks)
-                  }
+  :markdown
+    ## How To Connect
 
-                public static void handleSpheroMessage(String spheroName, String bucks) {
-                  Sphero_Message__c sm = new Sphero_Message__c();
-                  sm.Sphero_Name__c = spheroName;
-                  sm.Bucks__c = bucks;
-                  insert sm;
-                }
-              }
-    %li
-      To be able to stream we need to setup a PushTopic to connect to.
-      %ul
-        %br/
-        %li Go to developer console click on Debug -> Open Execute Anonymus Code or (Ctrl +E)
-        %li Add code to create the new pushTopic with the query you want to execute and the events you want it to report.
-        :markdown
-              :::bash
-              PushTopic pt = new PushTopic();
-              pt.apiversion = 28.0;
-              pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
-              pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
-              insert pt;
-              System.debug('Created new PushTopic: '+ pt.Id);
-    %li At this point everything in salesforce should be ready and we should be able to connect, authenticate, push/create records through apexRest and stream information using the pushTopic.
+    ### SalesForce Setup
 
+    First, you'll need an account on DeveloperForce.
+    If you don't have one already, you can create one [here](http://developer.force.com/join).
 
+    Next, you'll need to configure a connected app in your developer profile.
+    This needs to be done to retrieve the necessary keys, tokens, and URLs necessary to connect your robot to SalesForce.
+
+    Here's the steps to do this:
+
+    1. Go to Setup (top) -> Create (side) -> Apps -> Connected Apps (scroll down) -> New
+    2. Check "Enable OAuth Settings"
+    3. Next, add all permissions. Use `http://localhost:3000/oauth/_callback` as your callback URL.
+
+    You'll be using the Oauth2 web server flow, so you need your personal security code.
+    If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.
+
+    To get this:
+
+    1. Setup -> My Personal Information -> Reset My Security Code.
+
+    You'll need your password and security token to login (`passwordSECURITYCODE` concatenated, no space).
+
+    We've created a SalesForce package that installs the Sphero_Message object and the apexRest class for you to speed things up.
+    You can find it [here](https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN).
+
+    Now, we'll need to setup a custom object for streaming communication.
+    In this example we'll create a new object and call it 'Sphero_Message': We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.
+
+    1. Go to Setup -> Create -> Object -> New
+    2. Call it "Sphero_Message"
+    3. Create custom attributes "Sphero_Name" and "Bucks", both of them should be the text type.
+
+    Next, we need to setup apexRest code, so we can create new objects using the REST API:
+
+    1. Go click My Profile -> Developer Console.
+    2. When the console opens, click File -> New -> Apex Class
+    3. Add the following code:
+
+        @RestResource(urlMapping='/SpheroController/*')
+        global with sharing class SpheroController {
+          @HttpPost
+            global static void create(String spheroName, String bucks) {
+              SpheroController.handleSpheroMessage(spheroName, bucks)
+            }
+
+          public static void handleSpheroMessage(String spheroName, String bucks) {
+            Sphero_Message__c sm = new Sphero_Message__c();
+            sm.Sphero_Name__c = spheroName;
+            sm.Bucks__c = bucks;
+            insert sm;
+          }
+        }
+
+    To be able to stream, we need a PushTopic to connect to.
+
+    1. Go to Developer Console -> Debug -> Open Execute Anonymous Code
+    2. Add the following code to create the new PushTopic with the query you want to execute, and the events you wish it to report:
+
+        PushTopic pt = new PushTopic();
+        pt.apiversion = 28.0;
+        pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
+        pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
+        insert pt;
+        System.debug('Created new PushTopic: '+ pt.Id);
+
+    At this point, everything on the SalesForce end should be ready.
+    We should now be able to connect, authenticate, push/create records through apexRest, and stream information using the pushTopic.
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p All Cylon.js drivers listed below should work with the Force:
+  :markdown
+    ## Drivers
+
+    All Cylon.js drivers listed below should work with the Force:
 
   .hardware
     .devices

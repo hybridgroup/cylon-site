@@ -37,139 +37,118 @@ ir_range_finder: true
   = image_tag "/images/devices/arduino.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software. It's intended for artists, designers, hobbyists and anyone interested in creating interactive objects or environments.
+    :markdown
+      Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software.
+      It's intended for artists, designers, hobbyists and anyone interested in creating interactive objects or environments.
 
-    %p
-      For more info about the Arduino platform click
-      = succeed "." do
-        = link_to "here", "http://arduino.cc/", target: :blank
+      For more info about the Arduino platform click [here](http://arduino.cc/).
+
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Cylon.js with Arduino support is pretty easy.
   :markdown
-        :::ruby
-        npm install cylon-firmata
+    ## How To Install
+    Installing Cylon.js with Arduino support is pretty easy.
+
+        $ npm install cylon-firmata
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program lets you push a button on the arduino board to turn a LED on or off. In less than 10 lines of code using Cylon.js.
   :markdown
+    ## How To Use
+
+    This small program lets you push a button on the arduino board to turn a LED on or off, in less than 10 lines of code using Cylon.
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          devices: [{name: 'led', driver: 'led', pin: 13},
-                   {name: 'button', driver: 'button', pin: 2}],
+
+          devices: [
+            { name: 'led', driver: 'led', pin: 13 },
+            { name: 'button', driver: 'button', pin: 2 }
+          ],
 
           work: function(my) {
-            every((1).second(), my.led.toggle);
+            every((1).second(), function() {
+              my.led.toggle();
+            );
           }
         }).start();
 
-
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 OSX
+  :markdown
+    ## How To Connect
+    ### OS X
 
-  %p The main steps are:
-  %ul
-    %li Install the cylon-firmata npm module
-    %li Find out what serial port your arduino is connected to
-    %li Upload the Firmata protocol to the arduino
-    %li Connect to the device using Cylon
+    The main steps are:
 
-  %p
+    - Install the cylon-firmata npm module
+    - Find out what serial port your arduino is connected to
+    - Upload the Firmata protocol to the arduino
+    - Connect to the device using Cylon
+
     First plug the Arduino into your computer via the USB/serial port.
     A dialog box will appear telling you that a new network interface has been detected.
     Click "Network Preferences...", and when it opens, simply click "Apply".
 
-  %p Install the cylon-firmata module:
+    Install the cylon-firmata module:
 
-  :markdown
-        :::bash
         $ npm install cylon-firmata
 
     Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
 
-  :markdown
-        :::bash
         $ gort scan serial
 
-  :markdown
-    Use the `gort firmata install` command to install avrdude,
-    this will allow you to upload firmata to the arduino:
+    Use the `gort firmata install` command to install `avrdude`, this will allow you to upload firmata to the arduino:
 
-  :markdown
         :::bash
         $ gort firmata install
 
-  :markdown
-    Once the avrdude uploader is installed we upload the firmata protocol to
-    the arduino, use the arduino serial port address found when you ran
-    `gort scan serial`:
+    Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran `gort scan serial`:
 
-  :markdown
         :::bash
         $ gort firmata upload /dev/tty.usbmodem1421
 
-  %p Now you are ready to connect and communicate with the Arduino using serial port connection
+    Now you are ready to connect and communicate with the Arduino using serial port connection
 
-  %h3 Ubuntu
+    ### Ubuntu
 
-  %p The main steps are:
-  %ul
-    %li Install the cylon-firmata npm module
-    %li Find out what serial port your arduino is connected to
-    %li Upload the Firmata protocol to the arduino
-    %li Connect to the device using Cylon
+    The main steps are:
 
-  %p First plug the Arduino into your computer via the USB/serial port.
+    - Install the cylon-firmata npm module
+    - Find out what serial port your arduino is connected to
+    - Upload the Firmata protocol to the arduino
+    - Connect to the device using Cylon
 
-  %p Install the cylon-firmata module:
+    First plug the Arduino into your computer via the USB/serial port.
 
-  :markdown
-        :::bash
+    Install the cylon-firmata module:
+
         $ npm install cylon-firmata
 
     Once plugged in, use [Gort](http://gort.io)'s `gort scan serial` command to find out your connection info and serial port address:
 
-  :markdown
-        :::bash
         $ gort scan serial
 
-  :markdown
-    Use the `gort firmata install` command to install avrdude,
-    this will allow you to upload firmata to the arduino:
+    Use the `gort firmata install` command to install `avrdude`, this will allow you to upload firmata to the arduino:
 
-  :markdown
-        :::bash
         $ gort firmata install
 
-    Once the avrdude uploader is installed we upload the firmata protocol to
-    the arduino, use the arduino serial port address found when you ran
-    `gort scan serial`, or leave it blank to use the default address `ttyACM0`:
+    Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran `gort scan serial`, or leave it blank to use the default address `ttyACM0`:
 
-        :::bash
         $ gort firmata upload ttyACM0
 
-  %p Now you are ready to connect and communicate with the Arduino using serial port connection
+    Now you are ready to connect and communicate with the Arduino using serial port connection
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p
-    Thanks to
-    %b cylon.js
-    and
-    %b node.js
-    it is possible to interact with several I/O hardware devices and interfaces connected to the arduino
-    using a set of already defined and easy to use drivers, all of this thanks to the cylon.js architecture, in conjuction with the cylon-firmata
-    adaptor (using the firmata communication protocol),
-    which makes it even possible to swap the entire platform for something else like digispark, and keep using the same code you just wrote for
-    arduino, this just by swapping a couple of lines in your program.
-  %p Available drivers for the arduino platform are listed below, the drivers contain detailed documentation and examples of what kind physical computing (using cylon.js and node.js) you could be doing:
+  :markdown
+    ## Drivers
+
+    Cylon.JS' communication with the Arduino relies on using the Firmata firmware.
+    This allows for interaction with a wide range of I/O hardware devices and interfaces, using a set of previously-defined and easy-to-use drivers.
+
+    Available drivers for the Arduino platform are listed below.
 
   .hardware
     %h2 GPIO Drivers
@@ -184,10 +163,8 @@ ir_range_finder: true
   %h2 Arduino YUN
   = image_tag "/images/devices/arduino-yun.jpg", class: "display"
   .info-intro
-    %p
-      It is possible to run cylon.js code on the Linux side of the arduino YUN and have it communicate with the arduino
-      side using the same firmata protocol and serialport communication.
-    %p
-      We need to do some hacking in order to accomplish this, we've put together a guide on to how to do this, you can check
-      it out on the Arduino YUN platform page here:
-      = link_to 'Arduino YUN', './yun'
+    :markdown
+      It's possible to run Cylon code on the Linux side of the Arduino YUN, and have it communicate with the Arduino side using the Firmata protocol and seriaport communication.
+
+      However, some hacking is necessary to accomplish this.
+      We've put a guide together on how to do this, you can find it on the YUN platform page [here](./yun).
