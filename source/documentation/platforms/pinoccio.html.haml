@@ -35,26 +35,24 @@ pinoccio_power_driver: true
   = image_tag "/images/devices/pinoccio.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p Build wireless, web-enabled projects in minutes.
+    :markdown
+      Build wireless, web-enabled projects in minutes.
 
-    %p
-      For more info about the Pinoccio platform click
-      = succeed "." do
-        = link_to "here", "https://pinocc.io/", target: :blank
-
+      For more info about the Pinoccio platform click [here](https://pinocc.io/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Cylon.js with Pinoccio support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-pinoccio
+    ## How To Install
+
+        $ npm install cylon-pinoccio
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %h3 Blink
   :markdown
+    ## How To Use
+
+    ### Blink
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -64,17 +62,20 @@ pinoccio_power_driver: true
             adaptor: 'pinoccio',
             token: '[your token]',
             troop: '[your troop ID]',
-            scout: '[your scout ID]' },
-          device: {name: 'led', driver: 'led', pin: 'D5'},
+            scout: '[your scout ID]' 
+          },
+
+          device: { name: 'led', driver: 'led', pin: 'D5' },
 
           work: function(my) {
             every((1).second(), my.led.toggle);
           }
         }).start();
 
-  %h3 Built-In Features
-  %p You can also access the built-in features of the Pinoccio such as the LED and Power status:
-  :markdown
+    ### Built-In Features
+
+    You can also access the built-in features of the Pinoccio such as the LED and Power status:
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -84,28 +85,36 @@ pinoccio_power_driver: true
             adaptor: 'pinoccio',
             token: '[your token]',
             troop: '[your troop ID]',
-            scout: '[your scout ID]' },
-          device: {name: 'led', driver: 'pinoccio-led'},
-          device: {name: 'power', driver: 'pinoccio-power'},
+            scout: '[your scout ID]'
+          },
+
+          devices: [
+            { name: 'led', driver: 'pinoccio-led' },
+            { name: 'power', driver: 'pinoccio-power' }
+          ]
 
           work: function(my) {
-            every((1).second(),
-            my.led.toggle);
+            every((3).seconds(), function() {
+              my.led.toggle();
+
+              my.power.voltage(function(err, data) {
+                console.log(err);
+                console.log(data);
+              });
+            });
           }
         }).start();
 
-
-
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p You need to have an access token generated using the Pinoccio cloud. The easiest way to do this is to use curl:
   :markdown
-        :::bash
-        curl -X POST -v --data 'email=your@email.com&password=yourpassword' https://api.pinocc.io/v1/login
+    ## How To Connect
+
+    You need to have an access token generated using the Pinoccio cloud. The easiest way to do this is to use curl:
+
+        $ curl -X POST -v --data 'email=your@email.com&password=yourpassword' https://api.pinocc.io/v1/login
 
     It will return a JSON payload that contains the access token:
 
-        :::bash
         < HTTP/1.1 200 OK
         < content-type: application/json
         < Date: Sat, 21 Jun 2014 16:08:05 GMT
@@ -115,9 +124,10 @@ pinoccio_power_driver: true
         {"data":{"token":"thisisthetokenhere","account":1234,"perms":true}}
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the joystick platform are listed below:
-  -#%p There are 3 driver for different joysticks, as listed below:
+  :markdown
+    ## Drivers
+
+    Available drivers for the joystick platform are listed below:
 
   .hardware
     %h2 GPIO Drivers

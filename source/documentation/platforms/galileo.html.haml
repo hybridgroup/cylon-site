@@ -90,44 +90,37 @@ lcd_driver: true
         }).start();
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 Setting up the Galileo bigger Linux image, connecting and updating node.js.
-  %p Setting up Intel's Galileo board takes a bit more work than it should, but it is not difficult, luckily you only have to do it once (we hope :-)... ).
-  %p
-    The first step is to check we have the latest firmware and update if not.
-    You can find instructions to update the firmware here:
-
-  %p
-    = link_to 'Galileo firmware update', 'https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware'
-
-  %p
-    Next step is to install the bigger linux image into a MicroSD card and boot the
-    Galileo from it.
-
-  %p
-    You can find the bigger linux image listed in the official Galileo drivers page (
-    = link_to 'Galileo drivers', 'https://communities.intel.com/docs/DOC-22226'
-    ), the one named:
-
-  %p
-    = link_to 'LINUX IMAGE FOR SD for Intel Galileo', 'http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z'
-
-  %p
-    Please feel free to read through the getting started page, so you can get familiar with the board features.
-    You can find all getting started info by clicking the following link:
-  %p
-    = link_to 'Official getting started guide', 'https://learn.sparkfun.com/tutorials/galileo-getting-started-guide'
-
-  %p Once we have the bigger linux image in the sd card, and the galileo booting up from it, we need to connect and enable networking (turned off by default in the Galileo bigger linux image).
-  %p
-    We can accomplish this by using a serialport to terminal program, for this we have to use the Galileo Arduino IDE
-    provided in the Galileo drivers page,
-    = link_to 'Intel Galileo Arduino SW 1.5.3', 'https://communities.intel.com/docs/DOC-22226'
-    , make sure to download and uncompress the correct one for your OS, after that upload the
-    following sketch to the galileo board:
-
-
   :markdown
+    ## How To Connect
+
+    ### Setting up Galileo Linux Image
+
+    Setting up the Galileo for Cylon takes longer than it should, but it's not terribly difficult.
+    Luckily, you only have to do it once.
+
+    The first step is to ensure we have the latest version of the firmware, and update if not.
+    You can find instructions to update the firmware [here](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware).
+
+    Next, we're going to install the larger Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.
+
+    You can find the larger image on the official Galileo [drivers page](https://communities.intel.com/docs/DOC-22226).
+    You're looking for the one named [LINUX IMAGE FOR SD for Intel Galileo](http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z).
+
+    Please feel free to read through the Galileo [getting started page](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide).
+    This will help you get better acquainted with the features of the board.
+
+    Once you have the larger image on the SD card, slot it into the Galileo, and the board should automatically boot from it.
+
+    After it's started up, we need to connect and enable networking (turned off by default in the image).
+
+    We can accomplish this using a serialport to terminal program.
+    To do this, we have to use the Galileo Arduino IDE.
+    This is also provided from the Galileo drivers page, but [here](https://communities.intel.com/docs/DOC-22226) is a direct link.
+
+    Make sure to download the version for your OS.
+
+    After you've got that running, upload this sketch to your Galileo:
+
         :::cpp
         void setup()
         {
@@ -148,121 +141,62 @@ lcd_driver: true
 
         }
 
-  %p
-    Once the board is connected to your computer, open up a serial terminal program
-    (like
-    = link_to 'Tera Term', 'https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows'
-    for Windows,
-    = link_to 'Cool Term', 'https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux'
-    for Mac, or
-    = link_to 'Serial port terminal', 'https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/'
-    for Ubuntu/Linux). Set the serial port number, and change the baud rate to 115200 bps.
+    Once the board's connected to your computer, you can connect to it with a serial terminal program.
+    Some example programs:
 
-  %p You can read more about serial to terminal communication in the getting started page here:
+    - [Tera Term](https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows) for Windows
+    - [Cool Term](https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux) for OS X
+    - [GTKTerm](https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/) for Linux
 
-  %p
-    = link_to 'Serial to terminal', 'https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/using-the-terminal'
+    Set the serial port number, and change the baud rate to 115200 bps.
 
-  %p When you have connected successfully to the Galileo run this command to enable networking (make sure to connect the board to the network using an ethernet cable first):
-  :markdown
-        :::bash
+    When you have a successful connection to the Galileo, run this command to enable networking:
+
         $ /etc/init.d/networking start
 
-  %p This will allow us to connect using SSH, substitute the ip address with the one assigned to your Galileo:
-  :markdown
-        :::bash
+    This will allow us to SSH into the board.
+    Substitute the IP address for that of your Galileo and connect:
+
         $ ssh root@192.168.0.5
 
-  %p The final step of the setup is to update the node.js version included in the galileo bigger linux image, you can download a more up to date package from  here:
 
-  %p
-    = link_to 'Node.JS 10.25', 'https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip'
+    The last bit of setup is to update the version of Node included with the Linux image.
+    You can download a more up-to-date version [here](https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip).
 
-  %p Then we need to uncompress the file in the host computer:
-  :markdown
-        :::bash
+    Uncompress the file on your host computer, and copy the package to the board:
+
         $ unzip nodejs_0.10.25-r0_i586.ipk.zip
-
-  %p And copy the IPK package to the board, since the Galileo is already connected to the network (and we have an active session open that we can use) we can SCP the ipk package to update node.js to the galileo:
-  :markdown
-        :::bash
         $ scp nodejs_0.10.25-r0_i586.ipk root@192.168.0.5:/home/root/
 
-  %p We then move to the Galileo terminal session and upgrade the installed node.js package by running the following command:
-  :markdown
-        :::bash
-        opkg install nodejs_0.10.25-r0_i586.ipk
+    Then, on the Galileo, install the package with the `opkg` command:
 
-    Let's confirm node.js version by running `node -v`
+        $ opkg install nodejs_0.10.25-r0_i586.ipk
 
-        :::bash
-    		$ node -v
-    		v0.10.25
+    With that done, make sure the update worked:
 
-  %p Nice! We are good to go! With this we are pretty much setup to use Cylon.js in the Galileo.
-  %p More details regarding updating node.js can be found here:
+        $ node -v
+        v0.10.25
 
-  %p
-    = link_to 'How to update node.js in the SD card image', 'https://communities.intel.com/thread/48416'
+    If you need more details on updating Node in the Galileo image, they can be found [here](https://communities.intel.com/thread/48416).
 
-  :markdown
-    Install the module with: `npm install cylon-galileo`
+    And with that all done, we can install the `cylon-galileo` module to the board:
 
-  %h3 How to push code to your Galileo
+        $ npm install cylon-galileo
 
-  %p The Galileo is a special case (compared to Beaglebone black and Raspberry Pi) since it lacks dev tools in the bigger Linux image, so at this time we do not have a different distribution to run in the sd card that does contain dev tools, so we'll have to make it work with what we have.
+    ### Pushing Code
 
-  %p You'll need to write your code and install npm modules on your computer, at very least setup your project folder and install NPM modules, all of this using the 32bit version of both node.js and NPM modules.
+    The Galileo is a special case (compared to the BeagleBone Black and Raspberry Pi), since it doesn't have any dev tools in the larger Linux image.
+    You'll need to write code and install NPM modules on your host computer.
 
-  %p First we need to download the 32bit version of Node.js:
+    Additionally, to compile for the 32-bit architecture on the Galileo, you'll need to run a 32-bit version of Node on your host machine.
 
-  %p http://nodejs.org/dist/v0.10.26/node-v0.10.26-linux-x86.tar.gz
-
-  %p You'll need to uncompress and run node and npm from that directory, I recommend creating links to the bin/node and bin/npm files in your home folder, that way you can easily install npm libraries using the 32bit version (needed by Galileo) and maintain your current global node instalation without messing with your path.
-
-  :markdown
-        :::bash
-        $ ln  ~/node-v0.10.26-linux-x86/bin/node ~/nodex86
-        $ ln  ~/node-v0.10.26-linux-x86/bin/npm ~/npmx86
-
-    Now, how to actually push code and run it in the Galileo, let's say we have a project folder called `galileo-blink`, we change directory intothe project folder, then we can either write our code there, in this case blink.js, or setup the project folder with all nedded NPM modules and work directly in the galileo board, of course all of this using the 32bit version of node.js we just installed:
-
-  :markdown
-        :::bash
-        $ cd galileo-blink
-        $ ~/npmx86 install cylon
-        $ ~/npmx86 install cylon-galileo
-        $ ~/npmx86 install cylon-gpio
-
-    This will create the `./node_modules/` folder in our project containing all the necessary modules that will run in the Galileo, so from here we can either work on our project and push the code later just for testing in the galileo, or push the modules and work directly in the Galileo, let's do the latter since makes development easier and quicker than having to push everytime we do a small change:
-
-  :markdown
-        :::bash
-        # From our project root folder run
-        $ cd ../
-        $ tar -cf galileo-blink.tar ./galileo-blink
-        $ scp galileo-blink.tar root@192.168.0.5:/home/root/
-
-  %p Once the project package finishes copying we go to our galileo session, and in the terminal we run the following:
-
-  :markdown
-        :::bash
-        $ cd ~
-        $ tar -xf galileo-blink.tar
-        $ cd galileo-blink
-        $ vi blink.js
-
-  %p We now have our environment ready to run the examples in the galileo, just copy paste the blink example (found in the examples section below), save it and run it.
-
-  :markdown
-        :::bash
-        # From project root folder
-        $ node blink.js
-
+    You can download the appropriate version from the Node [download page](http://nodejs.org/download/).
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the Galileo platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the Galileo platform are listed below.
 
   .hardware
     %h2 GPIO Drivers
