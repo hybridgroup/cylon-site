@@ -15,10 +15,10 @@
   -else
     = link_to "Platforms", "", (menu_item("documentation/platforms"))
 
-  - if current_page.data.active_menu_videos == true
-    = link_to "Videos", "/videos", (menu_item("videos")), class: "active"
+  - if current_page.data.active_menu_resources == true
+    = link_to "Resources", "/resources", (menu_item("resources")), class: "active"
   -else
-    = link_to "Videos", "", (menu_item("videos"))
+    = link_to "Resources", "", (menu_item("resources"))
 
   - if current_page.data.active_menu_blog == true
     = link_to "Blog", "/blog", (menu_item("blog")), class: "active"
