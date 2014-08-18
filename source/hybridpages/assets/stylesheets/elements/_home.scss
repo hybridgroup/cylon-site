@@ -28,7 +28,6 @@
 
     display: inline-block;
     width: 19%;
-    margin: 20px 0;
     text-align: center;
 
     img {
@@ -43,6 +42,7 @@
 
       p.title {
         color: $lesser-title-color;
+        font-size: 18px;
         padding:10px;
         display: block;
         width: 100%;
@@ -51,23 +51,6 @@
         color: $title-color;
       }
       
-    }
-
-    .repo {
-
-      a {
-
-        color: white;
-        background: url(/images/elements/repo_icon.svg) center center no-repeat;
-        padding: 20px 0;
-        display: block;
-        width: 100%;
-
-        &:hover {
-          background: url(/images/elements/repo_icon_hover.svg) center center no-repeat;
-          color: $hero-link-color;
-        }
-      }
     }
   }
 }

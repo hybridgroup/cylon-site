@@ -43,7 +43,7 @@ html {
   padding-bottom: 40px;
   @include outer-container;
 
-  .videos {
+  .resources {
 
     .video {
 
@@ -78,6 +78,16 @@ html {
       }
     }
 
+    span{
+
+      text-decoration: underline;
+      color: $link-hover-color;
+
+      &:hover{
+        color: $title-color;
+      }
+    }
+
     .video-index {
 
       @include span-columns(10);
@@ -103,6 +113,11 @@ html {
           height: 180px;
         }
       }
+    }
+
+    &:last-child{
+    
+      padding-bottom: 40px;
     }
   }
 
