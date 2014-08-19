@@ -161,6 +161,83 @@ active_menu_docs: true
         }
       });
 
+  ## Commands
+
+  Robots in Cylon can have commands that can be called from the API.
+
+  There's three main ways to define commands:
+
+  **Automatically** - by default, any non-standard property on a Robot that is a function will be made accessible to the API.
+  For example:
+
+      :::javascript
+      Cylon.robot({
+        name: "testbot",
+
+        connection: { name: "loopback", adaptor: "loopback" },
+        device: { name: "ping", driver: "ping" },
+
+        work: function() {},
+
+        doAThing: function() {
+          console.log("I did a thing!");
+        }
+      });
+
+      // GET /api/robots/testbot/commands
+      // => ['doAThing']
+
+  **As an Object** - providing a `commands` object in the Robot options:
+
+      :::javascript
+      Cylon.robot({
+        name: "testbot",
+
+        connection: { name: "loopback", adaptor: "loopback" },
+        device: { name: "ping", driver: "ping" },
+
+        work: function() {},
+
+        commands: {
+          do_a_thing: function() { this.doAThing.call(this); }
+        }
+
+        doAThing: function() {
+          console.log("I did a thing!");
+        }
+      });
+
+      // GET /api/robots/testbot/commands
+      // => ['do_a_thing']
+
+  **As a Function** - this option allows for easier scoping, as you can directly reference Robot properties.
+  The function must return an Object or an error will be thrown.
+
+      :::javascript
+      Cylon.robot({
+        name: "testbot",
+
+        connection: { name: "loopback", adaptor: "loopback" },
+        device: { name: "ping", driver: "ping" },
+
+        work: function() {},
+
+        commands: function() {
+          var commands = {};
+
+          commands.do_a_thing = this.doAThing
+
+          return commands;
+        }
+
+        doAThing: function() {
+          console.log("I did a thing!");
+        }
+      });
+
+      // GET /api/robots/testbot/commands
+      // => ['do_a_thing']
+
   ## Utilities
 
   Cylon provides a few helpful utility functions that can be used in your Robot's work block.
