@@ -10,7 +10,7 @@
     <title>Tessel with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,34 +452,43 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/tessel.jpg">
                   <div class="info-intro">
-                    <p>Tessel runs JavaScript—no server necessary. Just like web or mobile development, use your own IDE and libraries to program physical applications.</p>
-                    <p>Tessel supports packages from <code>npm</code> to leverage the growing Node.js community and capabilities. That's HTTP, Twitter, web server, color, and async support right out of the box. Uploading new code is as easy as <code>tessel push</code>!</p>
-                    <p>
-                      For more info about the Tessel platform click
-                      <a target="blank" href="http://tessel.io/">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-tessel" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-tessel/issues">Issues</a>
+</h4>
+                    <p>Tessel runs JavasScript - no server necessary.
+                    Just like web or mobile development, you can use your own IDE and libraries to program hardware.</p>
+                    
+                    <p>Tessel supports packages from <code>npm</code> to leverage the growing Node.js community and capabilities.
+                    That's HTTP, Twitter, web server, color, and async support right out of the box.
+                    Uploading new code is as easy as <code>tessel push</code>!</p>
+                    
+                    <p>For more info about the Tessel platform click <a href="http://tessel.io/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How to install</h2>
-                  <p>
-                    Follow the installation instructions detailed
-                    <a target="blank" href="http://start.tessel.io/install">here</a>
-                  </p>
-                  <p>You may now use the Cylon command line interface to generate a new Tessel project.</p>
-                  <pre class="CodeRay"> <span class="predefined">$</span> sudo npm install -g cylon-cli
- <span class="predefined">$</span> cylon generate tessel my-tessel-project
- <span class="predefined">$</span> cd my-tessel-project
- <span class="predefined">$</span> npm install
- <span class="predefined">$</span> tessel run blink.js
+                  <h2 id="how-to-install">How to install</h2>
+                  
+                  <p>Follow the installation instructions detailed <a href="http://start.tessel.io/install">here</a>.</p>
+                  
+                  <p>You can use the Cylon CLI to generate a new Tessel project:</p>
+                  
+                  <pre class="CodeRay">$ sudo npm install -g cylon-cli
+$ cylon generate tessel my-tessel-project
+$ cd my-tessel-project
+$ npm install
+$ tessel run blink.js
 </pre>
+                  
                   <p>If the blue light starts to blink, then you're all set!</p>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How to use</h2>
-                  <h3>LED</h3>
+                  <h2 id="how-to-use">How to use</h2>
+                  
+                  <h3 id="led">LED</h3>
+                  
                   <p>This small program lets you toggle an LED on and off.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -487,17 +496,23 @@ Cylon.robot({
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() { my.led.toggle() });
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
   }
 }).start();
 </pre>
-                  <h3>Climate</h3>
+                  
+                  <h3 id="climate">Climate</h3>
+                  
                   <p>This small program shows how to use the Tessel Climate module.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate-si7005</span><span class="delimiter">'</span></span> },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.climate.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
       console.log(err)
@@ -507,6 +522,7 @@ Cylon.robot({
       my.climate.readHumidity(<span class="keyword">function</span> (err, humid) {
         console.log(<span class="string"><span class="delimiter">'</span><span class="content">Humidity:</span><span class="delimiter">'</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">%RH</span><span class="delimiter">'</span></span>);
       });
+
       my.climate.readTemperature(<span class="string"><span class="delimiter">'</span><span class="content">f</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err, temp) {
         console.log(<span class="string"><span class="delimiter">'</span><span class="content">Degrees:</span><span class="delimiter">'</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">F</span><span class="delimiter">'</span></span>);
       });
@@ -516,22 +532,16 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How to Connect</h2>
-                  <p>
-                    As mentioned in the section above (How to install) connecting to the Tessel is easy,
-                    you just need to follow the detailed instructions provided in the tessel site:
-                  </p>
-                  <a href="http://start.tessel.io/install">http://start.tessel.io/install</a>
-                  <p>
-                    If you followed the instructions in the previous two sections, your Tessel should be already connected,
-                    and ready to run Cylon.js, you can skip ahead and start coding, if you skipped on the Tessel site instructions,
-                    follow the link provided
-                    <a href="https://tessel.io/install/">here</a>
-                    and complete all appropiate steps for your OS.
-                  </p>
+                  <h2 id="how-to-connect">How to Connect</h2>
+                  
+                  <p>As mentioned in the How To Install section, connecting to the Tessel is easy.
+                  You just need to follow the provided instructions on the <a href="http://start.tessel.io/install">Tessel site</a>.</p>
+                  
+                  <p>If you've already done this, your Tessel should already be connected and ready to run Cylon.JS code.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>Available drivers for the Tessel platform are listed below.</p>
                   <div class="hardware">
                     <!-- / TODO: Update drivers list at the top of the page. -->

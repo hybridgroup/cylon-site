@@ -10,7 +10,7 @@
     <title>Cylon.js - Crazyflie Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,45 +453,44 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/crazyflie-flight.jpg">
                   <div class="info-intro">
-                    <p>
-                      Allows user to send flight control commands to a Crazyflie micro-quadcopter. Flight control commands are those used to tell the Crazyflie to take off, land, and or any number of other autonomous flight manuvers.
-                    </p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://www.bitcraze.se/">here</a>
-                    </p>
+                    <p>Allows user to send flight control commands to a Crazyflie micro-quadcopter.
+                    Flight control commands are those used to tell the Crazyflie to take off, land, and or any number of other autonomous flight manuvers.</p>
+                    
+                    <p>For more information click <a href="http://www.bitcraze.se/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <p>
-                    Communication with the Crazyflie's flight control interface takes place using a 2.4GHz radio connection. The Crazyflie is controlled from your computer using a Crazyradio, which is a custom USB 2.4GHz radio device.
-                  </p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>},
-...
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <p>Communication with the Crazyflie's flight control interface takes place using a 2.4GHz radio connection.
+                  The Crazyflie is controlled from your computer using a Crazyradio, which is a custom USB 2.4GHz radio device.</p>
+                  
+                  <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">radio://1/10/250KPS</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span> },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <h3>Examples</h3>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This small program causes the Crazyflie to takeoff for 10 seconds.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">radio://1/10/250KPS</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.drone.takeoff();
+
       after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
         my.drone.land();
       });
+
       after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
         my.drone.stop();
       });

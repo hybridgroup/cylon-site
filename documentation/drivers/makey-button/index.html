@@ -10,7 +10,7 @@
     <title>Cylon.js - Makey Button Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
@@ -63,7 +63,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -411,7 +411,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,39 +453,33 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/makey-button.jpg">
                   <div class="info-intro">
-                    <p>
-                      Inspired by the awesome MakeyMakey (<a href="http://makeymakey.com">http://makeymakey.com</a>), this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino or Raspberry Pi to control your robots with bananas, clay, or drawable circuitry.
-                    </p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide">here.</a>
-                    </p>
+                    <p>Inspired by the awesome <a href="http://makeymakey.com">MakeyMakey</a>, this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino or Raspberry Pi to control your robots with bananas, clay, or drawable circuitry.</p>
+                    
+                    <p>For more information click <a href="https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>},
-
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>},
-  ...
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>},
-
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>},
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed!</span><span class="delimiter">"</span></span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed!</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();
@@ -544,54 +538,36 @@ Cylon.robot({
                           <p class="title">Arduino</p>
                           <img src="/images/devices/arduino.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-firmata">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">
                           <p class="title">Beaglebone Black</p>
                           <img src="/images/devices/beaglebone.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-beaglebone">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/digispark">
                           <p class="title">Digispark</p>
                           <img src="/images/devices/digispark.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-digispark">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/pinoccio">
                           <p class="title">Pinoccio</p>
                           <img src="/images/devices/pinoccio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-pinoccio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/raspberry-pi">
                           <p class="title">Raspberry Pi</p>
                           <img src="/images/devices/raspi.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-raspi">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/spark">
                           <p class="title">Spark</p>
                           <img src="/images/devices/spark.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-spark">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

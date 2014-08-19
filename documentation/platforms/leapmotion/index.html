@@ -10,7 +10,7 @@
     <title>Leapmotion with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,28 +452,28 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/leap_motion.jpg">
                   <div class="info-intro">
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-leapmotion" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-leapmotion/issues">Issues</a>
+</h4>
                     <p>The Leap Motion is a user-interface device that tracks the user's hand motions, and translates them into events that can control robots and physical computing hardware.</p>
-                    <p>
-                      For more info about the Leap Motion platform click
-                      <a target="blank" href="https://www.leapmotion.com/">here</a>.
-                    </p>
+                    
+                    <p>For more info about the Leap Motion platform click <a href="https://www.leapmotion.com/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing Cylon.js with leapmotion support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-leapmotion
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-leapmotion
 </pre>
-                  <p>
-                    In order to use this module , you need to install the drivers/software from the Leapmotion site
-                    <a href="https://www.leapmotion.com/setup">https://www.leapmotion.com/setup</a>
-                    , make sure that is installed before use the commands and events (and SDK too if you want, but the SDK is not needed for cylon.js).
-                  </p>
+                  
+                  <p>In order to use this module, you'll need to install the <a href="https://www.leapmotion.com/setup">Leap Motion software</a> from their site.</p>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This small program uses a Leap Motion to detect the user's hand position</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -490,32 +490,25 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(payload) {
-      Logger.info(payload.toString());
+      console.log(payload.toString());
     });
   }
 }).start();
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <h3>OSX</h3>
-                  <p>
-                    This driver works out of the box with the vanilla installation of the Leap Motion Software that you get in their
-                    <a href="https://www.leapmotion.com/setup">Setup Guide.</a>
-                  </p>
-                  <p>The main steps are:</p>
-                  <ul>
-                    <li>Run Leap Motion.app to open a websocket connection in port 6437.</li>
-                    <li>Connect your Computer and Leap Motion Controller.</li>
-                    <li>Connect to the device via Cylon.js.</li>
-                  </ul>
-                  <h3>Ubuntu</h3>
-                  <p>
-                    The Linux download of the Leap Motion software can be obtained from
-                    <a href="https://developer.leapmotion.com/downloads">Leap Motion Dev Center</a>
-                    (requires free signup)
-                  </p>
-                  <p>The main steps are:</p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <h3 id="os-x">OS X</h3>
+                  
+                  <p>Our driver works out-of-the-box with the vanilla installation of the <a href="https://www.leapmotion.com/setup">Leap Motion software</a>.</p>
+                  
+                  <h3 id="ubuntu">Ubuntu</h3>
+                  
+                  <p>The Linux download of the Leap Motion software can be obtained from the <a href="https://developer.leapmotion.com/downloads">Leap Motion Dev Center</a>.</p>
+                  
+                  <p>To make sure everything's working:</p>
+                  
                   <ul>
                     <li>Run the leapd daemon to open a websocket connection in port 6437.</li>
                     <li>Connect your computer and the Leap Motion controller</li>
@@ -523,7 +516,8 @@ Cylon.robot({
                   </ul>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>There is only one driver for the Leap Motion platform as listed below.</p>
                   <div class="hardware">
                     <div class="devices">

@@ -10,7 +10,7 @@
     <title>Opencv with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -451,25 +451,29 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/opencv.jpg">
                   <div class="info-intro">
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-opencv" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-opencv/issues">Issues</a>
+</h4>
                     <p>OpenCV is a real-time computer vision library.</p>
-                    <p>OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.</p>
-                    <p>
-                      For more info about OpenCV click
-                      <a target="blank" href="http://opencv.org/">here</a>.
-                    </p>
+                    
+                    <p>OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library.
+                    OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products.
+                    Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.</p>
+                    
+                    <p>For more info about OpenCV click <a href="http://opencv.org/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing Cylon.js with Opencv support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-opencv
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-opencv
 </pre>
-                  <p>
-                    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:
-                    <a target="blank" href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">you can see the docs here.</a>
-                  </p>
-                  <h3>Ubuntu</h3>
+                  
+                  <p>In order to use OpenCV you first need to install it and make sure it is working correctly on your computer.
+                  You can follow the tutorials in the <a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">OpenCV site</a> to install it in your particular OS:</p>
+                  
+                  <h3 id="ubuntu">Ubuntu</h3>
                   <pre class="CodeRay">#!/bin/bash
 sudo apt-get -y install autoconf automake build-essential git libass-dev libgpac-dev \
   libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev \
@@ -513,24 +517,22 @@ sudo make install
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.</p>
+                  
                   <p>The following example shows how to connect to a camera and display the video feed in a window.</p>
-                  <p>
-                    Before running it be sure that "haarcascade_frontalface_alt.xml" file is referenced to the correct location,
-                    you can download the file
-                    <a href="https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml">here</a>
-                  </p>
+                  
+                  <p>Before running it be sure that <code>haarcascade_frontalface_alt.xml</code> file is referenced to the correct location.
+                  You can download the file <a href="https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml">here</a>.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
 
   <span class="key">devices</span>: [
-    {
-      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>,
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>
-    },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
     {
       <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
       <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,

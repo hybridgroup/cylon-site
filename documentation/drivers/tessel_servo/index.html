@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Servo</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,33 +454,34 @@
                   <img class="display" src="/images/devices/tessel-servo.jpg">
                   <div class="info-intro">
                     <p>Control up to 16 hobbyist/RC servos.</p>
+                    
                     <p>Make it move! Control locks, wheels, cords, or anything else you can think of.</p>
+                    
                     <ul>
                       <li>Standard PWM output is compatible with servos of all sizes</li>
                       <li>Takes a separate barrel jack power connection (included with US shipments)</li>
                       <li>Comes with an ES3001 YinYan Servo and a 5V external power jack (US-style plug)</li>
                       <li>Can also be used as an LED driver.</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/servo">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/servo">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo-pca9685</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -519,23 +520,39 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>servo.configure( whichServo, minPWM, maxPWM, callback() )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="servoconfigure-whichservo-minpwm-maxpwm-callback-">servo.configure( whichServo, minPWM, maxPWM, callback() )</h2>
+                    
                     <p>Sets the PWM max and min for the specified servo.</p>
-                    <h2>servo.move( whichServo, positionOrSpeed, callback() )</h2>
-                    <p>positionOrSpeed is a value between 0 and 1. On a normal servo, this value is the position to move to as a percent of the total available rotational range. On a continuous rotation servo, this value represents the rotation speed: 0 is fast in one direction, 1 is fast in the other direction, and 0.5 is stopped.</p>
-                    <h2>servo.read( whichServo, callback() )</h2>
+                    
+                    <h2 id="servomove-whichservo-positionorspeed-callback-">servo.move( whichServo, positionOrSpeed, callback() )</h2>
+                    
+                    <p>positionOrSpeed is a value between 0 and 1.
+                    On a normal servo, this value is the position to move to as a percent of the total available rotational range.
+                    On a continuous rotation servo, this value represents the rotation speed: 0 is fast in one direction, 1 is fast in the other direction, and 0.5 is stopped.</p>
+                    
+                    <h2 id="servoread-whichservo-callback-">servo.read( whichServo, callback() )</h2>
+                    
                     <p>Reads the current approximate position target for the specified servo.</p>
-                    <h2>servo.setDutyCycle( whichServo, on, callback() )</h2>
+                    
+                    <h2 id="servosetdutycycle-whichservo-on-callback-">servo.setDutyCycle( whichServo, on, callback() )</h2>
+                    
                     <p>Sets the duty cycle for the specified servo. on is duty cycle uptime, range from 0-1.</p>
-                    <h2>servo.setModuleFrequency( Hertz, callback() )</h2>
+                    
+                    <h2 id="servosetmodulefrequency-hertz-callback-">servo.setModuleFrequency( Hertz, callback() )</h2>
+                    
                     <p>Sets the PWM frequency in Hz for the PCA9685 chip.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>servo.on( 'error', callback(err) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>servo.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
                   </div>
                 </section>
@@ -548,27 +565,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

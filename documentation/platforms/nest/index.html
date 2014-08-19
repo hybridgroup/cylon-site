@@ -10,7 +10,7 @@
     <title>Nest with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,22 +452,26 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/nest.jpg">
                   <div class="info-intro">
-                    <p>Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.</p>
-                    <p>
-                      For more info about the Nest platform click
-                      <a target="blank" href="https://nest.com/thermostat/life-with-nest-thermostat/">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-nest" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-nest/issues" target="_blank">Issues</a>
+</h4>
+                    <p>Most people leave the house at one temperature and forget to change it.
+                    So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone.
+                    Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.</p>
+                    
+                    <p>For more info about the Nest platform click <a href="https://nest.com/thermostat/life-with-nest-thermostat/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing cylon.js with NEst support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-nest
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-nest
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -499,21 +503,22 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <p>First tou need to setup a developer account with Nest Labs:</p>
-                  <p>
-                    <a target="blank" href="https://developer.nest.com/">https://developer.nest.com/</a>
-                  </p>
-                  <p>Once the account is created you need to create a client app, the developer portal UI will guide you through it, you do not need to add an OAuth redirect URL, since we are going be using the pin generated when no redirect URL is provided to get an access token that will let us connect to the API.</p>
-                  <p>
-                    Next step is to obtain the access token for your Nest account in order to authenticate, as instructed here:
-                    <a target="blank" href="https://developer.nest.com/documentation/how-to-auth">https://developer.nest.com/documentation/how-to-auth</a>
-                  </p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <p>First, you need to create a developer account with <a href="https://developer.nest.com/">Nest Labs</a>.</p>
+                  
+                  <p>Once you've created an account, you need to create a client app.
+                  The Developer Portal UI will guide you through it.
+                  You don't need an OAuth redirect URL, since we're going to be using the generated PIN to get an access token.</p>
+                  
+                  <p>Next step is to obtain the access token for your Nest account in order to authenticate, as instructed <a href="https://developer.nest.com/documentation/how-to-auth">here</a>.</p>
+                  
                   <p>Once you have done this, you should be able to use the <code>access_token</code> you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
-                  <p>Available drivers for the Nest  platform are listed below.</p>
+                  <h2 id="drivers">Drivers</h2>
+                  
+                  <p>Available drivers for the Nest platform are listed below.</p>
                   <div class="hardware">
                     <div class="devices">
                       <!-- / TODO: Update drivers list at the top of the page. -->

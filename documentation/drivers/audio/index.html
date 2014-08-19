@@ -10,7 +10,7 @@
     <title>Cylon.js - Audio Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -458,28 +458,26 @@
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
-
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>},
-
-...
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-
     my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">playing</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(song){
       console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing this nice tune: "</span><span class="delimiter">'</span></span> + song + <span class="string"><span class="delimiter">'</span><span class="content">"</span><span class="delimiter">'</span></span>);
     });
@@ -492,12 +490,15 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commads</h1>
-                    <h2>play(audioFilePath)</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="playpath">play(path)</h2>
+                    
                     <p>Plays the audio file passed as parameter.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
+                    <h1 id="events">Events</h1>
+                    
                     <p>no events</p>
                   </div>
                 </section>
@@ -511,9 +512,6 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

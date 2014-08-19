@@ -10,7 +10,7 @@
     <title>Cylon.js - MPU6050 Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,26 +454,25 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/mpu6050.jpg">
                   <div class="info-intro">
-                    <p>The MPU-6050 is a serious little piece of motion processing tech! By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ (DMP™) capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://playground.arduino.cc/Main/MPU-6050">here.</a>
-                    </p>
+                    <p>The MPU-6050 is a serious little piece of motion processing tech!
+                    By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts.</p>
+                    
+                    <p>For more information click <a href="http://playground.arduino.cc/Main/MPU-6050">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.usbmodem1421</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">mpu6050</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mpu6050</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -483,7 +482,7 @@ Cylon.robot({
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       my.mpu6050.getMotionAndTemp(<span class="keyword">function</span>(data) {
-        Logger.info(data);
+        console.log(data);
       });
 
     });
@@ -535,27 +534,18 @@ Cylon.robot({
                           <p class="title">Arduino</p>
                           <img src="/images/devices/arduino.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-firmata">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/digispark">
                           <p class="title">Digispark</p>
                           <img src="/images/devices/digispark.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-digispark">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/raspberry-pi">
                           <p class="title">Raspberry Pi</p>
                           <img src="/images/devices/raspi.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-raspi">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

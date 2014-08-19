@@ -10,7 +10,7 @@
     <title>Cylon.js - Nest Thermostat Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,27 +453,30 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/nest_thermostat.jpg">
                   <div class="info-intro">
-                    <p>Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.</p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="https://nest.com/thermostat/life-with-nest-thermostat/">here</a>
-                    </p>
+                    <p>Most people leave the house at one temperature and forget to change it.
+                    So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone.
+                    Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.</p>
+                    
+                    <p>For more information click <a href="https://nest.com/thermostat/life-with-nest-thermostat/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span>,
-    <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">ABC123</span><span class="delimiter">'</span></span>
+    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_ACCESS_TOKEN</span><span class="delimiter">'</span></span>
   },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">thermostat</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>},
-...
+
+  <span class="key">device</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">thermostat</span><span class="delimiter">'</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>,
+    <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_DEVICE_ID</span><span class="delimiter">'</span></span>
+  },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
@@ -484,14 +487,19 @@ Cylon.robot({
   <span class="key">connection</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>,
-    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span>,
-    <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">ABC123</span><span class="delimiter">'</span></span>
+    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_ACCESS_TOKEN</span><span class="delimiter">'</span></span>
   },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">thermostat</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>},
 
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">60</span>).seconds(), <span class="keyword">function</span>(){
-      console.log(my.thermostat.ambientTemperatureC());
+  <span class="key">device</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">thermostat</span><span class="delimiter">'</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>,
+    <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_DEVICE_ID</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {
+    every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>(){
+      <span class="keyword">var</span> temp = my.thermostat.ambientTemperatureC();
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Ambient Temperature</span><span class="delimiter">'</span></span>, temp);
     });
   }
 }).start();
@@ -499,59 +507,7 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commads</h1>
-                    <h2>deviceName()</h2>
-                    <p>Gets the name of the nest</p>
-                    <h2>ambientTemperatureF()</h2>
-                    <p>Gets the ambient temperature in Fº</p>
-                    <h2>ambientTemperatureC()</h2>
-                    <p>Gets the ambient temperature in Cº</p>
-                    <h2>targetTemperatureF()</h2>
-                    <p>Gets the target temperature in Fº</p>
-                    <h2>targetTemperatureC()</h2>
-                    <p>Gets the ambient temperature in Cº</p>
-                    <h2>setTargetTemperatureF(value)</h2>
-                    <p>Sets the target temperature in Fº</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>value</strong> - The value for the temperature</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>setTargetTemperatureC(value)</h2>
-                    <p>Sets the target temperature in Cº</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>value</strong> - The value for the temperature</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>read(key, callback)</h2>
-                    <p>Reads the params of the device.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>key</strong> - The key of the device</li>
-                      <li>
-<strong>callback</strong> - The data of the callback</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
-                    <h2>write(key, value, callback)</h2>
-                    <p>Writes the params of the device.</p>
-                    <h5>Params</h5>
-                    <ul>
-                      <li>
-<strong>key</strong> - The key of the device</li>
-                      <li>
-<strong>value</strong> - The value of the device</li>
-                      <li>
-<strong>callback</strong> - The data of the callback</li>
-                    </ul>
-                    <h5>Returns</h5>
-                    <p><code>nil</code></p>
+                    Coming soon.
                   </div>
                   <div class="commands-api" id="Events">
                     <h1>Events</h1>
@@ -568,9 +524,6 @@ Cylon.robot({
                           <p class="title">Nest</p>
                           <img src="/images/devices/nest.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-nest">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

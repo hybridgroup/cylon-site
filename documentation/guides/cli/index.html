@@ -10,7 +10,7 @@
     <title>Cylon.js CLI</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
@@ -63,7 +63,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -411,7 +411,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -432,140 +432,49 @@
               <div class="container-documentation">
                 
                 <div class="cli">
-                  <h1>What is it?</h1>
-                  <p>
-                    Cylon uses the Gort (<a href="http://gort.io">http://gort.io</a>) Command Line Interface (CLI) so you can access important features right from the command line. We call it "RobotOps", aka "DevOps For Robotics". You can scan, connect, update device firmware, and more!
-                  </p>
-                  <p>
-                    Cylon also has its own CLI to generate new robots, adaptors, and drivers.
-                  </p>
-                  <p>
-                    Gort
-                    <a target="blank" href="http://gort.io">(http://gort.io)</a>
-                    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
-                  </p>
-                  <h2>How to Install</h2>
-                  <p>
-                    For the commands to be available everywhere the cylon module needs to be installed globally.
-                    Here's how to do it.
-                  </p>
-                  <pre class="CodeRay">$ sudo npm install -g cylon-cli
-</pre>
-                  <p>You install the Cylon CLI separately from the rest of Cylon.js, which means you can use it to generate new projects, or drivers to be used across multiple projects.</p>
-                  <h2>How can I use it?</h2>
-                  <p>
-                    </p>
-<p>The Cylon.JS CLI generators are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the <code>cylon-cli</code> module installed globally, the generators will be available at all times.</p>
+                  <h1 id="what-is-it">What Is It?</h1>
                   
-                  <h3>Printing a list of available commands</h3>
+                  <p>Cylon works hand-in-hand with <a href="http://gort.io">Gort</a>, our command-line toolkit for "RobotOps", a.k.a. "DevOps for Robotics"
+                  You can use it to scan for hardware, connect to devices, update firmware, and more!</p>
+                  
+                  <p>Cylon also has it's own CLI tool, used to generate new modules, robots, and drivers.</p>
+                  
+                  <p>This page will be talking about the Cylon-CLI tool, but if you'd like to find out more about Gort, check out <a href="http://gort.io">its site</a>.</p>
+                  
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <p>You can install the Cylon CLI tool through NPM.
+                  It's preferred to install it globally, to ensure the tool is available to you everywhere:</p>
+                  
+                  <pre class="CodeRay">$ [sudo] npm install -g cylon-cli
+</pre>
+                  
+                  <p>After installing this, you should have the <code>cylon</code> command available.</p>
+                  
+                  <h2 id="usage">Usage</h2>
+                  
+                  <p>Running the command itself will provide a list of available subcommands:</p>
+                  
                   <pre class="CodeRay">$ cylon
 
-Usage: cylon [command] [options]
+  Usage: cylon [command] [options]
 
-Commands:
+  Commands:
+    generate [module|driver|robot|tessel] [name]
+        Generate new Cylon components or modules
 
-  generate [module|driver|robot|tessel] [name]
-      Generate new Cylon components or modules
-
-      Usage:
-
-        cylon generate module [name] # generates a new cylon module
-        cylon generate driver [name] # generates a new driver class in ./lib
-        cylon generate robot [name] # generates a new robot in ./dir, complete with Test-Driven-Robotics harness
-        cylon generate tessel [name] # generates a new robot in ./dir, ready to go with Tessel
+    help
+        Prints help for using the Cylon-CLI commands.
 </pre>
-                  <h2>What Cylon CLI commands are available?</h2>
-                  <p>
-                    If you have only installed cylon, the list of available commands is the one printed in the section above,
-                    let's review them one by one.
-                  </p>
-                  <h3>$ cylon generate [module|driver] [name]</h3>
-                  <h4>Description</h4>
-                  <p>Generate new Cylon components or modules.</p>
-                  <pre class="CodeRay">$ cylon generate module octobot
-Creating cylon-octobot adaptor.
-Compiling templates.
-
-$ cylon generate driver octobot
-$ cat lib/octobot.js
-"use strict";
-
-var namespace = require('node-namespace');
-
-namespace("Cylon.Drivers", function() {
-  this.Octobot = (function(klass) {
-    subclass(Octobot, klass);
-
-    function Octobot(opts) {
-      Octobot.__super__.constructor.apply(this, arguments);
-    }
-
-    Octobot.prototype.commands = function() {
-      return [];
-    };
-
-    Octobot.prototype.start = function() {
-      Octobot.__super__.start.apply(this, arguments);
-    };
-
-    return Octobot;
-
-  })(Cylon.Driver);
-});
-
-module.exports = Cylon.Drivers.Octobot;
-</pre>
-                  <h4>Usage</h4>
-                  <h5>$ cylon generate module [name]</h5>
-                  <p>Generates a new cylon module.</p>
-                  <pre class="CodeRay">$ cylon generate module octobot
-Creating new module octobot
-Compiling templates for octobot
-</pre>
-                  <h5>$ cylon generate driver [name]</h5>
-                  <p>Generates a new driver class in <code>./lib</code> .</p>
                   
-                  <pre class="CodeRay">$ cylon generate driver octobot
-$ cat lib/octobot.js
-"use strict";
-
-var namespace = require('node-namespace');
-
-namespace("Cylon.Drivers", function() {
-  this.Octobot = (function(klass) {
-    subclass(Octobot, klass);
-
-    function Octobot(opts) {
-      Octobot.__super__.constructor.apply(this, arguments);
-    }
-
-    Octobot.prototype.commands = function() {
-      return [];
-    };
-
-    Octobot.prototype.start = function() {
-      Octobot.__super__.start.apply(this, arguments);
-    };
-
-    return Octobot;
-
-  })(Cylon.Driver);
-});
-
-module.exports = Cylon.Drivers.Octobot;
-</pre>
-                  <h5>$ cylon generate robot [name]</h5>
-                  <p>Generates a new robot in <code>./name</code>, complete with Test-Driven-Robotics harness.</p>
+                  <p>The <code>generate</code> command can be used to create:</p>
                   
-                  <pre class="CodeRay">$ cylon generate robot ./myRobot
-Creating new robot in ./myRobot
-</pre>
-                  <h5>$ cylon generate tessel [name]</h5>
-                  <p>Generates a new robot in ./name, ready to go with Tessel</p>
-                  
-                  <pre class="CodeRay">$ cylon generate tessel ./myRobot
-Creating new Tessel-ready robot in ./myRobot
-</pre>
+                  <ul>
+                    <li>a new driver/adaptor module</li>
+                    <li>a new driver in a module</li>
+                    <li>a new test-driven robot</li>
+                    <li>a new robot, set up to run on the Tessel</li>
+                  </ul>
                 </div>
               </div>
             </div>

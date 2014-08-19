@@ -10,7 +10,7 @@
     <title>Pebble with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,64 +452,55 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/pebble.jpg">
                   <div class="info-intro">
-                    <p>The Pebble is a smart watch, that connects via bluetooth.</p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-pebble" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-pebble/issues">Issues</a>
+</h4>
+                    <p>The Pebble is a smart watch, that connects via Bluetooth.</p>
+                    
                     <p>Pebble puts critical apps and notifications on your wrist, giving you immediate access to what's most important.</p>
-                    <p>
-                      For more info about the Pebble platform click
-                      <a target="blank" href="http://getpebble.com/">here</a>.
-                    </p>
+                    
+                    <p>For more info about the Pebble platform click <a href="http://getpebble.com/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>
-                    Installing Cylon.js with pebble support is pretty easy.
-                  </p>
-                  <pre class="CodeRay">npm install cylon-pebble
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-pebble
 </pre>
-                  <h3>Install Pebble 2.0 iOS or Android app. (If you haven't already)</h3>
-                  <h3>Install Watchbot</h3>
-                  <p>
-                    With that done, download WatchBot from the
-                    <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>
-                  </p>
+                  
+                  <p>First, install the Pebble 2.0 iOS or Android app. (If you haven't already)</p>
+                  
+                  <p>With that done, download WatchBot (our Pebble App) from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.
+                  %a{href: ""} Pebble App Store</p>
                   <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">
                     <img src="/images/blog/2014-07-22/watchbot_appstore.png" width="100%">
                   </a>
-                  <h3>Configuration</h3>
+                  <h3 id="configuration">Configuration</h3>
+                  
                   <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's Pebble app. Once there, configure the following settings:</p>
+                  
                   <ul>
                     <li>
-                      <strong>robot name:</strong>
-                      leave this blank.
-                    </li>
+<strong>robot name:</strong> leave this blank</li>
                     <li>
-                      <strong>robot api host:</strong>
-                      IP address of the computer that will be running the Cylon API.
-                    </li>
+<strong>robot api host:</strong> IP of the computer running the Cylon API</li>
                     <li>
-                      <strong>robot api port:</strong>
-                      port number for the Cylon API
-                    </li>
+<strong>robot api port:</strong> port number for the Cylon API</li>
                     <li>
-                      <strong>publish command:</strong>
-                      leave this blank
-                    </li>
+<strong>publish command:</strong> leave this blank</li>
                     <li>
-                      <strong>message command:</strong>
-                      leave this blank
-                    </li>
+<strong>message command:</strong> leave this blank</li>
                     <li>
-                      <strong>accelerometer:</strong>
-                      leave this unchecked.
-                    </li>
+<strong>accelerometer:</strong> leave this unchecked</li>
                   </ul>
                   <img src="/images/blog/2014-07-22/watchbot_config.png" width="50%">
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This small program receives message queue events from a Pebble smart watch.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.api({
@@ -518,18 +509,11 @@ Cylon.api({
   <span class="key">ssl</span>: <span class="predefined-constant">false</span>
 });
 
-pebbleRobot = {
+Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
 
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>
-  },
-
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>
-  },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.pebble.send_notification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>);
@@ -543,23 +527,26 @@ pebbleRobot = {
     });
   }
 
-}
-
-Cylon.robot(pebbleRobot);
-Cylon.start();
+}).start();
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
                   <p>This software requires version 2.X of the Pebble watch firmware.</p>
+                  
                   <p>The main steps are:</p>
+                  
                   <ul>
                     <li>Install Pebble 2.0 iOS or Android app. (If you haven't already)</li>
-                    <li><a href="https://github.com/hybridgroup/watchbot/raw/master/README.md">Install watchbot by following this instructions</a></li>
+                    <li>Install watchbot by following <a href="https://github.com/hybridgroup/watchbot/raw/master/README.md">these instructions</a>
+</li>
                     <li>After app is installed, click on "Settings" and configure robot name, robot api host, and robot api port</li>
                     <li>Configuration settings must match with your program, in this example, api host would be your computer IP, robot name is 'pebble', and robot api port is 8080</li>
                   </ul>
-                  <h3>Supported Features</h3>
+                  
+                  <h3 id="supported-features">Supported Features</h3>
+                  
                   <ul>
                     <li>Event detection of 3 main pebble buttons</li>
                     <li>Tap event</li>
@@ -568,7 +555,8 @@ Cylon.start();
                   </ul>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>There is only one driver for the Pebble platform, as listed below.</p>
                   <div class="hardware">
                     <div class="devices">

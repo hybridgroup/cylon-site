@@ -10,7 +10,7 @@
     <title>Skynet with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -451,22 +451,26 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/skynet.jpg">
                   <div class="info-intro">
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-skynet" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-skynet/issues">Issues</a>
+</h4>
                     <p>Open Communications Network and API for the internet of things.</p>
-                    <p>
-                      For more info about the Skynet platform click
-                      <a target="blank" href="http://skynet.im/">http://skynet.im/</a>.
-                    </p>
+                    
+                    <p>For more info about the Skynet platform click <a href="http://skynet.im/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
+                  <h2 id="how-to-install">How To Install</h2>
+                  
                   <p>Install the module with:</p>
-                  <pre class="CodeRay">npm install cylon-skynet
+                  
+                  <pre class="CodeRay">$ npm install cylon-skynet
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -481,8 +485,7 @@ Cylon.robot({
     my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
         my.led.turnOn()
-      }
-      <span class="keyword">else</span> <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
+      } <span class="keyword">else</span> <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
         my.led.turnOff()
       }
     });
@@ -491,9 +494,11 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
                   <p>First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:</p>
-                  <pre class="CodeRay">curl -X POST -d "name=arduino&amp;led=off" http://skynet.im/devices
+                  
+                  <pre class="CodeRay">$ curl -X POST -d "name=arduino&amp;led=off" http://skynet.im/devices
 </pre>
                   
                   <p>This will return the new registration information for the device, most importantly the <code>uuid</code> and <code>token</code>:</p>
@@ -502,7 +507,8 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>Available drivers for the Skynet platform are listed below.</p>
                   <div class="hardware">
                     <div class="devices">

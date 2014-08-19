@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Climate</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,37 +454,39 @@
                   <img class="display" src="/images/devices/tessel-climate.jpg">
                   <div class="info-intro">
                     <p>Detect humidity and temperature from your environment.</p>
-                    <p>Monitor your plants or exotic pets. Pull weather data from the internet and replicate a climate by hooking up relays to fan/heater/humidifiers.</p>
+                    
+                    <p>Monitor your plants or exotic pets.
+                    Pull weather data from the internet and replicate a climate by hooking up relays to fan/heater/humidifiers.</p>
+                    
                     <ul>
                       <li>Measure 0 to 70 °C (32 to 160 °F) with ±1° accuracy</li>
                       <li>Measure 0% to 80% relative humidity</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/climate">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/climate">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate-si7005</span><span class="delimiter">'</span></span> },
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate-si7005</span><span class="delimiter">'</span></span> },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.climate.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
       console.log(err)
@@ -504,25 +506,44 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>climate.use ( interface[, csn] )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="climateuse--interface-csn-">climate.use ( interface[, csn] )</h2>
+                    
                     <p>Takes in the port bank that the module is connected to. Returns the Climate object.</p>
-                    <h2>climate.readTemperature ( [format,] callback(err, temp) )</h2>
+                    
+                    <h2 id="climatereadtemperature--format-callbackerr-temp-">climate.readTemperature ( [format,] callback(err, temp) )</h2>
+                    
                     <p>Returns the temperature in degrees Celcius or Fahrenheit.</p>
-                    <h2>climate.readHumidity ( callback(err, humidity) )</h2>
+                    
+                    <h2 id="climatereadhumidity--callbackerr-humidity-">climate.readHumidity ( callback(err, humidity) )</h2>
+                    
                     <p>Returns the relative humidity.</p>
-                    <h2>climate.setHeater ( bool[, callback(err)] )</h2>
-                    <p>Sets the HEAT config register. The heater evaporates off any moisture that may condense on the sensor in high humidty environments. Enabling the heater will inreases the accuracy of humidity measurements but will interfere with temperature measurement.</p>
-                    <h2>climate.setFastMeasure ( bool[, callback(err)] )</h2>
+                    
+                    <h2 id="climatesetheater--bool-callbackerr-">climate.setHeater ( bool[, callback(err)] )</h2>
+                    
+                    <p>Sets the HEAT config register.
+                    The heater evaporates off any moisture that may condense on the sensor in high humidty environments.
+                    Enabling the heater will inreases the accuracy of humidity measurements but will interfere with temperature measurement.</p>
+                    
+                    <h2 id="climatesetfastmeasure--bool-callbackerr-">climate.setFastMeasure ( bool[, callback(err)] )</h2>
+                    
                     <p>Sets the FAST config register.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>climate.on ( 'ready' )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted when upon first successful communication between the Tessel and the module.</p>
-                    <h2>climate.on ( 'temperature'[,callback(temperature, temp_type)] )</h2>
-                    <p>Emitted when temperature data is received. Internal to the readTeperature method, useful when another module is triggered by climate data.</p>
-                    <h2>climate.on ( 'humidity'[,callback(humidity)] )</h2>
+                    
+                    <h2 id="temperature">'temperature'</h2>
+                    
+                    <p>Emitted when temperature data is received.
+                    Internal to the readTeperature method, useful when another module is triggered by climate data.</p>
+                    
+                    <h2 id="humidify">'humidify'</h2>
+                    
                     <p>Emitted when humidity data is received. Internal to the readHumidity method, useful when another module is triggered by climate data.</p>
                   </div>
                 </section>
@@ -535,27 +556,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

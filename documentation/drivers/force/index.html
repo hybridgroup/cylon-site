@@ -10,7 +10,7 @@
     <title>Cylon.js - Force Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,37 +453,39 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/force.jpg">
                   <div class="info-intro">
-                    <p>
-                      This module provides an adaptor and drivers for Force.com .It uses the nforce module
-                      <a href="https://github.com/kevinohara80/nforce">(https://github.com/kevinohara80/nforce)</a>
-                      created by @kevinohara80 thank you!
-                    </p>
-                    <p>
-                      For more info about the Force platform go to
-                      <a target="blank" href="http://www.salesforce.com/platform/overview/">http://www.force.com/</a>.
-                    </p>
+                    <p>This modules provides an adaptor/driver combination to communicate with SalesForce.</p>
+                    
+                    <p>It uses the <a href="https://github.com/kevinohara80/nforce">nForce module</a>, created by Kevin O'Hara.</p>
+                    
+                    <p>For more info about the SalesForce platform, click <a href="http://www.salesforce.com/platform/overview/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+    <span class="key">sfuser</span>: process.env.SF_USERNAME,
+    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
+    <span class="key">orgCreds</span>: {
+      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
+      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
+      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+    }
   },
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>
-  }
-  ...
+
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This example uses the sphero with cylonjs-force</p>
+                  
                   <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -498,17 +500,21 @@ Cylon.robot({
       <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
     }
   },
+
   <span class="key">device</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>,
     <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>
   },
+
   <span class="function">work</span>: <span class="keyword">function</span>(me) {
     <span class="keyword">var</span> toSend;
+
     me.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       <span class="keyword">return</span> me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">return</span> Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">, data Content: </span><span class="delimiter">"</span></span> + data.sobject.Content__c + <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id);
+        <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">, data Content: </span><span class="delimiter">"</span></span> + data.sobject.Content__c + <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id);
       });
     });
+
     toSend = <span class="string"><span class="delimiter">"</span><span class="content">{ </span><span class="char">\"</span><span class="content">identifier</span><span class="char">\"</span><span class="content"> :</span><span class="char">\"</span><span class="delimiter">"</span></span> + me.name + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content">, </span><span class="char">\"</span><span class="content">msg</span><span class="char">\"</span><span class="content">: </span><span class="char">\"</span><span class="delimiter">"</span></span> + <span class="string"><span class="delimiter">'</span><span class="content">Salesforce Bot #2</span><span class="delimiter">'</span></span> + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content"> }</span><span class="delimiter">"</span></span>;
     <span class="keyword">return</span> me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, toSend);
   }
@@ -604,9 +610,6 @@ Cylon.robot({
                           <p class="title">Salesforce</p>
                           <img src="/images/devices/force.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-force">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

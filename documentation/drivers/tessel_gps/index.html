@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel GPS</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,32 +454,33 @@
                   <img class="display" src="/images/devices/tessel-gps.jpg">
                   <div class="info-intro">
                     <p>Detect your global position.</p>
+                    
                     <p>Helps you figure out where you are– and where you're going!</p>
+                    
                     <ul>
                       <li>Up to 1.8m accuracy</li>
                       <li>66 search channels, 22 tracking channels, -165dBM sensitivity</li>
                       <li>Max 10Hz update rate</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/gps">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/gps">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">gps</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">gps-a2235h</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -523,38 +524,67 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>gps.powerOff( callback() )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="gpspoweroff-callback-">gps.powerOff( callback() )</h2>
+                    
                     <p>Turns the GPS chip off.</p>
-                    <h2>gps.powerOn( callback() )</h2>
+                    
+                    <h2 id="gpspoweron-callback-">gps.powerOn( callback() )</h2>
+                    
                     <p>Turns the GPS chip on.</p>
-                    <h2>gps.setCoordinateFormat( format, callback() )</h2>
+                    
+                    <h2 id="gpssetcoordinateformat-format-callback-">gps.setCoordinateFormat( format, callback() )</h2>
+                    
                     <p>Configure how the module reports latitude and longitude: options are 'deg-min-sec', 'deg-min-dec', and 'deg-dec'.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>gps.on( 'altitude', callback(altitudeObj) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="altitude">'altitude'</h2>
+                    
                     <p>Emitted when altitude data is available. Emitted in the form {altitude in meters, timestamp}.</p>
-                    <h2>gps.on( 'coordinates', callback(coordinateObj) )</h2>
+                    
+                    <h2 id="coordinates">'coordinates'</h2>
+                    
                     <p>Emitted when coordinate data is available. Emitted in the form {latitude, longitude, timestamp}.</p>
-                    <h2>gps.on( 'error', callback(err) )</h2>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>gps.on( 'powerOff', callback() )</h2>
+                    
+                    <h2 id="poweroff">'powerOff'</h2>
+                    
                     <p>Emitted when the module has been powered off.</p>
-                    <h2>gps.on( 'powerOn', callback() )</h2>
+                    
+                    <h2 id="poweron">'powerOn'</h2>
+                    
                     <p>Emitted when the module has been powered on.</p>
-                    <h2>gps.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
-                    <h4>Also emits parsed NMEA objects by type:</h4>
-                    <h2>gps.on( 'active-satellites', callback(data) )</h2>
+                    
+                    <h4 id="also-emits-parsed-nmea-objects-by-type">Also emits parsed NMEA objects by type:</h4>
+                    
+                    <h2 id="active-satellites">'active-satellites'</h2>
+                    
                     <p>NMEA GPGSA: GPS DOP and active satellites.</p>
-                    <h2>gps.on( 'fix', callback(data) )</h2>
+                    
+                    <h2 id="fix">'fix'</h2>
+                    
                     <p>NMEA GPGGA: Global positioning system fix data.</p>
-                    <h2>gps.on( 'nav-info', callback(data) )</h2>
+                    
+                    <h2 id="nav-info">'nav-info'</h2>
+                    
                     <p>NMEA GPRMC: Recommended minimum specific GPS/Transit data.</p>
-                    <h2>gps.on( 'satellite-list-partial', callback(data) )</h2>
+                    
+                    <h2 id="satellite-list-partial">'satellite-list-partial'</h2>
+                    
                     <p>NMEA GPGSV: GPS satellites in view.</p>
-                    <h2>gps.on( 'track-info', callback(data) )</h2>
+                    
+                    <h2 id="track-info">'track-info'</h2>
+                    
                     <p>NMEA GPVTG: Track made good and ground speed.</p>
                   </div>
                 </section>
@@ -567,27 +597,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

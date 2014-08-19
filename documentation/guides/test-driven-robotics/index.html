@@ -10,7 +10,7 @@
     <title>Cylon.js Test Driven Robotics</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
@@ -63,7 +63,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -411,7 +411,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -432,61 +432,70 @@
               <div class="container-documentation">
                 
                 <div class="test">
-                  <h1>Test Driven Robotics</h1>
-                  <p>Test-driven robotics is our name for applying the principles of test-driven development to hardware/software solutions. Cylon.js as an example of a modern robotics development framework has test-driven robotics built right in.</p>
-                  <p>Here is an example using Mocha, Sinon, &amp; Chai:</p>
-                  <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
-
-<span class="comment">// tell Cylon.js to stub connections to adaptors/devices</span>
-process.env[<span class="string"><span class="delimiter">'</span><span class="content">CYLON_TEST</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">true</span>;
-
-<span class="comment">// setup tests</span>
-<span class="keyword">var</span> chai = require(<span class="string"><span class="delimiter">"</span><span class="content">chai</span><span class="delimiter">"</span></span>);
-<span class="keyword">var</span> sinon = require(<span class="string"><span class="delimiter">"</span><span class="content">sinon</span><span class="delimiter">"</span></span>);
-<span class="keyword">var</span> sinonChai = require(<span class="string"><span class="delimiter">"</span><span class="content">sinon-chai</span><span class="delimiter">"</span></span>);
-chai.should();
-chai.use(sinonChai);
-<span class="keyword">var</span> clock = sinon.useFakeTimers();
-
-<span class="comment">// load robot in test mode</span>
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-require(<span class="string"><span class="delimiter">"</span><span class="content">./robot.js</span><span class="delimiter">"</span></span>);
-
-describe(<span class="string"><span class="delimiter">"</span><span class="content">robot</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> () {
-  <span class="keyword">var</span> robot = Cylon.findRobot(<span class="string"><span class="delimiter">"</span><span class="content">testor</span><span class="delimiter">"</span></span>);
-
-  it(<span class="string"><span class="delimiter">"</span><span class="content">should have work</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> () {
-    <span class="keyword">return</span> robot.work.should.be.a(<span class="string"><span class="delimiter">'</span><span class="content">function</span><span class="delimiter">'</span></span>);
-  });
-
-  it(<span class="string"><span class="delimiter">"</span><span class="content">should toggle the led after 1 second</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (done) {
-    <span class="keyword">var</span> led = robot.devices[<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>];
-    <span class="keyword">var</span> toggle = sinon.stub(led, <span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
-    clock.tick((<span class="integer">1</span>).second());
-    toggle.should.have.been.called;
-    done();
-  });
-});
-</pre>
-                  <p>to test the following robot code:</p>
+                  <h1 id="test-driven-robotics">Test-Driven Robotics</h1>
+                  
+                  <p>Test-Driven Robotics (TDR) is our nickname for applying the principles of Test-Driven-Development to hardware/software solutions.</p>
+                  
+                  <p>Cylon.js, as an example of a modernized robotics development framework, has support for TDR built-in.</p>
+                  
+                  <p>Here's an example robot:</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
-<span class="keyword">var</span> robot = Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">testor</span><span class="delimiter">'</span></span>,
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">TestBot</span><span class="delimiter">'</span></span>,
+
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.led.toggle();
 
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() { my.led.toggle(); });
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
   }
-});
+}.start());
+</pre>
+                  
+                  <p>And here's a test, set up with a combination of the Mocha, Sinon, and Chai test frameworks:</p>
+                  
+                  <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-robot.start();
+<span class="comment">// setting this env var tells Cylon to stub connections to adaptors and devices</span>
+process.env.CYLON_TEST = <span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>;
+process.env.NODE_ENV = <span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>;
+
+<span class="comment">// setup for tests</span>
+<span class="keyword">var</span> chai = require(<span class="string"><span class="delimiter">'</span><span class="content">chai</span><span class="delimiter">'</span></span>),
+    sinon = require(<span class="string"><span class="delimiter">'</span><span class="content">sinon</span><span class="delimiter">'</span></span>),
+    sinonChai = require(<span class="string"><span class="delimiter">'</span><span class="content">sinon-chai</span><span class="delimiter">'</span></span>);
+
+chai.use(sinonChai);
+
+<span class="keyword">var</span> clock = sinon.useFakeTimers;
+
+<span class="comment">// load the robot, in test mode</span>
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+require(<span class="string"><span class="delimiter">'</span><span class="content">./robot.js</span><span class="delimiter">'</span></span>);
+
+describe(<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+  <span class="keyword">var</span> robot = Cylon.robots[<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>];
+
+  it(<span class="string"><span class="delimiter">"</span><span class="content">should have work</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+    expect(robot.work).to.be.a(<span class="string"><span class="delimiter">'</span><span class="content">function</span><span class="delimiter">'</span></span>);
+  });
+
+  it(<span class="string"><span class="delimiter">"</span><span class="content">should toggle the LED after one second</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+    <span class="keyword">var</span> led = robot.led,
+        toggle = sinon.stub(led, <span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+
+    clock.tick(<span class="integer">1000</span>);
+    expect(toggle).to.have.been.called;
+  });
+});
 </pre>
                 </div>
-                &gt;&gt;&gt;&gt;&gt;&gt; cylon-redesign
               </div>
             </div>
           </section>

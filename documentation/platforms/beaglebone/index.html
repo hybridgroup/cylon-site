@@ -10,7 +10,7 @@
     <title>BeagleBone with Cylon</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,94 +452,152 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/beaglebone.jpg">
                   <div class="info-intro">
-                    <p>The BeagleBone is an ARM based single board computer, with many different GPIO interfaces built in.</p>
-                    <p>
-                      For more info about the BeagleBone platform click
-                      <a target="blank" href="http://beagleboard.org/Products/BeagleBone">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-beaglebone" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-beaglebone/issues">Issues</a>
+</h4>
+                    <p>The BeagleBone Black is an ARM based single-board Linux computer, with many different GPIO interfaces built in.</p>
+                    
+                    <p>For more info about the BeagleBone platform click <a href="http://beagleboard.org/Products/BeagleBone">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing Cylon.js for beaglebone is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-beaglebone
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <p>Installing Cylon.js for the BeagleBone Black is pretty easy, but must be done on the Beaglebone Black itself, or on another Linux computer.
+                  Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
+                  
+                  <pre class="CodeRay">$ npm install cylon-beaglebone
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <p>This small program causes an LED and a button.</p>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span> },
-  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_12</span><span class="delimiter">'</span></span>},
-            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>}],
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_12</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span> }
+  ],
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {my.led.toggle()});
+    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.led.toggle()
+    });
   }
 }).start();
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <p>
-                    You will probably want to connect your development machine to the Beaglebone Black while working on your embedded code. You can do this easily by just plugging in your USB cable from your machine to the BBB. Once you get your local machine machine setup with some drivers or config changes, you will be able to connect via Ethernet Over USB, and also power the BBB via the same cable.
-                  </p>
-                  <h3>OSX</h3>
-                  <h4>Installing Beaglebone Black drivers on OSX.</h4>
-                  <p>
-                    For OSX some drivers need to be installed. You can find all driver related docs in the Beaglebone site:
-                  </p>
-                  <a href="http://beagleboard.org/Getting+Started#step2">Beaglebone Driver Docs</a>
-                  <h4>Connecting to Beaglebone Black OSX.</h4>
-                  <p>Once installed, you just SSH into the Beaglebone black, the IP address is 192.168.7.2</p>
-                  <h3>Linux</h3>
-                  <h4>Installing Beaglebone Black drivers on Linux.</h4>
-                  <p>
-                    For Linux you need to create a udev rule. You can find all related docs in the Beaglebone site:
-                  </p>
-                  <a href="http://beagleboard.org/Getting+Started#step2">Beaglebone Driver Docs</a>
-                  <h4>How to connect on Linux</h4>
-                  <p>
-                    Save the following script as bbb_sh.sh (or whatever name you prefer) and use this script to ssh into your Beaglebone Black.
-                  </p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <p>You will likely want to connect your development machine to your BeagleBone Black while working on your code.
+                  You can do this easily, just by connecting to the BeagleBone Black over USB.
+                  Then, you can connect to the BBB using Network-Over-USB, and upload driver or configuration changes.</p>
+                  
+                  <h3 id="os-x">OS X</h3>
+                  
+                  <p>For OS X, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
+                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+                  
+                  <p>Once you've installed the drivers and connected to the BeagleBone over USB, you can just SSH into it.
+                  The BBB should have an IP address of <code>192.168.7.2</code>.</p>
+                  
+                  <h3 id="linux">Linux</h3>
+                  
+                  <p>For Linux machines, you will need to create a udev rule.
+                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+                  
+                  <p>To connect to the BeagleBone Black from your Linux machine, save this script as <code>bbb.sh</code> (or whatever name you'd prefer).
+                  Executing the script will then SSH into the BBB.</p>
+                  
                   <pre class="CodeRay">#!/bin/bash
 sudo -- sh -c 'echo 1 &gt; /proc/sys/net/ipv4/ip_forward'
 sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 ssh root@192.168.7.2
 </pre>
-                  <p>After the script is saved in your computer it is pretty easy to connect by just running it.</p>
-                  <pre class="CodeRay">$ sudo sh bbb_ssh.sh
-</pre>
-                  <h3>Windows</h3>
-                  <h4>Installing Beaglebone Black drivers on Windows.</h4>
-                  <p>
-                    For Windows some drivers need to be installed. You can find all driver related docs in the Beaglebone site:
-                  </p>
-                  <a href="http://beagleboard.org/Getting+Started#step2">Beaglebone Driver Docs</a>
-                  <h4>How to connect on Windows</h4>
-                  <p>The process in Windows requires more steps to setup, but when done should be equally easy to connect to the board.</p>
-                  <ol>
+                  
+                  <h3 id="windows">Windows</h3>
+                  
+                  <p>For Windows, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
+                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+                  
+                  <p>The connection process for Windows is a bit more involved.
+                  But when you're done, it should be just as simple to connect to the board.</p>
+                  
+                  <ul>
+                    <li>First, follow <a href="http://lanceme.blogspot.com/2013/06/windows-7-internet-sharing-for.html">this guide</a> for setting up Internet Sharing on your Windows computer</li>
+                    <li>Next, install <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> (or your preferred SSH client) to SSH into the BeagleBone Black</li>
+                    <li>Finally, SSH into the BBB. It will have the same IP address (<code>192.168.7.2</code>)</li>
+                  </ul>
+                  
+                  <h3 id="credentials">Credentials</h3>
+                  
+                  <p>By default, the BeagleBone's login credentials are:</p>
+                  
+                  <ul>
                     <li>
-                      First follow this guide for setting up internet sharing on your windows computer,
-                      <a href="http://lanceme.blogspot.com/2013/06/windows-7-internet-sharing-for.html">Windows Internet Sharing</a>
-                      , Only follow the sections titled "On the Windows 7 computer".
-                    </li>
+<strong>user:</strong> <code>root</code>
+</li>
                     <li>
-                      You need to instal putty (or your preffered SSH client) to SSH into the Beaglebone Black,
-                      <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">download Putty.</a>
-                    </li>
-                    <li>Finally, you can ssh into the Beaglebone Black using Putty (or the SSH client you installed) in the same way we do it in OSX, The Beaglebone Black's IP address is 192.168.7.2</li>
-                  </ol>
-                  <pre class="CodeRay">$ ssh root@192.168.7.2
+<strong>pass:</strong> none</li>
+                  </ul>
+                  
+                  <h2 id="creating-a-beaglebone-black-sd-card-with-debian">Creating a BeagleBone Black SD Card with Debian</h2>
+                  
+                  <p>You may need to create a bootable SD card with the BBB Debian Linux distro.</p>
+                  
+                  <h3 id="finding-the-sd-cards-name">Finding the SD Card's Name</h3>
+                  
+                  <h4 id="os-x-1">OS X</h4>
+                  
+                  <p>To find the name of the SD card on OS X, use the <code>diskutil</code> command:</p>
+                  
+                  <pre class="CodeRay">$ diskutil list
+/dev/disk0
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:      GUID_partition_scheme                        *500.3 GB   disk0
+  1:                        EFI EFI                     209.7 MB   disk0s1
+  2:                  Apple_HFS Macintosh HD            499.4 GB   disk0s2
+  3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:     FDisk_partition_scheme                        *15.9 GB    disk1
+  1:                 DOS_FAT_32 UNTITLED                15.9 GB    disk1s1
 </pre>
-                  <h3>Configuring the Beaglebone Black</h3>
-                  <p>
-                    Now, SSH in to the Beaglebone Black using the <code>bbb_ssh.sh</code> script you just created. Once you are connected, save the following script into your <code>~/.profile</code> file ON THE BEAGLEBONE BLACK which will allow your Beaglebone Black to share your computer's Internet connection.
-                  </p>
+                  
+                  <p>In this case, the SD card's name is <code>/dev/disk1</code>.
+                  Before you proceed, be sure to eject the mounted volume:</p>
+                  
+                  <pre class="CodeRay">$ diskutil umount /dev/disk1s1
+</pre>
+                  
+                  <h4 id="linux-1">Linux</h4>
+                  
+                  <p>On most Linux distros, the <code>df -h</code> command should help you determine the name of your SD card.</p>
+                  
+                  <h3 id="downloading-the-linux-image-flashing-the-sd-card">Downloading the Linux Image, Flashing the SD Card</h3>
+                  
+                  <p>The image we're using is the official modified Debian distro provided by BeagleBoard, so we'll download it directly from them:
+                  <a href="http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz">http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz</a>.</p>
+                  
+                  <p>Once the image has downloaded, uncompress it with your favorite tool.</p>
+                  
+                  <p>The final step is to flash the image onto the SD card.
+                  You can do so by running this command (be sure to update the <code>of</code> section to point to the SD card who's name you learned earlier!):</p>
+                  
+                  <pre class="CodeRay">$ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb &amp;&amp; sudo sync
+</pre>
+                  
+                  <h2 id="configuring-the-beaglebone-black">Configuring the BeagleBone Black</h2>
+                  
+                  <p>After SSHing into the BeagleBone Black, save the following script into <code>~/profile</code>.
+                  Be sure to do this <strong>on the BBB</strong>.
+                  This will allow your BeagleBone Black to share your computer's internet connection.</p>
+                  
                   <pre class="CodeRay">#!/bin/bash
 ROUTE=`route | grep 0.0.0.0 | wc -l`
 if [ $ROUTE -eq 0 ]
@@ -552,34 +610,16 @@ then
     fi
 fi
 </pre>
-                  <p>After the script is saved it will automatically run each time you boot the BBB, so you only have to do this once.</p>
-                  <h3>Login Credentials</h3>
-                  <p>After all the previous work and connecting through SSH you are going to need some credentials to login to the Beaglebone Black OS, the creds are as follows:</p>
-                  <ul>
-                    <li>User: root</li>
-                    <li>Password: (none)</li>
-                  </ul>
-                  <h3>(Optional) VNC connection</h3>
-                  <p>
-                    The Beaglebone Black has been preloaded with vnc and the xfce desktop environment. You may start vnc by logging into the Beaglebone Black and executing
-                  </p>
-                  <pre class="CodeRay">$ sh ~/start_vnc.sh
-</pre>
-                  <p>
-                    The Beaglebone Black now has an active vnc session on 192.168.7.2:1 with the password robotvnc
-                  </p>
-                  <p>
-                    I'll admit that was a bit long for a setup process (let me tell you a secret, we are not done yet :-S ... ), but hopefully not too complicated,
-                    just a bit on the long side, now you have a full Linux system running in you Beaglebone Black! Congrats... now on to the next
-                    and final part, resizing the SD card partition.
-                  </p>
-                  <h3>Resizing the SD Card partition</h3>
-                  <p>
-                    We now have our full Debian Linux OS setup, ready and working in our Beaglebone Black, and we are able to connect using SSH, so what's next? well we need
-                    some space in that SD card partition to do all of our work and install all of our code, thankfully that is quite simple, all that we require is to run
-                    some commands and reboot the board a couple of times, so let's dive into it.
-                  </p>
-                  <p>First login to the board using SSH and run the following commands</p>
+                  
+                  <p>After the script is saved, it will automatically run when the BeagleBone Black boots, so you only have to do this step once.</p>
+                  
+                  <h3 id="resizing-the-sd-card-partition">Resizing the SD Card Partition</h3>
+                  
+                  <p>At this point, we have a full Debian Linux OS set up, and can connect over SSH to the BBB.
+                  Now, we need to adjust the SD card's partitions, to give us space to install dependencies and do some work.</p>
+                  
+                  <p>First, login to the board over SSH, and run this series of commands:</p>
+                  
                   <pre class="CodeRay">$ fdisk /dev/mmcblk0
 d
 2
@@ -587,100 +627,23 @@ n
 p
 2
 
-
 w
 $ shutdown -r now
 </pre>
-                  <p>After the board has rebooted, we log back in and execute the following commands</p>
+                  
+                  <p>After the board finishes restarting, log back in and resize the filesystem on the SD card before another restart:</p>
+                  
                   <pre class="CodeRay">$ resize2fs /dev/mmcblk0p2
 $ shutdown -r now
 </pre>
-                  <p>
-                    Once again we wait for the board to reboot and log back in to make sure the partition has been resized successfully by running
-                  </p>
+                  
+                  <p>After this restart has completed, log back in, and check the partition has been correctly resized:</p>
+                  
                   <pre class="CodeRay">$ df -h
 </pre>
-                  <p>
-                    The /dev/root partition should be the size of the entire SD card, and with this
-                    we are finally done to start running Cylon directly on the Beaglebone Black.
-                  </p>
-                  <h2>Creating a Beaglebone Black SD Card With Debian</h2>
-                  <p>
-                    You might need to create a bootable SD card with the Beaglebone Black Debian-based Linux.
-                  </p>
-                  Here are instructions on how to do so.
-                  <h3>OSX</h3>
-                  <h4>Finding the SD card disk name</h4>
-                  <ul>
-                    <li>Insert your SD card into your host computer</li>
-                    <li>Determine the name of your SD card, ie /dev/sdb</li>
-                  </ul>
-                  <p>
-                    On OS X, you can use the diskutil command to help figure out the name of your card.
-                  </p>
-                  <pre class="CodeRay">$ diskutil list
-/dev/disk0
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID_partition_scheme                        *500.3 GB   disk0
-   1:                        EFI EFI                     209.7 MB   disk0s1
-   2:                  Apple_HFS Macintosh HD            499.4 GB   disk0s2
-   3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
-/dev/disk1
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:     FDisk_partition_scheme                        *15.9 GB    disk1
-   1:                 DOS_FAT_32 UNTITLED                15.9 GB    disk1s1
-</pre>
-                  <p>
-                    In this case, our disk's name is /dev/disk1. Before you proceed, make sure to eject the mounted volume with diskutil unmount /dev/disk1s1.
-                  </p>
-                  <h3>Linux</h3>
-                  <h4>Finding the SD card disk name</h4>
-                  <ul>
-                    <li>Insert your SD card into your host computer</li>
-                    <li>Determine the name of your SD card, ie /dev/sdb</li>
-                  </ul>
-                  <p>
-                    On most Linux distros, you should be able to use the `df -h` command to help you find what the name of your disk is.
-                  </p>
-                  <h4>Downloading the Linux image and flashing the SD card</h4>
-                  <p>
-                    Once the host computer drivers (udev-rules in the Linux case) have been installed, we need to flash the Linux image (our OS runing in the
-                    Beaglebone Black) to the SD card, we are using an Ubuntu based distro for our current Beaglebone Black dev env. Steps to acomplish this are as follows.
-                  </p>
-                  <ol>
-                    <li>Download current Beaglebone Black Linux image</li>
-                    <li>Uncompress Linux image</li>
-                    <li>Flash Linux image to SD card</li>
-                  </ol>
-                  <h4>Downloading the Beaglebone Black Linux image</h4>
-                  <p>Pretty straight forward when you have a direct link to download, here it is:</p>
-                  <a href="http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz">Beaglebone Black Debian Linux image</a>
-                  <p>If you prefer to use the terminal (we know you do :-) ):</p>
-                  <pre class="CodeRay">$ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
-</pre>
-                  <h4>Uncompressing the image file</h4>
-                  <p>
-                    Once the image has finished downloading, uncompress it to your working folder using your favorite tool, or once again
-                    use your favorite command line interface and run this command.
-                  </p>
-                  <pre class="CodeRay">$ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
-</pre>
-                  <h4>Flashing the SD card</h4>
-                  <p>
-                    The final step in setting up the SD card is to actually flashing the image we just downloaded and uncompressed into the sd card. You can accomplish just that by running the following command(make sure to specify the appropiate `/dev/sdX` device that represents your SD Card).
-                  </p>
-                  <pre class="CodeRay">$ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb &amp;&amp; sudo sync
-</pre>
-                  <h4>Download, uncompress and flash Linux image in three commands</h4>
-                  <p>
-                    A recap of the commands used in the steps above, in case you just want to see what was done to have a working Beaglebone Black OS flashed to the SD card.
-                  </p>
-                  <pre class="CodeRay">$ curl -O http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
-$ unxz bone-debian-7.5-2014-05-14-2gb.img.xz
-$ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb &amp;&amp; sudo sync
-</pre>
-                  <h3>Windows</h3>
-                  <h4>Coming soon...</h4>
+                  
+                  <p>The <code>/dev/root</code> partition should take up the entire size of the SD card.
+                  With this done, we're now ready to start running Cylon directly on the BeagleBone Black.</p>
                 </section>
                 <section class="drivers" id="Drivers">
                   <h2>Drivers</h2>

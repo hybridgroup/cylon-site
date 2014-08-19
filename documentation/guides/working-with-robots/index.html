@@ -10,7 +10,7 @@
     <title>Cylon.js - Working With Robots</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
@@ -63,7 +63,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -411,7 +411,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -579,6 +579,83 @@ Cylon.robot({
     my.arduino;  <span class="comment">// [Connection]</span>
   }
 });
+</pre>
+                
+                <h2 id="commands">Commands</h2>
+                
+                <p>Robots in Cylon can have commands that can be called from the API.</p>
+                
+                <p>There's three main ways to define commands:</p>
+                
+                <p><strong>Automatically</strong> - by default, any non-standard property on a Robot that is a function will be made accessible to the API.
+                For example:</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
+
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {},
+
+  <span class="function">doAThing</span>: <span class="keyword">function</span>() {
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">I did a thing!</span><span class="delimiter">"</span></span>);
+  }
+});
+
+<span class="comment">// GET /api/robots/testbot/commands</span>
+<span class="comment">// =&gt; ['doAThing']</span>
+</pre>
+                
+                <p><strong>As an Object</strong> - providing a <code>commands</code> object in the Robot options:</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
+
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {},
+
+  <span class="key">commands</span>: {
+    <span class="function">do_a_thing</span>: <span class="keyword">function</span>() { <span class="local-variable">this</span>.doAThing.call(<span class="local-variable">this</span>); }
+  }
+
+  <span class="function">doAThing</span>: <span class="keyword">function</span>() {
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">I did a thing!</span><span class="delimiter">"</span></span>);
+  }
+});
+
+<span class="comment">// GET /api/robots/testbot/commands</span>
+<span class="comment">// =&gt; ['do_a_thing']</span>
+</pre>
+                
+                <p><strong>As a Function</strong> - this option allows for easier scoping, as you can directly reference Robot properties.
+                The function must return an Object or an error will be thrown.</p>
+                
+                <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
+
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {},
+
+  <span class="function">commands</span>: <span class="keyword">function</span>() {
+    <span class="keyword">var</span> commands = {};
+
+    commands.do_a_thing = <span class="local-variable">this</span>.doAThing
+
+    <span class="keyword">return</span> commands;
+  }
+
+  <span class="function">doAThing</span>: <span class="keyword">function</span>() {
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">I did a thing!</span><span class="delimiter">"</span></span>);
+  }
+});
+
+<span class="comment">// GET /api/robots/testbot/commands</span>
+<span class="comment">// =&gt; ['do_a_thing']</span>
 </pre>
                 
                 <h2 id="utilities">Utilities</h2>

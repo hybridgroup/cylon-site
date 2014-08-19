@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Accelerometer</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,32 +454,33 @@
                   <img class="display" src="/images/devices/tessel-accelerometer.jpg">
                   <div class="info-intro">
                     <p>Detect orientation and movement of your Tessel by measuring gravity / acceleration.</p>
+                    
                     <p>Control by tilt!</p>
+                    
                     <ul>
                       <li>3-Axis Digital Accelerometer</li>
                       <li>12-bit resolution</li>
                       <li>Selectable ±2g/±4g/±8g scales</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/accelerometer">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/accelerometer">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">accel</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">accel-mma84</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -502,27 +503,45 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>accel.availableOutputRates()</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="accelavailableoutputrates">accel.availableOutputRates()</h2>
+                    
                     <p>Logs the available interrupt rates in Hz.</p>
-                    <h2>accel.availableScaleRanges()</h2>
+                    
+                    <h2 id="accelavailablescaleranges">accel.availableScaleRanges()</h2>
+                    
                     <p>Logs the available accelerometer ranges (in units of Gs).</p>
-                    <h2>accel.enableDataInterrupts( trueOrFalse, callback(err) )</h2>
+                    
+                    <h2 id="accelenabledatainterrupts-trueorfalse-callbackerr-">accel.enableDataInterrupts( trueOrFalse, callback(err) )</h2>
+                    
                     <p>Enables or disables data interrupts. Set the first param truthy to enable, falsy to disable.</p>
-                    <h2>accel.getAcceleration( callback(err, xyz) )</h2>
+                    
+                    <h2 id="accelgetacceleration-callbackerr-xyz-">accel.getAcceleration( callback(err, xyz) )</h2>
+                    
                     <p>Gets the acceleration from the device, outputs as array [x, y, z].</p>
-                    <h2>accel.setOutputRate( rateInHz, callback(err) )</h2>
+                    
+                    <h2 id="accelsetoutputrate-rateinhz-callbackerr-">accel.setOutputRate( rateInHz, callback(err) )</h2>
+                    
                     <p>Sets the output rate of the data (1.56-800 Hz).</p>
-                    <h2>accel.setScaleRange( scaleRange, callback(err) )</h2>
+                    
+                    <h2 id="accelsetscalerange-scalerange-callbackerr-">accel.setScaleRange( scaleRange, callback(err) )</h2>
+                    
                     <p>Sets the accelerometer to read up to 2, 4, or 8 Gs of acceleration (smaller range = better precision).</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>accel.on( 'data', callback(xyz) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="data">'data'</h2>
+                    
                     <p>Emitted when data is available. xyz is an array in the form of [x, y, z].</p>
-                    <h2>accel.on( 'error', callback(err) )</h2>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>accel.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
                   </div>
                 </section>
@@ -535,27 +554,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

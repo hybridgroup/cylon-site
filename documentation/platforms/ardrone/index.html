@@ -10,7 +10,7 @@
     <title>Ardrone with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,37 +452,42 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/ardrone.jpg">
                   <div class="info-intro">
-                    <h2 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-ardrone" target="_blank" class="repository">Repository</a> <a class href="https://github.com/hybridgroup/cylon-ardrone/issues" target="_blank">Issues</a>
-</h2>
-                    <p>The ARDrone from Parrot is an inexpensive quadcopter that is controlled using WiFi. It includes a built-in front-facing HD video camera, as well as a second lower resolution bottom facing video camera.</p>
-                    <p>
-                      For more info about the ARDrone platform click
-                      <a target="blank" href="http://ardrone2.parrot.com/">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-ardrone" target="_blank" class="repository">Repository</a>|<a class href="https://github.com/hybridgroup/cylon-ardrone/issues" target="_blank"> Issues</a>
+</h4>
+                    <p>The ARDrone from Parrot is an inexpensive quadcopter that is controlled using WiFi.
+                    It includes a built-in front-facing HD video camera, as well as a second lower resolution bottom facing video camera.</p>
+                    
+                    <p>For more info about the ARDrone platform click <a href="http://ardrone2.parrot.com/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
+                  <h2 id="how-to-install">How To Install</h2>
+                  
                   <p>Installing cylon.js with ardrone support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-ardrone
+                  
+                  <pre class="CodeRay">$ npm install cylon-ardrone
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This small program lets the ARDrone take-off, hover, and land.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.takeoff();
+
     after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.land();
     });
+
     after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.stop();
     });
@@ -491,12 +496,16 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <p>The ARDrone is a WiFi device, so there is no additional work to establish a connection to a single drone. However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.</p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <p>The ARDrone is a WiFi device, so there is no additional work to establish a connection to a single drone.
+                  However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
-                  <p>Available drivers for the ARDrone platform are listed below. There are three drivers for the ARDrone: the ARDrone for flight control and the ARDroneNav for navigation data.</p>
+                  <h2 id="drivers">Drivers</h2>
+                  
+                  <p>Available drivers for the ARDrone platform are listed below.
+                  There are two drivers for the ARDrone: ARDrone for flight control, and ARDroneNav for navigation data.</p>
                   <div class="hardware">
                     <div class="devices">
                       <!-- / TODO: Update drivers list at the top of the page. -->

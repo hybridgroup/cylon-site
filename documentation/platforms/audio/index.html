@@ -10,7 +10,7 @@
     <title>Audio with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -451,27 +451,36 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/audio.jpg">
                   <div class="info-intro">
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-audio" target="_blank" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-audio/issues" target="_blank">Issues</a>
+</h4>
                     <p>This is the Cylon adaptor for Audio reproduction capabilities.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
+                  <h2 id="how-to-install">How To Install</h2>
+                  
                   <p>Install the module with:</p>
-                  <pre class="CodeRay">$ npm install cylon-audio 
+                  
+                  <pre class="CodeRay">$ npm install cylon-audio
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <p>Using the cylon-audio module is pretty easy, pretty much just install the npm module and you are good to go, use it as you would any other device passing along the audio you wish to reproduce. See the example below for further details.</p>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
+                  <p>The cylon-audio module is fairly straightforward to use.
+                  To play audio, pass a full or relative path to the <code>play</code> function.</p>
+                  
+                  <p>Here's an example:</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-
     my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">playing</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(song){
       console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing this nice tune: "</span><span class="delimiter">'</span></span> + song + <span class="string"><span class="delimiter">'</span><span class="content">"</span><span class="delimiter">'</span></span>);
     });
@@ -479,7 +488,7 @@ Cylon.robot({
     <span class="comment">// You can pass a string with a full or relative path here,</span>
     my.audio.play(<span class="string"><span class="delimiter">'</span><span class="content">./audio_samples/audio-sample.mp3</span><span class="delimiter">'</span></span>);
   }
-}).start(); 
+}).start();
 </pre>
                 </section>
                 <section class="drivers" id="Drivers">

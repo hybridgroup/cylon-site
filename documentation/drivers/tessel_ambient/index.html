@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Ambient</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,31 +454,32 @@
                   <img class="display" src="/images/devices/tessel-ambient.jpg">
                   <div class="info-intro">
                     <p>The Ambient sensor can detect ambient light and sound levels.</p>
+                    
                     <p>Clap to turn on the TV (paired with infrared) or know from a webapp if the lights are on at home.</p>
+                    
                     <ul>
                       <li>The microphone is optimized for detecting the ambient noise level in a room or building a sound-activated device.</li>
                       <li>The ambient light sensor and can be used for detecting fine-grain brightness in a room.</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/ambient">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/ambient">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ambient</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ambient-attx4</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -511,37 +512,65 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>ambient.clearLightTrigger( callback(err, triggerVal) )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="ambientclearlighttrigger-callbackerr-triggerval-">ambient.clearLightTrigger( callback(err, triggerVal) )</h2>
+                    
                     <p>Clears trigger listener for light trigger.</p>
-                    <h2>ambient.clearSoundTrigger( callback(err, triggerVal) )</h2>
+                    
+                    <h2 id="ambientclearsoundtrigger-callbackerr-triggerval-">ambient.clearSoundTrigger( callback(err, triggerVal) )</h2>
+                    
                     <p>Clears trigger listener for sound trigger.</p>
-                    <h2>ambient.getLightBuffer( callback(err, data) )</h2>
+                    
+                    <h2 id="ambientgetlightbuffer-callbackerr-data-">ambient.getLightBuffer( callback(err, data) )</h2>
+                    
                     <p>Gets the last 10 light readings.</p>
-                    <h2>ambient.getLightLevel( callback(err, data) )</h2>
+                    
+                    <h2 id="ambientgetlightlevel-callbackerr-data-">ambient.getLightLevel( callback(err, data) )</h2>
+                    
                     <p>Gets a single data point of light level.</p>
-                    <h2>ambient.getSoundBuffer( callback(err, data) )</h2>
+                    
+                    <h2 id="ambientgetsoundbuffer-callbackerr-data-">ambient.getSoundBuffer( callback(err, data) )</h2>
+                    
                     <p>Gets the last 10 sound readings.</p>
-                    <h2>ambient.getSoundLevel( callback(err, data) )</h2>
+                    
+                    <h2 id="ambientgetsoundlevel-callbackerr-data-">ambient.getSoundLevel( callback(err, data) )</h2>
+                    
                     <p>Gets a single data point of sound level.</p>
-                    <h2>ambient.setLightTrigger( triggerVal, callback(err, triggerVal) )</h2>
+                    
+                    <h2 id="ambientsetlighttrigger-triggerval-callbackerr-triggerval-">ambient.setLightTrigger( triggerVal, callback(err, triggerVal) )</h2>
+                    
                     <p>Sets a trigger to emit a 'light-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.</p>
-                    <h2>ambient.setSoundTrigger( triggerVal, callback(err, triggerVal) )</h2>
+                    
+                    <h2 id="ambientsetsoundtrigger-triggerval-callbackerr-triggerval-">ambient.setSoundTrigger( triggerVal, callback(err, triggerVal) )</h2>
+                    
                     <p>Sets a trigger to emit a 'sound-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>ambient.on( 'error', callback(err) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>ambient.on( 'light', callback(lightData) )</h2>
+                    
+                    <h2 id="light">'light'</h2>
+                    
                     <p>Get a stream of light data.</p>
-                    <h2>ambient.on( 'light-trigger', callback(lightTriggerValue) )</h2>
+                    
+                    <h2 id="light-trigger">'light-trigger'</h2>
+                    
                     <p>Emitted upon crossing light trigger threshold.</p>
-                    <h2>ambient.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
-                    <h2>ambient.on( 'sound', callback(soundData) )</h2>
+                    
+                    <h2 id="sound">'sound'</h2>
+                    
                     <p>Get a stream of sound level data.</p>
-                    <h2>ambient.on( 'sound-trigger', callback(soundTriggerValue) )</h2>
+                    
+                    <h2 id="sound-trigger">'sound-trigger'</h2>
+                    
                     <p>Emitted upon crossing sound trigger threshold.</p>
                   </div>
                 </section>
@@ -554,27 +583,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

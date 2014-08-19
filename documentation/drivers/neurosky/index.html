@@ -10,7 +10,7 @@
     <title>Cylon.js - Neurosky Mindwave Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,44 +453,37 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/neurosky.jpg">
                   <div class="info-intro">
-                    <p>
-                      The MindWave headset turns your computer into a brain activity monitor. The headset safely measures brainwave signals and monitors the attention levels of individuals as they interact with math, memory and pattern recognition applications.
-                    </p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://store.neurosky.com/products/mindwave-mobile">here</a>
-                    </p>
+                    <p>The MindWave headset turns your computer into a brain activity monitor.
+                    The headset safely measures brainwave signals and monitors the attention levels of individuals as they interact with math, memory and pattern recognition applications.</p>
+                    
+                    <p>For more information click <a href="http://store.neurosky.com/products/mindwave-mobile">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span> },
+});
+</pre>
+                </section>
+                <section class="how-to" id="HowToUse">
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>},
-....
-</pre>
-                </section>
-                <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <p>This small program use the Neurosky with the attention-meditation.</p>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connection</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>},
-
-  <span class="key">device</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">headset</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">attention</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
     });
     my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">meditation</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
     });
   }
 });
@@ -554,9 +547,6 @@ Cylon.start();
                           <p class="title">Neurosky</p>
                           <img src="/images/devices/neurosky.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-neurosky">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

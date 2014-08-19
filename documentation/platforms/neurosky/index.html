@@ -10,7 +10,7 @@
     <title>Neurosky with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,72 +452,84 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/neurosky.jpg">
                   <div class="info-intro">
-                    <p>NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.</p>
-                    <p>
-                      For more info about the Neurosky platform click
-                      <a target="blank" href="http://neurosky.com/products-markets/eeg-biosensors/hardware/">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-neurosky" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-neurosky/issues" target="_blank">Issues</a>
+</h4>
+                    <p>NeuroSky delivers fully integrated, single chip EEG biosensors.
+                    NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.</p>
+                    
+                    <p>For more info about the Neurosky platform click <a href="http://neurosky.com/products-markets/eeg-biosensors/hardware/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing cylon.js with Neurosky support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-neurosky
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-neurosky
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>This example displays the Attention and Meditation data reading sent by the Mindwave Headset:</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>},
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>
+  },
 
-  <span class="key">device</span>:
-    {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">headset</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">headset</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">attention</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">attention:</span><span class="delimiter">"</span></span> + data);
     });
+
     my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">meditation</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">meditation:</span><span class="delimiter">"</span></span> + data);
     });
   }
-});
-
-Cylon.start();
+}).start();
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <h3>OSX</h3>
-                  <p>In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
-                  <h3>Ubuntu</h3>
-                  <p>
-                    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using
-                    <a href="http://gort.io">Gort</a>
-                    commands. Here are the steps:
-                  </p>
-                  <p>Find the address of the Mindwave, by using:</p>
-                  <pre class="CodeRay">gort scan bluetooth
-</pre>
-                  <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
-</pre>
-                  <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave):</p>
-                  <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
-</pre>
-                  <h3>Windows</h3>
-                  <p>
-                    </p>
-<p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
+                  <h2 id="how-to-connect">How To Connect</h2>
                   
+                  <h3 id="osx">OSX</h3>
+                  
+                  <p>In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
+                  
+                  <h3 id="ubuntu">Ubuntu</h3>
+                  
+                  <p>Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using <a href="http://gort.io">Gort</a> commands.
+                  Here are the steps:</p>
+                  
+                  <p>Find the address of the Mindwave, by using:</p>
+                  
+                  <pre class="CodeRay">$ gort scan bluetooth
+</pre>
+                  
+                  <p>Pair to Mindwave using this command (substituting the actual address of your Mindwave):</p>
+                  
+                  <pre class="CodeRay">$ gort bluetooth pair &lt;address&gt;
+</pre>
+                  
+                  <p>Connect to the Mindwave using this command (substituting the actual address of your Mindwave):</p>
+                  
+                  <pre class="CodeRay">$ gort bluetooth connect &lt;address&gt;
+</pre>
+                  
+                  <h3 id="windows">Windows</h3>
+                  
+                  <p>You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as <code>COM3</code>.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>Available drivers for the Neurosky Mindwave platform are listed below.</p>
                   <div class="hardware">
                     <div class="devices">

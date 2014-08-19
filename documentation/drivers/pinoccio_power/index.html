@@ -10,7 +10,7 @@
     <title>Cylon.js - Pinoccio Power Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,17 +453,31 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/pinoccio_power.jpg">
                   <div class="info-intro">
-                    <p></p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="https://pinocc.io/">here</a>
-                    </p>
+                    <p>For more information click <a href="https://pinocc.io/">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
                   <p>Install the module with: <code>npm install cylon-pinoccio</code></p>
+                  
+                  <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
+    <span class="key">token</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span>,
+    <span class="key">troop</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span>,
+    <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">power</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> },
+});
+</pre>
+                </section>
+                <section class="how-to" id="HowToUse">
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -472,24 +486,10 @@ Cylon.robot({
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
     <span class="key">token</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span>,
     <span class="key">troop</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span>,
-    <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">power</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span>},
-...
-</pre>
-                </section>
-                <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <h3>Example</h3>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+    <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span>
+  },
 
-Cylon.robot({
-  <span class="key">connection</span>: {
-          <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
-          <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
-          <span class="key">token</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span>,
-          <span class="key">troop</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span>,
-          <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">1</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">power</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">power</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
@@ -504,47 +504,71 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>isCharging(cb)</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="ischargingcb">isCharging(cb)</h2>
+                    
                     <p>Returns a value if the drivers is charging</p>
+                    
                     <ul>
                       <li>
 <strong>cb</strong> - The value for which to return data</li>
                     </ul>
-                    <h5>Returns</h5>
+                    
+                    <h5 id="returns">Returns</h5>
+                    
                     <p><code>nil</code></p>
-                    <h2>percent(cb)</h2>
+                    
+                    <h2 id="percentcb">percent(cb)</h2>
+                    
                     <p>Returns the percent</p>
+                    
                     <ul>
                       <li>
 <strong>cb</strong> - The value for which to return data</li>
                     </ul>
-                    <h5>Returns</h5>
+                    
+                    <h5 id="returns-1">Returns</h5>
+                    
                     <p><code>nil</code></p>
-                    <h2>voltage(cb)</h2>
+                    
+                    <h2 id="voltagecb">voltage(cb)</h2>
+                    
                     <p>Returns the voltage</p>
+                    
                     <ul>
                       <li>
 <strong>cb</strong> - The value for which to return data</li>
                     </ul>
-                    <h5>Returns</h5>
+                    
+                    <h5 id="returns-2">Returns</h5>
+                    
                     <p><code>nil</code></p>
-                    <h2>enableVcc()</h2>
+                    
+                    <h2 id="enablevcc">enableVcc()</h2>
+                    
                     <p>Enables the VCC</p>
-                    <h2>disableVcc()</h2>
+                    
+                    <h2 id="disablevcc">disableVcc()</h2>
+                    
                     <p>Disables the VCC</p>
-                    <h2>report(cb)</h2>
+                    
+                    <h2 id="reportcb">report(cb)</h2>
+                    
                     <p>Returns a report of the driver</p>
+                    
                     <ul>
                       <li>
 <strong>cb</strong> - The value for which to return data</li>
                     </ul>
-                    <h5>Returns</h5>
+                    
+                    <h5 id="returns-3">Returns</h5>
+                    
                     <p><code>nil</code></p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <p>no commands</p>
+                    <h1 id="events">Events</h1>
+                    <p>no events</p>
                   </div>
                 </section>
                 <section class="compatability hardware" id="Compatability">
@@ -556,9 +580,6 @@ Cylon.robot({
                           <p class="title">Pinoccio</p>
                           <img src="/images/devices/pinoccio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-pinoccio">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

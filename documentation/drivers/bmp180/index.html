@@ -10,7 +10,7 @@
     <title>Cylon.js - BMP180 Driver</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,69 +454,72 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/bmp180.jpg">
                   <div class="info-intro">
-                    <p>
-                      This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer. The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode. It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability.
-                    </p>
-                    <p>
-                      For more information click
-                      <a target="_blank" href="http://www.adafruit.com/products/1603">here.</a>
-                    </p>
+                    <p>This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer.
+                    The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode.
+                    It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability.</p>
+                    
+                    <p>For more information click <a href="http://www.adafruit.com/products/1603">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how_to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-    <span class="key">connection</span>:{<span class="key">name</span>:<span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>:<span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>},
-    <span class="key">device</span>:{<span class="key">name</span>:<span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>, <span class="key">driver</span>:<span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>},
-...
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span> },
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <p>
-                    This example let you get the temperature, pressure and altitude.
-                  </p>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
+                  <p>This example lets you get the temperature, pressure and altitude.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-    <span class="key">connection</span>:{<span class="key">name</span>:<span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>:<span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>},
-    <span class="key">device</span>:{<span class="key">name</span>:<span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>, <span class="key">driver</span>:<span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>},
+    <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> },
+
+    <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">bmp180</span><span class="delimiter">'</span></span> },
 
     <span class="function">work</span>: <span class="keyword">function</span>(my) {
-        my.bmp180.getTemperature(<span class="keyword">function</span>(err, val) {
-            <span class="keyword">if</span>(err) console.log(err);
-            <span class="keyword">else</span> {
-                console.log(<span class="string"><span class="delimiter">"</span><span class="content">getTemperature call:</span><span class="delimiter">"</span></span>);
-                console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temp: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
-            }
-        });
+      my.bmp180.getTemperature(<span class="keyword">function</span>(err, val) {
+        <span class="keyword">if</span> (err) {
+          console.log(err);
+          <span class="keyword">return</span>;
+        }
 
-        after(<span class="integer">1</span>..seconds(), <span class="keyword">function</span>() {
-            my.bmp180.getPressure(<span class="integer">1</span>, <span class="keyword">function</span>(err, val) {
-                <span class="keyword">if</span>(err) console.log(err);
-                <span class="keyword">else</span> {
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="content">getPressure call:</span><span class="delimiter">"</span></span>);
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
-                }
-            });
-        });
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">getTemperature call:</span><span class="delimiter">"</span></span>);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temp: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
+      });
 
-        after(<span class="integer">2</span>..seconds(), <span class="keyword">function</span>() {
-            my.bmp180.getAltitude(<span class="integer">1</span>, <span class="predefined-constant">null</span>, <span class="keyword">function</span>(err, val) {
-                <span class="keyword">if</span>(err) console.log(err);
-                <span class="keyword">else</span> {
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="content">getAltitude call:</span><span class="delimiter">"</span></span>);
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
-                    console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Altitude: </span><span class="delimiter">"</span></span> + val.alt + <span class="string"><span class="delimiter">"</span><span class="content"> m</span><span class="delimiter">"</span></span>);
-                }
-            });
-        });
+      after((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+        my.bmp180.getPressure(<span class="integer">1</span>, <span class="keyword">function</span>(err, val) {
+          <span class="keyword">if</span> (err) {
+            console.log(err);
+            <span class="keyword">return</span>;
+          }
 
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">getPressure call:</span><span class="delimiter">"</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
+        });
+      });
+
+      after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+        my.bmp180.getAltitude(<span class="integer">1</span>, <span class="predefined-constant">null</span>, <span class="keyword">function</span>(err, val) {
+          <span class="keyword">if</span> (err) {
+            console.log(err);
+            <span class="keyword">return</span>;
+          }
+
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">getAltitude call:</span><span class="delimiter">"</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Altitude: </span><span class="delimiter">"</span></span> + val.alt + <span class="string"><span class="delimiter">"</span><span class="content"> m</span><span class="delimiter">"</span></span>);
+        });
+      });
     }
 }).start();
 </pre>
@@ -592,45 +595,30 @@ Cylon.robot({
                           <p class="title">Arduino</p>
                           <img src="/images/devices/arduino.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-firmata">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/beaglebone">
                           <p class="title">Beaglebone Black</p>
                           <img src="/images/devices/beaglebone.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-beaglebone">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/digispark">
                           <p class="title">Digispark</p>
                           <img src="/images/devices/digispark.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-digispark">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/raspberry-pi">
                           <p class="title">Raspberry Pi</p>
                           <img src="/images/devices/raspi.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-raspi">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/spark">
                           <p class="title">Spark</p>
                           <img src="/images/devices/spark.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-spark">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

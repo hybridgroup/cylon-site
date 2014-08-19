@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Camera</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,38 +454,40 @@
                   <img class="display" src="/images/devices/tessel-camera.jpg">
                   <div class="info-intro">
                     <p>Add the sense of sight to Tessel!</p>
+                    
                     <p>Take pictures of your projects, from your projects.</p>
+                    
                     <ul>
                       <li>Supports 640x480, 320x240, and 160x120</li>
                       <li>Still image camera.</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/camera">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/camera">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   ],
+
   <span class="key">devices</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera-vc0706</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
   ],
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -493,6 +495,7 @@ Cylon.robot({
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   ],
+
   <span class="key">devices</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
@@ -529,30 +532,57 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Properties</h1>
-                    <h2>camera.resolutions()</h2>
-                    <p>An object which maps resolution labels to their dimensions. The string labels can be used to configure the camera's resolution.</p>
-                    <h1>Commands</h1>
-                    <h2>camera.disable()</h2>
+                    <h1 id="properties">Properties</h1>
+                    
+                    <h2 id="cameraresolutions">camera.resolutions()</h2>
+                    
+                    <p>An object which maps resolution labels to their dimensions.
+                    The string labels can be used to configure the camera's resolution.</p>
+                    
+                    <h2 id="cameradisable">camera.disable()</h2>
+                    
                     <p>Disable UART connection to camera. Closes connection &amp; ends process.</p>
-                    <h2>camera.setCompression( compressionFactor, callback(err) )</h2>
-                    <p>Determine the amount of compression on each image. Should be a number between 0 and 1. Default is 0.2. Note that the compression is saved in Flash and will be persistent between power cycles.</p>
-                    <h2>camera.setResolution( resolution, callback(err) )</h2>
-                    <p>Set  the size of images. Options are 'vga' (640x320), 'qvga'(320x240) or  'qqvga' (160x120 ). Default is 'vga'. Note that the resolution is saved in Flash and will be persistent between power cycles.</p>
-                    <h2>camera.takePicture( callback(err, picture) )</h2>
-                    <p>Take a still picture. Returns raw buffer data which you can pipe into a raw http stream or save in memory.</p>
+                    
+                    <h2 id="camerasetcompression-compressionfactor-callbackerr-">camera.setCompression( compressionFactor, callback(err) )</h2>
+                    
+                    <p>Determine the amount of compression on each image.
+                    Should be a number between 0 and 1.
+                    Default is 0.2.
+                    Note that the compression is saved in Flash and will be persistent between power cycles.</p>
+                    
+                    <h2 id="camerasetresolution-resolution-callbackerr-">camera.setResolution( resolution, callback(err) )</h2>
+                    
+                    <p>Set the size of images.
+                    Options are 'vga' (640x320), 'qvga'(320x240) or  'qqvga' (160x120 ).
+                    Default is 'vga'.
+                    Note that the resolution is saved in Flash and will be persistent between power cycles.</p>
+                    
+                    <h2 id="cameratakepicture-callbackerr-picture-">camera.takePicture( callback(err, picture) )</h2>
+                    
+                    <p>Take a still picture.
+                    Returns raw buffer data which you can pipe into a raw http stream or save in memory.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>camera.on( 'compression', callback(xyz) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="compression">'compression'</h2>
+                    
                     <p>Emitted when compression is set.</p>
-                    <h2>camera.on( 'error', callback(err) )</h2>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>camera.on( 'picture', callback(picture) )</h2>
+                    
+                    <h2 id="picture">'picture'</h2>
+                    
                     <p>Emitted when a photo is taken. Returns buffer of image.</p>
-                    <h2>camera.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
-                    <h2>camera.on( 'resolution', callback(resolution) )</h2>
+                    
+                    <h2 id="resolution">'resolution'</h2>
+                    
                     <p>Emitted when resolution is set.</p>
                   </div>
                 </section>
@@ -565,27 +595,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

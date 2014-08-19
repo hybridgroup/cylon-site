@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Relay</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -453,33 +453,33 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/tessel-relay.jpg">
                   <div class="info-intro">
-                    <p>Control high-current devices, such as power cords and appliances.</p>
-                    <p>Turn your coffee maker on when the Ambient module detects light, or based on input from an app.</p>
+                    <p>Control high-current devices, such as power cords and appliances.
+                    Turn your coffee maker on when the Ambient module detects light, or based on input from an app.</p>
+                    
                     <ul>
                       <li>Rated for 240V and 5A</li>
                       <li>AC or DC current</li>
                       <li>Secure and remove wires with the help of a ballpoint pen. No more loose wires or screwdrivers.</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/relay">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/relay">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">relay</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">relay-mono</span><span class="delimiter">'</span></span> },
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example using a Direct Pin.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -511,23 +511,37 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>relay.getState( relayChannel, callback(err, state) )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="relaygetstate-relaychannel-callbackerr-state-">relay.getState( relayChannel, callback(err, state) )</h2>
+                    
                     <p>Gets the state of the specified relay channel: "true" for on and "false" for off.</p>
-                    <h2>relay.toggle( relayChannel, callback(err) )</h2>
+                    
+                    <h2 id="relaytoggle-relaychannel-callbackerr-">relay.toggle( relayChannel, callback(err) )</h2>
+                    
                     <p>Switches the state of the specified relay channel: on if it's off; off if it's on.</p>
-                    <h2>relay.turnOff( relayChannel, callback(err) )</h2>
+                    
+                    <h2 id="relayturnoff-relaychannel-callbackerr-">relay.turnOff( relayChannel, callback(err) )</h2>
+                    
                     <p>Switches off the specified relay channel.</p>
-                    <h2>relay.turnOn( relayChannel, callback(err) )</h2>
+                    
+                    <h2 id="relayturnon-relaychannel-callbackerr-">relay.turnOn( relayChannel, callback(err) )</h2>
+                    
                     <p>Switches on the specified relay channel.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>relay.on( 'error', callback(err) )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>Emitted upon error.</p>
-                    <h2>relay.on( 'latch', callback(channel, state))</h2>
+                    
+                    <h2 id="latch">'latch'</h2>
+                    
                     <p>Emitted when the latch state (boolean on or off ) is changed for a channel.</p>
-                    <h2>relay.on( 'ready', callback() )</h2>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>Emitted upon first successful communication between the Tessel and the module.</p>
                   </div>
                 </section>
@@ -540,27 +554,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

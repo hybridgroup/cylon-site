@@ -10,7 +10,7 @@
     <title>Keyboard with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,43 +452,48 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/keyboard.jpg">
                   <div class="info-intro">
-                    <p>A keyboard is a typewriter-style device, which uses an arrangement of buttons or keys, to act as mechanical levers or electronic switches. Following the decline of punch cards and paper tape, interaction via teleprinter-style keyboards became the main input device for computers.</p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-keyboard" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-keyboard/issues" target="_blank">Issues</a>
+</h4>
                     <p>The Cylon adaptor for keyboard input.</p>
-                    <p>
-                      For more info about the Joystick platform click
-                      <a target="blank" href="http://en.wikipedia.org/wiki/Computer_keyboard">here</a>.
-                    </p>
+                    
+                    <p>For more info about keyboards, click <a href="http://en.wikipedia.org/wiki/Computer_keyboard">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
+                  <h2 id="how-to-install">How To Install</h2>
+                  
                   <p>Installing cylon.js with a keyboard support is pretty easy.</p>
-                  <pre class="CodeRay">npm install cylon-keyboard
+                  
+                  <pre class="CodeRay">$ npm install cylon-keyboard
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(key) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">A PRESSED!</span><span class="delimiter">"</span></span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">a pressed</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How to Connect</h2>
+                  <h2 id="how-to-connect">How to Connect</h2>
+                  
                   <p>Plug the keyboard to your computer as usual.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>Available drivers for the keyboard platform are listed below.</p>
                   <div class="hardware">
                     <div class="devices">

@@ -10,7 +10,7 @@
     <title>Cylon.js - Tessel Audio</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a class="active" href="/documentation">Docs</a>
                   <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -454,39 +454,39 @@
                   <img class="display" src="/images/devices/tessel-audio.jpg">
                   <div class="info-intro">
                     <p>Decode audio files or streams and output; record audio.</p>
-                    <p>Make your Tessel play a tune, or listen in...</p>
+                    
+                    <p>Make your Tessel play a tune, or listen in…</p>
+                    
                     <ul>
                       <li>Decodes MP3/AAC/WMA/MIDI/FLAC/Ogg Vorbis files</li>
                       <li>Supports files and streams</li>
                       <li>Supports both headphones and line-out</li>
                       <li>Can record audio through an on-board microphone or line-in jack</li>
                     </ul>
-                    <p>
-                      For more info visit
-                      <a target="blank" href="http://start.tessel.io/modules/audio">here.</a>
-                    </p>
+                    
+                    <p>For more info visit <a href="http://start.tessel.io/modules/audio">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   ],
+
   <span class="key">devices</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio-vs1053b</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
   ],
-...
+});
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <p>Example using a Direct Pin.</p>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -494,6 +494,7 @@ Cylon.robot({
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
   ],
+
   <span class="key">devices</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio-vs1053b</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
@@ -554,55 +555,101 @@ Cylon.robot({
                 </section>
                 <section class="public-methods">
                   <div class="commands-api" id="Commands">
-                    <h1>Commands</h1>
-                    <h2>audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )</h2>
+                    <h1 id="commands">Commands</h1>
+                    
+                    <h2 id="audiosetvolume-leftchanneldb-rightchanneldb-callbackerr-">audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )</h2>
+                    
                     <p>Set the output volume. Level is a Number from 0.0 to 1.0</p>
-                    <h2>audio.setInput( input, callback(err) )</h2>
+                    
+                    <h2 id="audiosetinput-input-callbackerr-">audio.setInput( input, callback(err) )</h2>
+                    
                     <p>Set the input to either 'lineIn' or 'mic'. Defaults to 'lineIn'.</p>
-                    <h2>audio.setOutput( output, callback(err) )</h2>
+                    
+                    <h2 id="audiosetoutput-output-callbackerr-">audio.setOutput( output, callback(err) )</h2>
+                    
                     <p>Set the output to either 'lineOut' or 'headPhones'. Defaults to 'lineOut'.</p>
-                    <h2>audio.startRecording( [profile] callback(err) )</h2>
+                    
+                    <h2 id="audiostartrecording-profile-callbackerr-">audio.startRecording( [profile] callback(err) )</h2>
+                    
                     <p>Start recording sound from the input. (Receive data in the 'data' event) Callback called after recording initialized (not stopped ) .quality is an optional argument that can be 'voice', 'wideband-voice', 'wideband-stereo', 'hifi-voice', or 'stereo-music'. Default is 'hifi-voice'.</p>
-                    <h2>audio.stopRecording( callback(err) )</h2>
+                    
+                    <h2 id="audiostoprecording-callbackerr-">audio.stopRecording( callback(err) )</h2>
+                    
                     <p>Stop recording sound (note that may receive one more 'data' event before this completes when the buffer is flushed. )</p>
-                    <h2>audio.play( [audioBuff], callback(err) )</h2>
+                    
+                    <h2 id="audioplay-audiobuff-callbackerr-">audio.play( [audioBuff], callback(err) )</h2>
+                    
                     <p>Play a buffer. If no buffer is passed in, the module will attempt to resume a buffer that was paused.</p>
-                    <h2>audio.pause( callback(err) )</h2>
+                    
+                    <h2 id="audiopause-callbackerr-">audio.pause( callback(err) )</h2>
+                    
                     <p>Pause the buffer.</p>
-                    <h2>audio.stop( callback(err) )</h2>
+                    
+                    <h2 id="audiostop-callbackerr-">audio.stop( callback(err) )</h2>
+                    
                     <p>Stop playing and flush the buffer.</p>
-                    <h2>audio.createPlayStream()</h2>
+                    
+                    <h2 id="audiocreateplaystream">audio.createPlayStream()</h2>
+                    
                     <p>Returns a stream that a buffer can be piped into to play audio.</p>
-                    <h2>audio.createRecordStream()</h2>
+                    
+                    <h2 id="audiocreaterecordstream">audio.createRecordStream()</h2>
+                    
                     <p>Returns a readable stream of mic data.</p>
-                    <h2>audio.availableRecordingProfiles()</h2>
+                    
+                    <h2 id="audioavailablerecordingprofiles">audio.availableRecordingProfiles()</h2>
+                    
                     <p>Returns an array of available profiles.</p>
                   </div>
                   <div class="commands-api" id="Events">
-                    <h1>Events</h1>
-                    <h2>audio.on( 'ready', callback() )</h2>
+                    <h1 id="events">Events</h1>
+                    
+                    <h2 id="ready">'ready'</h2>
+                    
                     <p>The audio module is ready to use.</p>
-                    <h2>audio.on( 'error', callback(err) )</h2>
+                    
+                    <h2 id="error">'error'</h2>
+                    
                     <p>The audio module had an error on connection.</p>
-                    <h2>audio.on( 'volume', callback(volume) )</h2>
+                    
+                    <h2 id="volume">'volume'</h2>
+                    
                     <p>Volume was set.</p>
-                    <h2>audio.on( 'input', callback(input) )</h2>
+                    
+                    <h2 id="input">'input'</h2>
+                    
                     <p>The input mode was set.</p>
-                    <h2>audio.on( 'output', callback(output) )</h2>
+                    
+                    <h2 id="output">'output'</h2>
+                    
                     <p>The output mode was set.</p>
-                    <h2>audio.on( 'startRecording', callback() )</h2>
+                    
+                    <h2 id="startrecording">'startRecording'</h2>
+                    
                     <p>Started recording from the input.</p>
-                    <h2>audio.on( 'data', callback(audioBuff) )</h2>
+                    
+                    <h2 id="data">'data'</h2>
+                    
                     <p>Received recorded data.</p>
-                    <h2>audio.on( 'stopRecording', callback() )</h2>
+                    
+                    <h2 id="stoprecording">'stopRecording'</h2>
+                    
                     <p>Stopped recording on the input.</p>
-                    <h2>audio.on( play', callback() )</h2>
+                    
+                    <h2 id="play">'play'</h2>
+                    
                     <p>A buffer is beginning to be played.</p>
-                    <h2>audio.on( 'pause', callback() )</h2>
+                    
+                    <h2 id="pause">'pause'</h2>
+                    
                     <p>Playback was paused.</p>
-                    <h2>audio.on( 'stop', callback() )</h2>
+                    
+                    <h2 id="stop">'stop'</h2>
+                    
                     <p>Playback was stopped.</p>
-                    <h2>audio.on( 'end', callback(err) )</h2>
+                    
+                    <h2 id="end">'end'</h2>
+                    
                     <p>The buffer finished playing.</p>
                   </div>
                 </section>
@@ -615,27 +662,18 @@ Cylon.robot({
                           <p class="title">Audio</p>
                           <img src="/images/devices/audio.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-audio">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/speech">
                           <p class="title">Speech</p>
                           <img src="/images/devices/espeak.png" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-speech">repo</a>
-                        </div>
                       </li>
                       <li>
                         <a href="/documentation/platforms/tessel">
                           <p class="title">Tessel</p>
                           <img src="/images/devices/tessel.jpg" style="width: 90%">
                         </a>
-                        <div class="repo">
-                          <a target="_blank" href="https://github.com/hybridgroup/cylon-tessel">repo</a>
-                        </div>
                       </li>
                     </ul>
                   </div>

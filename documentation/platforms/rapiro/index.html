@@ -10,7 +10,7 @@
     <title>Rapiro with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,46 +452,54 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/rapiro.jpg">
                   <div class="info-intro">
-                    <h4>What is Rapiro?</h4>
-                    <p>RAPIRO is a cute and affordable robot kit designed to work with a Raspberry Pi. It comes with a Arduino-compatible servo controller.</p>
-                    <h4>Where can I get a Rapiro or find more info about it?</h4>
-                    <p>
-                      Go to the Rapiro web site at
-                      <a href="http://www.rapiro.com/">http://www.rapiro.com/.</a>
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-rapiro" target="blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-rapiro/issues" target="blank">Issues</a>
+</h4>
+                    <h4 id="what-is-rapiro">What is Rapiro?</h4>
+                    
+                    <p>RAPIRO is a cute and affordable robot kit designed to work with a Raspberry Pi.
+                    It comes with a Arduino-compatible servo controller.</p>
+                    
+                    <h4 id="where-can-i-get-a-rapiro-or-find-more-info-about-it">Where can I get a Rapiro or find more info about it?</h4>
+                    
+                    <p>To find out more, go to the <a href="http://www.rapiro.com/.">Rapiro web site</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
-                  <p>Installing cylon.js with Rapiro support is easy.</p>
-                  <pre class="CodeRay">npm install cylon-rapiro
+                  <h2 id="how-to-install">How To Install</h2>
+                  
+                  <pre class="CodeRay">$ npm install cylon-rapiro
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <p>Example of a simple program that makes the Rapiro walk.</p>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>},
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">false</span> ;
+    <span class="keyword">var</span> doneWalking = <span class="predefined-constant">false</span>;
 
     my.rapiro.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">forward</span><span class="delimiter">"</span></span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">forward</span><span class="delimiter">"</span></span>);
 
-      every(<span class="integer">1</span>..second(), <span class="keyword">function</span>() {
-        <span class="keyword">if</span> (my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] == <span class="predefined-constant">false</span>)
+      every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (doneWalking == <span class="predefined-constant">false</span>) {
           my.rapiro.forward();
+        }
       });
-      after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">halt</span><span class="delimiter">"</span></span>);
+
+      after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">halt</span><span class="delimiter">"</span></span>);
         my.rapiro.halt();
-        my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">true</span>;
+        doneWalking = <span class="predefined-constant">true</span>;
       });
     });
   }
@@ -499,13 +507,14 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <p></p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
                   <p>If you are connected from a Raspberry Pi to the Rapiro board, it will appear as serial port <code>/dev/ttyACM0</code>.
                   You can find out by running <a href="http://gort.io">Gort</a>'s <code>gort scan serial</code> command.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>There is only one driver for the Rapiro.</p>
                   <div class="hardware">
                     <div class="devices">

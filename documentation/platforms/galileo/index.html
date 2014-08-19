@@ -10,7 +10,7 @@
     <title>Galileo with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/accordeon.js"></script>
+    <script src="/hybridpages/assets/javascript/accordion.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
     <script src="/hybridpages/assets/javascript/subnav.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
@@ -64,7 +64,7 @@
                 <span class="menu">
                   <a href="/documentation" class="item">Docs</a>
                   <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/videos" class="item">Videos</a>
+                  <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
                 </span>
@@ -412,7 +412,7 @@
                   <dd id="chat-panel">
                     <ul>
                       <li>
-                        <a href="/documentation/chat/chat">IRC</a>
+                        <a href="/documentation/chat">IRC</a>
                       </li>
                     </ul>
                   </dd>
@@ -452,33 +452,27 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/galileo.jpg">
                   <div class="info-intro">
-                    <p>The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor. It is intended to be compatible with shields designed for the Arduino Uno R3 or above.</p>
-                    <p>
-                      For more info about the Galileo platform click
-                      <a target="blank" href="http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html">here</a>.
-                    </p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-galileo" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-galileo/issues" target="_blank">Issues</a>
+</h4>
+                    <p>The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor.
+                    It is intended to be compatible with shields designed for the Arduino Uno R3 or above.</p>
+                    
+                    <p>For more info about the Galileo platform click <a href="http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
                 <section class="how-to" id="HowToInstall">
-                  <h2>How To Install</h2>
+                  <h2 id="how-to-install">How To Install</h2>
+                  
                   <p>Install the module with:</p>
-                  <pre class="CodeRay">npm install cylon-galileo
+                  
+                  <pre class="CodeRay">$ npm install cylon-galileo
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
-                  <h2>How To Use</h2>
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-        <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span> },
-        <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>},
-
-        <span class="function">work</span>: <span class="keyword">function</span>(my) {
-                <span class="comment">// provide an example of your module here</span>
-        }
-}).start();
-</pre>
+                  <h2 id="how-to-use">How To Use</h2>
+                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -517,43 +511,36 @@ Cylon.robot({
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
-                  <h2>How To Connect</h2>
-                  <h3>Setting up the Galileo bigger Linux image, connecting and updating node.js.</h3>
-                  <p>Setting up Intel's Galileo board takes a bit more work than it should, but it is not difficult, luckily you only have to do it once (we hope :-)... ).</p>
-                  <p>
-                    The first step is to check we have the latest firmware and update if not.
-                    You can find instructions to update the firmware here:
-                  </p>
-                  <p>
-                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware">Galileo firmware update</a>
-                  </p>
-                  <p>
-                    Next step is to install the bigger linux image into a MicroSD card and boot the
-                    Galileo from it.
-                  </p>
-                  <p>
-                    You can find the bigger linux image listed in the official Galileo drivers page (
-                    <a href="https://communities.intel.com/docs/DOC-22226">Galileo drivers</a>
-                    ), the one named:
-                  </p>
-                  <p>
-                    <a href="http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z">LINUX IMAGE FOR SD for Intel Galileo</a>
-                  </p>
-                  <p>
-                    Please feel free to read through the getting started page, so you can get familiar with the board features.
-                    You can find all getting started info by clicking the following link:
-                  </p>
-                  <p>
-                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">Official getting started guide</a>
-                  </p>
-                  <p>Once we have the bigger linux image in the sd card, and the galileo booting up from it, we need to connect and enable networking (turned off by default in the Galileo bigger linux image).</p>
-                  <p>
-                    We can accomplish this by using a serialport to terminal program, for this we have to use the Galileo Arduino IDE
-                    provided in the Galileo drivers page,
-                    <a href="https://communities.intel.com/docs/DOC-22226">Intel Galileo Arduino SW 1.5.3</a>
-                    , make sure to download and uncompress the correct one for your OS, after that upload the
-                    following sketch to the galileo board:
-                  </p>
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <h3 id="setting-up-galileo-linux-image">Setting up Galileo Linux Image</h3>
+                  
+                  <p>Setting up the Galileo for Cylon takes longer than it should, but it's not terribly difficult.
+                  Luckily, you only have to do it once.</p>
+                  
+                  <p>The first step is to ensure we have the latest version of the firmware, and update if not.
+                  You can find instructions to update the firmware <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware">here</a>.</p>
+                  
+                  <p>Next, we're going to install the larger Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.</p>
+                  
+                  <p>You can find the larger image on the official Galileo <a href="https://communities.intel.com/docs/DOC-22226">drivers page</a>.
+                  You're looking for the one named <a href="http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z">LINUX IMAGE FOR SD for Intel Galileo</a>.</p>
+                  
+                  <p>Please feel free to read through the Galileo <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">getting started page</a>.
+                  This will help you get better acquainted with the features of the board.</p>
+                  
+                  <p>Once you have the larger image on the SD card, slot it into the Galileo, and the board should automatically boot from it.</p>
+                  
+                  <p>After it's started up, we need to connect and enable networking (turned off by default in the image).</p>
+                  
+                  <p>We can accomplish this using a serialport to terminal program.
+                  To do this, we have to use the Galileo Arduino IDE.
+                  This is also provided from the Galileo drivers page, but <a href="https://communities.intel.com/docs/DOC-22226">here</a> is a direct link.</p>
+                  
+                  <p>Make sure to download the version for your OS.</p>
+                  
+                  <p>After you've got that running, upload this sketch to your Galileo:</p>
+                  
                   <pre class="CodeRay"><span class="directive">void</span> setup()
 {
   system(<span class="string"><span class="delimiter">"</span><span class="content">cp /etc/inittab /etc/inittab.bak</span><span class="delimiter">"</span></span>);  <span class="comment">// Back up inittab</span>
@@ -573,87 +560,71 @@ Cylon.robot({
 
 }
 </pre>
-                  <p>
-                    Once the board is connected to your computer, open up a serial terminal program
-                    (like
-                    <a href="https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows">Tera Term</a>
-                    for Windows,
-                    <a href="https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux">Cool Term</a>
-                    for Mac, or
-                    <a href="https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/">Serial port terminal</a>
-                    for Ubuntu/Linux). Set the serial port number, and change the baud rate to 115200 bps.
-                  </p>
-                  <p>You can read more about serial to terminal communication in the getting started page here:</p>
-                  <p>
-                    <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/using-the-terminal">Serial to terminal</a>
-                  </p>
-                  <p>When you have connected successfully to the Galileo run this command to enable networking (make sure to connect the board to the network using an ethernet cable first):</p>
+                  
+                  <p>Once the board's connected to your computer, you can connect to it with a serial terminal program.
+                  Some example programs:</p>
+                  
+                  <ul>
+                    <li>
+<a href="https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows">Tera Term</a> for Windows</li>
+                    <li>
+<a href="https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux">Cool Term</a> for OS X</li>
+                    <li>
+<a href="https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/">GTKTerm</a> for Linux</li>
+                  </ul>
+                  
+                  <p>Set the serial port number, and change the baud rate to 115200 bps.</p>
+                  
+                  <p>When you have a successful connection to the Galileo, run this command to enable networking:</p>
+                  
                   <pre class="CodeRay">$ /etc/init.d/networking start
 </pre>
-                  <p>This will allow us to connect using SSH, substitute the ip address with the one assigned to your Galileo:</p>
+                  
+                  <p>This will allow us to SSH into the board.
+                  Substitute the IP address for that of your Galileo and connect:</p>
+                  
                   <pre class="CodeRay">$ ssh root@192.168.0.5
 </pre>
-                  <p>The final step of the setup is to update the node.js version included in the galileo bigger linux image, you can download a more up to date package from  here:</p>
-                  <p>
-                    <a href="https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip">Node.JS 10.25</a>
-                  </p>
-                  <p>Then we need to uncompress the file in the host computer:</p>
+                  
+                  <p>The last bit of setup is to update the version of Node included with the Linux image.
+                  You can download a more up-to-date version <a href="https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip">here</a>.</p>
+                  
+                  <p>Uncompress the file on your host computer, and copy the package to the board:</p>
+                  
                   <pre class="CodeRay">$ unzip nodejs_0.10.25-r0_i586.ipk.zip
-</pre>
-                  <p>And copy the IPK package to the board, since the Galileo is already connected to the network (and we have an active session open that we can use) we can SCP the ipk package to update node.js to the galileo:</p>
-                  <pre class="CodeRay">$ scp nodejs_0.10.25-r0_i586.ipk root@192.168.0.5:/home/root/
-</pre>
-                  <p>We then move to the Galileo terminal session and upgrade the installed node.js package by running the following command:</p>
-                  <pre class="CodeRay">opkg install nodejs_0.10.25-r0_i586.ipk
+$ scp nodejs_0.10.25-r0_i586.ipk root@192.168.0.5:/home/root/
 </pre>
                   
-                  <p>Let's confirm node.js version by running <code>node -v</code></p>
+                  <p>Then, on the Galileo, install the package with the <code>opkg</code> command:</p>
                   
-                  <pre class="CodeRay">        $ node -v
-        v0.10.25
-</pre>
-                  <p>Nice! We are good to go! With this we are pretty much setup to use Cylon.js in the Galileo.</p>
-                  <p>More details regarding updating node.js can be found here:</p>
-                  <p>
-                    <a href="https://communities.intel.com/thread/48416">How to update node.js in the SD card image</a>
-                  </p>
-                  <p>Install the module with: <code>npm install cylon-galileo</code></p>
-                  <h3>How to push code to your Galileo</h3>
-                  <p>The Galileo is a special case (compared to Beaglebone black and Raspberry Pi) since it lacks dev tools in the bigger Linux image, so at this time we do not have a different distribution to run in the sd card that does contain dev tools, so we'll have to make it work with what we have.</p>
-                  <p>You'll need to write your code and install npm modules on your computer, at very least setup your project folder and install NPM modules, all of this using the 32bit version of both node.js and NPM modules.</p>
-                  <p>First we need to download the 32bit version of Node.js:</p>
-                  <p>http://nodejs.org/dist/v0.10.26/node-v0.10.26-linux-x86.tar.gz</p>
-                  <p>You'll need to uncompress and run node and npm from that directory, I recommend creating links to the bin/node and bin/npm files in your home folder, that way you can easily install npm libraries using the 32bit version (needed by Galileo) and maintain your current global node instalation without messing with your path.</p>
-                  <pre class="CodeRay">$ ln  ~/node-v0.10.26-linux-x86/bin/node ~/nodex86
-$ ln  ~/node-v0.10.26-linux-x86/bin/npm ~/npmx86
+                  <pre class="CodeRay">$ opkg install nodejs_0.10.25-r0_i586.ipk
 </pre>
                   
-                  <p>Now, how to actually push code and run it in the Galileo, let's say we have a project folder called <code>galileo-blink</code>, we change directory intothe project folder, then we can either write our code there, in this case blink.js, or setup the project folder with all nedded NPM modules and work directly in the galileo board, of course all of this using the 32bit version of node.js we just installed:</p>
-                  <pre class="CodeRay">$ cd galileo-blink
-$ ~/npmx86 install cylon
-$ ~/npmx86 install cylon-galileo
-$ ~/npmx86 install cylon-gpio
+                  <p>With that done, make sure the update worked:</p>
+                  
+                  <pre class="CodeRay">$ node -v
+v0.10.25
 </pre>
                   
-                  <p>This will create the <code>./node_modules/</code> folder in our project containing all the necessary modules that will run in the Galileo, so from here we can either work on our project and push the code later just for testing in the galileo, or push the modules and work directly in the Galileo, let's do the latter since makes development easier and quicker than having to push everytime we do a small change:</p>
-                  <pre class="CodeRay"># From our project root folder run
-$ cd ../
-$ tar -cf galileo-blink.tar ./galileo-blink
-$ scp galileo-blink.tar root@192.168.0.5:/home/root/
+                  <p>If you need more details on updating Node in the Galileo image, they can be found <a href="https://communities.intel.com/thread/48416">here</a>.</p>
+                  
+                  <p>And with that all done, we can install the <code>cylon-galileo</code> module to the board:</p>
+                  
+                  <pre class="CodeRay">$ npm install cylon-galileo
 </pre>
-                  <p>Once the project package finishes copying we go to our galileo session, and in the terminal we run the following:</p>
-                  <pre class="CodeRay">$ cd ~
-$ tar -xf galileo-blink.tar
-$ cd galileo-blink
-$ vi blink.js
-</pre>
-                  <p>We now have our environment ready to run the examples in the galileo, just copy paste the blink example (found in the examples section below), save it and run it.</p>
-                  <pre class="CodeRay"># From project root folder
-$ node blink.js
-</pre>
+                  
+                  <h3 id="pushing-code">Pushing Code</h3>
+                  
+                  <p>The Galileo is a special case (compared to the BeagleBone Black and Raspberry Pi), since it doesn't have any dev tools in the larger Linux image.
+                  You'll need to write code and install NPM modules on your host computer.</p>
+                  
+                  <p>Additionally, to compile for the 32-bit architecture on the Galileo, you'll need to run a 32-bit version of Node on your host machine.</p>
+                  
+                  <p>You can download the appropriate version from the Node <a href="http://nodejs.org/download/">download page</a>.</p>
                 </section>
                 <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
+                  <h2 id="drivers">Drivers</h2>
+                  
                   <p>Available drivers for the Galileo platform are listed below.</p>
                   <div class="hardware">
                     <h2>GPIO Drivers</h2>
