@@ -13,7 +13,7 @@ subnavjs: true
 
 joystick_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#joystick li:nth-child(1)").addClass("active-link");
@@ -26,24 +26,21 @@ joystick_platform: true
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
           device: { name: 'controller', driver: 'dualshock-3' }
-          // [...]
         });
 
 %section.how-to#HowToUse
-  %h2 How To Use
+  :markdown
+    ## How To Use
 
-  %p
     What follows is an example of button and joystick input for the DualShock 3.
 
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 

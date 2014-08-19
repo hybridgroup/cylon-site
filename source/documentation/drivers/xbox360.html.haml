@@ -13,7 +13,7 @@ subnavjs: true
 
 joystick_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#joystick li:nth-child(2)").addClass("active-link");
@@ -21,35 +21,33 @@ joystick_platform: true
 %section.intro
   =image_tag "/images/devices/xbox360.jpg", class: "display"
   .info-intro
-    %p Allows user to interact with Cylon.js devices using a Xbox 360 controller.
+    :markdown
+      Allows user to interact with Cylon.js devices using a Xbox 360 controller.
 
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
           device: { name: 'controller', driver: 'xbox-360' }
-          // [...]
         });
 
 %section.how-to#HowToUse
-  %h2 How To Use
+  :markdown
+    ## How To Use
 
-  %p
     What follows is an example of button and joystick input for the DualShock 3.
 
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'joystick', adaptor: 'joystick' },
-          device: { name: 'controller', driver: 'dualshock-3' },
+          device: { name: 'controller', driver: 'xbox-360' },
 
           work: function(my) {
             ["a", "b", "x", "y"].forEach(function(button) {

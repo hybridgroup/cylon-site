@@ -12,7 +12,7 @@ active_menu_docs: true
 subnavjs: true
 nest_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(3)").addClass("active-link");
@@ -20,28 +20,32 @@ nest_platform: true
 %section.intro
   = image_tag "/images/devices/nest_thermostat.jpg", class: "display"
   .info-intro
-    %p Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
-    %p
-      For more information click
-      = link_to "here", "https://nest.com/thermostat/life-with-nest-thermostat/", target: "_blank"
+    :markdown
+      Most people leave the house at one temperature and forget to change it.
+      So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone.
+      Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
 
+      For more information click [here](https://nest.com/thermostat/life-with-nest-thermostat/).
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: {
             name: 'nest',
             adaptor: 'nest',
-            accessToken: 'XXX',
-            deviceId: 'ABC123'
+            accessToken: 'YOUR_ACCESS_TOKEN'
           },
-          device: {name: 'thermostat', driver: 'nest-thermostat'},
-        ...
+
+          device: {
+            name: 'thermostat',
+            driver: 'nest-thermostat',
+            deviceId: 'YOUR_DEVICE_ID'
+          },
+        });
 
 
 %section.how-to#HowToUse
@@ -54,14 +58,19 @@ nest_platform: true
           connection: {
             name: 'nest',
             adaptor: 'nest',
-            accessToken: 'XXX',
-            deviceId: 'ABC123'
+            accessToken: 'YOUR_ACCESS_TOKEN'
           },
-          device: {name: 'thermostat', driver: 'nest-thermostat'},
 
-          work: function(my) {
-            every((60).seconds(), function(){
-              console.log(my.thermostat.ambientTemperatureC());
+          device: {
+            name: 'thermostat',
+            driver: 'nest-thermostat',
+            deviceId: 'YOUR_DEVICE_ID'
+          },
+
+          work: function() {
+            every((10).seconds(), function(){
+              var temp = my.thermostat.ambientTemperatureC();
+              console.log('Ambient Temperature', temp);
             });
           }
         }).start();
@@ -69,52 +78,8 @@ nest_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commads
-    %h2 deviceName()
-    %p Gets the name of the nest
-    %h2 ambientTemperatureF()
-    %p Gets the ambient temperature in Fº
-    %h2 ambientTemperatureC()
-    %p Gets the ambient temperature in Cº
-    %h2 targetTemperatureF()
-    %p Gets the target temperature in Fº
-    %h2 targetTemperatureC()
-    %p Gets the ambient temperature in Cº
-    %h2 setTargetTemperatureF(value)
-    %p Sets the target temperature in Fº
-    %h5 Params
-    :markdown
-      - **value** - The value for the temperature
-    %h5 Returns
-    :markdown
-      `nil`
-    %h2 setTargetTemperatureC(value)
-    %p Sets the target temperature in Cº
-    %h5 Params
-    :markdown
-      - **value** - The value for the temperature
-    %h5 Returns
-    :markdown
-      `nil`
-    %h2 read(key, callback)
-    %p Reads the params of the device.
-    %h5 Params
-    :markdown
-      - **key** - The key of the device
-      - **callback** - The data of the callback
-    %h5 Returns
-    :markdown
-      `nil`
-    %h2 write(key, value, callback)
-    %p Writes the params of the device.
-    %h5 Params
-    :markdown
-      - **key** - The key of the device
-      - **value** - The value of the device
-      - **callback** - The data of the callback
-    %h5 Returns
-    :markdown
-      `nil`
+    Coming soon.
+    -# TODO: needs in-repo docs to sync, then add partial here
 
   .commands-api#Events
     %h1 Events

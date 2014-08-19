@@ -17,7 +17,7 @@ led_driver: true
 servo_driver: true
 motor_driver: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(19)").addClass("active-link");
@@ -26,97 +26,96 @@ motor_driver: true
   = image_tag "/images/devices/raspi.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital & PWM GPIO, and i2c interfaces built in.
+    :markdown
+      The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital & PWM GPIO, and i2c interfaces built in.
 
-    %p The Raspberry Pi is a credit-card-sized single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of promoting the teaching of basic computer science in schools
+      The Raspberry Pi is a credit-card-sized single-board computer developed in the UK by the Raspberry Pi Foundation with the intention of promoting the teaching of basic computer science in schools
 
-    %p
-      For more info about the Raspberry Pi platform go to
-      = succeed "." do
-        = link_to "http://www.raspberrypi.org/", "http://www.raspberrypi.org/", target: :blank
+      For more info about the Raspberry Pi platform, click [here](http://www.raspberrypi.org/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing cylon.js with raspberri-pi support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-raspi
+    ## How To Install
+
+        $ npm install cylon-raspi
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program causes an LED to blink.
   :markdown
+    ## How To Use
+
+    This small program causes an LED to blink.
+
         :::javascript
         Cylon = require('..');
 
         Cylon.robot({
-          connection: {
-            name: 'raspi',
-            adaptor: 'raspi'
-          },
-          device: {
-            name: 'led',
-            driver: 'led',
-            pin: 11
-          },
+          connection: { name: 'raspi', adaptor: 'raspi' },
+          device: { name: 'led', driver: 'led', pin: 11 },
+
           work: function(my) {
-            return every(1..second(), function() {
-              return my.led.toggle();
+            every((1).second(), function() {
+              my.led.toggle();
             });
           }
         }).start();
 
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 Connecting to Raspberry Pi GPIO
-  %p This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer it will not work. Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.
-
-  %h3 Enabling the Raspberry Pi i2c on raspbian
-  %p You must add these two entries in your /etc/modules
-
   :markdown
-        :::bash
+    ## How To Connect
+
+    ### Connecting to Raspberry Pi GPIO
+
+    This module only works on a real Raspberry Pi.
+    Do not bother trying on any other kind of computer it will not work.
+    Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.
+
+    ### Enabling the Raspberry Pi i2c on Raspbian
+
+    You must add these two entries to your `/etc/modules`
+
         i2c-bcm2708
         i2c-dev
 
-  %p You must also ensure that these entries are commented in your /etc/modprobe.d/raspi-blacklist.conf
+    You must also ensure that these entries are commented in your `/etc/modprobe.d/raspi-blacklist.conf`
 
-  :markdown
-        :::bash
         #blacklist spi-bcm2708
         #blacklist i2c-bcm2708
 
-  %p Now restart your raspberry pi.
+    Now restart your raspberry pi.
 
-  %h3 Enabling PWM output on GPIO pins.
+    ### Enabling PWM output on GPIO pins.
 
-  %p You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install on our repo here:
+    You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install on our repo here:
 
-  =link_to "https://github.com/hybridgroup/pi-blaster" , "https://github.com/hybridgroup/pi-blaster"
+    [https://github.com/hybridgroup/pi-blaster](https://github.com/hybridgroup/pi-blaster)
 
-  %h3 Available PINS
-  :markdown
-        :::bash
+    ### Available PINS
+
+        :::javascript
         PINS = {
           3: {
             rev1: 0,
             rev2: 2
           },
+
           5: {
             rev1: 1,
             rev2: 3
           },
+
           7: 4,
           8: 14,
           10: 15,
           11: 17,
           12: 18,
+
           13: {
             rev1: 21,
             rev2: 27
           },
+
           15: 22,
           16: 23,
           18: 24,
@@ -129,8 +128,10 @@ motor_driver: true
         };
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p All Cylon.js digital and PWM GPIO drivers listed below should work with the Raspberry Pi:
+  :markdown
+    ## Drivers
+
+    All Cylon.js digital and PWM GPIO drivers listed below should work with the Raspberry Pi:
 
   .hardware
     %h2 GPIO Drivers

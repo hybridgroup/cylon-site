@@ -13,7 +13,7 @@ subnavjs: true
 
 neurosky_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(5)").addClass("active-link");
@@ -21,52 +21,46 @@ neurosky_platform: true
 %section.intro
   = image_tag "/images/devices/neurosky.jpg", class: "display"
   .info-intro
-    %p
-      The MindWave headset turns your computer into a brain activity monitor. The headset safely measures brainwave signals and monitors the attention levels of individuals as they interact with math, memory and pattern recognition applications.
-    %p
-      For more information click
-      = link_to "here", "http://store.neurosky.com/products/mindwave-mobile", target: "_blank"
+    :markdown
+      The MindWave headset turns your computer into a brain activity monitor.
+      The headset safely measures brainwave signals and monitors the attention levels of individuals as they interact with math, memory and pattern recognition applications.
+
+      For more information click [here](http://store.neurosky.com/products/mindwave-mobile).
 
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'neurosky', adaptor: 'neurosky' },
+          device: { name: 'neurosky', driver: 'neurosky' },
+        });
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'neurosky', adaptor: 'neurosky' },
-          device: {name: 'neurosky', driver: 'neurosky'},
-        ....
-
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program use the Neurosky with the attention-meditation.
-  :markdown
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connection:
-            {name: 'neurosky', adaptor: 'neurosky', port: '/dev/rfcomm0'},
-
-          device:
-            {name: 'headset', driver: 'neurosky'},
+          device: { name: 'neurosky', driver: 'neurosky' },
 
           work: function(my) {
             my.headset.on('attention', function(data) {
-              Logger.info("attention:" + data);
+              console.log("attention:" + data);
             });
             my.headset.on('meditation', function(data) {
-              Logger.info("meditation:" + data);
+              console.log("meditation:" + data);
             });
           }
         });
 
         Cylon.start();
-
 
 %section.public-methods
   .commands-api#Commands
@@ -74,7 +68,6 @@ neurosky_platform: true
     %p no commands
   .commands-api#Events
     = partial "/documentation/drivers/partials/neurosky/events"
-
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

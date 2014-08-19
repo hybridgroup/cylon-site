@@ -13,7 +13,7 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#tessel li:nth-child(3)").addClass("active-link");
@@ -21,40 +21,41 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-audio.jpg", class: "display"
   .info-intro
-    %p Decode audio files or streams and output; record audio.
-    %p Make your Tessel play a tune, or listen in...
-    %ul
-      %li Decodes MP3/AAC/WMA/MIDI/FLAC/Ogg Vorbis files
-      %li Supports files and streams
-      %li Supports both headphones and line-out
-      %li Can record audio through an on-board microphone or line-in jack
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/audio", target: :blank
+    :markdown
+      Decode audio files or streams and output; record audio.
+
+      Make your Tessel play a tune, or listen in...
+
+      - Decodes MP3/AAC/WMA/MIDI/FLAC/Ogg Vorbis files
+      - Supports files and streams
+      - Supports both headphones and line-out
+      - Can record audio through an on-board microphone or line-in jack
+
+      For more info visit [here](http://start.tessel.io/modules/audio).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connections: [
             { name: 'tessel', adaptor: 'tessel' },
             { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
           ],
+
           devices: [
             { name: 'button', driver: 'button', connection: 'tessel' },
             { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
           ],
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -63,6 +64,7 @@ tessel_platform: true
             { name: 'tessel', adaptor: 'tessel' },
             { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
           ],
+
           devices: [
             { name: 'button', driver: 'button', connection: 'tessel' },
             { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
@@ -122,76 +124,104 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )
-    %p Set the output volume. Level is a Number from 0.0 to 1.0
+    :markdown
+      # Commands
 
-    %h2 audio.setInput( input, callback(err) )
-    %p Set the input to either 'lineIn' or 'mic'. Defaults to 'lineIn'.
+      ## audio.setVolume( leftChannelDb, [rightChannelDb,] callback(err) )
 
-    %h2 audio.setOutput( output, callback(err) )
-    %p Set the output to either 'lineOut' or 'headPhones'. Defaults to 'lineOut'.
+      Set the output volume. Level is a Number from 0.0 to 1.0
 
-    %h2 audio.startRecording( [profile] callback(err) )
-    %p Start recording sound from the input. (Receive data in the 'data' event) Callback called after recording initialized (not stopped ) .quality is an optional argument that can be 'voice', 'wideband-voice', 'wideband-stereo', 'hifi-voice', or 'stereo-music'. Default is 'hifi-voice'.
+      ## audio.setInput( input, callback(err) )
 
-    %h2 audio.stopRecording( callback(err) )
-    %p Stop recording sound (note that may receive one more 'data' event before this completes when the buffer is flushed. )
+      Set the input to either 'lineIn' or 'mic'. Defaults to 'lineIn'.
 
-    %h2 audio.play( [audioBuff], callback(err) )
-    %p Play a buffer. If no buffer is passed in, the module will attempt to resume a buffer that was paused.
+      ## audio.setOutput( output, callback(err) )
 
-    %h2 audio.pause( callback(err) )
-    %p Pause the buffer.
+      Set the output to either 'lineOut' or 'headPhones'. Defaults to 'lineOut'.
 
-    %h2 audio.stop( callback(err) )
-    %p Stop playing and flush the buffer.
+      ## audio.startRecording( [profile] callback(err) )
 
-    %h2 audio.createPlayStream()
-    %p Returns a stream that a buffer can be piped into to play audio.
+      Start recording sound from the input. (Receive data in the 'data' event) Callback called after recording initialized (not stopped ) .quality is an optional argument that can be 'voice', 'wideband-voice', 'wideband-stereo', 'hifi-voice', or 'stereo-music'. Default is 'hifi-voice'.
 
-    %h2 audio.createRecordStream()
-    %p Returns a readable stream of mic data.
+      ## audio.stopRecording( callback(err) )
 
-    %h2 audio.availableRecordingProfiles()
-    %p Returns an array of available profiles.
+      Stop recording sound (note that may receive one more 'data' event before this completes when the buffer is flushed. )
+
+      ## audio.play( [audioBuff], callback(err) )
+
+      Play a buffer. If no buffer is passed in, the module will attempt to resume a buffer that was paused.
+
+      ## audio.pause( callback(err) )
+
+      Pause the buffer.
+
+      ## audio.stop( callback(err) )
+
+      Stop playing and flush the buffer.
+
+      ## audio.createPlayStream()
+
+      Returns a stream that a buffer can be piped into to play audio.
+
+      ## audio.createRecordStream()
+
+      Returns a readable stream of mic data.
+
+      ## audio.availableRecordingProfiles()
+
+      Returns an array of available profiles.
+
   .commands-api#Events
-    %h1 Events
-    %h2 audio.on( 'ready', callback() )
-    %p The audio module is ready to use.
+    :markdown
+      # Events
 
-    %h2 audio.on( 'error', callback(err) )
-    %p The audio module had an error on connection.
+      ## 'ready'
 
-    %h2 audio.on( 'volume', callback(volume) )
-    %p Volume was set.
+      The audio module is ready to use.
 
-    %h2 audio.on( 'input', callback(input) )
-    %p The input mode was set.
+      ## 'error'
 
-    %h2 audio.on( 'output', callback(output) )
-    %p The output mode was set.
+      The audio module had an error on connection.
 
-    %h2 audio.on( 'startRecording', callback() )
-    %p Started recording from the input.
+      ## 'volume'
 
-    %h2 audio.on( 'data', callback(audioBuff) )
-    %p Received recorded data.
+      Volume was set.
 
-    %h2 audio.on( 'stopRecording', callback() )
-    %p Stopped recording on the input.
+      ## 'input'
 
-    %h2 audio.on( play', callback() )
-    %p A buffer is beginning to be played.
+      The input mode was set.
 
-    %h2 audio.on( 'pause', callback() )
-    %p Playback was paused.
+      ## 'output'
 
-    %h2 audio.on( 'stop', callback() )
-    %p Playback was stopped.
+      The output mode was set.
 
-    %h2 audio.on( 'end', callback(err) )
-    %p The buffer finished playing.
+      ## 'startRecording'
+
+      Started recording from the input.
+
+      ## 'data'
+
+      Received recorded data.
+
+      ## 'stopRecording'
+
+      Stopped recording on the input.
+
+      ## 'play'
+
+      A buffer is beginning to be played.
+
+      ## 'pause'
+
+      Playback was paused.
+
+      ## 'stop'
+
+      Playback was stopped.
+
+      ## 'end'
+
+      The buffer finished playing.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

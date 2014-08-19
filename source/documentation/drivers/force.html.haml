@@ -13,7 +13,7 @@ subnavjs: true
 
 force_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#force li:nth-child(1)").addClass("active-link");
@@ -21,42 +21,43 @@ force_platform: true
 %section.intro
   = image_tag "/images/devices/force.jpg", class: "display"
   .info-intro
-    %p
-      -# I put this description but if you need to change it, no problem ;)  *************
-      This module provides an adaptor and drivers for Force.com .It uses the nforce module
-      =link_to "(https://github.com/kevinohara80/nforce)" , "https://github.com/kevinohara80/nforce"
-      created by @kevinohara80 thank you!
+    :markdown
+      This modules provides an adaptor/driver combination to communicate with SalesForce.
 
-    %p
-      For more info about the Force platform go to
-      = succeed "." do
-        = link_to "http://www.force.com/", "http://www.salesforce.com/platform/overview/", target: :blank
+      It uses the [nForce module](https://github.com/kevinohara80/nforce), created by Kevin O'Hara.
+
+      For more info about the SalesForce platform, click [here](http://www.salesforce.com/platform/overview/).
+
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
-  -#here we need the connection and device in JS(coming soon ..)  *************
   :markdown
-        :::javascript
-        Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: {
             name: 'sfcon',
-            adaptor: 'force'
+            adaptor: 'force',
+            sfuser: process.env.SF_USERNAME,
+            sfpass: process.env.SF_SECURITY_TOKEN,
+            orgCreds: {
+              clientId: process.env.SF_CLIENT_ID,
+              clientSecret: process.env.SF_CLIENT_SECRET,
+              redirectUri: 'http://localhost:3000/oauth/_callback'
+            }
           },
-          device: {
-            name: 'salesforce',
-            driver: 'force'
-          }
-          ...
+
+          device: { name: 'salesforce', driver: 'force' },
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This example uses the sphero with cylonjs-force
-  -# here the code of the example in JS(coming soon..)*************
   :markdown
+    ## How To Use
+
+    This example uses the sphero with cylonjs-force
+
         :::javascript
         Cylon = require('cylon');
 
@@ -72,17 +73,21 @@ force_platform: true
               redirectUri: 'http://localhost:3000/oauth/_callback'
             }
           },
+
           device: {
             name: 'salesforce',
             driver: 'force'
           },
+
           work: function(me) {
             var toSend;
+
             me.salesforce.on('start', function() {
               return me.salesforce.subscribe('/topic/SpheroMsgOutbound', function(data) {
-                return Logger.info("Sphero: " + data.sobject.Sphero_Name__c + ", data Content: " + data.sobject.Content__c + ", SM_Id: " + data.sobject.Id);
+                return console.log("Sphero: " + data.sobject.Sphero_Name__c + ", data Content: " + data.sobject.Content__c + ", SM_Id: " + data.sobject.Id);
               });
             });
+
             toSend = "{ \"identifier\" :\"" + me.name + "\", \"msg\": \"" + 'Salesforce Bot #2' + "\" }";
             return me.salesforce.push('SpheroController', 'POST', toSend);
           }

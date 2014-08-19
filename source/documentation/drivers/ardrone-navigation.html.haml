@@ -13,7 +13,7 @@ subnavjs: true
 
 ardrone_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#ardrone li:nth-child(2)").addClass("active-link");
@@ -21,52 +21,63 @@ ardrone_platform: true
 %section.intro
   =image_tag "/images/devices/ardrone-navigation.jpg", class: "display"
   .info-intro
-    %p
-      Allows user to receive in-flight navgation data from an ARDrone. Navigation data includes such information as the ARDrone's current pitch and yaw, along with many other data elements.
-    %p
-      For more information click
-      = link_to "here", "http://ardrone2.parrot.com/", target: "_blank"
+    :markdown
+
+      Allows user to receive in-flight navgation data from an ARDrone.
+      Navigation data includes such information as the ARDrone's current pitch and yaw, along with many other data elements.
+
+      For more information click [here](http://ardrone2.parrot.com/).
 
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p
-    Communication with the ARDrone's navigation data interface takes place using a WiFi connection. The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
-
   :markdown
+    ## How To Connect
+
+    Communication with the ARDrone's navigation data interface takes place using a WiFi connection.
+    The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
+
         :::javascript
-        var Cylon = require('cylon')
-
         Cylon.robot({
-          connection: {name: 'ardrone', adaptor: 'ardrone', port: '192.168.1.1'},
+          connection: {
+            name: 'ardrone',
+            adaptor: 'ardrone',
+            port: '192.168.1.1'
+          },
 
-          devices:
-            [{name: 'drone', driver: 'ardrone'},
-            {name: 'nav', driver: 'ardroneNav'}]
-        ...
+          devices: [
+            { name: 'drone', driver: 'ardrone' },
+            { name: 'nav', driver: 'ardroneNav' }
+          ]
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Once the connection and the devices have been setup (as explained above) you can receive navigation events on them as follows:
-
   :markdown
+    ## How To Use
+
+    Once the connection and the devices have been setup (as explained above) you can receive navigation events on them as follows:
+
         :::javascript
         var Cylon = require('cylon')
 
         Cylon.robot({
-          connection: {name: 'ardrone', adaptor: 'ardrone', port: '192.168.1.1'},
+          connection: {
+            name: 'ardrone',
+            adaptor: 'ardrone',
+            port: '192.168.1.1'
+          },
 
-          devices:
-            [{name: 'drone', driver: 'ardrone'},
-            {name: 'nav', driver: 'ardroneNav'}],
+          devices: [
+            { name: 'drone', driver: 'ardrone' },
+            { name: 'nav', driver: 'ardroneNav' }
+          ]
 
           work: function(my) {
             my.drone.config('general:navdata_demo', 'TRUE');
 
             my.nav.on('update', function(data) {
-              Logger.info(data);
+              console.log(data);
             }
           }
         }).start();

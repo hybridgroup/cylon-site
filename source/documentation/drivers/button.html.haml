@@ -18,7 +18,7 @@ raspberry_platform: true
 pinoccio_platform: true
 spark_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#gpio li:nth-child(2)").addClass("active-link");
@@ -26,48 +26,44 @@ spark_platform: true
 %section.intro
   = image_tag "/images/devices/button.jpg", class: "display"
   .info-intro
-    %p Simple interface that makes it possible to register clicks through physical input.
-    %p
-      For more information click
-      = link_to "here.", "http://en.wikipedia.org/wiki/Switch", target: "_blank"
+    :markdown
+      Simple interface that makes it possible to register clicks through physical input.
+
+      For more information click [here](http://en.wikipedia.org/wiki/Switch).
+
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'button', driver: 'button', pin: 2},
-          ...
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'button', driver: 'button', pin: 2 },
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
+  :markdown
+    ## How To Use
+
     This example detects when a button has been pushed.
 
-  :markdown
         :::javascript
-
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
 
-          device: {name: 'button', driver: 'button', pin: 2},
+          device: { name: 'button', driver: 'button', pin: 2 },
 
           work: function(my) {
             my.button.on('push', function() {
-              Logger.info("Button pushed!");
+              console.log("Button pushed!");
             });
           }
         }).start();
-
 
 %section.public-methods
   .commands-api#Commands

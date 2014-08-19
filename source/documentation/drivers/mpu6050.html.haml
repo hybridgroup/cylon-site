@@ -16,7 +16,7 @@ arduino_platform: true
 digispark_platform: true
 raspberry_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(6)").addClass("active-link");
@@ -24,27 +24,27 @@ raspberry_platform: true
 %section.intro
   = image_tag "/images/devices/mpu6050.jpg", class: "display"
   .info-intro
-    %p The MPU-6050 is a serious little piece of motion processing tech! By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ (DMP™) capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts.
-    %p
-      For more information click
-      = link_to "here.", "http://playground.arduino.cc/Main/MPU-6050", target: "_blank"
+    :markdown
+      The MPU-6050 is a serious little piece of motion processing tech!
+      By combining a MEMS 3-axis gyroscope and a 3-axis accelerometer on the same silicon die together with an onboard Digital Motion Processor™ capable of processing complex 9-axis MotionFusion algorithms, the MPU-6050 does away with the cross-axis alignment problems that can creep up on discrete parts.
+
+      For more information click [here](http://playground.arduino.cc/Main/MPU-6050).
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/tty.usbmodem1421' },
           device: { name: 'mpu6050', driver: 'mpu6050' },
-        ...
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -55,7 +55,7 @@ raspberry_platform: true
           work: function(my) {
             every((1).seconds(), function() {
               my.mpu6050.getMotionAndTemp(function(data) {
-                Logger.info(data);
+                console.log(data);
               });
 
             });
@@ -68,7 +68,6 @@ raspberry_platform: true
     = partial "/documentation/drivers/partials/i2c/commands_mpu6050"
   .commands-api#Events
     = partial "/documentation/drivers/partials/i2c/events_mpu6050"
-
 
 %section.circuit#Circuit
   %h2 Circuit

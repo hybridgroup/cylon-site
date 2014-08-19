@@ -13,7 +13,7 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#tessel li:nth-child(7)").addClass("active-link");
@@ -21,33 +21,34 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-gps.jpg", class: "display"
   .info-intro
-    %p Detect your global position.
-    %p Helps you figure out where you are– and where you're going!
-    %ul
-      %li Up to 1.8m accuracy
-      %li 66 search channels, 22 tracking channels, -165dBM sensitivity
-      %li Max 10Hz update rate
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/gps", target: :blank
+    :markdown
+      Detect your global position.
+
+      Helps you figure out where you are– and where you're going!
+
+      - Up to 1.8m accuracy
+      - 66 search channels, 22 tracking channels, -165dBM sensitivity
+      - Max 10Hz update rate
+
+      For more info visit [here](http://start.tessel.io/modules/gps).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'gps', driver: 'gps-a2235h' },
-        ...
-
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -91,51 +92,70 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 gps.powerOff( callback() )
-    %p Turns the GPS chip off.
+    :markdown
+      # Commands
 
-    %h2 gps.powerOn( callback() )
-    %p Turns the GPS chip on.
+      ## gps.powerOff( callback() )
 
-    %h2 gps.setCoordinateFormat( format, callback() )
-    %p Configure how the module reports latitude and longitude: options are 'deg-min-sec', 'deg-min-dec', and 'deg-dec'.
+      Turns the GPS chip off.
+
+      ## gps.powerOn( callback() )
+
+      Turns the GPS chip on.
+
+      ## gps.setCoordinateFormat( format, callback() )
+
+      Configure how the module reports latitude and longitude: options are 'deg-min-sec', 'deg-min-dec', and 'deg-dec'.
+
   .commands-api#Events
-    %h1 Events
-    %h2 gps.on( 'altitude', callback(altitudeObj) )
-    %p Emitted when altitude data is available. Emitted in the form {altitude in meters, timestamp}.
+    :markdown
+      # Events
 
-    %h2 gps.on( 'coordinates', callback(coordinateObj) )
-    %p Emitted when coordinate data is available. Emitted in the form {latitude, longitude, timestamp}.
+      ## 'altitude'
 
-    %h2 gps.on( 'error', callback(err) )
-    %p Emitted upon error.
+      Emitted when altitude data is available. Emitted in the form {altitude in meters, timestamp}.
 
-    %h2 gps.on( 'powerOff', callback() )
-    %p Emitted when the module has been powered off.
+      ## 'coordinates'
 
-    %h2 gps.on( 'powerOn', callback() )
-    %p Emitted when the module has been powered on.
+      Emitted when coordinate data is available. Emitted in the form {latitude, longitude, timestamp}.
 
-    %h2 gps.on( 'ready', callback() )
-    %p Emitted upon first successful communication between the Tessel and the module.
+      ## 'error'
 
-    %h4 Also emits parsed NMEA objects by type:
+      Emitted upon error.
 
-    %h2 gps.on( 'active-satellites', callback(data) )
-    %p NMEA GPGSA: GPS DOP and active satellites.
+      ## 'powerOff'
 
-    %h2 gps.on( 'fix', callback(data) )
-    %p NMEA GPGGA: Global positioning system fix data.
+      Emitted when the module has been powered off.
 
-    %h2 gps.on( 'nav-info', callback(data) )
-    %p NMEA GPRMC: Recommended minimum specific GPS/Transit data.
+      ## 'powerOn'
 
-    %h2 gps.on( 'satellite-list-partial', callback(data) )
-    %p NMEA GPGSV: GPS satellites in view.
+      Emitted when the module has been powered on.
 
-    %h2 gps.on( 'track-info', callback(data) )
-    %p NMEA GPVTG: Track made good and ground speed.
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
+
+      #### Also emits parsed NMEA objects by type:
+
+      ## 'active-satellites'
+
+      NMEA GPGSA: GPS DOP and active satellites.
+
+      ## 'fix'
+
+      NMEA GPGGA: Global positioning system fix data.
+
+      ## 'nav-info'
+
+      NMEA GPRMC: Recommended minimum specific GPS/Transit data.
+
+      ## 'satellite-list-partial'
+
+      NMEA GPGSV: GPS satellites in view.
+
+      ## 'track-info'
+
+      NMEA GPVTG: Track made good and ground speed.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

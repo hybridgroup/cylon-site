@@ -18,7 +18,7 @@ spark_platform: true
 digispark_platform: true
 pinoccio_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#gpio li:nth-child(10)").addClass("active-link");
@@ -26,37 +26,34 @@ pinoccio_platform: true
 %section.intro
   = image_tag "/images/devices/servo.jpg", class: "display"
   .info-intro
-    %p Provides an interface for making servos easy to work and interact with from Cylon.js.
-    %p
-      For more information click
-      = link_to "here.", "http://en.wikipedia.org/wiki/Servomechanism", target: "_blank"
+    :markdown
+      Provides an interface for making servos easy to work and interact with from Cylon.js.
+
+      For more information click [here](http://en.wikipedia.org/wiki/Servomechanism).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'servo', driver: 'servo', pin: 3},
-        ...
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'servo', driver: 'servo', pin: 3 },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
+  :markdown
+    ## How To Use
+
     This example moves a servo from angle 45 to 90 to 135.
 
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'servo', driver: 'servo', pin: 3},
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'servo', driver: 'servo', pin: 3 },
 
           work: function(my) {
             var angle = 45 ;
@@ -70,7 +67,6 @@ pinoccio_platform: true
             });
           }
         }).start();
-
 
 %section.public-methods
   .commands-api#Commands

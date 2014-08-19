@@ -13,7 +13,7 @@ subnavjs: true
 
 neurosky_driver: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(14)").addClass("active-link");
@@ -22,88 +22,83 @@ neurosky_driver: true
   = image_tag "/images/devices/neurosky.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p NeuroSky delivers fully integrated, single chip EEG biosensors. NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.
+    :markdown
+      NeuroSky delivers fully integrated, single chip EEG biosensors.
+      NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.
 
-    %p
-      For more info about the Neurosky platform click
-      = succeed "." do
-        = link_to "here", "http://neurosky.com/products-markets/eeg-biosensors/hardware/", target: :blank
+      For more info about the Neurosky platform click [here](http://neurosky.com/products-markets/eeg-biosensors/hardware/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing cylon.js with Neurosky support is pretty easy.
   :markdown
-        :::javascript
-        npm install cylon-neurosky
+    ## How To Install
+
+        $ npm install cylon-neurosky
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This example displays the Attention and Meditation data reading sent by the Mindwave Headset:
-
   :markdown
+    ## How To Use
+
+    This example displays the Attention and Meditation data reading sent by the Mindwave Headset:
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection:
-            {name: 'neurosky', adaptor: 'neurosky', port: '/dev/rfcomm0'},
+          connection: {
+            name: 'neurosky',
+            adaptor: 'neurosky',
+            port: '/dev/rfcomm0'
+          },
 
-          device:
-            {name: 'headset', driver: 'neurosky'},
+          device: { name: 'headset', driver: 'neurosky' },
 
           work: function(my) {
             my.headset.on('attention', function(data) {
-              Logger.info("attention:" + data);
+              console.log("attention:" + data);
             });
+
             my.headset.on('meditation', function(data) {
-              Logger.info("meditation:" + data);
+              console.log("meditation:" + data);
             });
           }
-        });
-
-        Cylon.start();
+        }).start();
 
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 OSX
-
-  %p In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth > Open Bluetooth Preferences > Sharing Setup" and make sure that "Bluetooth Sharing" is checked.
-
-  %h3  Ubuntu
-
-  %p
-    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using
-    = link_to "Gort", "http://gort.io"
-    commands. Here are the steps:
-
-  %p Find the address of the Mindwave, by using:
   :markdown
-        :::bash
-        gort scan bluetooth
+    ## How To Connect
 
-  %p Pair to Mindwave using this command (substituting the actual address of your Mindwave):
-  :markdown
-        :::bash
-        gort bluetooth pair <address>
+    ### OSX
 
-  %p Connect to the Mindwave using this command (substituting the actual address of your Mindwave):
-  :markdown
-        :::bash
-        gort bluetooth connect <address>
+    In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth > Open Bluetooth Preferences > Sharing Setup" and make sure that "Bluetooth Sharing" is checked.
 
+    ### Ubuntu
 
-  %h3  Windows
+    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using [Gort](http://gort.io) commands.
+    Here are the steps:
 
-  %p
-    :markdown
-      You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as `COM3`.
+    Find the address of the Mindwave, by using:
 
+        $ gort scan bluetooth
+
+    Pair to Mindwave using this command (substituting the actual address of your Mindwave):
+
+        $ gort bluetooth pair <address>
+
+    Connect to the Mindwave using this command (substituting the actual address of your Mindwave):
+
+        $ gort bluetooth connect <address>
+
+    ### Windows
+
+    You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as `COM3`.
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the Neurosky Mindwave platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the Neurosky Mindwave platform are listed below.
 
   .hardware
     .devices

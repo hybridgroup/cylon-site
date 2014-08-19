@@ -13,7 +13,7 @@ subnavjs: true
 
 pinoccio_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#pinoccio li:nth-child(1)").addClass("active-link");
@@ -21,38 +21,17 @@ pinoccio_platform: true
 %section.intro
   =image_tag "/images/devices/pinoccio_led.jpg", class: "display"
   .info-intro
-    %p
-    %p
-      For more information click
-      = link_to "here", "https://pinocc.io/", target: "_blank"
+    :markdown
+      For more information click [here](https://pinocc.io/).
 
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
+
+    ## How To Connect
     Install the module with: `npm install cylon-pinoccio`
 
-  :markdown
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connection: {
-          	name: 'pinoccio',
-          	adaptor: 'pinoccio',
-          	token: 'XXX',
-          	troop: '1',
-          	scout: '1' },
-          device: {name: 'led', driver: 'pinoccio-led'},
-        ...
-
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %h3 Example
-
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 
@@ -62,8 +41,30 @@ pinoccio_platform: true
             adaptor: 'pinoccio',
             token: 'XXX',
             troop: '1',
-            scout: '1' },
-          device: {name: 'led', driver: 'pinoccio-led'},
+            scout: '1'
+          },
+
+          device: { name: 'led', driver: 'pinoccio-led' },
+        });
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: 'XXX',
+            troop: '1',
+            scout: '1'
+          },
+
+          device: { name: 'led', driver: 'pinoccio-led' },
 
           work: function(my) {
             var isOn = false;
@@ -83,73 +84,116 @@ pinoccio_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 turnOn()
-    %p Turns on the LED
-    %h2 turnOff()
-    %p Turns off the LED
-    %h2 red()
-    %p Sets the LED into a red color
-    %h2 green()
-    %p Sets the LED into a green color
-    %h2 blue()
-    %p Sets the LED into a blue color
-    %h2 cyan()
-    %p Sets the LED into a cyan color
-    %h2 purple()
-    %p Sets the LED into a purple color
-    %h2 magenta()
-    %p Sets the LED into a magenta color
-    %h2 yellow()
-    %p Sets the LED into a yellow color
-    %h2 orange()
-    %p Sets the LED into a orange color
-    %h2 white()
-    %p Sets the LED into a white color
-    %h2 torch()
-    %p Sets the torch of the LED
-    %h2 hex(value)
-    %p Sets an hexa color to the LED
-    %h5 Params
     :markdown
+      # Commands
+
+      ## turnOn()
+
+      Turns on the LED
+
+      ## turnOff()
+
+      Turns off the LED
+
+      ## red()
+
+      Sets the LED into a red color
+
+      ## green()
+
+      Sets the LED into a green color
+
+      ## blue()
+
+      Sets the LED into a blue color
+
+      ## cyan()
+
+      Sets the LED into a cyan color
+
+      ## purple()
+
+      Sets the LED into a purple color
+
+      ## magenta()
+
+      Sets the LED into a magenta color
+
+      ## yellow()
+
+      Sets the LED into a yellow color
+
+      ## orange()
+
+      Sets the LED into a orange color
+
+      ## white()
+
+      Sets the LED into a white color
+
+      ## torch()
+
+      Sets the torch of the LED
+
+      ## hex(value)
+
+      Sets an hexa color to the LED
+
+      ##### Params
+
       - **value** - The value for which to return data
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 rgb(r, g, b)
-    %p Sets an RGB color to the LED
-    %h5 Params
-    :markdown
+
+      ## rgb(r, g, b)
+
+      Sets an RGB color to the LED
+
+      ##### Params
+
       - **r** - The value for the red color
       - **g** - The value for the green color
       - **b** - The value for the blue color
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 saveTorch(r, g, b)
-    %p Saves the torch of the LED
-    %h5 Params
-    :markdown
+
+      ## saveTorch(r, g, b)
+
+      Saves the torch of the LED
+
+      ##### Params
+
       - **r** - The value for the red color
       - **g** - The value for the green color
       - **b** - The value for the blue color
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 blink(r, g, b)
-    %p Makes the LED blink
-    %h5 Params
-    :markdown
+
+      ## blink(r, g, b)
+
+      Makes the LED blink
+
+      ##### Params
+
       - **r** - The value for the red color
       - **g** - The value for the green color
       - **b** - The value for the blue color
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
 
   .commands-api#Events
-    %h1 Events
-    %p no commands
+    :markdown
+      # Events
+
+      no events
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

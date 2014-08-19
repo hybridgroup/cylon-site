@@ -35,7 +35,7 @@ tessel_infrared_module: true
 tessel_relay_module: true
 tessel_servo_module: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(24)").addClass("active-link");
@@ -44,40 +44,43 @@ tessel_servo_module: true
   = image_tag "/images/devices/tessel.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p Tessel runs JavaScript—no server necessary. Just like web or mobile development, use your own IDE and libraries to program physical applications.
 
     :markdown
-      Tessel supports packages from `npm` to leverage the growing Node.js community and capabilities. That's HTTP, Twitter, web server, color, and async support right out of the box. Uploading new code is as easy as `tessel push`!
+      Tessel runs JavasScript - no server necessary.
+      Just like web or mobile development, you can use your own IDE and libraries to program hardware.
 
-    %p
-      For more info about the Tessel platform click
-      = succeed "." do
-        = link_to "here", "http://tessel.io/", target: :blank
+      Tessel supports packages from `npm` to leverage the growing Node.js community and capabilities.
+      That's HTTP, Twitter, web server, color, and async support right out of the box.
+      Uploading new code is as easy as `tessel push`!
+
+      For more info about the Tessel platform click [here](http://tessel.io/).
 
   .clear
 
-
 %section.how-to#HowToInstall
-  %h2 How to install
-  %p
-    Follow the installation instructions detailed
-    = link_to "here", "http://start.tessel.io/install", target: :blank
-  %p You may now use the Cylon command line interface to generate a new Tessel project.
   :markdown
-        :::javascript
-         $ sudo npm install -g cylon-cli
-         $ cylon generate tessel my-tessel-project
-         $ cd my-tessel-project
-         $ npm install
-         $ tessel run blink.js
+    ## How to install
 
-  %p If the blue light starts to blink, then you're all set!
+    Follow the installation instructions detailed [here](http://start.tessel.io/install).
+
+    You can use the Cylon CLI to generate a new Tessel project:
+
+        $ sudo npm install -g cylon-cli
+        $ cylon generate tessel my-tessel-project
+        $ cd my-tessel-project
+        $ npm install
+        $ tessel run blink.js
+
+    If the blue light starts to blink, then you're all set!
 
 %section.how-to#HowToUse
-  %h2 How to use
-  %h3 LED
-  %p This small program lets you toggle an LED on and off.
   :markdown
+    ## How to use
+
+    ### LED
+
+    This small program lets you toggle an LED on and off.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -86,18 +89,23 @@ tessel_servo_module: true
           device: { name: 'led', driver: 'led', pin: 2 },
 
           work: function(my) {
-            every((1).seconds(), function() { my.led.toggle() });
+            every((1).seconds(), function() {
+              my.led.toggle();
+            });
           }
         }).start();
-  %h3 Climate
-  %p This small program shows how to use the Tessel Climate module.
-  :markdown
+
+    ### Climate
+
+    This small program shows how to use the Tessel Climate module.
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'climate', driver: 'climate-si7005' },
+
           work: function(my) {
             my.climate.on('error', function (err) {
               console.log(err)
@@ -107,6 +115,7 @@ tessel_servo_module: true
               my.climate.readHumidity(function (err, humid) {
                 console.log('Humidity:', humid.toFixed(4) + '%RH');
               });
+
               my.climate.readTemperature('f', function (err, temp) {
                 console.log('Degrees:', temp.toFixed(4) + 'F');
               });
@@ -115,21 +124,19 @@ tessel_servo_module: true
         }).start();
 
 %section.how-to#HowToConnect
-  %h2 How to Connect
-  %p
-    As mentioned in the section above (How to install) connecting to the Tessel is easy,
-    you just need to follow the detailed instructions provided in the tessel site:
-  %a{ href: "http://start.tessel.io/install" } http://start.tessel.io/install
-  %p
-    If you followed the instructions in the previous two sections, your Tessel should be already connected,
-    and ready to run Cylon.js, you can skip ahead and start coding, if you skipped on the Tessel site instructions,
-    follow the link provided
-    %a{ href: "https://tessel.io/install/" } here
-    and complete all appropiate steps for your OS.
+  :markdown
+    ## How to Connect
+
+    As mentioned in the How To Install section, connecting to the Tessel is easy.
+    You just need to follow the provided instructions on the [Tessel site](http://start.tessel.io/install).
+
+    If you've already done this, your Tessel should already be connected and ready to run Cylon.JS code.
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the Tessel platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the Tessel platform are listed below.
 
   .hardware
     // TODO: Update drivers list at the top of the page.

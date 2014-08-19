@@ -13,7 +13,7 @@ subnavjs: true
 
 speech_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(4)").addClass("active-link");
@@ -21,32 +21,27 @@ speech_platform: true
 %section.intro
   = image_tag "/images/devices/espeak.png", class: "display"
   .info-intro
-    %p eSpeak is a compact open source software speech synthesizer for English and other languages, for Linux and Windows. 
-    %p Learn more about eSpeak <a href='http://espeak.sourceforge.net' target='_blank'>here</a>.
+    :markdown
+      eSpeak is a compact open source software speech synthesizer for English and other languages, for Linux and Windows.
+
+      Learn more about eSpeak [here](http://espeak.sourceforge.net).
 
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {
-            name: 'speech',
-            adaptor: 'speech'
-          },
-
-          device: {
-            name: 'mouth',
-            driver: 'speech'
-          },
-        ...
+          connection: { name: 'speech', adaptor: 'speech' },
+          device: { name: 'mouth', driver: 'speech' },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -55,28 +50,30 @@ speech_platform: true
           // both connections below will reproduce with the same voice.
           // connection: { name: 'speech', adaptor: 'speech', language: 'en, gender: 'f', 'voice: '3' },
           connection: { name: 'speech', adaptor: 'speech', voice: 'en-f3', speed: 130 },
-          device: {name: 'mouth', driver: 'speech'},
+          device: { name: 'mouth', driver: 'speech' },
 
           work: function(my) {
             my.mouth.say("This is awesome!");
             my.mouth.say("I'm a Cylon.JS robot, and I'm talking!");
           }
-        }).start(); 
-
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commads
+    :markdown
+      # Commads
 
-    %h2 say(message)
-    %p Reproduces the text string passed as audio, text to speech.
+      ## say(message)
+
+      Reproduces the text string passed as audio, text to speech.
 
   .commands-api#Events
-    %h1 Events
-    %p no events
+    :markdown
+      # Events
+
+      no events
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
     = partial "documentation/partials/devices_platforms"
-

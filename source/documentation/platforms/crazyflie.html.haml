@@ -14,7 +14,7 @@ subnavjs: true
 crazyflie_flight_driver: true
 
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(6)").addClass("active-link");
@@ -22,68 +22,55 @@ crazyflie_flight_driver: true
 %section.intro
   = image_tag "/images/devices/crazyflie.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
-    %p You can use Cylon.js with the Crazyflie micro-quadcopter.
+    :markdown
+      You can use Cylon.js with the Crazyflie micro-quadcopter.
 
-    %p
-      This module provides an adaptor and drivers for the Crazyflie nanocopter
-      =link_to "(http://www.bitcraze.se/)", "http://www.bitcraze.se/", target: :_blank
-      \. It uses the Aerogel node module
-      =link_to "(https://github.com/ceejbot/aerogel)", "https://github.com/ceejbot/aerogel", target: :_blank
-      created by @ceejbot thank you!
+      This module provides an adaptor and drivers for the [Crazyflie nanocopter](http://www.bitcraze.se/).
+      It uses the [Aerogel](https://github.com/ceejbot/aerogel) node module, created by @ceejbot.
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %h3 Installation - All Platforms
-  %p Install the module with:
   :markdown
-        :::bash
-        npm install cylon-crazyflie
+    ## How To Install
 
-  %p
-    You will also need to install the latest beta of firmware to the Crazyflie itself to use the 'hover' mode from
-    =link_to "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin", "https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin", target: :blank
+    ### Dependencies
 
-  %h3 Ubuntu
+    On Linux, you need to install some packages before you can install the NPM module:
 
-  %p
-    On Ubuntu, you will need to run:
+        $ sudo apt-get install build-essential pkg-config libusb-1.0-0-dev
 
-  :markdown
-        :::bash
-        sudo apt-get install build-essential pkg-config libusb-1.0-0-dev
+    And on OS X, you need to have the `libusb` package to install the module:
 
-    before you will be able to run `npm install cylon-crazyflie`
+        $ brew install libusb
 
-  %h3 OSX
-  :markdown
-    On OSX, you will need to run:
+    Install the module with:
 
-        :::bash
-        brew install libusb
+        $ npm install cylon-crazyflie
 
-    before you will be able to run `npm install cylon-crazyflie`
-
-
+    You will also need to install the latest beta firmware to the Crazyflie itself to use the 'hover' mode:
+    [https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin](https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin).
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program causes the Crazyflie to takeoff for 10 seconds.
   :markdown
+    ## How To Use
+
+    This small program causes the Crazyflie to takeoff for 10 seconds.
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'crazyflie', adaptor: 'crazyflie', port: 'radio://1/10/250KPS' },
-          device: {name: 'drone', driver: 'crazyflie'},
+          device: { name: 'drone', driver: 'crazyflie' },
 
           work: function(my) {
             my.drone.on('start', function() {
               my.drone.takeoff();
+
               after((10).seconds(), function() {
                 my.drone.land();
               });
+
               after((15).seconds(), function() {
                 my.drone.stop();
               });
@@ -91,29 +78,24 @@ crazyflie_flight_driver: true
           }
         }).start();
 
-  %h2 Hover Mode
-  :markdown
+    ## Hover Mode
+
         :::javascript
         my.drone.setParam('flightmode.althold', true);
 
-  %h2 How to connect
-  %p
-    The Crazyflie uses a 2.4 GHz radio to communicate. There is a
-    USB dongle called the Crazyradio that is required to control the Crazyflie quadcopter.
-  %p
-    If you are have a USB 3.0 port, you might run into this issue
-    %br
-    %a{ href: "http://stackoverflow.com/questions/17204253/crazyflie-usb-3-0-incompability"} http://stackoverflow.com/questions/17204253/crazyflie-usb-3-0-incompability
+    ## How to connect
 
-  %h3 Ubuntu
-  %p
-    You need to install some udev-rules to be able to communicate with the crazyflie,
-    it is a good thing that we have a
-    %a{ href: "http://gort.io" } Gort
-    command that does just that:
+      The Crazyflie uses a 2.4 GHz radio to communicate.
+      There is a USB dongle called the Crazyradio that is required to control the Crazyflie quadcopter.
 
-  :markdown
-        :::bash
+      If you are have a USB 3.0 port, you might run into this issue:
+
+      [http://stackoverflow.com/questions/17204253/crazyflie-usb-3-0-incompability](http://stackoverflow.com/questions/17204253/crazyflie-usb-3-0-incompability).
+
+    ### Ubuntu
+
+    You need to install some udev-rules to be able to communicate with the crazyflie, it is a good thing that we have a [Gort](http://gort.io) command that does just that:
+
         $ gort crazyflie set-udev-rules
 
 %section.drivers#Drivers

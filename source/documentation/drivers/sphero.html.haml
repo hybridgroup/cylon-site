@@ -14,7 +14,7 @@ subnavjs: true
 
 sphero_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(9)").addClass("active-link");
@@ -22,49 +22,47 @@ sphero_platform: true
 %section.intro
   =image_tag "/images/devices/sphero.jpg", class: "display"
   .info-intro
-    %p Allows user to interact with the Sphero robotic sphero using Cylon.js.
-    %p
-      For more information click
-      = link_to "here", "http://www.gosphero.com/", target: "_blank"
+    :markdown
+      Allows user to interact with the Sphero robotic sphero using Cylon.js.
+
+      For more information click [here](http://www.gosphero.com/).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p
+  :markdown
+    ## How To Connect
+
     That is pretty simple once the Sphero is ready (connected and listening), you just need three lines of code and you are set,
+
     Cylon.js and the Sphero driver take care of the rest.
 
-    :markdown
-          :::javascript
-          var Cylon = require('cylon');
-
-          Cylon.robot({
-            connection: {name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0'},
-
-            device: {name: 'sphero', driver: 'sphero'},
-          ...
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
+          device: { name: 'sphero', driver: 'sphero' },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
+  :markdown
+    ## How To Use
+
     This example rolls the sphero in a random direction and change direction every second.
 
-    :markdown
-          :::javascript
+        :::javascript
 
-          var Cylon = require('cylon');
+        var Cylon = require('cylon');
 
-          Cylon.robot({
-            connection: {name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0'},
+        Cylon.robot({
+          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
 
-            device: {name: 'sphero', driver: 'sphero'},
+          device: { name: 'sphero', driver: 'sphero' },
 
-            work: function(me) {
-              every((1).second(), function() {
-                me.sphero.roll 60, Math.floor(Math.random() * 360)
-              });
-            }
-          }).start();
+          work: function(me) {
+            every((1).second(), function() {
+              me.sphero.roll 60, Math.floor(Math.random() * 360)
+            });
+          }
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
@@ -856,7 +854,6 @@ sphero_platform: true
       %td.command
         %span yellowgreen
       %td 0x9ACD32
-
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

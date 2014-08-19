@@ -13,7 +13,7 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#tessel li:nth-child(6)").addClass("active-link");
@@ -21,39 +21,43 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-climate.jpg", class: "display"
   .info-intro
-    %p Detect humidity and temperature from your environment.
-    %p Monitor your plants or exotic pets. Pull weather data from the internet and replicate a climate by hooking up relays to fan/heater/humidifiers.
-    %ul
-      %li Measure 0 to 70 °C (32 to 160 °F) with ±1° accuracy
-      %li Measure 0% to 80% relative humidity
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/climate", target: :blank
+    :markdown
+
+      Detect humidity and temperature from your environment.
+
+      Monitor your plants or exotic pets.
+      Pull weather data from the internet and replicate a climate by hooking up relays to fan/heater/humidifiers.
+
+      - Measure 0 to 70 °C (32 to 160 °F) with ±1° accuracy
+      - Measure 0% to 80% relative humidity
+
+      For more info visit [here](http://start.tessel.io/modules/climate).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'climate', driver: 'climate-si7005' },
-          work: function(my) {
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'climate', driver: 'climate-si7005' },
+
           work: function(my) {
             my.climate.on('error', function (err) {
               console.log(err)
@@ -72,31 +76,46 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 climate.use ( interface[, csn] )
-    %p Takes in the port bank that the module is connected to. Returns the Climate object.
+    :markdown
+      # Commands
 
-    %h2 climate.readTemperature ( [format,] callback(err, temp) )
-    %p Returns the temperature in degrees Celcius or Fahrenheit.
+      ## climate.use ( interface[, csn] )
 
-    %h2 climate.readHumidity ( callback(err, humidity) )
-    %p Returns the relative humidity.
+      Takes in the port bank that the module is connected to. Returns the Climate object.
 
-    %h2 climate.setHeater ( bool[, callback(err)] )
-    %p Sets the HEAT config register. The heater evaporates off any moisture that may condense on the sensor in high humidty environments. Enabling the heater will inreases the accuracy of humidity measurements but will interfere with temperature measurement.
+      ## climate.readTemperature ( [format,] callback(err, temp) )
 
-    %h2 climate.setFastMeasure ( bool[, callback(err)] )
-    %p Sets the FAST config register.
+      Returns the temperature in degrees Celcius or Fahrenheit.
+
+      ## climate.readHumidity ( callback(err, humidity) )
+
+      Returns the relative humidity.
+
+      ## climate.setHeater ( bool[, callback(err)] )
+
+      Sets the HEAT config register.
+      The heater evaporates off any moisture that may condense on the sensor in high humidty environments.
+      Enabling the heater will inreases the accuracy of humidity measurements but will interfere with temperature measurement.
+
+      ## climate.setFastMeasure ( bool[, callback(err)] )
+
+      Sets the FAST config register.
   .commands-api#Events
-    %h1 Events
-    %h2 climate.on ( 'ready' )
-    %p Emitted when upon first successful communication between the Tessel and the module.
+    :markdown
+      # Events
 
-    %h2 climate.on ( 'temperature'[,callback(temperature, temp_type)] )
-    %p Emitted when temperature data is received. Internal to the readTeperature method, useful when another module is triggered by climate data.
+      ## 'ready'
 
-    %h2 climate.on ( 'humidity'[,callback(humidity)] )
-    %p Emitted when humidity data is received. Internal to the readHumidity method, useful when another module is triggered by climate data.
+      Emitted when upon first successful communication between the Tessel and the module.
+
+      ## 'temperature'
+
+      Emitted when temperature data is received.
+      Internal to the readTeperature method, useful when another module is triggered by climate data.
+
+      ## 'humidify'
+
+      Emitted when humidity data is received. Internal to the readHumidity method, useful when another module is triggered by climate data.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

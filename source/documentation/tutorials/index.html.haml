@@ -7,7 +7,7 @@ layout: documentation
 page_title_show: true
 ---
 
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#tutorial-panel").addClass("active-panel");
     $("#tutorial-panel li:nth-child(1)").addClass("active-link");
@@ -282,27 +282,27 @@ page_title_show: true
 
           work: function(my) {
             my.leapmotion.on('connect', function() {
-              Logger.info("Connected");
+              console.log("Connected");
             });
 
             my.leapmotion.on('start', function() {
-              Logger.info("Started");
+              console.log("Started");
             });
 
             my.leapmotion.on('frame', function(frame) {
-              Logger.info(frame.toString());
+              console.log(frame.toString());
             });
 
             my.leapmotion.on('hand', function(hand) {
-              Logger.info(hand.toString());
+              console.log(hand.toString());
             });
 
             my.leapmotion.on('pointable', function(pointable) {
-              Logger.info(pointable.toString());
+              console.log(pointable.toString());
             });
 
             my.leapmotion.on('gesture', function(gesture) {
-              Logger.info(gesture.toString());
+              console.log(gesture.toString());
             });
           }
         });

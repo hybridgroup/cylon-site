@@ -7,161 +7,49 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#guides-panel").addClass("active-panel");
     $("#guides-panel ul li:nth-child(4)").addClass("active-link");
-    
+
 .cli
-  %h1 What is it?
-  %p
-    Cylon uses the Gort (<a href="http://gort.io">http://gort.io</a>) Command Line Interface (CLI) so you can access important features right from the command line. We call it "RobotOps", aka "DevOps For Robotics". You can scan, connect, update device firmware, and more!
-
-  %p
-    Cylon also has its own CLI to generate new robots, adaptors, and drivers.
-
-  %p
-    Gort
-    =link_to "(http://gort.io)", "http://gort.io", target: :blank
-    is a Command Line Interface (CLI) for RobotOps. Gort provides tools to scan for connected devices, upload firmware, and more.
-
-  %h2 How to Install
-  %p
-    For the commands to be available everywhere the cylon module needs to be installed globally.
-    Here's how to do it.
-
   :markdown
-        :::bash
-        $ sudo npm install -g cylon-cli
+    # What Is It?
 
-  %p You install the Cylon CLI separately from the rest of Cylon.js, which means you can use it to generate new projects, or drivers to be used across multiple projects.
+    Cylon works hand-in-hand with [Gort](http://gort.io), our command-line toolkit for "RobotOps", a.k.a. "DevOps for Robotics"
+    You can use it to scan for hardware, connect to devices, update firmware, and more!
 
-  %h2 How can I use it?
-  %p
-    :markdown
-      The Cylon.JS CLI generators are easy to use, designed to be intuitive, and offer contextual help regarding the commands you're using. Once you have the `cylon-cli` module installed globally, the generators will be available at all times.
+    Cylon also has it's own CLI tool, used to generate new modules, robots, and drivers.
 
-  %h3 Printing a list of available commands
-  :markdown
-        :::bash
+    This page will be talking about the Cylon-CLI tool, but if you'd like to find out more about Gort, check out [its site](http://gort.io).
+
+    ## How To Install
+
+    You can install the Cylon CLI tool through NPM.
+    It's preferred to install it globally, to ensure the tool is available to you everywhere:
+
+        $ [sudo] npm install -g cylon-cli
+
+    After installing this, you should have the `cylon` command available.
+
+    ## Usage
+
+    Running the command itself will provide a list of available subcommands:
+
         $ cylon
 
-        Usage: cylon [command] [options]
+          Usage: cylon [command] [options]
 
-        Commands:
+          Commands:
+            generate [module|driver|robot|tessel] [name]
+                Generate new Cylon components or modules
 
-          generate [module|driver|robot|tessel] [name]
-              Generate new Cylon components or modules
+            help
+                Prints help for using the Cylon-CLI commands.
 
-              Usage:
+    The `generate` command can be used to create:
 
-                cylon generate module [name] # generates a new cylon module
-                cylon generate driver [name] # generates a new driver class in ./lib
-                cylon generate robot [name] # generates a new robot in ./dir, complete with Test-Driven-Robotics harness
-                cylon generate tessel [name] # generates a new robot in ./dir, ready to go with Tessel
-
-
-  %h2 What Cylon CLI commands are available?
-  %p
-    If you have only installed cylon, the list of available commands is the one printed in the section above,
-    let's review them one by one.
-
-
-  %h3 $ cylon generate &#91;module|driver&#93; &#91;name&#93;
-  %h4 Description
-  %p Generate new Cylon components or modules.
-
-  :markdown
-        :::bash
-        $ cylon generate module octobot
-        Creating cylon-octobot adaptor.
-        Compiling templates.
-
-        $ cylon generate driver octobot
-        $ cat lib/octobot.js
-        "use strict";
-
-        var namespace = require('node-namespace');
-
-        namespace("Cylon.Drivers", function() {
-          this.Octobot = (function(klass) {
-            subclass(Octobot, klass);
-
-            function Octobot(opts) {
-              Octobot.__super__.constructor.apply(this, arguments);
-            }
-
-            Octobot.prototype.commands = function() {
-              return [];
-            };
-
-            Octobot.prototype.start = function() {
-              Octobot.__super__.start.apply(this, arguments);
-            };
-
-            return Octobot;
-
-          })(Cylon.Driver);
-        });
-
-        module.exports = Cylon.Drivers.Octobot;
-
-  %h4 Usage
-
-  %h5 $ cylon generate module [name]
-  %p Generates a new cylon module.
-  :markdown
-        :::bash
-        $ cylon generate module octobot
-        Creating new module octobot
-        Compiling templates for octobot
-
-  %h5 $ cylon generate driver [name]
-  :markdown
-    Generates a new driver class in `./lib` .
-
-        :::bash
-        $ cylon generate driver octobot
-        $ cat lib/octobot.js
-        "use strict";
-
-        var namespace = require('node-namespace');
-
-        namespace("Cylon.Drivers", function() {
-          this.Octobot = (function(klass) {
-            subclass(Octobot, klass);
-
-            function Octobot(opts) {
-              Octobot.__super__.constructor.apply(this, arguments);
-            }
-
-            Octobot.prototype.commands = function() {
-              return [];
-            };
-
-            Octobot.prototype.start = function() {
-              Octobot.__super__.start.apply(this, arguments);
-            };
-
-            return Octobot;
-
-          })(Cylon.Driver);
-        });
-
-        module.exports = Cylon.Drivers.Octobot;
-
-  %h5 $ cylon generate robot [name]
-  :markdown
-    Generates a new robot in `./name`, complete with Test-Driven-Robotics harness.
-
-        :::bash
-        $ cylon generate robot ./myRobot
-        Creating new robot in ./myRobot
-
-  %h5 $ cylon generate tessel [name]
-  :markdown
-    Generates a new robot in ./name, ready to go with Tessel
-
-        :::bash
-        $ cylon generate tessel ./myRobot
-        Creating new Tessel-ready robot in ./myRobot
+    - a new driver/adaptor module
+    - a new driver in a module
+    - a new test-driven robot
+    - a new robot, set up to run on the Tessel

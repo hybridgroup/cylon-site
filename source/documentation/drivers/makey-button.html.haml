@@ -19,7 +19,7 @@ raspberry_platform: true
 spark_platform: true
 pinoccio_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#gpio li:nth-child(7)").addClass("active-link");
@@ -27,42 +27,36 @@ pinoccio_platform: true
 %section.intro
   = image_tag "/images/devices/makey-button.jpg", class: "display"
   .info-intro
-    %p
-      Inspired by the awesome MakeyMakey (<a href='http://makeymakey.com'>http://makeymakey.com</a>), this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino or Raspberry Pi to control your robots with bananas, clay, or drawable circuitry.
-    %p
-      For more information click
-      = link_to "here.", "https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide", target: "_blank"
+    :markdown
+      Inspired by the awesome [MakeyMakey](http://makeymakey.com), this GPIO driver allows you to connect a 10 MOhm resistor to a digital pin on your Arduino or Raspberry Pi to control your robots with bananas, clay, or drawable circuitry.
+
+      For more information click [here](https://learn.sparkfun.com/tutorials/makey-makey-quickstart-guide).
   .clear
 
-
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'makey-button', driver: 'makey-button', pin: 2},
-          ...
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'makey-button', driver: 'makey-button', pin: 2 },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
   :markdown
-        :::javascript
+    ## How To Use
 
+        :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0'},
-
-          device: {name: 'button', driver: 'makey-button', pin: 2},
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'makey-button', driver: 'makey-button', pin: 2 },
 
           work: function(my) {
             my.button.on('push', function() {
-              Logger.info("Button pushed!");
+              console.log("Button pushed!");
             });
           }
         }).start();
@@ -73,7 +67,6 @@ pinoccio_platform: true
   .commands-api#Events
     = partial "/documentation/drivers/partials/gpio/events_makey_button"
 
-
 %section.circuit#Circuit
   %h2 Circuit
   .description-circuit
@@ -81,7 +74,6 @@ pinoccio_platform: true
   .image-circuit
     %img{:src => "/documentation/drivers/breadboards/gpio/makey_button_bb.png", :alt => ""}/
   .clear
-
 
 %section.compatability.hardware#Compatability
   %h2 Compatability

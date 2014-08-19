@@ -12,7 +12,7 @@ active_menu_platforms: true
 subnavjs: true
 
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(15)").addClass("active-link");
@@ -21,29 +21,29 @@ subnavjs: true
   = image_tag "/images/devices/opencv.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p OpenCV is a real-time computer vision library.
-    %p OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products. Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.
+    :markdown
 
-    %p
-      For more info about OpenCV click
-      = succeed "." do
-        = link_to "here", "http://opencv.org/", target: :blank
+      OpenCV is a real-time computer vision library.
 
+      OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library.
+      OpenCV was built to provide a common infrastructure for computer vision applications and to accelerate the use of machine perception in the commercial products.
+      Being a BSD-licensed product, OpenCV makes it easy for businesses to utilize and modify the code.
+
+      For more info about OpenCV click [here](http://opencv.org/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Cylon.js with Opencv support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-opencv
+    ## How To Install
 
+        $ npm install cylon-opencv
 
-  %p
-    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:
-    = link_to "you can see the docs here.", "http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction", target: :blank
-  %h3 Ubuntu
-  :markdown
+    In order to use OpenCV you first need to install it and make sure it is working correctly on your computer.
+    You can follow the tutorials in the [OpenCV site][site] to install it in your particular OS:
+
+    [site]: http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction
+
+    ### Ubuntu
         :::bash
         #!/bin/bash
         sudo apt-get -y install autoconf automake build-essential git libass-dev libgpac-dev \
@@ -88,14 +88,17 @@ subnavjs: true
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.
-  %p The following example shows how to connect to a camera and display the video feed in a window.
-  %p
-    Before running it be sure that "haarcascade_frontalface_alt.xml" file is referenced to the correct location,
-    you can download the file
-    = link_to 'here', 'https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml'
   :markdown
+
+    ## How To Use
+
+    Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.
+
+    The following example shows how to connect to a camera and display the video feed in a window.
+
+    Before running it be sure that `haarcascade_frontalface_alt.xml` file is referenced to the correct location.
+    You can download the file [here](https://github.com/hybridgroup/cylon-opencv/blob/master/examples/display_camera/haarcascade_frontalface_alt.xml).
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -103,10 +106,7 @@ subnavjs: true
           connection: { name: 'opencv', adaptor: 'opencv' },
 
           devices: [
-            {
-              name: 'window',
-              adaptor: 'opencv'
-            },
+            { name: 'window', adaptor: 'opencv' },
             {
               name: 'camera',
               driver: 'camera',

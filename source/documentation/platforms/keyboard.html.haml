@@ -13,7 +13,7 @@ subnavjs: true
 
 keyboard_driver: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(11)").addClass("active-link");
@@ -22,48 +22,50 @@ keyboard_driver: true
   = image_tag "/images/devices/keyboard.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p A keyboard is a typewriter-style device, which uses an arrangement of buttons or keys, to act as mechanical levers or electronic switches. Following the decline of punch cards and paper tape, interaction via teleprinter-style keyboards became the main input device for computers.
-    %p The Cylon adaptor for keyboard input.
-    %p
-      For more info about the Joystick platform click
-      = succeed "." do
-        = link_to "here", "http://en.wikipedia.org/wiki/Computer_keyboard", target: :blank
+    :markdown
+      The Cylon adaptor for keyboard input.
+
+      For more info about keyboards, click [here](http://en.wikipedia.org/wiki/Computer_keyboard).
 
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing cylon.js with a keyboard support is pretty easy.
   :markdown
-        :::javascript
-        npm install cylon-keyboard
+    ## How To Install
 
+    Installing cylon.js with a keyboard support is pretty easy.
+
+        $ npm install cylon-keyboard
 
 %section.how-to#HowToUse
-  %h2 How To Use
-
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'keyboard', adaptor: 'keyboard' },
-          device: {name: 'keyboard', driver: 'keyboard'},
+          device: { name: 'keyboard', driver: 'keyboard' },
 
           work: function(my) {
             my.keyboard.on('a', function(key) {
-              console.log("A PRESSED!");
+              console.log("a pressed");
             });
           }
         }).start();
 
 %section.how-to#HowToConnect
-  %h2 How to Connect
-  %p Plug the keyboard to your computer as usual.
+  :markdown
+    ## How to Connect
+
+    Plug the keyboard to your computer as usual.
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the keyboard platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the keyboard platform are listed below.
 
   .hardware
     .devices

@@ -7,22 +7,22 @@ page_subtitle: "Anyone can contribute to Cylon."
 layout: documentation
 active_menu_docs: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#contribute-panel").addClass("active-panel");
     $("#contribute-panel li:nth-child(1)").addClass("active-link");
 
-%h1 Guidelines
+:markdown
+  # Contribution Guidelines:
 
-%ul
-  %li All patches must be provided under the Apache 2.0 License
-  %li Please use the -s option in git to "sign off" that the commit is your work and you are providing it under the Apache 2.0 License
-  %li Submit a Github Pull Request to the appropriate branch and ideally discuss the changes with us in IRC.
-  %li We will look at the patch, test it out, and give you feedback.
-  %li Avoid doing minor whitespace changes, renamings, etc. along with merged content. These will be done by the maintainers from time to time but they can complicate merges and should be done seperately.
-  %li Take care to maintain the existing coding style.
-  %li Add unit tests for any new or changed functionality & lint and test your code using make test and make lint.
-  %li All pull requests should be "fast forward"
-  %li If there are commits after yours use “git rebase -i ”
-  %li If you have local changes you may need to use “git stash”
-  %li For git help see progit which is an awesome (and free) book on git
+  - All patches must be provided under the Apache 2.0 License.
+  - Please use the `-s` option in git to "sign off" that the commit is your work, and you're providing it under the Apache 2.0 License.
+  - Submit a GitHub PR to the appropriate branch (usually `dev`).
+    Ideally, discuss the changes with us in IRC beforehand.
+  - We'll look at the patch, test it out, and give you feedback.
+  - Please take care to maintain the existing coding style.
+  - If you are adding code, or changing existing functionality, please add unit tests, and test your code (`make test`).
+  - All PRs should be "fast forward"
+  - If there are commits after yours, use `git rebase -i` to rebase against the branch.
+
+  If you have any questions on Git usage, check out [git-scm.com](http://git-scm.com).

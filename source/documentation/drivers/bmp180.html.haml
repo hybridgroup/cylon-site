@@ -18,7 +18,7 @@ raspberry_platform: true
 spark_platform: true
 digispark_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(2)").addClass("active-link");
@@ -26,73 +26,78 @@ digispark_platform: true
 %section.intro
   = image_tag "/images/devices/bmp180.jpg", class: "display"
   .info-intro
-    %p
-      This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer. The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode. It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability.
-    %p
-      For more information click
-      = link_to "here.", "http://www.adafruit.com/products/1603", target: "_blank"
+    :markdown
+      This is a breakout board for the Bosch BMP180 high-precision, low-power digital barometer.
+      The BMP180 offers a pressure measuring range of 300 to 1100 hPa with an accuracy down to 0.02 hPa in advanced resolution mode.
+      It's based on piezo-resistive technology for high accuracy, ruggedness and long term stability.
+
+      For more information click [here](http://www.adafruit.com/products/1603).
 
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
         :::javascript
-        var Cylon = require('cylon');
-
         Cylon.robot({
-            connection:{name:'raspi', adaptor:'raspi'},
-            device:{name:'bmp180', driver:'bmp180'},
-        ...
-
+          connection: { name: 'raspi', adaptor: 'raspi' },
+          device: { name: 'bmp180', driver: 'bmp180' },
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
-    This example let you get the temperature, pressure and altitude.
   :markdown
+    ## How To Use
+
+    This example lets you get the temperature, pressure and altitude.
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-            connection:{name:'raspi', adaptor:'raspi'},
-            device:{name:'bmp180', driver:'bmp180'},
+            connection: { name: 'raspi', adaptor: 'raspi' },
+
+            device: { name: 'bmp180', driver: 'bmp180' },
 
             work: function(my) {
-                my.bmp180.getTemperature(function(err, val) {
-                    if(err) console.log(err);
-                    else {
-                        console.log("getTemperature call:");
-                        console.log("\tTemp: " + val.temp + " C");
-                    }
-                });
+              my.bmp180.getTemperature(function(err, val) {
+                if (err) {
+                  console.log(err);
+                  return;
+                }
 
-                after(1..seconds(), function() {
-                    my.bmp180.getPressure(1, function(err, val) {
-                        if(err) console.log(err);
-                        else {
-                            console.log("getPressure call:");
-                            console.log("\tTemperature: " + val.temp + " C");
-                            console.log("\tPressure: " + val.press + " Pa");
-                        }
-                    });
-                });
+                console.log("getTemperature call:");
+                console.log("\tTemp: " + val.temp + " C");
+              });
 
-                after(2..seconds(), function() {
-                    my.bmp180.getAltitude(1, null, function(err, val) {
-                        if(err) console.log(err);
-                        else {
-                            console.log("getAltitude call:");
-                            console.log("\tTemperature: " + val.temp + " C");
-                            console.log("\tPressure: " + val.press + " Pa");
-                            console.log("\tAltitude: " + val.alt + " m");
-                        }
-                    });
-                });
+              after((1).second(), function() {
+                my.bmp180.getPressure(1, function(err, val) {
+                  if (err) {
+                    console.log(err);
+                    return;
+                  }
 
+                  console.log("getPressure call:");
+                  console.log("\tTemperature: " + val.temp + " C");
+                  console.log("\tPressure: " + val.press + " Pa");
+                });
+              });
+
+              after((2).seconds(), function() {
+                my.bmp180.getAltitude(1, null, function(err, val) {
+                  if (err) {
+                    console.log(err);
+                    return;
+                  }
+
+                  console.log("getAltitude call:");
+                  console.log("\tTemperature: " + val.temp + " C");
+                  console.log("\tPressure: " + val.press + " Pa");
+                  console.log("\tAltitude: " + val.alt + " m");
+                });
+              });
             }
         }).start();
-
 
 %section.public-methods
   .commands-api#Commands

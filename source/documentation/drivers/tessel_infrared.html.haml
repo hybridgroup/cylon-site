@@ -13,7 +13,7 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#tessel li:nth-child(8)").addClass("active-link");
@@ -21,34 +21,36 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-infrared.jpg", class: "display"
   .info-intro
-    %p The Infrared (IR) Module can send and detect IR signals.
-    %p Use a Tessel as a remote for your TV, radio, or even another Tessel.
-    %ul
-      %li Transmits and receives from 30+ feet (line of sight)
-      %li Detects max 38kHz
-      %li IR Receiver
-      %li IR LED
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/ir", target: :blank
+    :markdown
+
+      The Infrared (IR) Module can send and detect IR signals.
+
+      Use a Tessel as a remote for your TV, radio, or even another Tessel.
+
+      - Transmits and receives from 30+ feet (line of sight)
+      - Detects max 38kHz
+      - IR Receiver
+      - IR LED
+
+      For more info visit [here](http://start.tessel.io/modules/ir).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'ir', driver: 'ir-attx4' },
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -89,22 +91,32 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 infrared.sendRawSignal(frequency, signalDurations, callback)
-    %p The primary method for sending data. The first argument is a frequency of signal in Hz, typically 38 but can range from 36 to 40. The second argument is a buffer of unsigned 16 bit integers representing the number of microseconds the transmission should be on. The max length of the signal durations is 100 durations.
+    :markdown
+      # Commands
 
-    %h2 infrared.setListening(set, callback)
-    %p Determines whether the module is listening for incoming signals. Will automatically be set and unset depending on listeners for the data event.
+      ## infrared.sendRawSignal(frequency, signalDurations, callback)
+
+      The primary method for sending data. The first argument is a frequency of signal in Hz, typically 38 but can range from 36 to 40. The second argument is a buffer of unsigned 16 bit integers representing the number of microseconds the transmission should be on. The max length of the signal durations is 100 durations.
+
+      ## infrared.setListening(set, callback)
+
+      Determines whether the module is listening for incoming signals. Will automatically be set and unset depending on listeners for the data event.
+
   .commands-api#Events
-    %h1 Events
-    %h2 infrared.on('data', callback(data))
-    %p Emitted when an infrared signal is detected.
+    :markdown
+      # Events
 
-    %h2 infrared.on('error', callback(err))
-    %p Emitted when there is an error communicating with the module.
+      ## 'data'
 
-    %h2 infrared.on('ready', callback())
-    %p Emitted upon first successful communication between the Tessel and the module.
+      Emitted when an infrared signal is detected.
+
+      ## 'error'
+
+      Emitted when there is an error communicating with the module.
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

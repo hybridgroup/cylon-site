@@ -13,7 +13,7 @@ subnavjs: true
 
 leapmotion_driver: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(12)").addClass("active-link");
@@ -22,30 +22,26 @@ leapmotion_driver: true
   = image_tag "/images/devices/leap_motion.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p The Leap Motion is a user-interface device that tracks the user's hand motions, and translates them into events that can control robots and physical computing hardware.
+    :markdown
+      The Leap Motion is a user-interface device that tracks the user's hand motions, and translates them into events that can control robots and physical computing hardware.
 
-    %p
-      For more info about the Leap Motion platform click
-      = succeed "." do
-        = link_to "here", "https://www.leapmotion.com/", target: :blank
+      For more info about the Leap Motion platform click [here](https://www.leapmotion.com/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing Cylon.js with leapmotion support is pretty easy.
   :markdown
-        :::bash
-        npm install cylon-leapmotion
-  %p
-    In order to use this module , you need to install the drivers/software from the Leapmotion site
-    =link_to "https://www.leapmotion.com/setup", "https://www.leapmotion.com/setup"
-    , make sure that is installed before use the commands and events (and SDK too if you want, but the SDK is not needed for cylon.js).
+    ## How To Install
 
+        $ npm install cylon-leapmotion
+
+    In order to use this module, you'll need to install the [Leap Motion software](https://www.leapmotion.com/setup) from their site.
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p This small program uses a Leap Motion to detect the user's hand position
   :markdown
+    ## How To Use
+
+    This small program uses a Leap Motion to detect the user's hand position
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -63,40 +59,35 @@ leapmotion_driver: true
 
           work: function(my) {
             my.leapmotion.on('hand', function(payload) {
-              Logger.info(payload.toString());
+              console.log(payload.toString());
             });
           }
         }).start();
 
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %h3 OSX
-  %p
-    This driver works out of the box with the vanilla installation of the Leap Motion Software that you get in their
-    =link_to "Setup Guide." ,"https://www.leapmotion.com/setup"
+  :markdown
+    ## How To Connect
 
-  %p The main steps are:
+    ### OS X
 
-  %ul
-    %li Run Leap Motion.app to open a websocket connection in port 6437.
-    %li Connect your Computer and Leap Motion Controller.
-    %li Connect to the device via Cylon.js.
+    Our driver works out-of-the-box with the vanilla installation of the [Leap Motion software](https://www.leapmotion.com/setup).
 
-  %h3 Ubuntu
-  %p
-    The Linux download of the Leap Motion software can be obtained from
-    =link_to "Leap Motion Dev Center", "https://developer.leapmotion.com/downloads"
-    (requires free signup)
-  %p The main steps are:
-  %ul
-    %li Run the leapd daemon to open a websocket connection in port 6437.
-    %li Connect your computer and the Leap Motion controller
-    %li Connect to the device via Cylon.js
+    ### Ubuntu
+
+    The Linux download of the Leap Motion software can be obtained from the [Leap Motion Dev Center](https://developer.leapmotion.com/downloads).
+
+    To make sure everything's working:
+
+    - Run the leapd daemon to open a websocket connection in port 6437.
+    - Connect your computer and the Leap Motion controller
+    - Connect to the device via Cylon.js
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p There is only one driver for the Leap Motion platform as listed below.
+  :markdown
+    ## Drivers
+
+    There is only one driver for the Leap Motion platform as listed below.
 
   .hardware
     .devices

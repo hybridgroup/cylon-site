@@ -14,7 +14,7 @@ subnavjs: true
 nest_thermostat_driver: true
 nest_home_driver: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(13)").addClass("active-link");
@@ -23,24 +23,24 @@ nest_home_driver: true
   = image_tag "/images/devices/nest.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p Most people leave the house at one temperature and forget to change it. So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone. Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
-    %p
-      For more info about the Nest platform click
-      = succeed "." do
-        = link_to "here", "https://nest.com/thermostat/life-with-nest-thermostat/", target: :blank
+    :markdown
+      Most people leave the house at one temperature and forget to change it.
+      So the Nest Learning Thermostat learns your schedule, programs itself and can be controlled from your phone.
+      Teach it well and the Nest Thermostat can lower your heating and cooling bills up to 20%.
+
+      For more info about the Nest platform click [here](https://nest.com/thermostat/life-with-nest-thermostat/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Installing cylon.js with NEst support is pretty easy.
   :markdown
-        :::javascript
-        npm install cylon-nest
+    ## How To Install
+
+        $ npm install cylon-nest
 
 %section.how-to#HowToUse
-  %h2 How To Use
-
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -73,19 +73,24 @@ nest_home_driver: true
 
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p First tou need to setup a developer account with Nest Labs:
-  %p
-    = link_to "https://developer.nest.com/", "https://developer.nest.com/", target: :blank
-  %p Once the account is created you need to create a client app, the developer portal UI will guide you through it, you do not need to add an OAuth redirect URL, since we are going be using the pin generated when no redirect URL is provided to get an access token that will let us connect to the API.
-  %p
-    Next step is to obtain the access token for your Nest account in order to authenticate, as instructed here:
-    = link_to "https://developer.nest.com/documentation/how-to-auth", "https://developer.nest.com/documentation/how-to-auth", target: :blank
   :markdown
+    ## How To Connect
+
+    First, you need to create a developer account with [Nest Labs](https://developer.nest.com/).
+
+    Once you've created an account, you need to create a client app.
+    The Developer Portal UI will guide you through it.
+    You don't need an OAuth redirect URL, since we're going to be using the generated PIN to get an access token.
+
+    Next step is to obtain the access token for your Nest account in order to authenticate, as instructed [here](https://developer.nest.com/documentation/how-to-auth).
+
     Once you have done this, you should be able to use the `access_token` you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js
+
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the Nest  platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the Nest platform are listed below.
 
   .hardware
     .devices

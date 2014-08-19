@@ -13,7 +13,7 @@ subnavjs: true
 
 pinoccio_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#pinoccio li:nth-child(2)").addClass("active-link");
@@ -21,19 +21,35 @@ pinoccio_platform: true
 %section.intro
   =image_tag "/images/devices/pinoccio_power.jpg", class: "display"
   .info-intro
-    %p
-    %p
-      For more information click
-      = link_to "here", "https://pinocc.io/", target: "_blank"
+    :markdown
+      For more information click [here](https://pinocc.io/).
 
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
+    ## How To Connect
+
     Install the module with: `npm install cylon-pinoccio`
 
+        :::javascript
+        Cylon.robot({
+          connection: {
+            name: 'pinoccio',
+            adaptor: 'pinoccio',
+            token: 'XXX',
+            troop: '1',
+            scout: '1'
+          },
+
+          device: { name: 'power', driver: 'pinoccio-power' },
+        });
+
+
+%section.how-to#HowToUse
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -43,27 +59,10 @@ pinoccio_platform: true
             adaptor: 'pinoccio',
             token: 'XXX',
             troop: '1',
-            scout: '1' },
-          device: {name: 'power', driver: 'pinoccio-power'},
-        ...
+            scout: '1'
+          },
 
-
-%section.how-to#HowToUse
-  %h2 How To Use
-  %h3 Example
-
-  :markdown
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connection: {
-          	name: 'pinoccio',
-          	adaptor: 'pinoccio',
-          	token: 'XXX',
-          	troop: '1',
-          	scout: '1' },
-          device: {name: 'power', driver: 'pinoccio-power'},
+          device: { name: 'power', driver: 'pinoccio-power' },
 
           work: function(my) {
             every((3).seconds(), function() {
@@ -77,42 +76,61 @@ pinoccio_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 isCharging(cb)
-    %p Returns a value if the drivers is charging
     :markdown
+      # Commands
+
+      ## isCharging(cb)
+
+      Returns a value if the drivers is charging
+
       - **cb** - The value for which to return data
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 percent(cb)
-    %p Returns the percent
-    :markdown
+
+      ## percent(cb)
+
+      Returns the percent
+
       - **cb** - The value for which to return data
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 voltage(cb)
-    %p Returns the voltage
-    :markdown
+
+      ## voltage(cb)
+
+      Returns the voltage
+
       - **cb** - The value for which to return data
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
-    %h2 enableVcc()
-    %p Enables the VCC
-    %h2 disableVcc()
-    %p Disables the VCC
-    %h2 report(cb)
-    %p Returns a report of the driver
-    :markdown
+
+      ## enableVcc()
+
+      Enables the VCC
+
+      ## disableVcc()
+
+      Disables the VCC
+
+      ## report(cb)
+
+      Returns a report of the driver
+
       - **cb** - The value for which to return data
-    %h5 Returns
-    :markdown
+
+      ##### Returns
+
       `nil`
+
   .commands-api#Events
-    %h1 Events
-    %p no commands
+    :markdown
+      # Events
+      no events
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

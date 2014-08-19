@@ -13,7 +13,7 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#tessel li:nth-child(2)").addClass("active-link");
@@ -21,32 +21,34 @@ tessel_platform: true
 %section.intro
   =image_tag "/images/devices/tessel-ambient.jpg", class: "display"
   .info-intro
-    %p The Ambient sensor can detect ambient light and sound levels.
-    %p Clap to turn on the TV (paired with infrared) or know from a webapp if the lights are on at home.
-    %ul
-      %li The microphone is optimized for detecting the ambient noise level in a room or building a sound-activated device.
-      %li The ambient light sensor and can be used for detecting fine-grain brightness in a room.
-    %p
-      For more info visit
-      = link_to "here.", "http://start.tessel.io/modules/ambient", target: :blank
+    :markdown
+      The Ambient sensor can detect ambient light and sound levels.
+
+      Clap to turn on the TV (paired with infrared) or know from a webapp if the lights are on at home.
+
+      - The microphone is optimized for detecting the ambient noise level in a room or building a sound-activated device.
+      - The ambient light sensor and can be used for detecting fine-grain brightness in a room.
+
+      For more info visit [here](http://start.tessel.io/modules/ambient).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        var Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'tessel', adaptor: 'tessel', port: 'A' },
           device: { name: 'ambient', driver: 'ambient-attx4' },
-        ...
+        });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example using a Direct Pin.
   :markdown
+    ## How To Use
+
+    Example using a Direct Pin.
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -79,51 +81,68 @@ tessel_platform: true
 
 %section.public-methods
   .commands-api#Commands
-    %h1 Commands
-    %h2 ambient.clearLightTrigger( callback(err, triggerVal) )
-    %p Clears trigger listener for light trigger.
+    :markdown
+      # Commands
 
-    %h2 ambient.clearSoundTrigger( callback(err, triggerVal) )
-    %p Clears trigger listener for sound trigger.
+      ## ambient.clearLightTrigger( callback(err, triggerVal) )
 
-    %h2 ambient.getLightBuffer( callback(err, data) )
-    %p Gets the last 10 light readings.
+      Clears trigger listener for light trigger.
 
-    %h2 ambient.getLightLevel( callback(err, data) )
-    %p Gets a single data point of light level.
+      ## ambient.clearSoundTrigger( callback(err, triggerVal) )
 
-    %h2 ambient.getSoundBuffer( callback(err, data) )
-    %p Gets the last 10 sound readings.
+      Clears trigger listener for sound trigger.
 
-    %h2 ambient.getSoundLevel( callback(err, data) )
-    %p Gets a single data point of sound level.
+      ## ambient.getLightBuffer( callback(err, data) )
 
-    %h2 ambient.setLightTrigger( triggerVal, callback(err, triggerVal) )
-    %p Sets a trigger to emit a 'light-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+      Gets the last 10 light readings.
 
-    %h2 ambient.setSoundTrigger( triggerVal, callback(err, triggerVal) )
-    %p Sets a trigger to emit a 'sound-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+      ## ambient.getLightLevel( callback(err, data) )
+
+      Gets a single data point of light level.
+
+      ## ambient.getSoundBuffer( callback(err, data) )
+
+      Gets the last 10 sound readings.
+
+      ## ambient.getSoundLevel( callback(err, data) )
+
+      Gets a single data point of sound level.
+
+      ## ambient.setLightTrigger( triggerVal, callback(err, triggerVal) )
+
+      Sets a trigger to emit a 'light-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+
+      ## ambient.setSoundTrigger( triggerVal, callback(err, triggerVal) )
+
+      Sets a trigger to emit a 'sound-trigger' event when triggerVal is reached. triggerVal is a float between 0 and 1.0.
+
   .commands-api#Events
-    %h1 Events
-    %h2 ambient.on( 'error', callback(err) )
-    %p Emitted upon error.
+    :markdown
+      # Events
 
-    %h2 ambient.on( 'light', callback(lightData) )
-    %p Get a stream of light data.
+      ## 'error'
 
-    %h2 ambient.on( 'light-trigger', callback(lightTriggerValue) )
-    %p Emitted upon crossing light trigger threshold.
+      Emitted upon error.
 
-    %h2 ambient.on( 'ready', callback() )
-    %p Emitted upon first successful communication between the Tessel and the module.
+      ## 'light'
 
-    %h2 ambient.on( 'sound', callback(soundData) )
-    %p Get a stream of sound level data.
+      Get a stream of light data.
 
-    %h2 ambient.on( 'sound-trigger', callback(soundTriggerValue) )
-    %p Emitted upon crossing sound trigger threshold.
+      ## 'light-trigger'
 
+      Emitted upon crossing light trigger threshold.
 
+      ## 'ready'
+
+      Emitted upon first successful communication between the Tessel and the module.
+
+      ## 'sound'
+
+      Get a stream of sound level data.
+
+      ## 'sound-trigger'
+
+      Emitted upon crossing sound trigger threshold.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

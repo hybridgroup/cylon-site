@@ -14,7 +14,7 @@ subnavjs: true
 audio_driver: true
 
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#platform-panel").addClass("active-panel");
     $("#platform-panel ul li:nth-child(4)").addClass("active-link");
@@ -27,26 +27,30 @@ audio_driver: true
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p  Install the module with:
   :markdown
-        :::bash
-        $ npm install cylon-audio 
+    ## How To Install
+
+    Install the module with:
+
+        $ npm install cylon-audio
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Using the cylon-audio module is pretty easy, pretty much just install the npm module and you are good to go, use it as you would any other device passing along the audio you wish to reproduce. See the example below for further details.
-
   :markdown
+    ## How To Use
+
+    The cylon-audio module is fairly straightforward to use.
+    To play audio, pass a full or relative path to the `play` function.
+
+    Here's an example:
+
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'audio', adaptor: 'audio' },
-          device: {name: 'audio', driver: 'audio'},
+          device: { name: 'audio', driver: 'audio' },
 
           work: function(my) {
-
             my.audio.on('playing', function(song){
               console.log('Playing this nice tune: "' + song + '"');
             });
@@ -54,7 +58,7 @@ audio_driver: true
             // You can pass a string with a full or relative path here,
             my.audio.play('./audio_samples/audio-sample.mp3');
           }
-        }).start(); 
+        }).start();
 
 %section.drivers#Drivers
   %h2 Drivers
@@ -63,4 +67,4 @@ audio_driver: true
   .hardware
     .devices
       =# TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_audio_drivers" 
+      = partial "documentation/partials/devices_audio_drivers"

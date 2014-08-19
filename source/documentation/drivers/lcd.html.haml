@@ -16,7 +16,7 @@ arduino_platform: true
 digispark_platform: true
 raspberry_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#i2c li:nth-child(4)").addClass("active-link");
@@ -24,34 +24,33 @@ raspberry_platform: true
 %section.intro
   = image_tag "/images/devices/lcd.jpg", class: "display"
   .info-intro
-    %p Used for display characters.
-    %p
-      For more information click
-      = link_to "here.", "http://en.wikipedia.org/wiki/Liquid-crystal_display", target: "_blank"
+    :markdown
+      Used for display characters.
+
+      For more information click [here](http://en.wikipedia.org/wiki/Liquid-crystal_display).
   .clear
 
 %section.how_to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-
           device: { name: 'lcd', driver: 'lcd' },
-        ...
+        });
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example of the LCD driver with the Arduino.
   :markdown
+    ## How To Use
+
+    Example of the LCD driver with the Arduino.
+
         :::javascript
         Cylon = require('cylon');
 
         Cylon.robot({
           connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-
           device: { name: 'lcd', driver: 'lcd' },
 
           work: function(my) {

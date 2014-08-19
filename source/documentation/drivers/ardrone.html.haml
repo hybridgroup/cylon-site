@@ -13,7 +13,7 @@ subnavjs: true
 
 ardrone_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#ardrone li:nth-child(1)").addClass("active-link");
@@ -21,43 +21,58 @@ ardrone_platform: true
 %section.intro
   =image_tag "/images/devices/ardrone-flight.jpg", class: "display"
   .info-intro
-    %p
-      Allows user to send flight control commands to an ARDrone. Flight control commands are those used to tell the ARDrone to take off, land, and or any number of other autonomous flight manuvers.
-    %p
-      For more information click
-      = link_to "here", "http://ardrone2.parrot.com/", target: "_blank"
+    :markdown
+      Allows user to send flight control commands to an ARDrone.
+      Flight control commands are those used to tell the ARDrone to take off, land, and or any number of other autonomous flight manuvers.
+
+      For more information click [here](http://ardrone2.parrot.com/).
 
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p
-    Communication with the ARDrone's flight control interface takes place using a WiFi connection. The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
-
   :markdown
+    ## How To Connect
+
+    Communication with the ARDrone's flight control interface takes place using a WiFi connection.
+    The ARDrone is a WiFi access point, so it normally can be the only device you connect to, without some additional effort to reconfigure the drone itself to put it into infrastructure mode.
+
         :::javascript
-        var Cylon = require('cylon');
-
         Cylon.robot({
-          connection: {name: 'ardrone', adaptor: 'ardrone', port: '192.168.1.1'},
+          connection: {
+            name: 'ardrone',
+            adaptor: 'ardrone',
+            port: '192.168.1.1'
+          },
 
-          device: {name: 'ardrone', driver: 'ardrone'},
-        ...
+          device: {
+            name: 'ardrone',
+            driver: 'ardrone'
+          },
+        });
 
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p
+  :markdown
+    ## How To Use
+
     This example controls an ARDrone to take off, and then land.
 
-  :markdown
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {name: 'ardrone', adaptor: 'ardrone', port: '192.168.1.1'},
-          device: {name: 'drone', driver: 'ardrone'},
+          connection: {
+            name: 'ardrone',
+            adaptor: 'ardrone',
+            port: '192.168.1.1'
+          },
+
+          device: {
+            name: 'drone',
+            driver: 'ardrone'
+          },
+
           work: function(my) {
             my.drone.takeoff();
 
@@ -70,7 +85,6 @@ ardrone_platform: true
             }
           }
         }).start();
-
 
 %section.public-methods
   .commands-api#Commands

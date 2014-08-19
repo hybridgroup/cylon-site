@@ -13,7 +13,7 @@ subnavjs: true
 
 leapmotion_platform: true
 ---
--content_for :js_accordeon do
+-content_for :js_accordion do
   :javascript
     $("#driver-panel").addClass("active-panel");
     $("#others li:nth-child(2)").addClass("active-link");
@@ -21,30 +21,30 @@ leapmotion_platform: true
 %section.intro
   =image_tag "/images/devices/leap_motion.jpg", class: "display"
   .info-intro
-    %p
-      Allows user to interact with Cylon.js devices using a Leap Motion controller. The Leap Motion uses its built in cameras to track the user's hand motions, and translations those to events that Cylon.js can use to trigger actions or control hardware.
-    %p
-      For more information click
-      = link_to "here", "https://www.leapmotion.com/", target: "_blank"
+    :markdown
+      Allows user to interact with Cylon.js devices using a Leap Motion controller.
+      The Leap Motion uses its built in cameras to track the user's hand motions, and translations those to events that Cylon.js can use to trigger actions or control hardware.
+
+      For more information click [here](https://www.leapmotion.com/).
   .clear
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
   :markdown
-        :::javascript
-        Cylon = require('cylon');
+    ## How To Connect
 
+        :::javascript
         Cylon.robot({
           connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
           device: { name: 'leapmotion', driver: 'leapmotion' },
-          // [...]
         });
 
 
 %section.how-to#HowToUse
-  %h2 How To Use
-  %p Example receiving hand gesture events from a Leap Motion.
   :markdown
+    ## How To Use
+
+    Example receiving hand gesture events from a Leap Motion.
+
         :::javascript
         var Cylon = require('cylon');
 
