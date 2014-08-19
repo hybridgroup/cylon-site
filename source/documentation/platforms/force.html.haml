@@ -119,6 +119,8 @@ force_drivers: true
     2. When the console opens, click File -> New -> Apex Class
     3. Add the following code:
 
+    <br>
+
         @RestResource(urlMapping='/SpheroController/*')
         global with sharing class SpheroController {
           @HttpPost
@@ -138,6 +140,8 @@ force_drivers: true
 
     1. Go to Developer Console -> Debug -> Open Execute Anonymous Code
     2. Add the following code to create the new PushTopic with the query you want to execute, and the events you wish it to report:
+
+    <br>
 
         PushTopic pt = new PushTopic();
         pt.apiversion = 28.0;

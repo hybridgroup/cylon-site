@@ -23,23 +23,24 @@ skynet_driver: true
   = image_tag "/images/devices/skynet.jpg", class: "display"
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
-    %p Open Communications Network and API for the internet of things.
-    %p
-      For more info about the Skynet platform click
-      = succeed "." do
-        = link_to "http://skynet.im/", "http://skynet.im/", target: :blank
+    :markdown
+      Open Communications Network and API for the internet of things.
+
+      For more info about the Skynet platform click [here](http://skynet.im/).
   .clear
 
 %section.how-to#HowToInstall
-  %h2 How To Install
-  %p Install the module with:
   :markdown
-        :::bash
-        npm install cylon-skynet
+    ## How To Install
+
+    Install the module with:
+
+        $ npm install cylon-skynet
 
 %section.how-to#HowToUse
-  %h2 How To Use
   :markdown
+    ## How To Use
+
         :::javascript
         var Cylon = require('cylon');
 
@@ -55,8 +56,7 @@ skynet_driver: true
             my.skynet.on('message', function(data) {
               if(data.message.red == 'on') {
                 my.led.turnOn()
-              }
-              else if(data.message.red == 'off') {
+              } else if(data.message.red == 'off') {
                 my.led.turnOff()
               }
             });
@@ -64,11 +64,12 @@ skynet_driver: true
         }).start();
 
 %section.how-to#HowToConnect
-  %h2 How To Connect
-  %p First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:
   :markdown
-        :::bash
-        curl -X POST -d "name=arduino&led=off" http://skynet.im/devices
+    ## How To Connect
+
+    First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:
+
+        $ curl -X POST -d "name=arduino&led=off" http://skynet.im/devices
 
     This will return the new registration information for the device, most importantly the `uuid` and `token`:
 
@@ -76,8 +77,10 @@ skynet_driver: true
         => {"name":"arduino","led":"off","uuid":"8220cff0-2939-11e3-88cd-0b8e5fdfd7d4","timestamp":1380481272431,"token":"1yw0nfc54okcsor2tfqqsuvnrcf2yb9","online":false,"_id":"524878f8cc12f0877f000003"}
 
 %section.drivers#Drivers
-  %h2 Drivers
-  %p Available drivers for the Skynet platform are listed below.
+  :markdown
+    ## Drivers
+
+    Available drivers for the Skynet platform are listed below.
 
   .hardware
     .devices
