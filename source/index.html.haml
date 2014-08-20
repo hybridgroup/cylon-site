@@ -278,8 +278,31 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
   .clear
 
 
+
 :markdown
+  ## API
+  Cylon has a built in API that you can interact with while your device has been connected. 
+  All you need to start up the API server is to place the following command in your .js file after you require Cylon.
+  
+
+      :::javascript
+      var Cylon = require("cylon");
+
+      Cylon.api();
+      ...
+
+  Then visit `https://localhost:3000/#/robots` and you are ready to control your robots from a web browser!
+  <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
+
+  You can check out more information on the Cylon API in the docs [here][api-docs].
+
+  [api-docs]: /documentation/guides/api/
+
   ## CLI
+
+%script{type:"text/javascript", src:"https://asciinema.org/a/10306.js", id:"asciicast-10306", "data-autoplay" => "1",  "data-loop" => "true"}
+
+:markdown
 
   Cylon uses the [Gort][] toolkit, so you can access important features from the command line.
   You can scan, connect to devices, update firmware, and more!
