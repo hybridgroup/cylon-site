@@ -23,9 +23,9 @@ force_drivers: true
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
     :markdown
-      This modules provides an adaptor + driver combination for communicating with the SalesForce Force.com platform.
+      This modules provides an adaptor + driver combination for communicating with the Salesforce Force.com platform.
 
-      It uses the [nforce](https://github.com/kevinohara80/nforce) module created by @kevinohara80.
+      It uses the official [jsforce](https://github.com/jsforce/jsforce) module.
 
       For more info about the Force platform, click [here](http://www.salesforce.com/platform/overview/).
 
@@ -61,7 +61,7 @@ force_drivers: true
 
             var i = 0 ;
             every((2).seconds(), function() {
-              var toSend = {spheroName: 'globo', bucks: 1}
+              var toSend = {spheroName: 'globo', bucks: i++}
               me.salesforce.push('/SpheroController/', toSend);
             });
           }
@@ -69,6 +69,10 @@ force_drivers: true
 
         Cylon.start();
 
+
+To run the above example:
+
+        $ SF_USERNAME='yourusername' SF_SECURITY_TOKEN='yourpasswordandtoken' node salesforce.js
 
 %section.how-to#HowToConnect
   :markdown
@@ -88,7 +92,7 @@ force_drivers: true
     2. Check "Enable OAuth Settings"
     3. Next, add all permissions. Use `http://localhost:3000/oauth/_callback` as your callback URL.
 
-    You'll be using the Oauth2 web server flow, so you need your personal security code.
+    You'll be using the password and your personal security token.
     If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.
 
     To get this:
@@ -151,7 +155,7 @@ force_drivers: true
   :markdown
     ## Drivers
 
-    All Cylon.js drivers listed below should work with the Force:
+    There is only a single driver as listed below for cylon-force:
 
   .hardware
     .devices
