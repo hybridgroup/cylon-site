@@ -22,9 +22,9 @@ force_platform: true
   = image_tag "/images/devices/force.jpg", class: "display"
   .info-intro
     :markdown
-      This modules provides an adaptor/driver combination to communicate with SalesForce.
+      This modules provides an adaptor/driver combination to communicate with Salesforce.
 
-      It uses the [nForce module](https://github.com/kevinohara80/nforce), created by Kevin O'Hara.
+      It uses the official [JSForce module](https://github.com/jsforce/jsforce).
 
       For more info about the SalesForce platform, click [here](http://www.salesforce.com/platform/overview/).
 
@@ -40,58 +40,46 @@ force_platform: true
             name: 'sfcon',
             adaptor: 'force',
             sfuser: process.env.SF_USERNAME,
-            sfpass: process.env.SF_SECURITY_TOKEN,
-            orgCreds: {
-              clientId: process.env.SF_CLIENT_ID,
-              clientSecret: process.env.SF_CLIENT_SECRET,
-              redirectUri: 'http://localhost:3000/oauth/_callback'
-            }
+            sfpass: process.env.SF_SECURITY_TOKEN
           },
 
-          device: { name: 'salesforce', driver: 'force' },
-        });
+          device: {name: 'salesforce', driver: 'force'},
 
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
-    This example uses the sphero with cylonjs-force
+    This example pushes data via an Apex rest call, and also subscribes to it using cylon-force
 
         :::javascript
-        Cylon = require('cylon');
+        var Cylon = require('cylon');
 
         Cylon.robot({
           connection: {
             name: 'sfcon',
             adaptor: 'force',
             sfuser: process.env.SF_USERNAME,
-            sfpass: process.env.SF_SECURITY_TOKEN,
-            orgCreds: {
-              clientId: process.env.SF_CLIENT_ID,
-              clientSecret: process.env.SF_CLIENT_SECRET,
-              redirectUri: 'http://localhost:3000/oauth/_callback'
-            }
+            sfpass: process.env.SF_SECURITY_TOKEN
           },
 
-          device: {
-            name: 'salesforce',
-            driver: 'force'
-          },
+          device: {name: 'salesforce', driver: 'force'},
 
           work: function(me) {
-            var toSend;
-
-            me.salesforce.on('start', function() {
-              return me.salesforce.subscribe('/topic/SpheroMsgOutbound', function(data) {
-                return console.log("Sphero: " + data.sobject.Sphero_Name__c + ", data Content: " + data.sobject.Content__c + ", SM_Id: " + data.sobject.Id);
-              });
+            me.salesforce.subscribe('SpheroMsgOutbound', function(data) {
+              console.log(data);
             });
 
-            toSend = "{ \"identifier\" :\"" + me.name + "\", \"msg\": \"" + 'Salesforce Bot #2' + "\" }";
-            return me.salesforce.push('SpheroController', 'POST', toSend);
+            var i = 0 ;
+            every((2).seconds(), function() {
+              var toSend = {spheroName: 'globo', bucks: i++}
+              me.salesforce.push('/SpheroController/', toSend);
+            });
           }
-        }).start();
+        });
+
+        Cylon.start();
+
 
 %section.public-methods
   .commands-api#Commands
@@ -101,7 +89,5 @@ force_platform: true
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in Cylon.js.
-  -# all ok here :)  *************
   .devices
     = partial "documentation/partials/devices_platforms"
