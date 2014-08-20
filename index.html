@@ -430,8 +430,23 @@ robot.start();
               </li>
               <div class="clear"></div>
             </ul>
-            <h2 id="cli">CLI</h2>
+            <h2 id="api">API</h2>
+            <p>Cylon has a built in API that you can interact with while your device has been connected. 
+            All you need to start up the API server is to place the following command in your .js file after you require Cylon.</p>
             
+            <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+Cylon.api();
+...
+</pre>
+            
+            <p>Then visit <code>https://localhost:3000/#/robots</code> and you are ready to control your robots from a web browser!
+            <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%"></p>
+            
+            <p>You can check out more information on the Cylon API in the docs <a href="/documentation/guides/api/">here</a>.</p>
+            
+            <h2 id="cli">CLI</h2>
+            <script data-autoplay="1" data-loop="true" id="asciicast-10306" src="https://asciinema.org/a/10306.js" type="text/javascript"></script>
             <p>Cylon uses the <a href="http://gort.io">Gort</a> toolkit, so you can access important features from the command line.
             You can scan, connect to devices, update firmware, and more!
             We call it "RobotOps", a.k.a. "DevOps for Robotics".</p>
