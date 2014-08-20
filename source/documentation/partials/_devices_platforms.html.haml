@@ -17,7 +17,7 @@
         %p.title Arduino Yun
         %img{src: "/images/devices/arduino.jpg", style: "width: 90%"}
 
-  - if current_page.data.tessel_platform == true
+  - if current_page.data.audio_platform == true
     %li
       %a{:href => "/documentation/platforms/audio"}
         %p.title Audio
@@ -29,7 +29,7 @@
         %p.title Beaglebone Black
         %img{src: "/images/devices/beaglebone.jpg", style: "width: 90%"}
 
-  - if current_page.data.sphero_crazyflie == true
+  - if current_page.data.crazyflie_platform == true
     %li
       %a{:href => "/documentation/platforms/crazyflie"}
         %p.title Crazyflie
@@ -142,12 +142,6 @@
       %a{:href => "/documentation/platforms/tessel"}
         %p.title Tessel
         %img{src: "/images/devices/tessel.jpg", style: "width: 90%"}
-
-  - if current_page.data.audio_platform == true
-    %li
-      %a{:href => "/documentation/platforms/audio"}
-        %p.title Audio
-        %img{src: "/images/devices/audio.jpg", style: "width: 90%"}
 
   - if current_page.data.speech_platform == true
     %li
