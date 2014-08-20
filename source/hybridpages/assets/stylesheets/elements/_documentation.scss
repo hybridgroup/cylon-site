@@ -51,50 +51,49 @@
 
     @include outer-container;
     padding-left: 30px;
-
-    section {
-
-      margin: 0 auto;
-      @include span-columns(3 of 9.5);
-      background: darken($cta-color, 5);
-      height: 130px;
-      margin-bottom: 20px;
-      border-radius: 2px;
-
-      @media only screen and (max-width: $medium-screen) {
-
-        @include span-columns(12);
-      }
-
-      a {
-
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      &:hover {
-
-        background: darken($cta-color, 10);
-      }
-
-      .title {
-
-        color: white;
-        font-weight: bold;
-        background: darken($cta-color, 10);
-        padding: 5px 10px;
-      }
-
-      .description {
-
-        color: white;
-        font-size: 10pt;
-      }
-    }
   }
 }
 
+section.docs {
+
+  margin: 0 auto;
+  @include span-columns(3 of 9.5);
+  background: $doc-background;
+  height: 130px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+
+  @media only screen and (max-width: $medium-screen) {
+
+    @include span-columns(12);
+  }
+
+  a {
+
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &:hover {
+
+    background: $doc-header;
+  }
+
+  .title {
+
+    color: white;
+    font-weight: bold;
+    background: $doc-header;
+    padding: 5px 10px;
+  }
+
+  .description {
+
+    color: white;
+    font-size: 10pt;
+  }
+}
 
 .documentation {
 
