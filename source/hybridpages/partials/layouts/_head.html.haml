@@ -1,15 +1,23 @@
 %meta{:charset => "utf-8"}
-%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-%meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
-%meta{:content => current_page.data.description, :name => "description"}
-%meta{:content => current_page.data.author, :name => "author"}
+%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+%meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+
+%meta{:name => "description", :content => current_page.data.description}
+%meta{:name => "author", :content => current_page.data.author}
+
 %title= current_page.data.title
+
 %link{href: "/stylesheets/style.css", rel: "stylesheet"}
+
 %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
 %script{:src => "/hybridpages/assets/javascript/accordion.js"}
 %script{:src => "/hybridpages/assets/javascript/plax.js"}
-- if current_page.data.subnavjs == true
-	%script{:src => "/hybridpages/assets/javascript/subnav.js"}
-- if current_page.data.parallaxTop == true
-	%script{:src => "/javascripts/parallax_header.js"}
 %script{:src => "/javascripts/parallax_bottom.js"}
+
+%script{:src => "/javascripts/vendor/angular.min.js"}
+%script{:src => "/javascripts/app.js"}
+
+- if current_page.data.subnavjs == true
+  %script{:src => "/hybridpages/assets/javascript/subnav.js"}
+- if current_page.data.parallaxTop == true
+  %script{:src => "/javascripts/parallax_header.js"}
