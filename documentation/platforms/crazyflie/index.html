@@ -494,16 +494,14 @@ Cylon.robot({
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.drone.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      my.drone.takeoff();
+    my.drone.takeoff();
 
-      after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
-        my.drone.land();
-      });
+    after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
+      my.drone.land();
+    });
 
-      after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
-        my.drone.stop();
-      });
+    after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
+      my.drone.stop();
     });
   }
 }).start();
