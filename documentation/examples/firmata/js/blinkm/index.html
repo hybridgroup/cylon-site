@@ -443,7 +443,7 @@ Cylon.robot({
       my.blinkm.stopScript();
 
       my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
       });
 
       my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
