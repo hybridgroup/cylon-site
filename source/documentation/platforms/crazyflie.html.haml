@@ -64,16 +64,14 @@ crazyflie_flight_driver: true
           device: { name: 'drone', driver: 'crazyflie' },
 
           work: function(my) {
-            my.drone.on('start', function() {
-              my.drone.takeoff();
+            my.drone.takeoff();
 
-              after((10).seconds(), function() {
-                my.drone.land();
-              });
+            after((10).seconds(), function() {
+              my.drone.land();
+            });
 
-              after((15).seconds(), function() {
-                my.drone.stop();
-              });
+            after((15).seconds(), function() {
+              my.drone.stop();
             });
           }
         }).start();
