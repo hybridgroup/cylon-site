@@ -13,11 +13,6 @@ subnav_driver: true
 
 tessel_platform: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#driver-panel").addClass("active-panel");
-    $("#tessel li:nth-child(3)").addClass("active-link");
-
 %section.intro
   =image_tag "/images/devices/tessel-audio.jpg", class: "display"
   .info-intro

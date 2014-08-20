@@ -17,11 +17,6 @@ spark_platform: true
 beaglebone_platform: true
 pinoccio_platform: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#driver-panel").addClass("active-panel");
-    $("#gpio li:nth-child(1)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/analog-sensor.jpg", class: "display"
   .info-intro

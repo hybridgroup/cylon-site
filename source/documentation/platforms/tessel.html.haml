@@ -35,11 +35,6 @@ tessel_infrared_module: true
 tessel_relay_module: true
 tessel_servo_module: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(24)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/tessel.jpg", class: "display"
   .info-intro

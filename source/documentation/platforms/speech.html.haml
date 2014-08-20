@@ -14,11 +14,6 @@ subnavjs: true
 speech_driver: true
 
 ---
--content_for :js_accordion do
-  :javascript
-    $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(22)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/espeak.png", class: "display"
   .info-intro

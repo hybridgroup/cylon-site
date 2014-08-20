@@ -17,11 +17,6 @@ raspberry_platform: true
 spark_platform: true
 pinoccio_platform: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#driver-panel").addClass("active-panel");
-    $("#gpio li:nth-child(9)").addClass("active-link");
-
 %section.intro
   =image_tag "/images/devices/motor.jpg", class: "display"
   .info-intro

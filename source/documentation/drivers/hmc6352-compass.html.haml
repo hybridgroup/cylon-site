@@ -16,11 +16,6 @@ arduino_platform: true
 beaglebone_platform: true
 raspberry_platform: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#driver-panel").addClass("active-panel");
-    $("#i2c li:nth-child(3)").addClass("active-link");
-
 %section.intro
   =image_tag "/images/devices/hmc6352-compass.jpg", class: "display"
   .info-intro

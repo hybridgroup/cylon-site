@@ -26,11 +26,6 @@ pinoccio_led_driver: true
 pinoccio_power_driver: true
 
 ---
--content_for :js_accordion do
-  :javascript
-    $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(17)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/pinoccio.jpg", class: "display"
   .info-intro

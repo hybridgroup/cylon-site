@@ -16,11 +16,6 @@ arduino_platform: true
 digispark_platform: true
 raspberry_platform: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#driver-panel").addClass("active-panel");
-    $("#i2c li:nth-child(6)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/mpu6050.jpg", class: "display"
   .info-intro

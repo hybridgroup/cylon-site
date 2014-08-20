@@ -17,11 +17,6 @@ led_driver: true
 servo_driver: true
 motor_driver: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#platform-panel").addClass("active-panel");
-    $("#platform-panel ul li:nth-child(19)").addClass("active-link");
-
 %section.intro
   = image_tag "/images/devices/raspi.jpg", class: "display"
   .info-intro

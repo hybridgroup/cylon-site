@@ -8,10 +8,6 @@ description: A Cylon.JS code example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-beaglebone/tree/master/examples/analog_sensor_with_led' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#example-panel").addClass("active-panel");
-
 .example
   :markdown
         :::javascript
@@ -26,7 +22,7 @@ active_menu_docs: true
           work: function(my) {
             every((0.1).seconds(), function() {
               brightness = my.sensor.analogRead().fromScale(0, 1799).toScale(0, 255) | 0;
-              console.log('brightness => ', brightness);
+              Cylon.Logger.info('brightness => ', brightness);
               my.led.brightness(brightness)
             });
           }
