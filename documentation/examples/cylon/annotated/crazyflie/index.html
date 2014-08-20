@@ -466,11 +466,9 @@
                 <p>When our drone is ready, we'll make it takeoff. After ten seconds, we'll tell it
                 to land, and five seconds after that to stop.</p>
                 
-                <pre class="CodeRay">    my.drone.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      my.drone.takeoff()
-      after((<span class="integer">10</span>).seconds(), my.drone.land);
-      after((<span class="integer">15</span>).seconds(), my.drone.stop);
-    });
+                <pre class="CodeRay">    my.drone.takeoff()
+    after((<span class="integer">10</span>).seconds(), my.drone.land);
+    after((<span class="integer">15</span>).seconds(), my.drone.stop);
   }
 </pre>
                 
