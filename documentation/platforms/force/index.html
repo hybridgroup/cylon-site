@@ -455,9 +455,9 @@
                     <h4 class="subtitle">
 <a href="https://github.com/hybridgroup/cylon-force" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-force/issues">Issues</a>
 </h4>
-                    <p>This modules provides an adaptor + driver combination for communicating with the SalesForce Force.com platform.</p>
+                    <p>This modules provides an adaptor + driver combination for communicating with the Salesforce Force.com platform.</p>
                     
-                    <p>It uses the <a href="https://github.com/kevinohara80/nforce">nforce</a> module created by @kevinohara80.</p>
+                    <p>It uses the official <a href="https://github.com/jsforce/jsforce">jsforce</a> module.</p>
                     
                     <p>For more info about the Force platform, click <a href="http://www.salesforce.com/platform/overview/">here</a>.</p>
                   </div>
@@ -491,13 +491,18 @@ Cylon.robot({
 
     <span class="keyword">var</span> i = <span class="integer">0</span> ;
     every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">var</span> toSend = {<span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span>, <span class="key">bucks</span>: <span class="integer">1</span>}
+      <span class="keyword">var</span> toSend = {<span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span>, <span class="key">bucks</span>: i++}
       me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SpheroController/</span><span class="delimiter">'</span></span>, toSend);
     });
   }
 });
 
 Cylon.start();
+</pre>
+                  
+                  <p>To run the above example:</p>
+                  
+                  <pre class="CodeRay">$ SF_USERNAME='yourusername' SF_SECURITY_TOKEN='yourpasswordandtoken' node salesforce.js
 </pre>
                 </section>
                 <section class="how-to" id="HowToConnect">
@@ -519,7 +524,7 @@ Cylon.start();
                     <li>Next, add all permissions. Use <code>http://localhost:3000/oauth/_callback</code> as your callback URL.</li>
                   </ol>
                   
-                  <p>You'll be using the Oauth2 web server flow, so you need your personal security code.
+                  <p>You'll be using the password and your personal security token.
                   If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.</p>
                   
                   <p>To get this:</p>
@@ -591,7 +596,7 @@ System.debug('Created new PushTopic: '+ pt.Id);
                 <section class="drivers" id="Drivers">
                   <h2 id="drivers">Drivers</h2>
                   
-                  <p>All Cylon.js drivers listed below should work with the Force:</p>
+                  <p>There is only a single driver as listed below for cylon-force:</p>
                   <div class="hardware">
                     <div class="devices">
                       <a class="device" href="/documentation/drivers/force" title="Force">

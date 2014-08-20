@@ -453,9 +453,9 @@
                 <section class="intro">
                   <img class="display" src="/images/devices/force.jpg">
                   <div class="info-intro">
-                    <p>This modules provides an adaptor/driver combination to communicate with SalesForce.</p>
+                    <p>This modules provides an adaptor/driver combination to communicate with Salesforce.</p>
                     
-                    <p>It uses the <a href="https://github.com/kevinohara80/nforce">nForce module</a>, created by Kevin O'Hara.</p>
+                    <p>It uses the official <a href="https://github.com/jsforce/jsforce">JSForce module</a>.</p>
                     
                     <p>For more info about the SalesForce platform, click <a href="http://www.salesforce.com/platform/overview/">here</a>.</p>
                   </div>
@@ -469,56 +469,43 @@
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
     <span class="key">sfuser</span>: process.env.SF_USERNAME,
-    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
-    <span class="key">orgCreds</span>: {
-      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
-      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
-    }
+    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
   },
 
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> },
-});
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>},
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
                   <h2 id="how-to-use">How To Use</h2>
                   
-                  <p>This example uses the sphero with cylonjs-force</p>
+                  <p>This example pushes data via an Apex rest call, and also subscribes to it using cylon-force</p>
                   
-                  <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
     <span class="key">sfuser</span>: process.env.SF_USERNAME,
-    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
-    <span class="key">orgCreds</span>: {
-      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
-      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
-    }
+    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
   },
 
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>
-  },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>},
 
   <span class="function">work</span>: <span class="keyword">function</span>(me) {
-    <span class="keyword">var</span> toSend;
-
-    me.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      <span class="keyword">return</span> me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">, data Content: </span><span class="delimiter">"</span></span> + data.sobject.Content__c + <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id);
-      });
+    me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(data);
     });
 
-    toSend = <span class="string"><span class="delimiter">"</span><span class="content">{ </span><span class="char">\"</span><span class="content">identifier</span><span class="char">\"</span><span class="content"> :</span><span class="char">\"</span><span class="delimiter">"</span></span> + me.name + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content">, </span><span class="char">\"</span><span class="content">msg</span><span class="char">\"</span><span class="content">: </span><span class="char">\"</span><span class="delimiter">"</span></span> + <span class="string"><span class="delimiter">'</span><span class="content">Salesforce Bot #2</span><span class="delimiter">'</span></span> + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="content"> }</span><span class="delimiter">"</span></span>;
-    <span class="keyword">return</span> me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, toSend);
+    <span class="keyword">var</span> i = <span class="integer">0</span> ;
+    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      <span class="keyword">var</span> toSend = {<span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span>, <span class="key">bucks</span>: i++}
+      me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SpheroController/</span><span class="delimiter">'</span></span>, toSend);
+    });
   }
-}).start();
+});
+
+Cylon.start();
 </pre>
                 </section>
                 <section class="public-methods">
@@ -527,7 +514,7 @@ Cylon.robot({
                     
                     <h2 id="subscribestreampath-callback">subscribe(streamPath, callback)</h2>
                     
-                    <p>This allows you to subscribe the device.</p>
+                    <p>This allows you to subscribe to streaming data.</p>
                     
                     <h5 id="params">Params</h5>
                     
@@ -569,7 +556,6 @@ Cylon.robot({
                 </section>
                 <section class="compatibility hardware" id="Compatability">
                   <h2>Compatibility</h2>
-                  
                   <div class="devices">
                     <ul class="doc-platform">
                       <li>
