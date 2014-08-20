@@ -24,7 +24,7 @@ active_menu_docs: true
           work: function(my) {
             every((1).seconds(), function() {
               my.maxbotix.range(function(data) {
-                console.log("range: " + data);
+                Logger.info("range: " + data);
               });
             });
           }
