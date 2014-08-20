@@ -1,0 +1,23 @@
+.mobile-menu
+  %a#docs-menu
+    .line
+    .line
+    .line
+
+%nav.docs-sidebar{"ng-controller" => "SidebarCtrl"}
+  - data.sidebar.each do |name, value|
+    - if value.is_a?(Hash)
+      .section
+        .name= name
+        .links
+          - value.each do |name, value|
+            - if value.is_a?(Hash)
+              .sub-section
+                .name= name
+                - value.each do |name, value|
+                  %a{:href => value}= name
+
+            - else
+              %a{:href => value}= name
+    - else
+      %a{:href => value}= name
