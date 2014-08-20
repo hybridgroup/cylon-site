@@ -433,18 +433,22 @@
                 <div class="example">
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
+Cylon.api();
+
 Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>,
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span> },
 
-  <span class="key">commands</span>: [<span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>],
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>(){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>)
+      console.log(my.ping.ping());
+    });
 
-  <span class="function">test</span>: <span class="keyword">function</span>(greeting) {
-    <span class="keyword">return</span> greeting + <span class="string"><span class="delimiter">"</span><span class="content"> world</span><span class="delimiter">"</span></span>;
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>() {
-    every((<span class="integer">60</span>).seconds(), console.log);
+    after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>(){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">I've been at your command for 5 seconds now.</span><span class="delimiter">"</span></span>)
+    });
   }
 });
 

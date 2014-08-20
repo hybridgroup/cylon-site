@@ -454,8 +454,9 @@
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>)
     });
 
-    after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
-      console.log <span class="string"><span class="delimiter">"</span><span class="content">Impressive.</span><span class="delimiter">"</span></span>
+    <span class="comment">// This will happen only one time at the 5th second</span>
+    after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">I've been at your command for 5 seconds now.</span><span class="delimiter">"</span></span>)
     });
   }
 </pre>

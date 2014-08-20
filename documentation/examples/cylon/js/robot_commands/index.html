@@ -433,31 +433,27 @@
                 <div class="example">
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-Cylon.api({ <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> });
+Cylon.api();
 
-<span class="keyword">var</span> MyRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">MyRobot</span>() {}
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Frankie</span><span class="delimiter">'</span></span>,
 
-  MyRobot.prototype.commands = [<span class="string"><span class="delimiter">"</span><span class="content">relax</span><span class="delimiter">"</span></span>];
+  <span class="function">sayRelax</span>: <span class="keyword">function</span>() {
+    <span class="keyword">return</span> <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content"> says relax</span><span class="delimiter">"</span></span>;
+  },
 
-  MyRobot.prototype.<span class="function">relax</span> = <span class="keyword">function</span>() {
-    <span class="keyword">return</span> <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content"> says relax</span><span class="delimiter">"</span></span>;
-  };
-
-  MyRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      console.log(me.name);
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+      console.log(my.sayRelax());
     });
-  };
+  },
 
-  <span class="keyword">return</span> MyRobot;
-
-})();
-
-<span class="keyword">var</span> robot = <span class="keyword">new</span> MyRobot;
-robot.name = <span class="string"><span class="delimiter">"</span><span class="content">frankie</span><span class="delimiter">"</span></span>;
-
-Cylon.robot(robot);
+  <span class="function">commands</span>: <span class="keyword">function</span>() {
+    <span class="keyword">return</span> {
+      <span class="key">say_relax</span>: <span class="local-variable">this</span>.sayRelax
+    };
+  }
+});
 
 Cylon.start();
 </pre>
