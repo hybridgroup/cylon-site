@@ -8,14 +8,15 @@
   - data.sidebar.each do |name, value|
     - if value.is_a?(Hash)
       .section
-        .name= name
-        .links
+        .name{"ng-click" => "show('#{name}')"}= name
+        .links{"ng-show" => "active('#{name}')"}
           - value.each do |name, value|
             - if value.is_a?(Hash)
               .sub-section
                 .name= name
-                - value.each do |name, value|
-                  %a{:href => value}= name
+                .links
+                  - value.each do |name, value|
+                    %a{:href => value}= name
 
             - else
               %a{:href => value}= name

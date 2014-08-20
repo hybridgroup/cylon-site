@@ -1,0 +1,102 @@
+.side-documentation {
+  @include span-columns(3);
+  background: darken($body-bg-color, 5);
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0 10px;
+
+  @media only screen and (max-width: $medium-screen) {
+    @include span-columns(12);
+    height: auto !important;
+    position: absolute;
+    left: 0;
+  }
+
+  .mobile-menu {
+    background: $title-color;
+    text-align: right;
+    display: none;
+
+    @media only screen and (max-width: $medium-screen) {
+      display: block;
+    }
+
+    .active {
+      background: white;
+
+      .line {
+        background: $title-color;
+      }
+    }
+
+    a {
+      border: solid 2px white;
+      padding: 10px;
+      width: 55px;
+      display: inline-block;
+
+      &:hover {
+        background: white;
+
+        .line {
+          background: $title-color;
+        }
+      }
+
+      .line {
+        height: 2px;
+        width: 30px;
+        margin: 5px 0;
+        background: white;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $medium-screen) {
+    .hide {
+      display: none;
+    }
+  }
+
+  .docs-sidebar {
+    @media only screen and (max-width: $medium-screen) {
+      margin: 0;
+    }
+
+    @include small-screen(100%, "") {
+      z-index: 1;
+      position: relative;
+      background-color: darken($body-bg-color, 5);
+    }
+
+    a, .name {
+      width: 100%;
+      display: block;
+      padding: 5px 10px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .section .links {
+      padding-left: 15px;
+    }
+
+    .sub-section .links {
+      padding-left: 20px;
+    }
+  }
+}
+
+.container-documentation {
+  @include span-columns(9);
+  padding-top: 20px;
+
+  .how-to {
+    padding-top: 65px;
+  }
+
+  @media only screen and (max-width: $medium-screen) {
+    @include span-columns(12);
+    margin-top: 50px;
+  }
+}
