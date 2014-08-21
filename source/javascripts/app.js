@@ -6,7 +6,7 @@ var SidebarCtrl = function SidebarCtrl($scope, $element) {
 
   // see if a link in the sidebar is selected
   var $el = $("a[href='" + path + "']", $element),
-      $section = null
+      $section = [];
 
   if ($el.length) {
     $section = $el.parents(".docs-sidebar .section")
