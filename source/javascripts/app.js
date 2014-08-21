@@ -19,6 +19,11 @@ var SidebarCtrl = function SidebarCtrl($scope, $element) {
     activeTab = name;
   }
 
+  // on smaller displays, show sidebar when toggle is clicked.
+  $("#docs-menu").click(function() {
+    $(".docs-sidebar").toggleClass("show");
+  });
+
   $scope.active = function(name) {
     return name === activeTab;
   };

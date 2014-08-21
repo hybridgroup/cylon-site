@@ -52,15 +52,14 @@
     }
   }
 
-  @media only screen and (max-width: $medium-screen) {
-    .hide {
-      display: none;
-    }
-  }
-
   .docs-sidebar {
     @media only screen and (max-width: $medium-screen) {
       margin: 0;
+      display: none;
+    }
+
+    &.show {
+      display: block;
     }
 
     @include small-screen(100%, "") {
