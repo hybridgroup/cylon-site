@@ -84,6 +84,11 @@
       display: block;
       padding: 10px;
       cursor: pointer;
+      color: #333;
+
+      &:hover {
+        color: $cta-color;
+      }
     }
 
     .links a {
@@ -100,6 +105,15 @@
     a.active {
       font-weight: bold;
       color: $cta-color;
+
+      &:before {
+        color: #333;
+        content: '■';
+        float: left;
+        font-family: monospace;
+        font-size: 15px;
+        margin-left: -15px;
+      }
     }
 
     .section .links {
@@ -109,6 +123,19 @@
 
     .sub-section .links {
       padding-left: 20px;
+    }
+
+    .section:before {
+      content: '▶';
+      float: right;
+      margin-top: 13px;
+      margin-right: 10px;
+      color: #888;
+      font-family: monospace;
+    }
+
+    .section.active:before {
+      content: '▼';
     }
   }
 }

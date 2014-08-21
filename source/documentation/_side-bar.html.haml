@@ -7,7 +7,7 @@
 %nav.docs-sidebar{"ng-controller" => "SidebarCtrl"}
   - data.sidebar.each do |name, value|
     - if value.is_a?(Hash)
-      .section
+      .section{"ng-class" => "{active: active('#{name}')}"}
         .name{"ng-click" => "show('#{name}')"}= name
         .links{"ng-show" => "active('#{name}')"}
           - value.each do |name, value|
