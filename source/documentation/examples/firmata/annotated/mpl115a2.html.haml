@@ -8,10 +8,6 @@ description: A Cylon.JS code example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/mpl115a2' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
--content_for :js_accordion do
-  :javascript
-    $("#example-panel").addClass("active-panel");
-
 :markdown
   # MPL115A2
 
@@ -41,7 +37,7 @@ active_menu_docs: true
               var temp = data['temperature'],
                   pressure = data['pressure'];
 
-              console.log("temperature " + temp  + " pressure " + pressure);
+              Logger.info("temperature " + temp  + " pressure " + pressure);
             });
           });
         }

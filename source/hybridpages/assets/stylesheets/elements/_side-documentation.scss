@@ -1,0 +1,145 @@
+.side-documentation {
+  @include span-columns(3);
+  background: darken($body-bg-color, 5);
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0 10px;
+
+  @media only screen and (max-width: $medium-screen) {
+    @include span-columns(12);
+    height: auto !important;
+    position: absolute;
+    left: 0;
+  }
+
+  .mobile-menu {
+    background: $title-color;
+    text-align: right;
+    display: none;
+
+    @media only screen and (max-width: $medium-screen) {
+      display: block;
+    }
+
+    .active {
+      background: white;
+
+      .line {
+        background: $title-color;
+      }
+    }
+
+    a {
+      border: solid 2px white;
+      padding: 10px;
+      width: 55px;
+      display: inline-block;
+
+      &:hover {
+        background: white;
+
+        .line {
+          background: $title-color;
+        }
+      }
+
+      .line {
+        height: 2px;
+        width: 30px;
+        margin: 5px 0;
+        background: white;
+      }
+    }
+  }
+
+  .docs-sidebar {
+    @media only screen and (max-width: $medium-screen) {
+      margin: 0;
+      display: none;
+    }
+
+    &.show {
+      display: block;
+    }
+
+    @include small-screen(100%, "") {
+      z-index: 1;
+      position: relative;
+      background-color: darken($body-bg-color, 5);
+    }
+
+    > a, .section .name {
+      font-size: em(14);
+      font-weight: bold;
+      border-bottom: 1px solid $doc-border;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    a, .name {
+      width: 100%;
+      display: block;
+      padding: 10px;
+      cursor: pointer;
+      color: #333;
+
+      &:hover {
+        color: $cta-color;
+      }
+    }
+
+    .links a {
+      font-size: 10pt;
+      color: #333;
+
+      padding: 5px 10px;
+
+      &:hover {
+        color: $cta-color;
+      }
+    }
+
+    a.active {
+      font-weight: bold;
+      color: $cta-color;
+    }
+
+    .section .links {
+      padding-left: 15px;
+      padding-top: 10px;
+    }
+
+    .sub-section .links {
+      padding-left: 20px;
+    }
+
+    .section:before {
+      content: '▶';
+      float: right;
+      margin-top: 13px;
+      margin-right: 10px;
+      color: #A5A5A5;
+      font-size: 11px;
+    }
+
+    .section.active:before {
+      content: '▼';
+    }
+  }
+}
+
+.container-documentation {
+  @include span-columns(9);
+  padding-top: 20px;
+
+  .how-to {
+    padding-top: 65px;
+  }
+
+  @media only screen and (max-width: $medium-screen) {
+    @include span-columns(12);
+    margin-top: 50px;
+  }
+}
