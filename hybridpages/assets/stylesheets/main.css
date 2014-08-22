@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
 /* line 1, ../hybridpages/assets/stylesheets/_barebones.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
@@ -3243,7 +3244,7 @@ section.docs {
 .yellowgreen {
   background: yellowgreen; }
 
-/* line 1, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+/* line 1, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
 .side-documentation {
   float: left;
   display: block;
@@ -3257,7 +3258,7 @@ section.docs {
   .side-documentation:last-child {
     margin-right: 0; }
   @media only screen and (max-width: 767px) {
-    /* line 1, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+    /* line 1, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .side-documentation {
       float: left;
       display: block;
@@ -3269,144 +3270,104 @@ section.docs {
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .side-documentation:last-child {
         margin-right: 0; } }
-  /* line 17, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+  /* line 15, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
   .side-documentation .mobile-menu {
     background: #ee2a4a;
     text-align: right;
     display: none; }
     @media only screen and (max-width: 767px) {
-      /* line 17, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+      /* line 15, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu {
         display: block; } }
-    /* line 28, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+    /* line 24, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .side-documentation .mobile-menu .active {
       background: white; }
-      /* line 32, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+      /* line 27, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu .active .line {
         background: #ee2a4a; }
-    /* line 38, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+    /* line 32, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .side-documentation .mobile-menu a {
       border: solid 2px white;
       padding: 10px;
       width: 55px;
       display: inline-block; }
-      /* line 45, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+      /* line 38, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu a:hover {
         background: white; }
-        /* line 49, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+        /* line 41, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
         .side-documentation .mobile-menu a:hover .line {
           background: #ee2a4a; }
-      /* line 55, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+      /* line 46, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu a .line {
         height: 2px;
         width: 30px;
         margin: 5px 0;
         background: white; }
   @media only screen and (max-width: 767px) {
-    /* line 67, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .hide {
+    /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar {
+      margin: 0;
       display: none; } }
+  /* line 61, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar.show {
+    display: block; }
   @media only screen and (max-width: 767px) {
-    /* line 73, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs {
-      margin: 0; } }
-  @media only screen and (max-width: 767px) {
-    /* line 73, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs {
+    /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar {
       width: 100%;
       z-index: 1;
       position: relative;
       background-color: #dbdbdb; } }
-  /* line 86, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-  .side-documentation .accordion-docs ul {
-    list-style: none; }
-    /* line 90, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs ul .active-link {
-      list-style: square;
-      font-weight: bold; }
-      /* line 95, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs ul .active-link a {
-        color: #ee2a4a; }
-  /* line 102, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-  .side-documentation .accordion-docs .doc-button {
-    padding: 10px;
-    margin: 0;
+  /* line 71, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar > a, .side-documentation .docs-sidebar .section .name {
     font-size: 0.875em;
+    font-weight: bold;
     border-bottom: 1px solid #cecece; }
-    @media only screen and (max-width: 767px) {
-      /* line 102, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs .doc-button {
-        padding-bottom: 10px; } }
-    /* line 114, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs .doc-button a {
-      display: block;
-      color: #333; }
-      /* line 119, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs .doc-button a:hover {
-        color: #ee2a4a; }
-      @media only screen and (max-width: 767px) {
-        /* line 114, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-        .side-documentation .accordion-docs .doc-button a {
-          font-size: 1.3em; } }
-  /* line 131, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-  .side-documentation .accordion-docs dt, .side-documentation .accordion-docs dd {
+    /* line 76, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar > a:last-of-type, .side-documentation .docs-sidebar .section .name:last-of-type {
+      border-bottom: none; }
+  /* line 81, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar a, .side-documentation .docs-sidebar .name {
+    width: 100%;
+    display: block;
     padding: 10px;
-    border-bottom: 0; }
-    @media only screen and (max-width: 767px) {
-      /* line 131, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs dt, .side-documentation .accordion-docs dd {
-        border-bottom: 1px solid #cecece; } }
-    /* line 142, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dt a, .side-documentation .accordion-docs dd a {
-      display: block;
-      color: #333;
-      font-size: 0.875em; }
-      /* line 148, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs dt a:hover, .side-documentation .accordion-docs dd a:hover {
-        color: #ee2a4a; }
-  /* line 155, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-  .side-documentation .accordion-docs dt {
-    border-bottom: solid 1px #cecece; }
-    /* line 159, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dt:last-of-type {
-      border: none; }
-    /* line 162, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dt a {
-      color: #333; }
-      /* line 166, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs dt a:hover {
-        cursor: pointer;
-        color: #ee2a4a; }
-      @media only screen and (max-width: 767px) {
-        /* line 162, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-        .side-documentation .accordion-docs dt a {
-          font-size: 0.875em; } }
-  /* line 178, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-  .side-documentation .accordion-docs dd {
-    border-top: 0;
-    margin-left: 0; }
-    /* line 182, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dd a {
-      color: #333; }
-    /* line 188, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dd:last-of-type {
-      position: relative;
-      top: -1px; }
-    /* line 195, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-    .side-documentation .accordion-docs dd ul li {
-      margin: 5px 0; }
-      /* line 199, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-      .side-documentation .accordion-docs dd ul li a {
-        font-size: 10pt; }
-        @media only screen and (max-width: 767px) {
-          /* line 199, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-          .side-documentation .accordion-docs dd ul li a {
-            font-size: 1em; } }
-        /* line 207, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
-        .side-documentation .accordion-docs dd ul li a span {
-          color: black; }
+    cursor: pointer;
+    color: #333; }
+    /* line 88, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar a:hover, .side-documentation .docs-sidebar .name:hover {
+      color: #ee2a4a; }
+  /* line 93, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar .links a {
+    font-size: 10pt;
+    color: #333;
+    padding: 5px 10px; }
+    /* line 99, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .links a:hover {
+      color: #ee2a4a; }
+  /* line 104, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar a.active {
+    font-weight: bold;
+    color: #ee2a4a; }
+  /* line 109, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar .section .links {
+    padding-left: 15px;
+    padding-top: 10px; }
+  /* line 114, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar .sub-section .links {
+    padding-left: 20px; }
+  /* line 118, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar .section:before {
+    content: '▶';
+    float: right;
+    margin-top: 13px;
+    margin-right: 10px;
+    color: #A5A5A5;
+    font-size: 11px; }
+  /* line 127, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar .section.active:before {
+    content: '▼'; }
 
-/* line 218, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+/* line 133, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
 .container-documentation {
   float: left;
   display: block;
@@ -3416,11 +3377,11 @@ section.docs {
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation:last-child {
     margin-right: 0; }
-  /* line 222, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+  /* line 137, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
   .container-documentation .how-to {
     padding-top: 65px; }
   @media only screen and (max-width: 767px) {
-    /* line 218, ../hybridpages/assets/stylesheets/elements/_accordion.scss */
+    /* line 133, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .container-documentation {
       float: left;
       display: block;
