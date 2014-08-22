@@ -77,11 +77,11 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
   %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing system, and software platforms, are currently supported:
 
   %ul.homepage-platform
-    - data.platforms.each do |name, url|
+    - data.platforms.each do |name, info|
       %li
-        %a{:href => "/documentation/platforms/#{url}"}
+        %a{:href => "/documentation/platforms/#{info.slug}"}
           %p.title= name
-          %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
+          %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
   .clear
 
 %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:

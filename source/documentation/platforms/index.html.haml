@@ -11,8 +11,8 @@ main_nav: true
 ---
 
 %ul.doc-platform
-  - data.platforms.each do |name, url|
+  - data.platforms.each do |name, info|
     %li
-      %a{:href => "/documentation/platforms/#{url}"}
+      %a{:href => "/documentation/platforms/#{info.slug}"}
         %p.title= name
-        %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
+        %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
