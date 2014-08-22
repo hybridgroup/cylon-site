@@ -82,90 +82,27 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
         %a{:href => "/documentation/platforms/#{url}"}
           %p.title= name
           %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
-
   .clear
 
 %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
 
-
 %ul.homepage-platform
-  %li
-    %a{:href => "/documentation/drivers/analog-sensor"}
-      %p.title Analog Sensor
-      %img{src: "/images/devices/analog-sensor.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/button"}
-      %p.title Button
-      %img{src: "/images/devices/button.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/continuous-servo"}
-      %p.title Continuous Servo
-      %img{src: "/images/devices/continuous-servo.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/direct-pin"}
-      %p.title Direct Pin
-      %img{src: "/images/devices/direct-pin.jpg", style: "width: 90%"}
-
-  %li
-    %a{:href => "/documentation/drivers/ir-range-finder"}
-      %p.title IR Rangefinder
-      %img{src: "/images/devices/ir-range-finder.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/led"}
-      %p.title LED
-      %img{src: "/images/devices/LED.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/makey-button"}
-      %p.title MakeyButton
-      %img{src: "/images/devices/makey-button.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/motor"}
-      %p.title Motor
-      %img{src: "/images/devices/motor.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/maxbotix"}
-      %p.title Maxbotix
-      %img{src: "/images/devices/maxbotix.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/servo"}
-      %p.title Servo
-      %img{src: "/images/devices/servo.jpg", style: "width: 90%"}
+  - data.drivers.GPIO.each do |name, url|
+    %li
+      %a{:href => "/documentation/drivers/#{url}"}
+        %p.title= name
+        %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
   .clear
 
 %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
 
 %ul.homepage-platform
-  %li
-    %a{:href => "/documentation/drivers/blinkm"}
-      %p.title BlinkM
-      %img{src: "/images/devices/blinkm.jpg", style: "width: 90%"}
-
-  %li
-    %a{:href => "/documentation/drivers/bmp180"}
-      %p.title BMP180
-      %img{src: "/images/devices/bmp180.jpg", style: "width: 90%"}
-
-  %li
-    %a{:href => "/documentation/drivers/hmc6352-compass"}
-      %p.title HMC6352
-      %img{src: "/images/devices/hmc6352-compass.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/lcd"}
-      %p.title LCD
-      %img{src: "/images/devices/lcd.jpg", style: "width: 90%"}
-  %li
-    %a{:href => "/documentation/drivers/mpl115a2"}
-      %p.title MPL115A2
-      %img{src: "/images/devices/mpl115a2.jpg", style: "width: 90%"}
-
-  %li
-    %a{:href => "/documentation/drivers/mpu6050"}
-      %p.title MPU6050
-      %img{src: "/images/devices/mpu6050.jpg", style: "width: 90%"}
-
+  - data.drivers.I2C.each do |name, url|
+    %li
+      %a{:href => "/documentation/drivers/#{url}"}
+        %p.title= name
+        %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
   .clear
-
-
 
 :markdown
   ## API
