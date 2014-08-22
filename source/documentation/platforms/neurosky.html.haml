@@ -10,8 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-neurosky_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/neurosky.jpg", class: "display"
@@ -97,5 +95,4 @@ neurosky_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_neurosky_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Neurosky" }

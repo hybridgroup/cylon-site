@@ -10,9 +10,6 @@ page_title_show: true
 subnav_nodriver_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-speech_driver: true
-
 ---
 %section.intro
   = image_tag "/images/devices/espeak.png", class: "display"
@@ -98,4 +95,4 @@ speech_driver: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_speech_drivers" 
+      = partial "/partials/devices_for_platform", locals: { platform: "Speech" }

@@ -10,8 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-keyboard_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/keyboard.jpg", class: "display"
@@ -64,4 +62,4 @@ keyboard_driver: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_keyboard_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Keyboard" }

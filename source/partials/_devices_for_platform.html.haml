@@ -1,0 +1,12 @@
+- data.platforms[platform].drivers.each do |name|
+  - data.drivers.each do |key, value|
+    - if key == name
+      - if value.is_a?(Hash)
+        %h2= name
+        - data.drivers[name].each do |name, slug|
+          %a.device{href:"/documentation/drivers/#{slug}", title: name}
+            %img{src: "/images/devices/#{slug}.jpg"}
+
+      - else
+        %a.device{href:"/documentation/drivers/#{value}", title: key}
+          %img{src: "/images/devices/#{value}.jpg"}

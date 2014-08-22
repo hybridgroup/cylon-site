@@ -10,8 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-force_drivers: true
 ---
 %section.intro
   = image_tag "/images/devices/force.jpg", class: "display"
@@ -154,4 +152,4 @@ force_drivers: true
 
   .hardware
     .devices
-      = partial "documentation/partials/devices_force_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "SalesForce" }

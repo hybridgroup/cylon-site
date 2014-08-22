@@ -10,9 +10,6 @@ page_title_show: true
 subnav_nodriver_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-skynet_driver: true
-
 ---
 %section.intro
   = image_tag "/images/devices/skynet.jpg", class: "display"
@@ -79,5 +76,4 @@ skynet_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_skynet_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Skynet" }

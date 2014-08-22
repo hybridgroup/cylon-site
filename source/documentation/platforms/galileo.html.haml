@@ -10,19 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-button_driver: true
-continuous_servo_driver: true
-led_driver: true
-makey_driver: true
-maxbotix_driver: true
-motor_driver: true
-servo_driver: true
-blinkm_driver: true
-hmc6352_compass_driver: true
-mpl115a2_driver: true
-lcd_driver: true
-
 ---
 %section.intro
   = image_tag "/images/devices/galileo.jpg", class: "display"
@@ -194,6 +181,5 @@ lcd_driver: true
     Available drivers for the Galileo platform are listed below.
 
   .hardware
-    %h2 GPIO Drivers
     .devices
-      = partial "documentation/partials/devices_gpio_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Intel Galileo"}
