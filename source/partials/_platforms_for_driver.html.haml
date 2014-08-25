@@ -1,0 +1,11 @@
+%ul.doc-platform
+  - names = [driver]
+  - data.drivers.each do |k, v|
+    - names << k if v.is_a?(Hash) && v[driver]
+
+  - data.platforms.each do |name, obj|
+    - if obj.drivers.any? { |d| names.include?(d) }
+      %li
+        %a{:href => "/documentation/platforms/#{obj.slug}"}
+          %p.title= name
+          %img{src: "/images/devices/#{obj.slug}.jpg", style: "width: 90%"}

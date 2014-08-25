@@ -10,8 +10,6 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-joystick_platform: true
 ---
 %section.intro
   =image_tag "/images/devices/dualshock.jpg", class: "display"
@@ -83,4 +81,4 @@ joystick_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Joystick - DualShock 3" }

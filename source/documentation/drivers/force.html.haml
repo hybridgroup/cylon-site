@@ -10,8 +10,6 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-force_platform: true
 ---
 %section.intro
   = image_tag "/images/devices/force.jpg", class: "display"
@@ -85,4 +83,4 @@ force_platform: true
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Force" }

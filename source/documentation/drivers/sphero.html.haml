@@ -11,8 +11,6 @@ subnav_driver: true
 sphero_colors_driver: true
 active_menu_docs: true
 subnavjs: true
-
-sphero_platform: true
 ---
 %section.intro
   =image_tag "/images/devices/sphero.jpg", class: "display"
@@ -854,4 +852,4 @@ sphero_platform: true
   %h2 Compatibility
   =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Sphero" }

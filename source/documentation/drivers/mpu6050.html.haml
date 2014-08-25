@@ -11,10 +11,6 @@ subnav_driver: true
 subnav_circuit_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-digispark_platform: true
-raspberry_platform: true
 ---
 %section.intro
   = image_tag "/images/devices/mpu6050.jpg", class: "display"
@@ -74,6 +70,5 @@ raspberry_platform: true
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "MPU6050" }
