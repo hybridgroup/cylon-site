@@ -7,52 +7,16 @@ page_subtitle: All Drivers
 layout: documentation
 page_title_show: true
 active_menu_docs: true
-
-analog_sensor_driver: true
-button_driver: true
-continuous_servo_driver: true
-led_driver: true
-makey_driver: true
-maxbotix_driver: true
-motor_driver: true
-servo_driver: true
-blinkm_driver: true
-hmc6352_compass_driver: true
-ardrone_flight_driver: true
-ardrone_nav_driver: true
-crazyflie_flight_driver: true
-leapmotion_driver: true
-pebble_driver: true
-roomba_driver: true
-rapiro_driver: true
-sphero_driver: true
-force_drivers: true
-keyboard_driver: true
-xbox360_driver: true
-xbox360_driver: true
-mpl115a2_driver: true
-lcd_driver: true
-dualshock_driver: true
-skynet_driver: true
-ir_range_finder: true
-neurosky_driver: true
-bmp180_driver: true
-mpu6050_driver: true
-skynet_driver: true
-direct_pin_driver: true
-tessel_accelerometer_module: true
-tessel_ambient_module: true
-tessel_audio_module: true
-tessel_bluetooth_module: true
-tessel_camera_module: true
-tessel_climate_module: true
-tessel_gps_module: true
-tessel_infrared_module: true
-tessel_relay_module: true
-tessel_servo_module: true
-pinoccio_led_driver: true
-pinoccio_power_driver: true
-nest_thermostat_driver: true
-nest_home_driver: true
 ---
-= partial "../drivers"
+%section.hardware
+  .devices
+    - data.drivers.reject { |k, v| v.is_a?(Hash) }.each do |name, val|
+      %a.device{href: "/documentation/drivers/#{val}", title: name}
+        %img{src: "/images/devices/#{val}.jpg"}
+
+    - data.drivers.select { |k, v| v.is_a?(Hash) }.each do |name, val|
+      .group
+        %h2= "#{name} Drivers"
+        - val.each do |name, val|
+          %a.device{href: "/documentation/drivers/#{val}", title: name}
+            %img{src: "/images/devices/#{val}.jpg"}
