@@ -10,9 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-nest_thermostat_driver: true
-nest_home_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/nest.jpg", class: "display"
@@ -89,5 +86,4 @@ nest_home_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_nest_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Nest" }

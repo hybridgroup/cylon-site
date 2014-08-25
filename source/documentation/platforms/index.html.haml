@@ -8,30 +8,11 @@ page_subtitle: Cylon.js has an extensible system for connecting to hardware devi
 layout: documentation
 active_menu_platforms: true
 main_nav: true
-
-ardrone_platform: true
-arduino_platform: true
-audio_platform: true
-beaglebone_platform: true
-crazyflie_platform: true
-force_platform: true
-leapmotion_platform: true
-pebble_platform: true
-raspberry_platform: true
-rapiro_platform: true
-spark_platform: true
-sphero_platform: true
-keyboard_platform: true
-joystick_platform: true
-opencv_platform: true
-digispark_platform: true
-tessel_platform: true
-skynet_platform: true
-neurosky_platform: true
-galileo_platform: true
-pinoccio_platform: true
-nest_platform: true
-yun_platform: true
 ---
 
-= partial "../platforms"
+%ul.doc-platform
+  - data.platforms.each do |name, info|
+    %li
+      %a{:href => "/documentation/platforms/#{info.slug}"}
+        %p.title= name
+        %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}

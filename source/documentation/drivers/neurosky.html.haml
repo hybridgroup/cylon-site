@@ -10,8 +10,6 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-neurosky_platform: true
 ---
 %section.intro
   = image_tag "/images/devices/neurosky.jpg", class: "display"
@@ -66,6 +64,5 @@ neurosky_platform: true
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Neurosky Mindwave" }

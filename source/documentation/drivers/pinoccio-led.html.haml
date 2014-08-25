@@ -10,11 +10,9 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-pinoccio_platform: true
 ---
 %section.intro
-  =image_tag "/images/devices/pinoccio_led.jpg", class: "display"
+  =image_tag "/images/devices/pinoccio-led.jpg", class: "display"
   .info-intro
     :markdown
       For more information click [here](https://pinocc.io/).
@@ -193,4 +191,4 @@ pinoccio_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Pinoccio - Power" }

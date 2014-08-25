@@ -10,8 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-leapmotion_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/leap_motion.jpg", class: "display"
@@ -86,5 +84,4 @@ leapmotion_driver: true
 
   .hardware
     .devices
-      =# TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_leapmotion_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Leap Motion" }

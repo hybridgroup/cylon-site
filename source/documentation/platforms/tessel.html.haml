@@ -10,30 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-led_driver: true
-button_driver: true
-blinkm_driver: true
-analog_sensor_driver: true
-ir_range_finder: true
-makey_driver: true
-maxbotix_driver: true
-bmp180_driver: true
-hmc6352_compass_driver: true
-lcd_driver: true
-mpl115a2_driver: true
-mpu6050_driver: true
-
-tessel_accelerometer_module: true
-tessel_ambient_module: true
-tessel_audio_module: true
-tessel_bluetooth_module: true
-tessel_camera_module: true
-tessel_climate_module: true
-tessel_gps_module: true
-tessel_infrared_module: true
-tessel_relay_module: true
-tessel_servo_module: true
 ---
 %section.intro
   = image_tag "/images/devices/tessel.jpg", class: "display"
@@ -134,13 +110,5 @@ tessel_servo_module: true
     Available drivers for the Tessel platform are listed below.
 
   .hardware
-    // TODO: Update drivers list at the top of the page.
-    %h2 Tessel Modules
     .devices
-      = partial "documentation/partials/devices_tessel_modules"
-    %h2 GPIO Drivers
-    .devices
-      = partial "documentation/partials/devices_gpio_drivers"
-    %h2 i2c Drivers
-    .devices
-      = partial "documentation/partials/devices_i2c_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Tessel" }

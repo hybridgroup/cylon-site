@@ -10,8 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-pebble_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/pebble.jpg", class: "display"
@@ -119,5 +117,4 @@ pebble_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_pebble_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Pebble" }

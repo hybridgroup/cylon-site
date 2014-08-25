@@ -10,9 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-rapiro_driver: true
-
 ---
 %section.intro
   =image_tag "/images/devices/rapiro.jpg", class: "display"
@@ -87,5 +84,4 @@ rapiro_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_rapiro_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Rapiro" }

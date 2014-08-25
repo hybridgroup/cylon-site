@@ -10,10 +10,9 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-nest_platform: true
 ---
 %section.intro
-  = image_tag "/images/devices/nest_thermostat.jpg", class: "display"
+  = image_tag "/images/devices/nest-thermostat.jpg", class: "display"
   .info-intro
     :markdown
       Most people leave the house at one temperature and forget to change it.
@@ -83,6 +82,5 @@ nest_platform: true
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Nest - Thermostat" }

@@ -11,16 +11,9 @@ subnav_driver: true
 subnav_circuit_driver: true
 active_menu_docs: true
 subnavjs: true
-
-arduino_platform: true
-beaglebone_platform: true
-raspberry_platform: true
-spark_platform: true
-digispark_platform: true
-pinoccio_platform: true
 ---
 %section.intro
-  =image_tag "/images/devices/LED.jpg", class: "display"
+  =image_tag "/images/devices/led.jpg", class: "display"
   .info-intro
     :markdown
       Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
@@ -74,6 +67,5 @@ pinoccio_platform: true
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
-  =# TODO: Update platform list with all that work with this driver in Cylon.js.
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "LED" }

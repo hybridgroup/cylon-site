@@ -10,9 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-xbox360_driver: true
-dualshock_driver: true
 ---
 %section.intro
   = image_tag "/images/devices/joystick.jpg", class: "display"
@@ -92,4 +89,4 @@ dualshock_driver: true
 
   .hardware
     .devices
-      = partial "/documentation/partials/devices_joystick_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Joystick" }

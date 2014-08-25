@@ -1,0 +1,19 @@
+- data.platforms[platform].drivers.each do |name|
+  - data.drivers.each do |key, value|
+    - nested = value.keys.include?(name) if value.is_a?(Hash)
+
+    - if nested # specific GPIO/I2C drivers
+      - value = value[name]
+      %a.device{href:"/documentation/drivers/#{value}", title: name}
+        %img{src: "/images/devices/#{value}.jpg"}
+
+    - if key == name
+      - if value.is_a?(Hash)
+        %h2= "#{name} Drivers"
+        - data.drivers[name].each do |name, slug|
+          %a.device{href:"/documentation/drivers/#{slug}", title: name}
+            %img{src: "/images/devices/#{slug}.jpg"}
+
+      - else
+        %a.device{href:"/documentation/drivers/#{value}", title: key}
+          %img{src: "/images/devices/#{value}.jpg"}

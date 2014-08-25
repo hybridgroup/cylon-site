@@ -10,9 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-sphero_driver: true
-
 ---
 %section.intro
   =image_tag "/images/devices/sphero.jpg", class: "display"
@@ -105,5 +102,4 @@ sphero_driver: true
 
   .hardware
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_sphero_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Sphero" }

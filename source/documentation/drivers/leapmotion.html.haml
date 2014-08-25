@@ -10,8 +10,6 @@ page_title_show: true
 subnav_driver: true
 active_menu_docs: true
 subnavjs: true
-
-leapmotion_platform: true
 ---
 %section.intro
   =image_tag "/images/devices/leap_motion.jpg", class: "display"
@@ -66,4 +64,4 @@ leapmotion_platform: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "documentation/partials/devices_platforms"
+    = partial "/partials/platforms_for_driver", locals: { driver: "Leap Motion" }

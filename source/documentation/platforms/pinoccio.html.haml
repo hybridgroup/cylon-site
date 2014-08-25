@@ -10,21 +10,6 @@ page_title_show: true
 subnav_platform: true
 active_menu_platforms: true
 subnavjs: true
-
-analog_sensor_driver: true
-button_driver: true
-continuous_servo_driver: true
-direct_pin_driver: true
-ir_range_finder: true
-led_driver: true
-makey_driver: true
-maxbotix_driver: true
-motor_driver: true
-servo_driver: true
-
-pinoccio_led_driver: true
-pinoccio_power_driver: true
-
 ---
 %section.intro
   = image_tag "/images/devices/pinoccio.jpg", class: "display"
@@ -125,11 +110,5 @@ pinoccio_power_driver: true
     Available drivers for the joystick platform are listed below:
 
   .hardware
-    %h2 GPIO Drivers
     .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_gpio_drivers"
-    %h2 Pinoccio Drivers
-    .devices
-      // TODO: Update drivers list at the top of the page.
-      = partial "documentation/partials/devices_pinoccio_drivers"
+      = partial "/partials/devices_for_platform", locals: { platform: "Pinoccio" }
