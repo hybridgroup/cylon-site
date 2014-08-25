@@ -1,28 +1,26 @@
 .hardware {
-
   .devices {
-
-  	@include outer-container;
+    @include outer-container;
     text-align: center;
 
-    .device {
+    h2 {
+      text-align: left;
+    }
 
+    .device {
       display: inline-block;
       width: 225px;
 
       &:hover {
-
         img {
-
           opacity: .9;
         }
 
-        background: darken($body-bg-color,30);
+        background: darken($body-bg-color, 30);
       }
 
       img {
-
-      	 width: 100%;
+          width: 100%;
       }
     }
   }

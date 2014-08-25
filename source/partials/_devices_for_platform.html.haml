@@ -9,7 +9,7 @@
 
     - if key == name
       - if value.is_a?(Hash)
-        %h2= name
+        %h2= "#{name} Drivers"
         - data.drivers[name].each do |name, slug|
           %a.device{href:"/documentation/drivers/#{slug}", title: name}
             %img{src: "/images/devices/#{slug}.jpg"}
