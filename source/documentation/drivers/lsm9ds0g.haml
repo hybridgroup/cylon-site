@@ -1,0 +1,72 @@
+---
+title: Cylon.js - LSM9DS0G Driver
+author: The Hybrid Group
+page_title: Drivers - LSM9DS0G
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: LSM9DS0G
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/LSM9DS0.jpg", class: "display"
+  .info-intro
+    :markdown
+      The LSM9DS0G uses gyroscopic sensing to detect 3 degrees of freedom.
+
+      For more information click <a href="https://www.sparkfun.com/products/12636" target="_blank">here</a>.
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/tty.usbmodem1421' },
+          device: { name: 'gyro', driver: 'lsm9ds0g' },
+        });
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/tty.usbmodem1421' },
+          device: { name: 'gyro', driver: 'lsm9ds0g' },
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.gyro.getGyro(function(err, data) {
+                console.log(data);
+              });
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/i2c/_commands_lsm9ds0g"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/i2c/_events_lsm9ds0g"
+
+%section.circuit#Circuit
+  %h2 Circuit
+  .description-circuit
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/lsm9ds0_bb.png", :alt => ""}/
+  .clear
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "LSM9DS0G" }
