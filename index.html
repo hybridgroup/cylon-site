@@ -194,8 +194,8 @@ robot.start();
                 </li>
                 <li>
                   <a href="/documentation/platforms/yun">
-                    <p class="title">Arduino Yun</p>
-                    <img src="/images/devices/arduino-yun.jpg" style="width: 90%">
+                    <p class="title">Arduino YUN</p>
+                    <img src="/images/devices/yun.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>
@@ -224,7 +224,7 @@ robot.start();
                 </li>
                 <li>
                   <a href="/documentation/platforms/galileo">
-                    <p class="title">Galileo</p>
+                    <p class="title">Intel Galileo</p>
                     <img src="/images/devices/galileo.jpg" style="width: 90%">
                   </a>
                 </li>
@@ -243,7 +243,7 @@ robot.start();
                 <li>
                   <a href="/documentation/platforms/leapmotion">
                     <p class="title">Leap Motion</p>
-                    <img src="/images/devices/leap_motion.jpg" style="width: 90%">
+                    <img src="/images/devices/leapmotion.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>
@@ -285,12 +285,12 @@ robot.start();
                 <li>
                   <a href="/documentation/platforms/raspberry-pi">
                     <p class="title">Raspberry Pi</p>
-                    <img src="/images/devices/raspi.jpg" style="width: 90%">
+                    <img src="/images/devices/raspberry-pi.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>
                   <a href="/documentation/platforms/force">
-                    <p class="title">Salesforce</p>
+                    <p class="title">SalesForce</p>
                     <img src="/images/devices/force.jpg" style="width: 90%">
                   </a>
                 </li>
@@ -307,15 +307,15 @@ robot.start();
                   </a>
                 </li>
                 <li>
-                  <a href="/documentation/platforms/sphero">
-                    <p class="title">Sphero</p>
-                    <img src="/images/devices/sphero.jpg" style="width: 90%">
+                  <a href="/documentation/platforms/speech">
+                    <p class="title">Speech</p>
+                    <img src="/images/devices/speech.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>
-                  <a href="/documentation/platforms/speech">
-                    <p class="title">Speech</p>
-                    <img src="/images/devices/espeak.png" style="width: 90%">
+                  <a href="/documentation/platforms/sphero">
+                    <p class="title">Sphero</p>
+                    <img src="/images/devices/sphero.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>
@@ -355,32 +355,32 @@ robot.start();
               </li>
               <li>
                 <a href="/documentation/drivers/ir-range-finder">
-                  <p class="title">IR Rangefinder</p>
+                  <p class="title">IR Range Finder</p>
                   <img src="/images/devices/ir-range-finder.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
                 <a href="/documentation/drivers/led">
                   <p class="title">LED</p>
-                  <img src="/images/devices/LED.jpg" style="width: 90%">
+                  <img src="/images/devices/led.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
                 <a href="/documentation/drivers/makey-button">
-                  <p class="title">MakeyButton</p>
+                  <p class="title">Makey Button</p>
                   <img src="/images/devices/makey-button.jpg" style="width: 90%">
-                </a>
-              </li>
-              <li>
-                <a href="/documentation/drivers/motor">
-                  <p class="title">Motor</p>
-                  <img src="/images/devices/motor.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
                 <a href="/documentation/drivers/maxbotix">
                   <p class="title">Maxbotix</p>
                   <img src="/images/devices/maxbotix.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li>
+                <a href="/documentation/drivers/motor">
+                  <p class="title">Motor</p>
+                  <img src="/images/devices/motor.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
@@ -401,13 +401,13 @@ robot.start();
               </li>
               <li>
                 <a href="/documentation/drivers/bmp180">
-                  <p class="title">BMP180</p>
+                  <p class="title">BPM180</p>
                   <img src="/images/devices/bmp180.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
                 <a href="/documentation/drivers/hmc6352-compass">
-                  <p class="title">HMC6352</p>
+                  <p class="title">HMC6352 Compass</p>
                   <img src="/images/devices/hmc6352-compass.jpg" style="width: 90%">
                 </a>
               </li>
@@ -415,6 +415,18 @@ robot.start();
                 <a href="/documentation/drivers/lcd">
                   <p class="title">LCD</p>
                   <img src="/images/devices/lcd.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li>
+                <a href="/documentation/drivers/lsm9ds0g">
+                  <p class="title">LSM9DS0G</p>
+                  <img src="/images/devices/lsm9ds0g.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li>
+                <a href="/documentation/drivers/lsm9ds0xm">
+                  <p class="title">LSM9DS0XM</p>
+                  <img src="/images/devices/lsm9ds0xm.jpg" style="width: 90%">
                 </a>
               </li>
               <li>
@@ -432,22 +444,24 @@ robot.start();
               <div class="clear"></div>
             </ul>
             <h2 id="api">API</h2>
-            <p>Cylon has a built in API that you can interact with while your device has been connected. 
-            All you need to start up the API server is to place the following command in your .js file after you require Cylon.</p>
+            
+            <p>Cylon has a built-in API that you can interact with your robots.</p>
+            
+            <p>All you need to start up the API server is to place the following command in your <code>.js</code> file after you require Cylon.</p>
             
             <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
-
 Cylon.api();
-...
 </pre>
             
-            <p>Then visit <code>https://localhost:3000/#/robots</code> and you are ready to control your robots from a web browser!
+            <p>Then visit <code>https://localhost:3000/</code> and you are ready to control your robots from a web browser!
             <img src="/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%"></p>
             
-            <p>You can check out more information on the Cylon API in the docs <a href="/documentation/guides/api/">here</a>.</p>
+            <p>You can check out more information on the Cylon API in the docs <a href="/documentation/guides/api">here</a>.</p>
             
             <h2 id="cli">CLI</h2>
-            <script data-autoplay="1" data-loop="true" id="asciicast-10306" src="https://asciinema.org/a/10306.js" type="text/javascript"></script>
+            
+            <script src="https://asciinema.org/a/10306.js" id="asciicast-10306" data-autoplay="1" data-loop="true"></script>
+            
             <p>Cylon uses the <a href="http://gort.io">Gort</a> toolkit, so you can access important features from the command line.
             You can scan, connect to devices, update firmware, and more!
             We call it "RobotOps", a.k.a. "DevOps for Robotics".</p>
