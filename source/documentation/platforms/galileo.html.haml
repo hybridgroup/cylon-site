@@ -77,29 +77,25 @@ subnavjs: true
 
     ### Setting up Galileo Linux Image
 
-    Setting up the Galileo for Cylon takes longer than it should, but it's not terribly difficult.
-    Luckily, you only have to do it once.
+    Setting up the Galileo GEN 2 board for Cylon.js has quite a few steps, but it's not terribly difficult. Luckily, you only have to do it once.
 
     The first step is to ensure we have the latest version of the firmware, and update if not.
-    You can find instructions to update the firmware [here](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware).
+    You can find instructions to update the firmware [here](https://communities.intel.com/docs/DOC-22872).
 
-    Next, we're going to install the larger Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.
+    Next, we're going to install the "larger" Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.
 
     You can find the larger image on the official Galileo [drivers page](https://communities.intel.com/docs/DOC-22226).
-    You're looking for the one named [LINUX IMAGE FOR SD for Intel Galileo](http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z).
+    You're looking for the one named [LINUX IMAGE FOR SD for Intel Galileo](http://downloadmirror.intel.com/24000/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.2.zip).
 
-    Please feel free to read through the Galileo [getting started page](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide).
-    This will help you get better acquainted with the features of the board.
-
-    Once you have the larger image on the SD card, slot it into the Galileo, and the board should automatically boot from it.
+    Once you have the larger image on the SD card, you are ready to boot the Galileo from it. Power off the Galileo buth from the power adaptor, as well as removing the USB cable. Insert the SD card it into the Galileo, and power it back up. The board should automatically boot from the SD card's Linux image. The first time you boot, it will probably take a lot longer.
 
     After it's started up, we need to connect and enable networking (turned off by default in the image).
 
     We can accomplish this using a serialport to terminal program.
-    To do this, we have to use the Galileo Arduino IDE.
-    This is also provided from the Galileo drivers page, but [here](https://communities.intel.com/docs/DOC-22226) is a direct link.
+    To do this, we have to use the special version of the Arduino IDE that comes with the Galileo. You have probably already installed it, if you've followed the "Getting Started" instructions on the Intel web site.
+    Just in case you need it, [here](https://communities.intel.com/docs/DOC-22226) is a direct link to the downloads page that has the Arduino IDE for Galileo.
 
-    Make sure to download the version for your OS.
+    Make sure to download the correct version for your OS.
 
     After you've got that running, upload this sketch to your Galileo:
 
@@ -124,7 +120,7 @@ subnavjs: true
         }
 
     Once the board's connected to your computer, you can connect to it with a serial terminal program.
-    Some example programs:
+    Some terminal programs:
 
     - [Tera Term](https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows) for Windows
     - [Cool Term](https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux) for OS X
@@ -132,6 +128,8 @@ subnavjs: true
 
     Set the serial port number, and change the baud rate to 115200 bps.
 
+    PLEASE NOTE: you must connect an Ethernet cable to the Galileo in order to connect to it via SSH. Connecting via the USB cable is only for uploading to the Arduino part of the board. Connecting via the serial TTY interface cannot be used for SSH connections. A USB to Ethernet adapter is very useful to connect directly from your computer to the Galileo.
+    
     When you have a successful connection to the Galileo, run this command to enable networking:
 
         $ /etc/init.d/networking start
@@ -142,7 +140,7 @@ subnavjs: true
         $ ssh root@192.168.0.5
 
 
-    The last bit of setup is to update the version of Node included with the Linux image.
+    The last bit of setup is to update the version of Node, since the one included with the Linux image is the older 0.8 verison.
     You can download a more up-to-date version [here](https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip).
 
     Uncompress the file on your host computer, and copy the package to the board:
@@ -164,6 +162,10 @@ subnavjs: true
     And with that all done, we can install the `cylon-galileo` module to the board:
 
         $ npm install cylon-galileo
+
+    Sparkfun's Galileo [getting started page](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide) has a lot of good info about the board.
+    Even though it refers to the revision 1 board, it can still help you get better acquainted with the features of the Galileo.
+
 
     ### Pushing Code
 
