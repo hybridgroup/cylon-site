@@ -150,18 +150,22 @@ subnavjs: true
 
     Then, on the Galileo, install the package with the `opkg` command:
 
-        $ opkg install nodejs_0.10.25-r0_i586.ipk
+        root@clanton:~# opkg install nodejs_0.10.25-r0_i586.ipk
 
     With that done, make sure the update worked:
 
-        $ node -v
+        root@clanton:~# node -v
         v0.10.25
 
     If you need more details on updating Node in the Galileo image, they can be found [here](https://communities.intel.com/thread/48416).
 
-    And with that all done, we can install the `cylon-galileo` module to the board:
+    You need to set the system date/time on the Galileo to install npm modules, due to using SSL. You can do this by running `date` using the format `mmddhhmmYY`. For example, to set the date to Sept. 2, 2014, at 3:01 PM GMT:
 
-        $ npm install cylon-galileo
+        root@clanton:~# date 0902150114 
+
+    With that done, we can now install the `cylon-galileo` module to the board:
+
+        root@clanton:~# npm install cylon-galileo
 
     Sparkfun's Galileo [getting started page](https://learn.sparkfun.com/tutorials/galileo-getting-started-guide) has a lot of good info about the board.
     Even though it refers to the revision 1 board, it can still help you get better acquainted with the features of the Galileo.
