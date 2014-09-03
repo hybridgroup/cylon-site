@@ -1,0 +1,81 @@
+---
+title: Cylon.js - M2X Driver
+author: The Hybrid Group
+page_title: Drivers - M2X
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: M2X
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/m2x.jpg", class: "display"
+  .info-intro
+    :markdown
+      A Cloud-Based Data Storage Service and Management Toolset Customized for the Internet of Things
+
+      For more info about the M2X platform click [here](https://m2x.att.com/).
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connection: {
+            name: 'm2x',
+            adaptor: 'm2x',
+            apiKey: 'YOUR_API_KEY'
+            feedId: 'YOUR_FEED_ID'
+          },
+
+          device: { name: 'm2x', driver: 'm2x' },
+        });
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+    This small program will talk to M2X, incrementing a stream and printing the current value:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: {
+            name: 'm2x',
+            adaptor: 'm2x',
+            apiKey: 'YOUR_API_KEY'
+            feedId: 'YOUR_FEED_ID'
+          },
+
+          device: { name: 'm2x', driver: 'm2x' },
+
+          work: function(my) {
+            var count = 1;
+
+            every(2000, function() {
+              my.m2x.push('money', { value: count++ });
+            });
+
+            my.m2x.subscribe('money', function(data) {
+              console.log("Latest value from M2X: " + data);
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    -#= partial "/documentation/drivers/partials/m2x/commands"
+  .commands-api#Events
+    -# = partial "/documentation/drivers/partials/m2x/events"
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "M2X" }
