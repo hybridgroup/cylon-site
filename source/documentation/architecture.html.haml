@@ -13,10 +13,33 @@ main_nav: true
 
   ## MCP
 
+  The Master Control Program is responsible for coordinating everything else inside Cylon.
+  It manages adding new Robots, and starting/stopping both Robots and the API.
+
+  It is also used to set and fetch configuration for Cylon internals.
+
+  The MCP's relation to other components of the system can be seen here:
+
+  <img src="/images/elements/architecture-mcp.png" width="100%">
+
+  ## REST API
+
+  Cylon's built-in API offers both a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.
+
+  It interfaces directly with the MCP to fetch robots and information about them.
+
   ## Robots
+
+  A Cylon robot is a collection of devices and connections, with the necessary glue to allow them to coordinate together.
 
   ## Devices and Connections
 
+  Devices are an abstraction layer over drivers and adaptors, respectively.
+
   ## Drivers and Adaptors
 
+  Drivers and Adaptors are the meat of Cylon, and allow Cylon to communicate with devices and services, and issue commands/receive events from them.
+
   ## Adaptor Pattern
+
+  Due to the abstraction level provided by Devices and Connections, adding new hardware support for Cylon is as easy as writing a basic NPM module with Cylon as a dependency.
