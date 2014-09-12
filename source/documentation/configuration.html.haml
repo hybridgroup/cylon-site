@@ -1,0 +1,43 @@
+---
+title: Configuration
+page_title: Cylon.JS - Configuration
+page_subtitle: Made by Humans, for Humans.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+main_nav: true
+---
+
+:markdown
+  # Configuration
+
+  Cylon supports external configuration, via the `Cylon.setConfig` method.
+
+  ## API
+
+  The Cylon.js API server allows for port, host, SSL and auth configuration.
+
+  In your scripts, you can set it up as so:
+
+      :::javascript
+      Cylon.setConfig({
+        api: {
+          host: '127.0.0.1',
+          port: '4321',
+
+          cert: '/path/to/ssl/cert',
+          key: '/path/to/ssl/key',
+
+          auth: {
+            type: 'basic',
+            user: 'admin',
+            pass: 'pass'
+          }
+        }
+      });
+
+      Cylon.api();
+
+  If you run a Cylon script with this code in it, it will start an API server
+  listening on `https://127.0.0.1:4321`, that will require basic auth for all
+  routes.
