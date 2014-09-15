@@ -11,7 +11,33 @@ main_nav: true
 :markdown
   # Configuration
 
-  Cylon supports external configuration, via the `Cylon.setConfig` method.
+  Cylon.JS supports configuration of internal settings via the `Cylon#setConfig` method.
+  This method takes a JavaScript object as an argument, and merges it with Cylon's internal configuration.
+
+  For example:
+
+    :::javascript
+    var Cylon = require('cylon');
+
+    Cylon.config({
+      option: 'value'
+    });
+
+    // rest of program
+
+  Additionally, if you'd like to fetch configuration details for use in your own application, Cylon#config will always return the current configuration:
+
+    :::javascript
+    var Cylon = require('cylon');
+
+    var config = Cylon.config({
+      option: 'value'
+    });
+
+    config.option
+    //=> 'value'
+
+  Read on for more details on the configuration options Cylon recognizes.
 
   ## API
 
@@ -20,7 +46,7 @@ main_nav: true
   In your scripts, you can set it up as so:
 
       :::javascript
-      Cylon.setConfig({
+      Cylon.config({
         api: {
           host: '127.0.0.1',
           port: '4321',
