@@ -99,6 +99,39 @@ main_nav: true
   These methods take a callback as an argument, and trigger it when they're done their work.
   These methods **need** to be defined in your Adaptor class, or an error will result.
 
+  The `#connect` method is used to establish a connection to the platform, and should assign the object maintaining the connection to `this.connector` so it can be directly accessed.
+
+  The `#disconnect` method is used to clean up at shutdown time, and if there's any special connection termination to be done, it should be done here.
+
+  Event propagation can be defined in Adaptors using the `#defineAdaptorEvent` helper function, which can be invoked in a few ways:
+
+  **With a source and target event name**.
+  This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+  Additionally, if you pass the 'update' param, an `update` event will also be emitted:
+
+      :::javascript
+      this.defineAdaptorEvent({
+        eventName: 'greeting',
+        targetEventName: 'hello',
+        update: true
+      });
+
+  With this code, whenever the Adaptor's `connector` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `connection`, with the data that the 'greeting' event received.
+
+  **With just an eventName**.
+  This invocation assumes you want the event emitted on the `connection` to be the same as the original event name.
+
+      :::javascript
+      this.defineAdaptorEvent({ eventName: 'greeting' });
+
+  This invocation means that when the `connector` receives the 'greeting' event, an identical event will be emitted on the `connection`.
+
+  **With just an eventName (string version)**.
+  Similar to the above example, but a bit shorter.
+
+      :::javascript
+      this.defineAdaptorEvent('greeting');
+
   ## Writing Drivers
 
   Here's the example driver from the `cylon-sphero` module.
@@ -205,3 +238,44 @@ main_nav: true
 
   **The constructor uses the `#setupCommands` method**.
   This this convenience method lets you define methods that should be accessible to the Cylon API.
+
+  **The `#start`/`#halt` methods**.
+  These methods take a callback as an argument, and trigger it when they're done their work.
+  These methods **need** to be defined in your Adaptor class, or an error will result.
+
+  Event propagation can be defined in Drivers using the `#defineDriverEvent` helper function, which can be invoked in a few ways:
+
+  **With a source and target event name**.
+  This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+  Additionally, if you pass the 'update' param, an `update` event will also be emitted:
+
+      :::javascript
+      this.defineDriverEvent({
+        eventName: 'greeting',
+        targetEventName: 'hello',
+        update: true
+      });
+
+  With this code, whenever the Driver's `connection` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `device`, with the data that the 'greeting' event received.
+
+  **With just an eventName**.
+  This invocation assumes you want the event emitted on the `device` to be the same as the original event name.
+
+      :::javascript
+      this.defineDriverEvent({ eventName: 'greeting' });
+
+  This invocation means that when the `connection` receives the 'greeting' event, an identical event will be emitted on the `device`.
+
+  **With just an eventName (string version)**.
+  Similar to the above example, but a bit shorter.
+
+      :::javascript
+      this.defineDriverEvent('greeting');
+
+  Drivers also feature the `#setupCommands` method.
+  Invoking it with an array of command names will:
+
+  - If the method isn't defined on the Driver, it will be proxied from the Connection.
+    This means if you have lower-level methods on the Adaptor that can be called on the Driver.
+  - snake_cases the commands for API usage (e.g. `runScript` -> `run_script`).
+    This means Driver methods will be made accessible from the API
