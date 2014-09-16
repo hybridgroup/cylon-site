@@ -67,3 +67,15 @@ main_nav: true
   If you run a Cylon script with this code in it, it will start an API server
   listening on `https://127.0.0.1:4321`, that will require basic auth for all
   routes.
+
+  ## Halt Timeout
+
+  When Cylon is told to shutdown, either via `Cylon#halt` or Ctrl-C, it tries to gracefully shut down all Robots/Devices/Connections.
+  If this isn't possible inside of the specified `halt_timeout`, Cylon will instead forcefully shut itself down.
+
+      :::javascript
+      Cylon.config({
+        halt_timeout: 4000 // time in milliseconds before forcefully shutting down
+      });
+
+  This value defaults to three thousand milliseconds (3000).
