@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.js - Analog Sensor Driver</title>
+    <title>Edison with Cylon.js</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
@@ -63,8 +63,8 @@
                   </span>
                 </div>
                 <span class="menu">
-                  <a class="active" href="/documentation">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/documentation" class="item">Docs</a>
+                  <a class="active" href="/documentation/platforms">Platforms</a>
                   <a href="/resources" class="item">Resources</a>
                   <a href="/blog" class="item">Blog</a>
                   <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
@@ -209,261 +209,149 @@
               <div class="container-documentation">
                 <div class="page-title-docs">
                   <div class="w">
-                    <h1 class="title">Analog Sensor</h1>
+                    <h1 class="title">Intel Edison</h1>
                   </div>
                 </div>
                 <section class="subnav-drivers" id="mainsubnav">
                   <div class="container">
-                    <h5>Analog Sensor</h5>
+                    <h5>Intel Edison</h5>
                     <nav>
-                      <a href="#HowToConnect">How to Connect</a>
+                      <a href="#HowToInstall">How To Install</a>
                       <a href="#HowToUse">How To Use</a>
-                      <a href="#Commands">Commands</a>
-                      <a href="#Events">Events</a>
-                      <a href="#Circuit">Circuit</a>
-                      <a href="#Compatability">Compatibility</a>
+                      <a href="#HowToConnect">How To Connect</a>
+                      <a href="#Drivers">Drivers</a>
                       <a href="#top">Top</a>
                     </nav>
                   </div>
                 </section>
                 <br>
                 <section class="intro">
-                  <img class="display" src="/images/devices/analog-sensor.jpg">
+                  <img class="display" src="/images/devices/edison.jpg">
                   <div class="info-intro">
-                    <p>Makes it possible to interact with analog inputs on your device and obtain values that represent the analog input send by the sensors.
-                    The value received from an analog input read from the sensor goes from 0 to 1027.</p>
+                    <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-intel-iot" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-intel-iot/issues" target="_blank">Issues</a>
+</h4>
+                    <p>The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the 
+                    Internet of Things. It packs a robust set of features into its small size and supports 
+                    a broad spectrum of I/O and software support.</p>
                     
-                    <p>For more information click <a href="http://en.wikipedia.org/wiki/Sensor">here</a>.</p>
+                    <p>For more info about the Edison platform click 
+                    <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">here</a>.</p>
                   </div>
                   <div class="clear"></div>
                 </section>
-                <section class="how_to" id="HowToConnect">
-                  <h2 id="how-to-connect">How To Connect</h2>
+                <section class="how-to" id="HowToInstall">
+                  <h2 id="how-to-install">How To Install</h2>
                   
-                  <pre class="CodeRay">Cylon.robot({
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>,
-    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>
-  },
-
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>,
-    <span class="key">pin</span>: <span class="integer">0</span>,
-    <span class="key">lowerLimit</span>: <span class="integer">100</span>,
-    <span class="key">upperLimit</span>: <span class="integer">900</span>
-  }
-});
-</pre>
+                  <h3 id="setting-up-your-intel-edison">Setting up your Intel Edison</h3>
+                  
+                  <p>Everything you need to get started with the Edison is in the Intel Getting Started Guide 
+                  located <a href="https://communities.intel.com/docs/DOC-23147">here</a>. Don't forget to 
+                  configure your Edison's wifi connection and <a href="https://communities.intel.com/docs/DOC-23192">flash</a> 
+                  your Edison with the latest firmware image!</p>
+                  
+                  <p>After you have flashed your Edison and followed the steps in the Intel Getting Started Guide,
+                  you must now install the latest version of the 
+                  <a href="https://github.com/intel-iot-devkit/mraa">Intel MRAA library</a>. In order to update MRAA
+                  you simply log into your Edison, through ssh or the uart serial connection, and follow 
+                  the steps <a href="https://github.com/intel-iot-devkit/mraa#installing-on-your-board">here</a>.</p>
+                  
+                  <h3 id="installing-cylon">Installing Cylon</h3>
+                  
+                  <p>Once you have flashed your Edison with the latest firmware as well as updated MRAA, 
+                  you will now install <code>cylon-intel-iot</code> on the Edison. To do this you must be
+                  logged into the board, through ssh or the uart serial connection, and execute the
+                  following command <code>npm install cylon-intel-iot</code>.</p>
+                  
+                  <p>Once <code>cylon-intel-iot</code> has been installed on your Edison, you're ready to start
+                  programming!</p>
                 </section>
                 <section class="how-to" id="HowToUse">
                   <h2 id="how-to-use">How To Use</h2>
                   
-                  <p>This example detects lower and upper limits on a photoresistor sensor.</p>
-                  
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>,
-    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>
-  },
-
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>,
-    <span class="key">pin</span>: <span class="integer">0</span>,
-    <span class="key">lowerLimit</span>: <span class="integer">100</span>,
-    <span class="key">upperLimit</span>: <span class="integer">900</span>
-  },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">var</span> analogValue = <span class="integer">0</span>;
-
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      analogValue = my.sensor.analogRead();
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Analog value =&gt; </span><span class="delimiter">'</span></span>, analogValue);
-    });
-
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">lowerLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lower limit reached!</span><span class="delimiter">"</span></span>);
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Analog value =&gt; </span><span class="delimiter">'</span></span>, val);
-    });
-
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">upperLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Upper limit reached!</span><span class="delimiter">"</span></span>);
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Analog value =&gt; </span><span class="delimiter">'</span></span>, val);
+      my.led.toggle();
     });
   }
 }).start();
 </pre>
                 </section>
-                <section class="public-methods">
-                  <div class="commands-api" id="Commands">
-                    <h1 id="commands">Commands</h1>
-                    
-                    <h2 id="analogreadpinnumber">analogRead(pin_number)</h2>
-                    
-                    <p>Returns an integer value that represents the analog read from the sensor.</p>
-                    
-                    <h5 id="params">Params</h5>
-                    
-                    <ul>
-                      <li>
-<strong>pin_number</strong> -  The pin number for which to return data</li>
-                    </ul>
-                    
-                    <h5 id="returns">Returns</h5>
-                    
-                    <p><code>integer</code> Current analog sensor value.</p>
-                    
-                    <h2 id="upperlimitlimit">upperLimit(limit)</h2>
-                    
-                    <p>Sets an upper limit for the sensor, that when exceeded, triggers a notification event of the same name.</p>
-                    
-                    <h5 id="params-1">Params</h5>
-                    
-                    <ul>
-                      <li>
-<strong>limit</strong> -  The upper limit that triggers notification event</li>
-                    </ul>
-                    
-                    <h5 id="returns-1">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="lowerlimitlimit">lowerLimit(limit)</h2>
-                    
-                    <p>Sets an lower limit for the sensor, that when exceeded, triggers a notification event of the same name.</p>
-                    
-                    <h5 id="params-2">Params</h5>
-                    
-                    <ul>
-                      <li>
-<strong>limit</strong> -  The lower limit that triggers notification event</li>
-                    </ul>
-                    
-                    <h5 id="returns-2">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                  </div>
-                  <div class="commands-api" id="Events">
-                    <h1 id="events">Events</h1>
-                    
-                    <h2 id="update">update</h2>
-                    
-                    <p>This event will contain one of the events listed below. 
-                    You can also subscribe to one of the specific events, if that is the information you are interested in.</p>
-                    
-                    <h2 id="analogreaddata">analogRead(data)</h2>
-                    
-                    <p>The analogRead event data contains an integer value that represents the analog read from the sensor.</p>
-                    
-                    <h5 id="data">Data</h5>
-                    
-                    <ul>
-                      <li>
-<strong>data</strong> -  integer Current sensor reading</li>
-                    </ul>
-                    
-                    <h2 id="upperlimitdata">upperLimit(data)</h2>
-                    
-                    <p>Gets triggered if the value read by the sensor is greater or equal to upperLimit (value passed when setting up the sensor).</p>
-                    
-                    <h5 id="data-1">Data</h5>
-                    
-                    <ul>
-                      <li>
-<strong>data</strong> -  integer Current sensor reading that triggered the notification</li>
-                    </ul>
-                    
-                    <h2 id="lowerlimitdata">lowerLimit(data)</h2>
-                    
-                    <p>Gets triggered if the value read by the sensor is less or equal to lowerLimit (value passed when setting up the sensor).</p>
-                    
-                    <h5 id="data-2">Data</h5>
-                    
-                    <ul>
-                      <li>
-<strong>data</strong> -  integer Current sensor reading that triggered the notification</li>
-                    </ul>
-                    
-                    <h2 id="start">start</h2>
-                    
-                    <p>Sent when the device has been started and is ready to use.</p>
-                  </div>
+                <section class="how-to" id="HowToConnect">
+                  <h2 id="how-to-connect">How To Connect</h2>
+                  
+                  <p>The <a href="https://communities.intel.com/docs/DOC-23147">Intel Edison Getting Started Guide</a>
+                  details connection instructions for Windows, Mac and Linux.</p>
                 </section>
-                <section class="circuit" id="Circuit">
-                  <h2>Circuit</h2>
-                  <div class="description-circuit">
-                    <p></p>
-                  </div>
-                  <div class="image-circuit">
-                    <img alt="" src="/documentation/drivers/breadboards/gpio/analog_sensor_bb.png">
-                  </div>
-                  <div class="clear"></div>
-                </section>
-                <section class="compatibility hardware" id="Compatability">
-                  <h2>Compatibility</h2>
-                  <div class="devices">
-                    <ul class="doc-platform">
-                      <li>
-                        <a href="/documentation/platforms/arduino">
-                          <p class="title">Arduino</p>
-                          <img src="/images/devices/arduino.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/yun">
-                          <p class="title">Arduino YUN</p>
-                          <img src="/images/devices/yun.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/beaglebone">
-                          <p class="title">Beaglebone Black</p>
-                          <img src="/images/devices/beaglebone.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/digispark">
-                          <p class="title">Digispark</p>
-                          <img src="/images/devices/digispark.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/galileo">
-                          <p class="title">Intel Galileo</p>
-                          <img src="/images/devices/galileo.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/edison">
-                          <p class="title">Intel Edison</p>
-                          <img src="/images/devices/edison.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/pinoccio">
-                          <p class="title">Pinoccio</p>
-                          <img src="/images/devices/pinoccio.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/spark">
-                          <p class="title">Spark</p>
-                          <img src="/images/devices/spark.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                      <li>
-                        <a href="/documentation/platforms/tessel">
-                          <p class="title">Tessel</p>
-                          <img src="/images/devices/tessel.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                    </ul>
+                <section class="drivers" id="Drivers">
+                  <h2 id="drivers">Drivers</h2>
+                  
+                  <p>Available drivers for the Edison platform are listed below.</p>
+                  <div class="hardware">
+                    <div class="devices">
+                      <h2>GPIO Drivers</h2>
+                      <a class="device" href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <img src="/images/devices/analog-sensor.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/button" title="Button">
+                        <img src="/images/devices/button.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <img src="/images/devices/continuous-servo.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <img src="/images/devices/direct-pin.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
+                        <img src="/images/devices/ir-range-finder.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/led" title="LED">
+                        <img src="/images/devices/led.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/makey-button" title="Makey Button">
+                        <img src="/images/devices/makey-button.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/maxbotix" title="Maxbotix">
+                        <img src="/images/devices/maxbotix.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/motor" title="Motor">
+                        <img src="/images/devices/motor.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/servo" title="Servo">
+                        <img src="/images/devices/servo.jpg">
+                      </a>
+                      <h2>I2C Drivers</h2>
+                      <a class="device" href="/documentation/drivers/blinkm" title="BlinkM">
+                        <img src="/images/devices/blinkm.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/bmp180" title="BPM180">
+                        <img src="/images/devices/bmp180.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/hmc6352-compass" title="HMC6352 Compass">
+                        <img src="/images/devices/hmc6352-compass.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
+                        <img src="/images/devices/lcd.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lsm9ds0g" title="LSM9DS0G">
+                        <img src="/images/devices/lsm9ds0g.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lsm9ds0xm" title="LSM9DS0XM">
+                        <img src="/images/devices/lsm9ds0xm.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/mpl115a2" title="MPL115A2">
+                        <img src="/images/devices/mpl115a2.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <img src="/images/devices/mpu6050.jpg">
+                      </a>
+                    </div>
                   </div>
                 </section>
               </div>

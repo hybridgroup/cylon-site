@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
-    <meta content="Ron Evans" name="author">
-    <title>Cylon.js In Scotland</title>
+    <meta content="Ron Evans &amp; Adrian Zankich" name="author">
+    <title>Cylon.js on Intel Edison</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/hybridpages/assets/javascript/plax.js"></script>
@@ -87,10 +87,10 @@
                 <div class="date">
                   <div class="blue">
                     <div class="month">
-                      May
+                      Sep
                     </div>
                     <div class="day">
-                      10
+                      17
                     </div>
                   </div>
                   <div class="red">
@@ -101,24 +101,82 @@
                 </div>
                 <div class="data">
                   <h3>
-                    <a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a>
+                    <a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a>
                   </h3>
                   <div class="author">
-                    by Ron Evans
+                    by Ron Evans &amp; Adrian Zankich
                   </div>
                 </div>
               </header>
-              <p>We said farewell to Germany after <a href="http://nextberlin.eu/">NextBerlin 2014</a>, then headed off to that learned city Edinburgh, Scotland for <a href="http://scotlandjs.com/">Scotland.js</a>. Taking place in the remarkable museum <a href="http://www.dynamicearth.co.uk/">Dynamic Earth</a>, the conference featured excellent speakers, and a very interactive format with a question track taking place immediately after each of the talks.</p>
+              <p>Team Cylon.js was at the <a href="http://www.intel.com/content/www/us/en/intel-developer-forum-idf/san-francisco/2014/idf-2014-san-francisco.html">Intel Developer Forum in San Francisco</a> last week, and we got our hands on one of the new <a href="http://www.intel.com/content/www/us/en/do-it-yourself/edison.html">Intel Edison</a> boards for the first time. We might have been a little skeptical after the hype of the initial Edison <a href="http://www.intel.com/content/www/us/en/events/intel-ces-keynote-2014.html">announcement at CES</a>, but once we started working with it, within 24 hours we were very excited about the possibilities.</p>
               
-              <p><img src="/images/blog/scotland-js-2014.png" alt="Scotland.js 2014" style="margin: 10px 0;"></p>
+              <p><img src="/images/blog/intel-conf.jpg" alt="Cylon.js Intel Developer Forum San Francisco" style="margin: 10px 0;"></p>
               
-              <p>During both days of the conference, we met friends both old and new. Talking to each other was a crucial element for the conference format, and we really enjoyed all the great conversations.</p>
+              <p>The Edison is a tiny System on Chip (SoC) board, that is intended to be the main processor for connected devices that include some intelligence inside. It includes dual-core Atom processors, 1GB of RAM, and built-in WiFi/Bluetooth LE, all on a single board with a tiny 70-pin Hirose "stacking connector".</p>
               
-              <p>Our talk was fast-paced, since we have a lot of hardware. Luckily we've gotten it down to a highly choreographed level, so we were able to demo <a href="http://www.arduino.cc/">Arduino</a>, <a href="https://tessel.io/">Tessel</a>, <a href="http://beagleboard.org/">Beaglebone Black</a>, <a href="http://www.gosphero.com/sphero-2-0/">Sphero</a>, <a href="http://ardrone2.parrot.com/">ARDrone</a>, <a href="http://opencv.org/">OpenCV</a>, and <a href="http://neurosky.com/">Neurosky</a> all in one talk!</p>
+              <p>The Hirose connector is one big clue to how Intel plans on the Edison being used: it is the base for a highly customized modular solution, that puts the Edison's GPIO, I2C, UARTs and other capabilities to work in a unique way. The Arduino-compatible breakout board for the Edison is just for compatibility sake. The much more interesting approach is that being used by <a href="https://www.sparkfun.com/">Sparkfun</a>, who are manufacturing a series of "blocks" which let you mix and match various individual capabilities. </p>
               
-              <p>Thank you so much to the conference organizers for inviting us to take part!</p>
+              <p>Once you've prototyped everything, you would then manufacture a custom single board that uses only what you need for your embedded system. This is a very interesting way to approach modularity.</p>
               
-              <p>Want to stay up to date on our ongoing robot world tour? Follow us on Twitter at <a href="http://twitter.com/cylonjs">@cylonjs</a>.</p>
+              <p>Thanks to the efforts of the Intel IoT team, there is a Linux image that includes everything you need for your code to access the various I/O capabilities of the various Intel boards. This is largely due to a compiled library called "MRAA", that is itself also open source.</p>
+              
+              <p>We've just added support to Cylon.js for the Intel Edison, as well as updating our support for the Intel Galileo, so you can now use any of the GPIO and I2C devices that Cylon.js already includes, along with any of the many new devices that are being added all the time.</p>
+              
+              <p>Here is a simple example, showing Cylon.js using the Intel Edison's GPIO for analog input using a potentiometer, and PWM output using an LED:</p>
+              
+              <iframe width="560" height="315" src="//www.youtube.com/embed/yi3b51fQ6c4" frameborder="0" allowfullscreen=""></iframe>
+              
+              <p>And here is the code:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span> },
+  ],
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">analogRead</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+      brightness = val.fromScale(<span class="integer">0</span>, <span class="integer">1024</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>) | <span class="integer">0</span>;
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">brightness =&gt; </span><span class="delimiter">'</span></span>, brightness);
+      my.led.brightness(brightness)
+    });
+  }
+}).start();
+</pre>
+              
+              <p>We've also added full support for I2C devices. Here is the same example, but using a BlinkM connected via I2C:</p>
+              
+              <iframe width="560" height="315" src="//www.youtube.com/embed/4ok-mB6AYV0" frameborder="0" allowfullscreen=""></iframe>
+              
+              <p>Here is the code:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> },
+  ],
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.blinkm.stopScript();
+
+    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">analogRead</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+      brightness = val.fromScale(<span class="integer">0</span>, <span class="integer">1024</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>) | <span class="integer">0</span>;
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">brightness =&gt; </span><span class="delimiter">'</span></span>, brightness);
+      my.blinkm.goToRGB(brightness, brightness, brightness);
+    });
+  }
+}).start();
+</pre>
+              
+              <p>We've provided instructions on how to get started with Cylon.js and the Intel Edison on our documentation page <a href="http://cylonjs.com/documentation/platforms/edison">here</a>. We've also updated the documentation for our Intel Galileo at <a href="http://cylonjs.com/documentation/platforms/galileo">here</a>.</p>
+              
+              <p>We're really excited about the Intel Edison, and we will be adding more support for hardware based on this new platform as it comes out.</p>
+              
+              <p>Keep up with our ongoing adventures on Twitter at <a href="http://twitter.com/cylonjs">@cylonjs</a>.</p>
             </div>
             <div class="comments">
               <div class="addthis_toolbox addthis_default_style addthis_32x32_style">

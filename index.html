@@ -78,7 +78,7 @@
                     JavaScript Robotics, By Your Command
                   </h1>
                   <h2 class="subtitle">
-                    Next generation robotics framework with support for <a href="#platforms">25 different platforms</a>
+                    Next generation robotics framework with support for <a href="#platforms">26 different platforms</a>
                   </h2>
                   <a href="/documentation/getting-started" class="cta"> Get Started</a>
                   <div class="social">
@@ -119,14 +119,14 @@
           <div class="container">
             <h2 id="meet-the-code">Meet The Code</h2>
             
-            <p>Cylon.js makes in incredibly simple and fun to commands robots.</p>
+            <p>Cylon.js makes it incredibly simple and fun to command robots.</p>
             
             <p>All you need to get started is the <code>cylon</code> NPM module:</p>
             
             <pre class="CodeRay">$ npm install cylon
 </pre>
             
-            <p>Then install modules for whatever hardware support you want to use from your robot.</p>
+            <p>Then install modules for whichever hardware support you want to use from your robot.</p>
           </div>
         </div>
         <div class="triangles">
@@ -147,13 +147,12 @@
             
             <h3 id="arduino">Arduino</h3>
             
-            <p>Install modules for whatever hardware support you want to use from your robot.
-            For the example below, an Arduino using the Firmata protocol:</p>
+            <p>In this example below, we will use Cylon.js with an Arduino controlled via the Firmata protocol. First, install the <code>cylon-firmata</code> module:</p>
             
             <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
             
-            <p>This example connects to an Arduino, and every second turns the LED either on, or off.</p>
+            <p>Now, this example code will connect to an Arduino, and every second turn the LED either on, or off.</p>
             
             <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
@@ -226,6 +225,12 @@ robot.start();
                   <a href="/documentation/platforms/galileo">
                     <p class="title">Intel Galileo</p>
                     <img src="/images/devices/galileo.jpg" style="width: 90%">
+                  </a>
+                </li>
+                <li>
+                  <a href="/documentation/platforms/edison">
+                    <p class="title">Intel Edison</p>
+                    <img src="/images/devices/edison.jpg" style="width: 90%">
                   </a>
                 </li>
                 <li>

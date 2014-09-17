@@ -229,7 +229,7 @@
                   <img class="display" src="/images/devices/galileo.jpg">
                   <div class="info-intro">
                     <h4 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-galileo" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-galileo/issues" target="_blank">Issues</a>
+<a href="https://github.com/hybridgroup/cylon-intel-iot" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-intel-iot/issues" target="_blank">Issues</a>
 </h4>
                     <p>The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor.
                     It is intended to be compatible with shields designed for the Arduino Uno R3 or above.</p>
@@ -243,7 +243,7 @@
                   
                   <p>Install the module with:</p>
                   
-                  <pre class="CodeRay">$ npm install cylon-galileo
+                  <pre class="CodeRay">$ npm install cylon-intel-iot
 </pre>
                 </section>
                 <section class="how-to" id="HowToUse">
@@ -252,7 +252,7 @@
                   <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span> },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -290,8 +290,6 @@ Cylon.robot({
                   <h2 id="how-to-connect">How To Connect</h2>
                   
                   <h3 id="setting-up-galileo-linux-image">Setting up Galileo Linux Image</h3>
-                  
-                  <p>Setting up the Galileo GEN 2 board for Cylon.js has quite a few steps, but it's not terribly difficult. Luckily, you only have to do it once.</p>
                   
                   <p>The first step is to ensure we have the latest version of the firmware, and update if not.
                   You can find instructions to update the firmware <a href="https://communities.intel.com/docs/DOC-22872">here</a>.</p>
@@ -387,9 +385,9 @@ v0.10.25
                   <pre class="CodeRay">root@clanton:~# date 0902150114 
 </pre>
                   
-                  <p>With that done, we can now install the <code>cylon-galileo</code> module to the board:</p>
+                  <p>With that done, we can now install the <code>cylon-intel-iot</code> module to the board:</p>
                   
-                  <pre class="CodeRay">root@clanton:~# npm install cylon-galileo
+                  <pre class="CodeRay">root@clanton:~# npm install cylon-intel-iot
 </pre>
                   
                   <p>Sparkfun's Galileo <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">getting started page</a> has a lot of good info about the board.
@@ -440,6 +438,31 @@ v0.10.25
                       </a>
                       <a class="device" href="/documentation/drivers/servo" title="Servo">
                         <img src="/images/devices/servo.jpg">
+                      </a>
+                      <h2>I2C Drivers</h2>
+                      <a class="device" href="/documentation/drivers/blinkm" title="BlinkM">
+                        <img src="/images/devices/blinkm.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/bmp180" title="BPM180">
+                        <img src="/images/devices/bmp180.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/hmc6352-compass" title="HMC6352 Compass">
+                        <img src="/images/devices/hmc6352-compass.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
+                        <img src="/images/devices/lcd.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lsm9ds0g" title="LSM9DS0G">
+                        <img src="/images/devices/lsm9ds0g.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/lsm9ds0xm" title="LSM9DS0XM">
+                        <img src="/images/devices/lsm9ds0xm.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/mpl115a2" title="MPL115A2">
+                        <img src="/images/devices/mpl115a2.jpg">
+                      </a>
+                      <a class="device" href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <img src="/images/devices/mpu6050.jpg">
                       </a>
                     </div>
                   </div>
