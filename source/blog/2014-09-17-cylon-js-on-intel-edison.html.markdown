@@ -22,11 +22,57 @@ Thanks to the efforts of the Intel IoT team, there is a Linux image that include
 
 We've just added support to Cylon.js for the Intel Edison, as well as updating our support for the Intel Galileo, so you can now use any of the GPIO and I2C devices that Cylon.js already includes, along with any of the many new devices that are being added all the time.
 
-Short video showing it actually works...
+Here is a simple example, showing Cylon.js using the Intel Edison's GPIO for analog input using a potentiometer, and PWM output using an LED:
 
-We've provided instructions on how to get started with Cylon.js and the Intel Edison on our documentation page. Once you've installed the new cylon-intel-iot node module, you can test your code with the following simple example:
+video here...
 
-Code example here
+And here is the code:
+
+    :::javascript
+    var Cylon = require('cylon');
+
+		Cylon.robot({
+		  connection: { name: 'edison', adaptor: 'intel-iot' },
+		  devices: [
+		    { name: 'sensor', driver: 'analogSensor', pin: 0 },
+		    { name: 'led', driver: 'led', pin: 3 },
+		  ],
+		  work: function(my) {
+		    my.sensor.on('analogRead', function(val) {
+		      brightness = val.fromScale(0, 1024).toScale(0, 255) | 0;
+		      console.log('brightness => ', brightness);
+		      my.led.brightness(brightness)
+		    });
+		  }
+		}).start();
+
+We've also added full support for I2C devices. Here is the same example, but using a BlinkM connected via I2C:
+
+video here
+
+Here is the code:
+
+    :::javascript
+    var Cylon = require('cylon');
+
+		Cylon.robot({
+		  connection: { name: 'edison', adaptor: 'intel-iot' },
+		  devices: [
+		    { name: 'sensor', driver: 'analogSensor', pin: 0 },
+		    { name: 'blinkm', driver: 'blinkm' },
+		  ],
+		  work: function(my) {
+		    my.blinkm.stopScript();
+
+		    my.sensor.on('analogRead', function(val) {
+		      brightness = val.fromScale(0, 1024).toScale(0, 255) | 0;
+		      console.log('brightness => ', brightness);
+		      my.blinkm.goToRGB(brightness, brightness, brightness);
+		    });
+		  }
+		}).start();
+
+We've provided instructions on how to get started with Cylon.js and the Intel Edison on our documentation page at ()[]. We've also updated the documentation for our Intel Galileo at ()[].
 
 We're really excited about the Intel Edison, and we will be adding more support for hardware based on this new platform as it comes out.
 
