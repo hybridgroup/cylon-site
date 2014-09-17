@@ -12,7 +12,7 @@ layout: home
 
 hero_title: "JavaScript Robotics, By Your Command"
 
-hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>25 different platforms</a>"
+hero_subtitle: "Next generation robotics framework with support for <a href='#platforms'>26 different platforms</a>"
 
 
 catcher_phrase: Ready to build the next big thing with JavaScript?
@@ -28,25 +28,24 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
   :markdown
     ## Meet The Code
 
-    Cylon.js makes in incredibly simple and fun to commands robots.
+    Cylon.js makes it incredibly simple and fun to command robots.
 
     All you need to get started is the `cylon` NPM module:
 
         $ npm install cylon
 
-    Then install modules for whatever hardware support you want to use from your robot.
+    Then install modules for whichever hardware support you want to use from your robot.
 
 :markdown
   ## Examples
 
   ### Arduino
 
-  Install modules for whatever hardware support you want to use from your robot.
-  For the example below, an Arduino using the Firmata protocol:
+  In this example below, we will use Cylon.js with an Arduino controlled via the Firmata protocol. First, install the `cylon-firmata` module:
 
       $ npm install cylon-firmata
 
-  This example connects to an Arduino, and every second turns the LED either on, or off.
+  Now, this example code will connect to an Arduino, and every second turn the LED either on, or off.
 
       :::javascript
       var Cylon = require("cylon");
