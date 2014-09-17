@@ -36,7 +36,12 @@
 
   "Intel Galileo": {
     "slug": "galileo",
-    "drivers": ["GPIO"]
+    "drivers": ["GPIO", "I2C"]
+  },
+
+  "Intel Edison": {
+    "slug": "edison",
+    "drivers": ["GPIO", "I2C"]
   },
 
   "Joystick": {

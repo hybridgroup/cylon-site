@@ -1,0 +1,87 @@
+---
+title: Edison with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - Edison
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Intel Edison
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-intel-iot' target='_blank' class='repository'>Repository</a>| <a class+'issues' href='https://github.com/hybridgroup/cylon-intel-iot/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/edison.jpg", class: "display"
+  .info-intro
+    = partial '/hybridpages/partials/widgets/repo_issues'
+    :markdown
+      The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the 
+      Internet of Things. It packs a robust set of features into its small size and supports 
+      a broad spectrum of I/O and software support.
+
+      For more info about the Edison platform click 
+      [here](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html).
+  .clear
+
+%section.how-to#HowToInstall
+  :markdown
+    ## How To Install
+
+    ### Setting up your Intel Edison
+
+    Everything you need to get started with the Edison is in the Intel Getting Started Guide 
+    located [here](https://communities.intel.com/docs/DOC-23147). Don't forget to 
+    configure your Edison's wifi connection and [flash](https://communities.intel.com/docs/DOC-23192) 
+    your Edison with the latest firmware image!
+
+    After you have flashed your Edison and followed the steps in the Intel Getting Started Guide,
+    you must now install the latest version of the 
+    [Intel MRAA library](https://github.com/intel-iot-devkit/mraa). In order to update MRAA
+    you simply log into your Edison, through ssh or the uart serial connection, and follow 
+    the steps [here](https://github.com/intel-iot-devkit/mraa#installing-on-your-board).
+
+    ### Installing Cylon
+
+    Once you have flashed your Edison with the latest firmware as well as updated MRAA, 
+    you will now install `cylon-intel-iot` on the Edison. To do this you must be
+    logged into the board, through ssh or the uart serial connection, and execute the
+    following command `npm install cylon-intel-iot`.
+
+    Once `cylon-intel-iot` has been installed on your Edison, you're ready to start
+    programming!
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'edison', adaptor: 'intel-iot' },
+          device: {name: 'led', driver: 'led', pin: 13 },
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.led.toggle();
+            });
+          }
+        }).start();
+
+%section.how-to#HowToConnect
+  :markdown
+    ## How To Connect
+
+    The [Intel Edison Getting Started Guide](https://communities.intel.com/docs/DOC-23147)
+    details connection instructions for Windows, Mac and Linux.
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    Available drivers for the Edison platform are listed below.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Intel Edison"}
