@@ -18,7 +18,7 @@ active_menu_blog: true
 
   The Hirose connector is one big clue to how Intel plans on the Edison being used: it is the base for a highly customized modular solution, that puts the Edison's GPIO, I2C, UARTs and other capabilities to work in a unique way. The Arduino-compatible breakout board for the Edison is just for compatibility sake. The much more interesting approach is that being used by [Sparkfun](https://www.sparkfun.com/), who are manufacturing a series of "blocks" which let you mix and match various individual capabilities. 
 
-  Once you've prototyped everything, you would then manufacture a custom single board that used only what you needed for your embedded system. This is a very interesting way to approach modularity.
+  Once you've prototyped everything, you would then manufacture a custom single board that uses only what you need for your embedded system. This is a very interesting way to approach modularity.
 
   Thanks to the efforts of the Intel IoT team, there is a Linux image that includes everything you need for your code to access the various I/O capabilities of the various Intel boards. This is largely due to a compiled library called "MRAA", that is itself also open source.
 
@@ -26,7 +26,7 @@ active_menu_blog: true
 
   Here is a simple example, showing Cylon.js using the Intel Edison's GPIO for analog input using a potentiometer, and PWM output using an LED:
 
-  video here...
+  <iframe width="560" height="315" src="//www.youtube.com/embed/yi3b51fQ6c4" frameborder="0" allowfullscreen></iframe>
 
   And here is the code:
 
@@ -50,7 +50,7 @@ active_menu_blog: true
 
   We've also added full support for I2C devices. Here is the same example, but using a BlinkM connected via I2C:
 
-  video here
+  <iframe width="560" height="315" src="//www.youtube.com/embed/4ok-mB6AYV0" frameborder="0" allowfullscreen></iframe>
 
   Here is the code:
 
@@ -74,7 +74,7 @@ active_menu_blog: true
         }
       }).start();
 
-  We've provided instructions on how to get started with Cylon.js and the Intel Edison on our documentation page at ()[]. We've also updated the documentation for our Intel Galileo at ()[].
+  We've provided instructions on how to get started with Cylon.js and the Intel Edison on our documentation page [here](http://cylonjs.com/documentation/platforms/edison). We've also updated the documentation for our Intel Galileo at [here](http://cylonjs.com/documentation/platforms/galileo).
 
   We're really excited about the Intel Edison, and we will be adding more support for hardware based on this new platform as it comes out.
 
