@@ -291,29 +291,25 @@ Cylon.robot({
                   
                   <h3 id="setting-up-galileo-linux-image">Setting up Galileo Linux Image</h3>
                   
-                  <p>Setting up the Galileo for Cylon takes longer than it should, but it's not terribly difficult.
-                  Luckily, you only have to do it once.</p>
+                  <p>Setting up the Galileo GEN 2 board for Cylon.js has quite a few steps, but it's not terribly difficult. Luckily, you only have to do it once.</p>
                   
                   <p>The first step is to ensure we have the latest version of the firmware, and update if not.
-                  You can find instructions to update the firmware <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/updating-firmware">here</a>.</p>
+                  You can find instructions to update the firmware <a href="https://communities.intel.com/docs/DOC-22872">here</a>.</p>
                   
-                  <p>Next, we're going to install the larger Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.</p>
+                  <p>Next, we're going to install the "larger" Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.</p>
                   
                   <p>You can find the larger image on the official Galileo <a href="https://communities.intel.com/docs/DOC-22226">drivers page</a>.
-                  You're looking for the one named <a href="http://downloadmirror.intel.com/23171/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.0.7z">LINUX IMAGE FOR SD for Intel Galileo</a>.</p>
+                  You're looking for the one named <a href="http://downloadmirror.intel.com/24000/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.2.zip">LINUX IMAGE FOR SD for Intel Galileo</a>.</p>
                   
-                  <p>Please feel free to read through the Galileo <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">getting started page</a>.
-                  This will help you get better acquainted with the features of the board.</p>
-                  
-                  <p>Once you have the larger image on the SD card, slot it into the Galileo, and the board should automatically boot from it.</p>
+                  <p>Once you have the larger image on the SD card, you are ready to boot the Galileo from it. Power off the Galileo buth from the power adaptor, as well as removing the USB cable. Insert the SD card it into the Galileo, and power it back up. The board should automatically boot from the SD card's Linux image. The first time you boot, it will probably take a lot longer.</p>
                   
                   <p>After it's started up, we need to connect and enable networking (turned off by default in the image).</p>
                   
                   <p>We can accomplish this using a serialport to terminal program.
-                  To do this, we have to use the Galileo Arduino IDE.
-                  This is also provided from the Galileo drivers page, but <a href="https://communities.intel.com/docs/DOC-22226">here</a> is a direct link.</p>
+                  To do this, we have to use the special version of the Arduino IDE that comes with the Galileo. You have probably already installed it, if you've followed the "Getting Started" instructions on the Intel web site.
+                  Just in case you need it, <a href="https://communities.intel.com/docs/DOC-22226">here</a> is a direct link to the downloads page that has the Arduino IDE for Galileo.</p>
                   
-                  <p>Make sure to download the version for your OS.</p>
+                  <p>Make sure to download the correct version for your OS.</p>
                   
                   <p>After you've got that running, upload this sketch to your Galileo:</p>
                   
@@ -338,7 +334,7 @@ Cylon.robot({
 </pre>
                   
                   <p>Once the board's connected to your computer, you can connect to it with a serial terminal program.
-                  Some example programs:</p>
+                  Some terminal programs:</p>
                   
                   <ul>
                     <li>
@@ -351,6 +347,8 @@ Cylon.robot({
                   
                   <p>Set the serial port number, and change the baud rate to 115200 bps.</p>
                   
+                  <p>PLEASE NOTE: you must connect an Ethernet cable to the Galileo in order to connect to it via SSH. Connecting via the USB cable is only for uploading to the Arduino part of the board. Connecting via the serial TTY interface cannot be used for SSH connections. A USB to Ethernet adapter is very useful to connect directly from your computer to the Galileo.</p>
+                  
                   <p>When you have a successful connection to the Galileo, run this command to enable networking:</p>
                   
                   <pre class="CodeRay">$ /etc/init.d/networking start
@@ -362,7 +360,7 @@ Cylon.robot({
                   <pre class="CodeRay">$ ssh root@192.168.0.5
 </pre>
                   
-                  <p>The last bit of setup is to update the version of Node included with the Linux image.
+                  <p>The last bit of setup is to update the version of Node, since the one included with the Linux image is the older 0.8 verison.
                   You can download a more up-to-date version <a href="https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip">here</a>.</p>
                   
                   <p>Uncompress the file on your host computer, and copy the package to the board:</p>
@@ -373,21 +371,29 @@ $ scp nodejs_0.10.25-r0_i586.ipk root@192.168.0.5:/home/root/
                   
                   <p>Then, on the Galileo, install the package with the <code>opkg</code> command:</p>
                   
-                  <pre class="CodeRay">$ opkg install nodejs_0.10.25-r0_i586.ipk
+                  <pre class="CodeRay">root@clanton:~# opkg install nodejs_0.10.25-r0_i586.ipk
 </pre>
                   
                   <p>With that done, make sure the update worked:</p>
                   
-                  <pre class="CodeRay">$ node -v
+                  <pre class="CodeRay">root@clanton:~# node -v
 v0.10.25
 </pre>
                   
                   <p>If you need more details on updating Node in the Galileo image, they can be found <a href="https://communities.intel.com/thread/48416">here</a>.</p>
                   
-                  <p>And with that all done, we can install the <code>cylon-galileo</code> module to the board:</p>
+                  <p>You need to set the system date/time on the Galileo to install npm modules, due to using SSL. You can do this by running <code>date</code> using the format <code>mmddhhmmYY</code>. For example, to set the date to Sept. 2, 2014, at 3:01 PM GMT:</p>
                   
-                  <pre class="CodeRay">$ npm install cylon-galileo
+                  <pre class="CodeRay">root@clanton:~# date 0902150114 
 </pre>
+                  
+                  <p>With that done, we can now install the <code>cylon-galileo</code> module to the board:</p>
+                  
+                  <pre class="CodeRay">root@clanton:~# npm install cylon-galileo
+</pre>
+                  
+                  <p>Sparkfun's Galileo <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">getting started page</a> has a lot of good info about the board.
+                  Even though it refers to the revision 1 board, it can still help you get better acquainted with the features of the Galileo.</p>
                   
                   <h3 id="pushing-code">Pushing Code</h3>
                   
