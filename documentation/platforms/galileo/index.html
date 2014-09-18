@@ -241,10 +241,92 @@
                 <section class="how-to" id="HowToInstall">
                   <h2 id="how-to-install">How To Install</h2>
                   
-                  <p>Install the module with:</p>
+                  <h4 id="setting-up-your-intel-galileo">Setting up your Intel Galileo</h4>
+                  
+                  <p>In order to use <code>cylon-intel-iot</code> on your Galileo, you need to install the Intel IoT linux boot image onto an sd card.
+                  You can download the latest image <a href="https://software.intel.com/sites/landingpage/iotdk/board-boot-image.html">here</a>.</p>
+                  
+                  <p>For Windows hosts you can follow the instruction for flashing your sd card image <a href="https://software.intel.com/en-us/node/530353">here</a>.</p>
+                  
+                  <p>For Mac or Linux hosts, it's as easy as extracting the image from the downloaded archive and executing the command</p>
+                  
+                  <pre class="CodeRay">$ sudo dd if=/path/to/iot-devkit-latest-mmcblkp0.direct of=/dev/sdX bs=1M &amp;&amp; sudo sync
+</pre>
+                  
+                  <p>where <code>/dev/sdX</code> is the location of your sd card. For help determing the location of your sd card, consult the appropriate guide for your OS below. </p>
+                  
+                  <h6 id="os-x-users">OS X Users</h6>
+                  
+                  <p>To prepare your SD card for flashing on OS X, you need to find out it's drive name and eject the volume.</p>
+                  
+                  <p>To find the name, use the built-in <code>diskutil</code> utility:</p>
+                  
+                  <pre class="CodeRay">$ diskutil list
+/dev/disk0
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:      GUID_partition_scheme                        *500.3 GB   disk0
+  1:                        EFI EFI                     209.7 MB   disk0s1
+  2:                  Apple_HFS Macintosh HD            499.4 GB   disk0s2
+  3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:     FDisk_partition_scheme                        *15.7 GB    disk1
+  1:             Windows_FAT_32 NO NAME                 15.7 GB    disk1s1
+</pre>
+                  
+                  <p>According to this, our SD card is found at <code>/dev/disk1</code>.</p>
+                  
+                  <p>Before you flash it with the above <code>dd</code> command, use <code>diskutil</code> to eject the existing volume (<code>disk1s1</code>):</p>
+                  
+                  <pre class="CodeRay">$ diskutil unmount /dev/disk1s1
+</pre>
+                  
+                  <h6 id="linux-users">Linux Users</h6>
+                  <p>To prepare your SD card for flashing on Linux, you need to find the device location of your SD card. An easy way to determin the location is by filtering the <code>/dev/</code> directory for new storage devices. Before you plug in your SD card, execute the following <code>ls</code> command</p>
+                  
+                  <pre class="CodeRay">$ ls -l /dev/sd*
+brw-rw---- 1 root disk 8,  0 Sep 16 21:48 /dev/sda
+brw-rw---- 1 root disk 8,  1 Sep 16 21:48 /dev/sda1
+brw-rw---- 1 root disk 8,  2 Sep 16 21:48 /dev/sda2
+brw-rw---- 1 root disk 8,  5 Sep 16 21:48 /dev/sda5
+</pre>
+                  
+                  <p>You can see that I only have one storage device <code>/dev/sda</code>. Now plug in your SD card and execute the <code>ls</code> command again</p>
+                  
+                  <pre class="CodeRay">$ ls -l /dev/sd*
+brw-rw---- 1 root disk 8,  0 Sep 16 21:48 /dev/sda
+brw-rw---- 1 root disk 8,  1 Sep 16 21:48 /dev/sda1
+brw-rw---- 1 root disk 8,  2 Sep 16 21:48 /dev/sda2
+brw-rw---- 1 root disk 8,  5 Sep 16 21:48 /dev/sda5
+brw-rw---- 1 root disk 8, 16 Sep 17 17:46 /dev/sdb
+brw-rw---- 1 root disk 8, 17 Sep 17 17:46 /dev/sdb1
+brw-rw---- 1 root disk 8, 18 Sep 17 17:46 /dev/sdb2
+</pre>
+                  
+                  <p>You can see from this output that I now have a new storage device <code>/dev/sdb</code>. That is the location of my SD card, so in this instance the <code>/dev/sdX</code> in our <code>dd</code> command will be <code>/dev/sdb</code>.</p>
+                  
+                  <p>After the image has been flashed to your sd card, install the sd card into the Galileo, connect it to your local network and power it up!</p>
+                  
+                  <p>Now you're ready to install MRAA and Cylon.</p>
+                  
+                  <h4 id="install-mraa">Install MRAA</h4>
+                  <p>After you have flashed your Intel board and connected it to a network,
+                  you must now install the latest version of the
+                  <a href="https://github.com/intel-iot-devkit/mraa">Intel MRAA library</a>. In order to update MRAA
+                  you simply log into your Intel board, through ssh or the uart serial connection, and follow
+                  the steps <a href="https://github.com/intel-iot-devkit/mraa#installing-on-your-board">here</a>.</p>
+                  
+                  <h4 id="install-cylon">Install Cylon</h4>
+                  
+                  <p>Once you have flashed your Intel board with the latest firmware as well as updated MRAA,
+                  you will now install <code>cylon-intel-iot</code>. To do this you must be
+                  logged into the board, through ssh or the uart serial connection, and execute the
+                  following command</p>
                   
                   <pre class="CodeRay">$ npm install cylon-intel-iot
 </pre>
+                  
+                  <p>Once <code>cylon-intel-iot</code> has been installed , you're ready to start programming!</p>
                 </section>
                 <section class="how-to" id="HowToUse">
                   <h2 id="how-to-use">How To Use</h2>
@@ -253,154 +335,15 @@
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">galileo</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="comment">// Be carefull with your servo angles or you might DAMAGE the servo!</span>
-    <span class="comment">// Cylon uses a 50hz/s (20ms period) frequency and a Duty Cycle</span>
-    <span class="comment">// of 0.5ms to 2.5ms to control the servo angle movement.</span>
-    <span class="comment">//</span>
-    <span class="comment">// This means:</span>
-    <span class="comment">// 1. 0.5ms == 0 degrees</span>
-    <span class="comment">// 2. 1.5ms == 90 degrees</span>
-    <span class="comment">// 3. 2.5ms == 180 degrees</span>
-    <span class="comment">// (It is usually safe to start with a 90 degree angle, 1.5ms duty</span>
-    <span class="comment">// cycle in most servos)</span>
-    <span class="comment">//</span>
-    <span class="comment">// Please review your servo datasheet to make sure of correct</span>
-    <span class="comment">// angle range and the Freq/MS Duty cycle it requires.</span>
-    <span class="comment">// If more servo support is needed leave us a comment, raise an</span>
-    <span class="comment">// issue or help us add more support.</span>
-
-    <span class="keyword">var</span> angle = <span class="integer">30</span>;
-    <span class="keyword">var</span> increment = <span class="integer">40</span>;
-
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      angle += increment;
-      my.servo.angle(angle);
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span> + my.servo.currentAngle());
-
-      <span class="keyword">if</span> ((angle === <span class="integer">30</span>) || (angle === <span class="integer">150</span>)) { increment = -increment; }
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      my.led.toggle();
     });
   }
 }).start();
 </pre>
-                </section>
-                <section class="how-to" id="HowToConnect">
-                  <h2 id="how-to-connect">How To Connect</h2>
-                  
-                  <h3 id="setting-up-galileo-linux-image">Setting up Galileo Linux Image</h3>
-                  
-                  <p>The first step is to ensure we have the latest version of the firmware, and update if not.
-                  You can find instructions to update the firmware <a href="https://communities.intel.com/docs/DOC-22872">here</a>.</p>
-                  
-                  <p>Next, we're going to install the "larger" Linux image for the Galileo on a MicroSD card, and boot the Galileo from it.</p>
-                  
-                  <p>You can find the larger image on the official Galileo <a href="https://communities.intel.com/docs/DOC-22226">drivers page</a>.
-                  You're looking for the one named <a href="http://downloadmirror.intel.com/24000/eng/LINUX_IMAGE_FOR_SD_Intel_Galileo_v1.0.2.zip">LINUX IMAGE FOR SD for Intel Galileo</a>.</p>
-                  
-                  <p>Once you have the larger image on the SD card, you are ready to boot the Galileo from it. Power off the Galileo buth from the power adaptor, as well as removing the USB cable. Insert the SD card it into the Galileo, and power it back up. The board should automatically boot from the SD card's Linux image. The first time you boot, it will probably take a lot longer.</p>
-                  
-                  <p>After it's started up, we need to connect and enable networking (turned off by default in the image).</p>
-                  
-                  <p>We can accomplish this using a serialport to terminal program.
-                  To do this, we have to use the special version of the Arduino IDE that comes with the Galileo. You have probably already installed it, if you've followed the "Getting Started" instructions on the Intel web site.
-                  Just in case you need it, <a href="https://communities.intel.com/docs/DOC-22226">here</a> is a direct link to the downloads page that has the Arduino IDE for Galileo.</p>
-                  
-                  <p>Make sure to download the correct version for your OS.</p>
-                  
-                  <p>After you've got that running, upload this sketch to your Galileo:</p>
-                  
-                  <pre class="CodeRay"><span class="directive">void</span> setup()
-{
-  system(<span class="string"><span class="delimiter">"</span><span class="content">cp /etc/inittab /etc/inittab.bak</span><span class="delimiter">"</span></span>);  <span class="comment">// Back up inittab</span>
-  <span class="comment">// Replace all "S:2345" with "S0:2345"'s (switching serial ports):</span>
-  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/S:2345/S0:2345/g' /etc/inittab</span><span class="delimiter">"</span></span>);
-  <span class="comment">// Replace all "ttyS1" with "ttyGS0"'s (switching serial ports):</span>
-  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/ttyS1/ttyGS0/g' /etc/inittab</span><span class="delimiter">"</span></span>);
-  <span class="comment">// Replace all "grst" with "#grst"'s to comment that line out:</span>
-  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/grst/#grst/g' /etc/inittab</span><span class="delimiter">"</span></span>);
-  <span class="comment">// Replace all "clld" with "#clld"'s to comment that line out:</span>
-  system(<span class="string"><span class="delimiter">"</span><span class="content">sed -i 's/clld/#clld/g' /etc/inittab</span><span class="delimiter">"</span></span>);
-  system(<span class="string"><span class="delimiter">"</span><span class="content">kill -SIGHUP 1</span><span class="delimiter">"</span></span>);
-}
-
-<span class="directive">void</span> loop()
-{
-
-}
-</pre>
-                  
-                  <p>Once the board's connected to your computer, you can connect to it with a serial terminal program.
-                  Some terminal programs:</p>
-                  
-                  <ul>
-                    <li>
-<a href="https://learn.sparkfun.com/tutorials/terminal-basics/tera-term-windows">Tera Term</a> for Windows</li>
-                    <li>
-<a href="https://learn.sparkfun.com/tutorials/terminal-basics/coolterm-windows-mac-linux">Cool Term</a> for OS X</li>
-                    <li>
-<a href="https://apps.ubuntu.com/cat/applications/oneiric/gtkterm/">GTKTerm</a> for Linux</li>
-                  </ul>
-                  
-                  <p>Set the serial port number, and change the baud rate to 115200 bps.</p>
-                  
-                  <p>PLEASE NOTE: you must connect an Ethernet cable to the Galileo in order to connect to it via SSH. Connecting via the USB cable is only for uploading to the Arduino part of the board. Connecting via the serial TTY interface cannot be used for SSH connections. A USB to Ethernet adapter is very useful to connect directly from your computer to the Galileo.</p>
-                  
-                  <p>When you have a successful connection to the Galileo, run this command to enable networking:</p>
-                  
-                  <pre class="CodeRay">$ /etc/init.d/networking start
-</pre>
-                  
-                  <p>This will allow us to SSH into the board.
-                  Substitute the IP address for that of your Galileo and connect:</p>
-                  
-                  <pre class="CodeRay">$ ssh root@192.168.0.5
-</pre>
-                  
-                  <p>The last bit of setup is to update the version of Node, since the one included with the Linux image is the older 0.8 verison.
-                  You can download a more up-to-date version <a href="https://communities.intel.com/servlet/JiveServlet/download/221298-75632/nodejs_0.10.25-r0_i586.ipk.zip">here</a>.</p>
-                  
-                  <p>Uncompress the file on your host computer, and copy the package to the board:</p>
-                  
-                  <pre class="CodeRay">$ unzip nodejs_0.10.25-r0_i586.ipk.zip
-$ scp nodejs_0.10.25-r0_i586.ipk root@192.168.0.5:/home/root/
-</pre>
-                  
-                  <p>Then, on the Galileo, install the package with the <code>opkg</code> command:</p>
-                  
-                  <pre class="CodeRay">root@clanton:~# opkg install nodejs_0.10.25-r0_i586.ipk
-</pre>
-                  
-                  <p>With that done, make sure the update worked:</p>
-                  
-                  <pre class="CodeRay">root@clanton:~# node -v
-v0.10.25
-</pre>
-                  
-                  <p>If you need more details on updating Node in the Galileo image, they can be found <a href="https://communities.intel.com/thread/48416">here</a>.</p>
-                  
-                  <p>You need to set the system date/time on the Galileo to install npm modules, due to using SSL. You can do this by running <code>date</code> using the format <code>mmddhhmmYY</code>. For example, to set the date to Sept. 2, 2014, at 3:01 PM GMT:</p>
-                  
-                  <pre class="CodeRay">root@clanton:~# date 0902150114 
-</pre>
-                  
-                  <p>With that done, we can now install the <code>cylon-intel-iot</code> module to the board:</p>
-                  
-                  <pre class="CodeRay">root@clanton:~# npm install cylon-intel-iot
-</pre>
-                  
-                  <p>Sparkfun's Galileo <a href="https://learn.sparkfun.com/tutorials/galileo-getting-started-guide">getting started page</a> has a lot of good info about the board.
-                  Even though it refers to the revision 1 board, it can still help you get better acquainted with the features of the Galileo.</p>
-                  
-                  <h3 id="pushing-code">Pushing Code</h3>
-                  
-                  <p>The Galileo is a special case (compared to the BeagleBone Black and Raspberry Pi), since it doesn't have any dev tools in the larger Linux image.
-                  You'll need to write code and install NPM modules on your host computer.</p>
-                  
-                  <p>Additionally, to compile for the 32-bit architecture on the Galileo, you'll need to run a 32-bit version of Node on your host machine.</p>
-                  
-                  <p>You can download the appropriate version from the Node <a href="http://nodejs.org/download/">download page</a>.</p>
                 </section>
                 <section class="drivers" id="Drivers">
                   <h2 id="drivers">Drivers</h2>
