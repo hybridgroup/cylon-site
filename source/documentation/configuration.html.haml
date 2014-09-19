@@ -16,26 +16,26 @@ main_nav: true
 
   For example:
 
-    :::javascript
-    var Cylon = require('cylon');
+      :::javascript
+      var Cylon = require('cylon');
 
-    Cylon.config({
-      option: 'value'
-    });
+      Cylon.config({
+        option: 'value'
+      });
 
-    // rest of program
+      // rest of program
 
   Additionally, if you'd like to fetch configuration details for use in your own application, Cylon#config will always return the current configuration:
 
-    :::javascript
-    var Cylon = require('cylon');
+      :::javascript
+      var Cylon = require('cylon');
 
-    var config = Cylon.config({
-      option: 'value'
-    });
+      var config = Cylon.config({
+        option: 'value'
+      });
 
-    config.option
-    //=> 'value'
+      config.option
+      //=> 'value'
 
   Read on for more details on the configuration options Cylon recognizes.
 
