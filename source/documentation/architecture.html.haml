@@ -1,0 +1,64 @@
+---
+title: Architecture
+page_title: Cylon.JS - Architecture
+page_subtitle: Made by Humans, for Humans.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+main_nav: true
+---
+
+:markdown
+  # Architecture
+
+  We'll explore Cylon's architecture, from the top down.
+
+  ## MCP
+
+  The Master Control Program is responsible for coordinating everything else inside Cylon.
+  It manages adding new Robots, and starting/stopping both Robots and the API.
+
+  It is also used to set and fetch configuration for Cylon internals.
+
+  The MCP's relation to other components of the system can be seen here:
+
+  <img src="/images/elements/architecture-mcp.png" width="100%">
+
+  ## REST API
+
+  Cylon's built-in API offers both a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.
+
+  It interfaces directly with the MCP to fetch robots and information about them.
+  It's also capable of executing commands on Robots and Devices.
+
+  ## Robots
+
+  A Cylon robot is a collection of devices and connections, with the necessary glue to allow them to coordinate together.
+  A User will instantiate one or more robots through the MCP, and either start them all simultaneously or individually.
+  Robots can also have custom commands (to coordinate multiple devices/connections) and can communicate with each other through the MCP.
+
+  ## Devices and Connections
+
+  Devices and Connections are an abstraction layer over drivers and adaptors, respectively.
+  These allow for a layer of indirection between Drivers/Adaptors and the Robot itself, and ensure the interfaces can remain consistent.
+
+  ## Drivers and Adaptors
+
+  Drivers and Adaptors are the meat of Cylon, and allow Cylon to communicate with devices and services, and issue commands/receive events from them.
+  These are implemented as part of Cylon submodules (`cylon-sphero`, etc), and are platform specific.
+
+  Adaptors are in charge of connecting to platforms, no matter the medium.
+  For example, the `cylon-sphero` Adaptor class communicates over Bluetooth, while the `cylon-leapmotion` Adaptor talks to a WebSocket server.
+
+  The Adaptor classes ensure that the Drivers are able to directly communicate with the connected platform.
+
+  Drivers, meanwhile, are used to issue commands and handle events for platforms.
+  For example, a Servo driver knows all the necessary commands to tell a Servo to turn to a certain angle.
+  The Driver has no knowledge of how to connect to the Servo, it trusts the Adaptor to do that and have a consistent interface.
+
+  ## Adaptor Pattern
+
+  Due to the abstraction level provided by Devices and Connections, adding new hardware support for Cylon is as easy as writing a basic NPM module with Cylon as a dependency.
+  For more information about writing new Cylon modules, check out our documentation on [Adding New Hardware Support][].
+
+  [Adding New Hardware Support]: /documentation/adding-new-hardware-support/

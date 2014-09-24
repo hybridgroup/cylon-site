@@ -1,0 +1,281 @@
+---
+title: Adding New Hardware Support
+page_title: Cylon.JS - Adding New Hardware Support
+page_subtitle: Made by Humans, for Humans.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+main_nav: true
+---
+
+:markdown
+  Adding Cylon.JS support for new hardware is straightforward, thanks to the simple patterns and tools included with Cylon itself.
+
+  ## Generating
+
+  The easiest way to get started is with the `cylon-cli` toolkit.
+  Install it with NPM:
+
+      $ npm install cylon-cli
+
+  With that done, you can use it to generate a new template Cylon module, by calling `cylon generate module` with the name of the platform you're adding support for.
+  For example, to generate a module for the Leap Motion:
+
+      $ cylon generate module leapmotion
+      Creating new module 'cylon-leapmotion'
+      Compiling templates for 'cylon-leapmotion'
+
+  After running this, `cd` into the folder and look around:
+
+      $ cd cylon-leapmotion
+      $ ls
+      LICENSE Makefile README.markdown lib/ package.json test/
+
+  The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.
+
+  ## Writing Adaptors
+
+  Your module's Adaptor classes subclass the `Cylon.Adaptor` core class, and are responsible for connecting to the platform you're integrating with.
+  They should also handle any necessary device set-up, and proxy events the user should know about.
+
+  For an example, here's the Adaptor from the `cylon-joystick` module:
+
+      :::javascript
+      'use strict';
+
+      var Cylon = require('cylon');
+
+      var SDL = require('hybridgroup-sdl');
+
+      var Adaptor = module.exports = function Adaptor(opts) {
+        if (opts == null) {
+          opts = {};
+        }
+
+        Adaptor.__super__.constructor.apply(this, arguments);
+
+        this.connector = this.joystick = null;
+      };
+
+      Cylon.Utils.subclass(Adaptor, Cylon.Adaptor);
+
+      Adaptor.prototype.connect = function connect(callback) {
+        SDL.init(SDL.INIT.JOYSTICK);
+
+        if (SDL.numJoysticks() === 0) {
+          throw new Error("No SDL Joystick Available.");
+        }
+
+        this.connector = this.joystick = new SDL.Joystick(0);
+
+        Cylon.Utils.constantly(this.listenForEvents.bind(this));
+
+        callback();
+      };
+
+      Adaptor.prototype.disconnect = function disconnect(callback) {
+        SDL.quit();
+        callback();
+      };
+
+      Adaptor.prototype.listenForEvents = function listenForEvents() {
+        var event = SDL.pollEvent();
+
+        if (!event) {
+          return;
+        }
+
+        if (/^JOY/.test(event.type)) {
+          this.connection.emit('event', event);
+        }
+      };
+
+  There are a few important things to note in this example:
+
+  **It subclasses `Cylon.Adaptor`**.
+  This gives you utilities methods from Cylon, and other conveniences.
+
+  **The `#connect`/`#disconnect` methods**.
+  These methods take a callback as an argument, and trigger it when they're done their work.
+  These methods **need** to be defined in your Adaptor class, or an error will result.
+
+  The `#connect` method is used to establish a connection to the platform, and should assign the object maintaining the connection to `this.connector` so it can be directly accessed.
+
+  The `#disconnect` method is used to clean up at shutdown time, and if there's any special connection termination to be done, it should be done here.
+
+  Event propagation can be defined in Adaptors using the `#defineAdaptorEvent` helper function, which can be invoked in a few ways:
+
+  **With a source and target event name**.
+  This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+  Additionally, if you pass the 'update' param, an `update` event will also be emitted:
+
+      :::javascript
+      this.defineAdaptorEvent({
+        eventName: 'greeting',
+        targetEventName: 'hello',
+        update: true
+      });
+
+  With this code, whenever the Adaptor's `connector` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `connection`, with the data that the 'greeting' event received.
+
+  **With just an eventName**.
+  This invocation assumes you want the event emitted on the `connection` to be the same as the original event name.
+
+      :::javascript
+      this.defineAdaptorEvent({ eventName: 'greeting' });
+
+  This invocation means that when the `connector` receives the 'greeting' event, an identical event will be emitted on the `connection`.
+
+  **With just an eventName (string version)**.
+  Similar to the above example, but a bit shorter.
+
+      :::javascript
+      this.defineAdaptorEvent('greeting');
+
+  ## Writing Drivers
+
+  Here's the example driver from the `cylon-sphero` module.
+
+      :::javascript
+      'use strict';
+
+      var Cylon = require('cylon');
+      var Commands = require('./commands');
+
+      var Driver = module.exports = function Driver() {
+        Driver.__super__.constructor.apply(this, arguments);
+        this.setupCommands(Commands);
+      }
+
+      Cylon.Utils.subclass(Driver, Cylon.Driver);
+
+      // Public: Starts the driver.
+      //
+      // callback - params
+      //
+      // Returns null.
+      Driver.prototype.start = function(callback) {
+        this.defineDriverEvent({ eventName: 'connect' });
+        this.defineDriverEvent({ eventName: 'message' });
+        this.defineDriverEvent({ eventName: 'update' });
+        this.defineDriverEvent({ eventName: 'notification' });
+        this.defineDriverEvent({ eventName: 'collision' });
+        this.defineDriverEvent({ eventName: 'data' });
+
+        this.connection.setTemporaryOptionFlags(0x01);
+
+        callback();
+      };
+
+      Driver.prototype.halt = function(callback) {
+        callback();
+      };
+
+      // Public: This commands Sphero to roll along the provided vector. Both a speed and a
+      // heading are required; the latter is considered relative to the last calibrated direction.
+      //
+      // speed - params
+      // heading - params
+      // state - params
+      //
+      // Returns null.
+      Driver.prototype.roll = function(speed, heading, state) {
+        if (state == null) { state = 1; }
+        this.connection.roll(speed, heading, state);
+      };
+
+      // Public: Sets the sphero to detect collisions and report them.
+      //
+      // Returns null.
+      Driver.prototype.detectCollisions = function() {
+        this.connection.detectCollisions();
+      };
+
+      // Public: Sets the sphero to detect collisions and report them.
+      //
+      // Returns null.
+      Driver.prototype.detectLocator = function() {
+        this.connection.detectLocator();
+      };
+
+      // Public: Stop the driver.
+      //
+      // Returns null.
+      Driver.prototype.stop = function() {
+        this.connection.stop();
+      };
+
+      // Public: This allows you to set the RGB LED color, just pass an array containing
+      // RGB hex or a string with one of the color names of the list.
+      //
+      // color - params
+      // persist - params
+      //
+      // Returns null.
+      Driver.prototype.setRGB = function(color, persist) {
+        if (persist == null) { persist = true; }
+        this.connection.setRGB(color, persist);
+      };
+
+      // Public: Starts the calibration of the driver.
+      //
+      // Returns null.
+      Driver.prototype.startCalibration = function() {
+        this.connection.setBackLED(127);
+        this.connection.setStabilization(0);
+      };
+
+      // Public: Finish the calibration of the driver.
+      //
+      // Returns null.
+      Driver.prototype.finishCalibration = function() {
+        this.connection.setHeading(0);
+        this.connection.setBackLED(0);
+        this.connection.setStabilization(1);
+      };
+
+  Some things to note in this driver:
+
+  **The constructor uses the `#setupCommands` method**.
+  This this convenience method lets you define methods that should be accessible to the Cylon API.
+
+  **The `#start`/`#halt` methods**.
+  These methods take a callback as an argument, and trigger it when they're done their work.
+  These methods **need** to be defined in your Adaptor class, or an error will result.
+
+  Event propagation can be defined in Drivers using the `#defineDriverEvent` helper function, which can be invoked in a few ways:
+
+  **With a source and target event name**.
+  This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+  Additionally, if you pass the 'update' param, an `update` event will also be emitted:
+
+      :::javascript
+      this.defineDriverEvent({
+        eventName: 'greeting',
+        targetEventName: 'hello',
+        update: true
+      });
+
+  With this code, whenever the Driver's `connection` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `device`, with the data that the 'greeting' event received.
+
+  **With just an eventName**.
+  This invocation assumes you want the event emitted on the `device` to be the same as the original event name.
+
+      :::javascript
+      this.defineDriverEvent({ eventName: 'greeting' });
+
+  This invocation means that when the `connection` receives the 'greeting' event, an identical event will be emitted on the `device`.
+
+  **With just an eventName (string version)**.
+  Similar to the above example, but a bit shorter.
+
+      :::javascript
+      this.defineDriverEvent('greeting');
+
+  Drivers also feature the `#setupCommands` method.
+  Invoking it with an array of command names will:
+
+  - If the method isn't defined on the Driver, it will be proxied from the Connection.
+    This means if you have lower-level methods on the Adaptor that can be called on the Driver.
+  - snake_cases the commands for API usage (e.g. `runScript` -> `run_script`).
+    This means Driver methods will be made accessible from the API

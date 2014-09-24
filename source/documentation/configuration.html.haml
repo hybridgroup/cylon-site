@@ -1,0 +1,81 @@
+---
+title: Configuration
+page_title: Cylon.JS - Configuration
+page_subtitle: Made by Humans, for Humans.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+main_nav: true
+---
+
+:markdown
+  # Configuration
+
+  Cylon.JS supports configuration of internal settings via the `Cylon#setConfig` method.
+  This method takes a JavaScript object as an argument, and merges it with Cylon's internal configuration.
+
+  For example:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.config({
+        option: 'value'
+      });
+
+      // rest of program
+
+  Additionally, if you'd like to fetch configuration details for use in your own application, Cylon#config will always return the current configuration:
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      var config = Cylon.config({
+        option: 'value'
+      });
+
+      config.option
+      //=> 'value'
+
+  Read on for more details on the configuration options Cylon recognizes.
+
+  ## API
+
+  The Cylon.js API server allows for port, host, SSL and auth configuration.
+
+  In your scripts, you can set it up as so:
+
+      :::javascript
+      Cylon.config({
+        api: {
+          host: '127.0.0.1',
+          port: '4321',
+
+          cert: '/path/to/ssl/cert',
+          key: '/path/to/ssl/key',
+
+          auth: {
+            type: 'basic',
+            user: 'admin',
+            pass: 'pass'
+          }
+        }
+      });
+
+      Cylon.api();
+
+  If you run a Cylon script with this code in it, it will start an API server
+  listening on `https://127.0.0.1:4321`, that will require basic auth for all
+  routes.
+
+  ## Halt Timeout
+
+  When Cylon is told to shutdown, either via `Cylon#halt` or Ctrl-C, it tries to gracefully shut down all Robots/Devices/Connections.
+  If this isn't possible inside of the specified `halt_timeout`, Cylon will instead forcefully shut itself down.
+
+      :::javascript
+      Cylon.config({
+        halt_timeout: 4000 // time in milliseconds before forcefully shutting down
+      });
+
+  This value defaults to three thousand milliseconds (3000).
