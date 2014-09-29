@@ -1,0 +1,75 @@
+---
+title: Cylon.js CLI
+author: The Hybrid Group
+page_title: Guides - Command Line Interface
+page_subtitle: A Guide by Humans, for Humans currently running robots.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+---
+.page
+  :markdown
+    # Imperative vs. Declarative syntax.
+
+    As of the `0.19.0` release, Cylon supports two syntaxes for creating Robots.
+
+    Our existing declarative syntax is still supported, but there's also a new, more imperative sytax.
+    We hope this will be helpful to developers more familiar with libraries like jQuery, and make it easier for them to build cool and useful robots with Cylon.
+
+    ## Comparison
+
+    Here's a sample program, using each of the syntax variations.
+    It's up to you to decide which style you prefer.
+
+    ### Declarative
+
+    The declarative syntax is preferred for Cylon.
+    It tends to be more concise then the imperative syntax, and is suited to describing what a robot will do.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          name: "TestBot",
+
+          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
+          device: { name: 'sphero', driver: 'sphero' },
+
+          roll: function() {
+            console.log("Rolling!");
+            this.sphero.roll(60, Math.floor(Math.random() * 360));
+          }
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.roll();
+            });
+          }
+        }).start();
+
+    ### Imperative
+
+    This approach might be more familiar to former front-end developers who used jQuery or similar libraries frequently.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        var bot = Cylon.robot({
+          name: "TestBot",
+
+          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
+          device: { name: 'sphero', driver: 'sphero' }
+        });
+
+        bot.roll = function() {
+          console.log("Rolling!");
+          bot.sphero.roll(60, Math.floor(Math.random() * 360));
+        };
+
+        bot.on('ready', function() {
+          every((1).second(), function() {
+            bot.roll();
+          });
+        });
+
+        Cylon.start();
