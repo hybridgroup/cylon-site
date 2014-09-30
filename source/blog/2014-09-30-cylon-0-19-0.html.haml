@@ -1,0 +1,77 @@
+---
+page_title_show: true
+title: "Cylon 0.19.0 is Out!"
+page_title: Blog
+date: 2014-09-30
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+:markdown
+  We've just finished cutting Cylon 0.19.0, another step leading to our `1.0.0` release.
+  There's a number of potentially-breaking interface changes; particularly for module developers.
+  But don't fear!
+  We're here to let you know what these changes are, and what's new for end-users
+  as well.
+
+  ### For Developers
+
+  - Adaptor `#connect`/`#disconnect` + Driver `#start`/`#halt` methods now take a callback.
+    The `#halt`/`#disconnect` methods _must_ be implemented in Adaptor/Driver subclasses, and trigger the provided callback when they're done their own work.
+    This is to help ensure Cylon can shut down efficiently and safely.
+
+  - Methods are automatically proxied from Adaptors -> Connections and Drivers -> Devices.
+    You no longer have to manually provide an Adaptor commands array.
+
+  - `Driver` subclasses will now receive a default interval of 1000ms.
+    This is adjustable by users in the device configuration hash.
+
+  - Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under `this.adaptor`.
+
+  - For TDR and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
+
+  ### For End-Users
+
+  - Configuration with `Cylon#configure(obj)`.
+    This method takes an object as an argument, and merges it with Cylon's interal configuration.
+    It then returns the current configuration.
+
+  - API configuration has been moved to the `Cylon#configure` block.
+    `Cylon#api()` will now start an API instance with the current configuration.
+
+  - Auto-start mode - Cylon can now automatically start robots for you, as soon as they're instantiated.
+    To enable this behaviour, enable it in the configuration - `Cylon.config({ mode: 'auto' })`.
+
+  - Imperative syntax - Useful to those familiar with jQuery or similar frameworks.
+    Cylon will emit the `ready` event when work starts, so you can hook into that.
+    Cylon robots can now be written in an imperative style:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        var robot = Cylon.robot({
+          name: 'imperative',
+          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
+          device: { name: 'sphero', driver: 'sphero' },
+        });
+
+        robot.move = function() {
+          robot.sphero.roll(60, Math.floor(Math.random() * 360));
+        };
+
+        robot.on('ready', function() {
+          every((1).second(), function() {
+            robot.move();
+          });
+        });
+
+        Cylon.start();
+
+  - No more name collisions - Cylon will now automatically rename Devices, Connections, and Robots if they'd conflict with the name of an existing object.
+
+  - Adjustable halt timeout - by default, Cylon will automatically hard-terminate if it can't gracefully shut down inside 3 seconds.
+    This timeout is adjustable in config as `haltTimeout` in milliseconds.
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [@CylonJS]: https://twitter.com/cylonjs
