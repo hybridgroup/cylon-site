@@ -31,25 +31,24 @@ active_menu_blog: true
     Cylon robots can now be written in an imperative style:
 
         :::javascript
-        var Cylon = require('cylon');
+        var cylon = require('cylon');
 
-        var robot = Cylon.robot({
-          name: 'imperative',
-          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-          device: { name: 'sphero', driver: 'sphero' },
-        });
-
-        robot.move = function() {
-          robot.sphero.roll(60, Math.floor(Math.random() * 360));
-        };
-
-        robot.on('ready', function() {
-          every((1).second(), function() {
-            robot.move();
+        cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          devices: [
+            { name: 'led', driver: 'led', pin: 13 },
+            { name: 'button', driver: 'button', pin: 2 }
+          ]
+        })
+        .on('ready', function(bot) {
+          bot.button.on('push', function() {
+            bot.led.toggle();
           });
-        });
-
-        Cylon.start();
+        })
+        .on('error', function(err) {
+          console.log(err);
+        })
+        .start();
 
   - No more name collisions - Cylon will now automatically rename Devices, Connections, and Robots if they'd conflict with the name of an existing object.
 
@@ -71,7 +70,6 @@ active_menu_blog: true
   - Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under `this.adaptor`.
 
   - For TDR and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
-
 
   For more updates, be sure to follow us on Twitter at [@CylonJS][].
 
