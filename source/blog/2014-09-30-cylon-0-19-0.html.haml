@@ -14,23 +14,7 @@ active_menu_blog: true
   We're here to let you know what these changes are, and what's new for end-users
   as well.
 
-  ### For Developers
-
-  - Adaptor `#connect`/`#disconnect` + Driver `#start`/`#halt` methods now take a callback.
-    The `#halt`/`#disconnect` methods _must_ be implemented in Adaptor/Driver subclasses, and trigger the provided callback when they're done their own work.
-    This is to help ensure Cylon can shut down efficiently and safely.
-
-  - Methods are automatically proxied from Adaptors -> Connections and Drivers -> Devices.
-    You no longer have to manually provide an Adaptor commands array.
-
-  - `Driver` subclasses will now receive a default interval of 1000ms.
-    This is adjustable by users in the device configuration hash.
-
-  - Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under `this.adaptor`.
-
-  - For TDR and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
-
-  ### For End-Users
+  ### For Application Developers
 
   - Configuration with `Cylon#configure(obj)`.
     This method takes an object as an argument, and merges it with Cylon's interal configuration.
@@ -71,6 +55,23 @@ active_menu_blog: true
 
   - Adjustable halt timeout - by default, Cylon will automatically hard-terminate if it can't gracefully shut down inside 3 seconds.
     This timeout is adjustable in config as `haltTimeout` in milliseconds.
+
+  ### For Platform Developers
+
+  - Adaptor `#connect`/`#disconnect` + Driver `#start`/`#halt` methods now take a callback.
+    The `#halt`/`#disconnect` methods _must_ be implemented in Adaptor/Driver subclasses, and trigger the provided callback when they're done their own work.
+    This is to help ensure Cylon can shut down efficiently and safely.
+
+  - Methods are automatically proxied from Adaptors -> Connections and Drivers -> Devices.
+    You no longer have to manually provide an Adaptor commands array.
+
+  - `Driver` subclasses will now receive a default interval of 1000ms.
+    This is adjustable by users in the device configuration hash.
+
+  - Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under `this.adaptor`.
+
+  - For TDR and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
+
 
   For more updates, be sure to follow us on Twitter at [@CylonJS][].
 
