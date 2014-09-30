@@ -39,6 +39,21 @@ main_nav: true
 
   Read on for more details on the configuration options Cylon recognizes.
 
+  ## Mode
+
+  Cylon can be run in 'auto' mode, which means that robots will start by default when initialized.
+
+      :::javascript
+      Cylon.config({
+        mode: 'auto'
+      });
+
+      // this bot will be automatically started
+      Cylon.robot({
+        connection: { name: 'loopback', adaptor: 'loopback' },
+        device: { name: 'ping', driver: 'ping' }
+      });
+
   ## API
 
   The Cylon.js API server allows for port, host, SSL and auth configuration.
