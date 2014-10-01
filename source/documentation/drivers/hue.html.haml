@@ -33,16 +33,17 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
+    = partial "/documentation/drivers/partials/hue/commands_light"
       
 
   .commands-api#Events
     :markdown
       # Events
+      no events
 
       
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Hue" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Light" }
