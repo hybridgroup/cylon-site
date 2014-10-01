@@ -91,7 +91,11 @@ active_menu_blog: true
 
   - Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under `this.adaptor`.
 
-  - For TDR and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
+  - For Test Driven Robotics (TDR) and inside the Robot class, testing mode is now triggered by `NODE_ENV` rather than a global variable.
+
+  ### More Hardware Support
+
+  Of course, no Cylon.js release would be complete without some new hardware platform updates, so we've added support for the [Phillips Hue](http://meethue.com) wireless lighting system with [cylon-hue](https://github.com/hybridgroup/cylon-hue), as well as updating [cylon-spark](https://github.com/hybridgroup/cylon-spark) to use the new [Spark.js](https://github.com/spark/sparkjs) library with the [Spark Core](https://www.spark.io/) wireless microcontroller.
 
   We are really excited about this big update to Cylon.js, and we hope you are too. It is now just that much easier to create robots and connected devices.
 

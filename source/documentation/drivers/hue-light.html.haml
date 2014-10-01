@@ -1,0 +1,68 @@
+---
+title: Cylon.js - Philips Hue - Light Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Philips Hue - Light
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-hue' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-hue/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/hue.jpg", class: "display"
+  .info-intro
+    %p The Phillips Hue Light is a wireless-controlled light bulb. You need a Phillips Hue Bridge to control Phillips Hue Lights.
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connection: { 
+            name: 'hue', 
+            adaptor: 'hue', 
+            host: '192.168.1.101', 
+            username: 'XXX' },
+          
+          device: {name: 'bulb', driver: 'hue-light', lightId: 2}
+        });
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'hue', adaptor: 'hue', host: '192.168.1.101', username: 'XXX' },
+          device: {name: 'bulb', driver: 'hue-light', lightId: 2},
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.bulb.toggle();
+            });
+          }
+        }).start();        
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/hue/commands_light"
+      
+
+  .commands-api#Events
+    :markdown
+      # Events
+      no events
+
+      
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Philips Hue - Light" }

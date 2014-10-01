@@ -1,0 +1,78 @@
+---
+title: Cylon.js - Phillips Hue - Bridge Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: Phillips Hue - Bridge
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-hue' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-hue/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/hue-bridge.jpg", class: "display"
+  .info-intro
+    %p The Phillips Hue Bridge is the device that you plug into your home Wi-Fi router, in order to control up to 50 Phillips Hue Lights.
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+    To connect cylon-hue to a Phillips Hue bridge, you will need to know which host IP address the bridge has on the local network. You can find this out by using your router, or logging into the "Meet Hue" website at [https://www.meethue.com/en-us/user/bridge](https://www.meethue.com/en-us/user/bridge) if you have linked your bridge. 
+
+    You also need to either already have a user account on the bridge, or create a new account, so you can obtain the username. You can do this by using the JS file located at `examples/create_user.js`.        
+
+
+        :::javascript
+        Cylon.robot({
+          connection: 
+            { name: 'hue', 
+              adaptor: 'hue', 
+              host: '192.168.1.101, 
+              username: 'XXX' },
+          
+          device: {name: 'bridge', driver: 'hue-bridge'}
+        });
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'hue', adaptor: 'hue', host: '192.168.1.101', username: 'XXX' },
+          device: {name: 'bridge', driver: 'hue-bridge'},
+
+          work: function(my) {
+            my.bridge.getFullState(function(err, config) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(config);
+              }
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/hue/commands_bridge"
+      
+
+  .commands-api#Events
+    :markdown
+      # Events
+      no events
+
+      
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Philips Hue - Bridge" }
