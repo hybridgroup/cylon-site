@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/hue.jpg", class: "display"
   .info-intro
-    %p 
+    %p The Phillips Hue Light is a wireless-controlled light bulb. You need a Phillips Hue Bridge to control Phillips Hue Lights.
   .clear
 
 %section.how_to#HowToConnect
@@ -22,14 +22,33 @@ subnavjs: true
     ## How To Connect
 
         :::javascript
-        
+        Cylon.robot({
+          connection: { 
+            name: 'hue', 
+            adaptor: 'hue', 
+            host: '192.168.1.101', 
+            username: 'XXX' },
+          
+          device: {name: 'bulb', driver: 'hue-light', lightId: 2}
+        });
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
         :::javascript
-        
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'hue', adaptor: 'hue', host: '192.168.1.101', username: 'XXX' },
+          device: {name: 'bulb', driver: 'hue-light', lightId: 2},
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.bulb.toggle();
+            });
+          }
+        }).start();        
 
 %section.public-methods
   .commands-api#Commands
