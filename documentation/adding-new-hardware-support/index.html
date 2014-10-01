@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta name="author">
+    <title>Adding New Hardware Support</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app">
+      <div id="top-header">
+        <div class="back-index-top">
+          <div class="container-hero section-nav">
+            <div class="w">
+              <header class="app-header" role="banner">
+                <div class="display">
+                  <h1 class="app-logo">
+                    <a href="/">Cylon</a>
+                  </h1>
+                  <span class="subtitle">
+                    <div class="main"></div>
+                  </span>
+                </div>
+                <span class="menu">
+                  <a class="active" href="/documentation">Docs</a>
+                  <a href="/documentation/platforms" class="item">Platforms</a>
+                  <a href="/resources" class="item">Resources</a>
+                  <a href="/blog" class="item">Blog</a>
+                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+                </span>
+              </header>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-title">
+        <div class="w">
+          <h1 class="title">Cylon.JS - Adding New Hardware Support</h1>
+          <h2 class="subtitle">Made by Humans, for Humans.</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="main" role="main">
+          <section class="content full">
+            <div class="documentation">
+              <div class="side-documentation">
+                <div class="mobile-menu">
+                  <a id="docs-menu">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </a>
+                </div>
+                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+                  <a href="/documentation/getting-started">Getting Started</a>
+                  <div class="section" ng-class="{active: active('Guides')}">
+                    <div class="name" ng-click="show('Guides')">Guides</div>
+                    <div class="links" ng-show="active('Guides')">
+                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                      <a href="/documentation/guides/api">API</a>
+                      <a href="/documentation/guides/cli">CLI</a>
+                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                      <a href="/documentation/guides/helpers">Helper Methods</a>
+                    </div>
+                  </div>
+                  <div class="section" ng-class="{active: active('Platforms')}">
+                    <div class="name" ng-click="show('Platforms')">Platforms</div>
+                    <div class="links" ng-show="active('Platforms')">
+                      <a href="/documentation/platforms/ardrone">Ardrone</a>
+                      <a href="/documentation/platforms/arduino">Arduino</a>
+                      <a href="/documentation/platforms/yun">Arduino Yun</a>
+                      <a href="/documentation/platforms/audio">Audio</a>
+                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                      <a href="/documentation/platforms/digispark">Digispark</a>
+                      <a href="/documentation/platforms/force">Force</a>
+                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                      <a href="/documentation/platforms/edison">Intel Edison</a>
+                      <a href="/documentation/platforms/joystick">Joystick</a>
+                      <a href="/documentation/platforms/keyboard">Keyboard</a>
+                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                      <a href="/documentation/platforms/m2x">M2X</a>
+                      <a href="/documentation/platforms/nest">Nest</a>
+                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                      <a href="/documentation/platforms/opencv">OpenCV</a>
+                      <a href="/documentation/platforms/pebble">Pebble</a>
+                      <a href="/documentation/platforms/hue">Phillips Hue</a>
+                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                      <a href="/documentation/platforms/rapiro">Rapiro</a>
+                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                      <a href="/documentation/platforms/skynet">Skynet</a>
+                      <a href="/documentation/platforms/spark">Spark</a>
+                      <a href="/documentation/platforms/sphero">Sphero</a>
+                      <a href="/documentation/platforms/speech">Speech</a>
+                      <a href="/documentation/platforms/tessel">Tessel</a>
+                    </div>
+                  </div>
+                  <div class="section" ng-class="{active: active('Drivers')}">
+                    <div class="name" ng-click="show('Drivers')">Drivers</div>
+                    <div class="links" ng-show="active('Drivers')">
+                      <div class="sub-section">
+                        <div class="name">GPIO</div>
+                        <div class="links">
+                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                          <a href="/documentation/drivers/button">Button</a>
+                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                          <a href="/documentation/drivers/led">LED</a>
+                          <a href="/documentation/drivers/makey-button">Makey Button</a>
+                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                          <a href="/documentation/drivers/motor">Motor</a>
+                          <a href="/documentation/drivers/servo">Servo</a>
+                        </div>
+                      </div>
+                      <div class="sub-section">
+                        <div class="name">I2C</div>
+                        <div class="links">
+                          <a href="/documentation/drivers/blinkm">BlinkM</a>
+                          <a href="/documentation/drivers/bmp180">BPM180</a>
+                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                          <a href="/documentation/drivers/lcd">LCD</a>
+                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                        </div>
+                      </div>
+                      <a href="/documentation/drivers/ardrone">Ardrone - Flight</a>
+                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                      <a href="/documentation/drivers/audio">Audio</a>
+                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                      <a href="/documentation/drivers/force">Force</a>
+                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                      <a href="/documentation/drivers/keyboard">Keyboard</a>
+                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                      <a href="/documentation/platforms/m2x">M2X</a>
+                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                      <a href="/documentation/drivers/pebble">Pebble</a>
+                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                      <a href="/documentation/drivers/rapiro">Rapiro</a>
+                      <a href="/documentation/drivers/skynet">Skynet</a>
+                      <a href="/documentation/drivers/speech">Speech</a>
+                      <a href="/documentation/drivers/sphero">Sphero</a>
+                      <div class="sub-section">
+                        <div class="name">Tessel</div>
+                        <div class="links">
+                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                          <a href="/documentation/drivers/tessel-audio">Audio</a>
+                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                          <a href="/documentation/drivers/tessel-camera">Camera</a>
+                          <a href="/documentation/drivers/tessel-gps">GPS</a>
+                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                          <a href="/documentation/drivers/tessel-relay">Relay</a>
+                          <a href="/documentation/drivers/tessel-servo">Servo</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="section" ng-class="{active: active('Contribute')}">
+                    <div class="name" ng-click="show('Contribute')">Contribute</div>
+                    <div class="links" ng-show="active('Contribute')">
+                      <a href="/documentation/contribute/guidelines">Guidelines</a>
+                      <a href="/documentation/contribute/contact-us">Contact Us</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/examples">Examples</a>
+                  <a href="/documentation/tutorials">Tutorials</a>
+                  <a href="/documentation/architecture">Architecture</a>
+                  <a href="/documentation/configuration">Configuration</a>
+                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+                  <a href="/documentation/chat">Chat</a>
+                </nav>
+              </div>
+              <div class="container-documentation">
+                
+                <p>Adding Cylon.JS support for new hardware is straightforward, thanks to the simple patterns and tools included with Cylon itself.</p>
+                
+                <h2 id="generating">Generating</h2>
+                
+                <p>The easiest way to get started is with the <code>cylon-cli</code> toolkit.
+                Install it with NPM:</p>
+                
+                <pre class="CodeRay">$ npm install cylon-cli
+</pre>
+                
+                <p>With that done, you can use it to generate a new template Cylon module, by calling <code>cylon generate module</code> with the name of the platform you're adding support for.
+                For example, to generate a module for the Leap Motion:</p>
+                
+                <pre class="CodeRay">$ cylon generate module leapmotion
+Creating new module 'cylon-leapmotion'
+Compiling templates for 'cylon-leapmotion'
+</pre>
+                
+                <p>After running this, <code>cd</code> into the folder and look around:</p>
+                
+                <pre class="CodeRay">$ cd cylon-leapmotion
+$ ls
+LICENSE Makefile README.markdown lib/ package.json test/
+</pre>
+                
+                <p>The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.</p>
+                
+                <h2 id="writing-adaptors">Writing Adaptors</h2>
+                
+                <p>Your module's Adaptor classes subclass the <code>Cylon.Adaptor</code> core class, and are responsible for connecting to the platform you're integrating with.
+                They should also handle any necessary device set-up, and proxy events the user should know about.</p>
+                
+                <p>For an example, here's the Adaptor from the <code>cylon-joystick</code> module:</p>
+                
+                <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> SDL = require(<span class="string"><span class="delimiter">'</span><span class="content">hybridgroup-sdl</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> Adaptor = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">Adaptor</span>(opts) {
+  <span class="keyword">if</span> (opts == <span class="predefined-constant">null</span>) {
+    opts = {};
+  }
+
+  Adaptor.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
+
+  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.joystick = <span class="predefined-constant">null</span>;
+};
+
+Cylon.Utils.subclass(Adaptor, Cylon.Adaptor);
+
+Adaptor.prototype.<span class="function">connect</span> = <span class="keyword">function</span> <span class="function">connect</span>(callback) {
+  SDL.init(SDL.INIT.JOYSTICK);
+
+  <span class="keyword">if</span> (SDL.numJoysticks() === <span class="integer">0</span>) {
+    <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">"</span><span class="content">No SDL Joystick Available.</span><span class="delimiter">"</span></span>);
+  }
+
+  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.joystick = <span class="keyword">new</span> SDL.Joystick(<span class="integer">0</span>);
+
+  Cylon.Utils.constantly(<span class="local-variable">this</span>.listenForEvents.bind(<span class="local-variable">this</span>));
+
+  callback();
+};
+
+Adaptor.prototype.<span class="function">disconnect</span> = <span class="keyword">function</span> <span class="function">disconnect</span>(callback) {
+  SDL.quit();
+  callback();
+};
+
+Adaptor.prototype.<span class="function">listenForEvents</span> = <span class="keyword">function</span> <span class="function">listenForEvents</span>() {
+  <span class="keyword">var</span> event = SDL.pollEvent();
+
+  <span class="keyword">if</span> (!event) {
+    <span class="keyword">return</span>;
+  }
+
+  <span class="keyword">if</span> (<span class="regexp"><span class="delimiter">/</span><span class="content">^JOY</span><span class="delimiter">/</span></span>.test(event.type)) {
+    <span class="local-variable">this</span>.connection.emit(<span class="string"><span class="delimiter">'</span><span class="content">event</span><span class="delimiter">'</span></span>, event);
+  }
+};
+</pre>
+                
+                <p>There are a few important things to note in this example:</p>
+                
+                <p><strong>It subclasses <code>Cylon.Adaptor</code></strong>.
+                This gives you utilities methods from Cylon, and other conveniences.</p>
+                
+                <p><strong>The <code>#connect</code>/<code>#disconnect</code> methods</strong>.
+                These methods take a callback as an argument, and trigger it when they're done their work.
+                These methods <strong>need</strong> to be defined in your Adaptor class, or an error will result.</p>
+                
+                <p>The <code>#connect</code> method is used to establish a connection to the platform, and should assign the object maintaining the connection to <code>this.connector</code> so it can be directly accessed.</p>
+                
+                <p>The <code>#disconnect</code> method is used to clean up at shutdown time, and if there's any special connection termination to be done, it should be done here.</p>
+                
+                <p>Event propagation can be defined in Adaptors using the <code>#defineAdaptorEvent</code> helper function, which can be invoked in a few ways:</p>
+                
+                <p><strong>With a source and target event name</strong>.
+                This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+                Additionally, if you pass the 'update' param, an <code>update</code> event will also be emitted:</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({
+  <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>,
+  <span class="key">targetEventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>,
+  <span class="key">update</span>: <span class="predefined-constant">true</span>
+});
+</pre>
+                
+                <p>With this code, whenever the Adaptor's <code>connector</code> receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the <code>connection</code>, with the data that the 'greeting' event received.</p>
+                
+                <p><strong>With just an eventName</strong>.
+                This invocation assumes you want the event emitted on the <code>connection</code> to be the same as the original event name.</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span> });
+</pre>
+                
+                <p>This invocation means that when the <code>connector</code> receives the 'greeting' event, an identical event will be emitted on the <code>connection</code>.</p>
+                
+                <p><strong>With just an eventName (string version)</strong>.
+                Similar to the above example, but a bit shorter.</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent(<span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>);
+</pre>
+                
+                <h2 id="writing-drivers">Writing Drivers</h2>
+                
+                <p>Here's the example driver from the <code>cylon-sphero</code> module.</p>
+                
+                <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+<span class="keyword">var</span> Commands = require(<span class="string"><span class="delimiter">'</span><span class="content">./commands</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> Driver = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">Driver</span>() {
+  Driver.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
+  <span class="local-variable">this</span>.setupCommands(Commands);
+}
+
+Cylon.Utils.subclass(Driver, Cylon.Driver);
+
+<span class="comment">// Public: Starts the driver.</span>
+<span class="comment">//</span>
+<span class="comment">// callback - params</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">start</span> = <span class="keyword">function</span>(callback) {
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span> });
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span> });
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">update</span><span class="delimiter">'</span></span> });
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">notification</span><span class="delimiter">'</span></span> });
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span> });
+  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span> });
+
+  <span class="local-variable">this</span>.connection.setTemporaryOptionFlags(<span class="hex">0x01</span>);
+
+  callback();
+};
+
+Driver.prototype.<span class="function">halt</span> = <span class="keyword">function</span>(callback) {
+  callback();
+};
+
+<span class="comment">// Public: This commands Sphero to roll along the provided vector. Both a speed and a</span>
+<span class="comment">// heading are required; the latter is considered relative to the last calibrated direction.</span>
+<span class="comment">//</span>
+<span class="comment">// speed - params</span>
+<span class="comment">// heading - params</span>
+<span class="comment">// state - params</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">roll</span> = <span class="keyword">function</span>(speed, heading, state) {
+  <span class="keyword">if</span> (state == <span class="predefined-constant">null</span>) { state = <span class="integer">1</span>; }
+  <span class="local-variable">this</span>.connection.roll(speed, heading, state);
+};
+
+<span class="comment">// Public: Sets the sphero to detect collisions and report them.</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">detectCollisions</span> = <span class="keyword">function</span>() {
+  <span class="local-variable">this</span>.connection.detectCollisions();
+};
+
+<span class="comment">// Public: Sets the sphero to detect collisions and report them.</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">detectLocator</span> = <span class="keyword">function</span>() {
+  <span class="local-variable">this</span>.connection.detectLocator();
+};
+
+<span class="comment">// Public: Stop the driver.</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">stop</span> = <span class="keyword">function</span>() {
+  <span class="local-variable">this</span>.connection.stop();
+};
+
+<span class="comment">// Public: This allows you to set the RGB LED color, just pass an array containing</span>
+<span class="comment">// RGB hex or a string with one of the color names of the list.</span>
+<span class="comment">//</span>
+<span class="comment">// color - params</span>
+<span class="comment">// persist - params</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">setRGB</span> = <span class="keyword">function</span>(color, persist) {
+  <span class="keyword">if</span> (persist == <span class="predefined-constant">null</span>) { persist = <span class="predefined-constant">true</span>; }
+  <span class="local-variable">this</span>.connection.setRGB(color, persist);
+};
+
+<span class="comment">// Public: Starts the calibration of the driver.</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">startCalibration</span> = <span class="keyword">function</span>() {
+  <span class="local-variable">this</span>.connection.setBackLED(<span class="integer">127</span>);
+  <span class="local-variable">this</span>.connection.setStabilization(<span class="integer">0</span>);
+};
+
+<span class="comment">// Public: Finish the calibration of the driver.</span>
+<span class="comment">//</span>
+<span class="comment">// Returns null.</span>
+Driver.prototype.<span class="function">finishCalibration</span> = <span class="keyword">function</span>() {
+  <span class="local-variable">this</span>.connection.setHeading(<span class="integer">0</span>);
+  <span class="local-variable">this</span>.connection.setBackLED(<span class="integer">0</span>);
+  <span class="local-variable">this</span>.connection.setStabilization(<span class="integer">1</span>);
+};
+</pre>
+                
+                <p>Some things to note in this driver:</p>
+                
+                <p><strong>The constructor uses the <code>#setupCommands</code> method</strong>.
+                This this convenience method lets you define methods that should be accessible to the Cylon API.</p>
+                
+                <p><strong>The <code>#start</code>/<code>#halt</code> methods</strong>.
+                These methods take a callback as an argument, and trigger it when they're done their work.
+                These methods <strong>need</strong> to be defined in your Adaptor class, or an error will result.</p>
+                
+                <p>Event propagation can be defined in Drivers using the <code>#defineDriverEvent</code> helper function, which can be invoked in a few ways:</p>
+                
+                <p><strong>With a source and target event name</strong>.
+                This is the most flexible approach, and lets you rename events that will actually be received by the robot.
+                Additionally, if you pass the 'update' param, an <code>update</code> event will also be emitted:</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent({
+  <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>,
+  <span class="key">targetEventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>,
+  <span class="key">update</span>: <span class="predefined-constant">true</span>
+});
+</pre>
+                
+                <p>With this code, whenever the Driver's <code>connection</code> receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the <code>device</code>, with the data that the 'greeting' event received.</p>
+                
+                <p><strong>With just an eventName</strong>.
+                This invocation assumes you want the event emitted on the <code>device</code> to be the same as the original event name.</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span> });
+</pre>
+                
+                <p>This invocation means that when the <code>connection</code> receives the 'greeting' event, an identical event will be emitted on the <code>device</code>.</p>
+                
+                <p><strong>With just an eventName (string version)</strong>.
+                Similar to the above example, but a bit shorter.</p>
+                
+                <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent(<span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>);
+</pre>
+                
+                <p>Drivers also feature the <code>#setupCommands</code> method.
+                Invoking it with an array of command names will:</p>
+                
+                <ul>
+                  <li>If the method isn't defined on the Driver, it will be proxied from the Connection.
+                This means if you have lower-level methods on the Adaptor that can be called on the Driver.</li>
+                  <li>snake_cases the commands for API usage (e.g. <code>runScript</code> -&gt; <code>run_script</code>).
+                This means Driver methods will be made accessible from the API</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+        </div>
+        <div class="container">
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-cylon-2x.png">
+            </div>
+            <h4>Multiple solutions</h4>
+            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-artoo-2x.png">
+            </div>
+            <h4>Artoo</h4>
+            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+            <div class="button">
+              <a target="blank" href="http://artoo.io">View Project</a>
+            </div>
+          </div>
+          <div class="column-footer">
+            <div class="img">
+              <img src="/images/elements/logo-gobot-2x.png">
+            </div>
+            <h4>Gobot</h4>
+            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+            <div class="button">
+              <a target="blank" href="http://gobot.io">View Project</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="left-side">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="right-side">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

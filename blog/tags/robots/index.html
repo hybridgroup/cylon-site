@@ -89,6 +89,148 @@
                   <div class="date">
                     <div class="blue">
                       <div class="month">
+                        Oct
+                      </div>
+                      <div class="day">
+                        01
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a>
+                    </h3>
+                    <div class="author">
+                      by Andrew Stewart
+                    </div>
+                  </div>
+                </header>
+                <p>We've just finished cutting Cylon.js <code>0.19.0</code>, another big step forward leading to our <code>1.0.0</code> release.
+                There are a number of exciting, yet potentially-breaking interface changes; particularly for module developers.
+                But don't fear!
+                We're here to let you know what these changes are and what else is new.</p>
+                
+                <h3 id="for-application-developers">For Application Developers</h3>
+                
+                <ul>
+                  <li>
+                    <p>Fluent syntax - Useful to those familiar with jQuery or similar frameworks.
+                You can choose which syntax you prefer based on your specific application scenario, either the new fluent style, or the current declarative style.
+                Here is an example of a Arduino-based robot, written in the fluent syntax:</p>
+                
+                    <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  ]
+})
+.on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  bot.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    bot.led.toggle();
+  });
+})
+.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err) {
+  console.log(err);
+})
+.start();
+</pre>
+                
+                    <p>This is how the same example looks with the current declarative syntax:</p>
+                
+                    <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  ],
+  <span class="function">work</span>: <span class="keyword">function</span>(bot) {
+    bot.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      bot.led.toggle();
+    });
+  },
+  <span class="function">error</span>: <span class="keyword">function</span>(err) {
+    console.log(err);
+  }
+}).start();
+</pre>
+                
+                    <p>See what we mean? You can now choose the best syntax for your preferred style of code. Have it your way!</p>
+                  </li>
+                  <li>
+                    <p>Configuration with <code>Cylon#configure(obj)</code>.
+                This method takes an object as an argument, and merges it with Cylon's interal configuration.
+                It then returns the current configuration.</p>
+                  </li>
+                  <li>
+                    <p>API configuration has been moved to the <code>Cylon#configure</code> block.
+                <code>Cylon#api()</code> will now start an API instance with the current configuration.</p>
+                  </li>
+                  <li>
+                    <p>Auto-start mode - Cylon can now automatically start robots for you, as soon as they're instantiated.
+                To enable this behaviour, enable it in the configuration - <code>Cylon.config({ mode: 'auto' })</code>.</p>
+                  </li>
+                  <li>
+                    <p>No more name collisions - Cylon will now automatically rename Devices, Connections, and Robots if they'd conflict with the name of an existing object.</p>
+                  </li>
+                  <li>
+                    <p>Adjustable halt timeout - by default, Cylon will automatically hard-terminate if it can't gracefully shut down inside 3 seconds.
+                This timeout is adjustable in config as <code>haltTimeout</code> in milliseconds.</p>
+                  </li>
+                </ul>
+                
+                <h3 id="for-platform-developers">For Platform Developers</h3>
+                
+                <ul>
+                  <li>
+                    <p>Adaptor <code>#connect</code>/<code>#disconnect</code> + Driver <code>#start</code>/<code>#halt</code> methods now take a callback.
+                The <code>#halt</code>/<code>#disconnect</code> methods <em>must</em> be implemented in Adaptor/Driver subclasses, and trigger the provided callback when they're done their own work.
+                This is to help ensure Cylon can shut down efficiently and safely.</p>
+                  </li>
+                  <li>
+                    <p>Methods are automatically proxied from Adaptors -&gt; Connections and Drivers -&gt; Devices.
+                You no longer have to manually provide an Adaptor commands array.</p>
+                  </li>
+                  <li>
+                    <p><code>Driver</code> subclasses will now receive a default interval of 1000ms.
+                This is adjustable by users in the device configuration hash.</p>
+                  </li>
+                  <li>
+                    <p>Direct Adaptor access inside Drivers - inside Driver subclasses, instances will now have direct access to the Adaptor they're communicating with under <code>this.adaptor</code>.</p>
+                  </li>
+                  <li>
+                    <p>For Test Driven Robotics (TDR) and inside the Robot class, testing mode is now triggered by <code>NODE_ENV</code> rather than a global variable.</p>
+                  </li>
+                </ul>
+                
+                <h3 id="more-hardware-support">More Hardware Support</h3>
+                
+                <p>Of course, no Cylon.js release would be complete without some new hardware platform updates, so we've added support for the <a href="http://meethue.com">Phillips Hue</a> wireless lighting system with <a href="https://github.com/hybridgroup/cylon-hue">cylon-hue</a>, as well as updating <a href="https://github.com/hybridgroup/cylon-spark">cylon-spark</a> to use the new <a href="https://github.com/spark/sparkjs">Spark.js</a> library with the <a href="https://www.spark.io/">Spark Core</a> wireless microcontroller.</p>
+                
+                <p>We are really excited about this big update to Cylon.js, and we hope you are too. It is now just that much easier to create robots and connected devices.</p>
+                
+                <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/cylonjs">@CylonJS</a>.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+                  </div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header">
+                  <div class="date">
+                    <div class="blue">
+                      <div class="month">
                         Jul
                       </div>
                       <div class="day">
@@ -1402,6 +1544,7 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
+                <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
                 <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
                 <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
                 <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>

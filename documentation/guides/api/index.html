@@ -92,6 +92,7 @@
                     <div class="links" ng-show="active('Guides')">
                       <a href="/documentation/guides/what_is_cylon">About Cylon</a>
                       <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
                       <a href="/documentation/guides/api">API</a>
                       <a href="/documentation/guides/cli">CLI</a>
                       <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
@@ -119,6 +120,7 @@
                       <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                       <a href="/documentation/platforms/opencv">OpenCV</a>
                       <a href="/documentation/platforms/pebble">Pebble</a>
+                      <a href="/documentation/platforms/hue">Phillips Hue</a>
                       <a href="/documentation/platforms/pinoccio">Pinoccio</a>
                       <a href="/documentation/platforms/rapiro">Rapiro</a>
                       <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
@@ -162,6 +164,7 @@
                       </div>
                       <a href="/documentation/drivers/ardrone">Ardrone - Flight</a>
                       <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                      <a href="/documentation/drivers/audio">Audio</a>
                       <a href="/documentation/drivers/crazyflie">Crazyflie</a>
                       <a href="/documentation/drivers/force">Force</a>
                       <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
@@ -173,10 +176,13 @@
                       <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                       <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                       <a href="/documentation/drivers/pebble">Pebble</a>
+                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
                       <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
                       <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
                       <a href="/documentation/drivers/rapiro">Rapiro</a>
                       <a href="/documentation/drivers/skynet">Skynet</a>
+                      <a href="/documentation/drivers/speech">Speech</a>
                       <a href="/documentation/drivers/sphero">Sphero</a>
                       <div class="sub-section">
                         <div class="name">Tessel</div>
@@ -203,6 +209,9 @@
                   </div>
                   <a href="/documentation/examples">Examples</a>
                   <a href="/documentation/tutorials">Tutorials</a>
+                  <a href="/documentation/architecture">Architecture</a>
+                  <a href="/documentation/configuration">Configuration</a>
+                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
                   <a href="/documentation/chat">Chat</a>
                 </nav>
               </div>
@@ -230,34 +239,11 @@ Cylon.robot({
 }).start();
 </pre>
                   
-                  <h2 id="how-to-configure">How To Configure</h2>
-                  
-                  <p>The Cylon.js API server allows for port, host, SSL and auth configuration.</p>
-                  
-                  <p>In your scripts, you can set it up like this:</p>
-                  
-                  <pre class="CodeRay">Cylon.api({
-  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1</span><span class="delimiter">'</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">4321</span><span class="delimiter">'</span></span>,
-
-  <span class="key">cert</span>: <span class="string"><span class="delimiter">'</span><span class="content">/path/to/ssl/cert</span><span class="delimiter">'</span></span>,
-  <span class="key">key</span>: <span class="string"><span class="delimiter">'</span><span class="content">/path/to/ssl/key</span><span class="delimiter">'</span></span>,
-
-  <span class="key">auth</span>: {
-    <span class="key">type</span>: <span class="string"><span class="delimiter">'</span><span class="content">basic</span><span class="delimiter">'</span></span>,
-    <span class="key">user</span>: <span class="string"><span class="delimiter">'</span><span class="content">admin</span><span class="delimiter">'</span></span>,
-    <span class="key">pass</span>: <span class="string"><span class="delimiter">'</span><span class="content">pass</span><span class="delimiter">'</span></span>
-  }
-});
-</pre>
-                  
-                  <p>If you run a Cylon script with this code in it, it will start an API server
-                  listening on <code>https://127.0.0.1:4321</code>, that will require basic auth for all
-                  routes.</p>
-                  
                   <p>By default, an unconfigured API instance will listen on
                   <code>https://127.0.0.1:3000</code>, using a self-signed cert and with no
                   authentication.</p>
+                  
+                  <p>For more information API configuration, see the <a href="/documentation/configuration">configuration page</a>.</p>
                   
                   <p>For more information on available API routes, check out the <a href="http://cppp.io">CPPP-IO</a> spec that Cylon's API follows.</p>
                 </div>
