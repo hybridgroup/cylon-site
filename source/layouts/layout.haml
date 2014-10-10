@@ -3,14 +3,14 @@
     = partial "/hybridpages/partials/layouts/head"
     %link{href: "//fonts.googleapis.com/css?family=Inconsolata:400,700|Montserrat:700", rel: "stylesheet"}
     %link{href: '/favicon.ico', rel: 'shortcut icon', type: 'image/gif' }
-  %body{:class => page_classes}
+  %body
     = partial "layouts/layout-contents"
     .app
       #top-header
         .back-index-top
           - if current_page.data.parallaxTop == true
             .background-header.parallax-top.parallax-fx
-          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" } 
+          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" }
             = partial "/layouts/partials/menu_fixed"
 
             - if current_page.data.hero == true
