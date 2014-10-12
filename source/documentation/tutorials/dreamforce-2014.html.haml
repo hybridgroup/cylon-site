@@ -1,0 +1,391 @@
+---
+title: Cylon.js - Tutorials
+author: The Hybrid Group
+page_title: Dreamforce 2014
+page_subtitle: Workshop
+layout: documentation
+page_title_show: true
+---
+
+%section.dreamforce
+  %h2 Connect Salesforce to Intel Edison In 60 Lines Of JavaScript
+
+  %p Welcome! In this workshop, we're going to show you how to create a Salesforce connected device, using the brand new Intel Edison, in 60 lines of JavaScript. Plus we're going to have some fun too.
+
+%section.dreamforce
+  %h2 Getting Started
+  %ul
+    %li
+      %p
+        You will need an Intel Edison with Arduino Breakout Board, a Grove Starter Kit, and 2 USB Cables to participate in this workshop.
+
+    %li
+      %p
+        The computers in the workshop area already have the Intel XDK and needed drivers for Microsoft Windows.
+
+    %li
+      %p
+        You will need to register for an account on the Intel dev portal...
+
+%section.dreamforce
+  %h2 Plugging In
+  %ul
+    %li
+      %p
+        Connect the Edison to BOTH USB ports on the computer. The reason is that one is used for power, and the other is used to control the Edison from your computer.
+
+      %img{:src => "/images/tutorials/df14/usb.png", :alt => "", :style => "width:50%"}
+
+    %li
+      %p
+        Now, plug the Grove Shield contained in the green box into the top of the Edison board, like this:
+
+      %img{:src => "/images/tutorials/df14/shield.png", :alt => "", :style => "width:50%"}
+
+      %p OK, we are ready to try it out. Let's do this!
+
+%section.dreamforce
+  %h2 Blinking LED
+  %p Let's start with the 'Hello, World' of IoT: making an LED blink. Plug the LED that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+
+  %img{:src => "/images/tutorials/df14/led.png", :alt => "", :style => "width:50%"}
+
+  %p Now, enter the following code into the Intel XDK editor, then upload and run it on the connected Intel Edison. The Cylon.js program will execute on the Edison itself, and will make the LED on turn on/off every second:
+
+  %h3 JavaScript
+  :markdown
+        :::javascript
+        var cylon = require('cylon');
+
+        cylon.robot({
+          name: 'cylon1',
+          connection: { name: 'edison', adaptor: 'intel-iot' },
+          device: { name: 'led', driver: 'led', pin: 4, connection: 'edison' }
+        })
+          .on('ready', function() {
+            setInterval(function() {
+              this.led.toggle();
+            }.bind(this), 1000);
+          })
+          .start();
+
+%section.dreamforce
+  %h2 LED + Button
+  %p Now, let's add a button, so you can control when the LED yourself. Leave the LED plugged in, and plug in the small button switch that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+
+  %img{:src => "/images/tutorials/df14/button.png", :alt => "", :style => "width:50%"}
+
+  %p Now, enter this code into the Intel XDK editor, then upload and run it. Once the program is running, you should be ablt to turn the LED on or off, by pressing the button:
+
+  %h3 JavaScript
+  :markdown
+        :::javascript
+        var cylon = require('cylon');
+
+        cylon.robot({
+          name: 'cylon1',
+          connection: { name: 'edison', adaptor: 'intel-iot' },
+          device: [
+            { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
+            { name: 'touch', driver: 'button', pin: 3, connection: 'edison' },
+          ]
+        })
+          .on('ready', function() {
+            this.touch.on('press', function() {
+              this.led.turnOn();
+            }.bind(this));
+
+            this.touch.on('release', function() {
+              this.led.turnOff();
+            }.bind(this));
+          })
+          .start();
+
+
+%section.dreamforce
+  %h2 Salesforce + LED + Button
+  %p We're ready to connect to Salesforce. Leave the button and LED plugged in, as all we need is to change the program to connect our device to the Salesforce API.
+
+  %p Now, enter this code into the Intel XDK editor, then make sure you change the code for the SalesForce username and password you have been given to use for this workshop. Once the program is running, now when you press the button, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update:
+
+  %h3 JavaScript
+  :markdown
+        :::javascript
+        var cylon = require('cylon');
+
+        cylon.robot({
+          name: 'cylon1',
+          connections: [
+            { name: 'edison', adaptor: 'intel-iot' },
+            {
+              name: 'sfcon', adaptor: 'force',
+              sfuser: SF_USERNAME,
+              sfpass: SF_SECURITY_TOKEN
+            }
+          ],
+          device: [
+            { name: 'salesforce', driver: 'force', connection: 'sfcon' },
+            { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
+            { name: 'touch', driver: 'button', pin: 3, connection: 'edison' },
+          ]
+        })
+          .on('ready', function() {
+            this.salesforce.subscribe('BoardMsgOutbound', function(err, data) {
+              if (err != null) {
+                console.log(err);
+              } else if (data.sobject.boardId__c === this.name) {
+                if (data.sobject.touchSensor__c === 1) {
+                  this.led.turnOn();
+                } else if (data.sobject.touchSensor__c === 0) {
+                  this.led.turnOff();
+                }
+              }
+            }.bind(this));
+
+            this.touch.on('press', function() {
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 1
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+
+            this.touch.on('release', function() {
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 0
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+          })
+          .start();
+
+
+%section.dreamforce
+  %h2 Salesforce + LED + Button + Analog Sensor
+  %p Now, let's add an 'analog sensor'. An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.
+
+  %p Plug in the small dial that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+
+  %img{:src => "/images/tutorials/df14/dial.png", :alt => "", :style => "width:50%"}
+
+  %p Enter the following code into the Intel XDK editor. Remember to change the Salesforce username & password on line 10 to the one provided for the workshop. Now upload and run the program. Once the program is running, you should be able to turn the dial to send a new value to Salesforce every 2 seconds. You can also still turn the LED on or off, by pressing the button, sinec both data sources are going thru Salesforce:
+
+  %h3 JavaScript
+  :markdown
+        :::javascript
+        var cylon = require('cylon');
+
+        cylon.robot({
+          name: 'cylon1',
+          connections: [
+            { name: 'edison', adaptor: 'intel-iot' },
+            {
+              name: 'sfcon', adaptor: 'force',
+              sfuser: SF_USERNAME,
+              sfpass: SF_SECURITY_TOKEN
+            }
+          ],
+          device: [
+            { name: 'salesforce', driver: 'force', connection: 'sfcon' },
+            { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
+            { name: 'touch', driver: 'button', pin: 3, connection: 'edison' },
+            { name: 'sensor', driver: 'analogSensor', pin: 0, connection: 'edison' }
+          ]
+        })
+          .on('ready', function() {
+            var ready = false;
+            var sensorVal = 0;
+            this.salesforce.subscribe('BoardMsgOutbound', function(err, data) {
+              if (err != null) {
+                console.log(err);
+              } else if (data.sobject.boardId__c === this.name) {
+                if (data.sobject.touchSensor__c === 1) {
+                  this.led.turnOn();
+                } else if (data.sobject.touchSensor__c === 0) {
+                  this.led.turnOff();
+                }
+                var sensor = data.sobject.analogSensor__c;
+                if (sensor != null) {
+                  console.log("Reading: " + sensor);
+                }
+              }
+            }.bind(this));
+
+            this.touch.on('press', function() {
+              ready = true;
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 1
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+
+            this.touch.on('release', function() {
+              ready = false;
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 0
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+
+            this.sensor.on('analogRead', function(data) {
+              sensorVal = data;
+            });
+
+            setInterval(function() {
+              if (ready) {
+                var toSend = {
+                  message: this.name,
+                  analog2: sensorVal
+                };
+                this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending analog sensor information: " + err);
+                }
+                });
+              }
+            }.bind(this), 2000);
+          })
+          .start();
+
+
+
+%section.dreamforce
+  %h2 Salesforce + LED + Button + Analog Sensor + LCD Display
+  %p Finally, let's add a backlit LCD display, so we can display some useful data on the device itself.
+
+  %p Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+
+  %img{:src => "/images/tutorials/df14/lcd.png", :alt => "", :style => "width:50%"}
+
+  %p Enter the following code into the Intel XDK editor. Once again, please remember to change the Salesforce username & password on line 10 to the one provided for the workshop. Now upload and run the program. Once the program is running, the values that you change by moving the dial, will be displayed on the LCD display. As before, you can still turn the LED on or off.
+
+  %h3 JavaScript
+  :markdown
+        :::javascript
+        var cylon = require('cylon');
+
+        function writeToScreen(screen, message) {
+          screen.setCursor(0,0);
+          screen.write(message);
+        }
+
+        cylon.robot({
+          name: 'cylon1',
+          connections: [
+            { name: 'edison', adaptor: 'intel-iot' },
+            {
+              name: 'sfcon', adaptor: 'force',
+              sfuser: SF_USERNAME,
+              sfpass: SF_SECURITY_TOKEN
+            }
+          ],
+          device: [
+            { name: 'salesforce', driver: 'force', connection: 'sfcon' },
+            { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
+            { name: 'touch', driver: 'button', pin: 3, connection: 'edison' },
+            { name: 'sensor', driver: 'analogSensor', pin: 0, connection: 'edison' }
+            { name: 'screen', driver: 'upm-jhd1313m1', connection: 'edison' }
+          ]
+        })
+          .on('ready', function() {
+            var ready = false;
+            var sensorVal = 0;
+
+            writeToScreen(this.screen, "Ready!");
+
+            this.salesforce.subscribe('BoardMsgOutbound', function(err, data) {
+              if (err != null) {
+                console.log(err);
+              } else if (data.sobject.boardId__c === this.name) {
+                if (data.sobject.touchSensor__c === 1) {
+                  this.led.turnOn();
+                } else if (data.sobject.touchSensor__c === 0) {
+                  this.led.turnOff();
+                }
+                var sensor = data.sobject.analogSensor__c;
+                if (sensor != null) {
+                  var pad = "0000";
+                  var message = "Reading: " + (pad+sensor.toString()).slice(-pad.length));
+                  writeToScreen(this.screen, message);
+                  console.log(message);
+                }
+              }
+            }.bind(this));
+
+            this.touch.on('press', function() {
+              ready = true;
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 1
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+
+            this.touch.on('release', function() {
+              ready = false;
+              var toSend = {
+                boardId: this.name,
+                touchSensor: 0
+              };
+              this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending touch sensor information: " + err);
+                } else {
+                  console.log('Board Msg has been sent to Salesforce.');
+                }
+              });
+            }.bind(this));
+
+            this.sensor.on('analogRead', function(data) {
+              sensorVal = data;
+            });
+
+            setInterval(function() {
+              if (ready) {
+                var toSend = {
+                  message: this.name,
+                  analog2: sensorVal
+                };
+                this.salesforce.post('/Boards/', toSend, function(err, data) {
+                if (err != null) {
+                  console.log("Error sending analog sensor information: " + err);
+                }
+                });
+              }
+            }.bind(this), 2000);
+          })
+          .start();
+
