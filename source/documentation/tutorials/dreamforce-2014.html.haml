@@ -17,96 +17,121 @@ page_title_show: true
   %ul
     %li
       %p
-        You will need an Intel Edison with Arduino Breakout Board, a Grove Starter Kit, and 2 USB Cables to participate in this workshop.
+        We have provided an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.
 
     %li
       %p
-        The computers in the workshop area already have the Intel XDK and needed drivers for Microsoft Windows.
+        We have already plugged in each Intel Edison to the workshop computers, so they are ready for you to use.
 
     %li
       %p
-        You will need to register for an account on the Intel dev portal...
+        The computers in the workshop area also already have pre-installed the Intel XDK (Cross-platform Developer Kit) IoT Edition, and the needed drivers for Microsoft Windows.
+
+    %li
+      %p
+        Now, run the "Intel XDK IoT Edition" program. You will need to register for an account, or else sign in using your existing Intel account, if you have one.
 
 %section.dreamforce
-  %h2 Plugging In
+  %h2 Create A Blank Project
   %ul
     %li
       %p
-        Connect the Edison to BOTH USB ports on the computer. The reason is that one is used for power, and the other is used to control the Edison from your computer.
-
-      %img{:src => "/images/tutorials/df14/usb.png", :alt => "", :style => "width:50%"}
+        First, we need to create a new project. Choose "New Project".
 
     %li
       %p
-        Now, plug the Grove Shield contained in the green box into the top of the Edison board, like this:
+        Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.
 
-      %img{:src => "/images/tutorials/df14/shield.png", :alt => "", :style => "width:50%"}
+    %li
+      %p
+        Click on "Blank Template", and then click on "Use This Template".
 
-      %p OK, we are ready to try it out. Let's do this!
+    %li
+      %p
+        Enter in a name for this project, such as "df14", then click on the "Create" button.
+
+    %li
+      %p
+        Click on the file named "package.json". The file will open in the XDK editor. Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:
+
+      %h3 package.json
+      :markdown
+            :::javascript
+            {
+              "name": "blankapp",
+              "description": "",
+              "version": "0.0.1",
+              "main": "main.js",
+              "engines": {
+                "node": ">=0.10.0"
+              },
+              "dependencies": {
+                  "cylon-intel-iot", "*"
+              }
+            }  
+
 
 %section.dreamforce
   %h2 Blinking LED
-  %p Let's start with the 'Hello, World' of IoT: making an LED blink. Plug the LED that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+  %p Let's start with the 'Hello, World' of the Internet of Things: making an LED blink. 
 
-  %img{:src => "/images/tutorials/df14/led.png", :alt => "", :style => "width:50%"}
+  %ul
+    %li
+      %p Plug the LED that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
 
-  %p Now, enter the following code into the Intel XDK editor, then upload and run it on the connected Intel Edison. The Cylon.js program will execute on the Edison itself, and will make the LED on turn on/off every second:
+      %img{:src => "/images/tutorials/df14/led.png", :alt => "", :style => "width:50%"}
 
-  %h3 JavaScript
-  :markdown
-        :::javascript
-        var cylon = require('cylon');
+    %li
+      %p Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:
 
-        cylon.robot({
-          name: 'cylon1',
-          connection: { name: 'edison', adaptor: 'intel-iot' },
-          device: { name: 'led', driver: 'led', pin: 4, connection: 'edison' }
-        })
-          .on('ready', function() {
-            setInterval(function() {
-              this.led.toggle();
-            }.bind(this), 1000);
-          })
-          .start();
+      %h3 main.js
+      :markdown
+            :::javascript
+            // replace
+
+    %li
+      %p Click on the "Install/Build" icon located at the bottom of the XDK editor. This will install the needed Cylon.js software on the Edison, as well as copying your code.
+
+    %li
+      %p Now, click on the "Run" icon located at the bottom of the XDK editor.
+
+  %p The Cylon.js program will execute on the Edison itself, and will make the LED turn on/off every second.
 
 %section.dreamforce
-  %h2 LED + Button
-  %p Now, let's add a button, so you can control when the LED yourself. Leave the LED plugged in, and plug in the small button switch that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+  %h2 LED + Touch Sensor
+  %p Now, let's add a touch sensor, so you can control when the LED turns on or off yourself. 
 
-  %img{:src => "/images/tutorials/df14/button.png", :alt => "", :style => "width:50%"}
+  %ul
+    %li
+      %p Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'XXX', like this:
 
-  %p Now, enter this code into the Intel XDK editor, then upload and run it. Once the program is running, you should be ablt to turn the LED on or off, by pressing the button:
+      %img{:src => "/images/tutorials/df14/touch.png", :alt => "", :style => "width:50%"}
 
-  %h3 JavaScript
-  :markdown
-        :::javascript
-        var cylon = require('cylon');
+    %li
+      %p Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:
 
-        cylon.robot({
-          name: 'cylon1',
-          connection: { name: 'edison', adaptor: 'intel-iot' },
-          device: [
-            { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
-            { name: 'touch', driver: 'button', pin: 3, connection: 'edison' },
-          ]
-        })
-          .on('ready', function() {
-            this.touch.on('press', function() {
-              this.led.turnOn();
-            }.bind(this));
+      %h3 main.js
+      :markdown
+            :::javascript
+            // code here...
 
-            this.touch.on('release', function() {
-              this.led.turnOff();
-            }.bind(this));
-          })
-          .start();
+    %li
+      %p At the top of the "main.js" file, change the "name" located at line X to the name written on your Edison box, for example "cylon1".
+
+    %li
+      %p Also, change the "sfusername" and "sfpassword" located at line X and Y to the Salesforce username you were given for this workshop.
+
+    %li
+      %p Click on the "Run" icon located at the bottom of the XDK editor.
+
+  %p Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.
 
 
 %section.dreamforce
-  %h2 Salesforce + LED + Button
-  %p We're ready to connect to Salesforce. Leave the button and LED plugged in, as all we need is to change the program to connect our device to the Salesforce API.
+  %h2 Salesforce + LED + Touch Sensor
+  %p Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the program to connect our device to the Salesforce Apex & Streaming APIs.
 
-  %p Now, enter this code into the Intel XDK editor, then make sure you change the code for the SalesForce username and password you have been given to use for this workshop. Once the program is running, now when you press the button, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update:
+  %p Now, enter this code into the Intel XDK editor, then make sure you change the code for the SalesForce username and password you have been given to use for this workshop. Once the program is running, now when you press the sensor, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update:
 
   %h3 JavaScript
   :markdown
