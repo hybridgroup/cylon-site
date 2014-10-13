@@ -29,7 +29,19 @@ page_title_show: true
 
     %li
       %p
-        Now, run the "Intel XDK IoT Edition" program. You will need to register for an account, or else sign in using your existing Intel account, if you have one.
+        Get started by running the "Intel XDK IoT Edition" program. 
+
+    %li
+      %p
+        The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.
+
+    %li
+      %p
+        Once you have logged into the Intel XDK application, you need to connect to your Edison board. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
+
+    %li
+      %p
+        That's it, now you are ready to get going!
 
 %section.dreamforce
   %h2 Create A Blank Project
@@ -77,7 +89,7 @@ page_title_show: true
 
   %ul
     %li
-      %p Plug the LED that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+      %p Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:
 
       %img{:src => "/images/tutorials/df14/led.png", :alt => "", :style => "width:50%"}
 
@@ -115,7 +127,7 @@ page_title_show: true
 
   %ul
     %li
-      %p Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'XXX', like this:
+      %p Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:
 
       %img{:src => "/images/tutorials/df14/touch.png", :alt => "", :style => "width:50%"}
 
@@ -236,12 +248,12 @@ page_title_show: true
   %p Once the program is running, now when you press the sensor, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update to the device.
 
 %section.dreamforce
-  %h2 Salesforce + LED + Button + Analog Sensor
+  %h2 Salesforce + LED + Touch Sensor + Analog Sensor
   %p Now, let's add an 'analog sensor'. An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.
 
   %ul
     %li
-      %p Plug in the small dial that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+      %p Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:
 
       %img{:src => "/images/tutorials/df14/dial.png", :alt => "", :style => "width:50%"}
 
@@ -347,7 +359,7 @@ page_title_show: true
 
   %ul
     %li
-      %p Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'XXX', like this:
+      %p Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:
 
       %img{:src => "/images/tutorials/df14/lcd.png", :alt => "", :style => "width:50%"}
 
