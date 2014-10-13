@@ -29,7 +29,7 @@ page_title_show: true
 
     %li
       %p
-        Get started by running the "Intel XDK IoT Edition" program. 
+        Get started by running the "Intel XDK IoT Edition" program.
 
     %li
       %p
@@ -80,18 +80,18 @@ page_title_show: true
               "dependencies": {
                   "cylon-intel-iot", "*"
               }
-            }  
+            }
 
 
 %section.dreamforce
   %h2 Blinking LED
-  %p Let's start with the 'Hello, World' of the Internet of Things: making an LED blink. 
+  %p Let's start with the 'Hello, World' of the Internet of Things: making an LED blink.
 
   %ul
     %li
       %p Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:
 
-      %img{:src => "/images/tutorials/df14/led.png", :alt => "", :style => "width:50%"}
+      %img{:src => "/images/tutorials/df14/led.jpg", :alt => "Plug the LED"}
 
     %li
       %p Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:
@@ -123,13 +123,13 @@ page_title_show: true
 
 %section.dreamforce
   %h2 LED + Touch Sensor
-  %p Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself. 
+  %p Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.
 
   %ul
     %li
       %p Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:
 
-      %img{:src => "/images/tutorials/df14/touch.png", :alt => "", :style => "width:50%"}
+      %img{:src => "/images/tutorials/df14/touch.jpg", :alt => "Touch Example"}
 
     %li
       %p Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:
@@ -255,7 +255,7 @@ page_title_show: true
     %li
       %p Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:
 
-      %img{:src => "/images/tutorials/df14/dial.png", :alt => "", :style => "width:50%"}
+      %img{:src => "/images/tutorials/df14/dial.jpg", :alt => "Dial it in"}
 
     %li
       %p Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from before.
@@ -314,7 +314,7 @@ page_title_show: true
                   ready = false;
                   var toSend = {
                     boardId: my.name,
-                    touchSensor: false 
+                    touchSensor: false
                   };
                   my.salesforce.post('/Boards/', toSend, function(err, data) {
                     if (err != null) {
@@ -361,7 +361,7 @@ page_title_show: true
     %li
       %p Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:
 
-      %img{:src => "/images/tutorials/df14/lcd.png", :alt => "", :style => "width:50%"}
+      %img{:src => "/images/tutorials/df14/lcd.jpg", :alt => "LCD Display"}
 
     %li
       %p Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Once again, please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from earlier.
@@ -432,7 +432,7 @@ page_title_show: true
               ready = false;
               var toSend = {
                 boardId: my.name,
-                touchSensor: false 
+                touchSensor: false
               };
               my.salesforce.post('/Boards/', toSend, function(err, data) {
                 if (err != null) {
