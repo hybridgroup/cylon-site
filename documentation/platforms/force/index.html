@@ -209,7 +209,13 @@
                     </div>
                   </div>
                   <a href="/documentation/examples">Examples</a>
-                  <a href="/documentation/tutorials">Tutorials</a>
+                  <div class="section" ng-class="{active: active('Tutorials')}">
+                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                    <div class="links" ng-show="active('Tutorials')">
+                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                    </div>
+                  </div>
                   <a href="/documentation/architecture">Architecture</a>
                   <a href="/documentation/configuration">Configuration</a>
                   <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
@@ -294,90 +300,78 @@ Cylon.start();
                 <section class="how-to" id="HowToConnect">
                   <h2 id="how-to-connect">How To Connect</h2>
                   
-                  <h3 id="salesforce-setup">SalesForce Setup</h3>
-                  
-                  <p>First, you'll need an account on DeveloperForce.
-                  If you don't have one already, you can create one <a href="http://developer.force.com/join">here</a>.</p>
-                  
-                  <p>Next, you'll need to configure a connected app in your developer profile.
-                  This needs to be done to retrieve the necessary keys, tokens, and URLs necessary to connect your robot to SalesForce.</p>
-                  
-                  <p>Here's the steps to do this:</p>
-                  
+                  <h3 id="salesforce-setup">Salesforce Setup</h3>
                   <ol>
-                    <li>Go to Setup (top) -&gt; Create (side) -&gt; Apps -&gt; Connected Apps (scroll down) -&gt; New</li>
-                    <li>Check "Enable OAuth Settings"</li>
-                    <li>Next, add all permissions. Use <code>http://localhost:3000/oauth/_callback</code> as your callback URL.</li>
-                  </ol>
+                    <li>
+                      <p>First you'll need an account on DeveloperForce. If you don't already have one, you can create one at: http://developer.force.com/join</p>
+                    </li>
+                    <li>Next, you need to configure a new connected app in your developer profile in order to retrieve all the keys, tokens, urls nedded to connect your app with SalesForce. In order to do this:
+                      <ul>
+                        <li>Go to -&gt; <code>Setup (top)</code> &gt; <code>Create (side)</code> &gt; <code>Apps</code> &gt; <code>Connected Apps</code> (scroll down ) &gt; <code>New</code> Check "Enable Oauth Settings".</li>
+                        <li>Next, add all permissions. Use "http://localhost:3000/oauth/_callback" as your callback URL.</li>
+                        <li>You'll be using the Oauth2 web server flow, so you need your personal security code. If you don't have one, you'll need to reset it for Salesforce to email it to you.</li>
+                        <li>Go to your Profile by clicking in your name (top right) &gt; <code>My Settings</code> &gt; <code>Personal</code> (left menu) &gt; <code>Reset my security token</code>. After that Salesforce should email it to you.</li>
+                        <li>You'll need your password + security token to be able to login (PASSWORDsecurityCode (concatenated, no space)).</li>
+                      </ul>
+                    </li>
+                    <li>Now we need to setup an object with a couple of custom fields for streaming communication. In this example we'll create a new object and call it 'Sphero_Message':
+                    We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.
+                      <ul>
+                        <li>Go to <code>Setup</code> -&gt; <code>Create</code> -&gt; <code>Object</code> -&gt; <code>New Custom Object</code> and name it <code>Sphero_Message</code>, then click <code>Save</code>.</li>
+                        <li>Once in the <code>Object Details</code> view create two custom fields, <code>Sphero_Name</code> and <code>Bucks</code> both of type text.</li>
+                        <li>We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN">here</a>
+</li>
+                      </ul>
+                    </li>
+                    <li>Setup apexRest code so we can create new objects using RESTfull implementation:
+                      <ul>
+                        <li>Go click in in you profile name (top right) &gt; <code>Developer Console</code>.</li>
+                        <li>
+                          <p>When the developer console opens click <code>File</code> &gt; <code>New Apex Class</code>, name it SpheroApex and then copy/paste the following code to that window:</p>
                   
-                  <p>You'll be using the password and your personal security token.
-                  If you don't have one, go to your Profile and click reset security token and Salesforce should email it to you.</p>
-                  
-                  <p>To get this:</p>
-                  
-                  <ol>
-                    <li>Setup -&gt; My Personal Information -&gt; Reset My Security Code.</li>
-                  </ol>
-                  
-                  <p>You'll need your password and security token to login (<code>passwordSECURITYCODE</code> concatenated, no space).</p>
-                  
-                  <p>We've created a SalesForce package that installs the Sphero_Message object and the apexRest class for you to speed things up.
-                  You can find it <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN">here</a>.</p>
-                  
-                  <p>Now, we'll need to setup a custom object for streaming communication.
-                  In this example we'll create a new object and call it 'Sphero_Message': We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.</p>
-                  
-                  <ol>
-                    <li>Go to Setup -&gt; Create -&gt; Object -&gt; New</li>
-                    <li>Call it "Sphero_Message"</li>
-                    <li>Create custom attributes "Sphero_Name" and "Bucks", both of them should be the text type.</li>
-                  </ol>
-                  
-                  <p>Next, we need to setup apexRest code, so we can create new objects using the REST API:</p>
-                  
-                  <ol>
-                    <li>Go click My Profile -&gt; Developer Console.</li>
-                    <li>When the console opens, click File -&gt; New -&gt; Apex Class</li>
-                    <li>Add the following code:</li>
-                  </ol>
-                  
-                  <p><br></p>
-                  
-                  <pre class="CodeRay">@RestResource(urlMapping='/SpheroController/*')
-global with sharing class SpheroController {
-  @HttpPost
-    global static void create(String spheroName, String bucks) {
-      SpheroController.handleSpheroMessage(spheroName, bucks)
-    }
+                          <pre class="CodeRay"> @RestResource(urlMapping='/SpheroController/*')
+ global with sharing class SpheroController {
+   @HttpPost
+     global static void create(String spheroName, String bucks) {
+       SpheroController.handleSpheroMessage(spheroName, bucks);
+     }
 
-  public static void handleSpheroMessage(String spheroName, String bucks) {
-    Sphero_Message__c sm = new Sphero_Message__c();
-    sm.Sphero_Name__c = spheroName;
-    sm.Bucks__c = bucks;
-    insert sm;
-  }
-}
+   public static void handleSpheroMessage(String spheroName, String bucks) {
+     Sphero_Message__c sm = new Sphero_Message__c();
+     sm.Sphero_Name__c = spheroName;
+     sm.Bucks__c = bucks;
+     insert sm;
+   }
+ }
 </pre>
-                  
-                  <p>To be able to stream, we need a PushTopic to connect to.</p>
-                  
-                  <ol>
-                    <li>Go to Developer Console -&gt; Debug -&gt; Open Execute Anonymous Code</li>
-                    <li>Add the following code to create the new PushTopic with the query you want to execute, and the events you wish it to report:</li>
+                        </li>
+                      </ul>
+                    </li>
                   </ol>
                   
-                  <p><br></p>
+                  <ul>
+                    <li>Save the SpheroApex class, <code>File</code> &gt; <code>Save</code>.</li>
+                  </ul>
                   
-                  <pre class="CodeRay">PushTopic pt = new PushTopic();
-pt.apiversion = 28.0;
-pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
-pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
-insert pt;
-System.debug('Created new PushTopic: '+ pt.Id);
+                  <ol>
+                    <li>To be able to stream we need to setup a PushTopic to connect to.
+                      <ul>
+                        <li>Go to <code>Developer Console</code> click on <code>Debug</code> -&gt; <code>Open Execute Anonymus Code</code> or (Ctrl+E)</li>
+                        <li>
+                          <p>Add the following code to create the new pushTopic with the query you want to execute and the events you want it to report.</p>
+                  
+                          <pre class="CodeRay"> PushTopic pt = new PushTopic();
+ pt.apiversion = 28.0;
+ pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
+ pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
+ insert pt;
+ System.debug('Created new PushTopic: '+ pt.Id);
 </pre>
-                  
-                  <p>At this point, everything on the SalesForce end should be ready.
-                  We should now be able to connect, authenticate, push/create records through apexRest, and stream information using the pushTopic.</p>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>At this point everything in salesforce should be ready and we should be able to connect, authenticate, push/create records through apexRest and stream information using the pushTopic.</li>
+                  </ol>
                 </section>
                 <section class="drivers" id="Drivers">
                   <h2 id="drivers">Drivers</h2>

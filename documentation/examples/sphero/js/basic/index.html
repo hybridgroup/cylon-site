@@ -208,7 +208,13 @@
                     </div>
                   </div>
                   <a href="/documentation/examples">Examples</a>
-                  <a href="/documentation/tutorials">Tutorials</a>
+                  <div class="section" ng-class="{active: active('Tutorials')}">
+                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                    <div class="links" ng-show="active('Tutorials')">
+                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                    </div>
+                  </div>
                   <a href="/documentation/architecture">Architecture</a>
                   <a href="/documentation/configuration">Configuration</a>
                   <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
