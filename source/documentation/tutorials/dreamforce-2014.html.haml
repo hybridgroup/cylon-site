@@ -37,10 +37,6 @@ page_title_show: true
 
     %li
       %p
-        Once you have logged into the Intel XDK application, you need to connect to your Edison board. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
-
-    %li
-      %p
         That's it, now you are ready to get going!
 
 %section.dreamforce
@@ -78,9 +74,14 @@ page_title_show: true
                 "node": ">=0.10.0"
               },
               "dependencies": {
-                  "cylon-intel-iot", "*"
+                  "cylon-intel-iot": "*"
               }
             }
+
+
+    %li
+      %p
+        You will need to connect to your Edison board from your computer to send code to it. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
 
 
 %section.dreamforce
@@ -102,7 +103,6 @@ page_title_show: true
             var cylon = require('cylon');
 
             cylon.robot({
-              name: robotName,
               connection: { name: 'edison', adaptor: 'intel-iot' },
               device: { name: 'led', driver: 'led', pin: 4, connection: 'edison' }
             })
@@ -140,7 +140,6 @@ page_title_show: true
             var cylon = require('cylon');
 
             cylon.robot({
-              name: robotName,
               connection: { name: 'edison', adaptor: 'intel-iot' },
               device: [
                 { name: 'led', driver: 'led', pin: 4, connection: 'edison' },
@@ -166,7 +165,7 @@ page_title_show: true
 
 %section.dreamforce
   %h2 Salesforce + LED + Touch Sensor
-  %p Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the program to connect our device to the Salesforce Apex & Streaming APIs.
+  %p Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the CYlon.js program to connect our device to the Salesforce Apex & Streaming APIs.
 
   %ul
     %li
@@ -241,6 +240,27 @@ page_title_show: true
 
     %li
       %p Also, change the "username" and "password" located at line 3 and 4 to the Salesforce username and password you have been given to use for this workshop.
+
+    %li
+      %p You will need to add the "cylon-force" module to your "package.json" as well. Replace the entire file's contents with this code:
+
+      %h3 package.json
+      :markdown
+            :::javascript
+            {
+              "name": "blankapp",
+              "description": "",
+              "version": "0.0.1",
+              "main": "main.js",
+              "engines": {
+                "node": ">=0.10.0"
+              },
+              "dependencies": {
+                "cylon-intel-iot": "*",
+                "cylon-force": "*"
+              }
+            }
+
 
     %li
       %p Click on the "Run" icon located at the bottom of the XDK editor.
