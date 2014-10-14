@@ -408,7 +408,7 @@ page_title_show: true
             { name: 'screen', driver: 'upm-jhd1313m1', connection: 'edison' }
           ]
         })
-          .on('ready', function() {
+          .on('ready', function(my) {
             var ready = false;
             var sensorVal = 0;
 
