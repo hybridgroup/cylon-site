@@ -257,11 +257,6 @@
                     </li>
                     <li>
                       <p>
-                        Once you have logged into the Intel XDK application, you need to connect to your Edison board. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
                         That's it, now you are ready to get going!
                       </p>
                     </li>
@@ -304,10 +299,15 @@
     <span class="key"><span class="delimiter">"</span><span class="content">node</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">&gt;=0.10.0</span><span class="delimiter">"</span></span>
   },
   <span class="key"><span class="delimiter">"</span><span class="content">dependencies</span><span class="delimiter">"</span></span>: {
-      <span class="string"><span class="delimiter">"</span><span class="content">cylon-intel-iot</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">*</span><span class="delimiter">"</span></span>
+      <span class="key"><span class="delimiter">"</span><span class="content">cylon-intel-iot</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">*</span><span class="delimiter">"</span></span>
   }
 }
 </pre>
+                    </li>
+                    <li>
+                      <p>
+                        You will need to connect to your Edison board from your computer to send code to it. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
+                      </p>
                     </li>
                   </ul>
                 </section>
@@ -325,7 +325,6 @@
                       <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 cylon.robot({
-  <span class="key">name</span>: robotName,
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> }
 })
@@ -360,7 +359,6 @@ cylon.robot({
                       <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 cylon.robot({
-  <span class="key">name</span>: robotName,
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
@@ -387,7 +385,7 @@ cylon.robot({
                 </section>
                 <section class="dreamforce">
                   <h2>Salesforce + LED + Touch Sensor</h2>
-                  <p>Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
+                  <p>Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the CYlon.js program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
                   <ul>
                     <li>
                       <p>Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:</p>
@@ -459,6 +457,24 @@ cylon.robot({
                     </li>
                     <li>
                       <p>Also, change the "username" and "password" located at line 3 and 4 to the Salesforce username and password you have been given to use for this workshop.</p>
+                    </li>
+                    <li>
+                      <p>You will need to add the "cylon-force" module to your "package.json" as well. Replace the entire file's contents with this code:</p>
+                      <h3>package.json</h3>
+                      <pre class="CodeRay">{
+  <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">blankapp</span><span class="delimiter">"</span></span>,
+  <span class="key"><span class="delimiter">"</span><span class="content">description</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
+  <span class="key"><span class="delimiter">"</span><span class="content">version</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.1</span><span class="delimiter">"</span></span>,
+  <span class="key"><span class="delimiter">"</span><span class="content">main</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">main.js</span><span class="delimiter">"</span></span>,
+  <span class="key"><span class="delimiter">"</span><span class="content">engines</span><span class="delimiter">"</span></span>: {
+    <span class="key"><span class="delimiter">"</span><span class="content">node</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">&gt;=0.10.0</span><span class="delimiter">"</span></span>
+  },
+  <span class="key"><span class="delimiter">"</span><span class="content">dependencies</span><span class="delimiter">"</span></span>: {
+    <span class="key"><span class="delimiter">"</span><span class="content">cylon-intel-iot</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">*</span><span class="delimiter">"</span></span>,
+    <span class="key"><span class="delimiter">"</span><span class="content">cylon-force</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">*</span><span class="delimiter">"</span></span>
+  }
+}
+</pre>
                     </li>
                     <li>
                       <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
