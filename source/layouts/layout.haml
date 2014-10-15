@@ -10,7 +10,7 @@
         .back-index-top
           - if current_page.data.parallaxTop == true
             .background-header.parallax-top.parallax-fx
-          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" } 
+          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" }
             = partial "/layouts/partials/menu_fixed"
 
             - if current_page.data.hero == true
