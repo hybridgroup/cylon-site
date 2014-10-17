@@ -3261,9 +3261,8 @@ section.docs {
   margin-right: 2.35765%;
   width: 23.23176%;
   background: #dbdbdb;
-  margin-top: 20px;
   border-radius: 5px;
-  padding: 0 10px; }
+  margin-top: 20px; }
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .side-documentation:last-child {
     margin-right: 0; }
@@ -3275,8 +3274,9 @@ section.docs {
       margin-right: 2.35765%;
       width: 100%;
       height: auto !important;
-      position: absolute;
-      left: 0; }
+      left: 0;
+      margin-top: 0px;
+      position: absolute; }
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .side-documentation:last-child {
         margin-right: 0; } }
@@ -3290,94 +3290,106 @@ section.docs {
       .side-documentation .mobile-menu {
         display: block; } }
     /* line 24, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .mobile-menu h1.sidebar-title {
+      color: white;
+      float: left;
+      font-weight: 400;
+      margin: 13px 0 0px 15px;
+      padding: 0; }
+    /* line 32, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .side-documentation .mobile-menu .active {
       background: white; }
-      /* line 27, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      /* line 35, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu .active .line {
         background: #ee2a4a; }
-    /* line 32, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    /* line 40, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .side-documentation .mobile-menu a {
-      border: solid 2px white;
-      padding: 10px;
+      background-color: #9e162e;
+      border-radius: 13px;
+      padding: 10px 12px;
+      margin: 5px;
       width: 55px;
       display: inline-block; }
-      /* line 38, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      /* line 48, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu a:hover {
-        background: white; }
-        /* line 41, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+        background: white;
+        cursor: pointer; }
+        /* line 52, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
         .side-documentation .mobile-menu a:hover .line {
           background: #ee2a4a; }
-      /* line 46, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      /* line 57, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
       .side-documentation .mobile-menu a .line {
-        height: 2px;
-        width: 30px;
-        margin: 5px 0;
+        height: 6px;
+        margin: 5px 0 5px;
         background: white; }
-  @media only screen and (max-width: 767px) {
-    /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-    .side-documentation .docs-sidebar {
-      margin: 0;
-      display: none; } }
-  /* line 61, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar.show {
-    display: block; }
-  @media only screen and (max-width: 767px) {
-    /* line 55, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-    .side-documentation .docs-sidebar {
+  /* line 65, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  .side-documentation .docs-sidebar {
+    padding: 0 10px; }
+    @media only screen and (max-width: 767px) {
+      /* line 65, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .side-documentation .docs-sidebar {
+        margin: 0;
+        display: none; } }
+    /* line 73, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar.show {
+      display: block; }
+    @media only screen and (max-width: 767px) {
+      /* line 65, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .side-documentation .docs-sidebar {
+        width: 100%;
+        z-index: 1;
+        position: relative;
+        background-color: #dbdbdb; } }
+    /* line 83, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar > a, .side-documentation .docs-sidebar .section .name {
+      font-size: 0.875em;
+      font-weight: bold;
+      border-bottom: 1px solid #cecece; }
+      /* line 88, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .side-documentation .docs-sidebar > a:last-of-type, .side-documentation .docs-sidebar .section .name:last-of-type {
+        border-bottom: none; }
+    /* line 93, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar a, .side-documentation .docs-sidebar .name {
       width: 100%;
-      z-index: 1;
-      position: relative;
-      background-color: #dbdbdb; } }
-  /* line 71, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar > a, .side-documentation .docs-sidebar .section .name {
-    font-size: 0.875em;
-    font-weight: bold;
-    border-bottom: 1px solid #cecece; }
-    /* line 76, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-    .side-documentation .docs-sidebar > a:last-of-type, .side-documentation .docs-sidebar .section .name:last-of-type {
-      border-bottom: none; }
-  /* line 81, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar a, .side-documentation .docs-sidebar .name {
-    width: 100%;
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    color: #333; }
-    /* line 88, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-    .side-documentation .docs-sidebar a:hover, .side-documentation .docs-sidebar .name:hover {
+      display: block;
+      padding: 10px;
+      cursor: pointer;
+      color: #333; }
+      /* line 100, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .side-documentation .docs-sidebar a:hover, .side-documentation .docs-sidebar .name:hover {
+        color: #ee2a4a; }
+    /* line 105, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .links a {
+      font-size: 10pt;
+      color: #333;
+      padding: 5px 10px; }
+      /* line 111, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .side-documentation .docs-sidebar .links a:hover {
+        color: #ee2a4a; }
+    /* line 116, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar a.active {
+      font-weight: bold;
       color: #ee2a4a; }
-  /* line 93, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar .links a {
-    font-size: 10pt;
-    color: #333;
-    padding: 5px 10px; }
-    /* line 99, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-    .side-documentation .docs-sidebar .links a:hover {
-      color: #ee2a4a; }
-  /* line 104, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar a.active {
-    font-weight: bold;
-    color: #ee2a4a; }
-  /* line 109, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar .section .links {
-    padding-left: 15px;
-    padding-top: 10px; }
-  /* line 114, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar .sub-section .links {
-    padding-left: 20px; }
-  /* line 118, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar .section:before {
-    content: '▶';
-    float: right;
-    margin-top: 13px;
-    margin-right: 10px;
-    color: #A5A5A5;
-    font-size: 11px; }
-  /* line 127, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
-  .side-documentation .docs-sidebar .section.active:before {
-    content: '▼'; }
+    /* line 121, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .section .links {
+      padding-left: 15px;
+      padding-top: 10px; }
+    /* line 126, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .sub-section .links {
+      padding-left: 20px; }
+    /* line 130, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .section:before {
+      content: '▶';
+      float: right;
+      margin-top: 13px;
+      margin-right: 10px;
+      color: #A5A5A5;
+      font-size: 11px; }
+    /* line 139, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    .side-documentation .docs-sidebar .section.active:before {
+      content: '▼'; }
 
-/* line 133, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+/* line 145, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
 .container-documentation {
   float: left;
   display: block;
@@ -3387,11 +3399,11 @@ section.docs {
   /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
   .container-documentation:last-child {
     margin-right: 0; }
-  /* line 137, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+  /* line 149, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
   .container-documentation .how-to {
     padding-top: 65px; }
   @media only screen and (max-width: 767px) {
-    /* line 133, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+    /* line 145, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
     .container-documentation {
       float: left;
       display: block;
@@ -3400,4 +3412,7 @@ section.docs {
       margin-top: 50px; }
       /* line 38, ../../../../../.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .container-documentation:last-child {
-        margin-right: 0; } }
+        margin-right: 0; }
+      /* line 157, ../hybridpages/assets/stylesheets/elements/_side-documentation.scss */
+      .container-documentation .w {
+        padding: 0; } }
