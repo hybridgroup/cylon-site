@@ -10,7 +10,7 @@
 %link{href: "/stylesheets/style.css", rel: "stylesheet"}
 
 %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
-%script{:src => "/hybridpages/assets/javascript/plax.js"}
+%script{:src => "/javascripts/plax.js"}
 - unless current_page.data.hero
   %script{:src => "/javascripts/parallax_bottom.js"}
 
@@ -18,6 +18,6 @@
 %script{:src => "/javascripts/app.js"}
 
 - if current_page.data.subnavjs == true
-  %script{:src => "/hybridpages/assets/javascript/subnav.js"}
+  %script{:src => "/javascripts/subnav.js"}
 - if current_page.data.parallaxTop == true
   %script{:src => "/javascripts/parallax_header.js"}

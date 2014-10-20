@@ -6,10 +6,10 @@
         %h2.subtitle= yield_content(:subtitle)
 
 - if current_page.data.subnav_driver == true
-  = partial "/hybridpages/partials/widgets/subnav_drivers"
+  = partial "/layouts/hybridpages/subnav_drivers"
 
 - if current_page.data.subnav_platform == true
-  = partial "/hybridpages/partials/widgets/subnav_platforms"
+  = partial "/layouts/hybridpages/subnav_platforms"
 
 - if current_page.data.subnav_nodriver_platform == true
-  = partial "/hybridpages/partials/widgets/subnav_nodriver_platform"
+  = partial "/layouts/hybridpages/subnav_nodriver_platform"

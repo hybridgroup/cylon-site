@@ -1,6 +1,6 @@
 %html{"ng-app" => "cylon"}
   %head
-    = partial "/hybridpages/partials/layouts/head"
+    = partial "/layouts/hybridpages/head"
     %link{href: "//fonts.googleapis.com/css?family=Inconsolata:400,700|Montserrat:700", rel: "stylesheet"}
     %link{href: '/favicon.ico', rel: 'shortcut icon', type: 'image/gif' }
   %body
@@ -14,23 +14,21 @@
             = partial "/layouts/partials/menu_fixed"
 
             - if current_page.data.hero == true
-              = partial "/hybridpages/partials/widgets/hero"
-
-      - if current_page.data.hero == true
-        = partial "/hybridpages/partials/widgets/hero_black"
+              = partial "/layouts/hybridpages/hero"
+              = partial "/layouts/hybridpages/hero_black"
 
       - if current_page.data.page_title_show == true && (current_page.data.layout != 'documentation' || current_page.data.main_nav == true)
-        = partial "/hybridpages/partials/widgets/page_title"
+        = partial "/layouts/hybridpages/page_title"
 
       .container
         = yield
 
       - if current_page.data.catcher == true
-        = partial "/hybridpages/partials/widgets/catcher"
+        = partial "/layouts/hybridpages/catcher"
 
     .app-footer
-      = partial "/layouts/partials/footer"
+      = partial "/layouts/hybridpages/footer"
 
   - if is_blog_article?
-    %script{:src => "/hybridpages/assets/javascript/disqus.js"}
+    %script{:src => "/javascripts/disqus.js"}
     %script{src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564", type: "text/javascript"}
