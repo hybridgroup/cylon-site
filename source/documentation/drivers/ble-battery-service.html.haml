@@ -14,7 +14,8 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/battery-service.jpg", class: "display"
   .info-intro
-    %p Bluetooth low energy battery service
+    :markdown
+      BLE provides the Battery Service, used the expose the state of a battery within a device.
 
   .clear
 
@@ -22,20 +23,40 @@ subnavjs: true
   :markdown
     ## How To Connect
 
-        :::javascript
+    For information on how to connect to BLE devices, please see the [BLE platform page][ble].
 
+    [ble]: /documentation/platforms/ble
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
-        :::javascript
+    A short example of getting current battery level from a BLE device:
 
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+          device: { name: 'battery', driver: 'ble-battery-service' },
+
+          display: function(err, data) {
+            if (!!err) {
+              console.log("Error: ", err);
+              return;
+            }
+
+            console.log("Data: ", data);
+          },
+
+          work: function(my) {
+            my.battery.getBatteryLevel(my.display);
+          }
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
     = partial "/documentation/drivers/partials/ble/commands_battery_service"
-
 
   .commands-api#Events
     :markdown
@@ -43,9 +64,7 @@ subnavjs: true
 
       No events
 
-
-
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Battery Service" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "BLE - Battery Service" }

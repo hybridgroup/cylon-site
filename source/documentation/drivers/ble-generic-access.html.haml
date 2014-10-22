@@ -14,7 +14,8 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/generic-access.jpg", class: "display"
   .info-intro
-    %p Bluetooth low energy generic access
+    :markdown
+      BLE provides the Generic Access service, used to read characteristics and information from the Bluetooth device.
 
   .clear
 
@@ -22,20 +23,40 @@ subnavjs: true
   :markdown
     ## How To Connect
 
-        :::javascript
+    For information on how to connect to BLE devices, please see the [BLE platform page][ble].
 
+    [ble]: /documentation/platforms/ble
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
-        :::javascript
+    A short example of getting the device name from a BLE device:
 
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+          device: { name: 'generic', driver: 'ble-generic-access' },
+
+          display: function(err, data) {
+            if (!!err) {
+              console.log("Error: ", err);
+              return;
+            }
+
+            console.log("Data: ", data);
+          },
+
+          work: function(my) {
+            my.generic.getDeviceName(my.display);
+          }
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
     = partial "/documentation/drivers/partials/ble/commands_generic_access"
-
 
   .commands-api#Events
     :markdown
@@ -43,9 +64,7 @@ subnavjs: true
 
       no events
 
-
-
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Generic Access" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "BLE - Generic Access" }
