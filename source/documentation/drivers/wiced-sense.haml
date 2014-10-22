@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Wiced Sense Driver
+title: Cylon.js - WICED Sense Driver
 author: The Hybrid Group
 page_title: Drivers
 page_subtitle: Cylon has an extensible system for connecting to hardware devices.
-page_title_docs: Wiced Sense
+page_title_docs: WICED Sense
 page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-wiced-sense' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-wiced-sense/issues' target='_blank'>Issues</a>"
 layout: documentation
 page_title_show: true
@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/wiced-sense.jpg", class: "display"
   .info-intro
-    %p Wiced Sense
+    %p WICED Sense
 
   .clear
 
@@ -22,14 +22,34 @@ subnavjs: true
   :markdown
     ## How To Connect
 
-        :::javascript
-
+    The WICED Sense is a Bluetooth Low-Energy device, and is paired and connected as with any other BLE device.
+    For more info, check out the [BLE platform page](/documentation/platforms/ble).
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
+    Here's a short example of getting data from the WICED Sense with Cylon:
+
         :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+
+          device: { name: 'wiced', driver: 'wiced-sense' },
+
+          work: function(my) {
+            my.wiced.getData(function(err, data) {
+              if (!!err) {
+                console.log("Error: ", err);
+                return;
+              }
+
+              console.log("Data: ", data);
+            });
+          }
+        }).start();
 
 
 %section.public-methods
@@ -52,9 +72,7 @@ subnavjs: true
 
       No Events
 
-
-
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Wiced Sense" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "WICED Sense" }
