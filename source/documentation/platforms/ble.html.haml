@@ -16,7 +16,12 @@ subnavjs: true
   .info-intro
     = partial '/hybridpages/partials/widgets/repo_issues'
     :markdown
-      Bluetooth Low Energy
+      Bluetooth Low Energy (BLE) is a newer standard for communicating with Bluetooth devices.
+      It's focused on lower cost and power consumption.
+      A number of newer hardware devices come with BLE on-board.
+
+      `cylon-ble` can be used to communicate directly with BLE devices, requesting low-level details such as battery status and generic device info.
+      It can also be used as an adaptor for more complicated modules that control larger-scale devices, such as the Orbotix Ollie.
 
       For more info about BLE click [here](http://www.bluetooth.com/Pages/Bluetooth-Smart.aspx).
   .clear
@@ -25,22 +30,76 @@ subnavjs: true
   :markdown
     ## How To Install
 
+    Installing Cylon.JS support for BLE devices is done through NPM:
+
+        $ npm install cylon-ble
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
+    Here's a basic BLE example to get the battery level of a device:
+
         :::javascript
+        "use strict";
 
+        var Cylon = require('cylon');
 
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+          device: { name: 'battery', driver: 'ble-battery-service' },
+
+          work: function(my) {
+            my.battery.getBatteryLevel(function(err, data) {
+              if (!!err) {
+                console.log("Error: ", err);
+                return;
+              }
+
+              console.log("Data: ", data);
+            });
+          }
+        }).start();
 
 %section.how-to#HowToConnect
   :markdown
     ## How To Connect
 
+    To start off, connect your BLE device to the computer you wish to use to communicate with it.
+    Once connected, get the UUID of the device.
+
+    We've written a script to help with finding BLE UUIDs:
+
+        :::javascript
+        "use strict";
+
+        var noble = require('noble');
+
+        noble.on('stateChange', function(state) {
+          if (state === 'poweredOn') {
+            console.log("Starting scan.");
+            noble.startScanning();
+          } else {
+            console.log("Stopping scan.");
+            noble.stopScanning();
+          }
+        });
+
+        noble.on('discover', function(peripheral) {
+          console.log("Peripheral discovered!")
+          console.log("  Name: " + peripheral.advertisement.localName)
+          console.log("  UUID: " + peripheral.uuid);
+        });
+
+    Once you have the UUID you need, you can setup your `cylon-ble` program as so:
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: 'YOUR_DEVICE_UUID_HERE' },
+          // ...
+        });
 
 %section.drivers#Drivers
-
   .hardware
     .devices
       = partial "/partials/devices_for_platform", locals: { platform: "BLE"}
