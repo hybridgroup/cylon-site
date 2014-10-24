@@ -1,0 +1,37 @@
+.platform-list {
+  @include span-columns(12 of 12);
+  //@include row();
+  list-style: none;
+  margin: 0;
+
+  .platform {
+    @include span-columns(2.5 of 12);
+    @include omega;
+    display: inline-block;
+    float: none;
+    text-align: center;
+
+    @include media($tablet) {
+      @include span-columns(6 of 12);
+      @include omega;
+    }
+  }
+
+    a:hover {
+    img {
+      opacity: .8;
+    }
+  }
+
+  .title {
+    color: $color-dark-purple;
+    font-size: 18px;
+    padding:10px;
+    display: block;
+    width: 100%;
+
+    &:hover{
+      color: $color-red;
+    }
+  }
+}

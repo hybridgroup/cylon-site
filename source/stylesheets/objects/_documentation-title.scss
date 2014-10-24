@@ -1,0 +1,45 @@
+.page-title-docs {
+  .title {
+
+    font-size: 35pt !important;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+
+    a {
+
+      color: $blog-title-color;
+    }
+  }
+}
+
+.page-title {
+
+  background: #000;
+  padding: 25px 0;
+
+  .title {
+
+    @include title-font(33px, $color-red);
+    line-height: 28px;
+    clear: both;
+    opacity: 0.94;
+    margin: 0;
+  }
+
+  .subtitle {
+
+    @include title-font(21px, white);
+    font-weight: 550;
+    opacity: 0.94;
+    margin: 0;
+    line-height: 21px;
+    margin-top: 7px;
+  }
+
+  a {
+
+    //  @extend .hero-anchors;
+  }
+}

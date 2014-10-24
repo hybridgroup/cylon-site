@@ -1,0 +1,44 @@
+.data {
+
+  padding-left: 71px;
+}
+
+.date {
+
+  color: white;
+  width: 50px;
+  text-align: center;
+  margin-right: 20px;
+  float: left;
+
+  .blue {
+
+    padding: 5px;
+    background-color: black;
+
+    .month {
+
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+    .day {
+
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+
+  .red {
+
+    padding: 2px;
+    background-color: $blog-title-color;
+
+    .year {
+
+      font-size: 10px;
+      line-height: 10px;
+    }
+  }
+}

@@ -1,0 +1,174 @@
+.hero {
+  margin: em(15) 0 0 0;
+  padding: em(20) 0 em(10) 0;
+
+  @include media($tablet) {
+   margin-top: em(-8);
+  }
+
+  .container {
+      @include outer-container;
+  }
+
+  .right-side {
+    @include span-columns(5 of 12);
+
+    img {
+      @include span-columns(12 of 12);
+      margin-top: em(35);
+
+      @include media($design-edge) {
+        margin-top: em(85);
+      }
+    }
+
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  .left-side {
+    @include span-columns(7 of 12);
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+      text-align: center;
+    }
+
+    .title {
+      @include font(em(35), em(19));
+      color: $color-title-hero;
+      margin: 0;
+
+      @include media($tablet) {
+        @include font(em(26), em(27));
+        padding: 0;
+
+        br {
+          display: none;
+        }
+      }
+    }
+
+    .subtitle {
+      @include font(em(20), em(30));
+      font-weight: 550;
+      color: $color-title-hero;
+      margin: 4px 0 0;
+
+      @include media($tablet) {
+        @include font(em(18), 22px)
+      }
+    }
+  }
+
+  a {
+
+    //@extend .hero-anchors;
+  }
+}
+
+.hero-black {
+  @include span-columns(12 of 12);
+  position: relative;
+  z-index: 2;
+  top:-85px;
+
+  @include media($tablet) {
+    background-size: 99% 100%;
+    margin-top: -35px;
+  }
+
+  .hero-black-container {
+    background: #000;
+    padding: 20px 0 40px 0;
+    color: $color-light-grey;
+    margin-top: -1px;
+
+    h2 {
+      color: $color-red;
+    }
+
+    .CodeRay, code, pre {
+      background-color: #000;
+      border: 1px solid $color-light-grey;
+      color: $color-pink;
+      font-weight: 700;
+    }
+
+    code {
+      padding: 2px 5px;
+    }
+  }
+}
+
+
+.triangles {
+  @include span-columns(12 of 12);
+  height: 4vw;
+  position: relative;
+
+  *{
+    width: 50%;
+    position: absolute;
+    min-height: 30px;
+    height: 100%;
+    background-size: cover !important;
+  }
+
+  .triangle-left-black {
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon points="800,50 0,50 0,0 "/></svg>') top left no-repeat;
+  }
+
+  .triangle-right-black {
+    right: 0;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon points="0,50 800,50 800,0 "/></svg>') right top no-repeat;
+  }
+
+  .triangle-left-grey {
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon fill="#E8E8E8" points="800,50 0,50 0,0 "/></svg>') top left no-repeat;
+    background-color: #000;
+  }
+
+  .triangle-right-grey {
+    right: 0;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon fill="#E8E8E8" points="0,50 800,50 800,0 "/></svg>') right top no-repeat;
+    background-color: #000;
+  }
+ }
+
+ .social {
+  line-height: 0;
+  padding: em(20) 0;
+
+  @include media($design-edge) {
+    margin-bottom: em(85);
+  }
+
+  .twitter-follow-button {
+    vertical-align: top;
+  }
+
+  .splitter {
+    display: inline-block;
+  }
+
+  @include media($tablet) {
+
+    .splitter {
+      margin-bottom: em(14);
+    }
+
+    #twitter-widget-1{
+      display: none;
+    }
+
+    #twitter-widget-0{
+      width: 99px !important;
+    }
+
+    .fork{
+      display: none;
+    }
+  }
+}
