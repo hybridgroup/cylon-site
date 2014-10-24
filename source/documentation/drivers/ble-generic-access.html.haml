@@ -1,0 +1,70 @@
+---
+title: Cylon.js - BLE Generic Access
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: BLE Generic Access
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-ble' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-ble/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/ble-generic-access.jpg", class: "display"
+  .info-intro
+    :markdown
+      BLE provides the Generic Access service, used to read characteristics and information from the Bluetooth device.
+
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+    For information on how to connect to BLE devices, please see the [BLE platform page][ble].
+
+    [ble]: /documentation/platforms/ble
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+    A short example of getting the device name from a BLE device:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+          device: { name: 'generic', driver: 'ble-generic-access' },
+
+          display: function(err, data) {
+            if (!!err) {
+              console.log("Error: ", err);
+              return;
+            }
+
+            console.log("Data: ", data);
+          },
+
+          work: function(my) {
+            my.generic.getDeviceName(my.display);
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/ble/commands_generic_access"
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      no events
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "BLE - Generic Access" }
