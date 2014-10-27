@@ -2,7 +2,7 @@
   margin: em(55) 0 em(20) 0;
 
   @include media($tablet) {
-   margin-top: em(-8);
+   margin-top: em(15);
   }
 
   .content {
@@ -64,10 +64,6 @@
   .social {
     line-height: 0;
     padding: em(20) 0;
-
-    @include media($design-edge) {
-      margin-bottom: em(85);
-    }
   }
 
   .twitter-follow-button {

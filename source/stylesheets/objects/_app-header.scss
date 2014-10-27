@@ -1,38 +1,28 @@
-#top-header {
-
-  .background-header {
-      background: url('/images/elements/back_menu_blur.png') $color-dark-red top center no-repeat;
-      height: 478px;
-      width: 100%;
-      position: absolute;
-
-      &.back-index-top {
-        background: url('/images/elements/back.png') $color-dark-red top center no-repeat;
-      }
-  }
-    background: $color-dark-red;
-}
-
-
-.app-logo {
-  width: 276px;
-
-  a {
-    display: block;
-    width: 100%;
-    color: $color-red;
-  }
-}
-
-.app-logo a {
-  background: url('/images/elements/logo.svg') left top no-repeat;
-  text-indent: -99999px;
-  height: 30px;
-}
-
 .app-header {
-  @include outer-container;
-  padding: em(9) 0 em(15) 0;
+    padding: em(9) 0 em(15) 0;
+
+  &.hero-home{
+    background: url('/images/elements/back.png') $color-dark-red top center no-repeat;
+    height: 478px;
+  }
+
+  &.section-nav {
+    background: url("/images/elements/back_menu_blur.png") #7d1627 no-repeat top center;
+    background-size: cover;
+  }
+
+  .app-logo {
+
+    a {
+      @include span-columns(12 of 12);
+      color: $color-red;
+      background: url('/images/elements/logo.svg') left top no-repeat;
+      text-indent: -99999px;
+      height: 30px;
+      width: 276px;
+      margin-top: em(10);
+    }
+  }
 
   .display, .subtitle, .menu, h1 {
     vertical-align: middle;
@@ -41,48 +31,19 @@
   }
 
   .display {
-    @include span-columns(5);
-    margin: -1px 0 0 0;
-  }
+    @include span-columns(5 of 12);
+    margin: em(-1) 0 0 0;
 
-  .subtitle {
-
-    @include title-font(20px, $header-subtitle-color);
-    padding: em(8) 0 0 em(15);
-    width: 190px;
+    @include media($design-edge) {
+      @include span-columns(6 of 12);
+    }
   }
 
   .menu {
-
-    @include span-columns(7);
+    @include span-columns(7 of 12);
     text-align: right;
     display: inline-block;
     margin: em(13) 0 0 0;
-
-    .active {
-
-      color: $blog-title-color;
-      font-size: em(15);
-      font-weight: bold;
-      margin: em(10);
-      padding: em(8) em(4);
-    }
-
-    .item {
-
-      font-size: em(15);
-      font-weight: bold;
-      margin: 10px;
-      padding: 8px 4px;
-
-      &, &:visited, &:active {
-        color: $color-lighter-grey;
-      }
-
-      &:hover, &:focus {
-        color: $blog-title-color;
-      }
-    }
 
     @include media($design-edge) {
       @include span-columns(6 of 12);
@@ -90,65 +51,81 @@
 
       .item {
         margin: 0;
-        padding: 0 5px;
+        padding: 0 em(5);
       }
     }
   }
 
-  @include media($design-edge) {
-    .display {
+  .nav-list{
+    margin:0;
+    list-style: none;
 
-      @include span-columns(6 of 12);
+    li{
+      display: inline-block;
+    }
+  }
+
+  .active {
+    color: $color-red;
+    font-size: em(16);
+    font-weight: bold;
+    margin: em(10);
+    padding: em(8) em(4);
+  }
+
+  .item {
+    font-size: em(15);
+    font-weight: bold;
+    margin: em(10);
+    padding: em(8) em(4);
+
+    &, &:visited, &:active {
+      color: $color-lighter-grey;
+    }
+
+    &:hover, &:focus {
+      color: $color-red;
     }
   }
 
   @include media($tablet) {
-
     .subtitle, .menu {
-
       width: auto;
       display: block;
     }
 
     .display,.app-logo {
-
       display: inline-block;
     }
 
     .app-logo, .subtitle, .menu {
-
-      margin: 0 0 5px 0;
+      margin: 0 0 em(5) 0;
     }
 
     .display {
-
       @include span-columns(12 of 12);
       text-align: center;
-      margin: -1px 0 0;
+      margin: em(-1) 0 0;
     }
 
     .app-logo a {
-
       background-position: center center;
     }
 
     .subtitle {
-
-      font-size: 19px;
-      line-height: 15px;
+      font-size: em(19);
+      line-height: em(15);
       padding: 0;
     }
 
     .menu {
-
-      margin: 5px 0 0 0;
+      margin: em(5) 0 0 0;
       text-align: center;
       @include span-columns(12 of 12);
 
       .item {
-
         margin: 0;
-        padding: 0 2px;
+        padding: 0 em(2);
       }
     }
   }
