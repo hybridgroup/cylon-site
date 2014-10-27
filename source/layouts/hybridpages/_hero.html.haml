@@ -1,7 +1,7 @@
 - unless current_page.data.hero.nil?
   .hero
     .container
-      .left-side
+      .content
         %h1.title
           = current_page.data.hero_title
 
@@ -11,8 +11,25 @@
         = current_page.data.getting_started_button
 
         - if current_page.data.social == true
-          = partial "/layouts/hybridpages/social"
+          .social
+            = yield_content :social_links
+
       .animation
 
-      .right-side
+      .display
         %img{src: "/images/elements/soldier.svg"}/
+
+  .hero-black
+    .triangles
+      .triangle-left-black
+      .triangle-right-black
+    .clear
+
+    .hero-black-container
+      .container
+        = yield_content :black_top_title
+
+    .triangles
+      .triangle-left-grey
+      .triangle-right-grey
+    .clear

@@ -5,23 +5,24 @@
     %link{href: '/favicon.ico', rel: 'shortcut icon', type: 'image/gif' }
   %body
     = partial "layouts/layout-contents"
-    .app
-      #top-header
-        .back-index-top
-          - if current_page.data.parallaxTop == true
-            .background-header.parallax-top.parallax-fx
-          %div{:class => "container-hero#{current_page.data.parallaxTop == true ? '' : ' section-nav'}" }
-            = partial "/layouts/partials/menu_fixed"
+    .app-header{role: "banner", :id => "top", :class => "#{current_page.data.parallaxTop == true ? 'hero-home' : 'section-nav'}" }
+      .container
+        .display
+          .app-logo
+            = yield_content :logo
 
-            - if current_page.data.hero == true
-              = partial "/layouts/hybridpages/hero"
-              = partial "/layouts/hybridpages/hero_black"
+        %nav.menu
+          = yield_content :menu
 
-      - if current_page.data.page_title_show == true && (current_page.data.layout != 'documentation' || current_page.data.main_nav == true)
+      - if current_page.data.hero == true
+        = partial "/layouts/hybridpages/hero"
+
+    .app-content
+
+      - if current_page.data.page_title_show == true
         = partial "/layouts/hybridpages/page_title"
 
-      .container
-        = yield
+      = yield
 
       - if current_page.data.catcher == true
         = partial "/layouts/hybridpages/catcher"
