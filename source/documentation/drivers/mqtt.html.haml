@@ -1,0 +1,76 @@
+---
+title: Cylon.js - MQTT Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MQTT
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-mqtt' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-mqtt/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/mqtt.jpg", class: "display"
+  .info-intro
+    %p Cylon driver for the MQTT adaptor.
+
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
+          devices: [{name: 'uno', driver: 'mqtt', topic: 'hi'},
+                    {name: 'dos', driver: 'mqtt', topic: 'hola'}],
+
+          work: function(my) {
+            my.uno.on('message', function (data) {
+              console.log(data);
+            });
+
+            my.dos.on('message', function (data) {
+              console.log(data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hi', 'hello');
+              my.server.publish('hola', 'buenos');
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    :markdown
+      # Commands
+
+      ## publish
+
+      Publishes data to specific topic.
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      ## message
+
+      Emitted when new topic is published.
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MQTT" }

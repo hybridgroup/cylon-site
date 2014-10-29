@@ -1,0 +1,92 @@
+---
+page_title_show: true
+title: MQTT with Cylon
+author: The Hybrid Group
+page_title: Platforms - MQTT
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MQTT
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-mqtt' class='repository'>Repository</a>| <a class='issues' href='https://github.com/hybridgroup/cylon-mqtt/issues'>Issues</a>"
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/mqtt.jpg", class: "display"
+  .info-intro
+    = partial '/hybridpages/partials/widgets/repo_issues'
+    :markdown
+      MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
+
+      For more info about the MQTT adaptor click [here](http://mqtt.org/).
+  .clear
+
+%section.how-to#HowToInstall
+  :markdown
+    ## How To Install
+
+
+        $ npm install cylon-mqtt
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
+          devices: [{name: 'uno', driver: 'mqtt', topic: 'hi'},
+                    {name: 'dos', driver: 'mqtt', topic: 'hola'}],
+
+          work: function(my) {
+            my.uno.on('message', function (data) {
+              console.log(data);
+            });
+
+            my.dos.on('message', function (data) {
+              console.log(data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hi', 'hello');
+              my.server.publish('hola', 'buenos');
+            });
+          }
+        }).start();
+
+
+%section.how-to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
+          device: {name: 'hello', driver: 'mqtt', topic: 'greetings'},
+
+          work: function(my) {
+            my.hello.on('message', function (data) {
+              console.log(data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('greetings', 'hi there');
+            });
+          }
+        }).start();
+
+    You need an MQTT broker running, in order to connect, publish, and subscribe to MQTT messages using cylon-mqtt. A good one is [Mosca](https://github.com/mcollina/mosca).
+
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p There is only one driver for the MQTT.
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "MQTT"}
