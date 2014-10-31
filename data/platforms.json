@@ -99,6 +99,11 @@
     "drivers": ["GPIO", "Pinoccio - LED", "Pinoccio - Power"]
   },
 
+  "PowerUp": {
+    "slug": "powerup",
+    "drivers": ["BLE"]
+  },
+
   "Rapiro": {
     "slug": "rapiro",
     "drivers": ["Rapiro"]
@@ -151,6 +156,6 @@
 
   "WICED Sense": {
     "slug": "wiced-sense",
-    "drivers": ["WICED Sense", "BLE"]
+    "drivers": ["BLE"]
   }
 }
