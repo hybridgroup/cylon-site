@@ -97,13 +97,21 @@ subnavjs: true
     :markdown
       # Commands
 
-      ## setThrust
+      ## setThrust(thrust, cb([err]))
 
-      Sets the power of the motor
+      Sets the thrust to a value between 0,254 and executes the callback on completion
 
-      ## setRudder
+      ##### Return
 
-      Sets angle of the rudder
+      nil
+
+      ## setRudder(rudder, cb([err]))
+
+      Sets the rudder to a value between -128,127 and executes the callback on completion
+
+      ##### Return
+
+      nil
 
   .commands-api#Events
     :markdown
