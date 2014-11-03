@@ -10,13 +10,13 @@ active_menu_blog: true
 
 <img src="/images/blog/df14-cylonjs.png" alt="Cylon.js at Dreamforce 2014" style="margin: 10px 0;">
 
-[Dreamforce 2014](http://www.salesforce.com/dreamforce/DF14/) was an amazing experience for our Cylon.js team from The Hybrid Group.
+[Dreamforce 2014](http://www.salesforce.com/dreamforce/DF14/) was an amazing experience for the Cylon.js team from [The Hybrid Group](http://hybridgroup.com/).
 A conference talk, daily workshops, and four days of booth demos made for a schedule requiring the stamina of robots.
 Of course, we brought plenty of those with us, as usual!
 
-At a conference that featured talks from Hillary Rodham Clinton, Al Gore, Tony Robbins, will.i.am, and Neil Young, we were quite happy just to have made the bill, and so we prepared our most dynamic demos yet to bring our best.
+At a conference that [featured keynotes by Hillary Rodham Clinton, Al Gore, Tony Robbins, will.i.am, and Neil Young](http://www.salesforce.com/dreamforce/DF14/keynotes.jsp), we were quite happy just to have made the bill, and so we prepared our most dynamic demos yet to bring our best.
 
-Our booth was in the IoT DevZone, once again organized by the high-powered [Reid Carlberg]().
+Our booth was in the IoT DevZone, once again organized by the high-powered [Reid Carlberg](https://twitter.com/ReidCarlberg).
 We ended up in a great location, and were packed with people wanting to play our "Dreamforce 500" virtual racing game.
 
 The "Dreamforce 500" combined [Sphero][] robots, the [Phillips Hue][] lighting system, the [Pebble][] smartwatch, and of course [Salesforce][] to create a virtual racing game, written using Cylon.js.
@@ -42,7 +42,7 @@ You can keep up with the ongoing adventures of Cylon.js on Twitter at [@cylonjs]
 
 [Reid Carlberg]: https://twitter.com/ReidCarlberg
 [Sphero]: http://www.gosphero.com/sphero-2-0/
-[Hue]: http://www2.meethue.com/en-us/
+[Phillips Hue]: http://www2.meethue.com/en-us/
 [Pebble]: https://getpebble.com/
 [Salesforce]: http://www.salesforce.com/homepage/index-b.jsp
 [Intel Edison]: http://www.intel.com/content/www/us/en/do-it-yourself/edison.html
