@@ -1,0 +1,58 @@
+.hero-black {
+  @include span-columns(12 of 12);
+  position: relative;
+  z-index: 2;
+  top: -85px;
+
+  @include media($tablet) {
+    background-size: 99% 100%;
+    top: -35px;
+  }
+
+  .hero-black-container {
+    background: #000;
+    padding: em(20) 0 em(40) 0;
+    color: $color-light-grey;
+    margin-top: em(-1);
+
+    h2 {
+      color: $color-red;
+    }
+
+    .CodeRay, code, pre {
+      background-color: #000;
+      border: 1px solid $color-light-grey;
+      color: $color-pink;
+      font-weight: 700;
+    }
+
+    code {
+      padding: em(2) em(5);
+    }
+  }
+
+  .triangle-left-black {
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon points="800,50 0,50 0,0 "/></svg>') top left no-repeat;
+  }
+
+  .triangle-right-black {
+    right: 0;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon points="0,50 800,50 800,0 "/></svg>') right top no-repeat;
+  }
+
+  .triangle-left-grey {
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon fill="#E8E8E8" points="800,50 0,50 0,0 "/></svg>') top left no-repeat;
+    background-color: #000;
+  }
+
+  .triangle-right-grey {
+    right: 0;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px" height="50px" viewBox="0 0 800 50" enable-background="new 0 0 800 50" xml:space="preserve"><polygon fill="#E8E8E8" points="0,50 800,50 800,0 "/></svg>') right top no-repeat;
+    background-color: #000;
+  }
+
+  .triangles {
+    @include span-columns(12 of 12);
+    position: relative;
+  }
+}
