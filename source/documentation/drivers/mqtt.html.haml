@@ -1,0 +1,99 @@
+---
+title: Cylon.js - MQTT Driver
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MQTT
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-mqtt' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-mqtt/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/mqtt.jpg", class: "display"
+  .info-intro
+    %p The Cylon driver for the MQTT adaptor.
+
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          work: function(my) {
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hello', 'hi there');
+            });
+          }
+        }).start();
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+    The following is an example of how to make an arduino blink with MQTT.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'mqtt', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+            { name: 'firmata', adaptor: 'firmata', port: '/dev/ttyACM0' }
+          ],
+
+          devices: [
+            { name: 'toggle', driver: 'mqtt', topic: 'toggle', adaptor: 'mqtt' },
+            { name: 'led', driver: 'led', pin: '13', adaptor: 'firmata' },
+          ]
+
+          work: function(my) {
+            my.toggle.on('message', function(data) {
+              console.log("Message on 'toggle': " + data);
+              my.led.toggle();
+            });
+
+            every((1).second(), function() {
+              console.log("Toggling LED.");
+              my.toggle.publish('toggle');
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    :markdown
+      # Commands
+
+      ## publish
+
+      Publishes data to specific topic.
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      ## message
+
+      Emitted when new topic is published.
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MQTT" }
