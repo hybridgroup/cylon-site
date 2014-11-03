@@ -1,0 +1,21 @@
+%button {
+  padding: em(8) em(17);
+  display: inline-block;
+  margin: em(17) 0 0 0;
+  font-size: em(19);
+  font-weight: bold;
+
+  &, &:visited, &:active {
+    background: $color-red;
+    color: white;
+  }
+
+  &:hover, &:focus {
+    background: ($color-red -30);
+  }
+
+  @include media($tablet) {
+    font-size: em(16);
+    padding: em(8) em(15);
+  }
+}
