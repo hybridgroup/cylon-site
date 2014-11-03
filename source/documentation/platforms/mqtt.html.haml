@@ -24,38 +24,59 @@ subnavjs: true
 %section.how-to#HowToInstall
   :markdown
     ## How To Install
-
+    Install `cylon-mqtt` through NPM:
 
         $ npm install cylon-mqtt
+
+    Before using `cylon-mqtt`, you'll need to have a MQTT broker running in order to connect/publish/subscribe to messages.
+
+    A good, simple broker is [mosca](https://github.com/mcollina/mosca).
+    The developers have a [tutorial on using Mosca as a standalone service](https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service.).
+
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
 
-        :::javascript
-        var Cylon = require('cylon');
+    There's two different ways to use the `cylon-mqtt` module.
 
+    You can use the connection object only, in which case you have pub/sub access to all available MQTT channels:
+
+        :::javascript
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
-          devices: [{name: 'uno', driver: 'mqtt', topic: 'hi'},
-                    {name: 'dos', driver: 'mqtt', topic: 'hola'}],
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
 
           work: function(my) {
-            my.uno.on('message', function (data) {
-              console.log(data);
-            });
+            my.server.subscribe('hello');
 
-            my.dos.on('message', function (data) {
-              console.log(data);
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
             });
 
             every((1).seconds(), function() {
-              console.log("Saying hello...");
-              my.server.publish('hi', 'hello');
-              my.server.publish('hola', 'buenos');
+              my.server.publish('hello', 'hi there');
             });
           }
-        }).start();
+        });
+
+    Or, you can use the device object, which restricts your interaction to a single MQTT channel.
+    This can make it easier to keep track of different channels.
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+          device: { name: 'hello', driver: 'mqtt', topic: 'hello' },
+
+          work: function(my) {
+            my.hello.on('message', function (data) {
+              console.log("hello: " + data);
+            });
+
+            every((1).seconds(), function() {
+              my.hello.publish('hi there');
+            });
+          }
+        })
 
 
 %section.how-to#HowToConnect
@@ -66,22 +87,21 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
-          device: {name: 'hello', driver: 'mqtt', topic: 'greetings'},
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
 
           work: function(my) {
-            my.hello.on('message', function (data) {
-              console.log(data);
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
             });
 
             every((1).seconds(), function() {
               console.log("Saying hello...");
-              my.server.publish('greetings', 'hi there');
+              my.server.publish('hello', 'hi there');
             });
           }
         }).start();
-
-    You need an MQTT broker running, in order to connect, publish, and subscribe to MQTT messages using cylon-mqtt. A good one is [Mosca](https://github.com/mcollina/mosca).
 
 
 %section.drivers#Drivers

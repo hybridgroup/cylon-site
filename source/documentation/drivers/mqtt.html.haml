@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/mqtt.jpg", class: "display"
   .info-intro
-    %p Cylon driver for the MQTT adaptor.
+    %p The Cylon driver for the MQTT adaptor.
 
   .clear
 
@@ -22,32 +22,55 @@ subnavjs: true
   :markdown
     ## How To Connect
 
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          work: function(my) {
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hello', 'hi there');
+            });
+          }
+        }).start();
+
 
 %section.how-to#HowToUse
   :markdown
     ## How To Use
+    The following is an example of how to make an arduino blink with MQTT.
 
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883'},
-          devices: [{name: 'uno', driver: 'mqtt', topic: 'hi'},
-                    {name: 'dos', driver: 'mqtt', topic: 'hola'}],
+          connections: [
+            { name: 'mqtt', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+            { name: 'firmata', adaptor: 'firmata', port: '/dev/ttyACM0' }
+          ],
+
+          devices: [
+            { name: 'toggle', driver: 'mqtt', topic: 'toggle', adaptor: 'mqtt' },
+            { name: 'led', driver: 'led', pin: '13', adaptor: 'firmata' },
+          ]
 
           work: function(my) {
-            my.uno.on('message', function (data) {
-              console.log(data);
+            my.toggle.on('message', function(data) {
+              console.log("Message on 'toggle': " + data);
+              my.led.toggle();
             });
 
-            my.dos.on('message', function (data) {
-              console.log(data);
-            });
-
-            every((1).seconds(), function() {
-              console.log("Saying hello...");
-              my.server.publish('hi', 'hello');
-              my.server.publish('hola', 'buenos');
+            every((1).second(), function() {
+              console.log("Toggling LED.");
+              my.toggle.publish('toggle');
             });
           }
         }).start();
