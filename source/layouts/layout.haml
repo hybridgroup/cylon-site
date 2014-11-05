@@ -19,7 +19,7 @@
 
     .app-content
 
-      - if current_page.data.page_title_show == true
+      - if current_page.data.page_title_show == true && (current_page.data.layout != 'documentation' || current_page.data.main_nav == true)
         = partial "/layouts/hybridpages/page_title"
 
       = yield
