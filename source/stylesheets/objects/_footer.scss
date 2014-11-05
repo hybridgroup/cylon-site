@@ -2,7 +2,9 @@
   @include span-columns( 12 of 12);
   background: black;
   color: white;
+  margin-top: em(-533);
   position: relative;
+  overflow: hidden;
 
   .background-footer {
     background: url(/images/elements/space.jpg) black center center;
@@ -13,97 +15,79 @@
   }
 
   .frameworks {
-
-    padding: 50px 0;
+    padding: em(50) 0;
 
     h4 {
       color: white;
     }
+  }
 
-    .column-footer {
+  .column-footer {
+    @include span-columns(3 of 9.5, block-collapse);
+    text-align: center;
+    float: left;
+    padding: em(20);
+    z-index: 0;
+    position: relative;
 
-      .img {
-        height: 150px;
-        img{
-          max-width: 144px;
-        }
-      }
-
-      text-align: center;
-      width: 33%;
-      float: left;
-      padding: 20px;
-
-      .button {
-
-        background: black;
-        border: none;
-        float: right;
-        a {
-          color: white;
-        }
-        &:hover {
-
-          background: $cta-color;
-        }
-      }
-
-      @include media($tablet) {
-
-        @include span-columns(12 of 12);
-      }
+    @include media($tablet) {
+      @include span-columns(12 of 12);
     }
+  }
+
+  .img {
+    height: 150px;
+    img{
+      max-width: 144px;
+    }
+  }
+
+  .button-footer {
+    @extend .button-black;
   }
 
   .copyright {
-
     clear: both;
-    border-top: solid 1px $cta-color;
-    padding: 20px 0;
+    border-top: solid 1px $color-red;
+    padding: em(20) 0;
     position: relative;
     z-index: 0;
+  }
 
-    .left-side {
-
-      float: left;
-      span{
-        vertical-align: text-top;
-      }
-
+  .hybrid-group {
+    float: left;
+    span{
+      vertical-align: text-top;
     }
+  }
 
-    .right-side {
+  #THG-logo {
+    img {
+      margin-bottom: em(-15);
+      width: 150px;
+      padding: 5px;
 
-      float: right;
-      text-align: right;
-
-      a {
-
-        color: $footer-text-color;
-
-        p {
-          text-align: center;
-          margin: 0;
-        }
-
-        &:hover {
-
-          color: darken($footer-text-color,5);
-        }
+      &:hover {
+        background: darken($color-red, 5);
       }
     }
   }
-}
 
-#THG-logo {
-  img {
-    margin-bottom: -15px;
-    width: 150px;
-    padding: 5px;
+  .top-link {
+    float: right;
+    text-align: right;
 
-    &:hover {
+    a {
+      color: white;
 
-      background: darken($cta-color, 5);
+      p {
+        text-align: center;
+        margin: 0;
+      }
+
+      &:hover {
+        color: $color-light-grey;
+      }
     }
   }
 }
