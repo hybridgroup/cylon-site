@@ -1,0 +1,67 @@
+---
+title: Cylon.js browser support
+author: The Hybrid Group
+page_title: Guides - Browser Support
+page_subtitle: A Guide by Humans, for Humans currently running robots.
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+---
+.api
+  :markdown
+    # How To Use Cylon in the Browser
+
+    Since Cylon is written in javascript, it can be run directly in the browser,
+    but we will use `browserify` to require('modules') in the browser and bundle up all the dependencies.
+
+    Imagine that you want to run this leapmotion code in your browser:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+          device: { name: 'leapmotion', driver: 'leapmotion' },
+
+          work: function(my) {
+          my.leapmotion.on('hand', function(hand) {
+            console.log(hand.palmPosition.join(','));
+          });
+          }
+        }).start();
+
+    We'll use `browserify` tool to compile it running:
+
+        :::bash
+        $ browserify script.js -r cylon-leapmotion -o browser_script.js
+
+    Then you would need to include `browser_script.js` in your html code:
+
+        :::html
+        <script type="text/javascript" src="js/browser_script.js"></script>
+
+    Checkout a complete example [here](https://github.com/hybridgroup/cylon-example-browserify).
+
+    ## Support
+
+    It works for the following devices that use HTTP for communication with device:
+
+    * ARDrone
+    * LeapMotion
+    * M2X
+    * MQTT
+    * Pebble
+    * Salesforce
+    * Spark
+    * Skynet
+
+    ### Serial port
+
+    If you would like to control a devices that uses a serial port,
+    you can create a [Chrome app](https://developer.chrome.com/apps/about_apps) as shown in this [Cylon chrome example](https://github.com/hybridgroup/cylon-example-chrome).
+
+    ### Phonegap
+
+    Finally it can also be used in combination with [phonegap](http://phonegap.com) to run inside your phone.
+
+    Check out [Phonegap cylon spark repository](https://github.com/hybridgroup/phonegap-cylon-spark) for a complete example.
