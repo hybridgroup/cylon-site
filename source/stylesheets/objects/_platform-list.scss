@@ -1,6 +1,5 @@
 .platform-list {
   @include span-columns(12 of 12);
-  //@include row();
   list-style: none;
   margin: 0;
 
@@ -11,27 +10,13 @@
     float: none;
     text-align: center;
 
+    a {
+      @extend %list-title;
+    }
+
     @include media($tablet) {
       @include span-columns(6 of 12);
       @include omega;
-    }
-  }
-
-    a:hover {
-    img {
-      opacity: .8;
-    }
-  }
-
-  .title {
-    color: $color-dark-purple;
-    font-size: 18px;
-    padding:10px;
-    display: block;
-    width: 100%;
-
-    &:hover{
-      color: $color-red;
     }
   }
 }
