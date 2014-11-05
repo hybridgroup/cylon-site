@@ -1,0 +1,54 @@
+---
+page_title_show: true
+title: "Running robots from your browser with Cylon.js"
+page_title: Blog
+date: 2014-11-05
+tags: robots
+author: Javier Cervantes
+active_menu_blog: true
+---
+:markdown
+  Have you ever thought about controlling robots from your browser? With Cylon.js you can do it in 3 simple steps.
+
+  ### #1 - Create
+  Create a cylon program for any of our supported platforms:
+
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+        device: { name: 'leapmotion', driver: 'leapmotion' },
+
+        work: function(my) {
+          my.leapmotion.on('hand', function(hand) {
+            console.log(hand.palmPosition.join(','));
+          });
+          }
+        }).start();
+
+  ### #2 - Compile
+
+  Compile your code using `browserify`
+
+      $ browserify script.js -r cylon-leapmotion -o browser_script.js
+
+  ### #3 - Run
+
+  Include compiled script in your html code:
+
+      <script type="text/javascript" src="js/browser_script.js"></script>
+
+  Open html page in your browser and have fun!
+
+  ### And beyond...
+
+  If that is not exciting enough, you can also create packaged [Chome Apps with Cylon.js] or even include it in your mobile app using [phonegap + Cylon.js]
+
+  Check out our [Browser support guide]() for further information.
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [Browser support guide]: http://cylonjs.com/documentation/guides/browser_support
+  [@CylonJS]: https://twitter.com/cylonjs
+  [Chrome Apps with Cylon.js]: https://github.com/hybridgroup/cylon-example-chrome
+  [phonegap + Cylon.js]: https://github.com/hybridgroup/phonegap-cylon-spark
