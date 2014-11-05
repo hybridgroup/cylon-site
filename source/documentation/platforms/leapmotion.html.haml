@@ -14,14 +14,14 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/leap_motion.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Leap Motion is a user-interface device that tracks the user's hand motions, and translates them into events that can control robots and physical computing hardware.
 
       For more info about the Leap Motion platform click [here](https://www.leapmotion.com/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -29,7 +29,7 @@ subnavjs: true
 
     In order to use this module, you'll need to install the [Leap Motion software](https://www.leapmotion.com/setup) from their site.
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -58,7 +58,7 @@ subnavjs: true
         }).start();
 
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

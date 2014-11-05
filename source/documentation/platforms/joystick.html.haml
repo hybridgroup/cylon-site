@@ -14,14 +14,14 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/joystick.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       You can use Cylon.js with a DualShock 3 controller, an Xbox 360 controller, or any other Simple DirectMedia Layer (SDL) compatible USB joystick or game controller.
 
       For more info about SDL, click [here](http://www.libsdl.org/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
     Installing Cylon.js with Joystick support is pretty easy.
@@ -31,7 +31,7 @@ subnavjs: true
     ### Note
     If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -74,7 +74,7 @@ subnavjs: true
           }
         }).start();
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

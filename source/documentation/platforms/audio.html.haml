@@ -14,11 +14,11 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/audio.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     %p This is the Cylon adaptor for Audio reproduction capabilities.
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -26,7 +26,7 @@ subnavjs: true
 
         $ npm install cylon-audio
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
