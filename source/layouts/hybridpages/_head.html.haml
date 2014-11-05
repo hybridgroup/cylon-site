@@ -1,23 +1,14 @@
 %meta{:charset => "utf-8"}
 %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
 %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
-
 %meta{:name => "description", :content => current_page.data.description}
 %meta{:name => "author", :content => current_page.data.author}
-
 %title= current_page.data.title
-
-%link{href: "/stylesheets/style.css", rel: "stylesheet"}
-
+%link{href: "/stylesheets/application.css", rel: "stylesheet"}
 %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
 %script{:src => "/javascripts/plax.js"}
-- unless current_page.data.hero
-  %script{:src => "/javascripts/parallax_bottom.js"}
-
+%script{:src => "/javascripts/parallax_bottom.js"}
 %script{:src => "/javascripts/vendor/angular.min.js"}
 %script{:src => "/javascripts/app.js"}
-
 - if current_page.data.subnavjs == true
   %script{:src => "/javascripts/subnav.js"}
-- if current_page.data.parallaxTop == true
-  %script{:src => "/javascripts/parallax_header.js"}
