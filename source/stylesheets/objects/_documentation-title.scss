@@ -1,45 +1,21 @@
-.page-title-docs {
-  .title {
-
-    font-size: 35pt !important;
-    margin-bottom: 10px;
-  }
-
-  .subtitle {
-
-    a {
-
-      color: $blog-title-color;
-    }
-  }
-}
-
 .page-title {
-
   background: #000;
-  padding: 25px 0;
+  padding: em(25) 0;
 
   .title {
-
-    @include title-font(33px, $color-red);
-    line-height: 28px;
-    clear: both;
-    opacity: 0.94;
+    @include title-font(em(33), $color-red);
+    line-height: em(16);
     margin: 0;
   }
 
   .subtitle {
-
-    @include title-font(21px, white);
-    font-weight: 550;
-    opacity: 0.94;
+    @include title-font(em(21), white);
     margin: 0;
-    line-height: 21px;
-    margin-top: 7px;
+    line-height: em(18);
+    margin-top: em(7);
   }
 
   a {
-
-    //  @extend .hero-anchors;
+    @extend .hero-anchors;
   }
 }

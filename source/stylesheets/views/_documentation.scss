@@ -1,4 +1,11 @@
 .documentation {
+  .platform {
+    @include span-columns(3 of 12);
+    @include omega;
+    float: none;
+    display: inline-block;
+  }
+
   .box {
     height: em(130);
   }

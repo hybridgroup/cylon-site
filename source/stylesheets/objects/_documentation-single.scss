@@ -1,177 +1,165 @@
-.subnav-drivers {
-
-  border-top: solid 1px $doc-border;
-  border-bottom: solid 1px $doc-border;
-  padding: 20px 0;
+.documentation {
+  @include span-columns( 12 of 12);
+  padding: 0 em(15);
 
   @include media($tablet) {
-
-     display: none;
+    padding: 0;
   }
 
-  .app-logo {
+  .container-documentation {
+    @include span-columns(9 of 12);
+    padding-top: em(20);
+    overflow: hidden;
 
-      color: $blog-title-color;
-      font-size: 2em;
-      float: left;
-      font-family: "Russo One", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      margin-top: 5px;
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+      padding: 0 em(15);
+
+      .container{
+        padding: 0;
+      }
+    }
+  }
+
+  .page-title-docs {
+    .title {
+      @include font(em(46), 0 );
+      padding: em(10) 0;
+    }
+
+    .subtitle a {
+      color:  $color-red;
+    }
+  }
+
+  .subnav-drivers {
+    border-top: solid 1px $color-medium-light-grey;
+    border-bottom: solid 1px $color-medium-light-grey;
+    padding: em(20) 0;
+
+    @include media($tablet) {
+       display: none;
+    }
+
+    h5{
       display: none;
+    }
   }
 
-  h5{
-
-    display: none;
-  }
-
-  nav {
-
+  .documentation-nav {
     a {
-
-      padding: 5px 10px;
-      margin: 20px 2px;
+      padding: em(5) em(10);
+      margin: em(20) em(2);
       color: $color-medium-grey;
-      font-size: .9em;
+      font-size: em(14);
 
       @include media($design-edge) {
-
-        font-size: .7em;
+        font-size: em(13);
       }
 
       &:hover {
-
         color: white;
-        background: $cta-color;
+        background: $color-red;
       }
 
-      &:last-child{
+      &:last-child {
         display: none;
       }
     }
 
     .active {
-
       color: white;
-      background: $cta-color;
-    }
-  }
-}
-
-.subNavfixed {
-
-  width: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  z-index: 99;
-  padding: 0;
-  background: darken($cta-color, 10);
-  border: none;
-  height: 53px;
-
-  .app-logo {
-
-    display: inline-block;
-  }
-
-  .container-subnav {
-
-    @extend .container;
-    margin: 0 auto;
-
-    @include media($tablet) {
-
-      padding: 0 15px;
-    }
-
-    @include media($mobile) {
-
-      padding: 0 15px;
+      background: $color-red;
     }
   }
 
-  h5 {
-    @include span-columns(3 of 12);
-    color: white;
-    display: block;
-    float: left;
-    margin: 15px 0;
-    white-space: nowrap;
-    @include media($design-edge) {
-      font-size: .8em;
-    }
-  }
+  .info-intro {
+    @include span-columns(7 of 12);
+    float: right;
+    margin: 0;
 
-  nav {
-    @include span-columns(9);
-    float: left;
-    margin: 15px 0 15px 10px;
+    p:last-of-type {
+      background: $color-green;
+      padding: em(10);
 
-    a {
-      color: white;
-      margin: 20px 5pxz;
+      a {
+        color: $color-red;
 
-      &:last-child{
-        display: initial;
-      }
-    }
-  }
-}
-
-.documentation {
-
-  .intro {
-
-    .info-intro {
-
-      float: right;
-      width: 60%;
-      margin: 0;
-
-      p:last-of-type {
-
-        background: $color-green;
-        padding: 10px;
-
-        a {
-
-          color: $cta-color;
-          &:hover {
-
-            color: $link-hover-color;
-          }
+        &:hover {
+          color: $color-anchor-hover;
         }
       }
+    }
 
-      @include media($tablet) {
-
-        width: 100%;
-      }
+    @include media($tablet) {
+      @include span-columns(12 of 12);
     }
   }
 
   .link {
-
-    font-size: 20px;
-  }
-
-  .description {
-
-    color: $doc-description-color;
-    font-size: 14px;
-    line-height: 21px;
-    margin: 10px;
+    font-size: em(20);
   }
 
   .display {
-
-    width: 35%;
-    float: left;
-    margin: 0 0 19px 20px;
+    @include span-columns(5 of 12);
 
     @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
 
-        width: 100%;
+  .repository {
+    margin-right: em(4);
+  }
+
+  .subNavfixed {
+    @include span-columns(12 of 12);
+    background: $color-subnav;
+    border: none;
+    left: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    white-space: nowrap;
+    z-index: 1;
+
+     @include media($tablet) {
+       display: none;
+    }
+
+    h5 {
+      @include span-columns(3 of 12);
+      color: white;
+      margin: em(11) 0;
+      white-space: nowrap;
+    }
+
+    .documentation-nav {
+      @include span-columns(9 of 12);
+      margin: em(15) 0 em(15) em(10);
+
+      a {
+        color: $color-subnav-link;
+        margin: em(20) em(5);
+
+        &:last-child{
+          display: initial;
+        }
+      }
+    }
+  }
+
+  .compatability-link {
+    @include span-columns(4 of 12);
+    @include omega;
+
+    @include media($tablet) {
+      @include span-columns(6 of 12);
+      @include omega;
+    }
+
+    a {
+      @extend %list-title;
     }
   }
 }
