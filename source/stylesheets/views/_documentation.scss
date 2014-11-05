@@ -1,4 +1,13 @@
 .documentation {
+
+  #docs-menu {
+    width: em(55);
+
+    .line {
+      height: em(6);
+    }
+  }
+
   .platform {
     @include span-columns(3 of 12);
     @include omega;

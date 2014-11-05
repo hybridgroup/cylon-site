@@ -1,19 +1,19 @@
 .side-documentation {
-  @include span-columns(3);
-  background: darken($body-bg-color, 5);
+  @include span-columns(3 of 12);
+  background: $color-panel-sidebar;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: em(20);
 
   @include media($tablet) {
-    @include span-columns(12);
+    @include span-columns(12 of 12);
     height: auto !important;
     left: 0;
-    margin-top: 0px;
-    position: absolute;
+    margin-top: 0;
+    position: relative;
   }
 
   .mobile-menu {
-    background: $title-color;
+    background: $color-red;
     text-align: right;
     display: none;
 
@@ -25,7 +25,7 @@
       color: white;
       float: left;
       font-weight: 400;
-      margin: 13px 0 0px 15px;
+      margin: em(6) 0 0 em(5);
       padding: 0;
     }
 
@@ -33,16 +33,15 @@
       background: white;
 
       .line {
-        background: $title-color;
+        background: $color-red;
       }
     }
 
     a {
-      background-color: $link-color;
+      background-color: $color-anchor;
       border-radius: 13px;
-      padding: 10px 12px;
-      margin: 5px;
-      width: 55px;
+      padding: em(10) em(12);
+      margin: em(5);
       display: inline-block;
 
       &:hover {
@@ -50,20 +49,19 @@
         cursor: pointer;
 
         .line {
-          background: $title-color;
+          background: $color-red;
         }
       }
 
       .line {
-        height: 6px;
-        margin: 5px 0 5px;
+        margin: em(5) 0 em(5);
         background: white;
       }
     }
   }
 
   .docs-sidebar {
-    padding: 0 10px;
+    padding: 0 em(10);
 
     @include media($tablet) {
       margin: 0;
@@ -77,13 +75,13 @@
     @include media($tablet) {
       z-index: 1;
       position: relative;
-      background-color: darken($body-bg-color, 5);
+      background-color: $color-panel-sidebar;
     }
 
     > a, .section .name {
       font-size: em(14);
       font-weight: bold;
-      border-bottom: 1px solid $doc-border;
+      border-bottom: 1px solid $color-medium-light-grey;
 
       &:last-of-type {
         border-bottom: none;
@@ -93,69 +91,53 @@
     a, .name {
       width: 100%;
       display: block;
-      padding: 10px;
+      padding: em(10);
       cursor: pointer;
       color: #333;
+      position: relative;
+      z-index: 1;
 
       &:hover {
-        color: $cta-color;
+        color: $color-red;
       }
     }
 
     .links a {
-      font-size: 10pt;
-      color: #333;
-
-      padding: 5px 10px;
+      font-size: em(13);
+      color: $color-sidebar-link;
+      padding: em(5) em(10);
 
       &:hover {
-        color: $cta-color;
+        color:$color-red;
       }
     }
 
     a.active {
       font-weight: bold;
-      color: $cta-color;
+      color: $color-red;
     }
 
     .section .links {
-      padding-left: 15px;
-      padding-top: 10px;
+      padding: em(10) 0 0 em(15);
     }
 
     .sub-section .links {
-      padding-left: 20px;
+      padding-left: em(20);
     }
 
     .section:before {
       content: '▶';
       float: right;
-      margin-top: 13px;
-      margin-right: 10px;
-      color: #A5A5A5;
-      font-size: 11px;
+      margin-top: em(13);
+      margin-right: em(10);
+      color: $color-arrow;
+      font-size: em(11);
+      position: relative;
+      z-index: 0;
     }
 
     .section.active:before {
       content: '▼';
-    }
-  }
-}
-
-.container-documentation {
-  @include span-columns(9);
-  padding-top: 20px;
-
-  .how-to {
-    padding-top: 65px;
-  }
-
-  @include media($tablet) {
-    @include span-columns(12);
-    margin-top: 50px;
-
-    .w{
-      padding: 0;
     }
   }
 }
