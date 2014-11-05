@@ -91,6 +91,142 @@
                         Nov
                       </div>
                       <div class="day">
+                        05
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running robots from your browser with Cylon.js</a>
+                    </h3>
+                    <div class="author">
+                      by Javier Cervantes
+                    </div>
+                  </div>
+                </header>
+                <video src="/images/blog/cylon-chrome-app-demo.mp4" width="640" height="396" autoplay="" preload="" loop="">
+                  Your browser does not support the video tag.
+                </video>
+                
+                <p>Ever thought about controlling robots directly from your browser?
+                With the latest release of Cylon.js, we make it easy to control robots and connected devices from your own browser-based and mobile applications.</p>
+                
+                <p>For now, in-browser support is limited to a few modules, due to browser sandboxing.
+                JS running in a normal browser can't, for instance, talk directly to Bluetooth or a serial port. 
+                You CAN however do this if you are running Cylon.js in a Chrome application.</p>
+                
+                <p>However, if a Cylon.js browser communicates with hardware over the network, it will work from within any browser without a hitch.
+                For example, the <code>cylon-ardrone</code>, <code>cylon-spark</code>, <code>cylon-leapmotion</code>, <code>cylon-hue</code> and more are supported already.</p>
+                
+                <p>In this example, we're going to blink the LED on a <a href="https://www.spark.io/dev-kits">Spark Core</a> from Cylon.js running in a regular browser.</p>
+                
+                <h3 id="create">Create</h3>
+                
+                <p>In a new folder, use NPM to install <code>cylon-spark</code>:</p>
+                
+                <p>$ npm install cylon-spark</p>
+                
+                <p>Once that's installed copy this Cylon.js program to <code>script.js</code>.
+                Add your Spark Core's <code>accessToken</code> and <code>deviceId</code>.</p>
+                
+                <p>You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>:</p>
+                
+                <ul>
+                  <li>
+<code>accessToken</code>: In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.</li>
+                  <li>
+<code>deviceId</code>: After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.</li>
+                </ul>
+                
+                <p>Make sure to add these to the script, or it won't work.</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>,
+    <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">[YOUR_ACCESS_TOKEN]</span><span class="delimiter">'</span></span>,
+    <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">[YOUR_DEVICE_ID]</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D7</span><span class="delimiter">'</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
+  }
+}).start();
+</pre>
+                
+                <p>Code in place, let's write a small HTML file (<code>index.html</code>) that'll host the script:</p>
+                
+                <pre class="CodeRay"><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute-name">lang</span>=<span class="string"><span class="delimiter">"</span><span class="content">en</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">browser_script.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
+                
+                <p>And that's it.</p>
+                
+                <h3 id="compile">Compile</h3>
+                
+                <p>Now with the pieces in place, let's compile the Cylon.js program for browser use with the <a href="http://browserify.org">Browserify</a> tool.</p>
+                
+                <p>If you don't have it already, install it through NPM:</p>
+                
+                <pre class="CodeRay">$ npm install -g browserify
+</pre>
+                
+                <p>Then, use it to compile the script:</p>
+                
+                <p>$ browserify script.js -r cylon-gpio -r cylon-spark -o browser_script.js</p>
+                
+                <h3 id="run">Run</h3>
+                
+                <p>Now, just open <code>index.html</code> in your browser and your Spark's LED should start blinking.</p>
+                
+                <h3 id="want-more">Want more?</h3>
+                
+                <p>From here, the sky's the limit.
+                If you want to get started on a more complex Cylon.js robot for use in the browser, we've created an <a href="https://github.com/hybridgroup/cylon-example-browserify">example project</a> on GitHub to get you started.</p>
+                
+                <p>If that's not enough for you, you can also package Cylon.js scripts into <a href="https://developer.chrome.com/apps/about_apps">Chrome Apps</a>.
+                We've created another <a href="https://github.com/hybridgroup/cylon-example-chrome">example project repo</a> to get you started on that front.</p>
+                
+                <p><img width="160" src="/images/blog/cylonjs-phonegap-spark.png" alt="Cylon.js PhoneGap Spark" style="width: 160; margin: 10px 0;"></p>
+                
+                <p>You can even include Cylon.js in your <a href="http://phonegap.com/">PhoneGap</a> mobile app. Look for an upcoming blog post focusing on this, but for now here is an example of <a href="https://github.com/hybridgroup/phonegap-cylon-spark">PhoneGap + Cylon.js</a></p>
+                
+                <p>Check out our <a href="http://cylonjs.com/documentation/guides/browser-support">Browser Support guide</a> for more information.</p>
+                
+                <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+                  </div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header">
+                  <div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Nov
+                      </div>
+                      <div class="day">
                         03
                       </div>
                     </div>
@@ -2186,6 +2322,7 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
+                <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running robots from your browser with Cylon.js</a></li>
                 <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
                 <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
                 <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
