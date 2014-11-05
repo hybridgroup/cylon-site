@@ -13,15 +13,16 @@ active_menu_blog: true
   </video>
 
   Ever thought about controlling robots directly from your browser?
-  With the latest release of Cylon.js, it's now simpler than ever to accomplish this.
+  With the latest release of Cylon.js, we make it easy to control robots and connected devices from your own browser-based and mobile applications.
 
   For now, in-browser support is limited to a few modules, due to browser sandboxing.
-  JS running in a browser can't, for instance, talk directly to Bluetooth or a serial port.
+  JS running in a normal browser can't, for instance, talk directly to Bluetooth or a serial port. 
+  You CAN however do this if you are running Cylon.js in a Chrome application.
 
-  However, if a Cylon browser communicates with hardware over the network, it will work from within a browser without a hitch.
+  However, if a Cylon.js browser communicates with hardware over the network, it will work from within any browser without a hitch.
   For example, the `cylon-ardrone`, `cylon-spark`, `cylon-leapmotion`, `cylon-hue` and more are supported already.
 
-  In this example, we're going to blink the LED on a [Spark Core][] from Cylon.js running in a browser.
+  In this example, we're going to blink the LED on a [Spark Core][] from Cylon.js running in a regular browser.
 
   [Spark Core]: https://www.spark.io/dev-kits
 
@@ -104,6 +105,8 @@ active_menu_blog: true
   If that's not enough for you, you can also package Cylon.js scripts into [Chrome Apps][].
   We've created another [example project repo][chrome-example] to get you started on that front.
 
+  You can even include Cylon.js in your [PhoneGap][] mobile app. Look for an upcoming blog post focusing on this, but for now here is an example of [PhoneGap + Cylon.js][]
+
   Check out our [Browser Support guide][] for more information.
 
   For more updates, be sure to follow us on Twitter at [@CylonJS][].
@@ -113,3 +116,5 @@ active_menu_blog: true
   [chrome-example]: https://github.com/hybridgroup/cylon-example-chrome
   [Browser Support guide]: http://cylonjs.com/documentation/guides/browser-support
   [@CylonJS]: https://twitter.com/CylonJS
+  [PhoneGap]: http://phonegap.com/
+  [PhoneGap + Cylon.js]: https://github.com/hybridgroup/phonegap-cylon-spark
