@@ -1,77 +1,40 @@
 .resources {
+  padding: 0 em(15);
 
   .video {
-
     @include span-columns(6 of 12);
     margin: .5%;
 
-    h3 {
-      font-size: 16px;
+    .video-description {
+      font:700 16px/22px $font-primary;
     }
 
     iframe, object {
-
-      width: 100%;
+      @include span-columns(12 of 12);
       height: 300px;
     }
 
     @include media($design-edge) {
-
       iframe, object {
         height: 240px;
       }
     }
 
     @include media($tablet) {
-
       @include span-columns(12 of 12);
-
-      iframe, object {
-
-        height: 240px;
-      }
     }
   }
 
-  span{
-
+  .external-link span{
     text-decoration: underline;
-    color: $link-hover-color;
+    color: $color-anchor-hover;
 
     &:hover{
-      color: $title-color;
-    }
-  }
-
-  .video-index {
-
-    @include span-columns(10 of 12);
-
-    iframe, object {
-
-      width: 100%;
-      height: 400px;
-    }
-
-    @include media($design-edge) {
-
-      iframe, object {
-
-        height: 300px;
-      }
-    }
-
-    @include media($tablet) {
-
-      iframe, object {
-
-        height: 180px;
-      }
+      color: $color-red;
     }
   }
 
   &:last-child{
-  
-    padding-bottom: 40px;
+    padding-bottom: em(40);
   }
 }
