@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: "Running Robots From Your Browser With Cylon.js"
+title: "Running robots from your browser with Cylon.js"
 page_title: Blog
 date: 2014-11-05
 tags: robots
@@ -8,55 +8,113 @@ author: Javier Cervantes
 active_menu_blog: true
 ---
 :markdown
-  <video width="640" height="480" controls>
-    <source src="/images/blog/cylon-chrome-app-demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
+  <video src="/images/blog/cylon-chrome-app-demo.mp4" width="640" height="396" autoplay preload loop>
+    Your browser does not support the video tag.
   </video>
 
-  Have you ever thought about controlling robots from your browser? We make it easy to control robots and connected devices from your own browser-based and mobile applications.
+  Ever thought about controlling robots directly from your browser?
+  With the latest release of Cylon.js, we make it easy to control robots and connected devices from your own browser-based and mobile applications.
 
-  With Cylon.js you can do it in 3 simple steps.
+  For now, in-browser support is limited to a few modules, due to browser sandboxing.
+  JS running in a normal browser can't, for instance, talk directly to Bluetooth or a serial port. 
+  You CAN however do this if you are running Cylon.js in a Chrome application.
 
-  ### #1 - Create
-  Create a Cylon.js program for any of our supported platforms:
+  However, if a Cylon.js browser communicates with hardware over the network, it will work from within any browser without a hitch.
+  For example, the `cylon-ardrone`, `cylon-spark`, `cylon-leapmotion`, `cylon-hue` and more are supported already.
+
+  In this example, we're going to blink the LED on a [Spark Core][] from Cylon.js running in a regular browser.
+
+  [Spark Core]: https://www.spark.io/dev-kits
+
+  ### Create
+
+  In a new folder, use NPM to install `cylon-spark`:
+
+    $ npm install cylon-spark
+
+  Once that's installed copy this Cylon.js program to `script.js`.
+  Add your Spark Core's `accessToken` and `deviceId`.
+
+  You can get both of these from Spark's [Build tool][]:
+
+  - `accessToken`: In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.
+  - `deviceId`: After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.
+
+  Make sure to add these to the script, or it won't work.
 
       :::javascript
       var Cylon = require('cylon');
 
       Cylon.robot({
-        connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
-        device: { name: 'leapmotion', driver: 'leapmotion' },
+        connection: {
+          name: 'spark',
+          adaptor: 'spark',
+          accessToken: '[YOUR_ACCESS_TOKEN]',
+          deviceId: '[YOUR_DEVICE_ID]'
+        },
+
+        device: { name: 'led', driver: 'led', pin: 'D7' },
 
         work: function(my) {
-          my.leapmotion.on('hand', function(hand) {
-            console.log(hand.palmPosition.join(','));
+          every((1).second(), function() {
+            my.led.toggle();
           });
-          }
-        }).start();
+        }
+      }).start();
 
-  ### #2 - Compile
+  Code in place, let's write a small HTML file (`index.html`) that'll host the script:
 
-  Compile your code using `browserify`
+      :::html
+      <!doctype html>
+      <html lang="en">
+        <head>
+        </head>
 
-      $ browserify script.js -r cylon-leapmotion -o browser_script.js
+        <body>
+          <script src="browser_script.js"></script>
+        </body>
+      </html>
 
-  ### #3 - Run
+  And that's it.
 
-  Include compiled script in your html code:
+  [Build tool]: https://spark.io/build
 
-      <script type="text/javascript" src="js/browser_script.js"></script>
+  ### Compile
 
-  Open html page in your browser and have fun!
+  Now with the pieces in place, let's compile the Cylon.js program for browser use with the [Browserify][] tool.
 
-  ### And beyond...
+  If you don't have it already, install it through NPM:
 
-  If that is not exciting enough, you can also create packaged [Chrome Apps with Cylon.js] or even include it in your mobile app using [PhoneGap + Cylon.js].
+      $ npm install -g browserify
 
-  Check out our [Browser support guide] for further information.
+  Then, use it to compile the script:
+
+    $ browserify script.js -r cylon-gpio -r cylon-spark -o browser_script.js
+
+  [Browserify]: http://browserify.org
+
+  ### Run
+
+  Now, just open `index.html` in your browser and your Spark's LED should start blinking.
+
+  ### Want more?
+
+  From here, the sky's the limit.
+  If you want to get started on a more complex Cylon.js robot for use in the browser, we've created an [example project][browserify-example] on GitHub to get you started.
+
+  If that's not enough for you, you can also package Cylon.js scripts into [Chrome Apps][].
+  We've created another [example project repo][chrome-example] to get you started on that front.
+
+  You can even include Cylon.js in your [PhoneGap][] mobile app. Look for an upcoming blog post focusing on this, but for now here is an example of [PhoneGap + Cylon.js][]
+
+  Check out our [Browser Support guide][] for more information.
 
   For more updates, be sure to follow us on Twitter at [@CylonJS][].
 
-  [Browser support guide]: http://cylonjs.com/documentation/guides/browser_support
-  [@CylonJS]: https://twitter.com/cylonjs
-  [Chrome Apps with Cylon.js]: https://github.com/hybridgroup/cylon-example-chrome
+  [Chrome Apps]: https://developer.chrome.com/apps/about_apps
+  [browserify-example]: https://github.com/hybridgroup/cylon-example-browserify
+  [chrome-example]: https://github.com/hybridgroup/cylon-example-chrome
+  [Browser Support guide]: http://cylonjs.com/documentation/guides/browser-support
+  [@CylonJS]: https://twitter.com/CylonJS
+  [PhoneGap]: http://phonegap.com/
   [PhoneGap + Cylon.js]: https://github.com/hybridgroup/phonegap-cylon-spark
