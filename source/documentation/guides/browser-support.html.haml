@@ -1,5 +1,5 @@
 ---
-title: Cylon.js browser support
+title: Cylon.js - Browser Support
 author: The Hybrid Group
 page_title: Guides - Browser Support
 page_subtitle: A Guide by Humans, for Humans currently running robots.
@@ -7,64 +7,110 @@ layout: documentation
 page_title_show: true
 active_menu_docs: true
 ---
-.api
+.browser-support
   :markdown
-    # How To Use Cylon in the Browser
 
     **Note:** this page is currently under construction, and may not be 100% up-to-date or contain all necessary information.
     We hope to fix this as soon as possible.
 
-    Since Cylon is written in javascript, it can be run directly in the browser,
-    but we will use `browserify` to require('modules') in the browser and bundle up all the dependencies.
+    As of version 0.20.0, Cylon.js has support for running inside browser JS runtimes.
+    This is thanks in no small part to the [Browserify][] tool.
 
-    Imagine that you want to run this leapmotion code in your browser:
+    [Browserify]: http://browserify.org
+
+    For the purposes of this guide, we're going to break apart browser support into a few main sections.
+
+    - **[platform Support](#platform-support)**, which lists the Cylon.js modules that can be used in-browser.
+    - **[Browserify](#browserify)**, which covers the basic process of getting a Cylon.js robot running in almost any browser.
+    - **[Chrome Apps](#chrome-apps)**, which covers running robots to run inside of a [Chrome app][].
+      This requires some extra setup, but allows for additional platform support through serial communication.
+    - **[Phonegap](#phonegap)**, which covers running robots inside of a [Phonegap][] app.
+
+    [Chrome app]: https://developer.chrome.com/apps/about_apps
+    [Phonegap]: http://phonegap.com
+
+    The Browserify section forms the base the Chrome App and Phonegap sections build on, so it's recommended to start there before continuing into the section of your choice.
+
+    ## Platform Support
+
+    Due to security limitations of browser JS runtimes, not all Cylon.js modules are supported in-browser.
+    Modules that use HTTP for device communication work out-of-the-box, with no modification.
+
+    However, any module that communicates with devices over a serial port or bluetooth connection, or any other hardware link, will not work from inside a browser.
+
+    There is an exception to this, and that's Chrome Apps.
+    When building a Chrome App, users can request permissions to communicate with serial ports and bluetooth hardware, and this significantly increases the number of supported modules.
+
+    Here's all currently known supported modules:
+
+    **Browserify and Phonegap:**
+
+    - `cylon-ardrone`
+    - `cylon-force`
+    - `cylon-hue`
+    - `cylon-leapmotion`
+    - `cylon-m2x`
+    - `cylon-mqtt`
+    - `cylon-nest`
+    - `cylon-skynet`
+    - `cylon-spark`
+
+    **Chrome Apps** supports all of the above, plus:
+
+    - `cylon-firmata`
+    - `cylon-sphero`
+    - `cylon-neurosky`
+
+    ## Browserify
+
+    Building Cylon.js apps for browsers and Phonegap is done using the [Browserify][] tool.
+
+    If you don't already have it installed, it's available through NPM:
+
+        $ npm install -g browserify
+
+    With this done, you can write your Cylon.js robot as usual.
+    For this basic example, we'll use a Leap Motion:
 
         :::javascript
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+          connection: { name: 'leapmotion', adaptor: 'leapmotion' },
           device: { name: 'leapmotion', driver: 'leapmotion' },
 
           work: function(my) {
-          my.leapmotion.on('hand', function(hand) {
-            console.log(hand.palmPosition.join(','));
-          });
+            my.leapmotion.on('hand', function(hand) {
+              var position = hand.palmPosition.join(',');
+              console.log("Hand position: " + position);
+            });
           }
-        }).start();
+        });
 
-    We'll use `browserify` tool to compile it running:
+    This is a fairly simple robot, but it'll do for our purposes.
+    Next, compile it for browser usage with Browserify:
 
-        :::bash
-        $ browserify script.js -r cylon-leapmotion -o browser_script.js
+        $ browserify -r cylon-leapmotion script.js > browser_script.js
 
-    Then you would need to include `browser_script.js` in your html code:
+    Now all we need to do is write a small HTML page (`index.html`) for it to run in:
 
         :::html
-        <script type="text/javascript" src="js/browser_script.js"></script>
+        <!doctype html>
+        <html lang="en">
+          <head>
+          </head>
 
-    Checkout a complete example [here](https://github.com/hybridgroup/cylon-example-browserify).
+          <body>
+            <script src="browser_script.js"></script>
+          </body>
+        </html>
 
-    ## Support
+    Now we're all set.
+    You can open `index.html` in your browser of choice, and the developer console should show Cylon running and printing data as it gets it from the LeapMotion.
 
-    It works for the following devices that use HTTP for communication with device:
+    For a ready-to-go example, check out our [cylon-example-browserify][] GitHub repo
+    [cylon-example-browserify]: https://github.com/hybridgroup/cylon-example-browserify
 
-    * ARDrone
-    * LeapMotion
-    * M2X
-    * MQTT
-    * Pebble
-    * Salesforce
-    * Spark
-    * Skynet
+    ## Chrome Apps
 
-    ### Serial port
-
-    If you would like to control a devices that uses a serial port,
-    you can create a [Chrome app](https://developer.chrome.com/apps/about_apps) as shown in this [Cylon chrome example](https://github.com/hybridgroup/cylon-example-chrome).
-
-    ### Phonegap
-
-    Finally it can also be used in combination with [phonegap](http://phonegap.com) to run inside your phone.
-
-    Check out [Phonegap cylon spark repository](https://github.com/hybridgroup/phonegap-cylon-spark) for a complete example.
+    ## Phonegap
