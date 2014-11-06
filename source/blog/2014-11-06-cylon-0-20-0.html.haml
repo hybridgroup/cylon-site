@@ -1,0 +1,165 @@
+---
+page_title_show: true
+title: "Cylon 0.20.0 is out!"
+page_title: Blog
+date: 2014-11-06
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+:markdown
+  As part of our continued lead up to Cylon 1.0.0, we've just finished releasing Cylon 0.20.X.
+
+  This set of changes impact module developers more than users, but there's still some goodies in there to be found!
+
+  For a full changeset, see the [compare page on GitHub][compare].
+
+  ## For Application Developers
+
+  - **Browser support:** - Cylon.JS now has full browser support!
+    We've even set up some examples for you!
+    For more details, see our [blog post][browser-blog-post] that covers it in detail.
+
+  - **Log levels:** - Cylon's logger now has log level support; and will automatically log anything over `info` level.
+    This can be customized with a configuration value.
+
+  - **Logger configuration:** - One of the last outliers, Cylon's Logger configuration has been relocated to `Cylon#config`.
+    For example:
+
+        :::javascript
+        var CustomLogger = require('./custom-logger');
+
+        Cylon.config({
+          logging: {
+            logger: CustomLogger,
+            level: 'debug'
+          }
+        });
+
+  - **Test-Driven Robotics config changes:** - when writing test-driven robotics, indicate you're in test mode through `Cylon#config`:
+
+        :::javascript
+        Cylon.config({
+          testMode: true
+        });
+
+  - **Explicitly specify modules:** - when creating a robot, you can explicitly tell Cylon which module it should attempt to load Drivers/Adaptors from:
+
+        :::javascript
+        Cylon.robot({
+          name: 'testbot',
+
+          connection: {
+            name: 'voodoospark',
+            adaptor: 'voodoospark',
+            module: 'cylon-spark'
+          },
+
+          devices: { name: 'led', driver: 'led', pin: 9, module: 'cylon-gpio' },
+
+          work: function() {
+          }
+        });
+
+  This isn't necessary in most cases, as Cylon is typically smart enough to find the module automatically.
+  However, if you are using a custom module, or a module with multiple adaptors, this may prove helpful.
+
+  ## For Platform Developers
+
+  - **Registry:** - this is the biggest change in `0.20.0`, and significantly simplifies how Cylon submodules are registered with Cylon.
+  When writing the main file for a Cylon module, the previous syntax was something like the following (using `cylon-spark` as an example):
+
+        :::javascript
+        var Cylon = require('cylon'),
+            GPIO = require('cylon-gpio');
+
+        var Adaptor = require("./spark-adaptor"),
+            Driver = require("./spark-driver.js"),
+            VoodooSpark = require("./voodoospark-adaptor"),
+
+        module.exports = {
+          adaptor: function(args) {
+            if (args.adaptor === 'spark') {
+              return new Adaptor(args);
+            } else if (args.adaptor === 'voodoospark') {
+              return new VoodooSpark(args);
+            }
+          },
+
+          driver: function(args) {
+            return new Driver(args);
+          },
+
+          register: function(robot) {
+            Cylon.Logger.debug("Registering Spark adaptor for " + robot.name);
+
+            robot.registerAdaptor('cylon-spark', 'spark');
+            robot.registerAdaptor('cylon-spark', 'voodoospark');
+
+            robot.registerDriver('cylon-spark', 'spark');
+
+            GPIO.register(robot);
+          }
+        };
+
+  This is a bit messy, and involves loading up Cylon + Cylon-GPIO to just to register the module.
+  Here's the new syntax:
+
+      :::javascript
+      var Adaptor = require("./spark-adaptor"),
+          Driver = require("./spark-driver.js"),
+          VoodooSpark = require("./voodoospark-adaptor"),
+
+      module.exports = {
+        adaptors: ['spark', 'voodoospark'],
+        drivers: ['spark'],
+        dependencies: ['cylon-gpio'],
+
+        adaptor: function(args) {
+          if (args.adaptor === 'spark') {
+            return new Adaptor(args);
+          } else if (args.adaptor === 'voodoospark') {
+            return new VoodooSpark(args);
+          }
+        },
+
+        driver: function(args) {
+          return new Driver(args);
+        }
+      };
+
+  Now, the module's supplied Adaptors and Drivers are presented as simple arrays, with a `dependencies` array to indicate which other modules are supported by this one.
+  For example, `cylon-firmata` indicates that `cylon-gpio` and `cylon-i2c` are dependencies.
+
+  This change hopefully reduces clutter for module developers, and makes it easy to see at a glance what a Cylon module provides for adaptors and drivers.
+
+  - **`extraParams` removal:** - all params passed in the connection/device configuration objects are now kept there, instead of put into `extraParams`.
+
+        :::javascript
+        // for the connection hash:
+        connection: { name: 'spark', adaptor: 'spark', accountToken: 'YOUR_ACCOUNT_TOKEN', deviceId: 'YOUR_DEVICE_ID' }
+
+        // Cylon 0.19.0 - Spark adaptor constructor:
+        opts.extraParams.accountToken // => 'YOUR_ACCOUNT_TOKEN'
+
+        // Cylon 0.20.0 - Spark adaptor constructor:
+        opts.accountToken // => 'YOUR_ACCOUNT_TOKEN'
+
+  ## More Hardware Support
+
+  And as always, no Cylon.JS release would be complete without additional hardware support.
+  We're now up to 32 platforms, adding the following:
+
+  - `cylon-ble` for Bluetooth Low-Energy peripherals
+  - `cylon-powerup` for the [PowerUp][] glider (powered by `cylon-ble`)
+  - `cylon-wiced-sense` for the [WICED Sense][] BLE tool from Broadcom
+  - `cylon-mqtt` for communicating using the [MQTT protocol]
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [compare]: https://github.com/hybridgroup/cylon/compare/v0.19.0...v0.20.2
+  [browser-blog-post]: /blog/2014/11/05/run-cylon-js-from-your-browser/
+  [PowerUp]: http://www.poweruptoys.com
+  [WICED Sense]: http://www.broadcom.com/products/wiced/sense/
+  [MQTT protoco]: http://mqtt.org
+  [@CylonJS]: https://twitter.com/CylonJS
