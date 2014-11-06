@@ -1,192 +1,96 @@
-.circuit {
-
+.container-documentation {
   .image-circuit {
-
-    width: 50%;
-    float: left;
-
+    @include span-columns(6 of 12);
     img {
-
       height: 300px;
     }
   }
-  .description-circuit {
 
-    width: 50%;
+  .description-circuit {
+    @include span-columns(6 of 12);
     float: right;
   }
-}
 
-.image-size-300 {
-
-  width: 200px;
-}
-
-.commands-api {
-
-  h2 {
-
-    background: $title-color;
-    color: white !important;
-    padding: 5px 10px;
-    font-size: 12pt;
-    margin: 20px 0 0 0;
-
-  }
-
-  h4 {
-
-    background: transparent;
-    font-size: 11pt;
-    font-weight: normal;
-  }
-
-  h3 {
-
-    background: white;
-    padding: 10px;
-    margin: 0;
-    font-size: 11pt;
-  }
-
-  h5 {
-
-    background: white;
-    padding: 10px;
-    margin: 0;
-    font-size: 10pt;
-  }
-
-  pre {
-
-    background: white;
-    margin: 0;
-  }
-
-  p, ul{
-
-    background: white;
-    font-size: 10.5pt;
-    margin: 0;
-    padding: 10px;
-    font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace;
-  }
-
-  li {
-
-    margin-left: 20px;
-  }
-}
-
-.commands {
-
-  background: white;
-  font-size: 10.5pt;
-
-  span {
-
-      font-family: Inconsolata,Menlo,Monaco,"Bitstream Vera Sans Mono","Courier New",monospace;
-      font-size: 14px;
-      line-height: 21px;
-      background: #fafafa;
-      border: 1px solid #ccc;
-      color: #444;
-      padding: 5px;
-  }
-
-  th {
-
-    background: $title-color;
-    color: white;
-  }
-
-  td {
-
-    border-bottom: 1px solid #d4d4d4;
-  }
-
-  .command {
-
-    font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
-    font-weight: bold;
-    font-size: 11pt;
-  }
-
-  .param {
-
-    .markdown {
-
-      span {
-
-        background:none;
-        border: none;
-        padding: 0;
-      }
+  .commands-api {
+    h2 {
+      background: $color-red;
+      color: white;
+      padding: em(5) em(10);
+      font-size: em(16);
+      margin: em(20) 0 0 0;
     }
-  }
-}
 
-.methods {
-
-  dt {
-
-    font-weight: bold;
-    background: white;
-    padding: 5px 10px;
-    display: inline-block;
-    margin-bottom: 10px;
-    font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
-    font-size: 17px;
-    border: aliceblue;
-  }
-
-  dd {
-
-    margin-bottom: 29px;
-    padding-left: 10px;
-  }
-
-  li {
-
-    font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
-  }
-}
-
-.colors {
-
-  @include span-columns(3 of 12);
-
-  @include media($tablet) {
-    p {
-      font-size: 10px
+    h4 {
+      background: transparent;
+      font-size: em(15);
+      font-weight: normal;
     }
-  }
 
-  @include media($tablet) {
-
-    @include span-columns(12 of 12);
-  }
-
-  dt {
-
-    font-weight: bold;
-    padding: 5px;
-    display: inline-block;
-    font-family: Inconsolata, Menlo, Monaco, "Bitstream Vera Sans Mono", "Courier New", monospace;
-    font-size: 15px;
-    border: aliceblue;
-    margin-top: 15px;
-  }
-
-  dd {
-
-    margin-bottom: 20px;
-    display: block;
-
-    p {
-
+    h3 {
+      background: white;
+      padding: em(10);
       margin: 0;
-      line-height: 50px;
+      font-size: em(10);
+    }
+
+    h5 {
+      background: white;
+      padding: em(10);
+      margin: 0;
+      font-size: em(13);
+    }
+
+    pre {
+      background: white;
+      margin: 0;
+    }
+
+    p, ul{
+      background: white;
+      font-size: em(14);
+      margin: 0;
+      padding: em(10);
+      font-family: $font-code;
+    }
+
+    li {
+      margin-left: em(20);
+    }
+  }
+
+  .commands {
+    background: white;
+    font-size: em(14);
+
+    span {
+        font-family: $font-code;
+        font-size: em(14);
+        line-height: em(21);
+        background: #fafaf1;
+        border: 1px solid #ccc;
+        color: $font-color;
+        padding: em(5);
+    }
+
+    th {
+      background: $color-red;
+      color: white;
+    }
+
+    td {
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .command {
+      font-family: $font-code;
+      font-weight: bold;
+      font-size: em(15);
+    }
+
+    .markdown span {
+      background:none;
+      border: none;
+      padding: 0;
     }
   }
 }
