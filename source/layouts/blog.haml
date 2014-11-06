@@ -1,13 +1,12 @@
 - wrap_layout :layout do
   = partial "layouts/contents-blog"
-  .main.blog{:role => "main"}
+  .main-content.blog{:role => "main"}
     .articles
-      .article
-        - if is_blog_article?
-          = partial "blog/header", {locals: { article: current_article } }
-          = yield
-        - else 
-          = yield
+      - if is_blog_article?
+        = partial "blog/header", {locals: { article: current_article } }
+        = yield
+      - else
+        = yield
       - if is_blog_article?
         = partial "blog/disqus"
     .side-column
@@ -19,5 +18,5 @@
         = yield_content :network
       .titles
         %h4 Posts
-        %ul 
+        %ul
           = partial "blog/sidebar_links", {locals: { article: current_article } }
