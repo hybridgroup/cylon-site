@@ -92,6 +92,209 @@
                         Nov
                       </div>
                       <div class="day">
+                        06
+                      </div>
+                    </div>
+                    <div class="red">
+                      <div class="year">
+                        2014
+                      </div>
+                    </div>
+                  </div>
+                  <div class="data">
+                    <h3>
+                      <a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a>
+                    </h3>
+                    <div class="author">
+                      by Andrew Stewart
+                    </div>
+                  </div>
+                </header>
+                <p>As part of our continued lead up to Cylon 1.0.0, we've just finished releasing Cylon 0.20.X.</p>
+                
+                <p>This set of changes impact module developers more than users, but there's still some goodies in there to be found!</p>
+                
+                <p>For a full changeset, see the <a href="https://github.com/hybridgroup/cylon/compare/v0.19.0...v0.20.2">compare page on GitHub</a>.</p>
+                
+                <h2 id="for-application-developers">For Application Developers</h2>
+                
+                <ul>
+                  <li>
+                    <p><strong>Browser &amp; Mobile support:</strong> - Cylon.js now has full browser support, and can run on mobile devices too!
+                We've even set up some examples for you!
+                For more details, see our <a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">blog post</a> that covers it in detail.</p>
+                  </li>
+                  <li>
+                    <p><strong>Log levels:</strong> - Cylon's logger now has log level support; and will automatically log anything over <code>info</code> level.
+                This can be customized with a configuration value.</p>
+                  </li>
+                  <li>
+                    <p><strong>Logger configuration:</strong> - One of the last outliers, Cylon's Logger configuration has been relocated to <code>Cylon#config</code>.
+                For example:</p>
+                
+                    <pre class="CodeRay"><span class="keyword">var</span> CustomLogger = require(<span class="string"><span class="delimiter">'</span><span class="content">./custom-logger</span><span class="delimiter">'</span></span>);
+
+Cylon.config({
+  <span class="key">logging</span>: {
+    <span class="key">logger</span>: CustomLogger,
+    <span class="key">level</span>: <span class="string"><span class="delimiter">'</span><span class="content">debug</span><span class="delimiter">'</span></span>
+  }
+});
+</pre>
+                  </li>
+                  <li>
+                    <p><strong>Test-Driven Robotics config changes:</strong> - when writing test-driven robotics, indicate you're in test mode through <code>Cylon#config</code>:</p>
+                
+                    <pre class="CodeRay">Cylon.config({
+  <span class="key">testMode</span>: <span class="predefined-constant">true</span>
+});
+</pre>
+                  </li>
+                  <li>
+                    <p><strong>Explicitly specify modules:</strong> - when creating a robot, you can explicitly tell Cylon which module it should attempt to load Drivers/Adaptors from:</p>
+                
+                    <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">testbot</span><span class="delimiter">'</span></span>,
+
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">myspark</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">myspark</span><span class="delimiter">'</span></span>,
+    <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+  },
+
+  <span class="key">devices</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-gpio</span><span class="delimiter">'</span></span> },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {
+  }
+});
+</pre>
+                  </li>
+                </ul>
+                
+                <p>This isn't necessary in most cases, as Cylon.js is typically smart enough to find the module automatically.
+                However, if you are using a custom module, or a module with multiple adaptors, this may prove helpful.</p>
+                
+                <h2 id="for-platform-developers">For Platform Developers</h2>
+                
+                <ul>
+                  <li>
+                    <p><strong>Registry:</strong> - this is the biggest change in <code>0.20.0</code>, and significantly simplifies how Cylon submodules are registered with Cylon.
+                When writing the main file for a Cylon module, the previous syntax was something like the following (using <code>cylon-spark</code> as an example):</p>
+                
+                    <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>),
+    GPIO = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon-gpio</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> Adaptor = require(<span class="string"><span class="delimiter">"</span><span class="content">./spark-adaptor</span><span class="delimiter">"</span></span>),
+    Driver = require(<span class="string"><span class="delimiter">"</span><span class="content">./spark-driver.js</span><span class="delimiter">"</span></span>),
+    VoodooSpark = require(<span class="string"><span class="delimiter">"</span><span class="content">./voodoospark-adaptor</span><span class="delimiter">"</span></span>),
+
+module.exports = {
+  <span class="function">adaptor</span>: <span class="keyword">function</span>(args) {
+    <span class="keyword">if</span> (args.adaptor === <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">return</span> <span class="keyword">new</span> Adaptor(args);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (args.adaptor === <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">return</span> <span class="keyword">new</span> VoodooSpark(args);
+    }
+  },
+
+  <span class="function">driver</span>: <span class="keyword">function</span>(args) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Driver(args);
+  },
+
+  <span class="function">register</span>: <span class="keyword">function</span>(robot) {
+    Cylon.Logger.debug(<span class="string"><span class="delimiter">"</span><span class="content">Registering Spark adaptor for </span><span class="delimiter">"</span></span> + robot.name);
+
+    robot.registerAdaptor(<span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>);
+    robot.registerAdaptor(<span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>);
+
+    robot.registerDriver(<span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>);
+
+    GPIO.register(robot);
+  }
+};
+</pre>
+                  </li>
+                </ul>
+                
+                <p>This is a bit messy, and involves loading up Cylon + Cylon-GPIO to just to register the module.
+                Here's the new syntax:</p>
+                
+                <pre class="CodeRay"><span class="keyword">var</span> Adaptor = require(<span class="string"><span class="delimiter">"</span><span class="content">./spark-adaptor</span><span class="delimiter">"</span></span>),
+    Driver = require(<span class="string"><span class="delimiter">"</span><span class="content">./spark-driver.js</span><span class="delimiter">"</span></span>),
+    VoodooSpark = require(<span class="string"><span class="delimiter">"</span><span class="content">./voodoospark-adaptor</span><span class="delimiter">"</span></span>),
+
+module.exports = {
+  <span class="key">adaptors</span>: [<span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>],
+  <span class="key">drivers</span>: [<span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>],
+  <span class="key">dependencies</span>: [<span class="string"><span class="delimiter">'</span><span class="content">cylon-gpio</span><span class="delimiter">'</span></span>],
+
+  <span class="function">adaptor</span>: <span class="keyword">function</span>(args) {
+    <span class="keyword">if</span> (args.adaptor === <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">return</span> <span class="keyword">new</span> Adaptor(args);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (args.adaptor === <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">return</span> <span class="keyword">new</span> VoodooSpark(args);
+    }
+  },
+
+  <span class="function">driver</span>: <span class="keyword">function</span>(args) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Driver(args);
+  }
+};
+</pre>
+                
+                <p>Now, the module's supplied Adaptors and Drivers are presented as simple arrays, with a <code>dependencies</code> array to indicate which other modules are supported by this one.
+                For example, <code>cylon-firmata</code> indicates that <code>cylon-gpio</code> and <code>cylon-i2c</code> are dependencies.</p>
+                
+                <p>This change hopefully reduces clutter for module developers, and makes it easy to see at a glance what a Cylon module provides for adaptors and drivers.</p>
+                
+                <ul>
+                  <li>
+                    <p><strong><code>extraParams</code> removal:</strong> - all params passed in the connection/device configuration objects are now kept there, instead of put into <code>extraParams</code>.</p>
+                
+                    <pre class="CodeRay"><span class="comment">// for the connection hash:</span>
+connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">accountToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_ACCOUNT_TOKEN</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_DEVICE_ID</span><span class="delimiter">'</span></span> }
+
+<span class="comment">// Cylon 0.19.0 - Spark adaptor constructor:</span>
+opts.extraParams.accountToken <span class="comment">// =&gt; 'YOUR_ACCOUNT_TOKEN'</span>
+
+<span class="comment">// Cylon 0.20.0 - Spark adaptor constructor:</span>
+opts.accountToken <span class="comment">// =&gt; 'YOUR_ACCOUNT_TOKEN'</span>
+</pre>
+                  </li>
+                </ul>
+                
+                <h2 id="more-hardware-support">More Hardware Support</h2>
+                
+                <p>And as always, no Cylon.JS release would be complete without additional hardware support.
+                We're now up to 31 platforms, adding the following:</p>
+                
+                <ul>
+                  <li>
+<code>cylon-ble</code> for Bluetooth Low-Energy peripherals</li>
+                  <li>
+<code>cylon-powerup</code> for the <a href="http://www.poweruptoys.com">PowerUp</a> glider (powered by <code>cylon-ble</code>)</li>
+                  <li>
+<code>cylon-wiced-sense</code> for the <a href="http://www.broadcom.com/products/wiced/sense/">WICED Sense</a> BLE tool from Broadcom</li>
+                  <li>
+<code>cylon-mqtt</code> for communicating using the [MQTT protocol]</li>
+                </ul>
+                
+                <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+                <div class="tags">
+                  <div class="img">
+                    <img src="/images/elements/tag.png">
+                  </div>
+                  <a href="/blog/tags/robots/">robots</a>
+                </div>
+              </div>
+              <div class="article">
+                <header class="header">
+                  <div class="date">
+                    <div class="blue">
+                      <div class="month">
+                        Nov
+                      </div>
+                      <div class="day">
                         05
                       </div>
                     </div>
@@ -1678,6 +1881,7 @@ Cylon.Robot(robot).start();
             <div class="titles">
               <h4>Posts</h4>
               <ul>
+                <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
                 <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
                 <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
                 <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
