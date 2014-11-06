@@ -41,8 +41,7 @@ subnavjs: true
         Cylon.robot({
           connection: {
             name: 'leapmotion',
-            adaptor: 'leapmotion',
-            port: '127.0.0.1:6437'
+            adaptor: 'leapmotion'
           },
 
           device: {
@@ -75,6 +74,18 @@ subnavjs: true
     - Run the leapd daemon to open a websocket connection in port 6437.
     - Connect your computer and the Leap Motion controller
     - Connect to the device via Cylon.js
+
+    ### Connecting To Another Machine
+
+    By default, `cylon-leapmotion` attempts to connect to the LeapMotion websocket server running on localhost.
+    You can, however, provide it with another IP in the `connection` object and it'll attempt to connect to that instead:
+
+        :::javascript
+        connection: {
+          name: 'leapmotion',
+          adaptor: 'leapmotion',
+          host: '192.168.1.64'
+        }
 
 %section.drivers#Drivers
   :markdown

@@ -272,7 +272,7 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+          connection: { name: 'leapmotion', adaptor: 'leapmotion' },
           device: { name: 'leapmotion', driver: 'leapmotion' },
 
           work: function(my) {
@@ -314,7 +314,7 @@ page_title_show: true
 
         Cylon.robot({
           connections: [
-            { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+            { name: 'leapmotion', adaptor: 'leapmotion' },
             { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' }
           ],
           devices: [
