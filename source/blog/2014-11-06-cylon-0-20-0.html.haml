@@ -16,7 +16,7 @@ active_menu_blog: true
 
   ## For Application Developers
 
-  - **Browser support:** - Cylon.JS now has full browser support!
+  - **Browser & Mobile support:** - Cylon.js now has full browser support, and can run on mobile devices too!
     We've even set up some examples for you!
     For more details, see our [blog post][browser-blog-post] that covers it in detail.
 
@@ -50,8 +50,8 @@ active_menu_blog: true
           name: 'testbot',
 
           connection: {
-            name: 'voodoospark',
-            adaptor: 'voodoospark',
+            name: 'myspark',
+            adaptor: 'myspark',
             module: 'cylon-spark'
           },
 
@@ -61,7 +61,7 @@ active_menu_blog: true
           }
         });
 
-  This isn't necessary in most cases, as Cylon is typically smart enough to find the module automatically.
+  This isn't necessary in most cases, as Cylon.js is typically smart enough to find the module automatically.
   However, if you are using a custom module, or a module with multiple adaptors, this may prove helpful.
 
   ## For Platform Developers
@@ -148,7 +148,7 @@ active_menu_blog: true
   ## More Hardware Support
 
   And as always, no Cylon.JS release would be complete without additional hardware support.
-  We're now up to 32 platforms, adding the following:
+  We're now up to 31 platforms, adding the following:
 
   - `cylon-ble` for Bluetooth Low-Energy peripherals
   - `cylon-powerup` for the [PowerUp][] glider (powered by `cylon-ble`)
