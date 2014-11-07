@@ -16,13 +16,9 @@ hero_subtitle: "Next generation robotics framework with support for <a href='#pl
 
 
 catcher_phrase: Ready to build the next big thing with JavaScript?
-getting_started_button: "<a href='/documentation/getting-started' class='cta'> Get Started</a>"
+getting_started_button: "<a href='/documentation/getting-started' class='call-to-action'> Get Started</a>"
 
 ---
-:javascript
-  $(document).ready(function(){
-    $(".background-header").addClass("back-index-top");
-  });
 
 -content_for :black_top_title do
   :markdown
@@ -53,7 +49,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
       // Initialize the robot
       var robot = Cylon.robot({
         // Change the port to the correct port for your Arduino.
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+        connection: { name: 'arduino', adaptor: 'firmata', port: '/deviceev/ttyACM0' },
         device: { name: 'led', driver: 'led', pin: 13 },
 
         work: function(my) {
@@ -75,9 +71,9 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 %div
   %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:
 
-  %ul.homepage-platform
+  %ul.platform-list
     - data.platforms.each do |name, info|
-      %li
+      %li.platform
         %a{:href => "/documentation/platforms/#{info.slug}"}
           %p.title= name
           %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
@@ -85,9 +81,9 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
 %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
 
-%ul.homepage-platform
+%ul.platform-list
   - data.drivers.GPIO.each do |name, url|
-    %li
+    %li.platform
       %a{:href => "/documentation/drivers/#{url}"}
         %p.title= name
         %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
@@ -95,9 +91,9 @@ getting_started_button: "<a href='/documentation/getting-started' class='cta'> G
 
 %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
 
-%ul.homepage-platform
+%ul.platform-list
   - data.drivers.I2C.each do |name, url|
-    %li
+    %li.platform
       %a{:href => "/documentation/drivers/#{url}"}
         %p.title= name
         %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
