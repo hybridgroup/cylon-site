@@ -79,20 +79,20 @@
       margin-bottom: em(14);
     }
 
-    #twitter-widget-1{
+    #twitter-widget-1 {
       display: none;
     }
 
-    #twitter-widget-0{
+    #twitter-widget-0 {
       width: 99px !important;
     }
 
-    .fork{
+    .fork {
       display: none;
     }
   }
 
-  .animation{
+  .animation {
     @include animation(star 5s infinite linear);
     @include animation-delay(1s);
     background: url(/images/elements/shoot.png) top center no-repeat;
@@ -109,47 +109,46 @@
       left: 0px;
     }
   }
+}
 
-  @include keyframes(star) {
-
-    0% {
-      background-size:3%;
-      left: 100px;
-      top: 171px;
-      opacity: 1;
-    }
-    10% {
-      background-size:10%;
-      left: 205px;
-      top: 127px;
-      opacity: .9;
-    }
-    15%{
-      background-size:15%;
-      left: 258px;
-      top: 100px;
-      opacity: 1;
-    }
-    40% {
-      background: url(/images/elements/shoot.png) top center no-repeat;
-      background-size: 10%;
-      left: 526px;
-      top: -17px;
-      opacity: 0;
-    }
-    65%{
-      opacity: 0;
-    }
-    70% {
-      background: url(/images/elements/star.png) top center no-repeat;
-      background-size: 3%;
-      opacity: 1;
-    }
-    80%{
-      opacity:.4;
-    }
-    85%{
-      opacity:0;
-    }
+@include keyframes(star) {
+  0% {
+    background-size:3%;
+    left: 100px;
+    top: 171px;
+    opacity: 1;
+  }
+  10% {
+    background-size:10%;
+    left: 205px;
+    top: 127px;
+    opacity: .9;
+  }
+  15%{
+    background-size:15%;
+    left: 258px;
+    top: 100px;
+    opacity: 1;
+  }
+  40% {
+    background: url(/images/elements/shoot.png) top center no-repeat;
+    background-size: 10%;
+    left: 526px;
+    top: -17px;
+    opacity: 0;
+  }
+  65%{
+    opacity: 0;
+  }
+  70% {
+    background: url(/images/elements/star.png) top center no-repeat;
+    background-size: 3%;
+    opacity: 1;
+  }
+  80%{
+    opacity:.4;
+  }
+  85%{
+    opacity:0;
   }
 }
