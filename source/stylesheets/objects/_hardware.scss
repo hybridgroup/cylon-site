@@ -1,30 +1,18 @@
-.more {
-
-  text-align: center;
-  width: 50%;
-  margin: 30px auto 10px auto;
-  background: white;
-  padding: 15px 30px;
-  color: $hero-color;
-
-  @include media($tablet) {
-    width: 100%;
-  }
-}
 .hardware {
   .devices {
     @include outer-container;
     text-align: center;
 
     h2 {
+      @include row();
       text-align: left;
     }
 
     .group {
-      padding: 50px 0;
+      padding: em(50) 0;
 
       &:not(:last-child) {
-        border-bottom: 10px solid darken($body-bg-color, 30);
+        border-bottom: 10px solid darken($color-light-grey, 30);
       }
     }
 
@@ -33,11 +21,11 @@
       width: 225px;
 
       &:hover {
+        background: darken($color-light-grey, 30);
+
         img {
           opacity: .9;
         }
-
-        background: darken($body-bg-color, 30);
       }
 
       img {

@@ -11,6 +11,7 @@
 
     - if key == name
       - if value.is_a?(Hash)
+        .clear
         %h2= "#{name} Drivers"
         %section
           - data.drivers[name].each do |name, slug|
