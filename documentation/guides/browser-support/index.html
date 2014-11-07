@@ -243,9 +243,6 @@
           <div class="container-documentation">
             
             <div class="browser-support">
-              <p><strong>Note:</strong> this page is currently under construction, and may not be 100% up-to-date or contain all necessary information.
-              We hope to fix this as soon as possible.</p>
-              
               <p>As of version 0.20.0, Cylon.js has support for running inside browser JS runtimes.
               This is thanks in no small part to the <a href="http://browserify.org">Browserify</a> tool.</p>
               
@@ -259,8 +256,6 @@
                 <li>
 <strong><a href="#chrome-apps">Chrome Apps</a></strong>, which covers running robots to run inside of a <a href="https://developer.chrome.com/apps/about_apps">Chrome app</a>.
               This requires some extra setup, but allows for additional platform support through serial communication.</li>
-                <li>
-<strong><a href="#phonegap">Phonegap</a></strong>, which covers running robots inside of a <a href="http://phonegap.com">Phonegap</a> app.</li>
               </ul>
               
               <p>The Browserify section forms the base the Chrome App and Phonegap sections build on, so it's recommended to start there before continuing into the section of your choice.</p>
@@ -348,12 +343,78 @@ Cylon.robot({
               <p>Now we're all set.
               You can open <code>index.html</code> in your browser of choice, and the developer console should show Cylon running and printing data as it gets it from the LeapMotion.</p>
               
-              <p>For a ready-to-go example, check out our [cylon-example-browserify][] GitHub repo
-              [cylon-example-browserify]: https://github.com/hybridgroup/cylon-example-browserify</p>
+              <p>For a ready-to-go example, check out our <a href="https://github.com/hybridgroup/cylon-example-browserify">cylon-example-browserify</a> GitHub repo.</p>
               
               <h2 id="chrome-apps">Chrome Apps</h2>
               
-              <h2 id="phonegap">Phonegap</h2>
+              <p>Building a Cylon.JS app for Chrome requires a bit more packaging, but in turn gives you more functionality.
+              With the ability to connect to serial ports, you can control even more hardware this way.</p>
+              
+              <p>Since this does require some additional setup, we recommend using our [example repo][cylon-example-chrome], and building on that.</p>
+              
+              <p>To get started, clone the example down into a new directory:</p>
+              
+              <pre class="CodeRay">$ git clone git@github.com:hybridgroup/cylon-example-chrome.git ./BrowserBot
+$ cd ./BrowserBot
+</pre>
+              
+              <p>Then, install dependencies with NPM:</p>
+              
+              <pre class="CodeRay">$ npm install
+</pre>
+              
+              <p>By default, the example is set up to communicate with an Arduino using <code>cylon-firmata</code>, but you can always use another set of modules if you want.</p>
+              
+              <p>There's a few key differences between this and the plain browser version, we'll go over those next:</p>
+              
+              <h4 id="manifestjson">manifest.json</h4>
+              
+              <p>This file exists to provide Chrome with important information about your app.
+              Use it to specify the name, description, and version of your app, and to request permissions as needed.</p>
+              
+              <p>The default manifest.json requests all permissions you should need.</p>
+              
+              <p>For more information about the manifest.json format, check out <a href="https://developer.chrome.com/extensions/manifest">Google's documentation</a>.</p>
+              
+              <h4 id="backgroundjs">background.js</h4>
+              
+              <p>Chrome needs a file to run when the extension starts, so we've supplied <code>background.js</code>.
+              This file contains information Chrome needs on what to do when the app is launched, and can also be used to schedule cleanup tasks.</p>
+              
+              <p>The one we've supplied creates a new window, opening <code>index.html</code> on launch, with a pre-set window size.</p>
+              
+              <h4 id="indexhtml">index.html</h4>
+              
+              <p>This is a simple HTML document, used to load up the robot.
+              It also contains a <code>#log</code> <code>&lt;div&gt;</code> tag for the custom browser logger we've included.</p>
+              
+              <h4 id="browser-loggerjs">browser-logger.js</h4>
+              
+              <p>This is a small custom Cylon logger we've included.
+              It knows how to log Cylon messages directly to the page, rather than the JS console.</p>
+              
+              <hr>
+              
+              <p>With these distinctions in mind, you can write your Cylon.js robots as usual.</p>
+              
+              <p>However, packaging up your robot for Chrome requires a bit more care than usual, due to the nature of Browserify.
+              Browserify parses the AST of your script to determine which scripts should be loaded, and this normally works fine.
+              But due to Cylon's dynamic module loading, you need to manually specify the modules your robot uses.</p>
+              
+              <p>To build the example app, for instance:</p>
+              
+              <pre class="CodeRay">$ browserify -r cylon-gpio -r cylon-i2c -r cylon-firmata script.js &gt; ./js/robot.js
+</pre>
+              
+              <p>For testing purposes (or just playing around), you can load your app as an unpacked extension in Chrome.
+              This video should help explain the process:</p>
+              
+              <video width="100%" poster="/videos/chrome-app-demo.jpg" controls="">
+                <source src="/videos/chrome-app-demo.mp4" type="video/mp4"></source>
+                <source src="/videos/chrome-app-demo.webm" type="video/webm"></source>
+                Your browser doesn't support the video tag.
+                Download the video <a href="/videos/chrome-app-demo.mp4">here</a>.
+              </video>
             </div>
           </div>
         </div>
