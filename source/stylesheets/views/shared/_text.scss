@@ -1,7 +1,3 @@
-h1, h2, h3, h4{
-  font-family: $font-secondary;
-}
-
 .important-title {
   color: $color-white;
   background: $color-red;
@@ -14,7 +10,7 @@ h1, h2, h3, h4{
   }
 }
 
-.main-content{
+.main-content {
   h1, h2 {
     color: $color-red;
   }
@@ -48,14 +44,11 @@ pre {
 }
 
 .hero-anchors {
-
   &, &:active, &:visited {
-
     color: $color-off-white;
   }
 
   &:hover, &:focus {
-
     color: $color-white;
   }
 }

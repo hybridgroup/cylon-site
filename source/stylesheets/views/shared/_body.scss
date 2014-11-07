@@ -1,9 +1,4 @@
-html, body {
-  height: 100%;
-}
-
 html {
-  min-height:100%;
   position:relative;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
@@ -16,13 +11,13 @@ body {
   font-size: 16px;
 }
 
-.app-content{
+.app-content {
     margin-bottom: em(533);
 }
 
-.main-content{
+.main-content {
   @include outer-container;
-  padding-bottom: 40px;
+  padding-bottom: em(40);
 
   section{
     @include row();
@@ -40,13 +35,13 @@ body {
   }
 }
 
-.container{
+.container {
   @include outer-container;
   margin: 0 auto;
   position: relative;
   padding: 0 em(15);
 
   @include media($tablet) {
-    @include span-columns(12 of 12);
+    width: 100%;
   }
 }
