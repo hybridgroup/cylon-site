@@ -1,0 +1,112 @@
+---
+page_title_show: true
+title: MQTT with Cylon
+author: The Hybrid Group
+page_title: Platforms - MQTT
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MQTT
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-mqtt' class='repository'>Repository</a>| <a class='issues' href='https://github.com/hybridgroup/cylon-mqtt/issues'>Issues</a>"
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/mqtt.jpg", class: "display"
+  .info-intro
+    = partial '/hybridpages/partials/widgets/repo_issues'
+    :markdown
+      MQTT is an Internet of Things connectivity protocol featuring a lightweight publish/subscribe messaging transport. It is useful for it's small code footprint and minimal network bandwidth usage.
+
+      For more info about the MQTT adaptor click [here](http://mqtt.org/).
+  .clear
+
+%section.how-to#HowToInstall
+  :markdown
+    ## How To Install
+    Install `cylon-mqtt` through NPM:
+
+        $ npm install cylon-mqtt
+
+    Before using `cylon-mqtt`, you'll need to have a MQTT broker running in order to connect/publish/subscribe to messages.
+
+    A good, simple broker is [mosca](https://github.com/mcollina/mosca).
+    The developers have a [tutorial on using Mosca as a standalone service](https://github.com/mcollina/mosca/wiki/Mosca-as-a-standalone-service.).
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+    There's two different ways to use the `cylon-mqtt` module.
+
+    You can use the connection object only, in which case you have pub/sub access to all available MQTT channels:
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          work: function(my) {
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
+            });
+
+            every((1).seconds(), function() {
+              my.server.publish('hello', 'hi there');
+            });
+          }
+        });
+
+    Or, you can use the device object, which restricts your interaction to a single MQTT channel.
+    This can make it easier to keep track of different channels.
+
+        :::javascript
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+          device: { name: 'hello', driver: 'mqtt', topic: 'hello' },
+
+          work: function(my) {
+            my.hello.on('message', function (data) {
+              console.log("hello: " + data);
+            });
+
+            every((1).seconds(), function() {
+              my.hello.publish('hi there');
+            });
+          }
+        })
+
+
+%section.how-to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          work: function(my) {
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hello', 'hi there');
+            });
+          }
+        }).start();
+
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p There is only one driver for the MQTT.
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "MQTT"}

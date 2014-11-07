@@ -1,0 +1,125 @@
+---
+title: Cylon.js - Powerup Driver
+author: The Hybrid Group
+page_title: Drivers - PowerUp
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: PowerUp
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/powerup.jpg", class: "display"
+  .info-intro
+    %p This is the Cylon driver for the PowerUp Bluetooth LE paper airplane controller.
+
+  .clear
+
+%section.how-to#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connections: [
+            { name: 'bluetooth', adaptor: 'ble', uuid: '84dd20eb3d89' },
+            { name: 'dualshock3', adaptor: 'joystick' }
+          ],
+          devices: [
+            { name: 'controller', driver: 'dualshock-3', connection: 'dualshock3' },
+            { name: 'powerup', driver: 'powerup' }
+          ]
+        });
+
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+    Here's an example of flying the powerup with a dualshock3 controller
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'bluetooth', adaptor: 'ble', uuid: '84dd20eb3d89' },
+            { name: 'dualshock3', adaptor: 'joystick' }
+          ],
+          devices: [
+            { name: 'controller', driver: 'dualshock-3', connection: 'dualshock3' },
+            { name: 'powerup', driver: 'powerup' }
+          ],
+          work: function(my) {
+            var thrust = 0;
+            var rudder = 0;
+            var canRudder = false;
+
+            var cb = function(err) {
+              if (!!err) {
+                console.log(err);
+              } else {
+                if (canRudder) {
+                  canRudder = false;
+                  my.powerup.setRudder(rudder, cb);
+                }
+                else {
+                  my.powerup.setThrust(thrust, cb);
+                }
+              }
+            }
+
+            my.powerup.setThrust(thrust, cb);
+
+            my.controller.on("left_y:move", function(data) {
+              if (data < 0) {
+                thrust = Math.abs(data/32768*254) | 0;
+              } else {
+                thrust = 0;
+              }
+            });
+
+            my.controller.on("right_x:move", function(data) {
+              var tmp = data/32768*127 | 0;
+              if (tmp !== rudder) {
+                rudder = tmp;
+                canRudder = true;
+              }
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    :markdown
+      # Commands
+
+      ## setThrust(thrust, cb([err]))
+
+      Sets the thrust to a value between 0,254 and executes the callback on completion
+
+      ##### Return
+
+      nil
+
+      ## setRudder(rudder, cb([err]))
+
+      Sets the rudder to a value between -128,127 and executes the callback on completion
+
+      ##### Return
+
+      nil
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      no events
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "PowerUp" }

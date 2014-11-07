@@ -24,6 +24,11 @@
     "drivers": ["GPIO", "I2C"]
   },
 
+  "BLE": {
+    "slug": "ble",
+    "drivers": ["BLE"]
+  },
+
   "Crazyflie": {
     "slug": "crazyflie",
     "drivers": ["Crazyflie"]
@@ -64,6 +69,11 @@
     "drivers": ["M2X"]
   },
 
+  "MQTT": {
+    "slug": "mqtt",
+    "drivers": ["MQTT"]
+  },
+
   "Nest": {
     "slug": "nest",
     "drivers": ["Nest - Home", "Nest - Thermostat"]
@@ -92,6 +102,11 @@
   "Pinoccio": {
     "slug": "pinoccio",
     "drivers": ["GPIO", "Pinoccio - LED", "Pinoccio - Power"]
+  },
+
+  "PowerUp": {
+    "slug": "powerup",
+    "drivers": ["BLE"]
   },
 
   "Rapiro": {
@@ -142,5 +157,10 @@
   "Tessel": {
     "slug": "tessel",
     "drivers": ["Tessel", "GPIO", "I2C"]
+  },
+
+  "WICED Sense": {
+    "slug": "wiced-sense",
+    "drivers": ["BLE"]
   }
 }
