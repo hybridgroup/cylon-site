@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/spark.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Spark Core contains a Wi-Fi connected microcontroller.
       Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Cylon.js program.
@@ -22,7 +22,7 @@ subnavjs: true
       For more info about the Spark platform, click [here](https://www.spark.io/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -49,7 +49,7 @@ subnavjs: true
 
     For more information about VoodooSpark, click [here](http://voodoospark.me).
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -93,7 +93,7 @@ subnavjs: true
     :markdown
       **Note:** In addition to the above methods, the Spark adaptor supports the full GPIO pin interface, as long as you are using Tinker, or a Tinker compatible program running on the Spark itself.
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How to Connect
 

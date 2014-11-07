@@ -1,0 +1,17 @@
+.call-to-action{
+  @extend %button;
+}
+
+.button-black{
+  @extend .button;
+  background: black;
+  border: none;
+  float: right;
+
+  a {
+    color: white;
+  }
+  &:hover {
+    background: $color-red;
+  }
+}

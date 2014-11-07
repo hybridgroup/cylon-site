@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/force.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       This modules provides an adaptor + driver combination for communicating with the Salesforce Force.com platform.
 
@@ -24,13 +24,13 @@ subnavjs: true
 
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
         $ npm install cylon-force
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -67,7 +67,7 @@ subnavjs: true
 
         $ SF_USERNAME='yourusername' SF_SECURITY_TOKEN='yourpasswordandtoken' node salesforce.js
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

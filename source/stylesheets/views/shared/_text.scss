@@ -1,0 +1,54 @@
+.important-title {
+  color: $color-white;
+  background: $color-red;
+  text-align: center;
+  text-transform: uppercase;
+  padding: em(20) 0;
+
+  a {
+    color: $color-grey;
+  }
+}
+
+.main-content {
+  h1, h2 {
+    color: $color-red;
+  }
+
+  h1 {
+    font-size: em(37);
+    padding: em(5) 0;
+  }
+}
+
+h3, h4, h5, ul, ol {
+  color: $color-dark-purple;
+}
+
+a {
+  &, &:visited {
+    color: $color-red;
+  }
+
+  &:hover, &:focus {
+    color: $color-anchor-hover;
+  }
+}
+
+pre {
+    @include media($tablet) {
+    white-space: pre;
+    overflow: scroll;
+    word-wrap: normal;
+  }
+}
+
+.hero-anchors {
+  &, &:active, &:visited {
+    color: $color-off-white;
+  }
+
+  &:hover, &:focus {
+    color: $color-white;
+  }
+}

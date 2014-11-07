@@ -1,0 +1,131 @@
+.app-header {
+    padding: em(9) 0 em(23) 0;
+
+  &.hero-home{
+    background: url('/images/elements/back.png') $color-panel-header top center no-repeat;
+    height: 478px;
+  }
+
+  &.section-nav {
+    background: url("/images/elements/back_menu_blur.png") $color-panel-header no-repeat top center;
+    background-size: cover;
+  }
+
+  .app-logo {
+    a {
+      @include span-columns(12 of 12);
+      color: $color-red;
+      background: url('/images/elements/logo.svg') left top no-repeat;
+      text-indent: -99999px;
+      height: 30px;
+      width: 276px;
+      margin-top: em(10);
+    }
+  }
+
+  .display, .subtitle, .menu, h1 {
+    vertical-align: middle;
+    margin: 0;
+    display: inline-block;
+  }
+
+  .display {
+    @include span-columns(5 of 12);
+    margin: em(-1) 0 0 0;
+
+    @include media($design-edge) {
+      @include span-columns(6 of 12);
+    }
+  }
+
+  .menu {
+    @include span-columns(7 of 12);
+    text-align: right;
+    display: inline-block;
+    margin: em(13) 0 0 0;
+
+    @include media($design-edge) {
+      @include span-columns(6 of 12);
+      padding: 0;
+
+      .item {
+        margin: 0;
+        padding: 0 em(5);
+      }
+    }
+  }
+
+  .nav-list{
+    margin:0;
+    list-style: none;
+
+    li{
+      display: inline-block;
+    }
+  }
+
+  .active {
+    color: $color-red;
+    font-size: em(16);
+    font-weight: bold;
+    margin: em(10);
+    padding: em(8) em(4);
+  }
+
+  .item {
+    font-size: em(15);
+    font-weight: bold;
+    margin: em(10);
+    padding: em(8) em(4);
+
+    &, &:visited, &:active {
+      color: $color-lighter-grey;
+    }
+
+    &:hover, &:focus {
+      color: $color-red;
+    }
+  }
+
+  @include media($tablet) {
+    .subtitle, .menu {
+      width: auto;
+      display: block;
+    }
+
+    .display,.app-logo {
+      display: inline-block;
+    }
+
+    .app-logo, .subtitle, .menu {
+      margin: 0 0 em(5) 0;
+    }
+
+    .display {
+      @include span-columns(12 of 12);
+      text-align: center;
+      margin: em(-1) 0 0;
+    }
+
+    .app-logo a {
+      background-position: center center;
+    }
+
+    .subtitle {
+      font-size: em(19);
+      line-height: em(15);
+      padding: 0;
+    }
+
+    .menu {
+      margin: em(5) 0 0 0;
+      text-align: center;
+      @include span-columns(12 of 12);
+
+      .item {
+        margin: 0;
+        padding: 0 em(2);
+      }
+    }
+  }
+}

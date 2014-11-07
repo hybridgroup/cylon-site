@@ -1,0 +1,21 @@
+.page-title {
+  background: #000;
+  padding: em(25) 0;
+
+  .title {
+    @include title-font(em(33), $color-red);
+    line-height: em(16);
+    margin: 0;
+  }
+
+  .subtitle {
+    @include title-font(em(21), white);
+    margin: 0;
+    line-height: em(18);
+    margin-top: em(7);
+  }
+
+  a {
+    @extend .hero-anchors;
+  }
+}

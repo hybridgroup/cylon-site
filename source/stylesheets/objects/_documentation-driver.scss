@@ -1,0 +1,96 @@
+.container-documentation {
+  .image-circuit {
+    @include span-columns(6 of 12);
+    img {
+      height: 300px;
+    }
+  }
+
+  .description-circuit {
+    @include span-columns(6 of 12);
+    float: right;
+  }
+
+  .commands-api {
+    h2 {
+      background: $color-red;
+      color: white;
+      padding: em(5) em(10);
+      font-size: em(16);
+      margin: em(20) 0 0 0;
+    }
+
+    h4 {
+      background: transparent;
+      font-size: em(15);
+      font-weight: normal;
+    }
+
+    h3 {
+      background: white;
+      padding: em(10);
+      margin: 0;
+      font-size: em(10);
+    }
+
+    h5 {
+      background: white;
+      padding: em(10);
+      margin: 0;
+      font-size: em(13);
+    }
+
+    pre {
+      background: white;
+      margin: 0;
+    }
+
+    p, ul{
+      background: white;
+      font-size: em(14);
+      margin: 0;
+      padding: em(10);
+      font-family: $font-code;
+    }
+
+    li {
+      margin-left: em(20);
+    }
+  }
+
+  .commands {
+    background: white;
+    font-size: em(14);
+
+    span {
+        font-family: $font-code;
+        font-size: em(14);
+        line-height: em(21);
+        background: #fafaf1;
+        border: 1px solid #ccc;
+        color: $font-color;
+        padding: em(5);
+    }
+
+    th {
+      background: $color-red;
+      color: white;
+    }
+
+    td {
+      border-bottom: 1px solid #d4d4d4;
+    }
+
+    .command {
+      font-family: $font-code;
+      font-weight: bold;
+      font-size: em(15);
+    }
+
+    .markdown span {
+      background:none;
+      border: none;
+      padding: 0;
+    }
+  }
+}

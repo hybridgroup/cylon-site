@@ -1,0 +1,22 @@
+.platform-list {
+  @include span-columns(12 of 12);
+  list-style: none;
+  margin: 0;
+
+  .platform {
+    @include span-columns(2.5 of 12);
+    @include omega;
+    display: inline-block;
+    float: none;
+    text-align: center;
+
+    a {
+      @extend %list-title;
+    }
+
+    @include media($tablet) {
+      @include span-columns(6 of 12);
+      @include omega;
+    }
+  }
+}

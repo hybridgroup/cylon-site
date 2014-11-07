@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/raspberry-pi.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Raspberry Pi is an inexpensive and popular ARM based single board computer with digital & PWM GPIO, and i2c interfaces built in.
 
@@ -23,13 +23,13 @@ subnavjs: true
       For more info about the Raspberry Pi platform, click [here](http://www.raspberrypi.org/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
         $ npm install cylon-raspi
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -50,7 +50,7 @@ subnavjs: true
         }).start();
 
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

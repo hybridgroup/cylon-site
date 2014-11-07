@@ -1,0 +1,142 @@
+.side-documentation {
+  @include span-columns(3 of 12);
+  background: $color-panel-sidebar;
+  border-radius: 5px;
+  margin-top: em(20);
+
+  @include media($tablet) {
+    @include span-columns(12 of 12);
+    height: auto;
+    margin-top: 0;
+    position: relative;
+  }
+
+  .mobile-menu {
+    background: $color-red;
+    text-align: right;
+    display: none;
+
+    @include media($tablet) {
+      display: block;
+    }
+
+    h1.sidebar-title {
+      color: white;
+      float: left;
+      font-weight: 400;
+      margin: em(6) 0 0 em(5);
+      padding: 0;
+    }
+
+    .active {
+      background: white;
+
+      .line {
+        background: $color-red;
+      }
+    }
+
+    a {
+      background-color: $color-anchor;
+      border-radius: 13px;
+      padding: em(10) em(12);
+      margin: em(5);
+      display: inline-block;
+
+      &:hover {
+        background: white;
+        cursor: pointer;
+
+        .line {
+          background: $color-red;
+        }
+      }
+
+      .line {
+        margin: em(5) 0 em(5);
+        background: white;
+      }
+    }
+  }
+
+  .docs-sidebar {
+    padding: 0 em(10);
+
+    @include media($tablet) {
+      margin: 0;
+      display: none;
+    }
+
+    &.show {
+      display: block;
+    }
+
+    @include media($tablet) {
+      z-index: 1;
+      position: relative;
+      background-color: $color-panel-sidebar;
+    }
+
+    > a, .section .name {
+      font-size: em(14);
+      font-weight: bold;
+      border-bottom: 1px solid $color-medium-light-grey;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    a, .name {
+      width: 100%;
+      display: block;
+      padding: em(10);
+      cursor: pointer;
+      color: #333;
+      position: relative;
+      z-index: 1;
+
+      &:hover {
+        color: $color-red;
+      }
+    }
+
+    .links a {
+      font-size: em(13);
+      color: $color-sidebar-link;
+      padding: em(5) em(10);
+
+      &:hover {
+        color:$color-red;
+      }
+    }
+
+    a.active {
+      font-weight: bold;
+      color: $color-red;
+    }
+
+    .section .links {
+      padding: em(10) 0 0 em(15);
+    }
+
+    .sub-section .links {
+      padding-left: em(20);
+    }
+
+    .section:before {
+      content: '▶';
+      float: right;
+      margin-top: em(13);
+      margin-right: em(10);
+      color: $color-arrow;
+      font-size: em(11);
+      position: relative;
+      z-index: 0;
+    }
+
+    .section.active:before {
+      content: '▼';
+    }
+  }
+}

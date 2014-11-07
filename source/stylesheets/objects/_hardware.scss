@@ -1,0 +1,36 @@
+.hardware {
+  .devices {
+    @include outer-container;
+    text-align: center;
+
+    h2 {
+      @include row();
+      text-align: left;
+    }
+
+    .group {
+      padding: em(50) 0;
+
+      &:not(:last-child) {
+        border-bottom: 10px solid darken($color-light-grey, 30);
+      }
+    }
+
+    .device {
+      display: inline-block;
+      width: 225px;
+
+      &:hover {
+        background: darken($color-light-grey, 30);
+
+        img {
+          opacity: .9;
+        }
+      }
+
+      img {
+          width: 100%;
+      }
+    }
+  }
+}

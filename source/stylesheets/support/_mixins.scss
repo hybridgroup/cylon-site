@@ -1,0 +1,12 @@
+@mixin title-font($size, $color) {
+
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: $size;
+  color: $color;
+}
+
+@mixin font($size, $height) {
+  font-size: $size;
+  line-height: $height;
+}
