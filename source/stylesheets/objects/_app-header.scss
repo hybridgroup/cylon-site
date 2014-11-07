@@ -1,18 +1,17 @@
 .app-header {
-    padding: em(9) 0 em(15) 0;
+    padding: em(9) 0 em(23) 0;
 
   &.hero-home{
-    background: url('/images/elements/back.png') $color-dark-red top center no-repeat;
+    background: url('/images/elements/back.png') $color-panel-header top center no-repeat;
     height: 478px;
   }
 
   &.section-nav {
-    background: url("/images/elements/back_menu_blur.png") #7d1627 no-repeat top center;
+    background: url("/images/elements/back_menu_blur.png") $color-panel-header no-repeat top center;
     background-size: cover;
   }
 
   .app-logo {
-
     a {
       @include span-columns(12 of 12);
       color: $color-red;

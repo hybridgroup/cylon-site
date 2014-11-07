@@ -32,8 +32,8 @@
   }
 
   .title {
-    @include font(em(35), em(19));
-    color: $color-title-hero;
+    @include title-font(em(35), $color-title-hero);
+    line-height: em(19);
     margin: 0;
 
     @include media($tablet) {
@@ -47,9 +47,9 @@
   }
 
   .subtitle {
-    @include font(em(20), em(30));
+    @include title-font(em(20), $color-title-hero);
     font-weight: 500;
-    color: $color-title-hero;
+    line-height: em(30);
     margin: em(4) 0 0;
 
     @include media($tablet) {
