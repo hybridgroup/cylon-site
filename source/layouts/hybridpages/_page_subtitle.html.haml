@@ -1,0 +1,15 @@
+- unless current_page.data.page_title_docs.nil?
+  .page-title-docs
+    .container
+      %h1.title= current_page.data.page_title_docs
+      - if content_for? :subtitle
+        %h2.subtitle= yield_content(:subtitle)
+
+- if current_page.data.subnav_driver == true
+  = partial "/layouts/hybridpages/subnav_drivers"
+
+- if current_page.data.subnav_platform == true
+  = partial "/layouts/hybridpages/subnav_platforms"
+
+- if current_page.data.subnav_nodriver_platform == true
+  = partial "/layouts/hybridpages/subnav_nodriver_platform"

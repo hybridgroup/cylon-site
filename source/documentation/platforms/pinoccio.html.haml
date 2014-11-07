@@ -14,20 +14,20 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/pinoccio.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       Build wireless, web-enabled projects in minutes.
 
       For more info about the Pinoccio platform click [here](https://pinocc.io/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
         $ npm install cylon-pinoccio
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -85,7 +85,7 @@ subnavjs: true
           }
         }).start();
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

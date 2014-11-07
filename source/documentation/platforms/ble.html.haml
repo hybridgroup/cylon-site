@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/ble.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       Bluetooth Low Energy (BLE) is a newer standard for communicating with Bluetooth devices.
       It's focused on lower cost and power consumption.

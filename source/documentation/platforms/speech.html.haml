@@ -14,14 +14,14 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/speech.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       eSpeak is a compact open source software speech synthesizer for English and other languages, for Linux and Windows.
 
       Learn more about eSpeak [here](http://espeak.sourceforge.net).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -67,7 +67,7 @@ subnavjs: true
 
         $ espeak "This is awesome, Windows OS speaking!"
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 

@@ -1,0 +1,155 @@
+.hero {
+  margin: em(55) 0 em(20) 0;
+
+  @include media($tablet) {
+   margin-top: em(15);
+  }
+
+  .content {
+    @include span-columns(7 of 12);
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+      text-align: center;
+    }
+  }
+
+  .display {
+    @include span-columns(5 of 12);
+
+    img {
+      @include span-columns(12 of 12);
+      margin-top: em(35);
+
+      @include media($design-edge) {
+        margin-top: em(85);
+      }
+    }
+
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  .title {
+    @include title-font(em(35), $color-title-hero);
+    line-height: em(19);
+    margin: 0;
+
+    @include media($tablet) {
+      @include font(em(27), em(16));
+      padding: 0;
+
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .subtitle {
+    @include title-font(em(20), $color-title-hero);
+    font-weight: 500;
+    line-height: em(30);
+    margin: em(4) 0 0;
+
+    @include media($tablet) {
+      @include font(em(18), em(22));
+    }
+  }
+
+  a {
+    @extend .hero-anchors;
+  }
+
+  .social {
+    line-height: 0;
+    padding: em(20) 0;
+  }
+
+  .twitter-follow-button {
+    vertical-align: top;
+  }
+
+  .splitter {
+    display: inline-block;
+  }
+
+  @include media($tablet) {
+    .splitter {
+      margin-bottom: em(14);
+    }
+
+    #twitter-widget-1{
+      display: none;
+    }
+
+    #twitter-widget-0{
+      width: 99px !important;
+    }
+
+    .fork{
+      display: none;
+    }
+  }
+
+  .animation{
+    @include animation(star 5s infinite linear);
+    @include animation-delay(1s);
+    background: url(/images/elements/shoot.png) top center no-repeat;
+    background-size: 7%;
+    height: 117px;
+    opacity:0;
+    position: absolute;
+    left: 526px;
+    top: -17px;;
+    width: 112px;
+
+    @include media($tablet) {
+      @include animation(none);
+      left: 0px;
+    }
+  }
+
+  @include keyframes(star) {
+
+    0% {
+      background-size:3%;
+      left: 100px;
+      top: 171px;
+      opacity: 1;
+    }
+    10% {
+      background-size:10%;
+      left: 205px;
+      top: 127px;
+      opacity: .9;
+    }
+    15%{
+      background-size:15%;
+      left: 258px;
+      top: 100px;
+      opacity: 1;
+    }
+    40% {
+      background: url(/images/elements/shoot.png) top center no-repeat;
+      background-size: 10%;
+      left: 526px;
+      top: -17px;
+      opacity: 0;
+    }
+    65%{
+      opacity: 0;
+    }
+    70% {
+      background: url(/images/elements/star.png) top center no-repeat;
+      background-size: 3%;
+      opacity: 1;
+    }
+    80%{
+      opacity:.4;
+    }
+    85%{
+      opacity:0;
+    }
+  }
+}

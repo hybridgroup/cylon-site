@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/opencv.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
 
       OpenCV is a real-time computer vision library.
@@ -26,7 +26,7 @@ subnavjs: true
       For more info about OpenCV click [here](http://opencv.org/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -81,7 +81,7 @@ subnavjs: true
         sudo make install
 
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
 
     ## How To Use

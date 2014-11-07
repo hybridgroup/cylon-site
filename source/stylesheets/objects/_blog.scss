@@ -1,0 +1,144 @@
+.blog{
+  padding: 0 em(15);
+
+  .articles {
+    @include span-columns(8 of 12);
+    padding-top: em(20);
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+
+    @include media($mobile) {
+      margin-right: 0;
+    }
+  }
+
+  .article {
+    margin-bottom: em(30);
+
+    img {
+      @include span-columns(12 of 12);
+    }
+
+    h3, h4, a {
+      color: $color-red;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
+  .article-title {
+    @include font(em(24), em(19));
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+  }
+
+  .header{
+    @include row();
+  }
+
+  .comments {
+    @include span-columns(12 of 12);
+    margin-bottom: em(15);
+  }
+
+  .comments, .tags {
+    display: inline-block;
+
+    a {
+      vertical-align: top;
+      text-decoration: underline;
+    }
+
+    img {
+      margin-right: em(4);
+    }
+  }
+
+  .img {
+    vertical-align: top;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .side-column {
+    @include span-columns(3 of 12);
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+  .categories, .network, .tweets, .titles {
+    vertical-align: top;
+    margin-bottom: em(20);
+
+    a {
+      color: black;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    h4 {
+      @include font(em(20), em(24));
+      color: $color-red;
+    }
+  }
+
+  .titles {
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    li {
+      font-size: em(13);
+      border-bottom: $color-magenta 1px solid;
+      padding: em(2) em(5);
+
+      &:hover {
+        background: $color-red;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .network {
+    img {
+      width: 30px;
+    }
+  }
+
+  .categories {
+    ul {
+      margin: 0;
+      list-style: none;
+
+      a {
+        color: black;
+        font-size: em(14);
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @include media($mobile-small) {
+    .twitter-share-button {
+      margin-bottom: em(10);
+    }
+  }
+}

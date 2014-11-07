@@ -20,3 +20,9 @@ active_menu_docs: true
         - val.each do |name, val|
           %a.device{href: "/documentation/drivers/#{val}", title: name}
             %img{src: "/images/devices/#{val}.jpg"}
+
+/* Redirect to plaforms page */
+:javascript
+  $(document).ready(function(){
+    window.location.replace("/documentation/platforms");
+  });

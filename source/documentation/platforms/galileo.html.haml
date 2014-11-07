@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/galileo.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Intel Galileo board is a microcontroller board based on the Intel Quark SoC X1000 application processor.
       It is intended to be compatible with shields designed for the Arduino Uno R3 or above.
@@ -22,7 +22,7 @@ subnavjs: true
       For more info about the Galileo platform click [here](http://www.intel.com/content/www/us/en/do-it-yourself/galileo-maker-quark-board.html).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -109,7 +109,7 @@ subnavjs: true
 
     Once `cylon-intel-iot` has been installed , you're ready to start programming!
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 

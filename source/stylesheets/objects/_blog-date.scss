@@ -1,0 +1,38 @@
+.dates {
+  color: white;
+  text-align: center;
+  margin-right: em(20);
+  float: left;
+  font-weight: 600;
+
+  @include media($mobile-large) {
+    margin-right: 0;
+    float: right;
+  }
+
+  .date-top{
+    padding: em(10);
+    background-color: black;
+  }
+
+  .month {
+    text-transform: uppercase;
+    font-size: em(14);
+    line-height: em(14);
+  }
+
+  .day {
+    font-size: em(24);
+    line-height: em(17);
+  }
+
+  .date-bottom {
+    padding: em(2);
+    background-color:  $color-red;
+  }
+
+  .year {
+    font-size: em(14);
+    line-height: em(16);
+  }
+}
