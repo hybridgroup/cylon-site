@@ -1,0 +1,90 @@
+.app-footer {
+  @include span-columns( 12 of 12);
+  background: black;
+  color: white;
+  margin-top: em(-533);
+  position: relative;
+  overflow: hidden;
+
+  .background-footer {
+    background: url(/images/elements/space.jpg) black center center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .frameworks {
+    padding: em(50) 0;
+
+    h4 {
+      color: white;
+    }
+  }
+
+  .column-footer {
+    @include span-columns(3 of 9.5, block-collapse);
+    text-align: center;
+    float: left;
+    padding: em(20);
+    z-index: 0;
+    position: relative;
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+  .display {
+    max-width: 144px;
+  }
+
+  .button-footer {
+    @extend .button-black;
+  }
+
+  .copyright {
+    clear: both;
+    border-top: solid 1px $color-red;
+    padding: em(20) 0;
+    position: relative;
+    z-index: 0;
+  }
+
+  .hybrid-group {
+    float: left;
+    span{
+      vertical-align: text-top;
+    }
+  }
+
+  #THG-logo {
+    img {
+      margin-bottom: em(-15);
+      width: 150px;
+      padding: em(5);
+
+      &:hover {
+        background: darken($color-red, 5);
+      }
+    }
+  }
+
+  .top-link {
+    float: right;
+    text-align: right;
+
+    a {
+      color: white;
+
+      p {
+        text-align: center;
+        margin: 0;
+      }
+
+      &:hover {
+        color: $color-light-grey;
+      }
+    }
+  }
+}

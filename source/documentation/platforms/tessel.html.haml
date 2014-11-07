@@ -14,8 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/tessel.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
-
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       Tessel runs JavasScript - no server necessary.
       Just like web or mobile development, you can use your own IDE and libraries to program hardware.
@@ -28,7 +27,7 @@ subnavjs: true
 
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How to install
 
@@ -44,7 +43,7 @@ subnavjs: true
 
     If the blue light starts to blink, then you're all set!
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How to use
 
@@ -94,7 +93,7 @@ subnavjs: true
           }
         }).start();
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How to Connect
 

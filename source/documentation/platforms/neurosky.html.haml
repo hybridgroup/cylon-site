@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/neurosky.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       NeuroSky delivers fully integrated, single chip EEG biosensors.
       NeuroSky enables its partners and developers to bring their brainwave application ideas to market with the shortest amount of time, and lowest end consumer price.
@@ -22,13 +22,13 @@ subnavjs: true
       For more info about the Neurosky platform click [here](http://neurosky.com/products-markets/eeg-biosensors/hardware/).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
         $ npm install cylon-neurosky
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -58,7 +58,7 @@ subnavjs: true
         }).start();
 
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

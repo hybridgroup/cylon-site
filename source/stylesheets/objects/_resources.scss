@@ -1,0 +1,40 @@
+.resources {
+  padding: 0 em(15);
+
+  .video {
+    @include span-columns(6 of 12);
+    margin: .5%;
+
+    .video-description {
+      font:700 16px/22px $font-primary;
+    }
+
+    iframe, object {
+      @include span-columns(12 of 12);
+      height: 300px;
+    }
+
+    @include media($design-edge) {
+      iframe, object {
+        height: 240px;
+      }
+    }
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+  .external-link span{
+    text-decoration: underline;
+    color: $color-anchor-hover;
+
+    &:hover{
+      color: $color-red;
+    }
+  }
+
+  &:last-child{
+    padding-bottom: em(40);
+  }
+}

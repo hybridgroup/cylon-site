@@ -1,7 +1,10 @@
 .w
   %header.app-header{role: "banner"}
     .display
-      = partial "/hybridpages/partials/layouts/app-logo"
+      %h1.app-logo
+        = yield_content :logo
+      %span.subtitle
+        = yield_content :logo_subtitle
 
     %span.menu
       = yield_content :menu

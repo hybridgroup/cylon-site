@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/edison.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Intel Edison is a wifi and Bluetooth® enabled devolopment platform for the 
       Internet of Things. It packs a robust set of features into its small size and supports 
@@ -24,7 +24,7 @@ subnavjs: true
       [here](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -51,7 +51,7 @@ subnavjs: true
     Once `cylon-intel-iot` has been installed on your Edison, you're ready to start
     programming!
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -69,7 +69,7 @@ subnavjs: true
           }
         }).start();
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

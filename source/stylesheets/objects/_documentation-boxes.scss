@@ -1,0 +1,41 @@
+.documentation-boxes {
+  @include span-columns(12 of 12);
+
+  @include media($tablet) {
+    padding-top: em(20);
+  }
+
+  .box {
+    @include span-columns(3 of 9.5);
+    background: $color-panel-documentation-box;
+    margin-bottom: em(20);
+    border-radius: 2px;
+
+    &:hover {
+      background: $color-panel-documentation-box-header;
+    }
+
+    @include media($tablet) {
+      @include span-columns(12 of 12);
+    }
+  }
+
+  a {
+    @include span-columns(12 of 12);
+    height: 100%;
+    display: block;
+  }
+
+  .title {
+    color: white;
+    font-weight: bold;
+    background: $color-panel-documentation-box-header;
+    padding: em(5) em(10);
+  }
+
+  .description {
+    color: white;
+    font-size: em(13);
+    padding: em(10);
+  }
+}

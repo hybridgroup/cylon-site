@@ -4,16 +4,24 @@
 
     - if nested # specific GPIO/I2C drivers
       - value = value[name]
-      %a.device{href:"/documentation/drivers/#{value}", title: name}
-        %img{src: "/images/devices/#{value}.jpg"}
+      .compatability-link
+        %a{href:"/documentation/drivers/#{value}", title: name}
+          %p.title=name
+          %img{src: "/images/devices/#{value}.jpg", style: "width: 100%"}
 
     - if key == name
       - if value.is_a?(Hash)
+        .clear
         %h2= "#{name} Drivers"
-        - data.drivers[name].each do |name, slug|
-          %a.device{href:"/documentation/drivers/#{slug}", title: name}
-            %img{src: "/images/devices/#{slug}.jpg"}
+        %section
+          - data.drivers[name].each do |name, slug|
+            .compatability-link
+              %a{href:"/documentation/drivers/#{slug}", title: name}
+                %p.title=name
+                %img{src: "/images/devices/#{slug}.jpg", style: "width: 100%"}
 
       - else
-        %a.device{href:"/documentation/drivers/#{value}", title: key}
-          %img{src: "/images/devices/#{value}.jpg"}
+        .compatability-link
+          %a{href:"/documentation/drivers/#{value}", title: key}
+            %p.title=name
+            %img{src: "/images/devices/#{value}.jpg", style: "width: 100%"}

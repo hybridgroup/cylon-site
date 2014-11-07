@@ -14,14 +14,14 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/hue.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Phillips Hue is a wireless lighting system, that consists of a base station, and 1 or more LED lights controlled by the built-in Zigbee radios.
 
       For more info about the Phillips Hue click [here](http://meethue.com).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -37,7 +37,7 @@ subnavjs: true
 
     Lastly, you need to know the ID for each light bulb that you want to control. You can do this by using the JS file located at `examples/bridge_state.js`.
       
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 

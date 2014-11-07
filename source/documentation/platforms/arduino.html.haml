@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/arduino.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       Arduino is an open-source electronics prototyping platform based on flexible, easy-to-use hardware and software.
       It's intended for artists, designers, hobbyists and anyone interested in creating interactive objects or environments.
@@ -23,14 +23,14 @@ subnavjs: true
 
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
     Installing Cylon.js with Arduino support is pretty easy.
 
         $ npm install cylon-firmata
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -54,7 +54,7 @@ subnavjs: true
           }
         }).start();
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

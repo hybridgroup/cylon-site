@@ -14,7 +14,7 @@ subnavjs: true
 %section.intro
   = image_tag "/images/devices/digispark.jpg", class: "display"
   .info-intro
-    = partial '/hybridpages/partials/widgets/repo_issues'
+    %h4.subtitle= current_page.data.page_subtitle_docs
     :markdown
       The Digispark is an Attiny85 based microcontroller development board similar to the Arduino line, only cheaper, smaller, and a bit less powerful.
       With a whole host of shields to extend its functionality and the ability to use the familiar Arduino IDE, the Digispark is a great way to jump into electronics, or perfect for when an Arduino is too big or too much.
@@ -22,7 +22,7 @@ subnavjs: true
       For more info about the Digispark platform click [here](http://digistump.com/category/1).
   .clear
 
-%section.how-to#HowToInstall
+%section#HowToInstall
   :markdown
     ## How To Install
 
@@ -44,7 +44,7 @@ subnavjs: true
 
     If you're experiencing the `AttributeError: 'module' object has no attribute 'script_main'` build issue, then please refer to this [comment](https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812)
 
-%section.how-to#HowToUse
+%section#HowToUse
   :markdown
     ## How To Use
 
@@ -63,7 +63,7 @@ subnavjs: true
         }).start();
 
 
-%section.how-to#HowToConnect
+%section#HowToConnect
   :markdown
     ## How To Connect
 

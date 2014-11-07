@@ -10,9 +10,9 @@ active_menu_platforms: true
 main_nav: true
 ---
 
-%ul.doc-platform
+%ul.platform-list
   - data.platforms.each do |name, info|
-    %li
+    %li.platform
       %a{:href => "/documentation/platforms/#{info.slug}"}
         %p.title= name
         %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
