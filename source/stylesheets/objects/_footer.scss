@@ -35,11 +35,8 @@
     }
   }
 
-  .img {
-    height: 150px;
-    img{
-      max-width: 144px;
-    }
+  .display {
+    max-width: 144px;
   }
 
   .button-footer {
@@ -65,7 +62,7 @@
     img {
       margin-bottom: em(-15);
       width: 150px;
-      padding: 5px;
+      padding: em(5);
 
       &:hover {
         background: darken($color-red, 5);
