@@ -2070,151 +2070,7 @@ a:hover, a:focus {
 
 /* line 1, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
 .hero {
-  margin: 3.4375em 0 1.25em 0;
-  @-webkit-keyframes star {
-    /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    0% {
-      background-size: 3%;
-      left: 100px;
-      top: 171px;
-      opacity: 1; }
-
-    /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    10% {
-      background-size: 10%;
-      left: 205px;
-      top: 127px;
-      opacity: .9; }
-
-    /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    15% {
-      background-size: 15%;
-      left: 258px;
-      top: 100px;
-      opacity: 1; }
-
-    /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    40% {
-      background: url(/images/elements/shoot.png) top center no-repeat;
-      background-size: 10%;
-      left: 526px;
-      top: -17px;
-      opacity: 0; }
-
-    /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    65% {
-      opacity: 0; }
-
-    /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    70% {
-      background: url(/images/elements/star.png) top center no-repeat;
-      background-size: 3%;
-      opacity: 1; }
-
-    /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    80% {
-      opacity: .4; }
-
-    /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    85% {
-      opacity: 0; } }
-
-  @-moz-keyframes star {
-    /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    0% {
-      background-size: 3%;
-      left: 100px;
-      top: 171px;
-      opacity: 1; }
-
-    /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    10% {
-      background-size: 10%;
-      left: 205px;
-      top: 127px;
-      opacity: .9; }
-
-    /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    15% {
-      background-size: 15%;
-      left: 258px;
-      top: 100px;
-      opacity: 1; }
-
-    /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    40% {
-      background: url(/images/elements/shoot.png) top center no-repeat;
-      background-size: 10%;
-      left: 526px;
-      top: -17px;
-      opacity: 0; }
-
-    /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    65% {
-      opacity: 0; }
-
-    /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    70% {
-      background: url(/images/elements/star.png) top center no-repeat;
-      background-size: 3%;
-      opacity: 1; }
-
-    /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    80% {
-      opacity: .4; }
-
-    /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    85% {
-      opacity: 0; } }
-
-  @keyframes star {
-    /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    0% {
-      background-size: 3%;
-      left: 100px;
-      top: 171px;
-      opacity: 1; }
-
-    /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    10% {
-      background-size: 10%;
-      left: 205px;
-      top: 127px;
-      opacity: .9; }
-
-    /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    15% {
-      background-size: 15%;
-      left: 258px;
-      top: 100px;
-      opacity: 1; }
-
-    /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    40% {
-      background: url(/images/elements/shoot.png) top center no-repeat;
-      background-size: 10%;
-      left: 526px;
-      top: -17px;
-      opacity: 0; }
-
-    /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    65% {
-      opacity: 0; }
-
-    /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    70% {
-      background: url(/images/elements/star.png) top center no-repeat;
-      background-size: 3%;
-      opacity: 1; }
-
-    /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    80% {
-      opacity: .4; }
-
-    /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
-    85% {
-      opacity: 0; } }
- }
+  margin: 3.4375em 0 1.25em 0; }
   @media screen and (max-width: 768px) {
     /* line 1, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
     .hero {
@@ -2343,6 +2199,150 @@ a:hover, a:focus {
         -moz-animation: none;
         animation: none;
         left: 0px; } }
+
+@-webkit-keyframes star {
+  /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  0% {
+    background-size: 3%;
+    left: 100px;
+    top: 171px;
+    opacity: 1; }
+
+  /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  10% {
+    background-size: 10%;
+    left: 205px;
+    top: 127px;
+    opacity: .9; }
+
+  /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  15% {
+    background-size: 15%;
+    left: 258px;
+    top: 100px;
+    opacity: 1; }
+
+  /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  40% {
+    background: url(/images/elements/shoot.png) top center no-repeat;
+    background-size: 10%;
+    left: 526px;
+    top: -17px;
+    opacity: 0; }
+
+  /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  65% {
+    opacity: 0; }
+
+  /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  70% {
+    background: url(/images/elements/star.png) top center no-repeat;
+    background-size: 3%;
+    opacity: 1; }
+
+  /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  80% {
+    opacity: .4; }
+
+  /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  85% {
+    opacity: 0; } }
+
+@-moz-keyframes star {
+  /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  0% {
+    background-size: 3%;
+    left: 100px;
+    top: 171px;
+    opacity: 1; }
+
+  /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  10% {
+    background-size: 10%;
+    left: 205px;
+    top: 127px;
+    opacity: .9; }
+
+  /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  15% {
+    background-size: 15%;
+    left: 258px;
+    top: 100px;
+    opacity: 1; }
+
+  /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  40% {
+    background: url(/images/elements/shoot.png) top center no-repeat;
+    background-size: 10%;
+    left: 526px;
+    top: -17px;
+    opacity: 0; }
+
+  /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  65% {
+    opacity: 0; }
+
+  /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  70% {
+    background: url(/images/elements/star.png) top center no-repeat;
+    background-size: 3%;
+    opacity: 1; }
+
+  /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  80% {
+    opacity: .4; }
+
+  /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  85% {
+    opacity: 0; } }
+
+@keyframes star {
+  /* line 115, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  0% {
+    background-size: 3%;
+    left: 100px;
+    top: 171px;
+    opacity: 1; }
+
+  /* line 121, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  10% {
+    background-size: 10%;
+    left: 205px;
+    top: 127px;
+    opacity: .9; }
+
+  /* line 127, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  15% {
+    background-size: 15%;
+    left: 258px;
+    top: 100px;
+    opacity: 1; }
+
+  /* line 133, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  40% {
+    background: url(/images/elements/shoot.png) top center no-repeat;
+    background-size: 10%;
+    left: 526px;
+    top: -17px;
+    opacity: 0; }
+
+  /* line 140, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  65% {
+    opacity: 0; }
+
+  /* line 143, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  70% {
+    background: url(/images/elements/star.png) top center no-repeat;
+    background-size: 3%;
+    opacity: 1; }
+
+  /* line 148, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  80% {
+    opacity: .4; }
+
+  /* line 151, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_hero.scss */
+  85% {
+    opacity: 0; } }
 
 /* line 1, /home/nathan/Documents/cylon-site/source/stylesheets/objects/_platform-list.scss */
 .platform-list {
