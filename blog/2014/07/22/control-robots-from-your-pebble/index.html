@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="Javier Cervantes" name="author">
     <title>Control Robots From Your Pebble</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,117 +47,117 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a class="active" href="/blog">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </div>
+    <div class="app-content">
       <div class="page-title">
-        <div class="w">
+        <div class="container">
           <h1 class="title">Blog</h1>
         </div>
       </div>
-      <div class="container">
-        
-        <div class="main blog" role="main">
-          <div class="articles">
-            <div class="article">
-              <header class="header">
-                <div class="date">
-                  <div class="blue">
-                    <div class="month">
-                      Jul
-                    </div>
-                    <div class="day">
-                      22
-                    </div>
-                  </div>
-                  <div class="red">
-                    <div class="year">
-                      2014
-                    </div>
-                  </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <header class="header">
+            <div class="dates">
+              <div class="date-top">
+                <div class="month">
+                  Jul
                 </div>
-                <div class="data">
-                  <h3>
-                    <a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a>
-                  </h3>
-                  <div class="author">
-                    by Javier Cervantes
-                  </div>
+                <div class="day">
+                  22
                 </div>
-              </header>
-              <p>Have you ever wanted to control robots from your wrist? This is now possible, thanks to Cylon.js support for the <a href="https://getpebble.com/">Pebble</a> smart watch.</p>
-              
-              <p>Using Cylon and a Pebble app that we have created called <a href="http://watchbot.io/">WatchBot</a> app, you can very easily send notifications, receive events, and access accelerometer data.</p>
-              
-              <h3 id="how-does-it-work">How Does It Work?</h3>
-              
-              <p>Once you've loaded WatchBot onto your Pebble watch, the app can communicate directly with the Cylon API, and use this to send commands and receive events from your connected devices.</p>
-              
-              <p><img alt="watchbot" src="http://watchbot.io/images/infographic.png"></p>
-              
-              <h3 id="get-started">Get Started</h3>
-              
-              <p>Getting started with Cylon.js and Pebble is easy, all you need to do is install the cylon-pebble module:</p>
-              
-              <pre class="CodeRay">$ npm install cylon-pebble
+              </div>
+              <div class="date-bottom">
+                <div class="year">
+                  2014
+                </div>
+              </div>
+            </div>
+            <h3 class="article-title">
+              <a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a>
+              <br>
+            </h3>
+            <div class="author">
+              by Javier Cervantes
+            </div>
+          </header>
+          <p>Have you ever wanted to control robots from your wrist? This is now possible, thanks to Cylon.js support for the <a href="https://getpebble.com/">Pebble</a> smart watch.</p>
+          
+          <p>Using Cylon and a Pebble app that we have created called <a href="http://watchbot.io/">WatchBot</a> app, you can very easily send notifications, receive events, and access accelerometer data.</p>
+          
+          <h3 id="how-does-it-work">How Does It Work?</h3>
+          
+          <p>Once you've loaded WatchBot onto your Pebble watch, the app can communicate directly with the Cylon API, and use this to send commands and receive events from your connected devices.</p>
+          
+          <p><img alt="watchbot" src="http://watchbot.io/images/infographic.png"></p>
+          
+          <h3 id="get-started">Get Started</h3>
+          
+          <p>Getting started with Cylon.js and Pebble is easy, all you need to do is install the cylon-pebble module:</p>
+          
+          <pre class="CodeRay">$ npm install cylon-pebble
 </pre>
-              
-              <h3 id="install-watchbot">Install Watchbot</h3>
-              
-              <p>With that done, download WatchBot from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.</p>
-              
-              <p><a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004"><img alt="watchbot-appstore" src="/images/blog/2014-07-22/watchbot_appstore.png"></a></p>
-              
-              <h3 id="configuration">Configuration</h3>
-              
-              <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's
-              Pebble app. Once there, configure the following settings:</p>
-              
-              <ul>
-                <li>
+          
+          <h3 id="install-watchbot">Install Watchbot</h3>
+          
+          <p>With that done, download WatchBot from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.</p>
+          
+          <p><a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004"><img alt="watchbot-appstore" src="/images/blog/2014-07-22/watchbot_appstore.png"></a></p>
+          
+          <h3 id="configuration">Configuration</h3>
+          
+          <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's
+          Pebble app. Once there, configure the following settings:</p>
+          
+          <ul>
+            <li>
 <strong>robot name:</strong> leave this blank.</li>
-                <li>
+            <li>
 <strong>robot api host:</strong> IP address of the computer that will be running the Cylon API.</li>
-                <li>
+            <li>
 <strong>robot api port:</strong> port number for the Cylon API</li>
-                <li>
+            <li>
 <strong>publish command:</strong> leave this blank</li>
-                <li>
+            <li>
 <strong>message command:</strong> leave this blank</li>
-                <li>
+            <li>
 <strong>accelerometer:</strong> leave this unchecked.</li>
-              </ul>
-              
-              <p><img alt="watchbot-config" src="/images/blog/2014-07-22/watchbot_config.png"></p>
-              
-              <h3 id="examples">Examples</h3>
-              
-              <p>Here's a simple example of a Cylon robot your Pebble can talk to:</p>
-              
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+          </ul>
+          
+          <p><img alt="watchbot-config" src="/images/blog/2014-07-22/watchbot_config.png"></p>
+          
+          <h3 id="examples">Examples</h3>
+          
+          <p>Here's a simple example of a Cylon robot your Pebble can talk to:</p>
+          
+          <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.api({
   <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
@@ -183,12 +183,12 @@ Cylon.robot({
   }
 }).start();
 </pre>
-              
-              <p>Re-open the WatchBot app on your Pebble (to update it with the new settings), and run this example. Your Pebble will now get a notification, and Cylon will log when your Pebble registers a button press or tap.</p>
-              
-              <p>For more fun, let's track accelerometer data from the Pebble with Cylon:</p>
-              
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+          
+          <p>Re-open the WatchBot app on your Pebble (to update it with the new settings), and run this example. Your Pebble will now get a notification, and Cylon will log when your Pebble registers a button press or tap.</p>
+          
+          <p>For more fun, let's track accelerometer data from the Pebble with Cylon:</p>
+          
+          <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.api({
   <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
@@ -209,87 +209,85 @@ Cylon.robot({
 
 }).start();
 </pre>
-              
-              <p>Before running this example, be sure to go to the WatchBot settings, turn accelerometer support on, and reopen WatchApp.</p>
-              
-              <p>When you run this example, Cylon will begin logging your Pebble's accelerometer data to the screen.</p>
-              
-              <p>This is just the start. Now your Pebble can be used to interact with any of the many other hardware and software platforms that Cylon.js currently supports. For more info about the Pebble support, please check out the <a href="http://cylonjs.com/documentation/platforms/pebble">docs</a>. And check out the <a href="http://cylonjs.com/documentation/platforms">platforms</a> page for info on the other hardware we support.</p>
-              
-              <p>Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - <a href="https://twitter.com/cylonjs">@CylonJS</a></p>
+          
+          <p>Before running this example, be sure to go to the WatchBot settings, turn accelerometer support on, and reopen WatchApp.</p>
+          
+          <p>When you run this example, Cylon will begin logging your Pebble's accelerometer data to the screen.</p>
+          
+          <p>This is just the start. Now your Pebble can be used to interact with any of the many other hardware and software platforms that Cylon.js currently supports. For more info about the Pebble support, please check out the <a href="http://cylonjs.com/documentation/platforms/pebble">docs</a>. And check out the <a href="http://cylonjs.com/documentation/platforms">platforms</a> page for info on the other hardware we support.</p>
+          
+          <p>Build something cool? Want to let us know? Just want to see what we're up to? Follow us on Twitter - <a href="https://twitter.com/cylonjs">@CylonJS</a></p>
+          <div class="comments">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+              <a class="addthis_button_preferred_2"></a>
+              <a class="addthis_button_preferred_3"></a>
+              <a class="addthis_button_preferred_1"></a>
+              <a class="addthis_button_preferred_4"></a>
+              <a class="addthis_button_compact"></a>
+              <a class="addthis_counter addthis_bubble_style"></a>
             </div>
-            <div class="comments">
-              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <a class="addthis_button_preferred_1"></a>
-                <a class="addthis_button_preferred_4"></a>
-                <a class="addthis_button_compact"></a>
-                <a class="addthis_counter addthis_bubble_style"></a>
-              </div>
-              <div id="disqus_thread"></div>
-              <noscript>
-                Please enable JavaScript to view the
-                <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-              </noscript>
-              <a class="dsq-brlink" href="http://disqus.com">
-                comments powered by
-                <span class="logo-disqus">Disqus</span>
-              </a>
+            <div id="disqus_thread"></div>
+            <noscript>
+              Please enable JavaScript to view the
+              <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <a class="dsq-brlink" href="http://disqus.com">
+              comments powered by
+              <span class="logo-disqus">Disqus</span>
+            </a>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
             </div>
           </div>
-          <div class="side-column">
-            <div class="categories">
-              <h4>Tags</h4>
-              <ul>
-                <li><a href="/blog/tags/robots/">Robots</a></li>
-                <li><a href="/blog/tags/events/">Events</a></li>
-              </ul>
-            </div>
-            <div class="network">
-              <h4>Network</h4>
-              <div class="network-links">
-                <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
-                <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
-              </div>
-            </div>
-            <div class="titles">
-              <h4>Posts</h4>
-              <ul>
-                <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
-                <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
-                <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
-                <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
-                <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
-                <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
-                <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
-                <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
-                <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
-                <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
-                <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
-                <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
-                <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
-                <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
-                <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
-                <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
-                <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
-                <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
-                <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
-                <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
-                <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
-                <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
-                <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
-                <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
-                <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
-                <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
-                <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
-                <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
-                <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
-                <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
-                <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
-                <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
-              </ul>
-            </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
+              <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
+              <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
+              <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
+              <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
+              <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
+              <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+              <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
+              <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+              <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
+              <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+              <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
+              <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
+              <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
+              <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
+              <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
+              <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
+              <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
+              <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
+              <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
+              <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
+              <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
+              <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
+              <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
+              <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
+              <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
+              <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
+              <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
+              <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
+              <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
+              <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
+              <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -298,47 +296,47 @@ Cylon.robot({
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>
@@ -349,6 +347,6 @@ Cylon.robot({
       </div>
     </div>
   </body>
-  <script src="/hybridpages/assets/javascript/disqus.js"></script>
+  <script src="/javascripts/disqus.js"></script>
   <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564" type="text/javascript"></script>
 </html>

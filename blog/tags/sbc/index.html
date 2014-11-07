@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Cylon.js Blog</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,111 +47,109 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a class="active" href="/blog">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </div>
+    <div class="app-content">
       <div class="page-title">
-        <div class="w">
+        <div class="container">
           <h1 class="title">Blog</h1>
           <h2 class="subtitle">Articles tagged with “SBC”</h2>
         </div>
       </div>
-      <div class="container">
-        
-        <div class="main blog" role="main">
-          <div class="articles">
-            <div class="article">
-              <div class="article">
-                <header class="header">
-                  <div class="date">
-                    <div class="blue">
-                      <div class="month">
-                        Jul
-                      </div>
-                      <div class="day">
-                        14
-                      </div>
-                    </div>
-                    <div class="red">
-                      <div class="year">
-                        2014
-                      </div>
-                    </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
+                    Jul
                   </div>
-                  <div class="data">
-                    <h3>
-                      <a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a>
-                    </h3>
-                    <div class="author">
-                      by Edgar Silva
-                    </div>
+                  <div class="day">
+                    14
                   </div>
-                </header>
-                <p>We are happy to announce support for the <a href="http://www.intel.com/content/www/us/en/intelligent-systems/galileo/galileo-overview.html">Intel Galileo</a> an Arduino compatible microcontroller/SBC (Single Board Computer).</p>
-                
-                <p>The Galileo has the advantage of running on a Intel Quark SoC X1000 application processor, a 32-bit Intel Pentium brand system on a chip (SoC), and being able to run a bigger Linux image that lets you access the full Linux distro.</p>
-                
-                <p>Cylon support is based on the bigger Linux image being installed on the Galileo, which lets you use the Galileo as an independent SBC device.</p>
-                
-                <p>For the first release we have support for GPIO, digital I/O and analog I/O; and we are already working on the next release that will add I2C support, increasing the number of compatible devices supported by the Galileo.</p>
-                
-                <p>You can check all the details and docs regarding Galileo support on <a href="http://cylonjs.com/documentation/platforms/galileo/">Cylon.JS: Galileo</a>.</p>
-                
-                <p>Cylon.js makes developing for the Galileo easy and fun! Cylon.JS supports 21 different hardware platforms, with more being added all the time. Give us a shout on <a href="https://twitter.com/CylonJS">twitter</a> and make sure to check the docs for more info on <a href="http://cylonjs.com/documentation/platforms/">supported platforms</a> in <a href="http://cylonjs.com">Cylon.JS</a>.</p>
-                <div class="tags">
-                  <div class="img">
-                    <img src="/images/elements/tag.png">
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2014
                   </div>
-                  <a href="/blog/tags/robots/">robots</a>
-                  <a href="/blog/tags/sbc/">SBC</a>
                 </div>
               </div>
+              <h3 class="article-title">
+                <a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Edgar Silva
+              </div>
+            </header>
+            <p>We are happy to announce support for the <a href="http://www.intel.com/content/www/us/en/intelligent-systems/galileo/galileo-overview.html">Intel Galileo</a> an Arduino compatible microcontroller/SBC (Single Board Computer).</p>
+            
+            <p>The Galileo has the advantage of running on a Intel Quark SoC X1000 application processor, a 32-bit Intel Pentium brand system on a chip (SoC), and being able to run a bigger Linux image that lets you access the full Linux distro.</p>
+            
+            <p>Cylon support is based on the bigger Linux image being installed on the Galileo, which lets you use the Galileo as an independent SBC device.</p>
+            
+            <p>For the first release we have support for GPIO, digital I/O and analog I/O; and we are already working on the next release that will add I2C support, increasing the number of compatible devices supported by the Galileo.</p>
+            
+            <p>You can check all the details and docs regarding Galileo support on <a href="http://cylonjs.com/documentation/platforms/galileo/">Cylon.JS: Galileo</a>.</p>
+            
+            <p>Cylon.js makes developing for the Galileo easy and fun! Cylon.JS supports 21 different hardware platforms, with more being added all the time. Give us a shout on <a href="https://twitter.com/CylonJS">twitter</a> and make sure to check the docs for more info on <a href="http://cylonjs.com/documentation/platforms/">supported platforms</a> in <a href="http://cylonjs.com">Cylon.JS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+              <a href="/blog/tags/sbc/">SBC</a>
             </div>
           </div>
-          <div class="side-column">
-            <div class="categories">
-              <h4>Tags</h4>
-              <ul>
-                <li><a href="/blog/tags/robots/">Robots</a></li>
-                <li><a href="/blog/tags/events/">Events</a></li>
-              </ul>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
             </div>
-            <div class="network">
-              <h4>Network</h4>
-              <div class="network-links">
-                <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
-                <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
-              </div>
-            </div>
-            <div class="titles">
-              <h4>Posts</h4>
-              <ul>
-                <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
-              </ul>
-            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -160,47 +158,47 @@
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="Javier Cervantes and Andrew Stewart" name="author">
     <title>Running Robots From Your Browser With Cylon.js</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,102 +47,102 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a class="active" href="/blog">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </div>
+    <div class="app-content">
       <div class="page-title">
-        <div class="w">
+        <div class="container">
           <h1 class="title">Blog</h1>
         </div>
       </div>
-      <div class="container">
-        
-        <div class="main blog" role="main">
-          <div class="articles">
-            <div class="article">
-              <header class="header">
-                <div class="date">
-                  <div class="blue">
-                    <div class="month">
-                      Nov
-                    </div>
-                    <div class="day">
-                      05
-                    </div>
-                  </div>
-                  <div class="red">
-                    <div class="year">
-                      2014
-                    </div>
-                  </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <header class="header">
+            <div class="dates">
+              <div class="date-top">
+                <div class="month">
+                  Nov
                 </div>
-                <div class="data">
-                  <h3>
-                    <a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a>
-                  </h3>
-                  <div class="author">
-                    by Javier Cervantes and Andrew Stewart
-                  </div>
+                <div class="day">
+                  05
                 </div>
-              </header>
-              <p><img src="/images/blog/cylon-chrome-app-demo.jpg" width="640" height="396"></p>
-              
-              <p>Ever thought about controlling robots directly from your browser?
-              With the latest release of Cylon.js, we make it easy to control robots and connected devices from your own browser-based and mobile applications.</p>
-              
-              <p>For now, in-browser support is limited to a few modules, due to browser sandboxing.
-              JS running in a normal browser can't, for instance, talk directly to Bluetooth or a serial port. 
-              You CAN however do this if you are running Cylon.js in a Chrome application.</p>
-              
-              <p>However, if a Cylon.js browser communicates with hardware over the network, it will work from within any browser without a hitch.
-              For example, the <code>cylon-ardrone</code>, <code>cylon-spark</code>, <code>cylon-leapmotion</code>, <code>cylon-hue</code> and more are supported already.</p>
-              
-              <p>In this example, we're going to blink the LED on a <a href="https://www.spark.io/dev-kits">Spark Core</a> from Cylon.js running in a regular browser.</p>
-              
-              <h3 id="create">Create</h3>
-              
-              <p>In a new folder, use NPM to install <code>cylon-spark</code>:</p>
-              
-              <p>$ npm install cylon-spark</p>
-              
-              <p>Once that's installed copy this Cylon.js program to <code>script.js</code>.
-              Add your Spark Core's <code>accessToken</code> and <code>deviceId</code>.</p>
-              
-              <p>You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>:</p>
-              
-              <ul>
-                <li>
+              </div>
+              <div class="date-bottom">
+                <div class="year">
+                  2014
+                </div>
+              </div>
+            </div>
+            <h3 class="article-title">
+              <a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a>
+              <br>
+            </h3>
+            <div class="author">
+              by Javier Cervantes and Andrew Stewart
+            </div>
+          </header>
+          <p><img src="/images/blog/cylon-chrome-app-demo.jpg" width="640" height="396"></p>
+          
+          <p>Ever thought about controlling robots directly from your browser?
+          With the latest release of Cylon.js, we make it easy to control robots and connected devices from your own browser-based and mobile applications.</p>
+          
+          <p>For now, in-browser support is limited to a few modules, due to browser sandboxing.
+          JS running in a normal browser can't, for instance, talk directly to Bluetooth or a serial port. 
+          You CAN however do this if you are running Cylon.js in a Chrome application.</p>
+          
+          <p>However, if a Cylon.js browser communicates with hardware over the network, it will work from within any browser without a hitch.
+          For example, the <code>cylon-ardrone</code>, <code>cylon-spark</code>, <code>cylon-leapmotion</code>, <code>cylon-hue</code> and more are supported already.</p>
+          
+          <p>In this example, we're going to blink the LED on a <a href="https://www.spark.io/dev-kits">Spark Core</a> from Cylon.js running in a regular browser.</p>
+          
+          <h3 id="create">Create</h3>
+          
+          <p>In a new folder, use NPM to install <code>cylon-spark</code>:</p>
+          
+          <p>$ npm install cylon-spark</p>
+          
+          <p>Once that's installed copy this Cylon.js program to <code>script.js</code>.
+          Add your Spark Core's <code>accessToken</code> and <code>deviceId</code>.</p>
+          
+          <p>You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>:</p>
+          
+          <ul>
+            <li>
 <code>accessToken</code>: In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.</li>
-                <li>
+            <li>
 <code>deviceId</code>: After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.</li>
-              </ul>
-              
-              <p>Make sure to add these to the script, or it won't work.</p>
-              
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+          </ul>
+          
+          <p>Make sure to add these to the script, or it won't work.</p>
+          
+          <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: {
@@ -161,10 +161,10 @@ Cylon.robot({
   }
 }).start();
 </pre>
-              
-              <p>Code in place, let's write a small HTML file (<code>index.html</code>) that'll host the script:</p>
-              
-              <pre class="CodeRay"><span class="doctype">&lt;!doctype html&gt;</span>
+          
+          <p>Code in place, let's write a small HTML file (<code>index.html</code>) that'll host the script:</p>
+          
+          <pre class="CodeRay"><span class="doctype">&lt;!doctype html&gt;</span>
 <span class="tag">&lt;html</span> <span class="attribute-name">lang</span>=<span class="string"><span class="delimiter">"</span><span class="content">en</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
   <span class="tag">&lt;head&gt;</span>
   <span class="tag">&lt;/head&gt;</span>
@@ -174,114 +174,112 @@ Cylon.robot({
   <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span>
 </pre>
-              
-              <p>And that's it.</p>
-              
-              <h3 id="compile">Compile</h3>
-              
-              <p>Now with the pieces in place, let's compile the Cylon.js program for browser use with the <a href="http://browserify.org">Browserify</a> tool.</p>
-              
-              <p>If you don't have it already, install it through NPM:</p>
-              
-              <pre class="CodeRay">$ npm install -g browserify
+          
+          <p>And that's it.</p>
+          
+          <h3 id="compile">Compile</h3>
+          
+          <p>Now with the pieces in place, let's compile the Cylon.js program for browser use with the <a href="http://browserify.org">Browserify</a> tool.</p>
+          
+          <p>If you don't have it already, install it through NPM:</p>
+          
+          <pre class="CodeRay">$ npm install -g browserify
 </pre>
-              
-              <p>Then, use it to compile the script:</p>
-              
-              <p>$ browserify script.js -r cylon-gpio -r cylon-spark -o browser_script.js</p>
-              
-              <h3 id="run">Run</h3>
-              
-              <p>Now, just open <code>index.html</code> in your browser and your Spark's LED should start blinking.</p>
-              
-              <h3 id="want-more">Want more?</h3>
-              
-              <p>From here, the sky's the limit.
-              If you want to get started on a more complex Cylon.js robot for use in the browser, we've created an <a href="https://github.com/hybridgroup/cylon-example-browserify">example project</a> on GitHub to get you started.</p>
-              
-              <p>If that's not enough for you, you can also package Cylon.js scripts into <a href="https://developer.chrome.com/apps/about_apps">Chrome Apps</a>.
-              We've created another <a href="https://github.com/hybridgroup/cylon-example-chrome">example project repo</a> to get you started on that front.</p>
-              
-              <p><img width="160" src="/images/blog/cylonjs-phonegap-spark.png" alt="Cylon.js PhoneGap Spark" style="width: 160; margin: 10px 0;"></p>
-              
-              <p>You can even include Cylon.js in your <a href="http://phonegap.com/">PhoneGap</a> mobile app. Look for an upcoming blog post focusing on this, but for now here is an example of <a href="https://github.com/hybridgroup/phonegap-cylon-spark">PhoneGap + Cylon.js</a></p>
-              
-              <p>Check out our <a href="http://cylonjs.com/documentation/guides/browser-support">Browser Support guide</a> for more information.</p>
-              
-              <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+          
+          <p>Then, use it to compile the script:</p>
+          
+          <p>$ browserify script.js -r cylon-gpio -r cylon-spark -o browser_script.js</p>
+          
+          <h3 id="run">Run</h3>
+          
+          <p>Now, just open <code>index.html</code> in your browser and your Spark's LED should start blinking.</p>
+          
+          <h3 id="want-more">Want more?</h3>
+          
+          <p>From here, the sky's the limit.
+          If you want to get started on a more complex Cylon.js robot for use in the browser, we've created an <a href="https://github.com/hybridgroup/cylon-example-browserify">example project</a> on GitHub to get you started.</p>
+          
+          <p>If that's not enough for you, you can also package Cylon.js scripts into <a href="https://developer.chrome.com/apps/about_apps">Chrome Apps</a>.
+          We've created another <a href="https://github.com/hybridgroup/cylon-example-chrome">example project repo</a> to get you started on that front.</p>
+          
+          <p><img width="160" src="/images/blog/cylonjs-phonegap-spark.png" alt="Cylon.js PhoneGap Spark" style="width: 160; margin: 10px 0;"></p>
+          
+          <p>You can even include Cylon.js in your <a href="http://phonegap.com/">PhoneGap</a> mobile app. Look for an upcoming blog post focusing on this, but for now here is an example of <a href="https://github.com/hybridgroup/phonegap-cylon-spark">PhoneGap + Cylon.js</a></p>
+          
+          <p>Check out our <a href="http://cylonjs.com/documentation/guides/browser-support">Browser Support guide</a> for more information.</p>
+          
+          <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+          <div class="comments">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+              <a class="addthis_button_preferred_2"></a>
+              <a class="addthis_button_preferred_3"></a>
+              <a class="addthis_button_preferred_1"></a>
+              <a class="addthis_button_preferred_4"></a>
+              <a class="addthis_button_compact"></a>
+              <a class="addthis_counter addthis_bubble_style"></a>
             </div>
-            <div class="comments">
-              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <a class="addthis_button_preferred_1"></a>
-                <a class="addthis_button_preferred_4"></a>
-                <a class="addthis_button_compact"></a>
-                <a class="addthis_counter addthis_bubble_style"></a>
-              </div>
-              <div id="disqus_thread"></div>
-              <noscript>
-                Please enable JavaScript to view the
-                <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-              </noscript>
-              <a class="dsq-brlink" href="http://disqus.com">
-                comments powered by
-                <span class="logo-disqus">Disqus</span>
-              </a>
+            <div id="disqus_thread"></div>
+            <noscript>
+              Please enable JavaScript to view the
+              <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <a class="dsq-brlink" href="http://disqus.com">
+              comments powered by
+              <span class="logo-disqus">Disqus</span>
+            </a>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
             </div>
           </div>
-          <div class="side-column">
-            <div class="categories">
-              <h4>Tags</h4>
-              <ul>
-                <li><a href="/blog/tags/robots/">Robots</a></li>
-                <li><a href="/blog/tags/events/">Events</a></li>
-              </ul>
-            </div>
-            <div class="network">
-              <h4>Network</h4>
-              <div class="network-links">
-                <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
-                <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
-              </div>
-            </div>
-            <div class="titles">
-              <h4>Posts</h4>
-              <ul>
-                <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
-                <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
-                <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
-                <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
-                <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
-                <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
-                <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
-                <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
-                <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
-                <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
-                <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
-                <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
-                <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
-                <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
-                <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
-                <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
-                <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
-                <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
-                <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
-                <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
-                <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
-                <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
-                <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
-                <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
-                <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
-                <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
-                <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
-                <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
-                <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
-                <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
-                <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
-                <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
-              </ul>
-            </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
+              <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
+              <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
+              <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
+              <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
+              <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
+              <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+              <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
+              <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+              <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
+              <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+              <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
+              <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
+              <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
+              <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
+              <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
+              <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
+              <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
+              <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
+              <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
+              <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
+              <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
+              <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
+              <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
+              <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
+              <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
+              <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
+              <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
+              <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
+              <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
+              <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
+              <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -290,47 +288,47 @@ Cylon.robot({
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>
@@ -341,6 +339,6 @@ Cylon.robot({
       </div>
     </div>
   </body>
-  <script src="/hybridpages/assets/javascript/disqus.js"></script>
+  <script src="/javascripts/disqus.js"></script>
   <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564" type="text/javascript"></script>
 </html>

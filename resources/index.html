@@ -8,9 +8,9 @@
     <meta name="description">
     <meta name="author">
     <title>Cylon.js Resources</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,144 +47,143 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a class="active" href="/resources">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a class="active" href="/resources">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </div>
+    <div class="app-content">
       <div class="page-title">
-        <div class="w">
+        <div class="container">
           <h1 class="title">Resources</h1>
           <h2 class="subtitle">Cylon.js around the world.</h2>
         </div>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <section class="resources">
-              <h1>Our Videos</h1>
-              <p>During the past few months we've been traveling around the world to many different conferences to talk about Cylon.js, here we have just some of those videos!</p>
-              <div class="video">
-                <h2>JSConf 2014</h2>
-                <h3>Cylon.js: The Time for Open Source Robotics is Now</h3>
-                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/bnFWskconEg"></iframe>
-              </div>
-              <div class="video">
-                <h2>Scotland JS 2014</h2>
-                <h3>Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
-                <iframe allowfullscreen="true" frameborder="0" src="//player.vimeo.com/video/96477741?title=0&amp;amp;byline=0&amp;amp;portrait=0"></iframe>
-              </div>
-              <div class="video">
-                <h2>MakerFaire 2014</h2>
-                <h3>Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
-                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/AJ1VH4AqqWc?rel=0"></iframe>
-              </div>
-              <div class="clear"></div>
-            </section>
-            <section class="resources">
-              <h1>Friends of the Cylon's Videos</h1>
-              <p>Here are some videos of what others have been able to do with Cylon.js.</p>
-              <div class="video">
-                <h2>Node.js + Cylon.js + LeapMotion</h2>
-                <h3>Using Cylon.js to Control a Robotic Hand</h3>
-                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/wJK6FxAowg4"></iframe>
-              </div>
-              <div class="video">
-                <h2>NodeRocket</h2>
-                <h3>NodeRocket First Parachute Deployment Success</h3>
-                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/uvkBWn1Pl2g"></iframe>
-              </div>
-              <div class="clear"></div>
-            </section>
-            <section class="resources">
-              <h1>Friends of the Cylon's Links</h1>
-              <p>Listed below are some examples of blogs and magazines which have featured and explored Cylon.js.</p>
-              <h4>
-                <a target="_blank" href="http://makezine.com/2014/05/31/building-robots-and-rockets-with-javascript/">Building Robots and Rockets with Javascript - <span>Make Magazine</span></a>
-              </h4>
-              <h4>
-                <a target="_blank" href="http://carlosazaustre.es/blog/primera-aplicacion-web-en-raspberrypi-con-nodejs-cylonjs-controlando-leds-desde-el-movil/">Primera Aplicación Web en RaspberryPi con NodeJS + CylonJS - <span>Carlos Azaustre</span></a>
-              </h4>
-              <h4>
-                <a target="_blank" href="http://reidcarlberg.com/2014/03/19/control-your-quadcopter-drone-fleet-with-salesforce1/">Control Your Quadcopter Drone Fleet with Salesforce1 - <span>Reid Carlberg</span></a>
-              </h4>
-              <h4>
-                <a target="_blank" href="http://www.sitepoint.com/javascript-beyond-web-2014/">JavaScript Beyond the Web in 2014 - <span>Sitepoint</span></a>
-              </h4>
-              <h4>
-                <a target="_blank" href="http://topideafactory.blogspot.com/2014/10/interacting-with-robot-through-nodejs.html">Interacting with a Robot (Sphero) Through Node.js - <span>Top Idea Factory</span></a>
-              </h4>
-            </section>
-          </section>
-        </div>
+      <div class="main-content" role="main">
+        <section class="resources">
+          <h1>Our Videos</h1>
+          <p>During the past few months we've been traveling around the world to many different conferences to talk about Cylon.js, here we have just some of those videos!</p>
+          <div class="video">
+            <h2>JSConf 2014</h2>
+            <h3 class="video-description">Cylon.js: The Time for Open Source Robotics is Now</h3>
+            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/bnFWskconEg"></iframe>
+          </div>
+          <div class="video">
+            <h2>Scotland JS 2014</h2>
+            <h3 class="video-description">Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
+            <iframe allowfullscreen="true" frameborder="0" src="//player.vimeo.com/video/96477741?title=0&amp;amp;byline=0&amp;amp;portrait=0"></iframe>
+          </div>
+          <div class="video">
+            <h2>MakerFaire 2014</h2>
+            <h3 class="video-description">Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
+            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/AJ1VH4AqqWc?rel=0"></iframe>
+          </div>
+          <div class="clear"></div>
+        </section>
+        <section class="resources">
+          <h1>Friends of the Cylon's Videos</h1>
+          <p>Here are some videos of what others have been able to do with Cylon.js.</p>
+          <div class="video">
+            <h2>Node.js + Cylon.js + LeapMotion</h2>
+            <h3 class="video-description">Using Cylon.js to Control a Robotic Hand</h3>
+            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/wJK6FxAowg4"></iframe>
+          </div>
+          <div class="video">
+            <h2>NodeRocket</h2>
+            <h3 class="video-description">NodeRocket First Parachute Deployment Success</h3>
+            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/uvkBWn1Pl2g"></iframe>
+          </div>
+          <div class="clear"></div>
+        </section>
+        <section class="resources">
+          <h2>Friends of the Cylon's Links</h2>
+          <p>Listed below are some examples of blogs and magazines which have featured and explored Cylon.js.</p>
+          <h4>
+            <a target="_blank" class="external-link" href="http://makezine.com/2014/05/31/building-robots-and-rockets-with-javascript/">Building Robots and Rockets with Javascript - <span>Make Magazine</span></a>
+          </h4>
+          <h4>
+            <a target="_blank" class="external-link" href="http://carlosazaustre.es/blog/primera-aplicacion-web-en-raspberrypi-con-nodejs-cylonjs-controlando-leds-desde-el-movil/">Primera Aplicación Web en RaspberryPi con NodeJS + CylonJS - <span>Carlos Azaustre</span></a>
+          </h4>
+          <h4>
+            <a target="_blank" class="external-link" href="http://reidcarlberg.com/2014/03/19/control-your-quadcopter-drone-fleet-with-salesforce1/">Control Your Quadcopter Drone Fleet with Salesforce1 - <span>Reid Carlberg</span></a>
+          </h4>
+          <h4>
+            <a target="_blank" class="external-link" href="http://www.sitepoint.com/javascript-beyond-web-2014/">JavaScript Beyond the Web in 2014 - <span>Sitepoint</span></a>
+          </h4>
+          <h4>
+            <a target="_blank" class="external-link" href="http://topideafactory.blogspot.com/2014/10/interacting-with-robot-through-nodejs.html">Interacting with a Robot (Sphero) Through Node.js - <span>Top Idea Factory</span></a>
+          </h4>
+        </section>
       </div>
     </div>
     <div class="app-footer">
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

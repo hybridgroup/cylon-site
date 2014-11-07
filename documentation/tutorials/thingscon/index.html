@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Cylon.js - Tutorials</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,278 +47,279 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
-                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
-                </nav>
               </div>
-              <div class="container-documentation">
-                
-                <section class="thingscon">
-                  <h2>Installation</h2>
-                  <ul>
-                    <li>
-                      <p>
-                        First, install
-                        <a href="http://nodejs.org/download/">Node.js</a>
-                      </p>
-                      <p>
-                        If you are on Linux, follow
-                        <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">these instructions</a>
-                      </p>
-                      <p>
-                        If you already have Node.js installed, you can skip to the next step.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Next up, install the Cylon.js Command Line Interface (CLI) globally, so you can make use of the CLI commands it provides. You might need to use the "sudo" command if you are on OSX or Linux.
-                        </p>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            
+            <section class="thingscon">
+              <h2>Installation</h2>
+              <ul>
+                <li>
+                  <p>
+                    First, install
+                    <a href="http://nodejs.org/download/">Node.js</a>
+                  </p>
+                  <p>
+                    If you are on Linux, follow
+                    <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">these instructions</a>
+                  </p>
+                  <p>
+                    If you already have Node.js installed, you can skip to the next step.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Next up, install the Cylon.js Command Line Interface (CLI) globally, so you can make use of the CLI commands it provides. You might need to use the "sudo" command if you are on OSX or Linux.
+                    </p>
 <pre class="CodeRay">$ npm install -g cylon-cli
 </pre>
-                      
-                      <p>
-                        You might need to use the "sudo" command if you are on OSX or Linux.
-                        </p>
+                  
+                  <p>
+                    You might need to use the "sudo" command if you are on OSX or Linux.
+                    </p>
 <pre class="CodeRay">$ sudo npm install -g cylon-cli
 </pre>
-                      
-                      <p>
-                        Once that's finished, you should be able to check if it's working by
-                        opening another terminal window and entering this command, which should
-                        give you a similar result:
-                        </p>
+                  
+                  <p>
+                    Once that's finished, you should be able to check if it's working by
+                    opening another terminal window and entering this command, which should
+                    give you a similar result:
+                    </p>
 <pre class="CodeRay">$ cylon version
 0.4.0
 </pre>
-                      
-                    </li>
-                    <li>
-                      <p>
-                        Now, create a local working directory that you want to use for the workshop:
-                        </p>
+                  
+                </li>
+                <li>
+                  <p>
+                    Now, create a local working directory that you want to use for the workshop:
+                    </p>
 <pre class="CodeRay">$ mkdir thingscon
 $ cd thingscon
 </pre>
-                      
-                    </li>
-                    <li>
-                      <p>
-                        Install Cylon.js in the local working directory that you just created:
-                        </p>
+                  
+                </li>
+                <li>
+                  <p>
+                    Install Cylon.js in the local working directory that you just created:
+                    </p>
 <pre class="CodeRay">$ npm install cylon cylon-gpio cylon-i2c cylon-firmata cylon-sphero cylon-leapmotion
 </pre>
-                      
-                      <p>
-                        This command will install Cylon.js and all of the plugins you will need for the workshop.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        To connect your Arduino to your computer, you will need to install the drivers which are part of the
-                        <a href="http://arduino.cc/en/main/software#toc2">Arduino IDE</a>
-                        software.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Finally, install the
-                        <a href="https://www.leapmotion.com/setup">Leap Motion</a>
-                        software. You do not need to signup for their "app store", you only need to install the drivers.
-                      </p>
-                    </li>
-                  </ul>
-                  <h2>Arduino Blink</h2>
-                  <p>You can now test out your installation. Plug in your Arduino, and run the following code on your local computer. Cylon.js will communicate from your computer to the Arduino, and will make the built-in LED on your Arduino turn on/off every second:</p>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//blink.js</span>
+                  
+                  <p>
+                    This command will install Cylon.js and all of the plugins you will need for the workshop.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    To connect your Arduino to your computer, you will need to install the drivers which are part of the
+                    <a href="http://arduino.cc/en/main/software#toc2">Arduino IDE</a>
+                    software.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Finally, install the
+                    <a href="https://www.leapmotion.com/setup">Leap Motion</a>
+                    software. You do not need to signup for their "app store", you only need to install the drivers.
+                  </p>
+                </li>
+              </ul>
+              <h2>Arduino Blink</h2>
+              <p>You can now test out your installation. Plug in your Arduino, and run the following code on your local computer. Cylon.js will communicate from your computer to the Arduino, and will make the built-in LED on your Arduino turn on/off every second:</p>
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//blink.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -333,36 +334,36 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                  <p>Please note that you might need to change the value for port.</p>
-                  <p>
-                    On OSX or Linux, use
-                    <code>cylon scan serial</code>
-                    to find your connection info and serial port address:
-                    </p>
+              <p>Please note that you might need to change the value for port.</p>
+              <p>
+                On OSX or Linux, use
+                <code>cylon scan serial</code>
+                to find your connection info and serial port address:
+                </p>
 <pre class="CodeRay">  $ cylon scan serial
 </pre>
-                  
-                  <p>
-                    On Windows, follow the following procedure:
-                    </p>
+              
+              <p>
+                On Windows, follow the following procedure:
+                </p>
 <ul>
-                      <li>Go to the "Start" menu</li>
-                      <li>Right click on "Computer"</li>
-                      <li>Click on "Properties"</li>
-                      <li>Open "Device Manager" on the "Properties" tab</li>
-                      <li>Expand the tree controller listed in the "Device Manager" labeled "Ports (COM &amp; LPT)"</li>
-                      <li>Note the port listed next to the "Arduino" entry. For example, "Arduino Uno (COM4)"</li>
-                    </ul>
-                  
-                </section>
-                <section class="thingscon">
-                  <h2>Makey Button</h2>
-                  <p>
-                    You will need to use your "Makey Button" kit to wire up your wearable controller. Here is an image of what the breadboard will end up looking like:
-                  </p>
-                  <img alt="" src="/documentation/drivers/breadboards/gpio/makey_button_bb.png" style="width:50%">
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//makey.js</span>
+                  <li>Go to the "Start" menu</li>
+                  <li>Right click on "Computer"</li>
+                  <li>Click on "Properties"</li>
+                  <li>Open "Device Manager" on the "Properties" tab</li>
+                  <li>Expand the tree controller listed in the "Device Manager" labeled "Ports (COM &amp; LPT)"</li>
+                  <li>Note the port listed next to the "Arduino" entry. For example, "Arduino Uno (COM4)"</li>
+                </ul>
+              
+            </section>
+            <section class="thingscon">
+              <h2>Makey Button</h2>
+              <p>
+                You will need to use your "Makey Button" kit to wire up your wearable controller. Here is an image of what the breadboard will end up looking like:
+              </p>
+              <img alt="" src="/documentation/drivers/breadboards/gpio/makey_button_bb.png" style="width:50%">
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//makey.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -381,38 +382,38 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                  <h2>Connect To Sphero</h2>
-                  <h3>OSX</h3>
-                  <p>
-                    In order to allow Cylon.js running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.
-                  </p>
-                  <h3>Ubuntu</h3>
-                  <p>
-                    Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using CylonJS CLI commands. Here are the steps.
-                  </p>
-                  <p>
-                    Find the address of the Sphero, by using:
-                    </p>
+              <h2>Connect To Sphero</h2>
+              <h3>OSX</h3>
+              <p>
+                In order to allow Cylon.js running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.
+              </p>
+              <h3>Ubuntu</h3>
+              <p>
+                Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line using CylonJS CLI commands. Here are the steps.
+              </p>
+              <p>
+                Find the address of the Sphero, by using:
+                </p>
 <pre class="CodeRay">  $ cylon bluetooth scan
 </pre>
-                  
-                  <p>
-                    Pair to Sphero using this command (substituting the actual address of your Sphero):
-                    </p>
+              
+              <p>
+                Pair to Sphero using this command (substituting the actual address of your Sphero):
+                </p>
 <pre class="CodeRay">  $ cylon bluetooth pair &lt;address&gt;
 </pre>
-                  
-                  <p>
-                    Connect to the Sphero using this command (substituting the actual address of your Sphero):
-                    </p>
+              
+              <p>
+                Connect to the Sphero using this command (substituting the actual address of your Sphero):
+                </p>
 <pre class="CodeRay">  $ cylon bluetooth connect &lt;address&gt;
 </pre>
-                    Connect to your Sphero using Bluetooth. Here are instructions on
-                    <a href="https://github.com/hybridgroup/cylon-sphero#how-to-connect">how to connect</a>
-                  
-                  <h2>Sphero Color</h2>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//sphero_color.js</span>
+                Connect to your Sphero using Bluetooth. Here are instructions on
+                <a href="https://github.com/hybridgroup/cylon-sphero#how-to-connect">how to connect</a>
+              
+              <h2>Sphero Color</h2>
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//sphero_color.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -428,9 +429,9 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                  <h2>Sphero Makey Button</h2>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//sphero_makey_button.js</span>
+              <h2>Sphero Makey Button</h2>
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//sphero_makey_button.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 <span class="keyword">var</span> time = <span class="integer">0</span>;
 <span class="keyword">var</span> calibration = <span class="predefined-constant">false</span>;
@@ -508,13 +509,13 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                  <h2>Leap Motion</h2>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//leap.js</span>
+              <h2>Leap Motion</h2>
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//leap.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1:6437</span><span class="delimiter">'</span></span> },
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -546,14 +547,14 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                  <h2>Leap Motion Sphero</h2>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay"><span class="comment">//leap_sphero.js</span>
+              <h2>Leap Motion Sphero</h2>
+              <h3>JavaScript</h3>
+              <pre class="CodeRay"><span class="comment">//leap_sphero.js</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1:6437</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
   ],
   <span class="key">devices</span>: [
@@ -570,10 +571,8 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
-                </section>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -581,47 +580,47 @@ Cylon.start();
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

@@ -8,13 +8,13 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Spark with Cylon.js</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
-    <script src="/hybridpages/assets/javascript/subnav.js"></script>
+    <script src="/javascripts/subnav.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
     <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
   <script type="text/javascript">
@@ -48,267 +48,268 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a class="active" href="/documentation/platforms">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
                       <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">Spark</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>Spark</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToInstall">How To Install</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#Drivers">Drivers</a>
+                  <a href="#top">Top</a>
                 </nav>
               </div>
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Spark</h1>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav">
-                  <div class="container">
-                    <h5>Spark</h5>
-                    <nav>
-                      <a href="#HowToInstall">How To Install</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#HowToConnect">How To Connect</a>
-                      <a href="#Drivers">Drivers</a>
-                      <a href="#top">Top</a>
-                    </nav>
-                  </div>
-                </section>
-                <br>
-                <section class="intro">
-                  <img class="display" src="/images/devices/spark.jpg">
-                  <div class="info-intro">
-                    <h4 class="subtitle">
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/spark.jpg">
+              <div class="info-intro">
+                <h4 class="subtitle">
 <a href="https://github.com/hybridgroup/cylon-spark" target="_blank" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-spark/issues" target="_blank">Issues</a>
 </h4>
-                    <p>The Spark Core contains a Wi-Fi connected microcontroller.
-                    Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Cylon.js program.</p>
-                    
-                    <p>For more info about the Spark platform, click <a href="https://www.spark.io/">here</a>.</p>
-                  </div>
-                  <div class="clear"></div>
-                </section>
-                <section class="how-to" id="HowToInstall">
-                  <h2 id="how-to-install">How To Install</h2>
-                  
-                  <pre class="CodeRay">$ npm install cylon-spark
+                <p>The Spark Core contains a Wi-Fi connected microcontroller.
+                Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Cylon.js program.</p>
+                
+                <p>For more info about the Spark platform, click <a href="https://www.spark.io/">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section id="HowToInstall">
+              <h2 id="how-to-install">How To Install</h2>
+              
+              <pre class="CodeRay">$ npm install cylon-spark
 </pre>
-                  
-                  <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Spark.
-                  You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
-                  
-                  <ul>
-                    <li>
+              
+              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Spark.
+              You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
+              
+              <ul>
+                <li>
 <strong>access_token:</strong> In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.</li>
-                    <li>
+                <li>
 <strong>device_id:</strong> After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.</li>
-                  </ul>
-                  
-                  <h2 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h2>
-                  
-                  <p>You will need to install the appropriate firmware on your Spark Core to use it from Cylon.js.</p>
-                  
-                  <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the <a href="http://gort.io">Gort CLI</a>.
-                  This routes all of your calls through the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
-                  
-                  <p>Another option is to use the VoodooSpark firmware, which communicates directly to the Spark over your local connection.
-                  This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device.
-                  This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
-                  
-                  <p>For more information on how to program your Spark, please see <a href="http://docs.spark.io/#/examples">Spark's examples</a>.</p>
-                  
-                  <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
-                </section>
-                <section class="how-to" id="HowToUse">
-                  <h2 id="how-to-use">How To Use</h2>
-                  
-                  <h3 id="spark-using-tinker-api">Spark using Tinker API:</h3>
-                  
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              </ul>
+              
+              <h2 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h2>
+              
+              <p>You will need to install the appropriate firmware on your Spark Core to use it from Cylon.js.</p>
+              
+              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the <a href="http://gort.io">Gort CLI</a>.
+              This routes all of your calls through the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
+              
+              <p>Another option is to use the VoodooSpark firmware, which communicates directly to the Spark over your local connection.
+              This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device.
+              This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
+              
+              <p>For more information on how to program your Spark, please see <a href="http://docs.spark.io/#/examples">Spark's examples</a>.</p>
+              
+              <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
+            </section>
+            <section id="HowToUse">
+              <h2 id="how-to-use">How To Use</h2>
+              
+              <h3 id="spark-using-tinker-api">Spark using Tinker API:</h3>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
@@ -322,10 +323,10 @@ Cylon.robot({
   }
 }).start();
 </pre>
-                  
-                  <h3 id="spark-using-voodoospark-api">Spark using VoodooSpark API:</h3>
-                  
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              
+              <h3 id="spark-using-voodoospark-api">Spark using VoodooSpark API:</h3>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
@@ -339,201 +340,232 @@ Cylon.robot({
   }
 }).start();
 </pre>
-                </section>
-                <section class="public-methods" id="PublicMethods">
-                  <div class="commands-api">
-                    <h1 id="commands">Commands</h1>
-                    
-                    <h2 id="digitalreadpin-callback">digitalRead(pin, callback)</h2>
-                    
-                    <p>Reads a value using digital write to a pin.</p>
-                    
-                    <h5 id="params">Params</h5>
-                    
-                    <ul>
-                      <li>
+            </section>
+            <section class="public-methods" id="PublicMethods">
+              <div class="commands-api">
+                <h1 id="commands">Commands</h1>
+                
+                <h2 id="digitalreadpin-callback">digitalRead(pin, callback)</h2>
+                
+                <p>Reads a value using digital write to a pin.</p>
+                
+                <h5 id="params">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>pin</strong> - the value of the pin</li>
-                      <li>
+                  <li>
 <strong>callback</strong> - params for the pin value</li>
-                    </ul>
-                    
-                    <h5 id="returns">Returns</h5>
-                    
-                    <p><code>callback integer</code> </p>
-                    
-                    <h2 id="digitalwritepin-value">digitalWrite(pin, value)</h2>
-                    
-                    <p>Writes a value using digital write to a pin.</p>
-                    
-                    <h5 id="params-1">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns">Returns</h5>
+                
+                <p><code>callback integer</code> </p>
+                
+                <h2 id="digitalwritepin-value">digitalWrite(pin, value)</h2>
+                
+                <p>Writes a value using digital write to a pin.</p>
+                
+                <h5 id="params-1">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>pin</strong> - the value of the pin</li>
-                      <li>
+                  <li>
 <strong>value</strong> - paramas for the pin value </li>
-                    </ul>
-                    
-                    <h5 id="returns-1">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="analogreadpin-callback">analogRead(pin, callback)</h2>
-                    
-                    <p>Reads a value using analog write to a pin.</p>
-                    
-                    <h5 id="params-2">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-1">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="analogreadpin-callback">analogRead(pin, callback)</h2>
+                
+                <p>Reads a value using analog write to a pin.</p>
+                
+                <h5 id="params-2">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>pin</strong> - pin data </li>
-                      <li>
+                  <li>
 <strong>callback</strong> - callback data</li>
-                    </ul>
-                    
-                    <h5 id="returns-2">Returns</h5>
-                    
-                    <p><code>callback integer</code> </p>
-                    
-                    <h2 id="analogwritepin-value">analogWrite(pin, value)</h2>
-                    
-                    <p>Writes a value using analog write to a pin.</p>
-                    
-                    <h5 id="params-3">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-2">Returns</h5>
+                
+                <p><code>callback integer</code> </p>
+                
+                <h2 id="analogwritepin-value">analogWrite(pin, value)</h2>
+                
+                <p>Writes a value using analog write to a pin.</p>
+                
+                <h5 id="params-3">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>pin</strong> - the value of the pin</li>
-                      <li>
+                  <li>
 <strong>value</strong> - paramas for the pin value </li>
-                    </ul>
-                    
-                    <h5 id="returns-3">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="pwmwrite">pwmWrite()</h2>
-                    
-                    <p>Writes the pwm value.(analogWrite)</p>
-                    
-                    <h5 id="returns-4">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="servowrite">servoWrite()</h2>
-                    
-                    <p>Writes the servo value.(analogWrite)</p>
-                    
-                    <h5 id="returns-5">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="commandcommandname-args-callback">command(commandName, args, callback)</h2>
-                    
-                    <p>Calls a function on the Spark Core via the API.</p>
-                    
-                    <h5 id="params-4">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-3">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="pwmwrite">pwmWrite()</h2>
+                
+                <p>Writes the pwm value.(analogWrite)</p>
+                
+                <h5 id="returns-4">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="servowrite">servoWrite()</h2>
+                
+                <p>Writes the servo value.(analogWrite)</p>
+                
+                <h5 id="returns-5">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="commandcommandname-args-callback">command(commandName, args, callback)</h2>
+                
+                <p>Calls a function on the Spark Core via the API.</p>
+                
+                <h5 id="params-4">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>commandName</strong> - string name of the function to call on the Spark</li>
-                      <li>
+                  <li>
 <strong>args</strong> - array of arguments to pass to the function call</li>
-                      <li>
+                  <li>
 <strong>callback</strong> - optional, callback to be triggered with the response_value from
-                    Spark's API</li>
-                    </ul>
-                    
-                    <h5 id="returns-6">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="variablevariablename-callback">variable(variableName, callback)</h2>
-                    
-                    <p>Requests the value of a variable from the Spark Core via the API</p>
-                    
-                    <h5 id="params-5">Params</h5>
-                    
-                    <ul>
-                      <li>
+                Spark's API</li>
+                </ul>
+                
+                <h5 id="returns-6">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="variablevariablename-callback">variable(variableName, callback)</h2>
+                
+                <p>Requests the value of a variable from the Spark Core via the API</p>
+                
+                <h5 id="params-5">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>variableName</strong> - name of the variable to request from the Spark Core</li>
-                      <li>
+                  <li>
 <strong>callback</strong> - callback to be triggered with the value from the Spark Core</li>
-                    </ul>
-                    
-                    <h5 id="returns-7">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    
-                    <h2 id="listenforeventsevents">listenForEvents(events)</h2>
-                    
-                    <p>Listens to Server-Sent Events coming from the Spark Core, and emits the same
-                    events.</p>
-                    
-                    <h5 id="params-6">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-7">Returns</h5>
+                
+                <p><code>null</code></p>
+                
+                <h2 id="listenforeventsevents">listenForEvents(events)</h2>
+                
+                <p>Listens to Server-Sent Events coming from the Spark Core, and emits the same
+                events.</p>
+                
+                <h5 id="params-6">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>events</strong> - array of events to add listeners for</li>
-                    </ul>
-                    
-                    <h5 id="returns-8">Returns</h5>
-                    
-                    <p><code>null</code></p>
-                    <p><strong>Note:</strong> In addition to the above methods, the Spark adaptor supports the full GPIO pin interface, as long as you are using Tinker, or a Tinker compatible program running on the Spark itself.</p>
-                  </div>
-                </section>
-                <section class="how-to" id="HowToConnect">
-                  <h2 id="how-to-connect">How to Connect</h2>
-                  
-                  <p>The setup process for the Spark core is fully explained by <a href="http://docs.spark.io/connect/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
-                  
-                  <p>Once your Spark is connected, you can get the <code>accessToken</code><code> and </code>deviceId` necessary to communicate with it from Cylon.</p>
-                </section>
-                <section class="drivers" id="Drivers">
-                  <h2 id="drivers">Drivers</h2>
-                  
-                  <p>Available drivers for the Spark platform are listed below:</p>
-                  <div class="hardware">
-                    <h2>GPIO Drivers</h2>
-                    <div class="devices">
-                      <h2>GPIO Drivers</h2>
-                      <a class="device" href="/documentation/drivers/analog-sensor" title="Analog Sensor">
-                        <img src="/images/devices/analog-sensor.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/button" title="Button">
-                        <img src="/images/devices/button.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/continuous-servo" title="Continuous Servo">
-                        <img src="/images/devices/continuous-servo.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/direct-pin" title="Direct Pin">
-                        <img src="/images/devices/direct-pin.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
-                        <img src="/images/devices/ir-range-finder.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/led" title="LED">
-                        <img src="/images/devices/led.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/makey-button" title="Makey Button">
-                        <img src="/images/devices/makey-button.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/maxbotix" title="Maxbotix">
-                        <img src="/images/devices/maxbotix.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/motor" title="Motor">
-                        <img src="/images/devices/motor.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/servo" title="Servo">
-                        <img src="/images/devices/servo.jpg">
+                </ul>
+                
+                <h5 id="returns-8">Returns</h5>
+                
+                <p><code>null</code></p>
+                <p><strong>Note:</strong> In addition to the above methods, the Spark adaptor supports the full GPIO pin interface, as long as you are using Tinker, or a Tinker compatible program running on the Spark itself.</p>
+              </div>
+            </section>
+            <section id="HowToConnect">
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>The setup process for the Spark core is fully explained by <a href="http://docs.spark.io/connect/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
+              
+              <p>Once your Spark is connected, you can get the <code>accessToken</code><code> and </code>deviceId` necessary to communicate with it from Cylon.</p>
+            </section>
+            <section class="drivers" id="Drivers">
+              <h2 id="drivers">Drivers</h2>
+              
+              <p>Available drivers for the Spark platform are listed below:</p>
+              <div class="hardware">
+                <h2>GPIO Drivers</h2>
+                <div class="devices">
+                  <div class="clear"></div>
+                  <h2>GPIO Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <p class="title">Analog Sensor</p>
+                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
                       </a>
                     </div>
-                  </div>
-                </section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/button" title="Button">
+                        <p class="title">Button</p>
+                        <img src="/images/devices/button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <p class="title">Continuous Servo</p>
+                        <img src="/images/devices/continuous-servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <p class="title">Direct Pin</p>
+                        <img src="/images/devices/direct-pin.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
+                        <p class="title">IR Range Finder</p>
+                        <img src="/images/devices/ir-range-finder.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/led" title="LED">
+                        <p class="title">LED</p>
+                        <img src="/images/devices/led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/makey-button" title="Makey Button">
+                        <p class="title">Makey Button</p>
+                        <img src="/images/devices/makey-button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/maxbotix" title="Maxbotix">
+                        <p class="title">Maxbotix</p>
+                        <img src="/images/devices/maxbotix.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/motor" title="Motor">
+                        <p class="title">Motor</p>
+                        <img src="/images/devices/motor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/servo" title="Servo">
+                        <p class="title">Servo</p>
+                        <img src="/images/devices/servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -541,47 +573,47 @@ Cylon.robot({
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Cylon.js - Tutorials</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,268 +47,269 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
-                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
-                </nav>
               </div>
-              <div class="container-documentation">
-                
-                <section class="dreamforce">
-                  <h2>Connect Salesforce to Intel Edison In 60 Lines Of JavaScript</h2>
-                  <p>Welcome! In this workshop, we're going to show you how to create a Salesforce connected device, using the brand new Intel Edison, in 60 lines of JavaScript. Plus we're going to have some fun too.</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>Getting Started</h2>
-                  <ul>
-                    <li>
-                      <p>
-                        We have provided an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        We have already plugged in each Intel Edison to the workshop computers, so they are ready for you to use.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        The computers in the workshop area also already have pre-installed the Intel XDK (Cross-platform Developer Kit) IoT Edition, and the needed drivers for Microsoft Windows.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Get started by running the "Intel XDK IoT Edition" program.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        That's it, now you are ready to get going!
-                      </p>
-                    </li>
-                  </ul>
-                </section>
-                <section class="dreamforce">
-                  <h2>Create A Blank Project</h2>
-                  <ul>
-                    <li>
-                      <p>
-                        First, we need to create a new project. Choose "New Project".
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Click on "Blank Template", and then click on "Use This Template".
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Enter in a name for this project, such as "df14", then click on the "Create" button.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Click on the file named "package.json". The file will open in the XDK editor. Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:
-                      </p>
-                      <h3>package.json</h3>
-                      <pre class="CodeRay">{
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            
+            <section class="dreamforce">
+              <h2>Connect Salesforce to Intel Edison In 60 Lines Of JavaScript</h2>
+              <p>Welcome! In this workshop, we're going to show you how to create a Salesforce connected device, using the brand new Intel Edison, in 60 lines of JavaScript. Plus we're going to have some fun too.</p>
+            </section>
+            <section class="dreamforce">
+              <h2>Getting Started</h2>
+              <ul>
+                <li>
+                  <p>
+                    We have provided an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    We have already plugged in each Intel Edison to the workshop computers, so they are ready for you to use.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    The computers in the workshop area also already have pre-installed the Intel XDK (Cross-platform Developer Kit) IoT Edition, and the needed drivers for Microsoft Windows.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Get started by running the "Intel XDK IoT Edition" program.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    That's it, now you are ready to get going!
+                  </p>
+                </li>
+              </ul>
+            </section>
+            <section class="dreamforce">
+              <h2>Create A Blank Project</h2>
+              <ul>
+                <li>
+                  <p>
+                    First, we need to create a new project. Choose "New Project".
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Click on "Blank Template", and then click on "Use This Template".
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Enter in a name for this project, such as "df14", then click on the "Create" button.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Click on the file named "package.json". The file will open in the XDK editor. Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:
+                  </p>
+                  <h3>package.json</h3>
+                  <pre class="CodeRay">{
   <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">blankapp</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">description</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">version</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.1</span><span class="delimiter">"</span></span>,
@@ -321,26 +322,26 @@
   }
 }
 </pre>
-                    </li>
-                    <li>
-                      <p>
-                        You will need to connect to your Edison board from your computer to send code to it. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
-                      </p>
-                    </li>
-                  </ul>
-                </section>
-                <section class="dreamforce">
-                  <h2>Blinking LED</h2>
-                  <p>Let's start with the 'Hello, World' of the Internet of Things: making an LED blink.</p>
-                  <ul>
-                    <li>
-                      <p>Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:</p>
-                      <img alt="Plug the LED" src="/images/tutorials/df14/led.jpg">
-                    </li>
-                    <li>
-                      <p>Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:</p>
-                      <h3>main.js</h3>
-                      <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                </li>
+                <li>
+                  <p>
+                    You will need to connect to your Edison board from your computer to send code to it. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
+                  </p>
+                </li>
+              </ul>
+            </section>
+            <section class="dreamforce">
+              <h2>Blinking LED</h2>
+              <p>Let's start with the 'Hello, World' of the Internet of Things: making an LED blink.</p>
+              <ul>
+                <li>
+                  <p>Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:</p>
+                  <img alt="Plug the LED" src="/images/tutorials/df14/led.jpg">
+                </li>
+                <li>
+                  <p>Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:</p>
+                  <h3>main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
@@ -353,28 +354,28 @@ cylon.robot({
   })
   .start();
 </pre>
-                    </li>
-                    <li>
-                      <p>Click on the "Install/Build" icon located at the bottom of the XDK editor. This will install the needed Cylon.js software on the Edison, as well as copying your code.</p>
-                    </li>
-                    <li>
-                      <p>Now, click on the "Run" icon located at the bottom of the XDK editor.</p>
-                    </li>
-                  </ul>
-                  <p>The Cylon.js program will execute on the Edison itself, and will make the LED turn on/off every second.</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>LED + Touch Sensor</h2>
-                  <p>Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.</p>
-                  <ul>
-                    <li>
-                      <p>Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:</p>
-                      <img alt="Touch Example" src="/images/tutorials/df14/touch.jpg">
-                    </li>
-                    <li>
-                      <p>Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:</p>
-                      <h3>main.js</h3>
-                      <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                </li>
+                <li>
+                  <p>Click on the "Install/Build" icon located at the bottom of the XDK editor. This will install the needed Cylon.js software on the Edison, as well as copying your code.</p>
+                </li>
+                <li>
+                  <p>Now, click on the "Run" icon located at the bottom of the XDK editor.</p>
+                </li>
+              </ul>
+              <p>The Cylon.js program will execute on the Edison itself, and will make the LED turn on/off every second.</p>
+            </section>
+            <section class="dreamforce">
+              <h2>LED + Touch Sensor</h2>
+              <p>Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.</p>
+              <ul>
+                <li>
+                  <p>Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:</p>
+                  <img alt="Touch Example" src="/images/tutorials/df14/touch.jpg">
+                </li>
+                <li>
+                  <p>Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:</p>
+                  <h3>main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
@@ -394,21 +395,21 @@ cylon.robot({
   })
   .start();
 </pre>
-                    </li>
-                    <li>
-                      <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
-                    </li>
-                  </ul>
-                  <p>Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>Salesforce + LED + Touch Sensor</h2>
-                  <p>Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the CYlon.js program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
-                  <ul>
-                    <li>
-                      <p>Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:</p>
-                      <h3>main.js</h3>
-                      <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+                </li>
+                <li>
+                  <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
+                </li>
+              </ul>
+              <p>Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.</p>
+            </section>
+            <section class="dreamforce">
+              <h2>Salesforce + LED + Touch Sensor</h2>
+              <p>Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the CYlon.js program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
+              <ul>
+                <li>
+                  <p>Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:</p>
+                  <h3>main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 <span class="keyword">var</span> robotName = <span class="string"><span class="delimiter">'</span><span class="content">cylon01</span><span class="delimiter">'</span></span>;
 <span class="keyword">var</span> username = <span class="string"><span class="delimiter">'</span><span class="content">user</span><span class="delimiter">'</span></span>;
 <span class="keyword">var</span> password = <span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>;
@@ -469,17 +470,17 @@ cylon.robot({
   })
   .start();
 </pre>
-                    </li>
-                    <li>
-                      <p>At the top of the "main.js" file, change the "robotName" variable located at line 2 to the name written on your Edison box, for example "cylon1".</p>
-                    </li>
-                    <li>
-                      <p>Also, change the "username" and "password" located at line 3 and 4 to the Salesforce username and password you have been given to use for this workshop.</p>
-                    </li>
-                    <li>
-                      <p>You will need to add the "cylon-force" module to your "package.json" as well. Replace the entire file's contents with this code:</p>
-                      <h3>package.json</h3>
-                      <pre class="CodeRay">{
+                </li>
+                <li>
+                  <p>At the top of the "main.js" file, change the "robotName" variable located at line 2 to the name written on your Edison box, for example "cylon1".</p>
+                </li>
+                <li>
+                  <p>Also, change the "username" and "password" located at line 3 and 4 to the Salesforce username and password you have been given to use for this workshop.</p>
+                </li>
+                <li>
+                  <p>You will need to add the "cylon-force" module to your "package.json" as well. Replace the entire file's contents with this code:</p>
+                  <h3>package.json</h3>
+                  <pre class="CodeRay">{
   <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">blankapp</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">description</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">version</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.1</span><span class="delimiter">"</span></span>,
@@ -493,25 +494,25 @@ cylon.robot({
   }
 }
 </pre>
-                    </li>
-                    <li>
-                      <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
-                    </li>
-                  </ul>
-                  <p>Once the program is running, now when you press the sensor, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update to the device.</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>Salesforce + LED + Touch Sensor + Analog Sensor</h2>
-                  <p>Now, let's add an 'analog sensor'. An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.</p>
-                  <ul>
-                    <li>
-                      <p>Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:</p>
-                      <img alt="Dial it in" src="/images/tutorials/df14/dial.jpg">
-                    </li>
-                    <li>
-                      <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from before.</p>
-                      <h3>JavaScript</h3>
-                      <pre class="CodeRay">cylon.robot({
+                </li>
+                <li>
+                  <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
+                </li>
+              </ul>
+              <p>Once the program is running, now when you press the sensor, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update to the device.</p>
+            </section>
+            <section class="dreamforce">
+              <h2>Salesforce + LED + Touch Sensor + Analog Sensor</h2>
+              <p>Now, let's add an 'analog sensor'. An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.</p>
+              <ul>
+                <li>
+                  <p>Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:</p>
+                  <img alt="Dial it in" src="/images/tutorials/df14/dial.jpg">
+                </li>
+                <li>
+                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from before.</p>
+                  <h3>JavaScript</h3>
+                  <pre class="CodeRay">cylon.robot({
   <span class="key">name</span>: robotName,
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
@@ -594,27 +595,27 @@ cylon.robot({
   })
   .start();
 </pre>
-                    </li>
-                    <li>
-                      <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
-                    </li>
-                  </ul>
-                  <p>Once the program is running, when you touch the touch sensor from before, you can adjust the value by turning the dial to send a new value to Salesforce every 2 seconds. Both data sources are going thru Salesforce!</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>Salesforce + LED + Button + Analog Sensor + LCD Display</h2>
-                  <p>Finally, let's add a backlit LCD display, so we can display some useful data on the device itself.</p>
-                  <ul>
-                    <li>
-                      <p>Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:</p>
-                      <img alt="LCD Display" src="/images/tutorials/df14/lcd.jpg">
-                    </li>
-                    <li>
-                      <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Once again, please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from earlier.</p>
-                    </li>
-                  </ul>
-                  <h3>main.js</h3>
-                  <pre class="CodeRay"><span class="keyword">function</span> <span class="function">writeToScreen</span>(screen, message) {
+                </li>
+                <li>
+                  <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
+                </li>
+              </ul>
+              <p>Once the program is running, when you touch the touch sensor from before, you can adjust the value by turning the dial to send a new value to Salesforce every 2 seconds. Both data sources are going thru Salesforce!</p>
+            </section>
+            <section class="dreamforce">
+              <h2>Salesforce + LED + Button + Analog Sensor + LCD Display</h2>
+              <p>Finally, let's add a backlit LCD display, so we can display some useful data on the device itself.</p>
+              <ul>
+                <li>
+                  <p>Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:</p>
+                  <img alt="LCD Display" src="/images/tutorials/df14/lcd.jpg">
+                </li>
+                <li>
+                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Once again, please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from earlier.</p>
+                </li>
+              </ul>
+              <h3>main.js</h3>
+              <pre class="CodeRay"><span class="keyword">function</span> <span class="function">writeToScreen</span>(screen, message) {
   screen.setCursor(<span class="integer">0</span>,<span class="integer">0</span>);
   screen.write(message);
 }
@@ -709,16 +710,14 @@ cylon.robot({
   })
   .start();
 </pre>
-                  
-                  <p>Once the program is running, the values that you change by moving the dial, will be displayed on the LCD display. As before, you must be touching the touch sensor, in order to move the dial.</p>
-                </section>
-                <section class="dreamforce">
-                  <h2>Wrap Up</h2>
-                  <p>That concludes this workshop. You've just connected the Intel Edison to 4 different devices and the Salesforce Apex &amp; Streaming APIs. Great job!</p>
-                </section>
-              </div>
-            </div>
-          </section>
+              
+              <p>Once the program is running, the values that you change by moving the dial, will be displayed on the LCD display. As before, you must be touching the touch sensor, in order to move the dial.</p>
+            </section>
+            <section class="dreamforce">
+              <h2>Wrap Up</h2>
+              <p>That concludes this workshop. You've just connected the Intel Edison to 4 different devices and the Salesforce Apex &amp; Streaming APIs. Great job!</p>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -726,47 +725,47 @@ cylon.robot({
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

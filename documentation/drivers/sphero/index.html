@@ -8,13 +8,13 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Cylon.js - Sphero Driver</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
-    <script src="/hybridpages/assets/javascript/subnav.js"></script>
+    <script src="/javascripts/subnav.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
     <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
   <script type="text/javascript">
@@ -48,247 +48,248 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a class="active" href="/documentation">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a class="active" href="/documentation">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
                       <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">Sphero</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>Sphero</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToConnect">How to Connect</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#Commands">Commands</a>
+                  <a href="#Events">Events</a>
+                  <a href="#SpheroColors">Sphero Colors</a>
+                  <a href="#Compatability">Compatibility</a>
+                  <a href="#top">Top</a>
                 </nav>
               </div>
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">Sphero</h1>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav">
-                  <div class="container">
-                    <h5>Sphero</h5>
-                    <nav>
-                      <a href="#HowToConnect">How to Connect</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#Commands">Commands</a>
-                      <a href="#Events">Events</a>
-                      <a href="#SpheroColors">Sphero Colors</a>
-                      <a href="#Compatability">Compatibility</a>
-                      <a href="#top">Top</a>
-                    </nav>
-                  </div>
-                </section>
-                <br>
-                <section class="intro">
-                  <img class="display" src="/images/devices/sphero.jpg">
-                  <div class="info-intro">
-                    <p>Allows user to interact with the Sphero robotic sphero using Cylon.js.</p>
-                    
-                    <p>For more information click <a href="http://www.gosphero.com/">here</a>.</p>
-                  </div>
-                  <div class="clear"></div>
-                </section>
-                <section class="how-to" id="HowToConnect">
-                  <h2 id="how-to-connect">How To Connect</h2>
-                  
-                  <p>That is pretty simple once the Sphero is ready (connected and listening), you just need three lines of code and you are set,</p>
-                  
-                  <p>Cylon.js and the Sphero driver take care of the rest.</p>
-                  
-                  <pre class="CodeRay">Cylon.robot({
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/sphero.jpg">
+              <div class="info-intro">
+                <p>Allows user to interact with the Sphero robotic sphero using Cylon.js.</p>
+                
+                <p>For more information click <a href="http://www.gosphero.com/">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section id="HowToConnect">
+              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <p>That is pretty simple once the Sphero is ready (connected and listening), you just need three lines of code and you are set,</p>
+              
+              <p>Cylon.js and the Sphero driver take care of the rest.</p>
+              
+              <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
 });
 </pre>
-                </section>
-                <section class="how-to" id="HowToUse">
-                  <h2 id="how-to-use">How To Use</h2>
-                  
-                  <p>This example rolls the sphero in a random direction and change direction every second.</p>
-                  
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+            </section>
+            <section id="HowToUse">
+              <h2 id="how-to-use">How To Use</h2>
+              
+              <p>This example rolls the sphero in a random direction and change direction every second.</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
@@ -302,1838 +303,1833 @@ Cylon.robot({
   }
 }).start();
 </pre>
-                </section>
-                <section class="public-methods">
-                  <div class="commands-api" id="Commands">
-                    <h1 id="commands">Commands</h1>
-                    
-                    <h2 id="abortmacro">abortMacro()</h2>
-                    
-                    <p>This command aborts any executing macro, and returns both it's ID code
-                    and the command number currently in progress.</p>
-                    
-                    <h5 id="returns">Returns</h5>
-                    
-                    <p>an array containing the ID code and command number.</p>
-                    
-                    <h2 id="abortorbbasicprogram">abortOrbBasicProgram()</h2>
-                    
-                    <p>Public: Aborts execution of any currently-running orbBasic program.</p>
-                    
-                    <h5 id="returns-1">Returns</h5>
-                    
-                    <p>`null</p>
-                    
-                    <h2 id="appendmacrochunckchunk">appendMacroChunck(chunk)</h2>
-                    
-                    <p>Stores an attached macro definition into a temporary RAM buffer for
-                    later execution. It's similar to the <code>saveTemporaryMacro</code> function, but allows
-                    you to build up a longer temporary macros.</p>
-                    
-                    <h5 id="params">Params</h5>
-                    
-                    <ul>
-                      <li>
+            </section>
+            <section class="public-methods">
+              <div class="commands-api" id="Commands">
+                <h1 id="commands">Commands</h1>
+                
+                <h2 id="abortmacro">abortMacro()</h2>
+                
+                <p>This command aborts any executing macro, and returns both it's ID code
+                and the command number currently in progress.</p>
+                
+                <h5 id="returns">Returns</h5>
+                
+                <p>an array containing the ID code and command number.</p>
+                
+                <h2 id="abortorbbasicprogram">abortOrbBasicProgram()</h2>
+                
+                <p>Public: Aborts execution of any currently-running orbBasic program.</p>
+                
+                <h5 id="returns-1">Returns</h5>
+                
+                <p>`null</p>
+                
+                <h2 id="appendmacrochunckchunk">appendMacroChunck(chunk)</h2>
+                
+                <p>Stores an attached macro definition into a temporary RAM buffer for
+                later execution. It's similar to the <code>saveTemporaryMacro</code> function, but allows
+                you to build up a longer temporary macros.</p>
+                
+                <h5 id="params">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>chunk</strong> - macro definition to be executed later. Will throw an
-                    error if any larger than 254 bytes.</li>
-                    </ul>
-                    
-                    <h5 id="returns-2">Returns</h5>
-                    
-                    <p>a boolean indicating whether or not the macro could be packeted.</p>
-                    
-                    <h2 id="appendorbbasicfragmentarea-programcode">appendOrbBasicFragment(area, programCode)</h2>
-                    
-                    <p>Appends a fragment of an orbBasic program to a buffer that will be
-                    written to the Sphero eventually.</p>
-                    
-                    <h5 id="params-1">Params</h5>
-                    
-                    <ul>
-                      <li>
+                error if any larger than 254 bytes.</li>
+                </ul>
+                
+                <h5 id="returns-2">Returns</h5>
+                
+                <p>a boolean indicating whether or not the macro could be packeted.</p>
+                
+                <h2 id="appendorbbasicfragmentarea-programcode">appendOrbBasicFragment(area, programCode)</h2>
+                
+                <p>Appends a fragment of an orbBasic program to a buffer that will be
+                written to the Sphero eventually.</p>
+                
+                <h5 id="params-1">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>area</strong> - value to start buffer with</li>
-                      <li>
+                  <li>
 <strong>fragment</strong> - fragment of orbBasic to be sent to the Sphero. Will throw an
-                    error if larger than 253 bytes</li>
-                    </ul>
-                    
-                    <h5 id="returns-3">Returns</h5>
-                    
-                    <p>a boolean indicating whether or not the fragment could be packeted</p>
-                    
-                    <h2 id="configurecollisiondetectionmethod-thresholdx-thresholdy-speedx-speedy-deadtime">configureCollisionDetection(method, thresholdX, thresholdY, speedX, speedY, deadTime)</h2>
-                    
-                    <p>Internal: Configures collision detection on the Sphero, using the provided
-                    params to decide what constitutes a 'collision'.</p>
-                    
-                    <h5 id="params-2">Params</h5>
-                    
-                    <ul>
-                      <li>
+                error if larger than 253 bytes</li>
+                </ul>
+                
+                <h5 id="returns-3">Returns</h5>
+                
+                <p>a boolean indicating whether or not the fragment could be packeted</p>
+                
+                <h2 id="configurecollisiondetectionmethod-thresholdx-thresholdy-speedx-speedy-deadtime">configureCollisionDetection(method, thresholdX, thresholdY, speedX, speedY, deadTime)</h2>
+                
+                <p>Internal: Configures collision detection on the Sphero, using the provided
+                params to decide what constitutes a 'collision'.</p>
+                
+                <h5 id="params-2">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>method</strong> - detection method to use. Pass <code>0x01</code> to enable collision detection</li>
-                      <li>
+                  <li>
 <strong>thresholdX</strong> - an 8-bit settable threshold for the X axis of the Sphero.
-                    A setting of <code>0x00</code> disables the contribution of this axis</li>
-                      <li>
+                A setting of <code>0x00</code> disables the contribution of this axis</li>
+                  <li>
 <strong>thresholdY</strong> - an 8-bit settable threshold for the Y axis of the Sphero.
-                    A setting of <code>0x00</code> disables the contribution of this aYis</li>
-                      <li>
+                A setting of <code>0x00</code> disables the contribution of this aYis</li>
+                  <li>
 <strong>speedX</strong> - an 8-bit settable speed value for the X speed. This is ranged,
-                    then added to <code>thresholdX</code> to generate the final threshold value.</li>
-                      <li>
+                then added to <code>thresholdX</code> to generate the final threshold value.</li>
+                  <li>
 <strong>speedY</strong> - an 8-bit settable speed value for the Y speed. This is ranged,
-                    then added to <code>thresholdY</code> to generate the final threshold value.</li>
-                      <li>
+                then added to <code>thresholdY</code> to generate the final threshold value.</li>
+                  <li>
 <strong>deadTime</strong> - an 8-bit post-collision dead time to prevent re-triggering of
-                    the collision event. Specified in 10ms increments</li>
-                    </ul>
-                    
-                    <h5 id="returns-4">Returns</h5>
-                    
-                    <p>a boolean whether or not the packet to be sent to the Sphero has been built successfully</p>
-                    
-                    <h2 id="configurelocatorflag-x-y-yawtare">configureLocator(flag, x, y, yawTare)</h2>
-                    
-                    <p>Through the streaming interface, Sphero provides real-time location
-                    data in the form of X, Y coordinates on the ground plane.</p>
-                    
-                    <h5 id="params-3">Params</h5>
-                    
-                    <ul>
-                      <li>
+                the collision event. Specified in 10ms increments</li>
+                </ul>
+                
+                <h5 id="returns-4">Returns</h5>
+                
+                <p>a boolean whether or not the packet to be sent to the Sphero has been built successfully</p>
+                
+                <h2 id="configurelocatorflag-x-y-yawtare">configureLocator(flag, x, y, yawTare)</h2>
+                
+                <p>Through the streaming interface, Sphero provides real-time location
+                data in the form of X, Y coordinates on the ground plane.</p>
+                
+                <h5 id="params-3">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>flag</strong> - number (0-1), determines whether the calibrate commands automatically set the
-                    yaw tare value.</li>
-                      <li>
+                yaw tare value.</li>
+                  <li>
 <strong>y</strong> - set the current X coordinates of Sphero on the ground plane in
-                    centimeters.</li>
-                      <li>
+                centimeters.</li>
+                  <li>
 <strong>x</strong> - set the current Y coordinates of Sphero on the ground plane in
-                    centimeters.</li>
-                      <li>
+                centimeters.</li>
+                  <li>
 <strong>yawTare</strong> - (0-359) value for the orientation the Sphero should use after
-                    calibration.</li>
-                    </ul>
-                    
-                    <h5 id="returns-5">Returns</h5>
-                    
-                    <p>a boolean whether or not the packet to be sent to the Sphero has beenbuilt successfully</p>
-                    
-                    <h2 id="detectcollisions">detectCollisions()</h2>
-                    
-                    <p>Enables collision detection for the Sphero. When the Sphero detects
-                    a collision, it will emit the <code>collision</code> event.</p>
-                    
-                    <p>Shortcut method to <code>configureCollisionDetection</code> so you don't have to deal
-                    with setting it up manually.</p>
-                    
-                    <h5 id="returns-6">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="eraseorbbasicstoragearea">eraseOrbBasicStorage(area)</h2>
-                    
-                    <p>Internal: This erases any existing program in the specified storage area.
-                    Specify 00h for the temporary RAM buffer or 01h for the persistent storage area.</p>
-                    
-                    <h5 id="params-4">Params</h5>
-                    
-                    <ul>
-                      <li>
+                calibration.</li>
+                </ul>
+                
+                <h5 id="returns-5">Returns</h5>
+                
+                <p>a boolean whether or not the packet to be sent to the Sphero has beenbuilt successfully</p>
+                
+                <h2 id="detectcollisions">detectCollisions()</h2>
+                
+                <p>Enables collision detection for the Sphero. When the Sphero detects
+                a collision, it will emit the <code>collision</code> event.</p>
+                
+                <p>Shortcut method to <code>configureCollisionDetection</code> so you don't have to deal
+                with setting it up manually.</p>
+                
+                <h5 id="returns-6">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="eraseorbbasicstoragearea">eraseOrbBasicStorage(area)</h2>
+                
+                <p>Internal: This erases any existing program in the specified storage area.
+                Specify 00h for the temporary RAM buffer or 01h for the persistent storage area.</p>
+                
+                <h5 id="params-4">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>area</strong> - which buffer should be erased, <code>0x00</code> for the temporary RAM buffer or
-                    <code>0x01</code> for the persistent storage area</li>
-                    </ul>
-                    
-                    <h5 id="returns-7">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="executeorbbasicprogramarea-start-line-start-line">executeOrbBasicProgram(Area, Start Line, Start Line)</h2>
-                    
-                    <p>This attempts to run a program in the specified storage area beginning
-                    at the specified line number. This command will fail if there is already
-                    an orbBasic program executing.</p>
-                    
-                    <h5 id="params-5">Params</h5>
-                    
-                    <ul>
-                      <li>
+                <code>0x01</code> for the persistent storage area</li>
+                </ul>
+                
+                <h5 id="returns-7">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="executeorbbasicprogramarea-start-line-start-line">executeOrbBasicProgram(Area, Start Line, Start Line)</h2>
+                
+                <p>This attempts to run a program in the specified storage area beginning
+                at the specified line number. This command will fail if there is already
+                an orbBasic program executing.</p>
+                
+                <h5 id="params-5">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>area</strong> - params</li>
-                      <li>
+                  <li>
 <strong>startLine</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-8">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="getapplicationconfigurationblock">getApplicationConfigurationBlock()</h2>
-                    
-                    <p>This allows you to retrieve the application configuration block that
-                    is set aside for exclusive use by applications.</p>
-                    
-                    <h5 id="returns-9">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="getconfigurationblockid">getConfigurationBlock(ID)</h2>
-                    
-                    <p>This command retrieves one of the configuration blocks.</p>
-                    
-                    <h5 id="params-6">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-8">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="getapplicationconfigurationblock">getApplicationConfigurationBlock()</h2>
+                
+                <p>This allows you to retrieve the application configuration block that
+                is set aside for exclusive use by applications.</p>
+                
+                <h5 id="returns-9">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="getconfigurationblockid">getConfigurationBlock(ID)</h2>
+                
+                <p>This command retrieves one of the configuration blocks.</p>
+                
+                <h5 id="params-6">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>id</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-10">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="getdevicemode">getDeviceMode()</h2>
-                    
-                    <p>Gets the operation mode of Sphero based on the supplied mode value.</p>
-                    
-                    <h5 id="returns-11">Returns</h5>
-                    
-                    <p><code>00h (Normal mode) or 01h (User Hack mode)</code></p>
-                    
-                    <h2 id="getmacrostatus">getMacroStatus()</h2>
-                    
-                    <p>This command returns the ID code and command number of the currently
-                    executing macro.</p>
-                    
-                    <h5 id="returns-12">Returns</h5>
-                    
-                    <p><code>(ID code, cmd number, cmd number)</code></p>
-                    
-                    <h2 id="getpermanentoptionflags">getPermanentOptionFlags()</h2>
-                    
-                    <p>This command returns the ID code and command number of the currently
-                    executing macro.</p>
-                    
-                    <h5 id="returns-13">Returns</h5>
-                    
-                    <p>an array of option flags</p>
-                    
-                    <h2 id="getrgb">getRGB()</h2>
-                    
-                    <p>This retrieves the "user LED color" which is stored in the config
-                    block.</p>
-                    
-                    <h5 id="returns-14">Returns</h5>
-                    
-                    <p>the sphero's LED color</p>
-                    
-                    <h2 id="gettemporaryoptionflags">getTemporaryOptionFlags</h2>
-                    
-                    <p>Returns the temporary option flags.</p>
-                    
-                    <h5 id="returns-15">Returns</h5>
-                    
-                    <p>FLAGS</p>
-                    
-                    <h2 id="reinitializemacroexecutive">reInitializeMacroExecutive()</h2>
-                    
-                    <p>This terminates any running macro and reinitializes the macro system.</p>
-                    
-                    <h5 id="returns-16">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="readlocator">readLocator()</h2>
-                    
-                    <p>This reads Sphero's current position (X,Y), component velocities and
-                    SOG (speed over ground).</p>
-                    
-                    <h5 id="returns-17">Returns</h5>
-                    
-                    <p><code>(XPOS, YPOS, XVEL, YVEL, SOG)</code></p>
-                    
-                    <h2 id="rollspeed-heading-state">roll(speed, heading, state)</h2>
-                    
-                    <p>This commands Sphero to roll along the provided vector. Both a speed
-                    and a heading are required; the latter is considered relative to the last
-                    calibrated direction.</p>
-                    
-                    <h5 id="params-7">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-10">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="getdevicemode">getDeviceMode()</h2>
+                
+                <p>Gets the operation mode of Sphero based on the supplied mode value.</p>
+                
+                <h5 id="returns-11">Returns</h5>
+                
+                <p><code>00h (Normal mode) or 01h (User Hack mode)</code></p>
+                
+                <h2 id="getmacrostatus">getMacroStatus()</h2>
+                
+                <p>This command returns the ID code and command number of the currently
+                executing macro.</p>
+                
+                <h5 id="returns-12">Returns</h5>
+                
+                <p><code>(ID code, cmd number, cmd number)</code></p>
+                
+                <h2 id="getpermanentoptionflags">getPermanentOptionFlags()</h2>
+                
+                <p>This command returns the ID code and command number of the currently
+                executing macro.</p>
+                
+                <h5 id="returns-13">Returns</h5>
+                
+                <p>an array of option flags</p>
+                
+                <h2 id="getrgb">getRGB()</h2>
+                
+                <p>This retrieves the "user LED color" which is stored in the config
+                block.</p>
+                
+                <h5 id="returns-14">Returns</h5>
+                
+                <p>the sphero's LED color</p>
+                
+                <h2 id="gettemporaryoptionflags">getTemporaryOptionFlags</h2>
+                
+                <p>Returns the temporary option flags.</p>
+                
+                <h5 id="returns-15">Returns</h5>
+                
+                <p>FLAGS</p>
+                
+                <h2 id="reinitializemacroexecutive">reInitializeMacroExecutive()</h2>
+                
+                <p>This terminates any running macro and reinitializes the macro system.</p>
+                
+                <h5 id="returns-16">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="readlocator">readLocator()</h2>
+                
+                <p>This reads Sphero's current position (X,Y), component velocities and
+                SOG (speed over ground).</p>
+                
+                <h5 id="returns-17">Returns</h5>
+                
+                <p><code>(XPOS, YPOS, XVEL, YVEL, SOG)</code></p>
+                
+                <h2 id="rollspeed-heading-state">roll(speed, heading, state)</h2>
+                
+                <p>This commands Sphero to roll along the provided vector. Both a speed
+                and a heading are required; the latter is considered relative to the last
+                calibrated direction.</p>
+                
+                <h5 id="params-7">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>speed</strong> - params</li>
-                      <li>
+                  <li>
 <strong>heading</strong> - params</li>
-                      <li>
+                  <li>
 <strong>state</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-18">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="runmacroseq-dlen-id">runMacro(SEQ, DLEN, ID)</h2>
-                    
-                    <p>This attempts to execute the specified macro.</p>
-                    
-                    <h5 id="params-8">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-18">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="runmacroseq-dlen-id">runMacro(SEQ, DLEN, ID)</h2>
+                
+                <p>This attempts to execute the specified macro.</p>
+                
+                <h5 id="params-8">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>seq</strong> - params</li>
-                      <li>
+                  <li>
 <strong>dLen</strong> - params</li>
-                      <li>
+                  <li>
 <strong>id</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-19">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="savemacrodata">saveMacro(data)</h2>
-                    
-                    <p>This stores the attached macro definition into the persistent store
-                    for later execution.</p>
-                    
-                    <h5 id="params-9">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-19">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="savemacrodata">saveMacro(data)</h2>
+                
+                <p>This stores the attached macro definition into the persistent store
+                for later execution.</p>
+                
+                <h5 id="params-9">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>data</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-20">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="savetemporarymacrodata">saveTemporaryMacro(data)</h2>
-                    
-                    <p>This command controls the self level routine.</p>
-                    
-                    <h5 id="params-10">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-20">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="savetemporarymacrodata">saveTemporaryMacro(data)</h2>
+                
+                <p>This command controls the self level routine.</p>
+                
+                <h5 id="params-10">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>options</strong> - params</li>
-                      <li>
+                  <li>
 <strong>angleLimit</strong> - params</li>
-                      <li>
+                  <li>
 <strong>timeout</strong> - params</li>
-                      <li>
+                  <li>
 <strong>trueTime</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-21">Returns</h5>
-                    
-                    <p>options: <code>array</code> [(0 , 1 , 2 ,3 ), (0 , 1 to 90), (0 , 1 to 255), (0 , 1 to 255)].</p>
-                    
-                    <h2 id="selfleveloptions-angle-limit-timeout-true-time-options-0--1--2-3--0--1-to-90-0--1-to-255-0--1-to-255">selfLevel(Options, Angle Limit, Timeout, True Time), options: ((0 | 1 | 2 |3 ), (0 | 1 to 90), (0 | 1 to 255), (0 | 1 to 255)</h2>
-                    
-                    <p>This command controls the self level routine.</p>
-                    
-                    <h5 id="params-11">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-21">Returns</h5>
+                
+                <p>options: <code>array</code> [(0 , 1 , 2 ,3 ), (0 , 1 to 90), (0 , 1 to 255), (0 , 1 to 255)].</p>
+                
+                <h2 id="selfleveloptions-angle-limit-timeout-true-time-options-0--1--2-3--0--1-to-90-0--1-to-255-0--1-to-255">selfLevel(Options, Angle Limit, Timeout, True Time), options: ((0 | 1 | 2 |3 ), (0 | 1 to 90), (0 | 1 to 255), (0 | 1 to 255)</h2>
+                
+                <p>This command controls the self level routine.</p>
+                
+                <h5 id="params-11">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>range</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-22">Returns</h5>
-                    
-                    <p><code>integer</code> opt: 0 , 1 , 2 , 3.</p>
-                    
-                    <h2 id="setaccelerometerrangerange-idx-options-0--1--2--3">setAccelerometerRange(Range Idx), options: 0 | 1 | 2 | 3</h2>
-                    
-                    <h2 id="setapplicationconfigurationblock">setApplicationConfigurationBlock</h2>
-                    
-                    <h2 id="setbackledlevel">setBackLED(level)</h2>
-                    
-                    <p>This allows you to control the brightness of the back LED. The value does
-                    not persist across power cycles.</p>
-                    
-                    <h5 id="params-12">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-22">Returns</h5>
+                
+                <p><code>integer</code> opt: 0 , 1 , 2 , 3.</p>
+                
+                <h2 id="setaccelerometerrangerange-idx-options-0--1--2--3">setAccelerometerRange(Range Idx), options: 0 | 1 | 2 | 3</h2>
+                
+                <h2 id="setapplicationconfigurationblock">setApplicationConfigurationBlock</h2>
+                
+                <h2 id="setbackledlevel">setBackLED(level)</h2>
+                
+                <p>This allows you to control the brightness of the back LED. The value does
+                not persist across power cycles.</p>
+                
+                <h5 id="params-12">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>level</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-23">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setboostwithtimestate">setBoostWithTime(STATE)</h2>
-                    
-                    <p>setBoostWithTime(state)</p>
-                    
-                    <h5 id="params-13">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-23">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setboostwithtimestate">setBoostWithTime(STATE)</h2>
+                
+                <p>setBoostWithTime(state)</p>
+                
+                <h5 id="params-13">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>state</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-24">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setcolorcolor">setColor(color)</h2>
-                    
-                    <p>Allows for convenient setting of the Sphero's color using a hex value
-                    or a color name string</p>
-                    
-                    <h5 id="params-14">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-24">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setcolorcolor">setColor(color)</h2>
+                
+                <p>Allows for convenient setting of the Sphero's color using a hex value
+                or a color name string</p>
+                
+                <h5 id="params-14">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>color</strong> - hex number (<code>0xFF1500</code>) or string color name to set the Sphero
-                    to</li>
-                      <li>
+                to</li>
+                  <li>
 <strong>persist</strong> - boolean, whether or not the color should persist. Defaults to
-                    <code>true</code>
+                <code>true</code>
 </li>
-                    </ul>
-                    
-                    <h5 id="returns-25">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setrandomcolor">setRandomColor()</h2>
-                    
-                    <p>Changes the Sphero to a random color.</p>
-                    
-                    <h5 id="params-15">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-25">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setrandomcolor">setRandomColor()</h2>
+                
+                <p>Changes the Sphero to a random color.</p>
+                
+                <h5 id="params-15">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>persist</strong> - boolean, whether or not the color should persist. Defaults to
-                    <code>true</code>
+                <code>true</code>
 </li>
-                    </ul>
-                    
-                    <h5 id="returns-26">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setconfigurationblockvalue">setConfigurationBlock(value)</h2>
-                    
-                    <p>This command accepts an exact copy of the configuration block and
-                    loads it into the RAM copy of the configuration block.</p>
-                    
-                    <h5 id="params-16">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-26">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setconfigurationblockvalue">setConfigurationBlock(value)</h2>
+                
+                <p>This command accepts an exact copy of the configuration block and
+                loads it into the RAM copy of the configuration block.</p>
+                
+                <h5 id="params-16">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>value</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-27">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setdatastreamingn-m-mask-pcnt-mask2">setDataStreaming(N, M, MASK, PCNT, MASK2)</h2>
-                    
-                    <p>Sphero supports asynchronous data streaming of certain control system and sensor parameters.</p>
-                    
-                    <h5 id="params-17">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-27">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setdatastreamingn-m-mask-pcnt-mask2">setDataStreaming(N, M, MASK, PCNT, MASK2)</h2>
+                
+                <p>Sphero supports asynchronous data streaming of certain control system and sensor parameters.</p>
+                
+                <h5 id="params-17">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>n</strong> - params</li>
-                      <li>
+                  <li>
 <strong>m</strong> -params</li>
-                      <li>
+                  <li>
 <strong>mask</strong> - params</li>
-                      <li>
+                  <li>
 <strong>pcnt</strong> - params</li>
-                      <li>
+                  <li>
 <em>*mask2</em>+ - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-28">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setdevicemodemode">setDeviceMode(MODE)</h2>
-                    
-                    <p>Assigns the operation mode of Sphero based on the supplied mode value.</p>
-                    
-                    <h5 id="params-18">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-28">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setdevicemodemode">setDeviceMode(MODE)</h2>
+                
+                <p>Assigns the operation mode of Sphero based on the supplied mode value.</p>
+                
+                <h5 id="params-18">Params</h5>
+                
+                <ul>
+                  <li>
 <em>*mode</em>+ - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-29">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setheadingheading">setHeading(HEADING)</h2>
-                    
-                    <p>This allows the smartphone client to adjust the orientation of Sphero
-                    by commanding a new reference heading in degrees, which ranges from 0 to 359.</p>
-                    
-                    <h5 id="params-19">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-29">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setheadingheading">setHeading(HEADING)</h2>
+                
+                <p>This allows the smartphone client to adjust the orientation of Sphero
+                by commanding a new reference heading in degrees, which ranges from 0 to 359.</p>
+                
+                <h5 id="params-19">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>heading</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-30">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setmacroparameterparam-val1-val2">setMacroParameter(Param, Val1, Val2)</h2>
-                    
-                    <p>This command allows system globals that influence certain macro
-                    commands to be selectively altered from outside of the macro system itself.</p>
-                    
-                    <h5 id="params-20">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-30">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setmacroparameterparam-val1-val2">setMacroParameter(Param, Val1, Val2)</h2>
+                
+                <p>This command allows system globals that influence certain macro
+                commands to be selectively altered from outside of the macro system itself.</p>
+                
+                <h5 id="params-20">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>param</strong> - params</li>
-                      <li>
+                  <li>
 <strong>val1</strong> - params</li>
-                      <li>
+                  <li>
 <strong>val2</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-31">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setmotiontimeouttime">setMotionTimeout(TIME)</h2>
-                    
-                    <p>This sets the ultimate timeout for the last motion command to keep
-                    Sphero from rolling away in the case of a crashed (or paused) client app.</p>
-                    
-                    <h5 id="params-21">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-31">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setmotiontimeouttime">setMotionTimeout(TIME)</h2>
+                
+                <p>This sets the ultimate timeout for the last motion command to keep
+                Sphero from rolling away in the case of a crashed (or paused) client app.</p>
+                
+                <h5 id="params-21">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>time</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-32">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setpermanentoptionflagsflags">setPermanentOptionFlags(FLAGS)</h2>
-                    
-                    <p>Assigns the permanent option flags to the provided value and writes them
-                    immediately to the config block for persistence across power cycles.</p>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-32">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setpermanentoptionflagsflags">setPermanentOptionFlags(FLAGS)</h2>
+                
+                <p>Assigns the permanent option flags to the provided value and writes them
+                immediately to the config block for persistence across power cycles.</p>
+                
+                <ul>
+                  <li>
 <strong>flags</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-33">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setrgbcolor-persist">setRGB(color, persist)</h2>
-                    
-                    <p>Allows for convenient setting of the Sphero's color using a hex value
-                    or a color name string</p>
-                    
-                    <h5 id="params-22">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-33">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setrgbcolor-persist">setRGB(color, persist)</h2>
+                
+                <p>Allows for convenient setting of the Sphero's color using a hex value
+                or a color name string</p>
+                
+                <h5 id="params-22">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>color</strong> - hex number (<code>0xFF1500</code>) or to set the Sphero to</li>
-                      <li>
+                  <li>
 <strong>persist</strong> - boolean, whether or not the color should persist. Defaults to
-                    <code>true</code>
+                <code>true</code>
 </li>
-                    </ul>
-                    
-                    <h5 id="returns-34">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setrawmotorvaluesl-mode-l-power-r-mode-r-power">setRawMotorValues(L-MODE, L-POWER, R-MODE, R-POWER)</h2>
-                    
-                    <p>This allows you to take over one or both of the motor output values,
-                    instead of having the stabilization system control them.</p>
-                    
-                    <h5 id="params-23">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-34">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setrawmotorvaluesl-mode-l-power-r-mode-r-power">setRawMotorValues(L-MODE, L-POWER, R-MODE, R-POWER)</h2>
+                
+                <p>This allows you to take over one or both of the motor output values,
+                instead of having the stabilization system control them.</p>
+                
+                <h5 id="params-23">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>lMode</strong> - params</li>
-                      <li>
+                  <li>
 <strong>lPower</strong> - params</li>
-                      <li>
+                  <li>
 <strong>rMode</strong> - params</li>
-                      <li>
+                  <li>
 <strong>rPower</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-35">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setrotationraterate">setRotationRate(RATE)</h2>
-                    
-                    <p>Sets the rotation rate of the Sphero</p>
-                    
-                    <h5 id="params-24">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-35">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setrotationraterate">setRotationRate(RATE)</h2>
+                
+                <p>Sets the rotation rate of the Sphero</p>
+                
+                <h5 id="params-24">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>rate</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-36">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="setstabalisationbool">setStabalisation(bool)</h2>
-                    
-                    <p>Sets whether the Sphero should have stabilization enabled</p>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-36">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="setstabalisationbool">setStabalisation(bool)</h2>
+                
+                <p>Sets whether the Sphero should have stabilization enabled</p>
+                
+                <ul>
+                  <li>
 <strong>bool</strong> - whether or not the sphero should have stabilization</li>
-                    </ul>
-                    
-                    <h5 id="returns-37">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="settemporaryoptionflagsflags">setTemporaryOptionFlags(FLAGS)</h2>
-                    
-                    <p>Assigns the temporary option flags to the provided value. These do not
-                    persist across a power cycle. See below for the bit definitions.</p>
-                    
-                    <h5 id="params-25">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-37">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="settemporaryoptionflagsflags">setTemporaryOptionFlags(FLAGS)</h2>
+                
+                <p>Assigns the temporary option flags to the provided value. These do not
+                persist across a power cycle. See below for the bit definitions.</p>
+                
+                <h5 id="params-25">Params</h5>
+                
+                <ul>
+                  <li>
 <em>*flags</em>+ - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-38">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="stop">stop</h2>
-                    
-                    <p>Stops the Sphero from rolling around.</p>
-                    
-                    <h5 id="returns-39">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    
-                    <h2 id="submitvaluetoinputstatementval">submitValueToInputStatement(VAL)</h2>
-                    
-                    <p>This takes the place of the typical user console in orbBasic and allows a
-                    user to answer an input request.</p>
-                    
-                    <h5 id="params-26">Params</h5>
-                    
-                    <ul>
-                      <li>
+                </ul>
+                
+                <h5 id="returns-38">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="stop">stop</h2>
+                
+                <p>Stops the Sphero from rolling around.</p>
+                
+                <h5 id="returns-39">Returns</h5>
+                
+                <p><code>nil</code></p>
+                
+                <h2 id="submitvaluetoinputstatementval">submitValueToInputStatement(VAL)</h2>
+                
+                <p>This takes the place of the typical user console in orbBasic and allows a
+                user to answer an input request.</p>
+                
+                <h5 id="params-26">Params</h5>
+                
+                <ul>
+                  <li>
 <strong>val</strong> - params</li>
-                    </ul>
-                    
-                    <h5 id="returns-40">Returns</h5>
-                    
-                    <p><code>nil</code></p>
-                    <h5>
-                      Note: for more information about the documentation of the Sphero driver click
-                      <a href="https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf">here.</a>
-                    </h5>
-                  </div>
-                  <div class="commands-api" id="Events">
-                    <h1 id="events">Events</h1>
-                    
-                    <h2 id="update">update</h2>
-                    
-                    <p>This is a meta-event that will be triggered when any of the other events are. If
-                    you're looking for specific information, you might wish to subscribe to one of
-                    the specific events instead.</p>
-                    
-                    <h2 id="collision">collision</h2>
-                    
-                    <p>Assuming that collision detection has been enabled, gets emitted when the sphero
-                    hits something, falls from a step, or otherwise detects a collision.</p>
-                    
-                    <h2 id="messagesdata">messages(data)</h2>
-                    
-                    <p>Gets triggered when the Sphero has data to send to the user.</p>
-                    
-                    <h2 id="notificationsdata">notifications(data)</h2>
-                    
-                    <p>Gets triggered when the Sphero has a notification to send to the user.</p>
-                    
-                    <h2 id="connect">connect</h2>
-                    
-                    <p>Gets triggered when the connection to the Sphero over Bluetooth has been opened.</p>
-                    
-                    <h2 id="locator">locator</h2>
-                    
-                    <p>Gets triggered when need to estimated real-time position and velocity information about the robot.</p>
-                    
-                    <h2 id="start">start</h2>
-                    
-                    <p>Gets triggered when the Sphero is started and ready to be used.</p>
-                  </div>
-                </section>
-                <section id="SpheroColors">
-                  <h2>Sphero Colors</h2>
-                  <table class="commands">
-                    <tr>
-                      <th>Example</th>
-                      <th>Name</th>
-                      <th>Code</th>
-                      <th>Example</th>
-                      <th>Name</th>
-                      <th>Code</th>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="aliceblue square"></div>
-                      </td>
-                      <td class="command">
-                        <span>aliceblue</span>
-                      </td>
-                      <td>0xF0F8FF</td>
-                      <td>
-                        <div class="antiquewhite square"></div>
-                      </td>
-                      <td class="command">
-                        <span>antiquewhite</span>
-                      </td>
-                      <td>0xFAEBD7</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square aqua"></div>
-                      </td>
-                      <td class="command">
-                        <span>aqua</span>
-                      </td>
-                      <td>0x00FFFF</td>
-                      <td>
-                        <div class="square aquamarine"></div>
-                      </td>
-                      <td class="command">
-                        <span>aquamarine</span>
-                      </td>
-                      <td>0x7FFFD4</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square azure"></div>
-                      </td>
-                      <td class="command">
-                        <span>azure</span>
-                      </td>
-                      <td>0xF0FFFF</td>
-                      <td>
-                        <div class="square beige"></div>
-                      </td>
-                      <td class="command">
-                        <span>beige</span>
-                      </td>
-                      <td>0xF5F5DC</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square bisque"></div>
-                      </td>
-                      <td class="command">
-                        <span>bisque</span>
-                      </td>
-                      <td>0xFFE4C4</td>
-                      <td>
-                        <div class="square black"></div>
-                      </td>
-                      <td class="command">
-                        <span>black</span>
-                      </td>
-                      <td>0x000000</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square blanchedalmond"></div>
-                      </td>
-                      <td class="command">
-                        <span>blanchedalmond</span>
-                      </td>
-                      <td>0xFFEBCD</td>
-                      <td>
-                        <div class="square blue"></div>
-                      </td>
-                      <td class="command">
-                        <span>blue</span>
-                      </td>
-                      <td>0x0000FF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square blueviolet"></div>
-                      </td>
-                      <td class="command">
-                        <span>blueviolet</span>
-                      </td>
-                      <td>0x8A2BE2</td>
-                      <td>
-                        <div class="square brown"></div>
-                      </td>
-                      <td class="command">
-                        <span>brown</span>
-                      </td>
-                      <td>0xA52A2A</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square burlywood"></div>
-                      </td>
-                      <td class="command">
-                        <span>burlywood</span>
-                      </td>
-                      <td>0xDEB887</td>
-                      <td>
-                        <div class="square cadetblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>cadetblue</span>
-                      </td>
-                      <td>0x5F9EA0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square chartreuse"></div>
-                      </td>
-                      <td class="command">
-                        <span>chartreuse</span>
-                      </td>
-                      <td>0x7FFF00</td>
-                      <td>
-                        <div class="square chocolate"></div>
-                      </td>
-                      <td class="command">
-                        <span>chocolate</span>
-                      </td>
-                      <td>0xD2691E</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square coral"></div>
-                      </td>
-                      <td class="command">
-                        <span>coral</span>
-                      </td>
-                      <td>0xFF7F50</td>
-                      <td>
-                        <div class="square cornflowerblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>cornflowerblue</span>
-                      </td>
-                      <td>0x6495ED</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square cornsilk"></div>
-                      </td>
-                      <td class="command">
-                        <span>cornsilk</span>
-                      </td>
-                      <td>0xFFF8DC</td>
-                      <td>
-                        <div class="square crimson"></div>
-                      </td>
-                      <td class="command">
-                        <span>crimson</span>
-                      </td>
-                      <td>0xDC143C</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square cyan"></div>
-                      </td>
-                      <td class="command">
-                        <span>cyan</span>
-                      </td>
-                      <td>0x00FFFF</td>
-                      <td>
-                        <div class="square darkblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkblue</span>
-                      </td>
-                      <td>0x00008B</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkcyan"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkcyan</span>
-                      </td>
-                      <td>0x008B8B</td>
-                      <td>
-                        <div class="square darkgoldenrod"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkgoldenrod</span>
-                      </td>
-                      <td>0xB8860B</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkgray"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkgray</span>
-                      </td>
-                      <td>0xA9A9A9</td>
-                      <td>
-                        <div class="square darkgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkgreen</span>
-                      </td>
-                      <td>0x006400</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkkhaki"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkkhaki</span>
-                      </td>
-                      <td>0xBDB76B</td>
-                      <td>
-                        <div class="square darkmagenta"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkmagenta</span>
-                      </td>
-                      <td>0x8B008B</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkolivegreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkolivegreen</span>
-                      </td>
-                      <td>0x556B2F</td>
-                      <td>
-                        <div class="square darkorange"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkorange</span>
-                      </td>
-                      <td>0xFF8C00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkorchid"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkorchid</span>
-                      </td>
-                      <td>0x9932CC</td>
-                      <td>
-                        <div class="square darkred"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkred</span>
-                      </td>
-                      <td>0x8B0000</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darksalmon"></div>
-                      </td>
-                      <td class="command">
-                        <span>darksalmon</span>
-                      </td>
-                      <td>0xE9967A</td>
-                      <td>
-                        <div class="square darkseagreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkseagreen</span>
-                      </td>
-                      <td>0x8FBC8F</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkslateblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkslateblue</span>
-                      </td>
-                      <td>0x483D8B</td>
-                      <td>
-                        <div class="square darkslategray"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkslategray</span>
-                      </td>
-                      <td>0x2F4F4F</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square darkturquoise"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkturquoise</span>
-                      </td>
-                      <td>0x00CED1</td>
-                      <td>
-                        <div class="square darkviolet"></div>
-                      </td>
-                      <td class="command">
-                        <span>darkviolet</span>
-                      </td>
-                      <td>0x9400D3</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square deeppink"></div>
-                      </td>
-                      <td class="command">
-                        <span>deeppink</span>
-                      </td>
-                      <td>0xFF1493</td>
-                      <td>
-                        <div class="square deepskyblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>deepskyblue</span>
-                      </td>
-                      <td>0x00BFFF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square dimgray"></div>
-                      </td>
-                      <td class="command">
-                        <span>dimgray</span>
-                      </td>
-                      <td>0x696969</td>
-                      <td>
-                        <div class="square dodgerblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>dodgerblue</span>
-                      </td>
-                      <td>0x1E90FF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square firebrick"></div>
-                      </td>
-                      <td class="command">
-                        <span>firebrick</span>
-                      </td>
-                      <td>0xB22222</td>
-                      <td>
-                        <div class="square floralwhite"></div>
-                      </td>
-                      <td class="command">
-                        <span>floralwhite</span>
-                      </td>
-                      <td>0xFFFAF0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square forestgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>forestgreen</span>
-                      </td>
-                      <td>0x228B22</td>
-                      <td>
-                        <div class="square fuchsia"></div>
-                      </td>
-                      <td class="command">
-                        <span>fuchsia</span>
-                      </td>
-                      <td>0xFF00FF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square gainsboro"></div>
-                      </td>
-                      <td class="command">
-                        <span>gainsboro</span>
-                      </td>
-                      <td>0xDCDCDC</td>
-                      <td>
-                        <div class="square ghostwhite"></div>
-                      </td>
-                      <td class="command">
-                        <span>ghostwhite</span>
-                      </td>
-                      <td>0xF8F8FF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square gold"></div>
-                      </td>
-                      <td class="command">
-                        <span>gold</span>
-                      </td>
-                      <td>0xFFD700</td>
-                      <td>
-                        <div class="square goldenrod"></div>
-                      </td>
-                      <td class="command">
-                        <span>goldenrod</span>
-                      </td>
-                      <td>0xDAA520</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square gray"></div>
-                      </td>
-                      <td class="command">
-                        <span>gray</span>
-                      </td>
-                      <td>0x808080</td>
-                      <td>
-                        <div class="square green"></div>
-                      </td>
-                      <td class="command">
-                        <span>green</span>
-                      </td>
-                      <td>0x008000</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square greenyellow"></div>
-                      </td>
-                      <td class="command">
-                        <span>greenyellow</span>
-                      </td>
-                      <td>0xADFF2F</td>
-                      <td>
-                        <div class="square honeydew"></div>
-                      </td>
-                      <td class="command">
-                        <span>honeydew</span>
-                      </td>
-                      <td>0xF0FFF0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square hotpink"></div>
-                      </td>
-                      <td class="command">
-                        <span>hotpink</span>
-                      </td>
-                      <td>0xFF69B4</td>
-                      <td>
-                        <div class="square indianred"></div>
-                      </td>
-                      <td class="command">
-                        <span>indianred</span>
-                      </td>
-                      <td>0xCD5C5C</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square indigo"></div>
-                      </td>
-                      <td class="command">
-                        <span>indigo</span>
-                      </td>
-                      <td>0x4B0082</td>
-                      <td>
-                        <div class="square ivory"></div>
-                      </td>
-                      <td class="command">
-                        <span>ivory</span>
-                      </td>
-                      <td>0xFFFFF0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square khaki"></div>
-                      </td>
-                      <td class="command">
-                        <span>khaki</span>
-                      </td>
-                      <td>0xF0E68C</td>
-                      <td>
-                        <div class="square lavender"></div>
-                      </td>
-                      <td class="command">
-                        <span>lavender</span>
-                      </td>
-                      <td>0xE6E6FA</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lavenderblush"></div>
-                      </td>
-                      <td class="command">
-                        <span>lavenderblush</span>
-                      </td>
-                      <td>0xFFF0F5</td>
-                      <td>
-                        <div class="square lawngreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>lawngreen</span>
-                      </td>
-                      <td>0x7CFC00</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lemonchiffon"></div>
-                      </td>
-                      <td class="command">
-                        <span>lemonchiffon</span>
-                      </td>
-                      <td>0xFFFACD</td>
-                      <td>
-                        <div class="square lightblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightblue</span>
-                      </td>
-                      <td>0xADD8E6</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightcoral"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightcoral</span>
-                      </td>
-                      <td>0xF08080</td>
-                      <td>
-                        <div class="square lightcyan"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightcyan</span>
-                      </td>
-                      <td>0xE0FFFF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightgoldenrodyellow"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightgoldenrodyellow</span>
-                      </td>
-                      <td>0xFAFAD2</td>
-                      <td>
-                        <div class="square lightgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightgreen</span>
-                      </td>
-                      <td>0x90EE90</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightgrey"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightgrey</span>
-                      </td>
-                      <td>0xD3D3D3</td>
-                      <td>
-                        <div class="square lightpink"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightpink</span>
-                      </td>
-                      <td>0xFFB6C1</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightsalmon"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightsalmon</span>
-                      </td>
-                      <td>0xFFA07A</td>
-                      <td>
-                        <div class="square lightseagreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightseagreen</span>
-                      </td>
-                      <td>0x20B2AA</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightskyblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightskyblue</span>
-                      </td>
-                      <td>0x87CEFA</td>
-                      <td>
-                        <div class="square lightslategray"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightslategray</span>
-                      </td>
-                      <td>0x778899</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lightsteelblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightsteelblue</span>
-                      </td>
-                      <td>0xB0C4DE</td>
-                      <td>
-                        <div class="square lightyellow"></div>
-                      </td>
-                      <td class="command">
-                        <span>lightyellow</span>
-                      </td>
-                      <td>0xFFFFE0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square lime"></div>
-                      </td>
-                      <td class="command">
-                        <span>lime</span>
-                      </td>
-                      <td>0x00FF00</td>
-                      <td>
-                        <div class="square limegreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>limegreen</span>
-                      </td>
-                      <td>0x32CD32</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square linen"></div>
-                      </td>
-                      <td class="command">
-                        <span>linen</span>
-                      </td>
-                      <td>0xFAF0E6</td>
-                      <td>
-                        <div class="square magenta"></div>
-                      </td>
-                      <td class="command">
-                        <span>magenta</span>
-                      </td>
-                      <td>0xFF00FF</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square maroon"></div>
-                      </td>
-                      <td class="command">
-                        <span>maroon</span>
-                      </td>
-                      <td>0x800000</td>
-                      <td>
-                        <div class="square mediumaquamarine"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumaquamarine</span>
-                      </td>
-                      <td>0x66CDAA</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square mediumblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumblue</span>
-                      </td>
-                      <td>0x0000CD</td>
-                      <td>
-                        <div class="square mediumorchid"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumorchid</span>
-                      </td>
-                      <td>0xBA55D3</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square mediumpurple"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumpurple</span>
-                      </td>
-                      <td>0x9370DB</td>
-                      <td>
-                        <div class="square mediumseagreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumseagreen</span>
-                      </td>
-                      <td>0x3CB371</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square mediumslateblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumslateblue</span>
-                      </td>
-                      <td>0x7B68EE</td>
-                      <td>
-                        <div class="square mediumspringgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumspringgreen</span>
-                      </td>
-                      <td>0x00FA9A</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square mediumturquoise"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumturquoise</span>
-                      </td>
-                      <td>0x48D1CC</td>
-                      <td>
-                        <div class="square mediumvioletred"></div>
-                      </td>
-                      <td class="command">
-                        <span>mediumvioletred</span>
-                      </td>
-                      <td>0xC71585</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square midnightblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>midnightblue</span>
-                      </td>
-                      <td>0x191970</td>
-                      <td>
-                        <div class="square mintcream"></div>
-                      </td>
-                      <td class="command">
-                        <span>mintcream</span>
-                      </td>
-                      <td>0xF5FFFA</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square mistyrose"></div>
-                      </td>
-                      <td class="command">
-                        <span>mistyrose</span>
-                      </td>
-                      <td>0xFFE4E1</td>
-                      <td>
-                        <div class="square moccasin"></div>
-                      </td>
-                      <td class="command">
-                        <span>moccasin</span>
-                      </td>
-                      <td>0xFFE4B5</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square navajowhite"></div>
-                      </td>
-                      <td class="command">
-                        <span>navajowhite</span>
-                      </td>
-                      <td>0xFFDEAD</td>
-                      <td>
-                        <div class="square navy"></div>
-                      </td>
-                      <td class="command">
-                        <span>navy</span>
-                      </td>
-                      <td>0x000080</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square oldlace"></div>
-                      </td>
-                      <td class="command">
-                        <span>oldlace</span>
-                      </td>
-                      <td>0xFDF5E6</td>
-                      <td>
-                        <div class="square olive"></div>
-                      </td>
-                      <td class="command">
-                        <span>olive</span>
-                      </td>
-                      <td>0x808000</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square olivedrab"></div>
-                      </td>
-                      <td class="command">
-                        <span>olivedrab</span>
-                      </td>
-                      <td>0x6B8E23</td>
-                      <td>
-                        <div class="square orange"></div>
-                      </td>
-                      <td class="command">
-                        <span>orange</span>
-                      </td>
-                      <td>0xFFA500</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square orangered"></div>
-                      </td>
-                      <td class="command">
-                        <span>orangered</span>
-                      </td>
-                      <td>0xFF4500</td>
-                      <td>
-                        <div class="square orchid"></div>
-                      </td>
-                      <td class="command">
-                        <span>orchid</span>
-                      </td>
-                      <td>0xDA70D6</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square palegoldenrod"></div>
-                      </td>
-                      <td class="command">
-                        <span>palegoldenrod</span>
-                      </td>
-                      <td>0xEEE8AA</td>
-                      <td>
-                        <div class="square palegreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>palegreen</span>
-                      </td>
-                      <td>0x98FB98</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square paleturquoise"></div>
-                      </td>
-                      <td class="command">
-                        <span>paleturquoise</span>
-                      </td>
-                      <td>0xAFEEEE</td>
-                      <td>
-                        <div class="square palevioletred"></div>
-                      </td>
-                      <td class="command">
-                        <span>palevioletred</span>
-                      </td>
-                      <td>0xDB7093</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square papayawhip"></div>
-                      </td>
-                      <td class="command">
-                        <span>papayawhip</span>
-                      </td>
-                      <td>0xFFEFD5</td>
-                      <td>
-                        <div class="square peachpuff"></div>
-                      </td>
-                      <td class="command">
-                        <span>peachpuff</span>
-                      </td>
-                      <td>0xFFDAB9</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square peru"></div>
-                      </td>
-                      <td class="command">
-                        <span>peru</span>
-                      </td>
-                      <td>0xCD853F</td>
-                      <td>
-                        <div class="square pink"></div>
-                      </td>
-                      <td class="command">
-                        <span>pink</span>
-                      </td>
-                      <td>0xFFC0CB</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square plum"></div>
-                      </td>
-                      <td class="command">
-                        <span>plum</span>
-                      </td>
-                      <td>0xDDA0DD</td>
-                      <td>
-                        <div class="square powderblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>powderblue</span>
-                      </td>
-                      <td>0xB0E0E6</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square purple"></div>
-                      </td>
-                      <td class="command">
-                        <span>purple</span>
-                      </td>
-                      <td>0x800080</td>
-                      <td>
-                        <div class="square red"></div>
-                      </td>
-                      <td class="command">
-                        <span>red</span>
-                      </td>
-                      <td>0xFF0000</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square rosybrown"></div>
-                      </td>
-                      <td class="command">
-                        <span>rosybrown</span>
-                      </td>
-                      <td>0xBC8F8F</td>
-                      <td>
-                        <div class="square royalblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>royalblue</span>
-                      </td>
-                      <td>0x4169E1</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square saddlebrown"></div>
-                      </td>
-                      <td class="command">
-                        <span>saddlebrown</span>
-                      </td>
-                      <td>0x8B4513</td>
-                      <td>
-                        <div class="square salmon"></div>
-                      </td>
-                      <td class="command">
-                        <span>salmon</span>
-                      </td>
-                      <td>0xFA8072</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square sandybrown"></div>
-                      </td>
-                      <td class="command">
-                        <span>sandybrown</span>
-                      </td>
-                      <td>0xF4A460</td>
-                      <td>
-                        <div class="square seagreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>seagreen</span>
-                      </td>
-                      <td>0x2E8B57</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square seashell"></div>
-                      </td>
-                      <td class="command">
-                        <span>seashell</span>
-                      </td>
-                      <td>0xFFF5EE</td>
-                      <td>
-                        <div class="square sienna"></div>
-                      </td>
-                      <td class="command">
-                        <span>sienna</span>
-                      </td>
-                      <td>0xA0522D</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square silver"></div>
-                      </td>
-                      <td class="command">
-                        <span>silver</span>
-                      </td>
-                      <td>0xC0C0C0</td>
-                      <td>
-                        <div class="square skyblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>skyblue</span>
-                      </td>
-                      <td>0x87CEEB</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square slateblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>slateblue</span>
-                      </td>
-                      <td>0x6A5ACD</td>
-                      <td>
-                        <div class="square slategray"></div>
-                      </td>
-                      <td class="command">
-                        <span>slategray</span>
-                      </td>
-                      <td>0x708090</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square snow"></div>
-                      </td>
-                      <td class="command">
-                        <span>snow</span>
-                      </td>
-                      <td>0xFFFAFA</td>
-                      <td>
-                        <div class="square springgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>springgreen</span>
-                      </td>
-                      <td>0x00FF7F</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square steelblue"></div>
-                      </td>
-                      <td class="command">
-                        <span>steelblue</span>
-                      </td>
-                      <td>0x4682B4</td>
-                      <td>
-                        <div class="square tan"></div>
-                      </td>
-                      <td class="command">
-                        <span>tan</span>
-                      </td>
-                      <td>0xD2B48C</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square teal"></div>
-                      </td>
-                      <td class="command">
-                        <span>teal</span>
-                      </td>
-                      <td>0x008080</td>
-                      <td>
-                        <div class="square thistle"></div>
-                      </td>
-                      <td class="command">
-                        <span>thistle</span>
-                      </td>
-                      <td>0xD8BFD8</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square tomato"></div>
-                      </td>
-                      <td class="command">
-                        <span>tomato</span>
-                      </td>
-                      <td>0xFF6347</td>
-                      <td>
-                        <div class="square turquoise"></div>
-                      </td>
-                      <td class="command">
-                        <span>turquoise</span>
-                      </td>
-                      <td>0x40E0D0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square violet"></div>
-                      </td>
-                      <td class="command">
-                        <span>violet</span>
-                      </td>
-                      <td>0xEE82EE</td>
-                      <td>
-                        <div class="square wheat"></div>
-                      </td>
-                      <td class="command">
-                        <span>wheat</span>
-                      </td>
-                      <td>0xF5DEB3</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square white"></div>
-                      </td>
-                      <td class="command">
-                        <span>white</span>
-                      </td>
-                      <td>0xFFFFFF</td>
-                      <td>
-                        <div class="square whitesmoke"></div>
-                      </td>
-                      <td class="command">
-                        <span>whitesmoke</span>
-                      </td>
-                      <td>0xF5F5F5</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="square yellow"></div>
-                      </td>
-                      <td class="command">
-                        <span>yellow</span>
-                      </td>
-                      <td>0xFFFF00</td>
-                      <td>
-                        <div class="square yellowgreen"></div>
-                      </td>
-                      <td class="command">
-                        <span>yellowgreen</span>
-                      </td>
-                      <td>0x9ACD32</td>
-                    </tr>
-                  </table>
-                </section>
-                <section class="compatability hardware" id="Compatability">
-                  <h2>Compatibility</h2>
-                  
-                  <div class="devices">
-                    <ul class="doc-platform">
-                      <li>
-                        <a href="/documentation/platforms/sphero">
-                          <p class="title">Sphero</p>
-                          <img src="/images/devices/sphero.jpg" style="width: 90%">
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
+                </ul>
+                
+                <h5 id="returns-40">Returns</h5>
+                
+                <p><code>nil</code></p>
+                <h5>
+                  Note: for more information about the documentation of the Sphero driver click
+                  <a href="https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf">here.</a>
+                </h5>
               </div>
-            </div>
-          </section>
+              <div class="commands-api" id="Events">
+                <h1 id="events">Events</h1>
+                
+                <h2 id="update">update</h2>
+                
+                <p>This is a meta-event that will be triggered when any of the other events are. If
+                you're looking for specific information, you might wish to subscribe to one of
+                the specific events instead.</p>
+                
+                <h2 id="collision">collision</h2>
+                
+                <p>Assuming that collision detection has been enabled, gets emitted when the sphero
+                hits something, falls from a step, or otherwise detects a collision.</p>
+                
+                <h2 id="messagesdata">messages(data)</h2>
+                
+                <p>Gets triggered when the Sphero has data to send to the user.</p>
+                
+                <h2 id="notificationsdata">notifications(data)</h2>
+                
+                <p>Gets triggered when the Sphero has a notification to send to the user.</p>
+                
+                <h2 id="connect">connect</h2>
+                
+                <p>Gets triggered when the connection to the Sphero over Bluetooth has been opened.</p>
+                
+                <h2 id="locator">locator</h2>
+                
+                <p>Gets triggered when need to estimated real-time position and velocity information about the robot.</p>
+                
+                <h2 id="start">start</h2>
+                
+                <p>Gets triggered when the Sphero is started and ready to be used.</p>
+              </div>
+            </section>
+            <section id="SpheroColors">
+              <h2>Sphero Colors</h2>
+              <table class="commands">
+                <tr>
+                  <th>Example</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <th>Example</th>
+                  <th>Name</th>
+                  <th>Code</th>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="aliceblue square"></div>
+                  </td>
+                  <td class="command">
+                    <span>aliceblue</span>
+                  </td>
+                  <td>0xF0F8FF</td>
+                  <td>
+                    <div class="antiquewhite square"></div>
+                  </td>
+                  <td class="command">
+                    <span>antiquewhite</span>
+                  </td>
+                  <td>0xFAEBD7</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square aqua"></div>
+                  </td>
+                  <td class="command">
+                    <span>aqua</span>
+                  </td>
+                  <td>0x00FFFF</td>
+                  <td>
+                    <div class="square aquamarine"></div>
+                  </td>
+                  <td class="command">
+                    <span>aquamarine</span>
+                  </td>
+                  <td>0x7FFFD4</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square azure"></div>
+                  </td>
+                  <td class="command">
+                    <span>azure</span>
+                  </td>
+                  <td>0xF0FFFF</td>
+                  <td>
+                    <div class="square beige"></div>
+                  </td>
+                  <td class="command">
+                    <span>beige</span>
+                  </td>
+                  <td>0xF5F5DC</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square bisque"></div>
+                  </td>
+                  <td class="command">
+                    <span>bisque</span>
+                  </td>
+                  <td>0xFFE4C4</td>
+                  <td>
+                    <div class="square black"></div>
+                  </td>
+                  <td class="command">
+                    <span>black</span>
+                  </td>
+                  <td>0x000000</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square blanchedalmond"></div>
+                  </td>
+                  <td class="command">
+                    <span>blanchedalmond</span>
+                  </td>
+                  <td>0xFFEBCD</td>
+                  <td>
+                    <div class="square blue"></div>
+                  </td>
+                  <td class="command">
+                    <span>blue</span>
+                  </td>
+                  <td>0x0000FF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square blueviolet"></div>
+                  </td>
+                  <td class="command">
+                    <span>blueviolet</span>
+                  </td>
+                  <td>0x8A2BE2</td>
+                  <td>
+                    <div class="square brown"></div>
+                  </td>
+                  <td class="command">
+                    <span>brown</span>
+                  </td>
+                  <td>0xA52A2A</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square burlywood"></div>
+                  </td>
+                  <td class="command">
+                    <span>burlywood</span>
+                  </td>
+                  <td>0xDEB887</td>
+                  <td>
+                    <div class="square cadetblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>cadetblue</span>
+                  </td>
+                  <td>0x5F9EA0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square chartreuse"></div>
+                  </td>
+                  <td class="command">
+                    <span>chartreuse</span>
+                  </td>
+                  <td>0x7FFF00</td>
+                  <td>
+                    <div class="square chocolate"></div>
+                  </td>
+                  <td class="command">
+                    <span>chocolate</span>
+                  </td>
+                  <td>0xD2691E</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square coral"></div>
+                  </td>
+                  <td class="command">
+                    <span>coral</span>
+                  </td>
+                  <td>0xFF7F50</td>
+                  <td>
+                    <div class="square cornflowerblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>cornflowerblue</span>
+                  </td>
+                  <td>0x6495ED</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square cornsilk"></div>
+                  </td>
+                  <td class="command">
+                    <span>cornsilk</span>
+                  </td>
+                  <td>0xFFF8DC</td>
+                  <td>
+                    <div class="square crimson"></div>
+                  </td>
+                  <td class="command">
+                    <span>crimson</span>
+                  </td>
+                  <td>0xDC143C</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square cyan"></div>
+                  </td>
+                  <td class="command">
+                    <span>cyan</span>
+                  </td>
+                  <td>0x00FFFF</td>
+                  <td>
+                    <div class="square darkblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkblue</span>
+                  </td>
+                  <td>0x00008B</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkcyan"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkcyan</span>
+                  </td>
+                  <td>0x008B8B</td>
+                  <td>
+                    <div class="square darkgoldenrod"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkgoldenrod</span>
+                  </td>
+                  <td>0xB8860B</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkgray"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkgray</span>
+                  </td>
+                  <td>0xA9A9A9</td>
+                  <td>
+                    <div class="square darkgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkgreen</span>
+                  </td>
+                  <td>0x006400</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkkhaki"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkkhaki</span>
+                  </td>
+                  <td>0xBDB76B</td>
+                  <td>
+                    <div class="square darkmagenta"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkmagenta</span>
+                  </td>
+                  <td>0x8B008B</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkolivegreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkolivegreen</span>
+                  </td>
+                  <td>0x556B2F</td>
+                  <td>
+                    <div class="square darkorange"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkorange</span>
+                  </td>
+                  <td>0xFF8C00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkorchid"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkorchid</span>
+                  </td>
+                  <td>0x9932CC</td>
+                  <td>
+                    <div class="square darkred"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkred</span>
+                  </td>
+                  <td>0x8B0000</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darksalmon"></div>
+                  </td>
+                  <td class="command">
+                    <span>darksalmon</span>
+                  </td>
+                  <td>0xE9967A</td>
+                  <td>
+                    <div class="square darkseagreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkseagreen</span>
+                  </td>
+                  <td>0x8FBC8F</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkslateblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkslateblue</span>
+                  </td>
+                  <td>0x483D8B</td>
+                  <td>
+                    <div class="square darkslategray"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkslategray</span>
+                  </td>
+                  <td>0x2F4F4F</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square darkturquoise"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkturquoise</span>
+                  </td>
+                  <td>0x00CED1</td>
+                  <td>
+                    <div class="square darkviolet"></div>
+                  </td>
+                  <td class="command">
+                    <span>darkviolet</span>
+                  </td>
+                  <td>0x9400D3</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square deeppink"></div>
+                  </td>
+                  <td class="command">
+                    <span>deeppink</span>
+                  </td>
+                  <td>0xFF1493</td>
+                  <td>
+                    <div class="square deepskyblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>deepskyblue</span>
+                  </td>
+                  <td>0x00BFFF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square dimgray"></div>
+                  </td>
+                  <td class="command">
+                    <span>dimgray</span>
+                  </td>
+                  <td>0x696969</td>
+                  <td>
+                    <div class="square dodgerblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>dodgerblue</span>
+                  </td>
+                  <td>0x1E90FF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square firebrick"></div>
+                  </td>
+                  <td class="command">
+                    <span>firebrick</span>
+                  </td>
+                  <td>0xB22222</td>
+                  <td>
+                    <div class="square floralwhite"></div>
+                  </td>
+                  <td class="command">
+                    <span>floralwhite</span>
+                  </td>
+                  <td>0xFFFAF0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square forestgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>forestgreen</span>
+                  </td>
+                  <td>0x228B22</td>
+                  <td>
+                    <div class="square fuchsia"></div>
+                  </td>
+                  <td class="command">
+                    <span>fuchsia</span>
+                  </td>
+                  <td>0xFF00FF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square gainsboro"></div>
+                  </td>
+                  <td class="command">
+                    <span>gainsboro</span>
+                  </td>
+                  <td>0xDCDCDC</td>
+                  <td>
+                    <div class="square ghostwhite"></div>
+                  </td>
+                  <td class="command">
+                    <span>ghostwhite</span>
+                  </td>
+                  <td>0xF8F8FF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square gold"></div>
+                  </td>
+                  <td class="command">
+                    <span>gold</span>
+                  </td>
+                  <td>0xFFD700</td>
+                  <td>
+                    <div class="square goldenrod"></div>
+                  </td>
+                  <td class="command">
+                    <span>goldenrod</span>
+                  </td>
+                  <td>0xDAA520</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square gray"></div>
+                  </td>
+                  <td class="command">
+                    <span>gray</span>
+                  </td>
+                  <td>0x808080</td>
+                  <td>
+                    <div class="square green"></div>
+                  </td>
+                  <td class="command">
+                    <span>green</span>
+                  </td>
+                  <td>0x008000</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square greenyellow"></div>
+                  </td>
+                  <td class="command">
+                    <span>greenyellow</span>
+                  </td>
+                  <td>0xADFF2F</td>
+                  <td>
+                    <div class="square honeydew"></div>
+                  </td>
+                  <td class="command">
+                    <span>honeydew</span>
+                  </td>
+                  <td>0xF0FFF0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square hotpink"></div>
+                  </td>
+                  <td class="command">
+                    <span>hotpink</span>
+                  </td>
+                  <td>0xFF69B4</td>
+                  <td>
+                    <div class="square indianred"></div>
+                  </td>
+                  <td class="command">
+                    <span>indianred</span>
+                  </td>
+                  <td>0xCD5C5C</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square indigo"></div>
+                  </td>
+                  <td class="command">
+                    <span>indigo</span>
+                  </td>
+                  <td>0x4B0082</td>
+                  <td>
+                    <div class="square ivory"></div>
+                  </td>
+                  <td class="command">
+                    <span>ivory</span>
+                  </td>
+                  <td>0xFFFFF0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square khaki"></div>
+                  </td>
+                  <td class="command">
+                    <span>khaki</span>
+                  </td>
+                  <td>0xF0E68C</td>
+                  <td>
+                    <div class="square lavender"></div>
+                  </td>
+                  <td class="command">
+                    <span>lavender</span>
+                  </td>
+                  <td>0xE6E6FA</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lavenderblush"></div>
+                  </td>
+                  <td class="command">
+                    <span>lavenderblush</span>
+                  </td>
+                  <td>0xFFF0F5</td>
+                  <td>
+                    <div class="square lawngreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>lawngreen</span>
+                  </td>
+                  <td>0x7CFC00</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lemonchiffon"></div>
+                  </td>
+                  <td class="command">
+                    <span>lemonchiffon</span>
+                  </td>
+                  <td>0xFFFACD</td>
+                  <td>
+                    <div class="square lightblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightblue</span>
+                  </td>
+                  <td>0xADD8E6</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightcoral"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightcoral</span>
+                  </td>
+                  <td>0xF08080</td>
+                  <td>
+                    <div class="square lightcyan"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightcyan</span>
+                  </td>
+                  <td>0xE0FFFF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightgoldenrodyellow"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightgoldenrodyellow</span>
+                  </td>
+                  <td>0xFAFAD2</td>
+                  <td>
+                    <div class="square lightgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightgreen</span>
+                  </td>
+                  <td>0x90EE90</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightgrey"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightgrey</span>
+                  </td>
+                  <td>0xD3D3D3</td>
+                  <td>
+                    <div class="square lightpink"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightpink</span>
+                  </td>
+                  <td>0xFFB6C1</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightsalmon"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightsalmon</span>
+                  </td>
+                  <td>0xFFA07A</td>
+                  <td>
+                    <div class="square lightseagreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightseagreen</span>
+                  </td>
+                  <td>0x20B2AA</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightskyblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightskyblue</span>
+                  </td>
+                  <td>0x87CEFA</td>
+                  <td>
+                    <div class="square lightslategray"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightslategray</span>
+                  </td>
+                  <td>0x778899</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lightsteelblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightsteelblue</span>
+                  </td>
+                  <td>0xB0C4DE</td>
+                  <td>
+                    <div class="square lightyellow"></div>
+                  </td>
+                  <td class="command">
+                    <span>lightyellow</span>
+                  </td>
+                  <td>0xFFFFE0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square lime"></div>
+                  </td>
+                  <td class="command">
+                    <span>lime</span>
+                  </td>
+                  <td>0x00FF00</td>
+                  <td>
+                    <div class="square limegreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>limegreen</span>
+                  </td>
+                  <td>0x32CD32</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square linen"></div>
+                  </td>
+                  <td class="command">
+                    <span>linen</span>
+                  </td>
+                  <td>0xFAF0E6</td>
+                  <td>
+                    <div class="square magenta"></div>
+                  </td>
+                  <td class="command">
+                    <span>magenta</span>
+                  </td>
+                  <td>0xFF00FF</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square maroon"></div>
+                  </td>
+                  <td class="command">
+                    <span>maroon</span>
+                  </td>
+                  <td>0x800000</td>
+                  <td>
+                    <div class="square mediumaquamarine"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumaquamarine</span>
+                  </td>
+                  <td>0x66CDAA</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square mediumblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumblue</span>
+                  </td>
+                  <td>0x0000CD</td>
+                  <td>
+                    <div class="square mediumorchid"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumorchid</span>
+                  </td>
+                  <td>0xBA55D3</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square mediumpurple"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumpurple</span>
+                  </td>
+                  <td>0x9370DB</td>
+                  <td>
+                    <div class="square mediumseagreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumseagreen</span>
+                  </td>
+                  <td>0x3CB371</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square mediumslateblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumslateblue</span>
+                  </td>
+                  <td>0x7B68EE</td>
+                  <td>
+                    <div class="square mediumspringgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumspringgreen</span>
+                  </td>
+                  <td>0x00FA9A</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square mediumturquoise"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumturquoise</span>
+                  </td>
+                  <td>0x48D1CC</td>
+                  <td>
+                    <div class="square mediumvioletred"></div>
+                  </td>
+                  <td class="command">
+                    <span>mediumvioletred</span>
+                  </td>
+                  <td>0xC71585</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square midnightblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>midnightblue</span>
+                  </td>
+                  <td>0x191970</td>
+                  <td>
+                    <div class="square mintcream"></div>
+                  </td>
+                  <td class="command">
+                    <span>mintcream</span>
+                  </td>
+                  <td>0xF5FFFA</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square mistyrose"></div>
+                  </td>
+                  <td class="command">
+                    <span>mistyrose</span>
+                  </td>
+                  <td>0xFFE4E1</td>
+                  <td>
+                    <div class="square moccasin"></div>
+                  </td>
+                  <td class="command">
+                    <span>moccasin</span>
+                  </td>
+                  <td>0xFFE4B5</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square navajowhite"></div>
+                  </td>
+                  <td class="command">
+                    <span>navajowhite</span>
+                  </td>
+                  <td>0xFFDEAD</td>
+                  <td>
+                    <div class="square navy"></div>
+                  </td>
+                  <td class="command">
+                    <span>navy</span>
+                  </td>
+                  <td>0x000080</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square oldlace"></div>
+                  </td>
+                  <td class="command">
+                    <span>oldlace</span>
+                  </td>
+                  <td>0xFDF5E6</td>
+                  <td>
+                    <div class="square olive"></div>
+                  </td>
+                  <td class="command">
+                    <span>olive</span>
+                  </td>
+                  <td>0x808000</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square olivedrab"></div>
+                  </td>
+                  <td class="command">
+                    <span>olivedrab</span>
+                  </td>
+                  <td>0x6B8E23</td>
+                  <td>
+                    <div class="square orange"></div>
+                  </td>
+                  <td class="command">
+                    <span>orange</span>
+                  </td>
+                  <td>0xFFA500</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square orangered"></div>
+                  </td>
+                  <td class="command">
+                    <span>orangered</span>
+                  </td>
+                  <td>0xFF4500</td>
+                  <td>
+                    <div class="square orchid"></div>
+                  </td>
+                  <td class="command">
+                    <span>orchid</span>
+                  </td>
+                  <td>0xDA70D6</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square palegoldenrod"></div>
+                  </td>
+                  <td class="command">
+                    <span>palegoldenrod</span>
+                  </td>
+                  <td>0xEEE8AA</td>
+                  <td>
+                    <div class="square palegreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>palegreen</span>
+                  </td>
+                  <td>0x98FB98</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square paleturquoise"></div>
+                  </td>
+                  <td class="command">
+                    <span>paleturquoise</span>
+                  </td>
+                  <td>0xAFEEEE</td>
+                  <td>
+                    <div class="square palevioletred"></div>
+                  </td>
+                  <td class="command">
+                    <span>palevioletred</span>
+                  </td>
+                  <td>0xDB7093</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square papayawhip"></div>
+                  </td>
+                  <td class="command">
+                    <span>papayawhip</span>
+                  </td>
+                  <td>0xFFEFD5</td>
+                  <td>
+                    <div class="square peachpuff"></div>
+                  </td>
+                  <td class="command">
+                    <span>peachpuff</span>
+                  </td>
+                  <td>0xFFDAB9</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square peru"></div>
+                  </td>
+                  <td class="command">
+                    <span>peru</span>
+                  </td>
+                  <td>0xCD853F</td>
+                  <td>
+                    <div class="square pink"></div>
+                  </td>
+                  <td class="command">
+                    <span>pink</span>
+                  </td>
+                  <td>0xFFC0CB</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square plum"></div>
+                  </td>
+                  <td class="command">
+                    <span>plum</span>
+                  </td>
+                  <td>0xDDA0DD</td>
+                  <td>
+                    <div class="square powderblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>powderblue</span>
+                  </td>
+                  <td>0xB0E0E6</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square purple"></div>
+                  </td>
+                  <td class="command">
+                    <span>purple</span>
+                  </td>
+                  <td>0x800080</td>
+                  <td>
+                    <div class="square red"></div>
+                  </td>
+                  <td class="command">
+                    <span>red</span>
+                  </td>
+                  <td>0xFF0000</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square rosybrown"></div>
+                  </td>
+                  <td class="command">
+                    <span>rosybrown</span>
+                  </td>
+                  <td>0xBC8F8F</td>
+                  <td>
+                    <div class="square royalblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>royalblue</span>
+                  </td>
+                  <td>0x4169E1</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square saddlebrown"></div>
+                  </td>
+                  <td class="command">
+                    <span>saddlebrown</span>
+                  </td>
+                  <td>0x8B4513</td>
+                  <td>
+                    <div class="square salmon"></div>
+                  </td>
+                  <td class="command">
+                    <span>salmon</span>
+                  </td>
+                  <td>0xFA8072</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square sandybrown"></div>
+                  </td>
+                  <td class="command">
+                    <span>sandybrown</span>
+                  </td>
+                  <td>0xF4A460</td>
+                  <td>
+                    <div class="square seagreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>seagreen</span>
+                  </td>
+                  <td>0x2E8B57</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square seashell"></div>
+                  </td>
+                  <td class="command">
+                    <span>seashell</span>
+                  </td>
+                  <td>0xFFF5EE</td>
+                  <td>
+                    <div class="square sienna"></div>
+                  </td>
+                  <td class="command">
+                    <span>sienna</span>
+                  </td>
+                  <td>0xA0522D</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square silver"></div>
+                  </td>
+                  <td class="command">
+                    <span>silver</span>
+                  </td>
+                  <td>0xC0C0C0</td>
+                  <td>
+                    <div class="square skyblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>skyblue</span>
+                  </td>
+                  <td>0x87CEEB</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square slateblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>slateblue</span>
+                  </td>
+                  <td>0x6A5ACD</td>
+                  <td>
+                    <div class="square slategray"></div>
+                  </td>
+                  <td class="command">
+                    <span>slategray</span>
+                  </td>
+                  <td>0x708090</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square snow"></div>
+                  </td>
+                  <td class="command">
+                    <span>snow</span>
+                  </td>
+                  <td>0xFFFAFA</td>
+                  <td>
+                    <div class="square springgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>springgreen</span>
+                  </td>
+                  <td>0x00FF7F</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square steelblue"></div>
+                  </td>
+                  <td class="command">
+                    <span>steelblue</span>
+                  </td>
+                  <td>0x4682B4</td>
+                  <td>
+                    <div class="square tan"></div>
+                  </td>
+                  <td class="command">
+                    <span>tan</span>
+                  </td>
+                  <td>0xD2B48C</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square teal"></div>
+                  </td>
+                  <td class="command">
+                    <span>teal</span>
+                  </td>
+                  <td>0x008080</td>
+                  <td>
+                    <div class="square thistle"></div>
+                  </td>
+                  <td class="command">
+                    <span>thistle</span>
+                  </td>
+                  <td>0xD8BFD8</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square tomato"></div>
+                  </td>
+                  <td class="command">
+                    <span>tomato</span>
+                  </td>
+                  <td>0xFF6347</td>
+                  <td>
+                    <div class="square turquoise"></div>
+                  </td>
+                  <td class="command">
+                    <span>turquoise</span>
+                  </td>
+                  <td>0x40E0D0</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square violet"></div>
+                  </td>
+                  <td class="command">
+                    <span>violet</span>
+                  </td>
+                  <td>0xEE82EE</td>
+                  <td>
+                    <div class="square wheat"></div>
+                  </td>
+                  <td class="command">
+                    <span>wheat</span>
+                  </td>
+                  <td>0xF5DEB3</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square white"></div>
+                  </td>
+                  <td class="command">
+                    <span>white</span>
+                  </td>
+                  <td>0xFFFFFF</td>
+                  <td>
+                    <div class="square whitesmoke"></div>
+                  </td>
+                  <td class="command">
+                    <span>whitesmoke</span>
+                  </td>
+                  <td>0xF5F5F5</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="square yellow"></div>
+                  </td>
+                  <td class="command">
+                    <span>yellow</span>
+                  </td>
+                  <td>0xFFFF00</td>
+                  <td>
+                    <div class="square yellowgreen"></div>
+                  </td>
+                  <td class="command">
+                    <span>yellowgreen</span>
+                  </td>
+                  <td>0x9ACD32</td>
+                </tr>
+              </table>
+            </section>
+            <section class="compatability hardware" id="Compatability">
+              <h2>Compatibility</h2>
+              <div class="devices">
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/sphero">
+                    <p class="title">Sphero</p>
+                    <img src="/images/devices/sphero.jpg" style="width: 90%">
+                  </a>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -2141,47 +2137,47 @@ Cylon.robot({
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

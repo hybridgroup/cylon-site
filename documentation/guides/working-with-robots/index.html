@@ -8,9 +8,9 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>Cylon.js - Working With Robots</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
@@ -47,207 +47,208 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a class="active" href="/documentation">Docs</a>
-                  <a href="/documentation/platforms" class="item">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a class="active" href="/documentation">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
-                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
-                </nav>
               </div>
-              <div class="container-documentation">
-                
-                <h1 id="working-with-robots">Working With Robots</h1>
-                
-                <p>This guide should help you interact with Cylon's Robot class.</p>
-                
-                <p>Here's the example Robot we'll be using:</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            
+            <h1 id="working-with-robots">Working With Robots</h1>
+            
+            <p>This guide should help you interact with Cylon's Robot class.</p>
+            
+            <p>Here's the example Robot we'll be using:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
 
   <span class="key">devices</span>: [
@@ -262,16 +263,16 @@
   }
 });
 </pre>
-                
-                <h2 id="my-vs-this">
+            
+            <h2 id="my-vs-this">
 <code>my</code> vs. <code>this</code>
 </h2>
-                
-                <p>Inside a Robot's work block, <code>this</code> is set to the Robot.
-                To make code with closures and other nesting work better, we also pass it as an argument to the work block.
-                So these two works blocks are equivalent in behaviour:</p>
-                
-                <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>() {
+            
+            <p>Inside a Robot's work block, <code>this</code> is set to the Robot.
+            To make code with closures and other nesting work better, we also pass it as an argument to the work block.
+            So these two works blocks are equivalent in behaviour:</p>
+            
+            <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>() {
     <span class="local-variable">this</span>.button.on(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       <span class="local-variable">this</span>.led.toggle();
     }.bind(<span class="local-variable">this</span>));
@@ -285,14 +286,14 @@
     });
   }
 </pre>
-                
-                <p>Programmers preferring more idiomatic JavaScript might prefer to use <code>this</code>, but to simplify things in our examples, we will use the <code>my</code>-argument style.</p>
-                
-                <h2 id="connections">Connections</h2>
-                
-                <p>When initializing a robot, you can either pass a <code>connection</code> object for a single connection, or a <code>connections</code> array for multiple connections:</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <p>Programmers preferring more idiomatic JavaScript might prefer to use <code>this</code>, but to simplify things in our examples, we will use the <code>my</code>-argument style.</p>
+            
+            <h2 id="connections">Connections</h2>
+            
+            <p>When initializing a robot, you can either pass a <code>connection</code> object for a single connection, or a <code>connections</code> array for multiple connections:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>,
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>,
@@ -309,12 +310,12 @@ Cylon.robot({
   ]
 });
 </pre>
-                
-                <p>Inside a work block, the Robot's connections can be accessed through the <code>connections</code> attribute, which contains a mapping of names to connections.</p>
-                
-                <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <p>Inside a work block, the Robot's connections can be accessed through the <code>connections</code> attribute, which contains a mapping of names to connections.</p>
+            
+            <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
@@ -334,13 +335,13 @@ Cylon.robot({
   }
 });
 </pre>
-                
-                <h2 id="devices">Devices</h2>
-                
-                <p>Devices, for the most part, behave similarly to Connections.
-                When initializing a robot, you can either pass a <code>device</code> object for a single device, or a <code>devices</code> array for multiple devices:</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <h2 id="devices">Devices</h2>
+            
+            <p>Devices, for the most part, behave similarly to Connections.
+            When initializing a robot, you can either pass a <code>device</code> object for a single device, or a <code>devices</code> array for multiple devices:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">device</span>: {
     <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>,
     <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>,
@@ -357,13 +358,13 @@ Cylon.robot({
   ]
 });
 </pre>
-                
-                <p>Inside a work block, the Robot's devices can be accessed through the <code>devices</code> attribute, which contains a mapping of names to devices.</p>
-                
-                <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
-                Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <p>Inside a work block, the Robot's devices can be accessed through the <code>devices</code> attribute, which contains a mapping of names to devices.</p>
+            
+            <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
+            Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: [
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
@@ -391,17 +392,17 @@ Cylon.robot({
   }
 });
 </pre>
-                
-                <h2 id="commands">Commands</h2>
-                
-                <p>Robots in Cylon can have commands that can be called from the API.</p>
-                
-                <p>There's three main ways to define commands:</p>
-                
-                <p><strong>Automatically</strong> - by default, any non-standard property on a Robot that is a function will be made accessible to the API.
-                For example:</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <h2 id="commands">Commands</h2>
+            
+            <p>Robots in Cylon can have commands that can be called from the API.</p>
+            
+            <p>There's three main ways to define commands:</p>
+            
+            <p><strong>Automatically</strong> - by default, any non-standard property on a Robot that is a function will be made accessible to the API.
+            For example:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
 
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
@@ -417,10 +418,10 @@ Cylon.robot({
 <span class="comment">// GET /api/robots/testbot/commands</span>
 <span class="comment">// =&gt; ['doAThing']</span>
 </pre>
-                
-                <p><strong>As an Object</strong> - providing a <code>commands</code> object in the Robot options:</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <p><strong>As an Object</strong> - providing a <code>commands</code> object in the Robot options:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
 
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
@@ -440,11 +441,11 @@ Cylon.robot({
 <span class="comment">// GET /api/robots/testbot/commands</span>
 <span class="comment">// =&gt; ['do_a_thing']</span>
 </pre>
-                
-                <p><strong>As a Function</strong> - this option allows for easier scoping, as you can directly reference Robot properties.
-                The function must return an Object or an error will be thrown.</p>
-                
-                <pre class="CodeRay">Cylon.robot({
+            
+            <p><strong>As a Function</strong> - this option allows for easier scoping, as you can directly reference Robot properties.
+            The function must return an Object or an error will be thrown.</p>
+            
+            <pre class="CodeRay">Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">testbot</span><span class="delimiter">"</span></span>,
 
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
@@ -468,49 +469,49 @@ Cylon.robot({
 <span class="comment">// GET /api/robots/testbot/commands</span>
 <span class="comment">// =&gt; ['do_a_thing']</span>
 </pre>
-                
-                <h2 id="utilities">Utilities</h2>
-                
-                <p>Cylon provides a few helpful utility functions that can be used in your Robot's work block.</p>
-                
-                <p><strong>Number#seconds</strong> is a new prototype method on <code>Number</code>, allowing for easier setting of intervals/timeouts.
-                For example:</p>
-                
-                <pre class="CodeRay">(<span class="integer">10</span>).seconds(); <span class="comment">// 10000</span>
+            
+            <h2 id="utilities">Utilities</h2>
+            
+            <p>Cylon provides a few helpful utility functions that can be used in your Robot's work block.</p>
+            
+            <p><strong>Number#seconds</strong> is a new prototype method on <code>Number</code>, allowing for easier setting of intervals/timeouts.
+            For example:</p>
+            
+            <pre class="CodeRay">(<span class="integer">10</span>).seconds(); <span class="comment">// 10000</span>
 (<span class="integer">60</span>).seconds(); <span class="comment">// 60000</span>
 
 setInterval(randomFunction, (<span class="integer">5</span>).seconds()); <span class="comment">// will repeat every 5s</span>
 </pre>
-                
-                <p>The Number being used needs a wrapper set of parentheses, due to how JS the JS parser works.
-                Alternatively, <code>10..seconds()</code> will have the same effect.</p>
-                
-                <p><strong>Number#second</strong> functions the same, but is meant to make calling it on <code>1</code> look more natural.
-                e.g. <code>(1).seconds();</code> vs. <code>(1).second();</code></p>
-                
-                <p><strong>Number#fromScale</strong> converts a number from a provided scale to a (0..1) scale.
-                If the number exceeds the provided scale, either 0 or 1 will be returned.
-                For example:</p>
-                
-                <pre class="CodeRay">(<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 0.5</span>
+            
+            <p>The Number being used needs a wrapper set of parentheses, due to how JS the JS parser works.
+            Alternatively, <code>10..seconds()</code> will have the same effect.</p>
+            
+            <p><strong>Number#second</strong> functions the same, but is meant to make calling it on <code>1</code> look more natural.
+            e.g. <code>(1).seconds();</code> vs. <code>(1).second();</code></p>
+            
+            <p><strong>Number#fromScale</strong> converts a number from a provided scale to a (0..1) scale.
+            If the number exceeds the provided scale, either 0 or 1 will be returned.
+            For example:</p>
+            
+            <pre class="CodeRay">(<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 0.5</span>
 (<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);  <span class="comment">// 1</span>
 (-<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>); <span class="comment">// 0</span>
 </pre>
-                
-                <p><strong>Number#toScale</strong> converts a number from a (0..1) scale to the provided scale.
-                If the number exceeds the provided scale, either the min or max end of the scale will be returned.
-                For example:</p>
-                
-                <pre class="CodeRay">(<span class="float">0.5</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 100</span>
+            
+            <p><strong>Number#toScale</strong> converts a number from a (0..1) scale to the provided scale.
+            If the number exceeds the provided scale, either the min or max end of the scale will be returned.
+            For example:</p>
+            
+            <pre class="CodeRay">(<span class="float">0.5</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 100</span>
 (<span class="integer">10</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 50</span>
 (-<span class="integer">1</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 0</span>
 </pre>
-                
-                <p><strong>every</strong> is a wrapper around <code>setInterval</code>, with the aim of making the semantics easier for new developers.
-                It's intended to be used with the <code>Number#seconds</code> helper method.
-                Examples:</p>
-                
-                <pre class="CodeRay">every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+            
+            <p><strong>every</strong> is a wrapper around <code>setInterval</code>, with the aim of making the semantics easier for new developers.
+            It's intended to be used with the <code>Number#seconds</code> helper method.
+            Examples:</p>
+            
+            <pre class="CodeRay">every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 });
 
@@ -520,11 +521,11 @@ setInterval(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 }, <span class="integer">5000</span>)
 </pre>
-                
-                <p><strong>after</strong> is a wrapper around <code>setTimeout</code>, with similar semantics to <code>every</code>.
-                Examples:</p>
-                
-                <pre class="CodeRay">after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+            
+            <p><strong>after</strong> is a wrapper around <code>setTimeout</code>, with similar semantics to <code>every</code>.
+            Examples:</p>
+            
+            <pre class="CodeRay">after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 });
 
@@ -534,11 +535,11 @@ setTimeout(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 }, <span class="integer">5000</span>)
 </pre>
-                
-                <p><strong>constantly</strong> is a wrapper around <code>setInterval</code>, with a specified <code>interval</code> of 0 ms.
-                Examples:</p>
-                
-                <pre class="CodeRay">constantly(<span class="keyword">function</span>() {
+            
+            <p><strong>constantly</strong> is a wrapper around <code>setInterval</code>, with a specified <code>interval</code> of 0 ms.
+            Examples:</p>
+            
+            <pre class="CodeRay">constantly(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 });
 
@@ -548,9 +549,7 @@ setTimeout(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 }, <span class="integer">0</span>)
 </pre>
-              </div>
-            </div>
-          </section>
+          </div>
         </div>
       </div>
     </div>
@@ -558,47 +557,47 @@ setTimeout(<span class="keyword">function</span>() {
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>

@@ -8,13 +8,13 @@
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
     <title>BeagleBone with Cylon</title>
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/hybridpages/assets/javascript/plax.js"></script>
+    <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
-    <script src="/hybridpages/assets/javascript/subnav.js"></script>
+    <script src="/javascripts/subnav.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
     <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
   <script type="text/javascript">
@@ -48,242 +48,243 @@
 </script></head>
   <body>
     
-    <div class="app">
-      <div id="top-header">
-        <div class="back-index-top">
-          <div class="container-hero section-nav">
-            <div class="w">
-              <header class="app-header" role="banner">
-                <div class="display">
-                  <h1 class="app-logo">
-                    <a href="/">Cylon</a>
-                  </h1>
-                  <span class="subtitle">
-                    <div class="main"></div>
-                  </span>
-                </div>
-                <span class="menu">
-                  <a href="/documentation" class="item">Docs</a>
-                  <a class="active" href="/documentation/platforms">Platforms</a>
-                  <a href="/resources" class="item">Resources</a>
-                  <a href="/blog" class="item">Blog</a>
-                  <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
-                </span>
-              </header>
-            </div>
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
           </div>
         </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a class="active" href="/documentation/platforms">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="container">
-        <div class="main" role="main">
-          <section class="content full">
-            <div class="documentation">
-              <div class="side-documentation">
-                <div class="mobile-menu">
-                  <h1 class="sidebar-title">Index</h1>
-                  <a id="docs-menu">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                  </a>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/api">API</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
-                <nav class="docs-sidebar" ng-controller="SidebarCtrl">
-                  <a href="/documentation/getting-started">Getting Started</a>
-                  <div class="section" ng-class="{active: active('Guides')}">
-                    <div class="name" ng-click="show('Guides')">Guides</div>
-                    <div class="links" ng-show="active('Guides')">
-                      <a href="/documentation/guides/what_is_cylon">About Cylon</a>
-                      <a href="/documentation/guides/working-with-robots">Working With Robots</a>
-                      <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                      <a href="/documentation/guides/api">API</a>
-                      <a href="/documentation/guides/cli">CLI</a>
-                      <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
-                      <a href="/documentation/guides/browser-support">Browser Support</a>
-                      <a href="/documentation/guides/helpers">Helper Methods</a>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Platforms')}">
-                    <div class="name" ng-click="show('Platforms')">Platforms</div>
-                    <div class="links" ng-show="active('Platforms')">
-                      <a href="/documentation/platforms/ardrone">Ardrone</a>
-                      <a href="/documentation/platforms/arduino">Arduino</a>
-                      <a href="/documentation/platforms/yun">Arduino Yun</a>
-                      <a href="/documentation/platforms/audio">Audio</a>
-                      <a href="/documentation/platforms/beaglebone">Beaglebone</a>
-                      <a href="/documentation/platforms/ble">BLE</a>
-                      <a href="/documentation/platforms/crazyflie">Crazyflie</a>
-                      <a href="/documentation/platforms/digispark">Digispark</a>
-                      <a href="/documentation/platforms/galileo">Intel Galileo</a>
-                      <a href="/documentation/platforms/edison">Intel Edison</a>
-                      <a href="/documentation/platforms/joystick">Joystick</a>
-                      <a href="/documentation/platforms/keyboard">Keyboard</a>
-                      <a href="/documentation/platforms/leapmotion">Leap Motion</a>
-                      <a href="/documentation/platforms/m2x">M2X</a>
-                      <a href="/documentation/platforms/mqtt">MQTT</a>
-                      <a href="/documentation/platforms/nest">Nest</a>
-                      <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/platforms/opencv">OpenCV</a>
-                      <a href="/documentation/platforms/pebble">Pebble</a>
-                      <a href="/documentation/platforms/hue">Phillips Hue</a>
-                      <a href="/documentation/platforms/pinoccio">Pinoccio</a>
-                      <a href="/documentation/platforms/powerup">PowerUp</a>
-                      <a href="/documentation/platforms/rapiro">Rapiro</a>
-                      <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
-                      <a href="/documentation/platforms/force">Salesforce</a>
-                      <a href="/documentation/platforms/skynet">Skynet</a>
-                      <a href="/documentation/platforms/spark">Spark</a>
-                      <a href="/documentation/platforms/sphero">Sphero</a>
-                      <a href="/documentation/platforms/speech">Speech</a>
-                      <a href="/documentation/platforms/tessel">Tessel</a>
-                      <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Drivers')}">
-                    <div class="name" ng-click="show('Drivers')">Drivers</div>
-                    <div class="links" ng-show="active('Drivers')">
-                      <div class="sub-section">
-                        <div class="name">GPIO</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
-                          <a href="/documentation/drivers/button">Button</a>
-                          <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
-                          <a href="/documentation/drivers/direct-pin">Direct Pin</a>
-                          <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
-                          <a href="/documentation/drivers/led">LED</a>
-                          <a href="/documentation/drivers/makey-button">Makey Button</a>
-                          <a href="/documentation/drivers/maxbotix">Maxbotix</a>
-                          <a href="/documentation/drivers/motor">Motor</a>
-                          <a href="/documentation/drivers/servo">Servo</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">I2C</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/blinkm">BlinkM</a>
-                          <a href="/documentation/drivers/bmp180">BPM180</a>
-                          <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
-                          <a href="/documentation/drivers/lcd">LCD</a>
-                          <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
-                          <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
-                          <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
-                          <a href="/documentation/drivers/mpu6050">MPU6050</a>
-                        </div>
-                      </div>
-                      <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
-                      <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
-                      <a href="/documentation/drivers/audio">Audio</a>
-                      <a href="/documentation/drivers/crazyflie">Crazyflie</a>
-                      <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
-                      <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
-                      <a href="/documentation/drivers/keyboard">Keyboard</a>
-                      <a href="/documentation/drivers/leapmotion">Leap Motion</a>
-                      <a href="/documentation/drivers/m2x">M2X</a>
-                      <a href="/documentation/drivers/mqtt">MQTT</a>
-                      <a href="/documentation/drivers/nest-home">Nest - Home</a>
-                      <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
-                      <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                      <a href="/documentation/drivers/pebble">Pebble</a>
-                      <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
-                      <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
-                      <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
-                      <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
-                      <a href="/documentation/drivers/rapiro">Rapiro</a>
-                      <a href="/documentation/drivers/force">Salesforce</a>
-                      <a href="/documentation/drivers/skynet">Skynet</a>
-                      <a href="/documentation/drivers/speech">Speech</a>
-                      <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
                       <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                      <div class="sub-section">
-                        <div class="name">BLE</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
-                          <a href="/documentation/drivers/ble-device-information">Device Information</a>
-                          <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
-                          <a href="/documentation/drivers/powerup">PowerUp</a>
-                          <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
-                        </div>
-                      </div>
-                      <div class="sub-section">
-                        <div class="name">Tessel</div>
-                        <div class="links">
-                          <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
-                          <a href="/documentation/drivers/tessel-ambient">Ambient</a>
-                          <a href="/documentation/drivers/tessel-audio">Audio</a>
-                          <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
-                          <a href="/documentation/drivers/tessel-camera">Camera</a>
-                          <a href="/documentation/drivers/tessel-gps">GPS</a>
-                          <a href="/documentation/drivers/tessel-infrared">Infrared</a>
-                          <a href="/documentation/drivers/tessel-relay">Relay</a>
-                          <a href="/documentation/drivers/tessel-servo">Servo</a>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="section" ng-class="{active: active('Contribute')}">
-                    <div class="name" ng-click="show('Contribute')">Contribute</div>
-                    <div class="links" ng-show="active('Contribute')">
-                      <a href="/documentation/contribute/guidelines">Guidelines</a>
-                      <a href="/documentation/contribute/contact-us">Contact Us</a>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
-                  <a href="/documentation/examples">Examples</a>
-                  <div class="section" ng-class="{active: active('Tutorials')}">
-                    <div class="name" ng-click="show('Tutorials')">Tutorials</div>
-                    <div class="links" ng-show="active('Tutorials')">
-                      <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
-                      <a href="/documentation/tutorials/thingscon">Thingscon</a>
-                    </div>
-                  </div>
-                  <a href="/documentation/architecture">Architecture</a>
-                  <a href="/documentation/configuration">Configuration</a>
-                  <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
-                  <a href="/documentation/chat">Chat</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">BeagleBone</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>BeagleBone</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToInstall">How To Install</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#Drivers">Drivers</a>
+                  <a href="#top">Top</a>
                 </nav>
               </div>
-              <div class="container-documentation">
-                <div class="page-title-docs">
-                  <div class="w">
-                    <h1 class="title">BeagleBone</h1>
-                  </div>
-                </div>
-                <section class="subnav-drivers" id="mainsubnav">
-                  <div class="container">
-                    <h5>BeagleBone</h5>
-                    <nav>
-                      <a href="#HowToInstall">How To Install</a>
-                      <a href="#HowToUse">How To Use</a>
-                      <a href="#HowToConnect">How To Connect</a>
-                      <a href="#Drivers">Drivers</a>
-                      <a href="#top">Top</a>
-                    </nav>
-                  </div>
-                </section>
-                <br>
-                <section class="intro">
-                  <img class="display" src="/images/devices/beaglebone.jpg">
-                  <div class="info-intro">
-                    <h4 class="subtitle">
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/beaglebone.jpg">
+              <div class="info-intro">
+                <h4 class="subtitle">
 <a href="https://github.com/hybridgroup/cylon-beaglebone" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-beaglebone/issues">Issues</a>
 </h4>
-                    <p>The BeagleBone Black is an ARM based single-board Linux computer, with many different GPIO interfaces built in.</p>
-                    
-                    <p>For more info about the BeagleBone platform click <a href="http://beagleboard.org/Products/BeagleBone">here</a>.</p>
-                  </div>
-                  <div class="clear"></div>
-                </section>
-                <section class="how-to" id="HowToInstall">
-                  <h2 id="how-to-install">How To Install</h2>
-                  
-                  <p>Installing Cylon.js for the BeagleBone Black is pretty easy, but must be done on the Beaglebone Black itself, or on another Linux computer.
-                  Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
-                  
-                  <pre class="CodeRay">$ npm install cylon-beaglebone
+                <p>The BeagleBone Black is an ARM based single-board Linux computer, with many different GPIO interfaces built in.</p>
+                
+                <p>For more info about the BeagleBone platform click <a href="http://beagleboard.org/Products/BeagleBone">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section id="HowToInstall">
+              <h2 id="how-to-install">How To Install</h2>
+              
+              <p>Installing Cylon.js for the BeagleBone Black is pretty easy, but must be done on the Beaglebone Black itself, or on another Linux computer.
+              Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
+              
+              <pre class="CodeRay">$ npm install cylon-beaglebone
 </pre>
-                </section>
-                <section class="how-to" id="HowToUse">
-                  <h2 id="how-to-use">How To Use</h2>
-                  
-                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+            </section>
+            <section id="HowToUse">
+              <h2 id="how-to-use">How To Use</h2>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
@@ -300,73 +301,73 @@ Cylon.robot({
   }
 }).start();
 </pre>
-                </section>
-                <section class="how-to" id="HowToConnect">
-                  <h2 id="how-to-connect">How To Connect</h2>
-                  
-                  <p>You will likely want to connect your development machine to your BeagleBone Black while working on your code.
-                  You can do this easily, just by connecting to the BeagleBone Black over USB.
-                  Then, you can connect to the BBB using Network-Over-USB, and upload driver or configuration changes.</p>
-                  
-                  <h3 id="os-x">OS X</h3>
-                  
-                  <p>For OS X, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
-                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
-                  
-                  <p>Once you've installed the drivers and connected to the BeagleBone over USB, you can just SSH into it.
-                  The BBB should have an IP address of <code>192.168.7.2</code>.</p>
-                  
-                  <h3 id="linux">Linux</h3>
-                  
-                  <p>For Linux machines, you will need to create a udev rule.
-                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
-                  
-                  <p>To connect to the BeagleBone Black from your Linux machine, save this script as <code>bbb.sh</code> (or whatever name you'd prefer).
-                  Executing the script will then SSH into the BBB.</p>
-                  
-                  <pre class="CodeRay">#!/bin/bash
+            </section>
+            <section id="HowToConnect">
+              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <p>You will likely want to connect your development machine to your BeagleBone Black while working on your code.
+              You can do this easily, just by connecting to the BeagleBone Black over USB.
+              Then, you can connect to the BBB using Network-Over-USB, and upload driver or configuration changes.</p>
+              
+              <h3 id="os-x">OS X</h3>
+              
+              <p>For OS X, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
+              You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+              
+              <p>Once you've installed the drivers and connected to the BeagleBone over USB, you can just SSH into it.
+              The BBB should have an IP address of <code>192.168.7.2</code>.</p>
+              
+              <h3 id="linux">Linux</h3>
+              
+              <p>For Linux machines, you will need to create a udev rule.
+              You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+              
+              <p>To connect to the BeagleBone Black from your Linux machine, save this script as <code>bbb.sh</code> (or whatever name you'd prefer).
+              Executing the script will then SSH into the BBB.</p>
+              
+              <pre class="CodeRay">#!/bin/bash
 sudo -- sh -c 'echo 1 &gt; /proc/sys/net/ipv4/ip_forward'
 sudo iptables -A POSTROUTING -t nat -j MASQUERADE
 ssh root@192.168.7.2
 </pre>
-                  
-                  <h3 id="windows">Windows</h3>
-                  
-                  <p>For Windows, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
-                  You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
-                  
-                  <p>The connection process for Windows is a bit more involved.
-                  But when you're done, it should be just as simple to connect to the board.</p>
-                  
-                  <ul>
-                    <li>First, follow <a href="http://lanceme.blogspot.com/2013/06/windows-7-internet-sharing-for.html">this guide</a> for setting up Internet Sharing on your Windows computer</li>
-                    <li>Next, install <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> (or your preferred SSH client) to SSH into the BeagleBone Black</li>
-                    <li>Finally, SSH into the BBB. It will have the same IP address (<code>192.168.7.2</code>)</li>
-                  </ul>
-                  
-                  <h3 id="credentials">Credentials</h3>
-                  
-                  <p>By default, the BeagleBone's login credentials are:</p>
-                  
-                  <ul>
-                    <li>
+              
+              <h3 id="windows">Windows</h3>
+              
+              <p>For Windows, some drivers need to be installed to allow Network-Over-USB access to the BeagleBone black.
+              You can find the instructions on the BeagleBone site's <a href="http://beagleboard.org/getting-started#step2">getting started page</a>.</p>
+              
+              <p>The connection process for Windows is a bit more involved.
+              But when you're done, it should be just as simple to connect to the board.</p>
+              
+              <ul>
+                <li>First, follow <a href="http://lanceme.blogspot.com/2013/06/windows-7-internet-sharing-for.html">this guide</a> for setting up Internet Sharing on your Windows computer</li>
+                <li>Next, install <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> (or your preferred SSH client) to SSH into the BeagleBone Black</li>
+                <li>Finally, SSH into the BBB. It will have the same IP address (<code>192.168.7.2</code>)</li>
+              </ul>
+              
+              <h3 id="credentials">Credentials</h3>
+              
+              <p>By default, the BeagleBone's login credentials are:</p>
+              
+              <ul>
+                <li>
 <strong>user:</strong> <code>root</code>
 </li>
-                    <li>
+                <li>
 <strong>pass:</strong> none</li>
-                  </ul>
-                  
-                  <h2 id="creating-a-beaglebone-black-sd-card-with-debian">Creating a BeagleBone Black SD Card with Debian</h2>
-                  
-                  <p>You may need to create a bootable SD card with the BBB Debian Linux distro.</p>
-                  
-                  <h3 id="finding-the-sd-cards-name">Finding the SD Card's Name</h3>
-                  
-                  <h4 id="os-x-1">OS X</h4>
-                  
-                  <p>To find the name of the SD card on OS X, use the <code>diskutil</code> command:</p>
-                  
-                  <pre class="CodeRay">$ diskutil list
+              </ul>
+              
+              <h2 id="creating-a-beaglebone-black-sd-card-with-debian">Creating a BeagleBone Black SD Card with Debian</h2>
+              
+              <p>You may need to create a bootable SD card with the BBB Debian Linux distro.</p>
+              
+              <h3 id="finding-the-sd-cards-name">Finding the SD Card's Name</h3>
+              
+              <h4 id="os-x-1">OS X</h4>
+              
+              <p>To find the name of the SD card on OS X, use the <code>diskutil</code> command:</p>
+              
+              <pre class="CodeRay">$ diskutil list
 /dev/disk0
   #:                       TYPE NAME                    SIZE       IDENTIFIER
   0:      GUID_partition_scheme                        *500.3 GB   disk0
@@ -378,37 +379,37 @@ ssh root@192.168.7.2
   0:     FDisk_partition_scheme                        *15.9 GB    disk1
   1:                 DOS_FAT_32 UNTITLED                15.9 GB    disk1s1
 </pre>
-                  
-                  <p>In this case, the SD card's name is <code>/dev/disk1</code>.
-                  Before you proceed, be sure to eject the mounted volume:</p>
-                  
-                  <pre class="CodeRay">$ diskutil umount /dev/disk1s1
+              
+              <p>In this case, the SD card's name is <code>/dev/disk1</code>.
+              Before you proceed, be sure to eject the mounted volume:</p>
+              
+              <pre class="CodeRay">$ diskutil umount /dev/disk1s1
 </pre>
-                  
-                  <h4 id="linux-1">Linux</h4>
-                  
-                  <p>On most Linux distros, the <code>df -h</code> command should help you determine the name of your SD card.</p>
-                  
-                  <h3 id="downloading-the-linux-image-flashing-the-sd-card">Downloading the Linux Image, Flashing the SD Card</h3>
-                  
-                  <p>The image we're using is the official modified Debian distro provided by BeagleBoard, so we'll download it directly from them:
-                  <a href="http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz">http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz</a>.</p>
-                  
-                  <p>Once the image has downloaded, uncompress it with your favorite tool.</p>
-                  
-                  <p>The final step is to flash the image onto the SD card.
-                  You can do so by running this command (be sure to update the <code>of</code> section to point to the SD card who's name you learned earlier!):</p>
-                  
-                  <pre class="CodeRay">$ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb &amp;&amp; sudo sync
+              
+              <h4 id="linux-1">Linux</h4>
+              
+              <p>On most Linux distros, the <code>df -h</code> command should help you determine the name of your SD card.</p>
+              
+              <h3 id="downloading-the-linux-image-flashing-the-sd-card">Downloading the Linux Image, Flashing the SD Card</h3>
+              
+              <p>The image we're using is the official modified Debian distro provided by BeagleBoard, so we'll download it directly from them:
+              <a href="http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz">http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz</a>.</p>
+              
+              <p>Once the image has downloaded, uncompress it with your favorite tool.</p>
+              
+              <p>The final step is to flash the image onto the SD card.
+              You can do so by running this command (be sure to update the <code>of</code> section to point to the SD card who's name you learned earlier!):</p>
+              
+              <pre class="CodeRay">$ sudo dd bs=1M if=./bone-debian-7.5-2014-05-14-2gb.img of=/dev/sdb &amp;&amp; sudo sync
 </pre>
-                  
-                  <h2 id="configuring-the-beaglebone-black">Configuring the BeagleBone Black</h2>
-                  
-                  <p>After SSHing into the BeagleBone Black, save the following script into <code>~/profile</code>.
-                  Be sure to do this <strong>on the BBB</strong>.
-                  This will allow your BeagleBone Black to share your computer's internet connection.</p>
-                  
-                  <pre class="CodeRay">#!/bin/bash
+              
+              <h2 id="configuring-the-beaglebone-black">Configuring the BeagleBone Black</h2>
+              
+              <p>After SSHing into the BeagleBone Black, save the following script into <code>~/profile</code>.
+              Be sure to do this <strong>on the BBB</strong>.
+              This will allow your BeagleBone Black to share your computer's internet connection.</p>
+              
+              <pre class="CodeRay">#!/bin/bash
 ROUTE=`route | grep 0.0.0.0 | wc -l`
 if [ $ROUTE -eq 0 ]
 then
@@ -420,17 +421,17 @@ then
     fi
 fi
 </pre>
-                  
-                  <p>After the script is saved, it will automatically run when the BeagleBone Black boots, so you only have to do this step once.</p>
-                  
-                  <h3 id="resizing-the-sd-card-partition">Resizing the SD Card Partition</h3>
-                  
-                  <p>At this point, we have a full Debian Linux OS set up, and can connect over SSH to the BBB.
-                  Now, we need to adjust the SD card's partitions, to give us space to install dependencies and do some work.</p>
-                  
-                  <p>First, login to the board over SSH, and run this series of commands:</p>
-                  
-                  <pre class="CodeRay">$ fdisk /dev/mmcblk0
+              
+              <p>After the script is saved, it will automatically run when the BeagleBone Black boots, so you only have to do this step once.</p>
+              
+              <h3 id="resizing-the-sd-card-partition">Resizing the SD Card Partition</h3>
+              
+              <p>At this point, we have a full Debian Linux OS set up, and can connect over SSH to the BBB.
+              Now, we need to adjust the SD card's partitions, to give us space to install dependencies and do some work.</p>
+              
+              <p>First, login to the board over SSH, and run this series of commands:</p>
+              
+              <pre class="CodeRay">$ fdisk /dev/mmcblk0
 d
 2
 n
@@ -440,88 +441,146 @@ p
 w
 $ shutdown -r now
 </pre>
-                  
-                  <p>After the board finishes restarting, log back in and resize the filesystem on the SD card before another restart:</p>
-                  
-                  <pre class="CodeRay">$ resize2fs /dev/mmcblk0p2
+              
+              <p>After the board finishes restarting, log back in and resize the filesystem on the SD card before another restart:</p>
+              
+              <pre class="CodeRay">$ resize2fs /dev/mmcblk0p2
 $ shutdown -r now
 </pre>
-                  
-                  <p>After this restart has completed, log back in, and check the partition has been correctly resized:</p>
-                  
-                  <pre class="CodeRay">$ df -h
+              
+              <p>After this restart has completed, log back in, and check the partition has been correctly resized:</p>
+              
+              <pre class="CodeRay">$ df -h
 </pre>
-                  
-                  <p>The <code>/dev/root</code> partition should take up the entire size of the SD card.
-                  With this done, we're now ready to start running Cylon directly on the BeagleBone Black.</p>
-                </section>
-                <section class="drivers" id="Drivers">
-                  <h2>Drivers</h2>
-                  <p>All Cylon.js Digital, Analog &amp; PWM GPIO drivers, as well as i2c drivers listed below should work with the BeagleBone:</p>
-                  <div class="hardware">
-                    <div class="devices">
-                      <h2>GPIO Drivers</h2>
-                      <a class="device" href="/documentation/drivers/analog-sensor" title="Analog Sensor">
-                        <img src="/images/devices/analog-sensor.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/button" title="Button">
-                        <img src="/images/devices/button.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/continuous-servo" title="Continuous Servo">
-                        <img src="/images/devices/continuous-servo.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/direct-pin" title="Direct Pin">
-                        <img src="/images/devices/direct-pin.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
-                        <img src="/images/devices/ir-range-finder.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/led" title="LED">
-                        <img src="/images/devices/led.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/makey-button" title="Makey Button">
-                        <img src="/images/devices/makey-button.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/maxbotix" title="Maxbotix">
-                        <img src="/images/devices/maxbotix.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/motor" title="Motor">
-                        <img src="/images/devices/motor.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/servo" title="Servo">
-                        <img src="/images/devices/servo.jpg">
-                      </a>
-                      <h2>I2C Drivers</h2>
-                      <a class="device" href="/documentation/drivers/blinkm" title="BlinkM">
-                        <img src="/images/devices/blinkm.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/bmp180" title="BPM180">
-                        <img src="/images/devices/bmp180.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/hmc6352-compass" title="HMC6352 Compass">
-                        <img src="/images/devices/hmc6352-compass.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/lcd" title="LCD">
-                        <img src="/images/devices/lcd.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/lsm9ds0g" title="LSM9DS0G">
-                        <img src="/images/devices/lsm9ds0g.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/lsm9ds0xm" title="LSM9DS0XM">
-                        <img src="/images/devices/lsm9ds0xm.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/mpl115a2" title="MPL115A2">
-                        <img src="/images/devices/mpl115a2.jpg">
-                      </a>
-                      <a class="device" href="/documentation/drivers/mpu6050" title="MPU6050">
-                        <img src="/images/devices/mpu6050.jpg">
+              
+              <p>The <code>/dev/root</code> partition should take up the entire size of the SD card.
+              With this done, we're now ready to start running Cylon directly on the BeagleBone Black.</p>
+            </section>
+            <section class="drivers" id="Drivers">
+              <h2>Drivers</h2>
+              <p>All Cylon.js Digital, Analog &amp; PWM GPIO drivers, as well as i2c drivers listed below should work with the BeagleBone:</p>
+              <div class="hardware">
+                <div class="devices">
+                  <div class="clear"></div>
+                  <h2>GPIO Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <p class="title">Analog Sensor</p>
+                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
                       </a>
                     </div>
-                  </div>
-                </section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/button" title="Button">
+                        <p class="title">Button</p>
+                        <img src="/images/devices/button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <p class="title">Continuous Servo</p>
+                        <img src="/images/devices/continuous-servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <p class="title">Direct Pin</p>
+                        <img src="/images/devices/direct-pin.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
+                        <p class="title">IR Range Finder</p>
+                        <img src="/images/devices/ir-range-finder.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/led" title="LED">
+                        <p class="title">LED</p>
+                        <img src="/images/devices/led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/makey-button" title="Makey Button">
+                        <p class="title">Makey Button</p>
+                        <img src="/images/devices/makey-button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/maxbotix" title="Maxbotix">
+                        <p class="title">Maxbotix</p>
+                        <img src="/images/devices/maxbotix.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/motor" title="Motor">
+                        <p class="title">Motor</p>
+                        <img src="/images/devices/motor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/servo" title="Servo">
+                        <p class="title">Servo</p>
+                        <img src="/images/devices/servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                  <div class="clear"></div>
+                  <h2>I2C Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/blinkm" title="BlinkM">
+                        <p class="title">BlinkM</p>
+                        <img src="/images/devices/blinkm.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/bmp180" title="BPM180">
+                        <p class="title">BPM180</p>
+                        <img src="/images/devices/bmp180.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/hmc6352-compass" title="HMC6352 Compass">
+                        <p class="title">HMC6352 Compass</p>
+                        <img src="/images/devices/hmc6352-compass.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lcd" title="LCD">
+                        <p class="title">LCD</p>
+                        <img src="/images/devices/lcd.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lsm9ds0g" title="LSM9DS0G">
+                        <p class="title">LSM9DS0G</p>
+                        <img src="/images/devices/lsm9ds0g.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lsm9ds0xm" title="LSM9DS0XM">
+                        <p class="title">LSM9DS0XM</p>
+                        <img src="/images/devices/lsm9ds0xm.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpl115a2" title="MPL115A2">
+                        <p class="title">MPL115A2</p>
+                        <img src="/images/devices/mpl115a2.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <p class="title">MPU6050</p>
+                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -529,47 +588,47 @@ $ shutdown -r now
       <div class="frameworks">
         <div class="parallax-container">
           <div class="background-footer parallax-bottom"></div>
-        </div>
-        <div class="container">
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-cylon-2x.png">
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
             </div>
-            <h4>Multiple solutions</h4>
-            <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
           </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-artoo-2x.png">
-            </div>
-            <h4>Artoo</h4>
-            <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
-            <div class="button">
-              <a target="blank" href="http://artoo.io">View Project</a>
-            </div>
-          </div>
-          <div class="column-footer">
-            <div class="img">
-              <img src="/images/elements/logo-gobot-2x.png">
-            </div>
-            <h4>Gobot</h4>
-            <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
-            <div class="button">
-              <a target="blank" href="http://gobot.io">View Project</a>
-            </div>
-          </div>
-          <div class="clear"></div>
         </div>
       </div>
       <div class="copyright">
         <div class="container">
-          <div class="left-side">
+          <div class="hybrid-group">
             <span>© Copyright 2012-2014</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
           </div>
-          <div class="right-side">
+          <div class="top-link">
             <a href="#top">
               <img alt="Top" src="/images/elements/triangle_up.svg">
               <p>Top</p>
