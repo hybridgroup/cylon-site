@@ -5,6 +5,11 @@
     @include span-columns(8 of 12);
     padding-top: em(20);
 
+    img {
+      @include span-columns(12 of 12);
+      max-width: 100%;
+    }
+
     @include media($tablet) {
       @include span-columns(12 of 12);
     }
@@ -16,10 +21,6 @@
 
   .article {
     margin-bottom: em(30);
-
-    img {
-      @include span-columns(12 of 12);
-    }
 
     h3, h4, a {
       color: $color-red;
