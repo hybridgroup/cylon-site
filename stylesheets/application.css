@@ -1340,6 +1340,7 @@ a:hover, a:focus {
       display: block;
       margin-right: 2.35765%;
       width: 100%;
+      margin: 10px 0;
       max-width: 100%; }
       /* line 38, /home/nathan/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
       .blog .articles img:last-child {
@@ -1358,23 +1359,23 @@ a:hover, a:focus {
       /* line 4, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .articles {
         margin-right: 0; } }
-  /* line 22, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 23, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .article {
     margin-bottom: 1.875em; }
-    /* line 25, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 26, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .article h3, .blog .article h4, .blog .article a {
       color: #ee2a4a; }
-    /* line 29, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 30, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .article p {
       text-align: justify; }
-  /* line 34, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 35, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .article-title {
     font-size: 1.5em;
     line-height: 1.1875em;
     display: inline-block;
     vertical-align: top;
     margin: 0; }
-  /* line 41, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 42, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .header {
     display: block; }
     /* line 15, /home/nathan/.rvm/gems/ruby-2.0.0-p247@cylon/gems/bourbon-3.2.3/app/assets/stylesheets/addons/_clearfix.scss */
@@ -1382,7 +1383,7 @@ a:hover, a:focus {
       content: "";
       display: table;
       clear: both; }
-  /* line 45, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 46, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .comments {
     float: left;
     display: block;
@@ -1392,23 +1393,23 @@ a:hover, a:focus {
     /* line 38, /home/nathan/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
     .blog .comments:last-child {
       margin-right: 0; }
-  /* line 50, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 51, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .comments, .blog .tags {
     display: inline-block; }
-    /* line 53, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 54, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .comments a, .blog .tags a {
       vertical-align: top;
       text-decoration: underline; }
-    /* line 58, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 59, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .comments img, .blog .tags img {
       margin-right: 0.25em; }
-  /* line 63, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 64, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .img {
     vertical-align: top;
     display: inline-block;
     width: 24px;
     height: 24px; }
-  /* line 70, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 71, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .side-column {
     float: left;
     display: block;
@@ -1418,7 +1419,7 @@ a:hover, a:focus {
     .blog .side-column:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
-      /* line 70, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 71, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .side-column {
         float: left;
         display: block;
@@ -1427,53 +1428,53 @@ a:hover, a:focus {
         /* line 38, /home/nathan/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .blog .side-column:last-child {
           margin-right: 0; } }
-  /* line 78, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 79, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .categories, .blog .network, .blog .tweets, .blog .titles {
     vertical-align: top;
     margin-bottom: 1.25em; }
-    /* line 82, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 83, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories a, .blog .network a, .blog .tweets a, .blog .titles a {
       color: black; }
-      /* line 85, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 86, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .categories a:hover, .blog .network a:hover, .blog .tweets a:hover, .blog .titles a:hover {
         text-decoration: underline; }
-    /* line 90, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 91, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories h4, .blog .network h4, .blog .tweets h4, .blog .titles h4 {
       font-size: 1.25em;
       line-height: 1.5em;
       color: #ee2a4a; }
-  /* line 97, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 98, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .titles ul {
     list-style: none;
     margin: 0; }
-  /* line 102, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 103, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .titles li {
     font-size: 0.8125em;
     border-bottom: #580a25 1px solid;
     padding: 0.125em 0.3125em; }
-    /* line 107, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 108, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .titles li:hover {
       background: #ee2a4a; }
-      /* line 110, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 111, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .titles li:hover a {
         color: white;
         text-decoration: none; }
-  /* line 119, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 120, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .network img {
     width: 30px; }
-  /* line 125, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 126, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .categories ul {
     margin: 0;
     list-style: none; }
-    /* line 129, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 130, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories ul a {
       color: black;
       font-size: 0.875em; }
-      /* line 133, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 134, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .categories ul a:hover {
         text-decoration: underline; }
   @media screen and (max-width: 320px) {
-    /* line 141, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 142, /home/nathan/Documents/Github/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .twitter-share-button {
       margin-bottom: 0.625em; } }
 
