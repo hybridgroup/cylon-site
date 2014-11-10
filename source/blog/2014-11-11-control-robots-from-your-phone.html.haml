@@ -1,0 +1,125 @@
+---
+page_title_show: true
+title: "Be a Robot Commander With Your Phone"
+page_title: Blog
+date: 2014-11-11
+tags: robots
+author: Javier Cervantes
+active_menu_blog: true
+---
+:markdown
+  With the ongoing revolution of the internet of things, your phone will be your primary source of control for the world around you.
+  We would like to present you [commander.io]() an app to trigger commands and receive events from our 31 supported devices.
+
+  <img width="160" src="http://i.imgur.com/L51DgtN.jpg" alt="Commander list layout" style="width: 160; margin: 10px 0;">
+  <img width="160" src="http://i.imgur.com/lCc4irL.jpg" alt="Cylon.js PhoneGap Spark" style="width: 160; margin: 10px 0;">
+  <img width="160" src="/images/blog/cylonjs-commander-joystick.png" alt="Commander connection" style="width: 160; margin: 10px 0;">
+
+  You can have different types of interactions using the current layouts:
+
+  * D-pad
+  * Command list
+  * Joystick
+
+  ### How it works
+
+  Commander uses the [Common Protocol for Programming Physical I/O]() to establish communication with Cylon.js API.
+
+  It works based on layouts that can be customized to trigger custom actions for your own programs.
+
+  Checkout [commander.io]() for more information.
+
+  ### Control a sphero using a D-pad layout
+
+  To show how Commander works, we'll show how to control a sphero from your phone using Commander.
+
+  First we'll create a cylon program to listen for commands and control the sphero
+
+      :::javascript
+      var Cylon = require('cylon');
+
+      Cylon.config({
+        api: {
+          ssl: false,
+          port: '8080',
+          host: '0.0.0.0',
+        }
+      });
+
+      Cylon.api();
+
+      Cylon.robot({
+        name: 'sphero-dpad',
+        connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/tty.Sphero-YBW-RN-SPP' },
+        device: { name: 'sphero', driver: 'sphero' },
+
+        move: function(direction) {
+          var my = this;
+
+          switch (direction) {
+            case "up":
+              my.sphero.roll(100, 0);
+              break;
+            case "down":
+              my.sphero.roll(100, 180);
+              break;
+            case "left":
+              my.sphero.roll(100, 270);
+              break;
+            case "right":
+              my.sphero.roll(100, 90);
+          }
+
+          setTimeout(function() {
+            my.sphero.stop();
+          }, 2000);
+
+          return "ok";
+        },
+        commands: function() {
+          return {
+            move: this.move
+          };
+        }
+      }).start();
+
+  Then we'll install commander
+
+  <a href="https://play.google.com/store/apps/details?id=com.hybridgroup.commander"><img width="160" src="http://developer.android.com/images/brand/en_generic_rgb_wo_60.png" alt="Commander connection" style="width: 160; margin: 10px 0;"></a>
+  <a href=""><img width="160" src="http://i.imgur.com/rlNTuWQ.png" alt="Commander connection" style="width: 160; margin: 10px 0;"></a>
+
+  After you open the app, go to 'Connection' menu option and set the api host for you cylon program.
+
+  ```http://(your-computer's-IP):8080```
+
+  <img width="160" src="/images/blog/cylonjs-commander-connection.png" alt="Commander connection" style="width: 160; margin: 10px 0;">
+
+  Next open 'Command sets' menu option and paste this URL:
+
+  ```https://github.com/hybridgroup/commander/blob/master/examples/sphero-dpad/sphero-dpad.json```
+
+  <img width="160" src="/images/blog/cylonjs-commander-command-set.png" alt="Commander command set" style="width: 160; margin: 10px 0;">
+
+  Now click on Load and after command set is loaded click on "Use" to open it
+
+  <img width="160" src="http://i.imgur.com/lCc4irL.jpg" alt="Cylon.js PhoneGap Spark" style="width: 160; margin: 10px 0;">
+
+  Now you can use the d-pad controls to move the sphero around.
+
+  Have fun!
+
+  ### What's next?
+
+  * Check out [our examples]() to use other layouts and devices
+  * Create your own [custom command sets]() for your Cylon.js programs.
+  * [Open an issue]() if you have questions or feedback.
+  * [Fork Commander]() as base for your mobile app.
+  * Follow us on Twitter at [@CylonJS][] for further updates.
+
+  [Common Protocol for Programming Physical I/O]: http://cppp.io
+  [Open an issue]: https://github.com/hybridgroup/commander/issues/new
+  [Fork Commander]: https://github.com/hybridgroup/commander/fork
+  [commander.io]: http://commander.io
+  [@CylonJS]: https://twitter.com/CylonJS
+  [custom command sets]: https://github.com/hybridgroup/commander#create-your-own-command-set
+  [our examples]: https://github.com/hybridgroup/commander/tree/master/examples
