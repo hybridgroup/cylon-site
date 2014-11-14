@@ -33,15 +33,15 @@ subnav_driver: true
 
         :::javascript
         Cylon.robot({
-          connections: [
-            { name: 'tessel', adaptor: 'tessel' },
-            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
-          ],
+          connections: {
+            tessel: { adaptor: 'tessel' },
+            tessel_A: { adaptor: 'tessel', port: 'A' },
+          },
 
-          devices: [
-            { name: 'button', driver: 'button', connection: 'tessel' },
-            { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
-          ],
+          devices: {
+            button: { driver: 'button', connection: 'tessel' },
+            audio: { driver: 'audio-vs1053b', connection: 'tessel_A' },
+          },
         });
 
 
@@ -53,15 +53,15 @@ subnav_driver: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connections: [
-            { name: 'tessel', adaptor: 'tessel' },
-            { name: 'tessel_A', adaptor: 'tessel', port: 'A' },
-          ],
+          connections: {
+            tessel: { adaptor: 'tessel' },
+            tessel_A: { adaptor: 'tessel', port: 'A' },
+          },
 
-          devices: [
-            { name: 'button', driver: 'button', connection: 'tessel' },
-            { name: 'audio', driver: 'audio-vs1053b', connection: 'tessel_A' },
-          ],
+          devices: {
+            button: { driver: 'button', connection: 'tessel' },
+            audio: { driver: 'audio-vs1053b', connection: 'tessel_A' },
+          },
 
           work: function(my) {
             var chunks = [];

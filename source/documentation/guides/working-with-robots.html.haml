@@ -55,7 +55,7 @@ active_menu_docs: true
 
   ## Connections
 
-  When initializing a robot, you can either pass a `connection` object for a single connection, or a `connections` array for multiple connections:
+  When initializing a robot, you can either pass a `connection` object for a single connection, or a `connections` object for multiple connections:
 
       :::javascript
       Cylon.robot({
@@ -69,10 +69,10 @@ active_menu_docs: true
       // vs
 
       Cylon.robot({
-        connections: [
-          { name: "loopback", adaptor: "loopback" },
-          { name: "arduino", adaptor: "firmata", port: "/dev/ttyACM0" }
-        ]
+        connections: {
+          loopback: { adaptor: "loopback" },
+          arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+        }
       });
 
   Inside a work block, the Robot's connections can be accessed through the `connections` attribute, which contains a mapping of names to connections.
@@ -81,10 +81,10 @@ active_menu_docs: true
 
       :::javascript
       Cylon.robot({
-        connections: [
-          { name: "loopback", adaptor: "loopback" },
-          { name: "arduino", adaptor: "firmata", port: "/dev/ttyACM0" }
-        ],
+        connections: {
+          loopback: { adaptor: "loopback" },
+          arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+        },
 
         device: { name: 'loopback', driver: 'ping', connection: 'loopback' }
 
@@ -103,7 +103,7 @@ active_menu_docs: true
   ## Devices
 
   Devices, for the most part, behave similarly to Connections.
-  When initializing a robot, you can either pass a `device` object for a single device, or a `devices` array for multiple devices:
+  When initializing a robot, you can either pass a `device` object for a single device, or a `devices` object for multiple devices:
 
       :::javascript
       Cylon.robot({
@@ -117,29 +117,29 @@ active_menu_docs: true
       // vs
 
       Cylon.robot({
-        devices: [
-          { name: 'led', driver: 'led', pin: 13 },
-          { name: 'button', driver: 'button', pin: 2 }
-        ]
+        devices: {
+          led: { driver: 'led', pin: 13 },
+          button: { driver: 'button', pin: 2 }
+        }
       });
 
   Inside a work block, the Robot's devices can be accessed through the `devices` attribute, which contains a mapping of names to devices.
 
   Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
-  Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name
+  Also, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name
 
       :::javascript
       Cylon.robot({
-        connections: [
-          { name: 'loopback', adaptor: 'loopback' },
-          { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' }
-        ],
+        connections: {
+          loopback: { adaptor: 'loopback' },
+          arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+        },
 
-        devices: [
-          { name: 'led', driver: 'led', pin: 13 },
-          { name: 'button', driver: 'button', pin: 2 },
-          { name: 'loopback', driver: 'ping' }
-        ],
+        devices: {
+          led: { driver: 'led', pin: 13, connection: 'arduino' },
+          button: { driver: 'button', pin: 2, connection: 'arduino' },
+          loopback: { driver: 'ping', connection: 'loopback' }
+        },
 
         work: function(my) {
           my.devices;

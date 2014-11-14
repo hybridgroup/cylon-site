@@ -24,14 +24,15 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connections: [
-            { name: 'bluetooth', adaptor: 'ble', uuid: '84dd20eb3d89' },
-            { name: 'dualshock3', adaptor: 'joystick' }
-          ],
-          devices: [
-            { name: 'controller', driver: 'dualshock-3', connection: 'dualshock3' },
-            { name: 'powerup', driver: 'powerup' }
-          ]
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '84dd20eb3d89' },
+            joystick: { adaptor: 'joystick' }
+          },
+
+          devices: {
+            powerup: { driver: 'powerup', connection: 'bluetooth' },
+            controller: { driver: 'dualshock-3', connection: 'joystick' }
+          }
         });
 
 
@@ -44,14 +45,16 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connections: [
-            { name: 'bluetooth', adaptor: 'ble', uuid: '84dd20eb3d89' },
-            { name: 'dualshock3', adaptor: 'joystick' }
-          ],
-          devices: [
-            { name: 'controller', driver: 'dualshock-3', connection: 'dualshock3' },
-            { name: 'powerup', driver: 'powerup' }
-          ],
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '84dd20eb3d89' },
+            joystick: { adaptor: 'joystick' }
+          },
+
+          devices: {
+            powerup: { driver: 'powerup', connection: 'bluetooth' },
+            controller: { driver: 'dualshock-3', connection: 'joystick' }
+          }
+
           work: function(my) {
             var thrust = 0;
             var rudder = 0;

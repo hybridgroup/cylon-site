@@ -38,14 +38,16 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connections: [
-            { name: 'bluetooth', adaptor: 'ble', uuid: '84dd20eb3d89' },
-            { name: 'dualshock3', adaptor: 'joystick' }
-          ],
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '84dd20eb3d89' },
+            joystick: { adaptor: 'joystick' }
+          },
+
           devices: [
-            { name: 'controller', driver: 'dualshock-3', connection: 'dualshock3' },
-            { name: 'powerup', driver: 'powerup' }
+            controller: { driver: 'dualshock-3', connection: 'joystick' },
+            powerup: { driver: 'powerup' }
           ],
+
           work: function(my) {
             var thrust = 0;
             var rudder = 0;
@@ -92,7 +94,6 @@ subnavjs: true
     ## How To Connect
 
     The Powerup is a Bluetooth Low-Energy device, and is connected as with any other BLE device. For more info, check out the [BLE platform page](/documentation/platforms/ble).
-
 
 %section.drivers#Drivers
   .hardware
