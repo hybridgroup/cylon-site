@@ -1,0 +1,39 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - blink"
+page_title: "Example: blink"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-mqtt/tree/master/examples/blink' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: [
+            { name: 'mqtt', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+            { name: 'firmata', adaptor: 'firmata', port: '/dev/ttyACM0' }
+          ],
+
+          devices: [
+            { name: 'toggle', driver: 'mqtt', topic: 'toggle', adaptor: 'mqtt' },
+            { name: 'led', driver: 'led', pin: '13', adaptor: 'firmata' },
+          ]
+
+          work: function(my) {
+            my.toggle.on('message', function(data) {
+              console.log("Message on 'toggle': " + data);
+              my.led.toggle();
+            });
+
+            every((1).second(), function() {
+              console.log("Toggling LED.");
+              my.toggle.publish('toggle');
+            });
+          }
+        }).start();
+

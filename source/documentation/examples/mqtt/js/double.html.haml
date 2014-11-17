@@ -1,0 +1,37 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - double"
+page_title: "Example: double"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-mqtt/tree/master/examples/double' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          devices: [
+            { name: 'uno', driver: 'mqtt', topic: 'hi' },
+            { name: 'dos', driver: 'mqtt', topic: 'hola' }
+          ],
+
+          work: function(my) {
+            my.server.on('message', function(topic, message) {
+              console.log(topic + ": " + message);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+
+              my.uno.publish('hello');
+              my.dos.publish('buenos');
+            });
+          }
+        }).start();
+

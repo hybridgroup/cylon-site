@@ -1,0 +1,32 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - connect_only"
+page_title: "Example: connect_only"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-mqtt/tree/master/examples/connect_only' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+
+          work: function(my) {
+            my.server.subscribe('hello');
+
+            my.server.on('message', function (topic, data) {
+              console.log(topic + ": " + data);
+            });
+
+            every((1).seconds(), function() {
+              console.log("Saying hello...");
+              my.server.publish('hello', 'hi there');
+            });
+          }
+        }).start();
+
