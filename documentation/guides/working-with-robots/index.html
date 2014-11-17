@@ -95,11 +95,9 @@
                   <a href="/documentation/guides/what_is_cylon">About Cylon</a>
                   <a href="/documentation/guides/working-with-robots">Working With Robots</a>
                   <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                  <a href="/documentation/guides/api">API</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
                   <a href="/documentation/guides/browser-support">Browser Support</a>
-                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Platforms')}">
@@ -160,7 +158,7 @@
                     <div class="name">I2C</div>
                     <div class="links">
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
-                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lcd">LCD</a>
                       <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
@@ -217,6 +215,13 @@
                       <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Core')}">
+                <div class="name" ng-click="show('Core')">Core</div>
+                <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/api">API</a>
+                  <a href="/documentation/core/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Contribute')}">
@@ -291,7 +296,7 @@
             
             <h2 id="connections">Connections</h2>
             
-            <p>When initializing a robot, you can either pass a <code>connection</code> object for a single connection, or a <code>connections</code> array for multiple connections:</p>
+            <p>When initializing a robot, you can either pass a <code>connection</code> object for a single connection, or a <code>connections</code> object for multiple connections:</p>
             
             <pre class="CodeRay">Cylon.robot({
   <span class="key">connection</span>: {
@@ -304,10 +309,10 @@
 <span class="comment">// vs</span>
 
 Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
-  ]
+  <span class="key">connections</span>: {
+    <span class="key">loopback</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+  }
 });
 </pre>
             
@@ -316,10 +321,10 @@ Cylon.robot({
             <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.</p>
             
             <pre class="CodeRay">Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
-  ],
+  <span class="key">connections</span>: {
+    <span class="key">loopback</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+  },
 
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> }
 
@@ -339,7 +344,7 @@ Cylon.robot({
             <h2 id="devices">Devices</h2>
             
             <p>Devices, for the most part, behave similarly to Connections.
-            When initializing a robot, you can either pass a <code>device</code> object for a single device, or a <code>devices</code> array for multiple devices:</p>
+            When initializing a robot, you can either pass a <code>device</code> object for a single device, or a <code>devices</code> object for multiple devices:</p>
             
             <pre class="CodeRay">Cylon.robot({
   <span class="key">device</span>: {
@@ -352,29 +357,29 @@ Cylon.robot({
 <span class="comment">// vs</span>
 
 Cylon.robot({
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
-  ]
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+  }
 });
 </pre>
             
             <p>Inside a work block, the Robot's devices can be accessed through the <code>devices</code> attribute, which contains a mapping of names to devices.</p>
             
             <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
-            Additionally, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
+            Also, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
             
             <pre class="CodeRay">Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
-  ],
+  <span class="key">connections</span>: {
+    <span class="key">loopback</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
 
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span> }
-  ],
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
+    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
+    <span class="key">loopback</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.devices;
@@ -545,7 +550,7 @@ setTimeout(<span class="keyword">function</span>() {
 
 <span class="comment">// is equivalent to:</span>
 
-setTimeout(<span class="keyword">function</span>() {
+setInterval(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 }, <span class="integer">0</span>)
 </pre>

@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="Cylon.js Helpers" name="description">
+    <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Helpers</title>
+    <title>Cylon.js API</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -95,11 +95,9 @@
                   <a href="/documentation/guides/what_is_cylon">About Cylon</a>
                   <a href="/documentation/guides/working-with-robots">Working With Robots</a>
                   <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                  <a href="/documentation/guides/api">API</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
                   <a href="/documentation/guides/browser-support">Browser Support</a>
-                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Platforms')}">
@@ -160,7 +158,7 @@
                     <div class="name">I2C</div>
                     <div class="links">
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
-                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lcd">LCD</a>
                       <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
@@ -219,6 +217,13 @@
                   </div>
                 </div>
               </div>
+              <div class="section" ng-class="{active: active('Core')}">
+                <div class="name" ng-click="show('Core')">Core</div>
+                <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/api">API</a>
+                  <a href="/documentation/core/helpers">Helper Methods</a>
+                </div>
+              </div>
               <div class="section" ng-class="{active: active('Contribute')}">
                 <div class="name" ng-click="show('Contribute')">Contribute</div>
                 <div class="links" ng-show="active('Contribute')">
@@ -242,184 +247,36 @@
           </div>
           <div class="container-documentation">
             
-            <h1 id="helpers">Helpers</h1>
-            
-            <h2 id="everyinterval-action">every(interval, action)</h2>
-            
-            <p>Alias to JavaScript's setInterval() function, combined with monkeypatches to
-            Number detailed below.</p>
-            
-            <ul>
-              <li>
-<strong>interval</strong> - interval to run action on</li>
-              <li>
-<strong>action</strong> - action to perform on interval</li>
-            </ul>
-            
-            <p>Returns a setInterval</p>
-            
-            <h3 id="examples">Examples:</h3>
-            
-            <pre class="CodeRay">every(<span class="integer">5</span>..seconds(), <span class="keyword">function</span>() {
-  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world! (and again in 5 seconds)</span><span class="delimiter">"</span></span>);
-});
-</pre>
-            
-            <h2 id="afterinterval-action">after(interval, action)</h2>
-            
-            <p>Alias to JavaScript's setTimeout() function, combined with monkeypatches to
-            Number detailed below.</p>
-            
-            <ul>
-              <li>
-<strong>interval</strong> - interval to run action after</li>
-              <li>
-<strong>action</strong> - action to perform after interval</li>
-            </ul>
-            
-            <p>Returns a setTimeout</p>
-            
-            <h3 id="examples-1">Examples:</h3>
-            
-            <pre class="CodeRay">after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
-  <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
-});
-</pre>
-            
-            <h2 id="proxyfunctionstoobjectmethods-target-base--this-force--false">proxyFunctionsToObject(methods, target, base = this, force = false)</h2>
-            
-            <p>Proxies a list of methods from one object to another. It will not overwrite
-            existing methods unless told to.</p>
-            
-            <ul>
-              <li>
-<strong>methods</strong> - array of functions to proxy</li>
-              <li>
-<strong>target</strong> - object to proxy the functions to</li>
-              <li>
-<strong>base</strong> - (optional) object that proxied functions will be declared on.
-            Defaults to <code>this</code>
-</li>
-              <li>
-<strong>force</strong> - (optional) boolean - whether or not to force method assignment.
-            Defaults to <code>false</code>
-</li>
-            </ul>
-            
-            <h3 id="examples-2">Examples:</h3>
-            
-            <pre class="CodeRay"><span class="keyword">var</span> BaseClass, ProxyClass, klass;
+            <div class="api">
+              <h1 id="how-to-connect-with-the-api">How To Connect with the API</h1>
+              
+              <p>Cylon.js comes with a built-in API server so, you can view details about your robots and control them from anywhere.</p>
+              
+              <h3 id="running-your-robot">Running your robot:</h3>
+              
+              <p>The following code example will spin up an API server:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-ProxyClass = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">ProxyClass</span>() {}
+Cylon.api();
 
-  ProxyClass.prototype.<span class="function">reverse</span> = <span class="keyword">function</span>(string) {
-    <span class="keyword">return</span> string.split(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>).reverse().join(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
-  };
+Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">loopback</span><span class="delimiter">'</span></span> },
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ping</span><span class="delimiter">'</span></span> },
 
-  <span class="keyword">return</span> ProxyClass;
-
-})();
-
-BaseClass = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">BaseClass</span>() {
-    <span class="local-variable">this</span>.proxy = <span class="keyword">new</span> ProxyClass;
-    proxyFunctionsToObject([<span class="string"><span class="delimiter">'</span><span class="content">reverse</span><span class="delimiter">'</span></span>], <span class="local-variable">this</span>.proxy);
+  <span class="function">work</span>: <span class="keyword">function</span>() {
   }
-
-  <span class="keyword">return</span> BaseClass;
-
-})();
-
-klass = <span class="keyword">new</span> BaseClass;
-
-klass.reverse(<span class="string"><span class="delimiter">"</span><span class="content">Hello, World!</span><span class="delimiter">"</span></span>);
+}).start();
 </pre>
-            
-            <h2 id="numberseconds">Number::seconds</h2>
-            
-            <p>A monkey-patch to Number that allows for using numbers to represent time in
-            terms of seconds.</p>
-            
-            <p>Note that while using this in JavaScript, you have to use it in one of these
-            ways:</p>
-            
-            <pre class="CodeRay"><span class="integer">10</span>..seconds()
-<span class="comment">// or</span>
-(<span class="integer">10</span>).seconds()
-</pre>
-            
-            <p>Otherwise, the JavaScript interpreter will get confused and think you're
-            trying to represent a float.</p>
-            
-            <p>In CoffeeScript you can use <code>10.seconds()</code>, as the compiler will turn it into
-            <code>10..seconds()</code> for you.</p>
-            
-            <p>Returns a Number representing the time in milliseconds</p>
-            
-            <h3 id="examples-3">Examples:</h3>
-            
-            <pre class="CodeRay"><span class="integer">10</span>..seconds();
-</pre>
-            
-            <h2 id="numbersecond">Number::second</h2>
-            
-            <p>Aliases to <code>Number::seconds</code>. See that method for more information</p>
-            
-            <p>Returns a Number representing the time in milliseconds</p>
-            
-            <h3 id="examples-4">Examples:</h3>
-            
-            <pre class="CodeRay"><span class="integer">1</span>..second();
-</pre>
-            
-            <h2 id="numberfromscalestart-end">Number::fromScale(start, end)</h2>
-            
-            <p>Monkey-patch on Number, converts a value from an old number scale (start, end)
-            to (0..1) scale.</p>
-            
-            <ul>
-              <li>
-<strong>start</strong> - starting number of the scale</li>
-              <li>
-<strong>end</strong> - top number number of the scale</li>
-            </ul>
-            
-            <p>Returns a number representing the scaled value.</p>
-            
-            <h3 id="examples-5">Examples:</h3>
-            
-            <pre class="CodeRay"><span class="integer">150</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>);
-
-<span class="integer">5</span>..fromScale(<span class="integer">0</span>, <span class="integer">10</span>);
-</pre>
-            
-            <h2 id="numbertoscalestart-end">Number::toScale(start, end)</h2>
-            
-            <p>Monkey-patch on Number, converts a value from (0..1) scale to a new (start,
-            end) scale.</p>
-            
-            <ul>
-              <li>
-<strong>start</strong> - starting number of the scale</li>
-              <li>
-<strong>end</strong> - top number number of the scale</li>
-            </ul>
-            
-            <p>This can be chained together with <code>Number::fromScale</code> to quickly and handily
-            convert numbers between scales. e.g</p>
-            
-            <pre class="CodeRay"><span class="integer">100</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>).toScale(<span class="integer">0</span>, <span class="integer">100</span>);
-</pre>
-            
-            <p>Returns a number representing the scaled value.</p>
-            
-            <h3 id="examples-6">Examples:</h3>
-            
-            <pre class="CodeRay"><span class="float">0.75</span>.toScale(<span class="integer">0</span>, <span class="integer">200</span>);
-
-<span class="float">0.5</span>.toScale(<span class="integer">0</span>, <span class="integer">10</span>);
-</pre>
+              
+              <p>By default, an unconfigured API instance will listen on
+              <code>https://127.0.0.1:3000</code>, using a self-signed cert and with no
+              authentication.</p>
+              
+              <p>For more information API configuration, see the <a href="/documentation/configuration">configuration page</a>.</p>
+              
+              <p>For more information on available API routes, check out the <a href="http://cppp.io">CPPP-IO</a> spec that Cylon's API follows.</p>
+            </div>
           </div>
         </div>
       </div>

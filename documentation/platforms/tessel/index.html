@@ -96,11 +96,9 @@
                   <a href="/documentation/guides/what_is_cylon">About Cylon</a>
                   <a href="/documentation/guides/working-with-robots">Working With Robots</a>
                   <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                  <a href="/documentation/guides/api">API</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
                   <a href="/documentation/guides/browser-support">Browser Support</a>
-                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Platforms')}">
@@ -161,7 +159,7 @@
                     <div class="name">I2C</div>
                     <div class="links">
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
-                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lcd">LCD</a>
                       <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
@@ -218,6 +216,13 @@
                       <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Core')}">
+                <div class="name" ng-click="show('Core')">Core</div>
+                <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/api">API</a>
+                  <a href="/documentation/core/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Contribute')}">
@@ -488,8 +493,8 @@ Cylon.robot({
                       </a>
                     </div>
                     <div class="compatability-link">
-                      <a href="/documentation/drivers/bmp180" title="BPM180">
-                        <p class="title">BPM180</p>
+                      <a href="/documentation/drivers/bmp180" title="BMP180">
+                        <p class="title">BMP180</p>
                         <img src="/images/devices/bmp180.jpg" style="width: 100%">
                       </a>
                     </div>

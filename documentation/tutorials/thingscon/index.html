@@ -95,11 +95,9 @@
                   <a href="/documentation/guides/what_is_cylon">About Cylon</a>
                   <a href="/documentation/guides/working-with-robots">Working With Robots</a>
                   <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
-                  <a href="/documentation/guides/api">API</a>
                   <a href="/documentation/guides/cli">CLI</a>
                   <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
                   <a href="/documentation/guides/browser-support">Browser Support</a>
-                  <a href="/documentation/guides/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Platforms')}">
@@ -160,7 +158,7 @@
                     <div class="name">I2C</div>
                     <div class="links">
                       <a href="/documentation/drivers/blinkm">BlinkM</a>
-                      <a href="/documentation/drivers/bmp180">BPM180</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
                       <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
                       <a href="/documentation/drivers/lcd">LCD</a>
                       <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
@@ -217,6 +215,13 @@
                       <a href="/documentation/drivers/tessel-servo">Servo</a>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Core')}">
+                <div class="name" ng-click="show('Core')">Core</div>
+                <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/api">API</a>
+                  <a href="/documentation/core/helpers">Helper Methods</a>
                 </div>
               </div>
               <div class="section" ng-class="{active: active('Contribute')}">
@@ -438,17 +443,20 @@ Cylon.start();
 
 
 Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
-  ],
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">forward</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">back</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">left</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">right</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">5</span> }
-  ],
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+
+    <span class="key">forward</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> },
+    <span class="key">back</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span> },
+    <span class="key">left</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span> },
+    <span class="key">right</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">makey-button</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">5</span> }
+  },
+
   <span class="key">checkCalibration</span>: (<span class="keyword">function</span>(_this) {
     <span class="keyword">return</span> <span class="keyword">function</span>(me) {
       <span class="keyword">if</span> (calibration === <span class="predefined-constant">true</span>) {
@@ -553,14 +561,16 @@ Cylon.start();
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
-  ],
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
-  ],
+  <span class="key">connections</span>: {
+    <span class="key">leapmotion</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+  },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
       <span class="keyword">var</span> r = hand.palmY.fromScale(<span class="integer">100</span>, <span class="integer">600</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>) | <span class="integer">0</span>;
