@@ -187,13 +187,9 @@ def clone_repo(uri)
 end
 
 def extract_examples_from_repo(path)
-  examples = []
-
-  Dir.glob(path + "/examples/*/*.#{Project.extension}") do |file|
-    examples << Example.new(file)
-  end
-
-  examples
+  examples = Dir.glob(path + "/examples/*/*.#{Project.extension}")
+  examples.reject! { |f| f.include?("fluent") || f.include?("imperative") }
+  examples.map { |f| Example.new(f) }
 end
 
 def remove_existing_examples

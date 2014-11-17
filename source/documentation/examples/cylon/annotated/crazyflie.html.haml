@@ -46,9 +46,11 @@ active_menu_docs: true
   to land, and five seconds after that to stop.
 
       :::javascript
-          my.drone.takeoff()
-          after((10).seconds(), my.drone.land);
-          after((15).seconds(), my.drone.stop);
+          my.drone.on('start', function() {
+            my.drone.takeoff()
+            after((10).seconds(), my.drone.land);
+            after((15).seconds(), my.drone.stop);
+          });
         }
 
   With all that done, we can start up the robot and get the Crazyflie flying:
