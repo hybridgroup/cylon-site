@@ -1,13 +1,11 @@
 .container-documentation {
-  .image-circuit {
+  .image-circuit img {
     @include span-columns(6 of 12);
-    img {
-      height: 300px;
-    }
   }
 
   .description-circuit {
     @include span-columns(6 of 12);
+    @include omega;
     float: right;
   }
 
