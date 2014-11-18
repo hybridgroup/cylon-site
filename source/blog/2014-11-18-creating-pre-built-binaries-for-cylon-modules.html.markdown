@@ -52,7 +52,127 @@ CI tools to build, compile, test, package and publish.
   3. Check bindings.gyp for dependency details and Path hints.
   4. Keep booth appveyor.yml and travis.yml up to date with your local process.
   5. Only publish from CI tools after you confirm the module compiles correctly, otherwise you'll have to continously delete the publish binaries for the same version.
-  6. If CI build compilation fails, open a direct communication channel with them, this guys can help a lot, even help you find the root cause if your local build fails.
+  6. If CI build compilation fails, open a direct communication channel with them (forums, support), those guys can help a lot, they can even help you find the root cause if your local build fails.
+
+  Let's check how to setup everything using the CI environment for all platforms(Linux, Windows and OSX). We'll be using
+node-opencv module as an example since this was the one that presented the biggest challenge to setup.
+For details on how to setup up [node-pre-gyp](https://github.com/mapbox/node-pre-gyp) bindings and package.json binary section check the [node-pre-gyp README](https://github.com/mapbox/node-pre-gyp),
+it is very good, easy to understand and fill with details and options.
+
+  ### How to setup Linux pre-compiled binaries in Travis CI
+
+  Linux is probably the easiest platform to setup pre-compiled binaries for, in the case of opencv we have to make sure we
+have all required dependencies installed and that is pretty much it, we'll go through the different sections of the .travis.yml
+file and I will give an explanation of what we are doing, let's start from the beggining of the file, the build config section:
+
+```yaml
+# First we setup the the type of project, in this case node_js
+language: node_js
+
+# We also need to specify the node.js versions we want to build from,
+# this is important because not all modules work with version 0.11 yet
+# and we want to also create binaries for the different node versions.
+node_js:
+  - '0.10'
+  - '0.11'
+
+# What we'll be using to compile
+compiler: clang
+
+# Here we setup our secure env variables for AS3 publishing.
+env:
+  global:
+  - secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING
+  - secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING
+```
+
+  The above code should be pretty straight forward, we are just telling travis how our build should be configured, the type
+of project, the versions of node.js, compiler and environment sensitive information.
+
+  Next we have our `before_install` section where we install the dependencies we need and also check if this build should publish
+binaries or not.
+
+```yaml
+before_install:
+  # This fixes a problem with apt-get failing later, see http://docs.travis-ci.com/user/installing-dependencies/#Installing-Ubuntu-packages
+  - sudo apt-get update -qq
+  # We install all dependencies for node-opencv using apt-get
+  - sudo apt-get install libcv-dev
+  - sudo apt-get install libopencv-dev
+  - sudo apt-get install libhighgui-dev
+  # Get commit message to check if we should publish binary
+  - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
+  # Put local npm modules .bin on PATH
+  - export PATH=./node_modules/.bin/:$PATH
+  # Install node-gyp and node-pre-gyp so it is available for packaging and publishing
+  - npm install node-gyp -g
+  - npm install node-pre-gyp
+  # Install aws-sdk so it is available for publishing to AS3
+  - npm install aws-sdk
+  # Figure out if we should publish
+  - PUBLISH_BINARY=false
+  # If we are building a tag then we need to publish a new binary package
+  - if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
+  # or if we put the string [publish binary] in the commit message
+  - if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;
+```
+
+  As you can see in the code above installing the dependencies in travis is pretty straight forward,
+one thing to notice is that we use the commit message or tag to setup an env variable that we'll use
+to check if we should publish a new binary package with this commit or not.
+
+  Next up is our `install` section where we make sure the module compiles correctly and we run tests.
+
+```yaml
+install:
+  # Ensure source install works and compiles correctly
+  - npm install --build-from-source
+  # test our module
+  - npm test
+  - node lib/opencv.js
+```
+
+  We are using the `before_script` section to package and publish the binary, a very easy process
+if you already have the secure environment varibales setup in your .travis.yml file (as we can see above),
+for details on how to set them up using the Travis gem check [here](http://docs.travis-ci.com/user/environment-variables/#Secure-Variables).
+
+```yaml
+before_script:
+  - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY
+  # if we are publishing for this commit, do it
+  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
+  # cleanup
+  - node-pre-gyp clean
+  - node-gyp clean
+```
+
+  Two things worth mentioning here, One is we check for the environment variable `PUBLISH_BINARY` that we setup
+earlier based on tag or commit message, that is what we use to know if we should publish at this time. Number Two
+we cleanup the compiled binaries after publishing so we can test the remote binary can be installed correctly
+later on.
+
+  In the last section of the script we just make sure we can install from remote and print out the binaries
+info:
+
+```yaml
+script:
+  # if publishing, test installing from remote
+  - INSTALL_RESULT=0
+  - if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false > /dev/null)$? || true; fi;
+  # if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line
+  - if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi
+  # If success then we arrive here so lets clean up
+  - node-pre-gyp clean
+
+after_success:
+  # if success then query and display all published binaries
+  - node-pre-gyp info
+```
+
+  Again we use the `PUBLISH_BINARY` env varibale we setup in the `before_install` section, if we publish a new binary
+we install from remote to make sure the binary works as expected.
+
+  Finally we just print out all node-pre-gyp info about the binaries.
 
   ## What modules have we add pre-built binaries to?
 
