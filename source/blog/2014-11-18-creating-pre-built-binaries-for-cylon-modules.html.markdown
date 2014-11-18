@@ -25,7 +25,7 @@ binaries. Using node-pre-gyp with CI tools like AppVeyor (build for
 Windows platforms) and TravisCI (build for Linux and OSX) allows us to automatically generate, package, publish and
 have binary packages available each time a new version of the module is released.
 
-  ## Steps to setup and auto generate the binary packages
+## Steps to setup and auto generate the binary packages
 
   This are the steps we follow to be able to auto generate binary packages that can be used by anyone.
 
@@ -36,7 +36,7 @@ have binary packages available each time a new version of the module is released
   5. Setup CI tools to automatically autogenerate the binary packages on new releases.
   6. Add a Make task to make release and publish easier.
 
-  ## Making sure compilation works in all platforms
+## Making sure compilation works in all platforms
 
   This is probably the most crucial part, since you need to test compilation and packaging in all 3
 platforms, and relying in the CI tools to accomplish this can make it painfully slow to test and make it work,
@@ -59,7 +59,7 @@ node-opencv module as an example since this was the one that presented the bigge
 For details on how to setup up [node-pre-gyp](https://github.com/mapbox/node-pre-gyp) bindings and package.json binary section check the [node-pre-gyp README](https://github.com/mapbox/node-pre-gyp),
 it is very good, easy to understand and fill with details and options.
 
-  ### How to setup Linux pre-compiled binaries in Travis CI
+### How to setup Linux pre-compiled binaries in Travis CI
 
   Linux is probably the easiest platform to setup pre-compiled binaries for, in the case of opencv we have to make sure we
 have all required dependencies installed and that is pretty much it, we'll go through the different sections of the .travis.yml
@@ -174,20 +174,20 @@ we install from remote to make sure the binary works as expected.
 
   Finally we just print out all node-pre-gyp info about the binaries.
 
-  ## What modules have we add pre-built binaries to?
+## What modules have we add pre-built binaries to?
 
   So far we've added (or are working on) pre-built binaries for the following:
 
-  ### Currently using pre-built binaries:
+### Currently using pre-built binaries:
 
   - node-serialport
   - gamepad
 
-  ### Pending PRs to be merged:
+### Pending PRs to be merged:
 
   - node-opencv
 
-  ### Implementation in progress or waiting in the queue:
+### Implementation in progress or waiting in the queue:
 
   - noble
   - node-lame
