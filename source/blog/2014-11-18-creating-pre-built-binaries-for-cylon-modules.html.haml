@@ -121,53 +121,216 @@ active_menu_blog: true
 
     Next up is our `install` section where we make sure the module compiles correctly and we run tests.
 
-        :yaml
-        install:
-          # Ensure source install works and compiles correctly
-          - npm install --build-from-source
-          # test our module
-          - npm test
-          - node lib/opencv.js
+      :::yaml
+      install:
+        # Ensure source install works and compiles correctly
+        - npm install --build-from-source
+        # test our module
+        - npm test
+        - node lib/opencv.js
 
     We are using the `before_script` section to package and publish the binary, a very easy process
   if you already have the secure environment varibales setup in your .travis.yml file (as we can see above),
   for details on how to set them up using the Travis gem check [here](http://docs.travis-ci.com/user/environment-variables/#Secure-Variables).
 
-        :::yaml
-        before_script:
-          - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY
-          # if we are publishing for this commit, do it
-          - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
-          # cleanup
-          - node-pre-gyp clean
-          - node-gyp clean
+      :::yaml
+      before_script:
+        - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY
+        # if we are publishing for this commit, do it
+        - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
+        # cleanup
+        - node-pre-gyp clean
+        - node-gyp clean
 
     Two things worth mentioning here, One is we check for the environment variable `PUBLISH_BINARY` that we setup
   earlier based on tag or commit message, that is what we use to know if we should publish at this time. Number Two
-  we cleanup the compiled binaries after publishing so we can test the remote binary can be installed correctly
-  later on.
+  we cleanup the compiled binaries after publishing so we can test the remote binary in the next block.
 
     In the last section of the script we just make sure we can install from remote and print out the binaries
   info:
 
-        :::yaml
-        script:
-          # if publishing, test installing from remote
-          - INSTALL_RESULT=0
-          - if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false > /dev/null)$? || true; fi;
-          # if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line
-          - if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi
-          # If success then we arrive here so lets clean up
-          - node-pre-gyp clean
+      :::yaml
+      script:
+        # if publishing, test installing from remote
+        - INSTALL_RESULT=0
+        - if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false > /dev/null)$? || true; fi;
+        # if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line
+        - if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi
+        # if success then we arrive here so lets clean up
+        - node-pre-gyp clean
 
-        after_success:
-          # if success then query and display all published binaries
-          - node-pre-gyp info
+      after_success:
+        # if success then query and display all published binaries
+        - node-pre-gyp info
 
     Again we use the `PUBLISH_BINARY` env varibale we setup in the `before_install` section, if we publish a new binary
   we install from remote to make sure the binary works as expected.
 
     Finally we just print out all node-pre-gyp info about the binaries.
+
+    You can check the complete version of the .travis.yml file [here](https://github.com/hybridgroup/node-opencv/blob/master/.travis.yml).
+
+  #### Creating x86 32bit binaries in TravisCI
+    There is one catch to create 32bit binary packages though, Travis does not have x86 32bit environment, so you have to install node.js
+    32bit, the appropiate libraries and use those to create the x86 package. We do this for node-serialport, let's take a look at the .travis.yml file:
+
+      :::yaml
+      - node-pre-gyp clean
+      # node.js v0.8 and above provides pre-built 32 bit and 64 bit binaries
+      # here we use the 32 bit ones to compile, pckage, publish and test 32 bit builds
+      - NVER=`node -v`
+      - wget http://nodejs.org/dist/${NVER}/node-${NVER}-${platform}-x86.tar.gz
+      - tar xf node-${NVER}-${platform}-x86.tar.gz
+      # enable 32 bit node
+      - export PATH=$(pwd)/node-${NVER}-${platform}-x86/bin:$PATH
+      # install 32 bit compiler toolchain
+      - if [[ "$platform" == 'linux' ]]; then sudo apt-get -y install gcc-multilib g++-multilib; fi
+      # try to compile in 32 bit mode
+      - if [[ "$platform" == 'linux' ]]; then CC=gcc-4.6 CXX=g++-4.6 npm install --build-from-source; else npm install --build-from-source; fi
+      - npm test
+      # if everything works correctly publish 32 bit build
+      - echo "Publishing x86 32bit Binary Package? ->" $PUBLISH_BINARY
+      - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
+
+    As you can see after cleaning up the build and compiled files we install node, libraries and dependencies for x86 architecture, the reason why
+    we don't do this for node-opencv is because opencv itself has a lot of OS dependecies that currently we are unable to install in a AMD64 architecture.
+    In that case what we can do is setup VM with Linux x86 32bit and use it to manually publish the binaries. The complete .travis.yml file we use in node-serialport
+    can be found [here](https://github.com/voodootikigod/node-serialport/blob/master/.travis.yml).
+
+  #### Creating binaries for OSX
+
+    Since Travis does not allow us to create builds for multiple OSs we use a little hack to create the binaries for OSX.
+    What we do is create another branch `osx-binaries` where we put a slightly different `.travis.yml` file.
+
+    This branch will be used when cutting a release of the module to generate the OSX binaries, we do this by merging the
+    latest release into this branch and letting Travis do its work.
+
+    To simplify this process we've created a `Make` task that we run to cut a release, we'll go into detail about it below.
+
+      :::yaml
+
+      language: objective-c
+
+      env:
+        matrix:
+          - export NODE_VERSION="0.10"
+          - export NODE_VERSION="0.11"
+        global:
+          - secure: SECURE_ENV_VAR
+          - secure: SECURE_ENV_VAR
+
+      before_install:
+        # We uinstall nvm to take care of node.js version
+        - git clone https://github.com/creationix/nvm.git ./.nvm
+        - source ./.nvm/nvm.sh
+        # We use the env var defined in the build matrix to install the
+        # appropiate nod.js version using nvm
+        - nvm install $NODE_VERSION
+        - nvm use $NODE_VERSION
+        # We use brew to install all dependencies
+        - brew tap homebrew/science
+        - brew update
+        - brew install opencv
+          # get commit message
+        - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
+          # put local node-pre-gyp on PATH
+        - export PATH=./node_modules/.bin/:$PATH
+          # install node-pre-gyp so it is available for packaging and publishing
+        - npm install node-gyp -g
+          # install node-pre-gyp so it is available for packaging and publishing
+        - npm install node-pre-gyp
+          # install aws-sdk so it is available for publishing to AS3
+        - npm install aws-sdk
+          # figure out if we should publish
+        - PUBLISH_BINARY=false
+          # if we are building a tag then publish
+        - if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
+          # or if we put [publish binary] in the commit message
+        - if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;
+        - platform=$(uname -s | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")
+
+      install:
+        # ensure source install works
+        - npm install --build-from-source
+        # test our module
+        - npm test
+        - node lib/opencv.js
+
+      before_script:
+        - echo "Publishing native platform Binary Package? ->" $PUBLISH_BINARY
+        # if publishing, do it
+        - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
+        # cleanup
+        - node-pre-gyp clean
+        - node-gyp clean
+
+      script:
+        # if publishing, test installing from remote
+        - INSTALL_RESULT=0
+        - if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false > /dev/null)$? || true; fi;
+        # if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line
+        - if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi
+        # there is no need for 32bit binaries on Mac OSx since those machines are ancient
+
+      after_succese:
+          # if success then query and display all published binaries
+        - node-pre-gyp info
+
+  Things to notice from the .travis.yml for OSX, we configure the build to use `objective-c`, so travis creates the build
+  in an OSX environment, we pass along the `NODE_VERSION` variables to env matrix, that way we can check and install the
+  appropiate node.js version using `nvm`, lastly we use `brew` to install all required dependencies.
+
+  #### Using a Make task to cut a release
+
+    As mentioned above we use a `Make` task to cut releases, package and publish binaries.
+
+    This task will do the following for you:
+
+    1. Generate new tags based on package.json version number
+    2. Push tags to Github
+    3. Checkout into `osx-binaries` branch
+    4. Merge `master` into `osx-binaries`
+    5. Push `osx-binaries`
+    6. Checkout master
+    7. Finally it will run `npm publish`
+
+    This takes away the bother of having to manually merge and push to generate OSX binaries. The Make task and Makefile
+    look as follows.
+
+      :::makefile
+      VERSION := $(shell node -e "console.log(require('./package.json').version)")
+
+      .PHONY: default release
+
+      # Add a default task so we don't release just because someone ran 'make'
+      default:
+              @echo "Did you mean to release a new version?"
+              @echo "If so, run 'make release'."
+
+      release:
+              @echo "Tagging release $(VERSION)"
+              @git tag -m "$(VERSION)" v$(VERSION)
+
+              @echo "Pushing tags to GitHub"
+              @git push --tags
+
+              @echo "Switching to osx-binaries branch"
+              @git checkout osx-binaries
+
+              @echo "Merging master into osx-binaries"
+              @git merge --no-ff --commit -m "Merge master into osx-binaries [publish binary]" master
+
+              @echo "Pushing osx-binaries"
+              @git push
+
+              @echo "Switching to master branch"
+              @git checkout master
+
+              @echo "Publishing to NPM"
+              @npm publish ./
+
+  With this we will make sure the binaries for all platforms and architectures will be generated each time
+  a new version is released.
 
   ### What modules have we add pre-built binaries to?
 
