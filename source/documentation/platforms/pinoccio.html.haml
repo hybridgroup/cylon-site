@@ -68,10 +68,10 @@ subnavjs: true
             scout: '[your scout ID]'
           },
 
-          devices: [
-            { name: 'led', driver: 'pinoccio-led' },
-            { name: 'power', driver: 'pinoccio-power' }
-          ]
+          devices: {
+            led: { driver: 'pinoccio-led' },
+            power: { driver: 'pinoccio-power' }
+          }
 
           work: function(my) {
             every((3).seconds(), function() {

@@ -37,10 +37,10 @@ active_menu_docs: true
   Our robot will have two devices, an LED and a button:
 
       :::javascript
-        devices: [
-          { name: 'led', driver: 'led', pin: 0 },
-          { name: 'button', driver: 'button', pin: 5 }
-        ],
+        devices: {
+          led: { driver: 'led', pin: 0 },
+          button: { driver: 'button', pin: 5 }
+        },
 
   Our robot has very simple work, it will just toggle the LED whenever the button
   sends the 'push' event, we also log the press and release event, release is

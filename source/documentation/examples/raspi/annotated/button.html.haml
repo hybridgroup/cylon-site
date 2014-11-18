@@ -32,10 +32,10 @@ active_menu_docs: true
 
       :::javascript
         connection: { name: 'raspi', adaptor: 'raspi' },
-        devices: [
-          { name: 'led', driver: 'led', pin: 11 },
-          { name: 'button', driver: 'button', pin: 7 }
-        ],
+        devices: {
+          led: { driver: 'led', pin: 11 },
+          button: { driver: 'button', pin: 7 }
+        },
 
   With the hardware defined, we can get to the work our robot will perform. And as
   you can see, it's enormously complex:
