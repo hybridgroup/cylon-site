@@ -29,110 +29,90 @@ main_nav: true
 
       $ cd cylon-leapmotion
       $ ls
-      LICENSE Makefile README.markdown lib/ package.json test/
+      LICENSE Makefile README.markdown lib/ package.json spec/
 
   The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.
 
   ## Writing Adaptors
 
-  Your module's Adaptor classes subclass the `Cylon.Adaptor` core class, and are responsible for connecting to the platform you're integrating with.
+  Your module's Adaptor classes should subclass the `Cylon.Adaptor` core class, and are responsible for connecting to the platform you're integrating with.
   They should also handle any necessary device set-up, and proxy events the user should know about.
 
-  For an example, here's the Adaptor from the `cylon-joystick` module:
+  Some things to note about Adaptor subclasses:
+
+  They *must* implement `#start` - the 'start' method dictates what setup a Driver needs to do on startup.
+  This might involve connecting to the device, or listening for events.
+  This method must be implemented, and trigger the provided callback, or Cylon cannot start properly.
+
+  They *must* implement `#disconnect` - the 'halt' method dictates what teardown a Driver needs to do on shutdown.
+  This can involve safely disconnecting from hardware, restoring device state, etc.
+  This method must be implemented, and trigger the provided callback, or Cylon cannot shut down properly.
+
+  For an example, here's the Adaptor from the `cylon-ardrone` module, with some explanatory comments added below:
 
       :::javascript
-      'use strict';
+      "use strict";
 
-      var Cylon = require('cylon');
+      var LibARDrone = require('ar-drone'),
+          Cylon = require('cylon');
 
-      var SDL = require('hybridgroup-sdl');
+      // an Array of commands the ARDrone library responds to
+      // e.g. "takeoff", "hover", "land"
+      var Commands = require('./commands');
 
-      var Adaptor = module.exports = function Adaptor(opts) {
-        if (opts == null) {
-          opts = {};
-        }
+      var ARDrone = module.exports = function ARDrone(opts) {
+        ARDrone.__super__.constructor.apply(this, arguments);
+        opts = opts || {};
 
-        Adaptor.__super__.constructor.apply(this, arguments);
+        this.ip = opts.host || opts.port || "192.168.1.1"
 
-        this.connector = this.joystick = null;
+        this.connector = this.ardrone = null;
       };
 
-      Cylon.Utils.subclass(Adaptor, Cylon.Adaptor);
+      Cylon.Utils.subclass(ARDrone, Cylon.Adaptor);
 
-      Adaptor.prototype.connect = function connect(callback) {
-        SDL.init(SDL.INIT.JOYSTICK);
+      ARDrone.prototype.connect = function(callback) {
+        this.connector = this.ardrone = new LibARDrone.createClient({
+          ip: this.ip
+        });
 
-        if (SDL.numJoysticks() === 0) {
-          throw new Error("No SDL Joystick Available.");
-        }
+        this.proxyMethods(Commands, this.ardrone, this);
 
-        this.connector = this.joystick = new SDL.Joystick(0);
+        var events = [
+          'navdata', 'landing', 'landed', 'takeoff', 'hovering', 'flying',
+          'lowBattery', 'batteryChange', 'altitudeChange'
+        ];
 
-        Cylon.Utils.constantly(this.listenForEvents.bind(this));
+        events.forEach(function(name) {
+          this.defineAdaptorEvent(name);
+        }.bind(this));
 
         callback();
       };
 
-      Adaptor.prototype.disconnect = function disconnect(callback) {
-        SDL.quit();
+      ARDrone.prototype.disconnect = function(callback) {
         callback();
-      };
-
-      Adaptor.prototype.listenForEvents = function listenForEvents() {
-        var event = SDL.pollEvent();
-
-        if (!event) {
-          return;
-        }
-
-        if (/^JOY/.test(event.type)) {
-          this.connection.emit('event', event);
-        }
-      };
-
-  There are a few important things to note in this example:
-
-  **It subclasses `Cylon.Adaptor`**.
-  This gives you utilities methods from Cylon, and other conveniences.
-
-  **The `#connect`/`#disconnect` methods**.
-  These methods take a callback as an argument, and trigger it when they're done their work.
-  These methods **need** to be defined in your Adaptor class, or an error will result.
-
-  The `#connect` method is used to establish a connection to the platform, and should assign the object maintaining the connection to `this.connector` so it can be directly accessed.
-
-  The `#disconnect` method is used to clean up at shutdown time, and if there's any special connection termination to be done, it should be done here.
-
-  Event propagation can be defined in Adaptors using the `#defineAdaptorEvent` helper function, which can be invoked in a few ways:
-
-  **With a source and target event name**.
-  This is the most flexible approach, and lets you rename events that will actually be received by the robot.
-  Additionally, if you pass the 'update' param, an `update` event will also be emitted:
-
-      :::javascript
-      this.defineAdaptorEvent({
-        eventName: 'greeting',
-        targetEventName: 'hello',
-        update: true
-      });
-
-  With this code, whenever the Adaptor's `connector` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `connection`, with the data that the 'greeting' event received.
-
-  **With just an eventName**.
-  This invocation assumes you want the event emitted on the `connection` to be the same as the original event name.
-
-      :::javascript
-      this.defineAdaptorEvent({ eventName: 'greeting' });
-
-  This invocation means that when the `connector` receives the 'greeting' event, an identical event will be emitted on the `connection`.
-
-  **With just an eventName (string version)**.
-  Similar to the above example, but a bit shorter.
-
-      :::javascript
-      this.defineAdaptorEvent('greeting');
+      }
 
   ## Writing Drivers
+
+  Drivers subclass Cylon.Driver, and are the parts of your system that provide a higher-level abstraction over the Adaptor.
+  They should provide wrapping of commands where helpful, and process data from events if needed.
+
+  A few things to note about Driver subclasses:
+
+  They *must* implement `#start` - the 'start' method dictates what setup a Driver needs to do on startup.
+  This might involve setting initial state, or listening for events.
+  This method must be implemented, and trigger the provided callback, or Cylon cannot start properly.
+
+  They *must* implement `#halt` - the 'halt' method dictates what teardown a Driver needs to do on shutdown.
+  This can involve restoring state, clearing up references, etc.
+  This method must be implemented, and trigger the provided callback, or Cylon cannot shut down properly.
+
+  The Adaptor instance associated with your Device instance is accessible as `this.connection`.
+
+  The `#setupCommands` method is your friend - pass it an array of methods, and it'll automatically proxy them to the connection with no user intervention.
+  They will also be snake_cased and added as API commands.
 
   Here's the example driver from the `cylon-sphero` module.
 
@@ -140,12 +120,15 @@ main_nav: true
       'use strict';
 
       var Cylon = require('cylon');
+
+      // an Array of commands the Sphero library/Adaptor responds to
+      // e.g. "roll", "setRGB", "stop"
       var Commands = require('./commands');
 
       var Driver = module.exports = function Driver() {
         Driver.__super__.constructor.apply(this, arguments);
         this.setupCommands(Commands);
-      }
+      };
 
       Cylon.Utils.subclass(Driver, Cylon.Driver);
 
@@ -155,12 +138,11 @@ main_nav: true
       //
       // Returns null.
       Driver.prototype.start = function(callback) {
-        this.defineDriverEvent({ eventName: 'connect' });
-        this.defineDriverEvent({ eventName: 'message' });
-        this.defineDriverEvent({ eventName: 'update' });
-        this.defineDriverEvent({ eventName: 'notification' });
-        this.defineDriverEvent({ eventName: 'collision' });
-        this.defineDriverEvent({ eventName: 'data' });
+        var events = ['message', 'update', 'notification', 'collision', 'data'];
+
+        events.forEach(function(e) {
+          this.defineDriverEvent(e);
+        }.bind(this));
 
         this.connection.setTemporaryOptionFlags(0x01);
 
@@ -180,7 +162,10 @@ main_nav: true
       //
       // Returns null.
       Driver.prototype.roll = function(speed, heading, state) {
-        if (state == null) { state = 1; }
+        if (state == null) {
+          state = 1;
+        }
+
         this.connection.roll(speed, heading, state);
       };
 
@@ -213,7 +198,10 @@ main_nav: true
       //
       // Returns null.
       Driver.prototype.setRGB = function(color, persist) {
-        if (persist == null) { persist = true; }
+        if (persist == null) {
+          persist = true;
+        }
+
         this.connection.setRGB(color, persist);
       };
 
@@ -234,48 +222,43 @@ main_nav: true
         this.connection.setStabilization(1);
       };
 
-  Some things to note in this driver:
+  ## Event Propagation
 
-  **The constructor uses the `#setupCommands` method**.
-  This this convenience method lets you define methods that should be accessible to the Cylon API.
+  Inside of Drivers and Adaptors, you can manually emit events (`this.emit`).
+  This will work for most drivers, and lets you tweak data from events you're listening to to make it more user-friendly.
 
-  **The `#start`/`#halt` methods**.
-  These methods take a callback as an argument, and trigger it when they're done their work.
-  These methods **need** to be defined in your Adaptor class, or an error will result.
+  However, if you just want to pipe events through from your source (`this.connector` in Adaptor, `this.connection` in Driver), Cylon provides a shortcut for you, in the form of the `Adaptor#defineAdaptorEvent` and `Driver#defineDriverEvent` functions.
 
-  Event propagation can be defined in Drivers using the `#defineDriverEvent` helper function, which can be invoked in a few ways:
+  The functions can be used in a number of ways, which we'll go through now.
+  For purposes of simplification, we'll be talking about `Adaptor#defineAdaptorEvent`.
+  But for Drivers, you simply change the method name to `#defineDriverEvent`, the arguments follow the same pattern.
+
+  `#defineDriverEvent` also proxies from `this.connection`, instead of `this.connector` as in `#defineAdaptorEvent`.
 
   **With a source and target event name**.
   This is the most flexible approach, and lets you rename events that will actually be received by the robot.
   Additionally, if you pass the 'update' param, an `update` event will also be emitted:
 
       :::javascript
-      this.defineDriverEvent({
+      this.defineAdaptorEvent({
         eventName: 'greeting',
         targetEventName: 'hello',
         update: true
       });
 
-  With this code, whenever the Driver's `connection` receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the `device`, with the data that the 'greeting' event received.
+  With this code, whenever the Adaptor's `connector` receives the 'greeting' event, it will emit the 'hello' and 'update' events, with the data that the 'greeting' event received.
 
   **With just an eventName**.
-  This invocation assumes you want the event emitted on the `device` to be the same as the original event name.
+  This invocation assumes you want the event to be proxied 1-to-1.
 
       :::javascript
-      this.defineDriverEvent({ eventName: 'greeting' });
+      this.defineAdaptorEvent({ eventName: 'greeting' });
 
-  This invocation means that when the `connection` receives the 'greeting' event, an identical event will be emitted on the `device`.
+  This invocation means that when the `connector` receives the 'greeting' event, an identical event will be emitted from the Adaptor.
 
   **With just an eventName (string version)**.
   Similar to the above example, but a bit shorter.
 
       :::javascript
-      this.defineDriverEvent('greeting');
+      this.defineAdaptorEvent('greeting');
 
-  Drivers also feature the `#setupCommands` method.
-  Invoking it with an array of command names will:
-
-  - If the method isn't defined on the Driver, it will be proxied from the Connection.
-    This means if you have lower-level methods on the Adaptor that can be called on the Driver.
-  - snake_cases the commands for API usage (e.g. `runScript` -> `run_script`).
-    This means Driver methods will be made accessible from the API
