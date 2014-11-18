@@ -7,23 +7,23 @@ tags: robots, node-pre-gyp, binaries, binary
 author: Edgar Silva
 active_menu_blog: true
 ---
-:markdown
-  Making Cylon and its modules easier to use and install is always a high priority item here at
+
+Making Cylon and its modules easier to use and install is always a high priority item here at
 The Hybrid Group.
 
-  Unfortunately we often find out blockers when people try to use some
-of the coolest NPM modules for developing Javascript robotics like node-serialport, node-opencv,
-gamepad among others, and they try to compile their native dependencies in one of the 3 major
-platforms (Linux, Windows, OSX). We've seen this issue quite often since several Cylon modules
-also have dependencies for them. And it is even more obvious when doing a workshop where some
-of the attendants might not have all the dependencies required to compile their native extensions.
+  Unfortunately we often find issues  when people try to use some
+of the coolest NPM modules for developing Javascript robotics like node-serialport, node-opencv
+and gamepad among others, when they try to compile their native dependencies in one of the 3 major
+platforms (Linux, Windows, OSX). We come across this issue quite often since several Cylon modules
+also have dependencies for this NPM modules. And it is even more obvious when doing a workshop and
+several of the attendants do not have all the dependencies required to compile these native extensions.
 
   That is why we took it upon ourselves to provide pre-built binaries for all the modules, that
-have native dependencies and are used in Cylon or its submodules, for all major platforms (both
-64 and 32 bit), all of this thanks to node-pre-gyp which makes it easy to setup packaging and
-publishing for consumption. Using node-pre-gyp in tandem with CI tools like app-veyor(built for
-Windows platforms) and travis(built for Linux and OSX) lets us automatically generate the binary
-packages each time a new version of the module is released.
+have native dependencies and are used in Cylon or its submodules, for all major platforms. We
+accomplish this using node-pre-gyp, which provides a very solid process to setup packaging and publishing of pre-compiled
+binaries for easy consumption. Using node-pre-gyp in tandem with CI tools like AppVeyor (build for
+Windows platforms) and TravisCI (build for Linux and OSX) we can automatically generate, package, publish and
+have binary packages available each time a new version of the module is released.
 
   ## Steps to setup and auto generate the binary packages
 
