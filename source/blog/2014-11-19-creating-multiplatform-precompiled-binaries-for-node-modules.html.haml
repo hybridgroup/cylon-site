@@ -2,17 +2,17 @@
 page_title_show: true
 title: "Creating Multiplatform Precompiled Binaries for Node.js Modules"
 page_title: Blog
-date: 2014-11-18
+date: 2014-11-19
 tags: robots, node-pre-gyp, binaries, binary
 author: Edgar Silva
 active_menu_blog: true
 ---
 :markdown
-  Making [Cylon.js](http://cylonjs.com/), and all of the various [Node.js](http://nodejs.org/) modules that it depends on easier to install and use is always a high priority item here at [The Hybrid Group](http://hybridgroup.com/).
+  It is always a high priority here at [The Hybrid Group](http://hybridgroup.com/) to make [Cylon.js](http://cylonjs.com/), and all of the various [Node.js](http://nodejs.org/) modules that it depends on, easier to install and use.
 
-  Using some of the coolest `npm` modules for developing JavaScript robotics like [node-serialport](https://github.com/voodootikigod/node-serialport), [node-opencv](https://github.com/peterbraden/node-opencv) and [gamepad](https://github.com/creationix/node-gamepad) often require compiling native extensions. Some of those modules also require native dependencies and libraries in the 3 major platforms (Linux, Windows, and OSX).
+  Using some of the coolest `npm` modules for developing JavaScript robotics like [node-serialport](https://github.com/voodootikigod/node-serialport), [node-opencv](https://github.com/peterbraden/node-opencv) and [gamepad](https://github.com/creationix/node-gamepad) often require compiling native extensions. Some of those modules also require platform specific native dependencies and libraries for OSX, Linux, or Windows.
 
-  This requires the user of the modules to have their development environment up to date and correctly set up, which is not always the case. We have come across this issue quite often, since several Cylon modules also have dependencies for these same `npm` modules. It is a real pain when doing a workshop or hackathon, when attendees do not have all the dependencies required to compile these native extensions.
+  This requires that the user of the modules have a development environment for compiling native code, and that is also is up to date, which is not always the case. We have come across this issue quite often, since several Cylon modules also have dependencies for these same `npm` modules. It is especially difficult when doing a workshop or hackathon, when many attendees do not have all the dependencies required to compile these native extensions.
 
   This is why we have taken it upon ourselves to help provide precomplied binaries for all major platforms, for the modules that we use in Cylon that have native dependencies.
 
