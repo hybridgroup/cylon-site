@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: "Creating Multiplatform Pre-Built Binaries for Node.js Modules"
+title: "Creating Multiplatform Precompiled Binaries for Node.js Modules"
 page_title: Blog
 date: 2014-11-18
 tags: robots, node-pre-gyp, binaries, binary
@@ -8,16 +8,18 @@ author: Edgar Silva
 active_menu_blog: true
 ---
 :markdown
-  Making [Cylon.js](http://cylonjs.com/), and all of the various [Node.js]() modules easier to install and use and is always a high priority item here at The Hybrid Group.
+  Making [Cylon.js](http://cylonjs.com/), and all of the various [Node.js](http://nodejs.org/) modules that it depends on easier to install and use is always a high priority item here at [The Hybrid Group](http://hybridgroup.com/).
 
-  Using some of the coolest NPM modules for developing Javascript robotics like [node-serialport](), [node-opencv]() and [gamepad]() often requires compiling native extensions. Some of those modules also require native dependencies and libraries in the 3 major platforms (Linux, Windows, and OSX).
+  Using some of the coolest `npm` modules for developing JavaScript robotics like [node-serialport](https://github.com/voodootikigod/node-serialport), [node-opencv](https://github.com/peterbraden/node-opencv) and [gamepad](https://github.com/creationix/node-gamepad) often require compiling native extensions. Some of those modules also require native dependencies and libraries in the 3 major platforms (Linux, Windows, and OSX).
 
   This requires the user of the modules to have their development environment up to date and correctly set up, which is not always the case. We have come across this issue quite often, since several Cylon modules also have dependencies for these same `npm` modules. It is a real pain when doing a workshop or hackathon, when attendees do not have all the dependencies required to compile these native extensions.
 
-  This is why we have taken it upon ourselves to help provide pre-built binaries for all major platforms for the modules that we use in Cylon that have native dependencies.
+  This is why we have taken it upon ourselves to help provide precomplied binaries for all major platforms, for the modules that we use in Cylon that have native dependencies.
 
-  We accomplish this using node-pre-gyp, which provides a very solid process to set up packaging and publishing of pre-compiled
-  binaries. Using [node-pre-gyp]() with CI tools like [AppVeyor]() (build for Windows platforms) and [TravisCI]() (build for Linux and OSX) allows us to automatically generate, package, publish and have binary packages available, each time a new version of the module is released.
+  We accomplish this using [node-pre-gyp](https://github.com/mapbox/node-pre-gyp), which provides a very solid process to set up packaging and publishing of precompiled
+  binaries. Using node-pre-gyp with Continuous Integration (CI) tools like [TravisCI](https://travis-ci.org/) (build for Linux and OSX) and [AppVeyor](http://www.appveyor.com/) (build for Windows platforms) allow us to automatically generate, package, publish and have binary packages available each time a new version of the module is released.
+
+  This post details everything that we do to setup these builds, so that other maintainers can make life easier for users that want to install one of these modules.
 
   ### Setup and Auto-Generate the Binary Packages
 
@@ -32,7 +34,7 @@ active_menu_blog: true
 
   ### Test Compilation On All Platforms
 
-    This is probably the most crucial part, since you need to test compilation and packaging in all 3 platforms. Relying entirely on CI tools to accomplish this can make it painfully slow to test and make it work. Nobody should have to wait 30 mins just see your build fail in Travis or AppVeyor!
+    This is probably the most crucial part, since you need to test compilation and packaging in all 3 platforms. Relying entirely on CI tools to accomplish this can make it painfully slow to test and make it work. Nobody should have to wait 30 minutes just see your build fail in Travis or AppVeyor!
 
     It is almost always better to do this in a local machine first and take notes, then push to the CI tools for the final build, compile, test, package and publish steps.
 
@@ -47,9 +49,9 @@ active_menu_blog: true
 
     Let's check how to set up everything using the CI environment for all platforms(Linux, Windows and OSX). We'll be using node-opencv module as an example since this was the one that presented the biggest challenge to set up.
 
-    For details on how to set up up [node-pre-gyp](https://github.com/mapbox/node-pre-gyp) bindings and package.json binary section check the [node-pre-gyp README](https://github.com/mapbox/node-pre-gyp). It is very good, easy to understand and filled with many important details and options.
+    For details on how to set up node-pre-gyp bindings and package.json binary section check the [node-pre-gyp README](https://github.com/mapbox/node-pre-gyp). It is very good, easy to understand and filled with many important details and options.
 
-  ### Generating Linux Pre-compiled Binaries Using Travis CI
+  ### Generating Linux Precompiled Binaries Using Travis CI
 
     Linux is probably the easiest platform on which to set up pre-compiled binaries. In the case of OpenCV, we have to first make sure we have all required dependencies installed.
 
@@ -75,7 +77,7 @@ active_menu_blog: true
         - secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING
         - secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING
 
-    The above code should be pretty straight forward. We are just telling Travis how our build should be configured, the type of project, the versions of node.js, compiler and environment sensitive information.
+    The above code should be pretty straight forward. We are just telling Travis how our build should be configured, the type of project, the versions of Node.js, compiler and environment sensitive information.
 
     Next we have our `before_install` section where we install the dependencies we need and also check if this build should publish binaries or not.
 
@@ -157,9 +159,9 @@ active_menu_blog: true
     You can check the complete version of the `.travis.yml` file [here](https://github.com/hybridgroup/node-opencv/blob/master/.travis.yml).
 
   #### Creating x86 32bit Binaries Using TravisCI
-    There is one catch to create 32bit binary packages, however. 
+    There is one catch when creating 32-bit binary packages, however. 
 
-    By default, Travis does not have an x86 32bit environment, so you have to install Node.js 32-bit and the appropriate libraries, and then use them to create the x86 package. We do this for node-serialport, let's take a look at the `.travis.yml` file:
+    By default, Travis does not have an x86 32-bit environment, so you have to install Node.js 32-bit and the appropriate libraries, and then use them to create the x86 package. We do this for node-serialport, let's take a look at the `.travis.yml` file:
 
       :::yaml
       - node-pre-gyp clean
@@ -180,8 +182,8 @@ active_menu_blog: true
       - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
 
     As you can see, after cleaning up the build and compiled files, we then install node, the libraries, and all dependencies for x86 architecture.
-    The reason why we don't do this for node-opencv, is because OpenCV itself has a lot of OS dependecies, that currently we are unable to install in a AMD64 architecture.
-    In this case, what we can do is set up VM with Linux x86 32bit and use it to manually publish the binaries. The complete `.travis.yml` file that we use in node-serialport can be found [here](https://github.com/voodootikigod/node-serialport/blob/master/.travis.yml).
+    The reason why we don't do this for node-opencv, is because OpenCV itself has a lot of OS dependencies, that currently we are unable to install in a AMD64 architecture.
+    In this case, what we can do is set up VM with Linux x86 32-bit and use it to manually publish the binaries. The complete `.travis.yml` file that we use in node-serialport can be found [here](https://github.com/voodootikigod/node-serialport/blob/master/.travis.yml).
 
   #### Creating Binaries for OSX
 
@@ -191,7 +193,7 @@ active_menu_blog: true
     This branch will be used when cutting a release of the module to generate the OSX binaries. We do this by merging the
     latest release into this branch, and then just letting Travis do its work.
 
-    To simplify this process, we've created a `Make` task that we run to cut a release. Let's go into detail about it below.
+    To simplify this process, we've created a `make` task that we run to cut a release. Let's go into detail about it below.
 
       :::yaml
 
@@ -206,11 +208,11 @@ active_menu_blog: true
           - secure: SECURE_ENV_VAR
 
       before_install:
-        # We uinstall nvm to take care of node.js version
+        # We uninstall nvm to take care of node.js version
         - git clone https://github.com/creationix/nvm.git ./.nvm
         - source ./.nvm/nvm.sh
         # We use the env var defined in the build matrix to install the
-        # appropiate nod.js version using nvm
+        # appropriate nod.js version using nvm
         - nvm install $NODE_VERSION
         - nvm use $NODE_VERSION
         # We use brew to install all dependencies
@@ -264,16 +266,15 @@ active_menu_blog: true
   Here are a few things to notice from the `.travis.yml` file for the OSX build. We configure the build to use `objective-c`, so Travis creates the build in an OSX environment. We also pass along the `NODE_VERSION` variables to env matrix, so we can check and install the appropriate node.js version using `nvm`.
   Lastly, we use `brew` to install all required dependencies.
 
-  ### Generate Windows Pre-compiled Binaries Using AppVeyor
+  ### Generate Windows Precompiled Binaries Using AppVeyor
 
   Of all the 3 major platforms, Windows is probably the hardest to compile native extensions for. Sometimes it requires huge
   downloads and library installs, just to be able to compile a small native extension.
 
   Fortunately, the team over at [AppVeyor](http://www.appveyor.com/) have it figured out, and are a great help when working with
-  Windows pre-compiled binaries.
+  Windows precompiled binaries.
 
-  As I mentioned at the beginning, and above all true for Windows environments, I recommend to first setting up everything locally on a Windows computer,
-  otherwise figuring out compilation issues directly in AppVeyor might take you a really long time.
+  As I mentioned at the beginning, and above all true for Windows environments, I recommend to first setting up everything locally on a Windows computer, otherwise figuring out compilation issues directly in AppVeyor might take you a really long time.
 
   I'll go through the `appveyor.yml` file and describe everything we are doing so you can replicate it on your Windows dev environment.
   Let's get into it. First, the build configuration section.
@@ -300,7 +301,7 @@ active_menu_blog: true
 
   In the next section we use [Chocolatey](https://chocolatey.org/) to install OpenCV using the command `choco install opencv` to install the package.
   You can check the package details here: [Chocolatey OpenCV](https://chocolatey.org/packages/OpenCV). Once OpenCV is installed we
-  set up the `PUBLISH_BINARY` using the `git tags` or `COMMIT_MESSAGE` as we did before and install nodist so we can later install different
+  set up the `PUBLISH_BINARY` using the `git tags` or `COMMIT_MESSAGE` as we did before and install [nodist](https://github.com/marcelklehr/nodist) so we can later install different
   node.js versions.
 
       :::yaml
@@ -331,7 +332,7 @@ active_menu_blog: true
       - cmd: SET PATH=C:\nodist\bin;%PATH%
       - cmd: SET NODIST_PREFIX=C:\nodist
 
-  The next section is probably the most crucial. We set nodist to update and install 64bit version of node stable, and then
+  The next section is probably the most crucial. We set nodist to update and install 64-bit version of node stable, and then
   set the path to be able to find all the dependencies we need and that we previously installed. In this case we also need
   `GTK, MinGW` and `MSys`.
 
@@ -357,12 +358,9 @@ active_menu_blog: true
 
   Still no luck! We were not able to compile, due to missing libraries and headers. We started looking for them, and checking they existed where they were supposed to be. They were in the supposedly correcct locations, so something else must be missing.
 
-  We finally found out the real reason for the missing libraries by checking `bindings.gyp`, we found out `node-gyp` was looking for an `opencv.pc` file,
-  that was supposed to be inside `PGK_CONFIG_PATH`, but even when we set up the path to the `pkgconfig` folder it was not finding it, turns out the directory
-  did not contain an `opencv.pc` file, and this file was nowhere to be found.
+  We finally found out the real reason for the missing libraries by checking `bindings.gyp`, we found out `node-gyp` was looking for an `opencv.pc` file, that was supposed to be inside `PGK_CONFIG_PATH`, but even when we set up the path to the `pkgconfig` folder it was not finding it, turns out the directory did not contain an `opencv.pc` file, and this file was nowhere to be found.
 
-  The `opencv.pc` file contains all the cflags, versions, library and header locations, pretty much what we needed for `node-gyp` to find all dependencies,
-  so we wrote one ourselves with the correct CFlags and library locations for the OpenCV version we just installed using Chocolatey, the `opencv.pc` file looks like this.
+  The `opencv.pc` file contains all the cflags, versions, library and header locations, pretty much what we needed for `node-gyp` to find all dependencies, so we wrote one ourselves with the correct CFlags and library locations for the OpenCV version we just installed using Chocolatey, the `opencv.pc` file looks like this.
 
       :::bash
       # Package Information for pkg-config
@@ -384,20 +382,15 @@ active_menu_blog: true
       pkg-config --libs opencv
       pkg-config --cflags opencv
 
-  If after creating the `opencv.pc` file and running the commands you do not see all the libraries then your `PKG_CONFIG_PATH` is not set
-  correctly.
+  If after creating the `opencv.pc` file and running the commands you do not see all the libraries then your `PKG_CONFIG_PATH` is not set correctly.
 
-  Once that was set up `node-gyp` was no longer complaining and halting compilation and we were finally able to compile locally,
-  it was time to replicate this configuration in AppVeyor, by making appveyor copy `opencv.pc` file from the `utils/` folder in the repo to the
-  appropiate Windows location.
+  Once that was set up `node-gyp` was no longer complaining and halting compilation and we were finally able to compile locally, it was time to replicate this configuration in AppVeyor, by making appveyor copy `opencv.pc` file from the `utils/` folder in the repo to the appropriate Windows location.
 
-  In retrospect figuring that out was probably the most time consuming part of this process, but checking the
-  `node-gyp` `bindings.gyp` file helped a lot and shed some light into what was the part that we were missing so our native extensions could
-  compile in Windows.
+  In retrospect figuring that out, was probably the most time consuming part of this process. 
+  Checking the `node-gyp` `bindings.gyp` file helped a lot and shed some light into what was the part that we were missing so our native extensions could compile in Windows.
 
-  The rest of the process goes pretty much the same as the Linux and OSX one, we compile, package and test, if everything is good and
-  no errors found/triggered we publish the binary package. Then we repeat the process for the x64 32bit binary. Here's the rest of the
-  appveyor.yml file.
+  The rest of the process goes pretty much the same as the Linux and OSX one. We compile, package and test, and then if everything is good and no errors found/triggered, we publish the binary package. Then we repeat the process for the x64 32- bit binary. 
+  Here's the rest of the `appveyor.yml` file:
 
       :::yaml
       build_script:
@@ -469,8 +462,7 @@ active_menu_blog: true
     6. Checkout master
     7. Finally it will run `npm publish`
 
-    This takes away the bother of having to manually merge and push to generate OSX binaries. The Make task and Makefile
-    look as follows:
+    This takes away the bother of having to manually merge and push to generate OSX binaries. The Make task and Makefile look as follows:
 
       :::makefile
       VERSION := $(shell node -e "console.log(require('./package.json').version)")
@@ -504,31 +496,30 @@ active_menu_blog: true
               @echo "Publishing to NPM"
               @npm publish ./
 
-  With this we will make sure the binaries for all platforms and architectures will be generated each time
-  a new version is released.
+  With this we will make sure the binaries for all platforms and architectures will be generated each time a new version is released.
 
-  ### Which Modules Have Pre-built Binaries?
+  ### Which Modules Have Precompiled Binaries?
 
     So far we've added (or are working on) pre-built binaries for the following:
 
-  #### Currently using pre-built binaries:
+  #### Already using pre-built binaries:
 
-    - [node-serialport]()
-    - [gamepad]()
+    - [node-serialport](https://github.com/voodootikigod/node-serialport)
+    - [gamepad](https://github.com/creationix/node-gamepad)
 
   #### Pending PRs to be merged:
 
-    - [node-opencv]()
+    - [node-opencv](https://github.com/peterbraden/node-opencv)
 
   #### Implementation in progress or waiting in the queue:
 
-    - [noble]()
-    - [node-lame]()
-    - [node-speaker]()
+    - [noble](https://github.com/sandeepmistry/noble)
+    - [node-lame](https://github.com/TooTallNate/node-lame)
+    - [node-speaker](https://github.com/TooTallNate/node-speaker)
 
   ### Conclusion
 
-    That was a rather long post, but has a lot of information that we've only learned the hard way. Hopefully, it will help the community have an easier time when building Node.js modules that use native code.
+    That was a rather long post, but has a lot of information that we've only learned the hard way. Hopefully, it will help the rest of the Node.js community have an easier time when developing and building Node.js modules that use native code.
 
     For more updates, be sure to follow us on Twitter at [@CylonJS][].
 
