@@ -30,116 +30,117 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
         $ npm install cylon
 
-    Then install modules for whichever hardware support you want to use from your robot.
+%section#hello-world
+  :markdown
+    ## The "Hello, World" Of Things
 
-:markdown
-  ## Examples
+    This example will connect to an [Arduino](/documentation/platforms/arduino), and toggle an [LED](/documentation/drivers/led) every one second.
 
-  ### Arduino
+        :::javascript
+        var Cylon = require("cylon");
 
-  In this example below, we will use Cylon.js with an Arduino controlled via the Firmata protocol. First, install the `cylon-firmata` module:
+        // Initialize the robot
+        Cylon.robot({
+          // Change the port to the correct port for your Arduino.
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'led', driver: 'led', pin: 13 },
 
-      $ npm install cylon-firmata
+          work: function(my) {
+            every((1).second(), function() {
+              my.led.toggle();
+            });
+          }
+        }).start();
 
-  Now, this example code will connect to an Arduino, and every second turn the LED either on, or off.
+    To run it:
 
-      :::javascript
-      var Cylon = require("cylon");
+        $ npm install cylon-firmata
+        $ node script.js
 
-      // Initialize the robot
-      var robot = Cylon.robot({
-        // Change the port to the correct port for your Arduino.
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/deviceev/ttyACM0' },
-        device: { name: 'led', driver: 'led', pin: 13 },
+    We've got [lots more examples here](/documentation/examples) to help you get started on your next IoT project.
 
-        work: function(my) {
-          // we do our thing here
-          every((1).second(), function() { my.led.toggle(); });
-        }
-      });
+%section#platforms
+  %h2#platforms Platform Support
 
-      // start working
-      robot.start();
+  %div
+    %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:
 
+    %ul.platform-list
+      - data.platforms.each do |name, info|
+        %li.platform
+          %a{:href => "/documentation/platforms/#{info.slug}"}
+            %p.title= name
+            %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
+    .clear
 
-  ### More Examples
-
-  We've got [lots more examples here](/documentation/examples) to help you get started.
-
-%h2#platforms Platform Support
-
-%div
-  %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:
+  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
 
   %ul.platform-list
-    - data.platforms.each do |name, info|
+    - data.drivers.GPIO.each do |name, url|
       %li.platform
-        %a{:href => "/documentation/platforms/#{info.slug}"}
+        %a{:href => "/documentation/drivers/#{url}"}
           %p.title= name
-          %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
-  .clear
+          %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
+    .clear
 
-%p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
+  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
 
-%ul.platform-list
-  - data.drivers.GPIO.each do |name, url|
-    %li.platform
-      %a{:href => "/documentation/drivers/#{url}"}
-        %p.title= name
-        %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
-  .clear
+  %ul.platform-list
+    - data.drivers.I2C.each do |name, url|
+      %li.platform
+        %a{:href => "/documentation/drivers/#{url}"}
+          %p.title= name
+          %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
+    .clear
 
-%p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
+%section#browser-mobile
+  :markdown
+    ## Browser & Mobile Support
 
-%ul.platform-list
-  - data.drivers.I2C.each do |name, url|
-    %li.platform
-      %a{:href => "/documentation/drivers/#{url}"}
-        %p.title= name
-        %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
-  .clear
+    Cylon.js can be run directly in-browser, using the `browserify` NPM module. You can also run it from withing a Chrome connected app, or a PhoneGap mobile app.
 
-:markdown
-  ## Browser & Mobile Support
+    For more info on browser support, and for help with different configurations, you can find more info [in our docs](/documentation/guides/browser-support).
 
-  Cylon.js can be run directly in-browser, using the `browserify` NPM module. You can also run it from withing a Chrome connected app, or a PhoneGap mobile app.
+%section#api
+  :markdown
+    ## API
 
-  For more info on browser support, and for help with different configurations, you can find more info [in our docs](/documentation/guides/browser-support).
+    Cylon has a built-in API that you can interact with your robots.
 
-  ## API
+    All you need to start up the API server is to place the following command in your `.js` file after you require Cylon.
 
-  Cylon has a built-in API that you can interact with your robots.
+        :::javascript
+        var Cylon = require("cylon");
+        Cylon.api();
 
-  All you need to start up the API server is to place the following command in your `.js` file after you require Cylon.
+    Then visit `https://localhost:3000/` and you are ready to control your robots from a web browser!
+    <img src="http://cylonjs.com/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
 
-      :::javascript
-      var Cylon = require("cylon");
-      Cylon.api();
+    You can check out more information on the Cylon API in the docs [here](/documentation/guides/api).
 
-  Then visit `https://localhost:3000/` and you are ready to control your robots from a web browser!
-  <img src="http://cylonjs.com/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
+%section#cli
+  :markdown
+    ## CLI
 
-  You can check out more information on the Cylon API in the docs [here](/documentation/guides/api).
+    <script src="https://asciinema.org/a/10306.js" id="asciicast-10306" data-autoplay="1" data-loop="true"></script>
 
-  ## CLI
+    Cylon uses the [Gort][] toolkit, so you can access important features from the command line.
+    You can scan, connect to devices, update firmware, and more!
+    We call it "RobotOps", a.k.a. "DevOps for Robotics".
 
-  <script src="https://asciinema.org/a/10306.js" id="asciicast-10306" data-autoplay="1" data-loop="true"></script>
+    Cylon also has it's own CLI tool to generate new modules, robots, and drivers.
 
-  Cylon uses the [Gort][] toolkit, so you can access important features from the command line.
-  You can scan, connect to devices, update firmware, and more!
-  We call it "RobotOps", a.k.a. "DevOps for Robotics".
+    You can check out the Cylon CLI docs [here][cli-docs].
 
-  Cylon also has it's own CLI tool to generate new modules, robots, and drivers.
+    [Gort]: http://gort.io
+    [cli-docs]: /documentation/guides/cli
 
-  You can check out the Cylon CLI docs [here][cli-docs].
+%section#contribute
+  :markdown
+    ## Be Part of the Robot Evolution
 
-  [Gort]: http://gort.io
-  [cli-docs]: /documentation/guides/cli
+    If you'd like to find out more, you can check out our code on [GitHub](https://github.com/hybridgroup/cylon).
 
-  ## Be Part of the Robot Evolution
+    Want updates on what we're working on, follow us on [Twitter](https://twitter.com/CylonJS), or check out our [Trello board](https://trello.com/b/l1aEuqMU/cylon).
 
-  If you'd like to find out more, you can check out our code on [GitHub](https://github.com/hybridgroup/cylon).
-
-  Want updates on what we're working on, follow us on [Twitter](https://twitter.com/CylonJS), or check out our [Trello board](https://trello.com/b/l1aEuqMU/cylon).
-
-  If you want to talk to us, we can be found hanging out on IRC, `#cylon` on `irc.freenode.net`
+    If you want to talk to us, we can be found hanging out on IRC, `#cylon` on `irc.freenode.net`
