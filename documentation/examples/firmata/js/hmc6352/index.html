@@ -260,7 +260,7 @@ Cylon.robot(
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       my.hmc6352.heading(<span class="keyword">function</span>(data) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">heading: </span><span class="delimiter">"</span></span> + data);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">heading: </span><span class="delimiter">"</span></span> + data);
       });
     });
   }}

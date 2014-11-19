@@ -257,7 +257,9 @@
   <span class="key">device</span>:     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">var</span> analogValue = <span class="integer">0</span>;
+    <span class="keyword">var</span> analogValue = <span class="integer">0</span>,
+        voltage = <span class="integer">0</span>,
+        temperature = <span class="integer">0</span>;
 
     every((<span class="integer">5</span>).second(), <span class="keyword">function</span>() {
       analogValue = my.sensor.analogRead();

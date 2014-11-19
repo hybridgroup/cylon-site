@@ -252,14 +252,14 @@
 
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglbone</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span> },
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_33</span><span class="delimiter">"</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_14</span><span class="delimiter">"</span></span> },
-  ],
+  <span class="key">devices</span>: {
+    <span class="key">sensor</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_33</span><span class="delimiter">"</span></span> },
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_14</span><span class="delimiter">"</span></span> },
+  },
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="float">0.1</span>).seconds(), <span class="keyword">function</span>() {
       brightness = my.sensor.analogRead().fromScale(<span class="integer">0</span>, <span class="integer">1799</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>) | <span class="integer">0</span>;
-      Cylon.Logger.info(<span class="string"><span class="delimiter">'</span><span class="content">brightness =&gt; </span><span class="delimiter">'</span></span>, brightness);
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">brightness =&gt; </span><span class="delimiter">'</span></span>, brightness);
       my.led.brightness(brightness)
     });
   }

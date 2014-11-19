@@ -264,10 +264,7 @@
             <code>8080</code>.</p>
             
             <pre class="CodeRay">Cylon.config({
-  <span class="key">api</span>: {
-    <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-    <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>
-  }
+  <span class="key">api</span>: { <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> }
 });
 
 Cylon.api();
@@ -278,57 +275,45 @@ Cylon.api();
             The only differences between the bots are their names and the port they'll be
             using.</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> bots = [
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span> }
-];
+            <pre class="CodeRay"><span class="keyword">var</span> bots = {
+  <span class="key"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>
+};
 </pre>
             
             <p>Now we can define the basic robot both of our Sphero robots will be based on.</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> SpheroRobot = {
+            <pre class="CodeRay">Object.keys(bots).forEach(<span class="keyword">function</span>(name) {
+  <span class="keyword">var</span> port = bots[name];
+
+  Cylon.robot({
+    <span class="key">name</span>: name,
 </pre>
             
             <p>Both robots will be connecting to Spheros, and so using the cylon-sphero
             adaptor:</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+            <pre class="CodeRay">    connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: port },
 </pre>
             
             <p>And both will be connecting to the same kind of device (you guessed it,
             a Sphero).</p>
             
-            <pre class="CodeRay">  device: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+            <pre class="CodeRay">    device: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
 </pre>
             
             <p>Both robots will be performing the same kind of work as well.  Every second,
             they'll print their name to the console, set themselves to a random color, and
             roll in a random direction.</p>
             
-            <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      console.log(my.name);
-      my.sphero.setRandomColor();
-      my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-    });
-  }
-};
-</pre>
-            
-            <p>Now that we know what hardware the robots have and what work they'll be doing,
-            let's create them! We'll iterate through our earlier <code>bots</code> array, creating
-            a new Robot, assigning it it's unique characteristics, then passing it off to
-            Cylon so it can keep track of it.</p>
-            
-            <pre class="CodeRay"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = Object.create(SpheroRobot);
-
-  robot.connection.port = bot.port;
-  robot.name = bot.name;
-
-  Cylon.robot(robot);
-}
+            <pre class="CodeRay">    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+        console.log(my.name);
+        my.sphero.setRandomColor();
+        my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+      });
+    }
+});
 </pre>
             
             <p>And now that Cylon has all the robots we're intending to give it, let's get

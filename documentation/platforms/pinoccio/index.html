@@ -322,10 +322,10 @@ Cylon.robot({
     <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">[your scout ID]</span><span class="delimiter">'</span></span>
   },
 
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-led</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">power</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> }
-  ]
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-led</span><span class="delimiter">'</span></span> },
+    <span class="key">power</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> }
+  }
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {

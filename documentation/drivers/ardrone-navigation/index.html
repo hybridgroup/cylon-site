@@ -289,10 +289,10 @@
     <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span>
   },
 
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nav</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
-  ]
+  <span class="key">devices</span>: {
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
+    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
+  }
 });
 </pre>
             </section>
@@ -310,10 +310,10 @@ Cylon.robot({
     <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span>
   },
 
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">drone</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">nav</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
-  ]
+  <span class="key">devices</span>: {
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
+    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.config(<span class="string"><span class="delimiter">'</span><span class="content">general:navdata_demo</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">TRUE</span><span class="delimiter">'</span></span>);

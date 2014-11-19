@@ -275,123 +275,106 @@ Compiling templates for 'cylon-leapmotion'
             
             <pre class="CodeRay">$ cd cylon-leapmotion
 $ ls
-LICENSE Makefile README.markdown lib/ package.json test/
+LICENSE Makefile README.markdown lib/ package.json spec/
 </pre>
             
             <p>The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.</p>
             
             <h2 id="writing-adaptors">Writing Adaptors</h2>
             
-            <p>Your module's Adaptor classes subclass the <code>Cylon.Adaptor</code> core class, and are responsible for connecting to the platform you're integrating with.
+            <p>Your module's Adaptor classes should subclass the <code>Cylon.Adaptor</code> core class, and are responsible for connecting to the platform you're integrating with.
             They should also handle any necessary device set-up, and proxy events the user should know about.</p>
             
-            <p>For an example, here's the Adaptor from the <code>cylon-joystick</code> module:</p>
+            <p>Some things to note about Adaptor subclasses:</p>
             
-            <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+            <p>They <em>must</em> implement <code>#start</code> - the 'start' method dictates what setup a Driver needs to do on startup.
+            This might involve connecting to the device, or listening for events.
+            This method must be implemented, and trigger the provided callback, or Cylon cannot start properly.</p>
+            
+            <p>They <em>must</em> implement <code>#disconnect</code> - the 'halt' method dictates what teardown a Driver needs to do on shutdown.
+            This can involve safely disconnecting from hardware, restoring device state, etc.
+            This method must be implemented, and trigger the provided callback, or Cylon cannot shut down properly.</p>
+            
+            <p>For an example, here's the Adaptor from the <code>cylon-ardrone</code> module, with some explanatory comments added below:</p>
+            
+            <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+<span class="keyword">var</span> LibARDrone = require(<span class="string"><span class="delimiter">'</span><span class="content">ar-drone</span><span class="delimiter">'</span></span>),
+    Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-<span class="keyword">var</span> SDL = require(<span class="string"><span class="delimiter">'</span><span class="content">hybridgroup-sdl</span><span class="delimiter">'</span></span>);
+<span class="comment">// an Array of commands the ARDrone library responds to</span>
+<span class="comment">// e.g. "takeoff", "hover", "land"</span>
+<span class="keyword">var</span> Commands = require(<span class="string"><span class="delimiter">'</span><span class="content">./commands</span><span class="delimiter">'</span></span>);
 
-<span class="keyword">var</span> Adaptor = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">Adaptor</span>(opts) {
-  <span class="keyword">if</span> (opts == <span class="predefined-constant">null</span>) {
-    opts = {};
-  }
+<span class="keyword">var</span> ARDrone = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">ARDrone</span>(opts) {
+  ARDrone.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
+  opts = opts || {};
 
-  Adaptor.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
+  <span class="local-variable">this</span>.ip = opts.host || opts.port || <span class="string"><span class="delimiter">"</span><span class="content">192.168.1.1</span><span class="delimiter">"</span></span>
 
-  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.joystick = <span class="predefined-constant">null</span>;
+  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.ardrone = <span class="predefined-constant">null</span>;
 };
 
-Cylon.Utils.subclass(Adaptor, Cylon.Adaptor);
+Cylon.Utils.subclass(ARDrone, Cylon.Adaptor);
 
-Adaptor.prototype.<span class="function">connect</span> = <span class="keyword">function</span> <span class="function">connect</span>(callback) {
-  SDL.init(SDL.INIT.JOYSTICK);
+ARDrone.prototype.<span class="function">connect</span> = <span class="keyword">function</span>(callback) {
+  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.ardrone = <span class="keyword">new</span> LibARDrone.createClient({
+    <span class="key">ip</span>: <span class="local-variable">this</span>.ip
+  });
 
-  <span class="keyword">if</span> (SDL.numJoysticks() === <span class="integer">0</span>) {
-    <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string"><span class="delimiter">"</span><span class="content">No SDL Joystick Available.</span><span class="delimiter">"</span></span>);
-  }
+  <span class="local-variable">this</span>.proxyMethods(Commands, <span class="local-variable">this</span>.ardrone, <span class="local-variable">this</span>);
 
-  <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.joystick = <span class="keyword">new</span> SDL.Joystick(<span class="integer">0</span>);
+  <span class="keyword">var</span> events = [
+    <span class="string"><span class="delimiter">'</span><span class="content">navdata</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">landing</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">landed</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">takeoff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">hovering</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">flying</span><span class="delimiter">'</span></span>,
+    <span class="string"><span class="delimiter">'</span><span class="content">lowBattery</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">batteryChange</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">altitudeChange</span><span class="delimiter">'</span></span>
+  ];
 
-  Cylon.Utils.constantly(<span class="local-variable">this</span>.listenForEvents.bind(<span class="local-variable">this</span>));
+  events.forEach(<span class="keyword">function</span>(name) {
+    <span class="local-variable">this</span>.defineAdaptorEvent(name);
+  }.bind(<span class="local-variable">this</span>));
 
   callback();
 };
 
-Adaptor.prototype.<span class="function">disconnect</span> = <span class="keyword">function</span> <span class="function">disconnect</span>(callback) {
-  SDL.quit();
+ARDrone.prototype.<span class="function">disconnect</span> = <span class="keyword">function</span>(callback) {
   callback();
-};
-
-Adaptor.prototype.<span class="function">listenForEvents</span> = <span class="keyword">function</span> <span class="function">listenForEvents</span>() {
-  <span class="keyword">var</span> event = SDL.pollEvent();
-
-  <span class="keyword">if</span> (!event) {
-    <span class="keyword">return</span>;
-  }
-
-  <span class="keyword">if</span> (<span class="regexp"><span class="delimiter">/</span><span class="content">^JOY</span><span class="delimiter">/</span></span>.test(event.type)) {
-    <span class="local-variable">this</span>.connection.emit(<span class="string"><span class="delimiter">'</span><span class="content">event</span><span class="delimiter">'</span></span>, event);
-  }
-};
-</pre>
-            
-            <p>There are a few important things to note in this example:</p>
-            
-            <p><strong>It subclasses <code>Cylon.Adaptor</code></strong>.
-            This gives you utilities methods from Cylon, and other conveniences.</p>
-            
-            <p><strong>The <code>#connect</code>/<code>#disconnect</code> methods</strong>.
-            These methods take a callback as an argument, and trigger it when they're done their work.
-            These methods <strong>need</strong> to be defined in your Adaptor class, or an error will result.</p>
-            
-            <p>The <code>#connect</code> method is used to establish a connection to the platform, and should assign the object maintaining the connection to <code>this.connector</code> so it can be directly accessed.</p>
-            
-            <p>The <code>#disconnect</code> method is used to clean up at shutdown time, and if there's any special connection termination to be done, it should be done here.</p>
-            
-            <p>Event propagation can be defined in Adaptors using the <code>#defineAdaptorEvent</code> helper function, which can be invoked in a few ways:</p>
-            
-            <p><strong>With a source and target event name</strong>.
-            This is the most flexible approach, and lets you rename events that will actually be received by the robot.
-            Additionally, if you pass the 'update' param, an <code>update</code> event will also be emitted:</p>
-            
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({
-  <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>,
-  <span class="key">targetEventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>,
-  <span class="key">update</span>: <span class="predefined-constant">true</span>
-});
-</pre>
-            
-            <p>With this code, whenever the Adaptor's <code>connector</code> receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the <code>connection</code>, with the data that the 'greeting' event received.</p>
-            
-            <p><strong>With just an eventName</strong>.
-            This invocation assumes you want the event emitted on the <code>connection</code> to be the same as the original event name.</p>
-            
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span> });
-</pre>
-            
-            <p>This invocation means that when the <code>connector</code> receives the 'greeting' event, an identical event will be emitted on the <code>connection</code>.</p>
-            
-            <p><strong>With just an eventName (string version)</strong>.
-            Similar to the above example, but a bit shorter.</p>
-            
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent(<span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>);
+}
 </pre>
             
             <h2 id="writing-drivers">Writing Drivers</h2>
+            
+            <p>Drivers subclass Cylon.Driver, and are the parts of your system that provide a higher-level abstraction over the Adaptor.
+            They should provide wrapping of commands where helpful, and process data from events if needed.</p>
+            
+            <p>A few things to note about Driver subclasses:</p>
+            
+            <p>They <em>must</em> implement <code>#start</code> - the 'start' method dictates what setup a Driver needs to do on startup.
+            This might involve setting initial state, or listening for events.
+            This method must be implemented, and trigger the provided callback, or Cylon cannot start properly.</p>
+            
+            <p>They <em>must</em> implement <code>#halt</code> - the 'halt' method dictates what teardown a Driver needs to do on shutdown.
+            This can involve restoring state, clearing up references, etc.
+            This method must be implemented, and trigger the provided callback, or Cylon cannot shut down properly.</p>
+            
+            <p>The Adaptor instance associated with your Device instance is accessible as <code>this.connection</code>.</p>
+            
+            <p>The <code>#setupCommands</code> method is your friend - pass it an array of methods, and it'll automatically proxy them to the connection with no user intervention.
+            They will also be snake_cased and added as API commands.</p>
             
             <p>Here's the example driver from the <code>cylon-sphero</code> module.</p>
             
             <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
 
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="comment">// an Array of commands the Sphero library/Adaptor responds to</span>
+<span class="comment">// e.g. "roll", "setRGB", "stop"</span>
 <span class="keyword">var</span> Commands = require(<span class="string"><span class="delimiter">'</span><span class="content">./commands</span><span class="delimiter">'</span></span>);
 
 <span class="keyword">var</span> Driver = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">Driver</span>() {
   Driver.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
   <span class="local-variable">this</span>.setupCommands(Commands);
-}
+};
 
 Cylon.Utils.subclass(Driver, Cylon.Driver);
 
@@ -401,12 +384,11 @@ Cylon.Utils.subclass(Driver, Cylon.Driver);
 <span class="comment">//</span>
 <span class="comment">// Returns null.</span>
 Driver.prototype.<span class="function">start</span> = <span class="keyword">function</span>(callback) {
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span> });
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span> });
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">update</span><span class="delimiter">'</span></span> });
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">notification</span><span class="delimiter">'</span></span> });
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span> });
-  <span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span> });
+  <span class="keyword">var</span> events = [<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">update</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">notification</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>];
+
+  events.forEach(<span class="keyword">function</span>(e) {
+    <span class="local-variable">this</span>.defineDriverEvent(e);
+  }.bind(<span class="local-variable">this</span>));
 
   <span class="local-variable">this</span>.connection.setTemporaryOptionFlags(<span class="hex">0x01</span>);
 
@@ -426,7 +408,10 @@ Driver.prototype.<span class="function">halt</span> = <span class="keyword">func
 <span class="comment">//</span>
 <span class="comment">// Returns null.</span>
 Driver.prototype.<span class="function">roll</span> = <span class="keyword">function</span>(speed, heading, state) {
-  <span class="keyword">if</span> (state == <span class="predefined-constant">null</span>) { state = <span class="integer">1</span>; }
+  <span class="keyword">if</span> (state == <span class="predefined-constant">null</span>) {
+    state = <span class="integer">1</span>;
+  }
+
   <span class="local-variable">this</span>.connection.roll(speed, heading, state);
 };
 
@@ -459,7 +444,10 @@ Driver.prototype.<span class="function">stop</span> = <span class="keyword">func
 <span class="comment">//</span>
 <span class="comment">// Returns null.</span>
 Driver.prototype.<span class="function">setRGB</span> = <span class="keyword">function</span>(color, persist) {
-  <span class="keyword">if</span> (persist == <span class="predefined-constant">null</span>) { persist = <span class="predefined-constant">true</span>; }
+  <span class="keyword">if</span> (persist == <span class="predefined-constant">null</span>) {
+    persist = <span class="predefined-constant">true</span>;
+  }
+
   <span class="local-variable">this</span>.connection.setRGB(color, persist);
 };
 
@@ -481,53 +469,45 @@ Driver.prototype.<span class="function">finishCalibration</span> = <span class="
 };
 </pre>
             
-            <p>Some things to note in this driver:</p>
+            <h2 id="event-propagation">Event Propagation</h2>
             
-            <p><strong>The constructor uses the <code>#setupCommands</code> method</strong>.
-            This this convenience method lets you define methods that should be accessible to the Cylon API.</p>
+            <p>Inside of Drivers and Adaptors, you can manually emit events (<code>this.emit</code>).
+            This will work for most drivers, and lets you tweak data from events you're listening to to make it more user-friendly.</p>
             
-            <p><strong>The <code>#start</code>/<code>#halt</code> methods</strong>.
-            These methods take a callback as an argument, and trigger it when they're done their work.
-            These methods <strong>need</strong> to be defined in your Adaptor class, or an error will result.</p>
+            <p>However, if you just want to pipe events through from your source (<code>this.connector</code> in Adaptor, <code>this.connection</code> in Driver), Cylon provides a shortcut for you, in the form of the <code>Adaptor#defineAdaptorEvent</code> and <code>Driver#defineDriverEvent</code> functions.</p>
             
-            <p>Event propagation can be defined in Drivers using the <code>#defineDriverEvent</code> helper function, which can be invoked in a few ways:</p>
+            <p>The functions can be used in a number of ways, which we'll go through now.
+            For purposes of simplification, we'll be talking about <code>Adaptor#defineAdaptorEvent</code>.
+            But for Drivers, you simply change the method name to <code>#defineDriverEvent</code>, the arguments follow the same pattern.</p>
+            
+            <p><code>#defineDriverEvent</code> also proxies from <code>this.connection</code>, instead of <code>this.connector</code> as in <code>#defineAdaptorEvent</code>.</p>
             
             <p><strong>With a source and target event name</strong>.
             This is the most flexible approach, and lets you rename events that will actually be received by the robot.
             Additionally, if you pass the 'update' param, an <code>update</code> event will also be emitted:</p>
             
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent({
+            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({
   <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>,
   <span class="key">targetEventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>,
   <span class="key">update</span>: <span class="predefined-constant">true</span>
 });
 </pre>
             
-            <p>With this code, whenever the Driver's <code>connection</code> receives the 'greeting' event, it will trigger the 'hello' and 'update' events on the <code>device</code>, with the data that the 'greeting' event received.</p>
+            <p>With this code, whenever the Adaptor's <code>connector</code> receives the 'greeting' event, it will emit the 'hello' and 'update' events, with the data that the 'greeting' event received.</p>
             
             <p><strong>With just an eventName</strong>.
-            This invocation assumes you want the event emitted on the <code>device</code> to be the same as the original event name.</p>
+            This invocation assumes you want the event to be proxied 1-to-1.</p>
             
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span> });
+            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent({ <span class="key">eventName</span>: <span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span> });
 </pre>
             
-            <p>This invocation means that when the <code>connection</code> receives the 'greeting' event, an identical event will be emitted on the <code>device</code>.</p>
+            <p>This invocation means that when the <code>connector</code> receives the 'greeting' event, an identical event will be emitted from the Adaptor.</p>
             
             <p><strong>With just an eventName (string version)</strong>.
             Similar to the above example, but a bit shorter.</p>
             
-            <pre class="CodeRay"><span class="local-variable">this</span>.defineDriverEvent(<span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>);
+            <pre class="CodeRay"><span class="local-variable">this</span>.defineAdaptorEvent(<span class="string"><span class="delimiter">'</span><span class="content">greeting</span><span class="delimiter">'</span></span>);
 </pre>
-            
-            <p>Drivers also feature the <code>#setupCommands</code> method.
-            Invoking it with an array of command names will:</p>
-            
-            <ul>
-              <li>If the method isn't defined on the Driver, it will be proxied from the Connection.
-            This means if you have lower-level methods on the Adaptor that can be called on the Driver.</li>
-              <li>snake_cases the commands for API usage (e.g. <code>runScript</code> -&gt; <code>run_script</code>).
-            This means Driver methods will be made accessible from the API</li>
-            </ul>
           </div>
         </div>
       </div>

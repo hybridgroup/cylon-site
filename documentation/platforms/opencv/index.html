@@ -347,15 +347,14 @@ sudo make install
 Cylon.robot({
   <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
 
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
-    {
-      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
+  <span class="key">devices</span>: {
+    <span class="key">window</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span> },
+    <span class="key">camera</span>: {
       <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
       <span class="key">camera</span>: <span class="integer">1</span>,
       <span class="key">haarcascade</span>: __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/examples/opencv/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>
     }
-  ],
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.camera.once(<span class="string"><span class="delimiter">'</span><span class="content">cameraReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {

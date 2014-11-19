@@ -258,7 +258,7 @@ Cylon.robot({
     <span class="keyword">var</span> color = <span class="hex">0x00FF00</span>,
         bitFilter = <span class="hex">0xFFFF00</span>;
 
-    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    after((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
       me.sphero.detectCollisions();
       me.sphero.setRGB(color);

@@ -256,6 +256,8 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     [<span class="string"><span class="delimiter">"</span><span class="content">a</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">b</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">y</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Registered listener:</span><span class="delimiter">'</span></span>, button);
+
       my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);
       });

@@ -257,7 +257,7 @@ Cylon.robot({
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       my.maxbotix.range(<span class="keyword">function</span>(data) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">range: </span><span class="delimiter">"</span></span> + data);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">range: </span><span class="delimiter">"</span></span> + data);
       });
     });
   }

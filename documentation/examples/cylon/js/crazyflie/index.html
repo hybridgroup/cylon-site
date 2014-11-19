@@ -263,9 +263,11 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.drone.takeoff();
-    after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() { my.drone.land(); });
-    after(<span class="integer">15</span>..seconds(), <span class="keyword">function</span>() { my.drone.stop(); });
+    my.drone.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.drone.takeoff();
+      after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() { my.drone.land(); });
+      after(<span class="integer">15</span>..seconds(), <span class="keyword">function</span>() { my.drone.stop(); });
+    });
   }
 }).start();
 </pre>

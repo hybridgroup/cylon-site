@@ -276,149 +276,139 @@
             <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 </pre>
             
+            <p>For easier use later, let's define the colors we'll be using with the Spheros,
+            green for alive and red for dead:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> Green = <span class="hex">0x0000FF</span>,
+    Red = <span class="hex">0xFF0000</span>;
+</pre>
+            
             <p>We'll be using four robots for this example, but they'll have very similar
             programming so we just need to define what's different between them for now.
             Each of the robots will have a unique name, and will communicate on their own
             port.</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> bots = [
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm2</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Grace</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm3</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Ada</span><span class="delimiter">'</span></span> }
-];
-</pre>
-            
-            <p>For easier use later, let's define the colors we'll be using with the Spheros,
-            green for alive and red for dead:</p>
-            
-            <pre class="CodeRay"><span class="keyword">var</span> Green = <span class="hex">0x0000FF</span>;
-<span class="keyword">var</span> Red = <span class="hex">0xFF0000</span>;
+            <pre class="CodeRay"><span class="keyword">var</span> bots = {
+  <span class="key"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Grace</span><span class="delimiter">'</span></span>:  <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm2</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Ada</span><span class="delimiter">'</span></span>:    <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm3</span><span class="delimiter">'</span></span>
+};
 </pre>
             
             <p>That gets the basics out of the way.</p>
             
             <p>Since, as previously mentioned, our robots all have the same basic
-            functionality, we can define that functionality in a CoffeeScript class. Since
-            we're feeling particularly creative today, let's call this class <code>ConwayRobot</code>:</p>
+            functionality, we can just loop over the <code>bots</code> object, and create robots as we
+            go.</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> ConwayRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">ConwayRobot</span>() {}
+            <pre class="CodeRay">Object.keys(bots).forEach(<span class="keyword">function</span>(name) {
+  <span class="keyword">var</span> port = bots[name];
 </pre>
             
             <p>All of our robots will be connecting to a Sphero, and be operating via a single
             device (you guessed it, a Sphero).</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-  ConwayRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
+            <pre class="CodeRay">  Cylon.robot({
+    <span class="key">name</span>: name,
+
+    <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: port },
+    <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+</pre>
+            
+            <p>Now that the pieces are there, we can set up our robot's work. It starts by
+            being "born", then moves every three seconds if it's alive, celebrates it's
+            birthday every ten seconds, and increments it's contacts every time the Sphero
+            detects a collision.</p>
+            
+            <pre class="CodeRay">    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      my.born();
+
+      my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+        my.contacts += <span class="integer">1</span>;
+      });
+
+      every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (my.alive) {
+          my.move();
+        }
+      });
+
+      every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
+        my.birthday();
+      });
+    },
+</pre>
+            
+            <p>When a robot is asked to move, it rolls in a random direction at speed 60.</p>
+            
+            <pre class="CodeRay">    <span class="function">move</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+    },
 </pre>
             
             <p>When the robots are first started, they are born. This sets their contacts to
             zero, their age to zero, makes them "alive", and starts them moving for the
             first tick.</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">born</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
-    <span class="local-variable">this</span>.age = <span class="integer">0</span>;
-    <span class="local-variable">this</span>.life();
-    <span class="local-variable">this</span>.move();
-  };
-</pre>
-            
-            <p>When a robot is asked to move, it rolls in a random direction at speed 60.</p>
-            
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">move</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-  };
+            <pre class="CodeRay">    <span class="function">born</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
+      <span class="local-variable">this</span>.age = <span class="integer">0</span>;
+      <span class="local-variable">this</span>.life();
+      <span class="local-variable">this</span>.move();
+    },
 </pre>
             
             <p>In the case of our robots, "life" just means the robot's internal "alive" state
             is set to <code>true</code>, and the Sphero's LED is set to green.</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">life</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.alive = <span class="predefined-constant">true</span>;
-    <span class="local-variable">this</span>.sphero.setRGB(Green);
-  };
+            <pre class="CodeRay">    <span class="function">life</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.alive = <span class="predefined-constant">true</span>;
+      <span class="local-variable">this</span>.sphero.setRGB(Green);
+    },
 </pre>
             
             <p>Similarly, "death" just sets the "alive" state to false, the Sphero's color to
             red, and stops the Sphero from moving.</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">death</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.alive = <span class="predefined-constant">false</span>;
-    <span class="local-variable">this</span>.sphero.setRGB(Red);
-    <span class="local-variable">this</span>.sphero.stop();
-  };
+            <pre class="CodeRay">    <span class="function">death</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.alive = <span class="predefined-constant">false</span>;
+      <span class="local-variable">this</span>.sphero.setRGB(Red);
+      <span class="local-variable">this</span>.sphero.stop();
+    },
 </pre>
             
             <p>A robot is decided to have enough contacts if it has between two and six
             contacts.</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">enoughContacts</span> = <span class="keyword">function</span>() {
-    <span class="keyword">return</span> (<span class="local-variable">this</span>.contacts &gt;= <span class="integer">2</span> &amp;&amp; <span class="local-variable">this</span>.contacts &lt; <span class="integer">7</span>);
-  };
+            <pre class="CodeRay">    <span class="function">enoughContacts</span>: <span class="keyword">function</span>() {
+      <span class="keyword">return</span> <span class="local-variable">this</span>.contacts &gt;= <span class="integer">2</span> &amp;&amp; <span class="local-variable">this</span>.contacts &lt; <span class="integer">7</span>;
+    },
 </pre>
             
             <p>On a robot's birthday, it increments it's age, prints it's name, age, and
             contacts to the console, and then determines if it's now alive or dead based on
             the number of contacts it had in the last tick.</p>
             
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">birthday</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.age += <span class="integer">1</span>;
+            <pre class="CodeRay">    <span class="function">birthday</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.age += <span class="integer">1</span>;
 
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Happy birthday, </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content">. You are </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.age + <span class="string"><span class="delimiter">"</span><span class="content"> and had </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.contacts + <span class="string"><span class="delimiter">"</span><span class="content"> contacts.</span><span class="delimiter">"</span></span>);
+      <span class="keyword">if</span> (<span class="local-variable">this</span>.alive) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Happy birthday, </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content">. You are </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.age + <span class="string"><span class="delimiter">"</span><span class="content"> and had </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.contacts + <span class="string"><span class="delimiter">"</span><span class="content"> contacts.</span><span class="delimiter">"</span></span>);
+      }
 
-    <span class="keyword">if</span> (<span class="local-variable">this</span>.enoughContacts()) {
-      <span class="keyword">if</span> (<span class="local-variable">this</span>.alive == <span class="predefined-constant">null</span>) { <span class="local-variable">this</span>.rebirth(); }
-    } <span class="keyword">else</span> {
-      <span class="local-variable">this</span>.death();
+      <span class="keyword">if</span> (<span class="local-variable">this</span>.enoughContacts()) {
+        <span class="keyword">if</span> (!<span class="local-variable">this</span>.alive) {
+          <span class="local-variable">this</span>.born();
+        }
+      } <span class="keyword">else</span> {
+        <span class="local-variable">this</span>.death();
+      }
+
+      <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
     }
-
-    <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
-  };
-</pre>
-            
-            <p>Now that the pieces are there, we can set up our robot's work. It starts by
-            being "born", then moves every three seconds if it's alive, celebrates it's
-            birthday every ten seconds if it's alive, and increments it's contacts every
-            time the Sphero detects a collision.</p>
-            
-            <pre class="CodeRay">  ConwayRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    me.born();
-
-    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      <span class="local-variable">this</span>.contacts += <span class="integer">1</span>;
-    });
-
-    every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (me.alive != <span class="predefined-constant">null</span>) { me.move(); }
-    });
-
-    every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (me.alive != <span class="predefined-constant">null</span>) { me.birthday(); }
-    });
-  };
-
-  <span class="keyword">return</span> ConwayRobot;
-})();
-</pre>
-            
-            <p>Now that we've defined the behaviour of our Conway's Game robots, we can make
-            the robots themselves.</p>
-            
-            <p>For each of the sets of unique characteristics in the earlier <code>bots</code> array,
-            we'll create a new <code>ConwayRobot</code>, assign it it's unique characteristics, and
-            pass it to Cylon so it will keep track of them.</p>
-            
-            <pre class="CodeRay"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> ConwayRobot;
-
-  robot.connection.port = bot.port;
-  robot.name = bot.name;
-
-  Cylon.robot(robot);
-}
+  });
+});
 </pre>
             
             <p>Now that Cylon knows about our robots and what they do, we can get started!</p>

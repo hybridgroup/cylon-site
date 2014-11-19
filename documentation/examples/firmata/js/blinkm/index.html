@@ -255,25 +255,22 @@ Cylon.robot({
   <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.blinkm.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    my.blinkm.stopScript();
 
-      my.blinkm.stopScript();
+    my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
+    });
 
-      my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
-      });
+    my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
+    my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data);
+    });
 
-      my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
+    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
       my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data)
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
       });
-
-      every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-        my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
-        });
-        my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
-      });
+      my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
     });
   }
 }).start();

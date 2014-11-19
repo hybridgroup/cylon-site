@@ -248,93 +248,90 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
-<span class="keyword">var</span> bots = [
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm2</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Grace</span><span class="delimiter">'</span></span> },
-  { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm3</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Ada</span><span class="delimiter">'</span></span> }
-];
+<span class="keyword">var</span> Green = <span class="hex">0x0000FF</span>,
+    Red = <span class="hex">0xFF0000</span>;
 
-<span class="keyword">var</span> Green = <span class="hex">0x0000FF</span>;
-<span class="keyword">var</span> Red = <span class="hex">0xFF0000</span>;
+<span class="keyword">var</span> bots = {
+  <span class="key"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Grace</span><span class="delimiter">'</span></span>:  <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm2</span><span class="delimiter">'</span></span>,
+  <span class="key"><span class="delimiter">'</span><span class="content">Ada</span><span class="delimiter">'</span></span>:    <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm3</span><span class="delimiter">'</span></span>
+};
 
-<span class="keyword">var</span> ConwayRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">ConwayRobot</span>() {}
+Object.keys(bots).forEach(<span class="keyword">function</span>(name) {
+  <span class="keyword">var</span> port = bots[name];
 
-  ConwayRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-  ConwayRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
+  Cylon.robot({
+    <span class="key">name</span>: name,
 
-  ConwayRobot.prototype.<span class="function">born</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
-    <span class="local-variable">this</span>.age = <span class="integer">0</span>;
-    <span class="local-variable">this</span>.life();
-    <span class="local-variable">this</span>.move();
-  };
+    <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: port },
+    <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
 
-  ConwayRobot.prototype.<span class="function">move</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-  };
+    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      my.born();
 
-  ConwayRobot.prototype.<span class="function">life</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.alive = <span class="predefined-constant">true</span>;
-    <span class="local-variable">this</span>.sphero.setRGB(Green);
-  };
+      my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+        my.contacts += <span class="integer">1</span>;
+      });
 
-  ConwayRobot.prototype.<span class="function">death</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.alive = <span class="predefined-constant">false</span>;
-    <span class="local-variable">this</span>.sphero.setRGB(Red);
-    <span class="local-variable">this</span>.sphero.stop();
-  };
+      every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (my.alive) {
+          my.move();
+        }
+      });
 
-  ConwayRobot.prototype.<span class="function">enoughContacts</span> = <span class="keyword">function</span>() {
-    <span class="keyword">return</span> (<span class="local-variable">this</span>.contacts &gt;= <span class="integer">2</span> &amp;&amp; <span class="local-variable">this</span>.contacts &lt; <span class="integer">7</span>);
-  };
+      every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
+        my.birthday();
+      });
+    },
 
-  ConwayRobot.prototype.<span class="function">birthday</span> = <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.age += <span class="integer">1</span>;
+    <span class="function">move</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+    },
 
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Happy birthday, </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content">. You are </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.age + <span class="string"><span class="delimiter">"</span><span class="content"> and had </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.contacts + <span class="string"><span class="delimiter">"</span><span class="content"> contacts.</span><span class="delimiter">"</span></span>);
+    <span class="function">born</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
+      <span class="local-variable">this</span>.age = <span class="integer">0</span>;
+      <span class="local-variable">this</span>.life();
+      <span class="local-variable">this</span>.move();
+    },
 
-    <span class="keyword">if</span> (<span class="local-variable">this</span>.enoughContacts()) {
-      <span class="keyword">if</span> (<span class="local-variable">this</span>.alive == <span class="predefined-constant">null</span>) { <span class="local-variable">this</span>.rebirth(); }
-    } <span class="keyword">else</span> {
-      <span class="local-variable">this</span>.death();
+    <span class="function">life</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.alive = <span class="predefined-constant">true</span>;
+      <span class="local-variable">this</span>.sphero.setRGB(Green);
+    },
+
+    <span class="function">death</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.alive = <span class="predefined-constant">false</span>;
+      <span class="local-variable">this</span>.sphero.setRGB(Red);
+      <span class="local-variable">this</span>.sphero.stop();
+    },
+
+    <span class="function">enoughContacts</span>: <span class="keyword">function</span>() {
+      <span class="keyword">return</span> <span class="local-variable">this</span>.contacts &gt;= <span class="integer">2</span> &amp;&amp; <span class="local-variable">this</span>.contacts &lt; <span class="integer">7</span>;
+    },
+
+    <span class="function">birthday</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.age += <span class="integer">1</span>;
+
+      <span class="keyword">if</span> (<span class="local-variable">this</span>.alive) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Happy birthday, </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.name + <span class="string"><span class="delimiter">"</span><span class="content">. You are </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.age + <span class="string"><span class="delimiter">"</span><span class="content"> and had </span><span class="delimiter">"</span></span> + <span class="local-variable">this</span>.contacts + <span class="string"><span class="delimiter">"</span><span class="content"> contacts.</span><span class="delimiter">"</span></span>);
+      }
+
+      <span class="keyword">if</span> (<span class="local-variable">this</span>.enoughContacts()) {
+        <span class="keyword">if</span> (!<span class="local-variable">this</span>.alive) {
+          <span class="local-variable">this</span>.born();
+        }
+      } <span class="keyword">else</span> {
+        <span class="local-variable">this</span>.death();
+      }
+
+      <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
     }
-
-    <span class="local-variable">this</span>.contacts = <span class="integer">0</span>;
-  };
-
-  ConwayRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    me.born();
-
-    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      <span class="local-variable">this</span>.contacts += <span class="integer">1</span>;
-    });
-
-    every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (me.alive != <span class="predefined-constant">null</span>) { me.move(); }
-    });
-
-    every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (me.alive != <span class="predefined-constant">null</span>) { me.birthday(); }
-    });
-  };
-
-  <span class="keyword">return</span> ConwayRobot;
-
-})();
-
-<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> ConwayRobot;
-
-  robot.connection.port = bot.port;
-  robot.name = bot.name;
-
-  Cylon.robot(robot);
-}
+  });
+});
 
 Cylon.start();
 </pre>

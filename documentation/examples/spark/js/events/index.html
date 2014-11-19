@@ -258,10 +258,10 @@ Cylon.robot({
     <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">[YOUR_DEVICE_ID]</span><span class="delimiter">'</span></span>
   },
 
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.spark.listenForEvents([<span class="string"><span class="delimiter">"</span><span class="content">testevent</span><span class="delimiter">"</span></span>]);
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span> },
 
-    my.spark.on(<span class="string"><span class="delimiter">'</span><span class="content">testevent</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.spark.onEvent(<span class="string"><span class="delimiter">'</span><span class="content">testevent</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Test Event Received. Data:</span><span class="delimiter">"</span></span>, data);
     });
   }

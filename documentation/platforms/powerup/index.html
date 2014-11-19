@@ -296,10 +296,10 @@ Cylon.robot({
     <span class="key">joystick</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> }
   },
 
-  <span class="key">devices</span>: [
-    controller: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: {
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
     <span class="key">powerup</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">powerup</span><span class="delimiter">'</span></span> }
-  ],
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> thrust = <span class="integer">0</span>;

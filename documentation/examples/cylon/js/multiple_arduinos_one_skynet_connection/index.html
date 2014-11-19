@@ -265,11 +265,12 @@ Arduino = (<span class="keyword">function</span>(){
 })();
 
 skynet = {
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
-      <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">96630051-a3dc-11e3-8442-5bf31d98c912</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">2s67o7ek98pycik98f43reqr90t6s9k9</span><span class="delimiter">"</span></span> }
-  ],
+  <span class="key">connection</span>: {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
+    <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">96630051-a3dc-11e3-8442-5bf31d98c912</span><span class="delimiter">"</span></span>,
+    <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">2s67o7ek98pycik98f43reqr90t6s9k9</span><span class="delimiter">"</span></span>
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     console.log(<span class="string"><span class="delimiter">"</span><span class="content">Skynet is listening...</span><span class="delimiter">"</span></span>);

@@ -258,9 +258,11 @@ Cylon.robot({
     <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">[YOUR_DEVICE_ID]</span><span class="delimiter">'</span></span>
   },
 
+  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span> },
+
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
-      my.spark.command(<span class="string"><span class="delimiter">"</span><span class="content">fortyTwo</span><span class="delimiter">"</span></span>, [], <span class="keyword">function</span>(err, data) {
+      my.spark.callFunction(<span class="string"><span class="delimiter">"</span><span class="content">fortyTwo</span><span class="delimiter">"</span></span>, [], <span class="keyword">function</span>(err, data) {
         <span class="keyword">if</span> (err) {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">An error occured!</span><span class="delimiter">"</span></span>, err);
         } <span class="keyword">else</span> {

@@ -279,43 +279,37 @@
             <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
 </pre>
             
-            <p>When the BlinkM sends the 'start' event, we'll set up our events</p>
-            
-            <pre class="CodeRay">    my.blinkm.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-</pre>
-            
             <p>We stop the default BlinkM's light script</p>
             
-            <pre class="CodeRay">      my.blinkm.stopScript();
+            <pre class="CodeRay">    my.blinkm.stopScript();
 </pre>
             
             <p>We'll request the BlinkM's version, and print that to the console</p>
             
-            <pre class="CodeRay">      my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
-        Logger.info(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
-      });
+            <pre class="CodeRay">    my.blinkm.getFirmware(<span class="keyword">function</span>(version) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
+    });
 </pre>
             
             <p>By default, we'll turn the LED off</p>
             
-            <pre class="CodeRay">      my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
+            <pre class="CodeRay">    my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
 </pre>
             
             <p>We print the default starting color (in this case 0,0,0 since we turned the led off)</p>
             
-            <pre class="CodeRay">      my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data)
-      });
+            <pre class="CodeRay">    my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data)
+    });
 </pre>
             
             <p>Now, every 2 seconds, we'll change the LED color to a random value:</p>
             
-            <pre class="CodeRay">      every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-        my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
-          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
-        });
-        my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
+            <pre class="CodeRay">    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      my.blinkm.getRGBColor(<span class="keyword">function</span>(data){
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
       });
+      my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
     });
   }
 </pre>
