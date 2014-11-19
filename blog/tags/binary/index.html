@@ -1,0 +1,731 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Cylon.js Blog</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="page-title">
+        <div class="container">
+          <h1 class="title">Blog</h1>
+          <h2 class="subtitle">Articles tagged with “binary”</h2>
+        </div>
+      </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
+                    Nov
+                  </div>
+                  <div class="day">
+                    19
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2014
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Edgar Silva
+              </div>
+            </header>
+            <p>It is always a high priority here at <a href="http://hybridgroup.com/">The Hybrid Group</a> to make <a href="http://cylonjs.com/">Cylon.js</a>, and all of the various <a href="http://nodejs.org/">Node.js</a> modules that it depends on, easier to install and use.</p>
+            
+            <p>Using some of the coolest <code>npm</code> modules for developing JavaScript robotics like <a href="https://github.com/voodootikigod/node-serialport">node-serialport</a>, <a href="https://github.com/peterbraden/node-opencv">node-opencv</a> and <a href="https://github.com/creationix/node-gamepad">gamepad</a> often require compiling native extensions. Some of those modules also require platform specific native dependencies and libraries for OSX, Linux, or Windows.</p>
+            
+            <p>This requires that the user of the modules have a development environment for compiling native code, and that is also is up to date, which is not always the case. We have come across this issue quite often, since several Cylon modules also have dependencies for these same <code>npm</code> modules. It is especially difficult when doing a workshop or hackathon, when many attendees do not have all the dependencies required to compile these native extensions.</p>
+            
+            <p>This is why we have taken it upon ourselves to help provide precomplied binaries for all major platforms, for the modules that we use in Cylon that have native dependencies.</p>
+            
+            <p>We accomplish this using <a href="https://github.com/mapbox/node-pre-gyp">node-pre-gyp</a>, which provides a very solid process to set up packaging and publishing of precompiled
+            binaries. Using node-pre-gyp with Continuous Integration (CI) tools like <a href="https://travis-ci.org/">TravisCI</a> (build for Linux and OSX) and <a href="http://www.appveyor.com/">AppVeyor</a> (build for Windows platforms) allow us to automatically generate, package, publish and have binary packages available each time a new version of the module is released.</p>
+            
+            <p>This post details everything that we do to setup these builds, so that other maintainers can make life easier for users that want to install one of these modules.</p>
+            
+            <h3 id="setup-and-auto-generate-the-binary-packages">Setup and Auto-Generate the Binary Packages</h3>
+            
+            <p>This are the steps we follow to be able to auto-generate binary packages, so they can be installed and used by anyone.</p>
+            
+            <ol>
+              <li>Add node-pre-gyp hooks and dependencies to your module.</li>
+              <li>Make sure you can compile and package your binary dependencies.</li>
+              <li>Set up a publishing mechanism (node-pre-gyp recommends AS3).</li>
+              <li>Make sure you can publish the binary package.</li>
+              <li>Set up CI tools to automatically autogenerate the binary packages on new releases.</li>
+              <li>Add a Make task to make release and publish easier.</li>
+            </ol>
+            
+            <h3 id="test-compilation-on-all-platforms">Test Compilation On All Platforms</h3>
+            
+            <p>This is probably the most crucial part, since you need to test compilation and packaging in all 3 platforms. Relying entirely on CI tools to accomplish this can make it painfully slow to test and make it work. Nobody should have to wait 30 minutes just see your build fail in Travis or AppVeyor!</p>
+            
+            <p>It is almost always better to do this in a local machine first and take notes, then push to the CI tools for the final build, compile, test, package and publish steps.</p>
+            
+            <p>Some recommendations to make this process smoother:</p>
+            
+            <ol>
+              <li>Make it work locally on each platform first (VM or HW).</li>
+              <li>Take notes on all dependencies you install, updates to Path and environment variables you set up.</li>
+              <li>Check bindings.gyp for dependency details and Path hints.</li>
+              <li>Keep both the <code>appveyor.yml</code> and <code>travis.yml</code> files up to date with your local process.</li>
+              <li>Only publish from CI tools after you confirm the module compiles correctly, otherwise you'll have to continuously delete the publish binaries for the same version.</li>
+              <li>If CI build compilation fails, open a direct communication channel with them (forums, support), those guys can help a lot, they can even help you find the root cause if your local build fails.</li>
+            </ol>
+            
+            <p>Let's check how to set up everything using the CI environment for all platforms(Linux, Windows and OSX). We'll be using node-opencv module as an example since this was the one that presented the biggest challenge to set up.</p>
+            
+            <p>For details on how to set up node-pre-gyp bindings and package.json binary section check the <a href="https://github.com/mapbox/node-pre-gyp">node-pre-gyp README</a>. It is very good, easy to understand and filled with many important details and options.</p>
+            
+            <h3 id="generating-linux-precompiled-binaries-using-travis-ci">Generating Linux Precompiled Binaries Using Travis CI</h3>
+            
+            <p>Linux is probably the easiest platform on which to set up pre-compiled binaries. In the case of OpenCV, we have to first make sure we have all required dependencies installed.</p>
+            
+            <p>Let's go through the different sections of the .travis.yml file and I will give an explanation of what we are doing. Starting from the beginning of the file, here is the build config section:</p>
+            
+            <pre class="CodeRay"><span class="comment"># First we set up the the type of project, in this case node_js</span>
+<span class="key">language</span>: <span class="string"><span class="content">node_js</span></span>
+
+<span class="comment"># We also need to specify the node.js versions we want to build from,</span>
+<span class="comment"># this is important because not all modules work with version 0.11 yet</span>
+<span class="comment"># and we want to also create binaries for the different node versions.</span>
+<span class="key">node_js</span>:
+  - <span class="string"><span class="content">'0.10'</span></span>
+  - <span class="string"><span class="content">'0.11'</span></span>
+
+<span class="comment"># What we'll be using to compile</span>
+<span class="key">compiler</span>: <span class="string"><span class="content">clang</span></span>
+
+<span class="comment"># Here we set up our secure env variables for AS3 publishing.</span>
+<span class="key">env</span>:
+  <span class="key">global</span>:
+  - <span class="string"><span class="content">secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING</span></span>
+  - <span class="string"><span class="content">secure: THE_VERY_LONG_SECURE_KEYS_FOR_PUBLISING</span></span>
+</pre>
+            
+            <p>The above code should be pretty straight forward. We are just telling Travis how our build should be configured, the type of project, the versions of Node.js, compiler and environment sensitive information.</p>
+            
+            <p>Next we have our <code>before_install</code> section where we install the dependencies we need and also check if this build should publish binaries or not.</p>
+            
+            <pre class="CodeRay"><span class="key">before_install</span>:
+  <span class="comment"># This fixes a problem with apt-get failing later, see http://docs.travis-ci.com/user/installing-dependencies/#Installing-Ubuntu-packages</span>
+  - <span class="string"><span class="content">sudo apt-get update -qq</span></span>
+  <span class="comment"># We install all dependencies for node-opencv using apt-get</span>
+  - <span class="string"><span class="content">sudo apt-get install libcv-dev</span></span>
+  - <span class="string"><span class="content">sudo apt-get install libopencv-dev</span></span>
+  - <span class="string"><span class="content">sudo apt-get install libhighgui-dev</span></span>
+  <span class="comment"># Get commit message to check if we should publish binary</span>
+  - <span class="string"><span class="content">COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')</span></span>
+  <span class="comment"># Put local npm modules .bin on PATH</span>
+  - <span class="string"><span class="content">export PATH=./node_modules/.bin/:$PATH</span></span>
+  <span class="comment"># Install node-gyp and node-pre-gyp so it is available for packaging and publishing</span>
+  - <span class="string"><span class="content">npm install node-gyp -g</span></span>
+  - <span class="string"><span class="content">npm install node-pre-gyp</span></span>
+  <span class="comment"># Install aws-sdk so it is available for publishing to AS3</span>
+  - <span class="string"><span class="content">npm install aws-sdk</span></span>
+  <span class="comment"># Figure out if we should publish</span>
+  - <span class="string"><span class="content">PUBLISH_BINARY=false</span></span>
+  <span class="comment"># If we are building a tag then we need to publish a new binary package</span>
+  - <span class="string"><span class="content">if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;</span></span>
+  <span class="comment"># or if we put the string [publish binary] in the commit message</span>
+  - <span class="string"><span class="content">if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;</span></span>
+</pre>
+            
+            <p>As you can see in the code above, installing the dependencies in Travis is pretty straight forward.</p>
+            
+            <p>One thing to notice, is that we use the commit message or tag to set up an env variable that we'll then use to check if we should publish a new binary package with this commit, or not.</p>
+            
+            <p>Next up is our <code>install</code> section where we make sure the module compiles correctly and we run tests.</p>
+            
+            <pre class="CodeRay"><span class="key">install</span>:
+  <span class="comment"># Ensure source install works and compiles correctly</span>
+  - <span class="string"><span class="content">npm install --build-from-source</span></span>
+  <span class="comment"># test our module</span>
+  - <span class="string"><span class="content">npm test</span></span>
+  - <span class="string"><span class="content">node lib/opencv.js</span></span>
+</pre>
+            
+            <p>We are using the <code>before_script</code> section to package and publish the binary.</p>
+            
+            <p>Once you have the secure environment variables set up in your <code>.travis.yml</code> file (as we can see above), for details on how to set them up using the Travis gem check <a href="http://docs.travis-ci.com/user/environment-variables/#Secure-Variables">here</a>.</p>
+            
+            <pre class="CodeRay"><span class="key">before_script</span>:
+  - <span class="string"><span class="content">echo "Publishing native platform Binary Package? -&gt;" $PUBLISH_BINARY</span></span>
+  <span class="comment"># if we are publishing for this commit, do it</span>
+  - <span class="string"><span class="content">if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;</span></span>
+  <span class="comment"># cleanup</span>
+  - <span class="string"><span class="content">node-pre-gyp clean</span></span>
+  - <span class="string"><span class="content">node-gyp clean</span></span>
+</pre>
+            
+            <p>Two things worth mentioning here. First, note that we check for the environment variable <code>PUBLISH_BINARY</code> that we set up earlier based on tag or commit message. This is how we know if we should publish at this time. </p>
+            
+            <p>Secondly, we cleanup the compiled binaries after publishing so we can test the remote binary in the next block.</p>
+            
+            <p>In the last section of the script, we make sure we can install from remote and print out the info for the binaries:</p>
+            
+            <pre class="CodeRay"><span class="key">script</span>:
+  <span class="comment"># if publishing, test installing from remote</span>
+  - <span class="string"><span class="content">INSTALL_RESULT=0</span></span>
+  - <span class="string"><span class="content">if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false &gt; /dev/null)$? || true; fi;</span></span>
+  <span class="comment"># if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line</span>
+  - <span class="string"><span class="content">if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi</span></span>
+  <span class="comment"># if success then we arrive here so lets clean up</span>
+  - <span class="string"><span class="content">node-pre-gyp clean</span></span>
+
+<span class="key">after_success</span>:
+  <span class="comment"># if success then query and display all published binaries</span>
+  - <span class="string"><span class="content">node-pre-gyp info</span></span>
+</pre>
+            
+            <p>Again we use the <code>PUBLISH_BINARY</code> env variable we set up in the <code>before_install</code> section. If we publish a new binary, then we install from the remote, to make sure the binary works as expected.</p>
+            
+            <p>Finally we just print out all node-pre-gyp info about the binaries.</p>
+            
+            <p>You can check the complete version of the <code>.travis.yml</code> file <a href="https://github.com/hybridgroup/node-opencv/blob/master/.travis.yml">here</a>.</p>
+            
+            <h4 id="creating-x86-32bit-binaries-using-travisci">Creating x86 32bit Binaries Using TravisCI</h4>
+            <p>There is one catch when creating 32-bit binary packages, however. </p>
+            
+            <p>By default, Travis does not have an x86 32-bit environment, so you have to install Node.js 32-bit and the appropriate libraries, and then use them to create the x86 package. We do this for node-serialport, let's take a look at the <code>.travis.yml</code> file:</p>
+            
+            <pre class="CodeRay">- <span class="string"><span class="content">node-pre-gyp clean</span></span>
+<span class="comment"># node.js v0.8 and above provides pre-built 32 bit and 64 bit binaries</span>
+<span class="comment"># here we use the 32 bit ones to compile, pckage, publish and test 32 bit builds</span>
+- <span class="string"><span class="content">NVER=`node -v`</span></span>
+- <span class="string"><span class="content">wget http://nodejs.org/dist/${NVER}/node-${NVER}-${platform}-x86.tar.gz</span></span>
+- <span class="string"><span class="content">tar xf node-${NVER}-${platform}-x86.tar.gz</span></span>
+<span class="comment"># enable 32 bit node</span>
+- <span class="string"><span class="content">export PATH=$(pwd)/node-${NVER}-${platform}-x86/bin:$PATH</span></span>
+<span class="comment"># install 32 bit compiler toolchain</span>
+- <span class="string"><span class="content">if [[ "$platform" == 'linux' ]]; then sudo apt-get -y install gcc-multilib g++-multilib; fi</span></span>
+<span class="comment"># try to compile in 32 bit mode</span>
+- <span class="string"><span class="content">if [[ "$platform" == 'linux' ]]; then CC=gcc-4.6 CXX=g++-4.6 npm install --build-from-source; else npm install --build-from-source; fi</span></span>
+- <span class="string"><span class="content">npm test</span></span>
+<span class="comment"># if everything works correctly publish 32 bit build</span>
+- <span class="string"><span class="content">echo "Publishing x86 32bit Binary Package? -&gt;" $PUBLISH_BINARY</span></span>
+- <span class="string"><span class="content">if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;</span></span>
+</pre>
+            
+            <p>As you can see, after cleaning up the build and compiled files, we then install node, the libraries, and all dependencies for x86 architecture.
+              The reason why we don't do this for node-opencv, is because OpenCV itself has a lot of OS dependencies, that currently we are unable to install in a AMD64 architecture.
+              In this case, what we can do is set up VM with Linux x86 32-bit and use it to manually publish the binaries. The complete <code>.travis.yml</code> file that we use in node-serialport can be found <a href="https://github.com/voodootikigod/node-serialport/blob/master/.travis.yml">here</a>.</p>
+            
+            <h4 id="creating-binaries-for-osx">Creating Binaries for OSX</h4>
+            
+            <p>Since Travis does not allow us to create builds for multiple OSs, we use a little hack to create the binaries for OSX.
+              What we do is create another branch <code>osx-binaries</code> where we put a slightly different <code>.travis.yml</code> file.</p>
+            
+            <p>This branch will be used when cutting a release of the module to generate the OSX binaries. We do this by merging the
+              latest release into this branch, and then just letting Travis do its work.</p>
+            
+            <p>To simplify this process, we've created a <code>make</code> task that we run to cut a release. Let's go into detail about it below.</p>
+            
+            <pre class="CodeRay"><span class="key">language</span>: <span class="string"><span class="content">objective-c</span></span>
+
+<span class="key">env</span>:
+  <span class="key">matrix</span>:
+    - <span class="string"><span class="content">export NODE_VERSION="0.10"</span></span>
+    - <span class="string"><span class="content">export NODE_VERSION="0.11"</span></span>
+  <span class="key">global</span>:
+    - <span class="string"><span class="content">secure: SECURE_ENV_VAR</span></span>
+    - <span class="string"><span class="content">secure: SECURE_ENV_VAR</span></span>
+
+<span class="key">before_install</span>:
+  <span class="comment"># We uninstall nvm to take care of node.js version</span>
+  - <span class="string"><span class="content">git clone https://github.com/creationix/nvm.git ./.nvm</span></span>
+  - <span class="string"><span class="content">source ./.nvm/nvm.sh</span></span>
+  <span class="comment"># We use the env var defined in the build matrix to install the</span>
+  <span class="comment"># appropriate nod.js version using nvm</span>
+  - <span class="string"><span class="content">nvm install $NODE_VERSION</span></span>
+  - <span class="string"><span class="content">nvm use $NODE_VERSION</span></span>
+  <span class="comment"># We use brew to install all dependencies</span>
+  - <span class="string"><span class="content">brew tap homebrew/science</span></span>
+  - <span class="string"><span class="content">brew update</span></span>
+  - <span class="string"><span class="content">brew install opencv</span></span>
+    <span class="comment"># get commit message</span>
+  - <span class="string"><span class="content">COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')</span></span>
+    <span class="comment"># put local node-pre-gyp on PATH</span>
+  - <span class="string"><span class="content">export PATH=./node_modules/.bin/:$PATH</span></span>
+  - <span class="string"><span class="content">npm install node-gyp -g</span></span>
+    <span class="comment"># install node-pre-gyp so it is available for packaging and publishing</span>
+  - <span class="string"><span class="content">npm install node-pre-gyp</span></span>
+    <span class="comment"># install aws-sdk so it is available for publishing to AS3</span>
+  - <span class="string"><span class="content">npm install aws-sdk</span></span>
+    <span class="comment"># figure out if we should publish</span>
+  - <span class="string"><span class="content">PUBLISH_BINARY=false</span></span>
+    <span class="comment"># if we are building a tag then publish</span>
+  - <span class="string"><span class="content">if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;</span></span>
+    <span class="comment"># or if we put [publish binary] in the commit message</span>
+  - <span class="string"><span class="content">if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;</span></span>
+  - <span class="string"><span class="content">platform=$(uname -s | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/")</span></span>
+
+<span class="key">install</span>:
+  <span class="comment"># ensure source install works</span>
+  - <span class="string"><span class="content">npm install --build-from-source</span></span>
+  <span class="comment"># test our module</span>
+  - <span class="string"><span class="content">npm test</span></span>
+  - <span class="string"><span class="content">node lib/opencv.js</span></span>
+
+<span class="key">before_script</span>:
+  - <span class="string"><span class="content">echo "Publishing native platform Binary Package? -&gt;" $PUBLISH_BINARY</span></span>
+  <span class="comment"># if publishing, do it</span>
+  - <span class="string"><span class="content">if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;</span></span>
+  <span class="comment"># cleanup</span>
+  - <span class="string"><span class="content">node-pre-gyp clean</span></span>
+  - <span class="string"><span class="content">node-gyp clean</span></span>
+
+<span class="key">script</span>:
+  <span class="comment"># if publishing, test installing from remote</span>
+  - <span class="string"><span class="content">INSTALL_RESULT=0</span></span>
+  - <span class="string"><span class="content">if [[ $PUBLISH_BINARY == true ]]; then INSTALL_RESULT=$(npm install --fallback-to-build=false &gt; /dev/null)$? || true; fi;</span></span>
+  <span class="comment"># if install returned non zero (errored) then we first unpublish and then call false so travis will bail at this line</span>
+  - <span class="string"><span class="content">if [[ $INSTALL_RESULT != 0 ]]; then echo "returned $INSTALL_RESULT";node-pre-gyp unpublish;false; fi</span></span>
+  <span class="comment"># there is no need for 32bit binaries on Mac OSx since those machines are ancient</span>
+
+<span class="key">after_succese</span>:
+    <span class="comment"># if success then query and display all published binaries</span>
+  - <span class="string"><span class="content">node-pre-gyp info</span></span>
+</pre>
+            
+            <p>Here are a few things to notice from the <code>.travis.yml</code> file for the OSX build. We configure the build to use <code>objective-c</code>, so Travis creates the build in an OSX environment. We also pass along the <code>NODE_VERSION</code> variables to env matrix, so we can check and install the appropriate node.js version using <code>nvm</code>.
+            Lastly, we use <code>brew</code> to install all required dependencies.</p>
+            
+            <h3 id="generate-windows-precompiled-binaries-using-appveyor">Generate Windows Precompiled Binaries Using AppVeyor</h3>
+            
+            <p>Of all the 3 major platforms, Windows is probably the hardest to compile native extensions for. Sometimes it requires huge
+            downloads and library installs, just to be able to compile a small native extension.</p>
+            
+            <p>Fortunately, the team over at <a href="http://www.appveyor.com/">AppVeyor</a> have it figured out, and are a great help when working with
+            Windows precompiled binaries.</p>
+            
+            <p>As I mentioned at the beginning, and above all true for Windows environments, I recommend to first setting up everything locally on a Windows computer, otherwise figuring out compilation issues directly in AppVeyor might take you a really long time.</p>
+            
+            <p>I'll go through the <code>appveyor.yml</code> file and describe everything we are doing so you can replicate it on your Windows dev environment.
+            Let's get into it. First, the build configuration section.</p>
+            
+            <pre class="CodeRay"><span class="comment"># environment variables</span>
+<span class="key">environment</span>:
+  <span class="key">node_pre_gyp_accessKeyId</span>:
+    <span class="key">secure</span>: <span class="string"><span class="content">SECURE_ENV_VAR</span></span>
+  <span class="key">node_pre_gyp_secretAccessKey</span>:
+    <span class="key">secure</span>: <span class="string"><span class="content">SECURE_ENV_VAR</span></span>
+
+<span class="comment"># The dependencies we need are only available in the unstable version of the server, we need them to build node-opencv</span>
+<span class="key">os</span>: <span class="string"><span class="content">unstable</span></span>
+
+<span class="comment"># This does not actually create builds with different windows architectures</span>
+<span class="comment"># It is mainly for MS Visual Studio reference</span>
+<span class="key">platform</span>:
+  - <span class="string"><span class="content">x64</span></span>
+</pre>
+            
+            <p>In the code above, we set up secure variables in the same way as we did with Travis. You can check the process to do that <a href="http://www.appveyor.com/docs/build-configuration#secure-variables">here</a>.
+            We also need to tell Appveyor what version of the Windows Server OS we want to use. In this case, it is indispensable to use the <code>unstable</code> version, since our dependencies require libraries
+            only available there.</p>
+            
+            <p>In the next section we use <a href="https://chocolatey.org/">Chocolatey</a> to install OpenCV using the command <code>choco install opencv</code> to install the package.
+            You can check the package details here: <a href="https://chocolatey.org/packages/OpenCV">Chocolatey OpenCV</a>. Once OpenCV is installed we
+            set up the <code>PUBLISH_BINARY</code> using the <code>git tags</code> or <code>COMMIT_MESSAGE</code> as we did before and install <a href="https://github.com/marcelklehr/nodist">nodist</a> so we can later install different
+            node.js versions.</p>
+            
+            <pre class="CodeRay"><span class="key">install</span>:
+<span class="comment"># Use Chocolatey to install OpenCV</span>
+- <span class="string"><span class="content">cmd: ECHO "INSTALL OPENCV:"</span></span>
+- <span class="string"><span class="content">cmd: choco install OpenCV</span></span>
+- <span class="string"><span class="content">cmd: ECHO "APPVEYOR_REPO_COMMIT_MESSAGE -&gt;"</span></span>
+- <span class="string"><span class="content">cmd: ECHO %APPVEYOR_REPO_COMMIT_MESSAGE%</span></span>
+- <span class="string"><span class="content">cmd: SET COMMIT_MSG="%APPVEYOR_REPO_COMMIT_MESSAGE%"</span></span>
+- <span class="string"><span class="content">cmd: SET PUBLISH_BINARY=false</span></span>
+- <span class="string"><span class="content">cmd: git describe --tags --always HEAD &gt; _git_tag.tmp</span></span>
+- <span class="string"><span class="content">cmd: SET /p GIT_TAG=&lt;_git_tag.tmp</span></span>
+- <span class="string"><span class="content">cmd: ECHO "LATEST LOCAL TAG:"</span></span>
+- <span class="string"><span class="content">cmd: ECHO %GIT_TAG%</span></span>
+- <span class="string"><span class="content">cmd: ECHO "APPVEYOR REPO BRANCH/TAG:"</span></span>
+- <span class="string"><span class="content">cmd: ECHO %APPVEYOR_REPO_BRANCH%</span></span>
+- <span class="string"><span class="content">cmd: DEL _git_tag.tmp</span></span>
+<span class="comment"># If we are building a tag commit we set PUBLISH_BINARY to true</span>
+- <span class="string"><span class="content">cmd: IF x%APPVEYOR_REPO_BRANCH%==x%GIT_TAG% SET PUBLISH_BINARY=true</span></span>
+<span class="comment"># Or look for commit message containing `[publish binary]`</span>
+- <span class="string"><span class="content">cmd: IF not x%COMMIT_MSG:[publish binary]=%==x%COMMIT_MSG% SET PUBLISH_BINARY=true</span></span>
+- <span class="string"><span class="content">cmd: ECHO "Env Var PUBLISH_BINARY:"</span></span>
+- <span class="string"><span class="content">cmd: ECHO %PUBLISH_BINARY%</span></span>
+<span class="comment"># Install nodist so we can use it to install node.js versions later</span>
+- <span class="string"><span class="content">cmd: git clone https://github.com/marcelklehr/nodist.git c:\nodist 2&gt;&amp;1</span></span>
+- <span class="string"><span class="content">cmd: SET PATH=C:\nodist\bin;%PATH%</span></span>
+- <span class="string"><span class="content">cmd: SET NODIST_PREFIX=C:\nodist</span></span>
+</pre>
+            
+            <p>The next section is probably the most crucial. We set nodist to update and install 64-bit version of node stable, and then
+            set the path to be able to find all the dependencies we need and that we previously installed. In this case we also need
+            <code>GTK, MinGW</code> and <code>MSys</code>.</p>
+            
+            <pre class="CodeRay"><span class="key">before_build</span>:
+- <span class="string"><span class="content">cmd: SET ARCH=x64</span></span>
+- <span class="string"><span class="content">cmd: SET NODIST_X64=1</span></span>
+- <span class="string"><span class="content">cmd: call nodist update</span></span>
+- <span class="string"><span class="content">cmd: call nodist stable</span></span>
+- <span class="string"><span class="content">cmd: npm install -g node-gyp</span></span>
+- <span class="string"><span class="content">cmd: SET APP_PATH=%CD%</span></span>
+- <span class="string"><span class="content">cmd: IF EXIST C:\OpenCV* CD C:\OpenCV*</span></span>
+- <span class="string"><span class="content">cmd: SET OPENCV_ROOT_PATH=%CD%\opencv</span></span>
+- <span class="string"><span class="content">cmd: CD %APP_PATH%</span></span>
+- <span class="string"><span class="content">cmd: SET OPENCV_DIR=%OPENCV_ROOT_PATH%\build\%ARCH%\vc12\bin</span></span>
+- <span class="string"><span class="content">cmd: SET PATH=%cd%\node_modules\.bin\;C:\MinGW\bin;C:\GTK\bin;C:\msys\1.0\bin;%OPENCV_DIR%;%PATH%</span></span>
+- <span class="string"><span class="content">cmd: SET PKG_CONFIG_PATH=C:\GTK\lib\pkgconfig</span></span>
+<span class="comment"># Here we need to copy the opencv.pc file from the repo into PKG_CONFIG_PATH</span>
+<span class="comment"># trick part is to check for the vc12 folder and use that one</span>
+- <span class="string"><span class="content">cmd: copy .\utils\opencv_x64.pc C:\GTK\lib\pkgconfig\opencv.pc</span></span>
+</pre>
+            
+            <p>One of the things that caused most problems when trying to compile in Windows was that <code>PKG_CONFIG_PATH</code> was not set up correctly, so we set it up pointing to the correct location <code>SET PKG_CONFIG_PATH=C:\GTK\lib\pkgconfig</code>.</p>
+            
+            <p>Still no luck! We were not able to compile, due to missing libraries and headers. We started looking for them, and checking they existed where they were supposed to be. They were in the supposedly correcct locations, so something else must be missing.</p>
+            
+            <p>We finally found out the real reason for the missing libraries by checking <code>bindings.gyp</code>, we found out <code>node-gyp</code> was looking for an <code>opencv.pc</code> file, that was supposed to be inside <code>PGK_CONFIG_PATH</code>, but even when we set up the path to the <code>pkgconfig</code> folder it was not finding it, turns out the directory did not contain an <code>opencv.pc</code> file, and this file was nowhere to be found.</p>
+            
+            <p>The <code>opencv.pc</code> file contains all the cflags, versions, library and header locations, pretty much what we needed for <code>node-gyp</code> to find all dependencies, so we wrote one ourselves with the correct CFlags and library locations for the OpenCV version we just installed using Chocolatey, the <code>opencv.pc</code> file looks like this.</p>
+            
+            <pre class="CodeRay"># Package Information for pkg-config
+opencv_prefix=C:/OpenCV249/opencv/build/x64/vc12
+exec_prefix=${opencv_prefix}/bin
+libdir=${opencv_prefix}/lib
+includedir=C:/OpenCV249/opencv/build/include
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 2.4.9
+
+Cflags: ${includedir} ${includedir}/opencv
+Libs: ${libdir}/opencv_core249 ${libdir}/opencv_imgproc249 ${libdir}/opencv_highgui249 ${libdir}/opencv_ml249 ${libdir}/opencv_video249 ${libdir}/opencv_features2d249 ${libdir}/opencv_calib3d249 ${libdir}/opencv_objdetect249 ${libdir}/opencv_contrib249 ${libdir}/opencv_legacy249 ${libdir}/opencv_flann249 ${libdir}/opencv_core249 
+</pre>
+            
+            <p>We can check the that <code>pkgconfig</code> cflags and libraries are setup correctly using the following commands:</p>
+            
+            <pre class="CodeRay">pkg-config --libs opencv
+pkg-config --cflags opencv
+</pre>
+            
+            <p>If after creating the <code>opencv.pc</code> file and running the commands you do not see all the libraries then your <code>PKG_CONFIG_PATH</code> is not set correctly.</p>
+            
+            <p>Once that was set up <code>node-gyp</code> was no longer complaining and halting compilation and we were finally able to compile locally, it was time to replicate this configuration in AppVeyor, by making appveyor copy <code>opencv.pc</code> file from the <code>utils/</code> folder in the repo to the appropriate Windows location.</p>
+            
+            <p>In retrospect figuring that out, was probably the most time consuming part of this process. 
+            Checking the <code>node-gyp</code> <code>bindings.gyp</code> file helped a lot and shed some light into what was the part that we were missing so our native extensions could compile in Windows.</p>
+            
+            <p>The rest of the process goes pretty much the same as the Linux and OSX one. We compile, package and test, and then if everything is good and no errors found/triggered, we publish the binary package. Then we repeat the process for the x64 32- bit binary. 
+            Here's the rest of the <code>appveyor.yml</code> file:</p>
+            
+            <pre class="CodeRay"><span class="key">build_script</span>:
+  - <span class="string"><span class="content">cmd: ECHO "BUILDING x64 binary package:"</span></span>
+  <span class="comment"># Make sure to use to pass --msvs_version=2013 to the npm install command</span>
+  <span class="comment"># otherwise some bindings and libraries might now be available, an error will trigger</span>
+  - <span class="string"><span class="content">cmd: npm install --build-from-source --msvs_version=2013</span></span>
+  - <span class="string"><span class="content">cmd: npm test</span></span>
+  - <span class="string"><span class="content">cmd: node lib/opencv.js</span></span>
+  - <span class="string"><span class="content">cmd: ECHO "PUBLISH x64 binary package:"</span></span>
+  - <span class="string"><span class="content">cmd: npm install aws-sdk</span></span>
+  - <span class="string"><span class="content">cmd: IF %PUBLISH_BINARY%==true (node-pre-gyp package publish 2&gt;&amp;1)</span></span>
+  - <span class="string"><span class="content">cmd: node-pre-gyp clean</span></span>
+  - <span class="string"><span class="content">cmd: node-gyp clean</span></span>
+  - <span class="string"><span class="content">cmd: npm uninstall -g node-gyp</span></span>
+  - <span class="string"><span class="content">cmd: rmdir /q /s node_modules</span></span>
+  <span class="comment"># Delete the pkgconfig\opencv.pc file with the AMD64 references</span>
+  - <span class="string"><span class="content">cmd: DEL C:\GTK\lib\pkgconfig\opencv.pc</span></span>
+
+<span class="key">after_build</span>:
+  - <span class="string"><span class="content">cmd: SET ARCH=x86</span></span>
+  - <span class="string"><span class="content">cmd: SET OPENCV_DIR=%OPENCV_ROOT_PATH%\build\%ARCH%\vc12\bin</span></span>
+  - <span class="string"><span class="content">cmd: SET PATH=%OPENCV_DIR%;%PATH%</span></span>
+  - <span class="string"><span class="content">cmd: SET NODIST_X64=0</span></span>
+  - <span class="string"><span class="content">cmd: call nodist update</span></span>
+  - <span class="string"><span class="content">cmd: call nodist stable</span></span>
+  - <span class="string"><span class="content">cmd: npm install -g node-gyp</span></span>
+  <span class="comment"># Copy the pkgconfig\opencv.pc file with the x86 references</span>
+  - <span class="string"><span class="content">cmd: copy .\utils\opencv_x86.pc C:\GTK\lib\pkgconfig\opencv.pc</span></span>
+  - <span class="string"><span class="content">cmd: ECHO "BUILDING x86 binary package:"</span></span>
+  <span class="comment"># Make sure to use to pass --msvs_version=2013 to the npm install command</span>
+  <span class="comment"># otherwise some bindings and libraries might now be available, an error will trigger</span>
+  - <span class="string"><span class="content">cmd: npm install --build-from-source --msvs_version=2013</span></span>
+  - <span class="string"><span class="content">cmd: npm test</span></span>
+  - <span class="string"><span class="content">cmd: node lib/opencv.js</span></span>
+  - <span class="string"><span class="content">cmd: ECHO "PUBLISH x86 binary package:"</span></span>
+  - <span class="string"><span class="content">cmd: npm install aws-sdk</span></span>
+  - <span class="string"><span class="content">cmd: IF %PUBLISH_BINARY%==true (node-pre-gyp package publish 2&gt;&amp;1)</span></span>
+  - <span class="string"><span class="content">cmd: node-pre-gyp clean</span></span>
+  - <span class="string"><span class="content">cmd: node-gyp clean</span></span>
+  - <span class="string"><span class="content">cmd: rmdir /q /s node_modules</span></span>
+
+<span class="key">on_success</span>:
+  <span class="comment"># test installing from binary package works</span>
+  - <span class="string"><span class="content">cmd: ECHO "ON SUCCESS:"</span></span>
+  - <span class="string"><span class="content">cmd: ECHO "Try installing from binary:"</span></span>
+  <span class="comment">#- cmd: IF %PUBLISH_BINARY%==true npm install --fallback-to-build=false</span>
+  - <span class="string"><span class="content">cmd: npm install --fallback-to-build=false</span></span>
+  <span class="comment"># Print Available Binaries</span>
+  - <span class="string"><span class="content">cmd: node-pre-gyp info</span></span>
+
+<span class="key">test</span>: <span class="string"><span class="content">OFF</span></span>
+
+<span class="key">deploy</span>: <span class="string"><span class="content">OFF</span></span>
+</pre>
+            
+            <p>As you can see the process is pretty similar to the one use in Travis CI, after taking care of the Windows specifics.</p>
+            
+            <h3 id="using-a-make-task-to-cut-a-release">Using a Make Task to Cut a Release</h3>
+            
+            <p>As mentioned above we use a <code>Make</code> task to cut releases, package and publish binaries.</p>
+            
+            <p>This task will do the following for you:</p>
+            
+            <ol>
+              <li>Generate new tags based on package.json version number</li>
+              <li>Push tags to Github</li>
+              <li>Checkout into <code>osx-binaries</code> branch</li>
+              <li>Merge <code>master</code> into <code>osx-binaries</code>
+</li>
+              <li>Push <code>osx-binaries</code>
+</li>
+              <li>Checkout master</li>
+              <li>Finally it will run <code>npm publish</code>
+</li>
+            </ol>
+            
+            <p>This takes away the bother of having to manually merge and push to generate OSX binaries. The Make task and Makefile look as follows:</p>
+            
+            <pre class="CodeRay">VERSION := $(shell node -e "console.log(require('./package.json').version)")
+
+.PHONY: default release
+
+# Add a default task so we don't release just because someone ran 'make'
+default:
+        @echo "Did you mean to release a new version?"
+        @echo "If so, run 'make release'."
+
+release:
+        @echo "Tagging release $(VERSION)"
+        @git tag -m "$(VERSION)" v$(VERSION)
+
+        @echo "Pushing tags to GitHub"
+        @git push --tags
+
+        @echo "Switching to osx-binaries branch"
+        @git checkout osx-binaries
+
+        @echo "Merging master into osx-binaries"
+        @git merge --no-ff --commit -m "Merge master into osx-binaries [publish binary]" master
+
+        @echo "Pushing osx-binaries"
+        @git push
+
+        @echo "Switching to master branch"
+        @git checkout master
+
+        @echo "Publishing to NPM"
+        @npm publish ./
+</pre>
+            
+            <p>With this we will make sure the binaries for all platforms and architectures will be generated each time a new version is released.</p>
+            
+            <h3 id="which-modules-have-precompiled-binaries">Which Modules Have Precompiled Binaries?</h3>
+            
+            <p>So far we've added (or are working on) pre-built binaries for the following:</p>
+            
+            <h4 id="already-using-pre-built-binaries">Already using pre-built binaries:</h4>
+            
+            <ul>
+              <li><a href="https://github.com/voodootikigod/node-serialport">node-serialport</a></li>
+              <li><a href="https://github.com/creationix/node-gamepad">gamepad</a></li>
+            </ul>
+            
+            <h4 id="pending-prs-to-be-merged">Pending PRs to be merged:</h4>
+            
+            <ul>
+              <li><a href="https://github.com/peterbraden/node-opencv">node-opencv</a></li>
+            </ul>
+            
+            <h4 id="implementation-in-progress-or-waiting-in-the-queue">Implementation in progress or waiting in the queue:</h4>
+            
+            <ul>
+              <li><a href="https://github.com/sandeepmistry/noble">noble</a></li>
+              <li><a href="https://github.com/TooTallNate/node-lame">node-lame</a></li>
+              <li><a href="https://github.com/TooTallNate/node-speaker">node-speaker</a></li>
+            </ul>
+            
+            <h3 id="conclusion">Conclusion</h3>
+            
+            <p>That was a rather long post, but has a lot of information that we've only learned the hard way. Hopefully, it will help the rest of the Node.js community have an easier time when developing and building Node.js modules that use native code.</p>
+            
+            <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+              <a href="/blog/tags/node-pre-gyp/">node-pre-gyp</a>
+              <a href="/blog/tags/binaries/">binaries</a>
+              <a href="/blog/tags/binary/">binary</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
