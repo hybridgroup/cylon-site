@@ -11,10 +11,13 @@ active_menu_blog: true
   Making Cylon and its modules easier to use and install is always a high priority item here at
   The Hybrid Group.
 
-    Unfortunately we often find issues  when people try to use some
-  of the coolest NPM modules for developing Javascript robotics like node-serialport, node-opencv
-  and gamepad among others, when they try to compile their native dependencies in one of the 3 major
-  platforms (Linux, Windows, OSX). We come across this issue quite often since several Cylon modules
+    Using some of the coolest NPM modules for developing Javascript robotics like node-serialport, node-opencv
+  and gamepad among others, often requires to compile native extensions, some of those modules sometimes also
+  have the need to use of native dependencies and libraries in the 3 major
+  platforms (Linux, Windows, OSX).
+
+  This requires the user of the modules to have his/her development environment up to date and correctly
+  set up, which is not always the case. We come across this issue quite often since several Cylon modules
   also have dependencies for this NPM modules. And it is even more obvious when doing a workshop and
   several of the attendants do not have all the dependencies required to compile these native extensions.
 
@@ -59,7 +62,7 @@ active_menu_blog: true
   For details on how to set up up [node-pre-gyp](https://github.com/mapbox/node-pre-gyp) bindings and package.json binary section check the [node-pre-gyp README](https://github.com/mapbox/node-pre-gyp),
   it is very good, easy to understand and fill with details and options.
 
-  ### How to set up Linux pre-compiled binaries in Travis CI
+  ### Automatically generate Linux pre-compiled binaries on releases using Travis CI
 
     Linux is probably the easiest platform to set up pre-compiled binaries for, in the case of opencv we have to make sure we
   have all required dependencies installed and that is pretty much it, we'll go through the different sections of the .travis.yml
@@ -279,7 +282,7 @@ active_menu_blog: true
   in an OSX environment, we pass along the `NODE_VERSION` variables to env matrix, that way we can check and install the
   appropiate node.js version using `nvm`, lastly we use `brew` to install all required dependencies.
 
-  ### Using AppVeyor to create Windows pre-compiled binaries
+  ### Automatically generate Windows pre-compiled binaries on releases using AppVeyor
 
   Of all the 3 major platforms Windows is probably the hardest to compile native extensions for, sometimes requiring huge
   downloads and library installs to be able to compile a small native extension.
