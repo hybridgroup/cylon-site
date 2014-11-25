@@ -66,7 +66,7 @@ active_menu_blog: true
           .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
           .device({ name: 'led', pin: 13 })
           .on('ready', function(bot) {
-            setInterval(my.led.toggle, 1000);
+            setInterval(bot.led.toggle, 1000);
           });
 
         Cylon.start();
