@@ -1,0 +1,91 @@
+---
+page_title_show: true
+title: "Cylon 0.21.0 is out!"
+page_title: Blog
+date: 2014-11-25
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+:markdown
+  Just in time for [RobotsConf][], We've just released Cylon 0.21.0!
+
+  This release focuses on stability and simplifying some long-standing architecture concerns.
+
+  ## Updates For Application Developers
+
+  - **New `connections/devices` syntax:** - we've updated the syntax for how multiple devices or connections are specified in Cylon.js.
+    This new object-based syntax makes it more straightforward to specify many connections or devices.
+    The existing array syntax is deprecated, and will be removed in 1.0.0.
+    Here's a comparison of the two:
+
+        :::javascript
+        // previous syntax, now deprecated:
+        Cylon.robot({
+          connections: [
+            { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+            { name: 'leap', adaptor: 'leapmotion' }
+          ],
+
+          devices: [
+            { name: 'led', driver: 'led', pin: 13, connection: 'arduino' },
+            { name: 'button', driver: 'button', pin: 9, connection: 'arduino' }
+          ]
+        });
+
+        // new object-based syntax:
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
+            leap:    { adaptor: 'leapmotion' }
+          },
+
+          devices: {
+            led:    { driver: 'led',    pin: 13, connection: 'arduino' },
+            button: { driver: 'button', pin: 9,  connection: 'arduino' }
+          }
+        });
+
+  - **Fluent syntax updates** - we've updated our fluent JS syntax a bit, adding `#device` and `#connection` methods to help make it easier to set up robots.
+    Here's a comparison:
+
+        :::javascript
+        // declarative syntax:
+        Cylon.robot({
+          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          device: { name: 'led', pin: 13 },
+
+          work: function(my) {
+            every((1).second(), my.led.toggle);
+          }
+        }).start();
+
+        // fluent syntax
+        Cylon
+          .robot()
+          .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device({ name: 'led', pin: 13 })
+          .on('ready', function(bot) {
+            setInterval(my.led.toggle, 1000);
+          });
+
+        Cylon.start();
+
+  ## Updates For Platform Developers
+
+  - **No more Connection/Device class:** - Cylon's internal 'Connection' and 'Device' classes are no more.
+    Now, when a user adds a Connection or Device to their robot, they're getting a direct instance of an Adaptor/Driver.
+    For the most part, this shouldn't result in issues, but if you're doing manual method proxying you may have issues.
+    These are the requisite changes to sub-modules:
+
+    - in Adaptor subclasses, instead of referencing `this.connection`, just reference `this`.
+    - in Driver subclasses, instead of referencing `this.device`, just reference `this`.
+    - in Driver subclasses, `this.connection` is now an Adaptor instance, not a Connection instance.
+
+  ## RobotsConf!
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [RobotsConf]: http://robotsconf.com
+  [compare view]: https://github.com/hybridgroup/cylon/compare/v0.20.2...v0.21.0
+  [@CylonJS]: https://twitter.com/CylonJS
