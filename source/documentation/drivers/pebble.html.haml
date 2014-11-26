@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Pebble Driver
+title: Cylon.js - Ollie Driver
 author: The Hybrid Group
-page_title: Drivers - Pebble
-page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: Pebble
+page_title: Drivers - Ollie
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Ollie
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -12,67 +12,24 @@ active_menu_docs: true
 subnavjs: true
 ---
 %section.intro
-  =image_tag "/images/devices/pebble.jpg", class: "display"
+  =image_tag "/images/devices/ollie.jpg", class: "display"
   .info-intro
     :markdown
-      Allows user to interact with Cylon.js devices using a Pebble smart watch.
+      Allows user to interact with the Sphero robotic sphero using Cylon.js.
 
-      For more information click [here](https://getpebble.com).
+      For more information click [here](http://www.gosphero.com/).
   .clear
 
 %section#HowToConnect
   :markdown
     ## How To Connect
 
-        :::javascript
-
-        Cylon.config({
-          api: {
-            host: '0.0.0.0',
-            port: '8080',
-            ssl:  false
-          }
-        });
-
-        Cylon.api();
-
-        Cylon.robot({
-          name: 'pebble',
-
-          connection: { name: 'pebble', adaptor: 'pebble' },
-          device: { name: 'pebble', driver: 'pebble' },
-        });
+      
 
 %section#HowToUse
   :markdown
     ## How To Use
 
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.api({
-          host: '0.0.0.0',
-          port: '8080',
-          ssl:  false
-        });
-
-        Cylon.robot({
-          name: 'pebble',
-
-          connection: { name: 'pebble', adaptor: 'pebble' },
-          device: { name: 'pebble', driver: 'pebble' },
-
-          work: function(my) {
-            my.pebble.send_notification("Hello Pebble!");
-
-            my.pebble.on('button', function(data) {
-              console.log("Button pushed: " + data);
-            });
-          }
-
-        });
-
-        Cylon.start();
 
 
 %section.public-methods
@@ -84,4 +41,4 @@ subnavjs: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Pebble" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Ollie" }
