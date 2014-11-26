@@ -60,8 +60,14 @@ active_menu_blog: true
 
       Cylon.robot({
         name: 'pebble',
-        connection: { name: 'pebble', adaptor: 'pebble'  },
-        device: { name: 'pebble', driver: 'pebble'  },
+
+        connections: {
+          pebble: { adaptor: 'pebble' }
+        },
+
+        devices: {
+          pebble: { driver: 'pebble' }
+        },
 
         work: function(my) {
           my.pebble.send_notification("Hello Pebble!");
@@ -91,8 +97,14 @@ active_menu_blog: true
 
       Cylon.robot({
         name: 'pebble',
-        connection: { name: 'pebble', adaptor: 'pebble'  },
-        device: { name: 'pebble', driver: 'pebble'  },
+
+        connections: {
+          pebble: { adaptor: 'pebble' }
+        },
+
+        devices: {
+          pebble: { driver: 'pebble' }
+        },
 
         work: function(my) {
           my.pebble.on('accel', function(data) {

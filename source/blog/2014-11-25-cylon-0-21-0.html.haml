@@ -52,8 +52,13 @@ active_menu_blog: true
         :::javascript
         // declarative syntax:
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'led', pin: 13 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 }
+          },
 
           work: function(my) {
             every((1).second(), my.led.toggle);
@@ -63,8 +68,8 @@ active_menu_blog: true
         // fluent syntax
         Cylon
           .robot()
-          .connection({ name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' })
-          .device({ name: 'led', pin: 13 })
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('led', { driver: 'led', pin: 13 })
           .on('ready', function(bot) {
             setInterval(bot.led.toggle, 1000);
           });

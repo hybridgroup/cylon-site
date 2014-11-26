@@ -8,6 +8,8 @@ author: Andrew Stewart
 active_menu_blog: true
 ---
 :markdown
+  **Update:** - we've updated the examples to use the newer version of the fluent syntax.
+
   We've just finished cutting Cylon.js `0.19.0`, another big step forward leading to our `1.0.0` release.
   There are a number of exciting, yet potentially-breaking interface changes; particularly for module developers.
   But don't fear!
@@ -20,24 +22,21 @@ active_menu_blog: true
     Here is an example of a Arduino-based robot, written in the fluent syntax:
 
         :::javascript
-        var cylon = require('cylon');
+        var Cylon = require('cylon');
 
-        cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          devices: [
-            { name: 'led', driver: 'led', pin: 13 },
-            { name: 'button', driver: 'button', pin: 2 }
-          ]
-        })
-        .on('ready', function(bot) {
-          bot.button.on('push', function() {
-            bot.led.toggle();
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('led', { driver: 'led', pin: 13 })
+          .device('button', { driver: 'button', pin: 2 })
+          .on('error', console.log)
+          .on('ready', function(bot) {
+            bot.button.on('push', function() {
+              bot.led.toggle();
+            });
           });
-        })
-        .on('error', function(err) {
-          console.log(err);
-        })
-        .start();
+
+        Cylon.start();
 
     This is how the same example looks with the current declarative syntax:
 
@@ -45,19 +44,25 @@ active_menu_blog: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
           devices: [
             { name: 'led', driver: 'led', pin: 13 },
             { name: 'button', driver: 'button', pin: 2 }
           ],
+
           work: function(bot) {
             bot.button.on('push', function() {
               bot.led.toggle();
             });
           },
+
           error: function(err) {
             console.log(err);
           }
+
         }).start();
 
     See what we mean? You can now choose the best syntax for your preferred style of code. Have it your way!

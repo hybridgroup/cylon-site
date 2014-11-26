@@ -49,13 +49,16 @@ active_menu_blog: true
         Cylon.robot({
           name: 'testbot',
 
-          connection: {
-            name: 'myspark',
-            adaptor: 'myspark',
-            module: 'cylon-spark'
+          connections: {
+            myspark: {
+              adaptor: 'myspark',
+              module: 'cylon-spark'
+            }
           },
 
-          devices: { name: 'led', driver: 'led', pin: 9, module: 'cylon-gpio' },
+          devices: {
+            led: { driver: 'led', pin: 9, module: 'cylon-gpio' }
+          },
 
           work: function() {
           }
@@ -136,8 +139,10 @@ active_menu_blog: true
   - **`extraParams` removal:** - all params passed in the connection/device configuration objects are now kept there, instead of put into `extraParams`.
 
         :::javascript
-        // for the connection hash:
-        connection: { name: 'spark', adaptor: 'spark', accountToken: 'YOUR_ACCOUNT_TOKEN', deviceId: 'YOUR_DEVICE_ID' }
+        // for the connections hash:
+        connections: {
+          spark: { adaptor: 'spark', accountToken: 'YOUR_ACCOUNT_TOKEN', deviceId: 'YOUR_DEVICE_ID' }
+        }
 
         // Cylon 0.19.0 - Spark adaptor constructor:
         opts.extraParams.accountToken // => 'YOUR_ACCOUNT_TOKEN'
