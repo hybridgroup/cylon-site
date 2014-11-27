@@ -24,7 +24,10 @@ active_menu_docs: true
   Let's define the connections and devices:
 
       :::javascript
-        connection: { name: 'beaglebone', adaptor: 'beaglebone' },
+        connections: {
+          beaglebone: { adaptor: 'beaglebone' }
+        },
+
         devices: {
           led: { driver: 'led', pin: 'P9_12' },
           button: { driver: 'button', pin: 'P9_14' }

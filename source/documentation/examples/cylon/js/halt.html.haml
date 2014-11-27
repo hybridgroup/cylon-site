@@ -14,8 +14,13 @@ active_menu_docs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'loopback', adaptor: 'loopback' },
-          device: { name: 'ping', driver: 'ping' },
+          connections: {
+            loopback: { adaptor: 'loopback' }
+          },
+
+          devices: {
+            ping: { driver: 'ping' }
+          },
 
           work: function(my) {
             after((1).second(), function() {

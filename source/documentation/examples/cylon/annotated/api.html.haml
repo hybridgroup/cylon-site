@@ -26,11 +26,10 @@ active_menu_docs: true
   `8080`.
 
       :::javascript
-      Cylon.config({
-        api: { host: '0.0.0.0', port: '8080' }
+      Cylon.api({
+        host: '0.0.0.0',
+        port: '8080'
       });
-
-      Cylon.api();
 
   Since we're making two very similar robots (Spheros, in this case), let's put
   the different parts of each robot in objects so we can initialize them later.
@@ -56,13 +55,17 @@ active_menu_docs: true
   adaptor:
 
       :::javascript
-          connection: { name: 'sphero', adaptor: 'sphero', port: port },
+          connections: {
+            sphero: { adaptor: 'sphero', port: port }
+          },
 
   And both will be connecting to the same kind of device (you guessed it,
   a Sphero).
 
       :::javascript
-          device: { name: 'sphero', driver: 'sphero' },
+          devices: {
+            sphero: { driver: 'sphero' }
+          },
 
   Both robots will be performing the same kind of work as well.  Every second,
   they'll print their name to the console, set themselves to a random color, and

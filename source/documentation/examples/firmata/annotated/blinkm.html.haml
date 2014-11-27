@@ -29,12 +29,16 @@ active_menu_docs: true
   Our robot will be using an Arduino, and communicating over the Firmata protocol
 
       :::javascript
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+        connections: {
+          arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+        },
 
   And we'll have one device, a BlinkM led.
 
       :::javascript
-        device: { name: 'blinkm', driver: 'blinkm' },
+        devices: {
+          blinkm: { driver: 'blinkm' }
+        },
 
   We'll now set up our robot's work.
 
@@ -49,7 +53,7 @@ active_menu_docs: true
   We'll request the BlinkM's version, and print that to the console
 
       :::javascript
-          my.blinkm.getFirmware(function(version) {
+          my.blinkm.getFirmware(function(err, version) {
             console.log("Started BlinkM version " + version);
           });
 
@@ -61,7 +65,7 @@ active_menu_docs: true
   We print the default starting color (in this case 0,0,0 since we turned the led off)
 
       :::javascript
-          my.blinkm.getRGBColor(function(data){
+          my.blinkm.getRGBColor(function(err, data){
             console.log("Starting Color: ", data)
           });
 
@@ -69,7 +73,7 @@ active_menu_docs: true
 
       :::javascript
           every((2).seconds(), function() {
-            my.blinkm.getRGBColor(function(data){
+            my.blinkm.getRGBColor(function(err, data){
               console.log("Current Color: ", data);
             });
             my.blinkm.fadeToRandomRGB(128, 128, 128);

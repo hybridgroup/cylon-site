@@ -31,7 +31,9 @@ active_menu_docs: true
   Firmata protocol:
 
       :::javascript
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+        connections: {
+          arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+        },
 
   This time, our robot will have two devices, an LED and a button:
 
