@@ -61,15 +61,11 @@ subnavjs: true
         :::javascript
         var Cylon = require('cylon');
 
-        Cylon.config({
-          api: {
-            host: '0.0.0.0',
-            port: '8080',
-            ssl: false
-          }
+        Cylon.api({
+          host: '0.0.0.0',
+          port: '8080',
+          ssl: false
         });
-
-        Cylon.api();
 
         Cylon.robot({
           name: 'pebble',

@@ -66,23 +66,20 @@ main_nav: true
   In your scripts, you can set it up as so:
 
       :::javascript
-      Cylon.config({
-        api: {
-          host: '127.0.0.1',
-          port: '4321',
 
-          cert: '/path/to/ssl/cert',
-          key: '/path/to/ssl/key',
+      Cylon.api({
+        host: '127.0.0.1',
+        port: '4321',
 
-          auth: {
-            type: 'basic',
-            user: 'admin',
-            pass: 'pass'
-          }
+        cert: '/path/to/ssl/cert',
+        key: '/path/to/ssl/key',
+
+        auth: {
+          type: 'basic',
+          user: 'admin',
+          pass: 'pass'
         }
       });
-
-      Cylon.api();
 
   If you run a Cylon script with this code in it, it will start an API server
   listening on `https://127.0.0.1:4321`, that will require basic auth for all
