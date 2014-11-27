@@ -50,8 +50,13 @@ main_nav: true
 
       // this bot will be automatically started
       Cylon.robot({
-        connection: { name: 'loopback', adaptor: 'loopback' },
-        device: { name: 'ping', driver: 'ping' }
+        connections: {
+          loopback: { adaptor: 'loopback' }
+        },
+
+        devices: {
+          ping: { driver: 'ping' }
+        }
       });
 
   ## API

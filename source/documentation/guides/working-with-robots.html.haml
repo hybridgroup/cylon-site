@@ -16,7 +16,9 @@ active_menu_docs: true
 
       :::javascript
       Cylon.robot({
-        connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+        connections: {
+          arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+        },
 
         devices: {
           led: { driver: 'led', pin: 13 },
@@ -59,10 +61,11 @@ active_menu_docs: true
 
       :::javascript
       Cylon.robot({
-        connection: {
-          name: "arduino",
-          adaptor: "firmata",
-          port: "/dev/ttyACM0"
+        connections: {
+          arduino: {
+            adaptor: "firmata",
+            port: "/dev/ttyACM0"
+          }
         }
       });
 
@@ -86,7 +89,9 @@ active_menu_docs: true
           arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
         },
 
-        device: { name: 'loopback', driver: 'ping', connection: 'loopback' }
+        devices: {
+          loopback: { driver: 'ping', connection: 'loopback' }
+        }
 
         work: function(my) {
           my.connections;
@@ -107,10 +112,11 @@ active_menu_docs: true
 
       :::javascript
       Cylon.robot({
-        device: {
-          name: "led",
-          driver: "led",
-          pin: "13"
+        devices: {
+          "led": {
+            driver: "led",
+            pin: "13"
+          }
         }
       });
 
@@ -170,8 +176,13 @@ active_menu_docs: true
       Cylon.robot({
         name: "testbot",
 
-        connection: { name: "loopback", adaptor: "loopback" },
-        device: { name: "ping", driver: "ping" },
+        connections: {
+          "loopback": { adaptor: "loopback" }
+        },
+
+        devices: {
+          "ping": { driver: "ping" }
+        },
 
         work: function() {},
 
@@ -189,8 +200,13 @@ active_menu_docs: true
       Cylon.robot({
         name: "testbot",
 
-        connection: { name: "loopback", adaptor: "loopback" },
-        device: { name: "ping", driver: "ping" },
+        connections: {
+          "loopback": { adaptor: "loopback" }
+        },
+
+        devices: {
+          "ping": { driver: "ping" }
+        },
 
         work: function() {},
 
@@ -213,8 +229,13 @@ active_menu_docs: true
       Cylon.robot({
         name: "testbot",
 
-        connection: { name: "loopback", adaptor: "loopback" },
-        device: { name: "ping", driver: "ping" },
+        connections: {
+          "loopback": { adaptor: "loopback" }
+        },
+
+        devices: {
+          "ping": { driver: "ping" }
+        },
 
         work: function() {},
 

@@ -23,8 +23,13 @@ active_menu_docs: true
         Cylon.robot({
           name: 'TestBot',
 
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'led', driver: 'led', pin: 13 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 }
+          },
 
           work: function(my) {
             my.led.toggle();

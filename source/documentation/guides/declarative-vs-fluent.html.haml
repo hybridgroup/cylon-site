@@ -32,8 +32,14 @@ active_menu_docs: true
         Cylon.robot({
           name: "TestBot",
 
-          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-          device: { name: 'sphero', driver: 'sphero' },
+          connections: {
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            sphero: { driver: 'sphero' }
+          },
+
 
           roll: function() {
             console.log("Rolling!");
@@ -56,8 +62,13 @@ active_menu_docs: true
 
         cylon.robot({
           name: "TestBot",
-          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-          device: { name: 'sphero', driver: 'sphero' }
+          connections: {
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            sphero: { driver: 'sphero' }
+          }
         })
         .on('ready', function(bot) {
           setInterval(function() {
