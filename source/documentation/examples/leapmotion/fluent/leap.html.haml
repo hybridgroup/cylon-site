@@ -1,10 +1,10 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Cylon.JS Example - Leap Motion"
+title: "Cylon.JS Fluent Example - Leap Motion"
 page_title: "Example: Leap Motion"
 author: The Hybrid Group
-description: A Cylon.JS code example
+description: A Cylon.JS fluentcode example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-leapmotion/tree/master/examples/leap' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
@@ -13,23 +13,20 @@ active_menu_docs: true
         :::javascript
         var Cylon = require('cylon');
 
-        Cylon.robot({
-          connections: {
-            leapmotion: { adaptor: 'leapmotion' }
-          },
+        Cylon
+          .robot()
+          .connection('leapmotion', { adaptor: 'leapmotion' })
+          .device('leapmotion', { driver: 'leapmotion' })
 
-          devices: {
-            leapmotion: { driver: 'leapmotion' }
-          },
-
-          work: function(my) {
-            my.leapmotion.on('frame', function(frame) {
+          .on('ready', function(bot) {
+            bot.leapmotion.on('frame', function(frame) {
               console.log(frame.toString());
             });
 
-            my.leapmotion.on('hand', function(hand) {
+            bot.leapmotion.on('hand', function(hand) {
               console.log(hand.toString());
             });
-          }
-        }).start();
+          });
+
+        Cylon.start();
 

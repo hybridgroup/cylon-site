@@ -28,8 +28,13 @@ active_menu_docs: true
   the Leap Motion using the `leapd` daemon over WebSockets.
 
       :::javascript
-        connection: { name: 'leapmotion', adaptor: 'leapmotion' },
-        device: { name: 'leapmotion', driver: 'leapmotion' },
+        connections: {
+          leapmotion: { adaptor: 'leapmotion' }
+        },
+
+        devices: {
+          leapmotion: { driver: 'leapmotion' }
+        },
 
   Easy as can be. For our work, we're going to log a simplified version of the
   data we get from the device.
