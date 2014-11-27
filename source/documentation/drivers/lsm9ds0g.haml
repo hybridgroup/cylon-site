@@ -27,8 +27,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/tty.usbmodem1421' },
-          device: { name: 'gyro', driver: 'lsm9ds0g' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/tty.usbmodem1421' }
+          },
+
+          devices: {
+            gyro: { driver: 'lsm9ds0g' }
+          },
         });
 
 %section#HowToUse
@@ -39,8 +44,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/tty.usbmodem1421' },
-          device: { name: 'gyro', driver: 'lsm9ds0g' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/tty.usbmodem1421' }
+          },
+
+          devices: {
+            gyro: { driver: 'lsm9ds0g' }
+          },
 
           work: function(my) {
             every((1).second(), function() {

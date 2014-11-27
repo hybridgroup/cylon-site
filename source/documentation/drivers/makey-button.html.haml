@@ -27,8 +27,13 @@ subnavjs: trues
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'makey-button', driver: 'makey-button', pin: 2 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            makey: { driver: 'makey-button', pin: 2 }
+          },
         });
 
 %section#HowToUse
@@ -39,11 +44,16 @@ subnavjs: trues
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'makey-button', driver: 'makey-button', pin: 2 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            makey: { driver: 'makey-button', pin: 2 }
+          },
 
           work: function(my) {
-            my.button.on('push', function() {
+            my.makey.on('push', function() {
               console.log("Button pushed!");
             });
           }

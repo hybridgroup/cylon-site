@@ -28,13 +28,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: 
-            { name: 'hue', 
-              adaptor: 'hue', 
-              host: '192.168.1.101, 
-              username: 'XXX' },
-          
-          device: {name: 'bridge', driver: 'hue-bridge'}
+          connections: {
+            hue: { adaptor: 'hue', host: '192.168.1.101, username: 'XXX' }
+          },
+
+          devices: {
+            bridge: { driver: 'hue-bridge'}
+          }
         });
 
 %section#HowToUse
@@ -45,8 +45,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'hue', adaptor: 'hue', host: '192.168.1.101', username: 'XXX' },
-          device: {name: 'bridge', driver: 'hue-bridge'},
+          connections: {
+            hue: { adaptor: 'hue', host: '192.168.1.101', username: 'XXX' }
+          },
+
+          devices: {
+            bridge: { driver: 'hue-bridge'}
+          },
 
           work: function(my) {
             my.bridge.getFullState(function(err, config) {

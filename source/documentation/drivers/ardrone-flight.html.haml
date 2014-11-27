@@ -31,19 +31,14 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: {
-            name: 'ardrone',
-            adaptor: 'ardrone',
-            port: '192.168.1.1'
+          connections: {
+            ardrone: { adaptor: 'ardrone', port: '192.168.1.1' }
           },
 
-          device: {
-            name: 'ardrone',
-            driver: 'ardrone'
+          devices: {
+            ardrone: { driver: 'ardrone' }
           },
         });
-
-
 
 %section#HowToUse
   :markdown
@@ -55,15 +50,12 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'ardrone',
-            adaptor: 'ardrone',
-            port: '192.168.1.1'
+          connections: {
+            ardrone: { adaptor: 'ardrone', port: '192.168.1.1' }
           },
 
-          device: {
-            name: 'drone',
-            driver: 'ardrone'
+          devices: {
+            drone: { driver: 'ardrone' }
           },
 
           work: function(my) {

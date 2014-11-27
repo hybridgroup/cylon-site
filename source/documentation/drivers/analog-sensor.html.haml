@@ -29,18 +29,12 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: {
-            name: 'arduino',
-            adaptor: 'firmata',
-            port: '/dev/ttyACM0'
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
           },
 
-          device: {
-            name: 'sensor',
-            driver: 'analogSensor',
-            pin: 0,
-            lowerLimit: 100,
-            upperLimit: 900
+          devices: {
+            sensor: { driver: 'analogSensor', pin: 0, lowerLimit: 100, upperLimit: 900 }
           }
         });
 
@@ -54,18 +48,12 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'arduino',
-            adaptor: 'firmata',
-            port: '/dev/ttyACM0'
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
           },
 
-          device: {
-            name: 'sensor',
-            driver: 'analogSensor',
-            pin: 0,
-            lowerLimit: 100,
-            upperLimit: 900
+          devices: {
+            sensor: { driver: 'analogSensor', pin: 0, lowerLimit: 100, upperLimit: 900 }
           },
 
           work: function(my) {

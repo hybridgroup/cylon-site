@@ -30,16 +30,12 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: {
-            name: 'nest',
-            adaptor: 'nest',
-            accessToken: 'ACCESS_TOKEN'
+          connections: {
+            nest: { adaptor: 'nest', accessToken: 'ACCESS_TOKEN' }
           },
 
-          device: {
-            name: 'home',
-            driver: 'nest-home',
-            structureId: 'STRUCTURE_ID'
+          devices: {
+            home: { driver: 'nest-home', structureId: 'STRUCTURE_ID' }
           },
         });
 
@@ -50,16 +46,12 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'nest',
-            adaptor: 'nest',
-            accessToken: 'ACCESS_TOKEN'
+          connections: {
+            nest: { adaptor: 'nest', accessToken: 'ACCESS_TOKEN' }
           },
 
-          device: {
-            name: 'home',
-            driver: 'nest-home',
-            structureId: 'STRUCTURE_ID'
+          devices: {
+            home: { driver: 'nest-home', structureId: 'STRUCTURE_ID' }
           },
 
           work: function(my) {

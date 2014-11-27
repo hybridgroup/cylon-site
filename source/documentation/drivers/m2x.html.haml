@@ -26,14 +26,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: {
-            name: 'm2x',
-            adaptor: 'm2x',
-            apiKey: 'YOUR_API_KEY'
-            feedId: 'YOUR_FEED_ID'
+          connections: {
+            m2x: { adaptor: 'm2x', apiKey: 'YOUR_API_KEY' feedId: 'YOUR_FEED_ID' }
           },
 
-          device: { name: 'm2x', driver: 'm2x' },
+          devices: {
+            m2x: { driver: 'm2x' }
+          },
         });
 
 
@@ -47,14 +46,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'm2x',
-            adaptor: 'm2x',
-            apiKey: 'YOUR_API_KEY'
-            feedId: 'YOUR_FEED_ID'
+          connections: {
+            m2x: { adaptor: 'm2x', apiKey: 'YOUR_API_KEY' feedId: 'YOUR_FEED_ID' }
           },
 
-          device: { name: 'm2x', driver: 'm2x' },
+          devices: {
+            m2x: { driver: 'm2x' }
+          },
 
           work: function(my) {
             var count = 1;

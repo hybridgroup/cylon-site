@@ -28,8 +28,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'servo', driver: 'continuous-servo', pin: 3 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            servo: { driver: 'continuous-servo', pin: 3 }
+          },
         });
 
 %section#HowToUse
@@ -42,9 +47,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
 
-          device: { name: 'servo', driver: 'continuous-servo', pin: 3 },
+          devices: {
+            servo: { driver: 'continuous-servo', pin: 3 }
+          },
 
           work: function(my) {
             var clockwise = true;

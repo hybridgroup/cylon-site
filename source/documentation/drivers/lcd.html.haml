@@ -27,8 +27,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'lcd', driver: 'lcd' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            lcd: { driver: 'lcd' }
+          },
         });
 
 %section#HowToUse
@@ -41,8 +46,13 @@ subnavjs: true
         Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'lcd', driver: 'lcd' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            lcd: { driver: 'lcd' }
+          },
 
           work: function(my) {
             my.lcd.on('start', function(){

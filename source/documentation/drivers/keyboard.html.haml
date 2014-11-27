@@ -26,8 +26,13 @@ subnavjs: trues
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'keyboard', adaptor: 'keyboard' },
-          device: { name: 'keyboard', driver: 'keyboard' }
+          connections: {
+            keyboard: { adaptor: 'keyboard' }
+          },
+
+          devices: {
+            keyboard: { driver: 'keyboard' }
+          }
         });
 
 %section#HowToUse
@@ -40,8 +45,13 @@ subnavjs: trues
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'keyboard', adaptor: 'keyboard' },
-          device: { name: 'keyboard', driver: 'keyboard' }
+          connections: {
+            keyboard: { adaptor: 'keyboard' }
+          },
+
+          devices: {
+            keyboard: { driver: 'keyboard' }
+          }
 
           work: function(my) {
             my.keyboard.on('a', function(key) {

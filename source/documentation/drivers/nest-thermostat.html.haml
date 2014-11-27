@@ -28,16 +28,12 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: {
-            name: 'nest',
-            adaptor: 'nest',
-            accessToken: 'YOUR_ACCESS_TOKEN'
+          connections: {
+            nest: { adaptor: 'nest', accessToken: 'YOUR_ACCESS_TOKEN' }
           },
 
-          device: {
-            name: 'thermostat',
-            driver: 'nest-thermostat',
-            deviceId: 'YOUR_DEVICE_ID'
+          devices: {
+            thermostat: { driver: 'nest-thermostat', deviceId: 'YOUR_DEVICE_ID' }
           },
         });
 
@@ -49,16 +45,12 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'nest',
-            adaptor: 'nest',
-            accessToken: 'YOUR_ACCESS_TOKEN'
+          connections: {
+            nest: { adaptor: 'nest', accessToken: 'YOUR_ACCESS_TOKEN' }
           },
 
-          device: {
-            name: 'thermostat',
-            driver: 'nest-thermostat',
-            deviceId: 'YOUR_DEVICE_ID'
+          devices: {
+            thermostat: { driver: 'nest-thermostat', deviceId: 'YOUR_DEVICE_ID' }
           },
 
           work: function() {

@@ -28,8 +28,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'neurosky', adaptor: 'neurosky' },
-          device: { name: 'neurosky', driver: 'neurosky' },
+          connections: {
+            neurosky: { adaptor: 'neurosky' }
+          },
+
+          devices: {
+            neurosky: { driver: 'neurosky' }
+          },
         });
 
 %section#HowToUse
@@ -40,8 +45,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'neurosky', adaptor: 'neurosky' },
-          device: { name: 'neurosky', driver: 'neurosky' },
+          connections: {
+            neurosky: { adaptor: 'neurosky' }
+          },
+
+          devices: {
+            neurosky: { driver: 'neurosky' }
+          },
 
           work: function(my) {
             my.headset.on('attention', function(data) {
