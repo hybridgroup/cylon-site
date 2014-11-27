@@ -57,7 +57,7 @@ active_menu_docs: true
 
   ## Connections
 
-  When initializing a robot, you can either pass a `connection` object for a single connection, or a `connections` object for multiple connections:
+  When initializing a robot, you pass a `connections` object:
 
       :::javascript
       Cylon.robot({
@@ -108,12 +108,12 @@ active_menu_docs: true
   ## Devices
 
   Devices, for the most part, behave similarly to Connections.
-  When initializing a robot, you can either pass a `device` object for a single device, or a `devices` object for multiple devices:
+  When initializing a robot, you pass a `devices` object:
 
       :::javascript
       Cylon.robot({
         devices: {
-          "led": {
+          led: {
             driver: "led",
             pin: "13"
           }
