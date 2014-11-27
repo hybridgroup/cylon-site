@@ -1,0 +1,41 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - hello-pebble"
+page_title: "Example: hello-pebble"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-pebble/tree/master/examples/hello-pebble' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.api({
+          host: '0.0.0.0',
+          port: '8080',
+          ssl:  false
+        });
+
+        Cylon
+          .robot({ name: 'pebble' })
+
+          .connection('pebble', { adaptor: 'pebble' })
+          .device('pebble', { driver: 'pebble' })
+
+          .on('ready', function(bot) {
+            bot.pebble.send_notification("Hello Pebble!");
+
+            bot.pebble.on('button', function(data) {
+              console.log("Button pushed:", data);
+            });
+
+            bot.pebble.on('tap', function(data) {
+              console.log("Tap event detected:", data);
+            });
+          });
+
+        Cylon.start();
+
