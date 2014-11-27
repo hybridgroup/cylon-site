@@ -40,7 +40,6 @@ active_menu_docs: true
             sphero: { driver: 'sphero' }
           },
 
-
           roll: function() {
             console.log("Rolling!");
             this.sphero.roll(60, Math.floor(Math.random() * 360));
@@ -58,25 +57,18 @@ active_menu_docs: true
     Users of other fluent JavaScript interfaces, such as jQuery or similar libraries, might be more familiar with this style of syntax:
 
         :::javascript
-        var cylon = require('cylon');
+        var Cylon = require('cylon');
 
-        cylon.robot({
-          name: "TestBot",
-          connections: {
-            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
-          },
+        Cylon
+          .robot({ name: 'TestBot' })
+          .connection('sphero', { adaptor: 'sphero', port: '/dev/rfcomm0' })
+          .device('sphero', { driver: 'sphero' })
+          .on('error', console.log)
+          .on('ready', function(bot) {
+            setInterval(function() {
+              console.log("Rolling!");
+              bot.sphero.roll(60, Math.floor(Math.random() * 360));
+            }, 1000);
+          });
 
-          devices: {
-            sphero: { driver: 'sphero' }
-          }
-        })
-        .on('ready', function(bot) {
-          setInterval(function() {
-            console.log("Rolling!");
-            bot.sphero.roll(60, Math.floor(Math.random() * 360));
-          }, 1000);
-        })
-        .on('error', function(err) {
-          console.log(err);
-        })
-        .start();
+        Cylon.start();
