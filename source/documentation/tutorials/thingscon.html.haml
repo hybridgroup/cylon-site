@@ -74,8 +74,13 @@ page_title_show: true
 
         Cylon.robot({
           // change the port below to match whatever your Arduino is actually plugged into
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'led', driver: 'led', pin: 13 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 }
+          },
 
           work: function(my) {
             every((1).seconds(), function() {my.led.toggle()});
@@ -116,7 +121,10 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
           devices: {
             led: { driver: 'led', pin: 13 },
             makey: { driver: 'makey-button', pin: 2 }
@@ -169,8 +177,13 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-          device: { name: 'sphero', driver: 'sphero' },
+          connections: {
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            sphero: { driver: 'sphero' }
+          },
 
           work: function(me) {
             every((1).second(), function() {
@@ -275,8 +288,13 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'leapmotion', adaptor: 'leapmotion' },
-          device: { name: 'leapmotion', driver: 'leapmotion' },
+          connections: {
+            leapmotion: { adaptor: 'leapmotion' }
+          },
+
+          devices: {
+            leapmotion: { driver: 'leapmotion' }
+          },
 
           work: function(my) {
             my.leapmotion.on('connect', function() {
