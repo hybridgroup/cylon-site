@@ -40,7 +40,10 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
           devices: {
             led: { driver: 'led', pin: 13 },
             button: { driver: 'button', pin: 2 }
@@ -188,7 +191,9 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyATH0' },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyATH0' }
+          },
 
           devices: {
             led: { driver: 'led', pin: 13 },

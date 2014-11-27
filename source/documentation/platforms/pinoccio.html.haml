@@ -37,15 +37,18 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'pinoccio',
-            adaptor: 'pinoccio',
-            token: '[your token]',
-            troop: '[your troop ID]',
-            scout: '[your scout ID]' 
+          connections: {
+            pinoccio: {
+              adaptor: 'pinoccio',
+              token: '[your token]',
+              troop: '[your troop ID]',
+              scout: '[your scout ID]' 
+            }
           },
 
-          device: { name: 'led', driver: 'led', pin: 'D5' },
+          devices: {
+            led: { driver: 'led', pin: 'D5' }
+          },
 
           work: function(my) {
             every((1).second(), my.led.toggle);
@@ -60,12 +63,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'pinoccio',
-            adaptor: 'pinoccio',
-            token: '[your token]',
-            troop: '[your troop ID]',
-            scout: '[your scout ID]'
+          connections: {
+            pinoccio: {
+              adaptor: 'pinoccio',
+              token: '[your token]',
+              troop: '[your troop ID]',
+              scout: '[your scout ID]'
+            }
           },
 
           devices: {

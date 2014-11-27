@@ -49,9 +49,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '207377654321' }
+          },
 
-          device: { name: 'wiced', driver: 'wiced-sense' },
+          devices: {
+            wiced: { driver: 'wiced-sense' }
+          },
 
           work: function(my) {
             my.wiced.getData(function(err, data) {

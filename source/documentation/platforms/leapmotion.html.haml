@@ -39,14 +39,12 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'leapmotion',
-            adaptor: 'leapmotion'
+          connections: {
+            leapmotion: { adaptor: 'leapmotion' }
           },
 
-          device: {
-            name: 'leapmotion',
-            driver: 'leapmotion'
+          devices: {
+            leapmotion: { driver: 'leapmotion' }
           },
 
           work: function(my) {
@@ -81,10 +79,8 @@ subnavjs: true
     You can, however, provide it with another IP in the `connection` object and it'll attempt to connect to that instead:
 
         :::javascript
-        connection: {
-          name: 'leapmotion',
-          adaptor: 'leapmotion',
-          host: '192.168.1.64'
+        connections: {
+          leapmotion: { adaptor: 'leapmotion', host: '192.168.1.64' }
         }
 
 %section.drivers#Drivers

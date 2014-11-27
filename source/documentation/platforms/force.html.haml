@@ -38,14 +38,17 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: {
-            name: 'sfcon',
-            adaptor: 'force',
-            sfuser: process.env.SF_USERNAME,
-            sfpass: process.env.SF_SECURITY_TOKEN
+          connections: {
+            sfcon: {
+              adaptor: 'force',
+              sfuser: process.env.SF_USERNAME,
+              sfpass: process.env.SF_SECURITY_TOKEN
+            }
           },
 
-          device: {name: 'salesforce', driver: 'force'},
+          devices: {
+            salesforce: { driver: 'force'}
+          },
 
           work: function(me) {
             me.salesforce.subscribe('SpheroMsgOutbound', function(data) {

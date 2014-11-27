@@ -44,7 +44,9 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+          connections: {
+            server: { adaptor: 'mqtt', host: 'mqtt://localhost:1883' }
+          },
 
           work: function(my) {
             my.server.subscribe('hello');
@@ -64,8 +66,13 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
-          device: { name: 'hello', driver: 'mqtt', topic: 'hello' },
+          connections: {
+            server: { adaptor: 'mqtt', host: 'mqtt://localhost:1883' }
+          },
+
+          devices: {
+            hello: { driver: 'mqtt', topic: 'hello' }
+          },
 
           work: function(my) {
             my.hello.on('message', function (data) {
@@ -87,7 +94,9 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'server', adaptor: 'mqtt', host: 'mqtt://localhost:1883' },
+          connections: {
+            server: { adaptor: 'mqtt', host: 'mqtt://localhost:1883' }
+          },
 
           work: function(my) {
             my.server.subscribe('hello');

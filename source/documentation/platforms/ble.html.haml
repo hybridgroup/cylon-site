@@ -46,8 +46,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'bluetooth', adaptor: 'ble', uuid: '207377654321' },
-          device: { name: 'battery', driver: 'ble-battery-service' },
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '207377654321' }
+          },
+
+          devices: {
+            battery: { driver: 'ble-battery-service' }
+          },
 
           work: function(my) {
             my.battery.getBatteryLevel(function(err, data) {
@@ -95,7 +100,10 @@ subnavjs: true
 
         :::javascript
         Cylon.robot({
-          connection: { name: 'bluetooth', adaptor: 'ble', uuid: 'YOUR_DEVICE_UUID_HERE' },
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: 'YOUR_DEVICE_UUID_HERE' }
+          },
+
           // ...
         });
 
