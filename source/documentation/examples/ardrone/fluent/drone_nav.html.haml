@@ -1,0 +1,27 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Drone Navigation"
+page_title: "Example: Drone Navigation"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-ardrone/tree/master/examples/drone_nav' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('ardrone', { adaptor: 'ardrone', port: '192.168.1.1' })
+          .device('drone', { driver: 'ardrone' })
+          .device('nav', { driver: 'ardroneNav' })
+          .on('ready', function(bot) {
+            bot.drone.config('general:navdata_demo', 'TRUE');
+            bot.nav.on('update', console.log);
+          });
+
+        Cylon.start();
+

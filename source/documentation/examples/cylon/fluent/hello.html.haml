@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Hello"
+page_title: "Example: Hello"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon/tree/master/examples/hello' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.api();
+
+        Cylon
+          .robot({ name: 'test' })
+          .connection('loopback', { adaptor: 'loopback' })
+          .device('ping', { driver: 'ping' })
+          .on('ready', function(bot) {
+            setInterval(function() {
+              console.log("Hello, human!")
+              console.log(bot.ping.ping());
+            }, 1000);
+
+            setTimeout(function() {
+              console.log("I've been at your command for 5 seconds now.")
+            }, 5000);
+          });
+
+        Cylon.start();
+

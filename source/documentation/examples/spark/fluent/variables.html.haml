@@ -1,0 +1,40 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Spark Core - Variables"
+page_title: "Example: Spark Core - Variables"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-spark/tree/master/examples/variables' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+
+          .connection('spark', {
+            adaptor: 'spark',
+            accessToken: '[YOUR_ACCESS_TOKEN]',
+            deviceId: '[YOUR_DEVICE_ID]'
+          })
+
+          .device('spark', { driver: 'spark' })
+
+          .on('ready', function(bot) {
+            setInterval(function() {
+              bot.spark.getVariable("randomNumber", function(err, data) {
+                if (err) {
+                  console.log("An error occured!", err);
+                } else {
+                  console.log("The random number is:", data);
+                }
+              });
+            }, 5000);
+          });
+
+        Cylon.start();
+

@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Motor"
+page_title: "Example: Motor"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/motor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('motor', { driver: 'motor', pin: 3 })
+          .on('ready', function(bot) {
+            var speed = 0,
+            increment = 5;
+
+            setInterval(function() {
+              speed += increment;
+              bot.motor.speed(speed);
+
+              console.log("Current Speed: " + (bot.motor.currentSpeed()));
+
+              if ((speed === 0) || (speed === 255)) { increment = -increment; }
+            }, 500);
+          });
+
+        Cylon.start();
+

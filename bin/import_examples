@@ -75,13 +75,24 @@ class Example
     @name = File.basename(filename, ".#{Project.extension}")
     @content = File.read(filename)
 
-    if File.exists? filename.gsub(/#{Project.extension}$/, 'markdown')
-      @markdown_content = File.read(filename.gsub(/#{Project.extension}$/, 'markdown'))
+    fluent_filename = @path.gsub(File.basename(@path), "fluent-#{File.basename(@path)}")
+    markdown_filename = @path.gsub(/#{Project.extension}$/, 'markdown')
+
+    if File.exists? markdown_filename
+      @markdown_content = File.read(markdown_filename)
+    end
+
+    if File.exists? fluent_filename
+      @fluent_content = File.read(fluent_filename)
     end
   end
 
   def markdown_version?
     !@markdown_content.nil?
+  end
+
+  def fluent_version?
+    !@fluent_content.nil?
   end
 
   def title
@@ -90,6 +101,35 @@ class Example
     else
       @name
     end
+  end
+
+  def fluent_page
+    return unless fluent_version?
+    body = @fluent_content.dup
+
+    # change import path
+    body.gsub! /\.\.\/\.\./, Project.name
+
+    # indent by eight spaces
+    body.gsub! /^(.+)/, '        \1'
+
+    page_content = <<-EOS
+---
+layout: documentation
+page_title_show: true
+title: "#{Project.pretty_name} Fluent Example - #{title}"
+page_title: "Example: #{title}"
+author: The Hybrid Group
+description: A #{Project.pretty_name} fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/#{@repo}/tree/master/examples/#{@name}' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::#{Project.language}
+#{body}
+EOS
+
   end
 
   def annotated_page
@@ -216,19 +256,32 @@ def add_examples_to_site(name, examples)
 
   create_code_pages name, examples
   create_annotated_pages name, examples
+  create_fluent_pages name, examples
   create_index_partial name, examples
 end
 
 def create_annotated_pages(name, examples)
   examples.each do |example|
     next unless example.markdown_version?
-    puts "  - #{example.title}"
-
     examples_dir = "/source/documentation/examples"
     filename = "/#{name}/annotated/#{example.name}.html.haml"
 
     path = File.expand_path(__dir__ + "/../" + examples_dir + filename)
     content = example.annotated_page
+
+    FileUtils.mkdir_p(File.dirname(path)) unless File.directory?(path)
+    File.write(path, content)
+  end
+end
+
+def create_fluent_pages(name, examples)
+  examples.each do |example|
+    next unless example.fluent_version?
+    examples_dir = "/source/documentation/examples"
+    filename = "/#{name}/fluent/#{example.name}.html.haml"
+
+    path = File.expand_path(__dir__ + "/../" + examples_dir + filename)
+    content = example.fluent_page
 
     FileUtils.mkdir_p(File.dirname(path)) unless File.directory?(path)
     File.write(path, content)
@@ -262,7 +315,7 @@ def create_index_partial(name, examples)
 %table
   %thead
     %th Example
-    %th.links{:colspan => '2'} Links
+    %th.links{:colspan => '3'} Links
   %tbody
   EOS
 
@@ -270,11 +323,19 @@ def create_index_partial(name, examples)
     string = "%tr\n"
     string << "  %td #{example.title}\n"
     string << "  %td.links= link_to 'Code', '/documentation/examples/#{name}/#{Project.extension}/#{example.name}'\n"
+
+    if example.fluent_version?
+      string << "  %td.links= link_to 'Fluent JS', '/documentation/examples/#{name}/fluent/#{example.name}'\n"
+    else
+      string << "  %td.links\n"
+    end
+
     if example.markdown_version?
       string << "  %td.links= link_to 'Annotated Code', '/documentation/examples/#{name}/annotated/#{example.name}'\n"
     else
       string << "  %td.links\n"
     end
+
     string.gsub! /^(.+)/, '    \1'
     partial << string
   end

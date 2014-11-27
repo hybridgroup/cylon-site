@@ -1,0 +1,25 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - lcd-i2c"
+page_title: "Example: lcd-i2c"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/lcd-i2c' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('lcd', { driver: 'lcd' })
+          .on('ready', function(bot) {
+            bot.lcd.print("Hello!");
+          });
+
+        Cylon.start();
+

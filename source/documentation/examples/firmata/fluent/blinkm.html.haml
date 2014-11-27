@@ -1,0 +1,40 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - BlinkM"
+page_title: "Example: BlinkM"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/blinkm' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('blinkm', { driver: 'blinkm' })
+          .on('ready', function(bot) {
+            bot.blinkm.stopScript();
+
+            bot.blinkm.getFirmware(function(err, version) {
+              console.log("Started BlinkM version " + version);
+            });
+
+            bot.blinkm.goToRGB(0,0,0);
+            bot.blinkm.getRGBColor(function(err, data){
+              console.log("Starting Color: ", data);
+            });
+
+            setInterval(function() {
+              bot.blinkm.getRGBColor(function(err, data){
+                console.log("Current Color: ", data);
+              });
+              bot.blinkm.fadeToRandomRGB(128, 128, 128);
+            }, 2000);
+          });
+
+        Cylon.start();
+

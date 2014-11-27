@@ -1,0 +1,36 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Analog Sensor"
+page_title: "Example: Analog Sensor"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/analog_sensor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('sensor', { driver: 'analogSensor', pin: 0, upperLimit: 900, lowerLimit: 100 })
+          .on('ready', function(bot) {
+            bot.sensor.on('analogRead', function(val) {
+              console.log('analog read value:', val);
+              console.log('analog read value:', bot.sensor.analogRead());
+            });
+
+            bot.sensor.on('upperLimit', function(val) {
+              console.log("Upper limit reached ===> " + val);
+            });
+
+            bot.sensor.on('lowerLimit', function(val) {
+              console.log("Lower limit reached ===> " + val);
+            });
+          });
+
+        Cylon.start();
+

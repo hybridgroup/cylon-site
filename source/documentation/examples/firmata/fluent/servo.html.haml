@@ -1,0 +1,42 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Servo"
+page_title: "Example: Servo"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/servo' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('servo', {
+            driver: 'servo',
+            pin: 3,
+            limits: { bottom: 20, top: 160 }
+          })
+          .on('ready', function(bot) {
+            var angle = 0,
+            increment = 20;
+
+            setInterval(function() {
+              angle += increment;
+
+              bot.servo.angle(angle);
+
+              console.log("Current Angle: " + (bot.servo.currentAngle()));
+
+              if ((angle === 0) || (angle === 180)) {
+                increment = -increment;
+              }
+            }, 1000);
+          });
+
+        Cylon.start();
+

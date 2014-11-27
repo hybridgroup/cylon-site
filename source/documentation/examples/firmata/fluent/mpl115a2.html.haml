@@ -1,0 +1,30 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - MPL115A2"
+page_title: "Example: MPL115A2"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/mpl115a2' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('mpl115a2', { driver: 'mpl115a2' })
+          .on('ready', function(bot) {
+            bot.mpl115a2.getTemperature(function(err, data) {
+              var temp = data['temperature'],
+              pressure = data['pressure'];
+
+              console.log("temperature " + temp  + " pressure " + pressure);
+            });
+          });
+
+        Cylon.start();
+

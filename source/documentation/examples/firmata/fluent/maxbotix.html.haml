@@ -1,0 +1,29 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - maxbotix"
+page_title: "Example: maxbotix"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/maxbotix' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('maxbotix', { driver: 'maxbotix' })
+          .on('ready', function(bot) {
+            setInterval(function() {
+              bot.maxbotix.range(function(err, data) {
+                console.log("range: " + data);
+              });
+            }, 1000);
+          });
+
+        Cylon.start();
+

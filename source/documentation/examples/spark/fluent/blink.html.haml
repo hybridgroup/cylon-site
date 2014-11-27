@@ -1,0 +1,33 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Spark Core - Blink"
+page_title: "Example: Spark Core - Blink"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-spark/tree/master/examples/blink' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('spark', {
+            adaptor: 'spark',
+            accessToken: '[YOUR_ACCESS_TOKEN]',
+            deviceId: '[YOUR_DEVICE_ID]'
+          })
+
+          .device('led', { driver: 'led', pin: 'D7' })
+
+          .on('ready', function(my) {
+            setInterval(function() {
+              my.led.toggle();
+            }, 1000);
+          });
+
+        Cylon.start();
+

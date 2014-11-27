@@ -1,0 +1,27 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Button"
+page_title: "Example: Button"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/button' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('led', { driver: 'led', pin: 13 })
+          .device('button', { driver: 'button', pin: 2 })
+          .on('ready', function(bot) {
+            bot.button.on('push', function() {
+              bot.led.toggle();
+            });
+          });
+
+        Cylon.start();
+

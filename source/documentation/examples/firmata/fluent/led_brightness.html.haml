@@ -1,0 +1,32 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - LED Brightness"
+page_title: "Example: LED Brightness"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-firmata/tree/master/examples/led_brightness' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/ttyACM0' })
+          .device('led', { driver: 'led', pin: 3 })
+          .on('ready', function(bot) {
+            var brightness = 0,
+            fade = 5;
+
+            setInterval(function() {
+              brightness += fade;
+              bot.led.brightness(brightness);
+              if ((brightness === 0) || (brightness === 255)) { fade = -fade; }
+            }, 500);
+          });
+
+        Cylon.start();
+
