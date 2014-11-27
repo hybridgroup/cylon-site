@@ -15,7 +15,7 @@ page_title_show: true
         First, install
         =link_to "Node.js","http://nodejs.org/download/"
       %p
-        If you are on Linux, follow 
+        If you are on Linux, follow
         =link_to "these instructions", "https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager"
       %p
         If you already have Node.js installed, you can skip to the next step.
@@ -74,8 +74,13 @@ page_title_show: true
 
         Cylon.robot({
           // change the port below to match whatever your Arduino is actually plugged into
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          device: { name: 'led', driver: 'led', pin: 13 },
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 }
+          },
 
           work: function(my) {
             every((1).seconds(), function() {my.led.toggle()});
@@ -85,14 +90,14 @@ page_title_show: true
         Cylon.start();
 
   %p Please note that you might need to change the value for port.
-  %p 
+  %p
     On OSX or Linux, use
     %code cylon scan serial
     to find your connection info and serial port address:
     :markdown
             $ cylon scan serial
 
-  %p 
+  %p
     On Windows, follow the following procedure:
     %ul
       %li Go to the "Start" menu
@@ -116,11 +121,14 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-          devices: [
-            { name: 'led', driver: 'led', pin: 13 },
-            { name: 'makey', driver: 'makey-button', pin: 2 }
-          ],
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 },
+            makey: { driver: 'makey-button', pin: 2 }
+          },
 
           work: function(my) {
             my.makey.on('push', function() {
@@ -169,8 +177,13 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-          device: { name: 'sphero', driver: 'sphero' },
+          connections: {
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            sphero: { driver: 'sphero' }
+          },
 
           work: function(me) {
             every((1).second(), function() {
@@ -189,20 +202,22 @@ page_title_show: true
         var Cylon = require('cylon');
         var time = 0;
         var calibration = false;
-         
-         
+
+
         Cylon.robot({
-          connections: [
-            { name: 'arduino', adaptor: 'firmata', port: '/dev/ttyACM0' },
-            { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' }
-          ],
-          devices: [
-            { name: 'sphero', driver: 'sphero', connection: 'sphero' },
-            { name: 'forward', driver: 'makey-button', connection: 'arduino', pin: 2 },
-            { name: 'back', driver: 'makey-button', connection: 'arduino', pin: 3 },
-            { name: 'left', driver: 'makey-button', connection: 'arduino', pin: 4 },
-            { name: 'right', driver: 'makey-button', connection: 'arduino', pin: 5 }
-          ],
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            sphero:  { driver: 'sphero', connection: 'sphero' },
+            forward: { driver: 'makey-button', connection: 'arduino', pin: 2 },
+            back:    { driver: 'makey-button', connection: 'arduino', pin: 3 },
+            left:    { driver: 'makey-button', connection: 'arduino', pin: 4 },
+            right:   { driver: 'makey-button', connection: 'arduino', pin: 5 }
+          },
+
           checkCalibration: (function(_this) {
             return function(me) {
               if (calibration === true) {
@@ -214,7 +229,7 @@ page_title_show: true
           work: function(my) {
             my.checkCalibration(my);
             my.sphero.setBackLED(255);
-         
+
             my.forward.on('push', function() {
               console.log("forward");
               my.checkCalibration(my);
@@ -223,7 +238,7 @@ page_title_show: true
             my.forward.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.back.on('push', function() {
               console.log("back");
               my.checkCalibration(my);
@@ -232,7 +247,7 @@ page_title_show: true
             my.back.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.right.on('push', function() {
               console.log("right");
               var t = Date.now();
@@ -249,7 +264,7 @@ page_title_show: true
             my.right.on('release', function() {
               my.sphero.stop();
             });
-         
+
             my.left.on('push', function() {
               console.log("left");
               my.checkCalibration(my);
@@ -272,8 +287,13 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
-          device: { name: 'leapmotion', driver: 'leapmotion' },
+          connections: {
+            leapmotion: { adaptor: 'leapmotion', port: '127.0.0.1:6437' }
+          },
+
+          devices: {
+            leapmotion: { driver: 'leapmotion' }
+          },
 
           work: function(my) {
             my.leapmotion.on('connect', function() {
@@ -313,14 +333,16 @@ page_title_show: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connections: [
-            { name: 'leapmotion', adaptor: 'leapmotion', port: '127.0.0.1:6437' },
-            { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' }
-          ],
-          devices: [
-            { name: 'leapmotion', driver: 'leapmotion', connection: 'leapmotion' },
-            { name: 'sphero', driver: 'sphero', connection: 'sphero' }
-          ],
+          connections: {
+            leapmotion: { adaptor: 'leapmotion', port: '127.0.0.1:6437' },
+            sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+          },
+
+          devices: {
+            leapmotion: { driver: 'leapmotion', connection: 'leapmotion' },
+            sphero: { driver: 'sphero', connection: 'sphero' }
+          },
+
           work: function(my) {
             my.leapmotion.on('hand', function(hand) {
               var r = hand.palmY.fromScale(100, 600).toScale(0, 255) | 0;
