@@ -29,11 +29,16 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'},
-          devices: [{name: 'battery', driver: 'ble-battery-service'},
-                    {name: 'deviceInfo', driver: 'ble-device-information'},
-                    {name: 'generic', driver: 'ble-generic-access'},
-                    {name: 'ollie', driver: 'ollie'}],
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble' }
+          },
+
+          devices: {
+            battery: { driver: 'ble-battery-service' },
+            deviceInfo: { driver: 'ble-device-information' },
+            generic: { driver: 'ble-generic-access' },
+            ollie: { driver: 'ollie' }
+          },
 
           display: function(err, data) {
             if (err) {
@@ -66,7 +71,7 @@ subnavjs: true
 
                         after(1000, function(){
                           my.ollie.stop();
-                        });                
+                        });
                       });
                     });
                   });
@@ -85,8 +90,13 @@ subnavjs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'},
-          device: {name: 'ollie', driver: 'ollie'},
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble' }
+          },
+
+          devices: {
+            ollie: { driver: 'ollie' }
+          },
 
           work: function(my) {
             my.ollie.wake(function(err, data){
