@@ -1,2 +1,93 @@
 :markdown
   # Commands
+
+  ## wake
+
+  Wakes up the Ollie.
+
+  ##### Returns
+
+  `nil`
+
+  ## setTXPower
+
+  Sets the BLE transmit power. Higher transmit power uses more battery, but provides longer range.
+
+  ##### Params
+
+  - **level** -
+
+  ##### Returns
+
+  `nil`
+
+  ## SetRGB
+
+  Set the RGB color of the built-in LED.
+
+  ##### Params
+
+  - **color** - hex number (`0xFF1500`) or to set the Sphero to
+  - **persist** - boolean, whether or not the color should persist. Defaults to
+    `true`
+
+  ##### Returns
+
+  `nil`
+
+  ## roll
+
+  Roll the Ollie in a paticular speed and direction.
+
+  ##### Params
+
+  - **speed** -
+  - **heading** -
+  - **state** -
+
+
+  ##### Returns
+
+  `nil`
+
+  ## stop
+
+  Stops the Ollie from rolling.
+
+  ##### Returns
+
+  `nil`
+
+  ## setRawMotorValues
+
+  This allows you to take over one or both of the motor output values, instead of having the stabilization  system control them. Each motor (left and right) requires a mode (see below) and a power value from 0-255. This command will disable stabilization if both modes aren't "ignore" so you'll need to re-enable it via setStabilization() once you're done.
+
+  You can use the defined raw Motor* commands:
+  `MotorOff`,
+  `MotorForward`,
+  `MotorReverse`,
+  `MotorBrake` (motor is shorted),
+  `MotorIgnore` (motor mode and power is left unchanged).
+
+  ##### Params
+
+  - **leftMode** -
+  - **leftPower** -
+  - **rightMode** -
+  - **rightPower** -
+
+  ##### Returns
+
+  // `nil`
+
+  ## setStabilization
+
+  Enables/disables the auto-stabilization. Often used after setting raw motor commands.
+
+  ##### Params
+
+  - **enable** -
+
+  ##### Returns
+
+  // `nil`
