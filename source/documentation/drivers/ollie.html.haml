@@ -1,0 +1,122 @@
+---
+title: Cylon.js - Ollie Driver
+author: The Hybrid Group
+page_title: Drivers - Ollie
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Ollie
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/ollie.jpg", class: "display"
+  .info-intro
+    :markdown
+      Allows users to interact with the Ollie using Cylon.js.
+
+      For more information click [here](http://www.gosphero.com/ollie).
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'},
+          devices: [{name: 'battery', driver: 'ble-battery-service'},
+                    {name: 'deviceInfo', driver: 'ble-device-information'},
+                    {name: 'generic', driver: 'ble-generic-access'},
+                    {name: 'ollie', driver: 'ollie'}],
+
+          display: function(err, data) {
+            if (err) {
+              console.log("Error:", err);
+            } else {
+              console.log("Data:", data);
+            }
+          },
+
+          work: function(my) {
+            my.generic.getDeviceName(function(err, data){
+              my.display(err, data);
+              my.generic.getAppearance(function(err, data){
+                my.display(err, data);
+                my.deviceInfo.getManufacturerName(function(err, data){
+                  my.display(err, data);
+                  my.ollie.wake(function(err, data){
+                    console.log("wake");
+                    after(200, function() {
+                      console.log("color");
+                      my.ollie.setRGB(0x00FFFF);
+                    });
+                    after(500, function() {
+                      console.log("color");
+                      my.ollie.setRGB(0xFF0000);
+
+                      my.ollie.roll(60, 0, 1);
+                      after(1000, function(){
+                        my.ollie.roll(60, 90, 1);
+
+                        after(1000, function(){
+                          my.ollie.stop();
+                        });                
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          }
+        }).start();
+
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'},
+          device: {name: 'ollie', driver: 'ollie'},
+
+          work: function(my) {
+            my.ollie.wake(function(err, data){
+              console.log("wake");
+              after(200, function() {
+                my.ollie.setRGB(0x00FFFF);
+              });
+              after(500, function() {
+                my.ollie.setRGB(0xFF0000);
+
+                my.ollie.roll(60, 0, 1);
+                after(1000, function(){
+                  my.ollie.roll(60, 90, 1);
+
+                  after(1000, function(){
+                    my.ollie.stop();
+                  });
+                });
+              });
+            });
+          }
+
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/ollie/commands"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/ollie/events"
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Ollie" }
