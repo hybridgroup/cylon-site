@@ -1,0 +1,33 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - mpu6050"
+page_title: "Example: mpu6050"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup//tree/master/examples/mpu6050' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/tty.usbmodem1421' }
+          },
+
+          devices: {
+            mpu6050: { driver: 'mpu6050' }
+          },
+
+          work: function(my) {
+            every((1).seconds(), function() {
+              my.mpu6050.getMotionAndTemp(function(err, data) {
+                console.log(err, data);
+              });
+            });
+          }
+        }).start();
+

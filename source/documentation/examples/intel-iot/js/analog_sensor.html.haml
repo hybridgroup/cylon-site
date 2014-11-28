@@ -1,0 +1,41 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog_sensor"
+page_title: "Example: analog_sensor"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-intel-iot/tree/master/examples/analog_sensor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: 'intel-iot' }
+          },
+
+          devices: {
+            sensor: {
+              driver: 'analogSensor',
+              pin: 0,
+              upperLimit: 900,
+              lowerLimit: 100
+            }
+          },
+
+          work: function(my) {
+            my.sensor.on('upperLimit', function(val) {
+              console.log("Upper limit reached ===> " + val);
+            });
+
+            my.sensor.on('lowerLimit', function(val) {
+              console.log("Lower limit reached ===> " + val);
+            });
+          }
+
+        }).start();
+

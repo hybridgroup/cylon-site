@@ -1,0 +1,29 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - button"
+page_title: "Example: button"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-intel-iot/tree/master/examples/button' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('edison', { adaptor: 'intel-iot' })
+          .device('led', { driver: 'led', pin: 13 })
+          .device('button', { driver: 'button', pin: 2 })
+
+          .on('ready', function(bot) {
+            bot.button.on('push', function() {
+              bot.led.toggle();
+            });
+          });
+
+        Cylon.start();
+

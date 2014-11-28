@@ -1,0 +1,28 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - upm_hmc5883l"
+page_title: "Example: upm_hmc5883l"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-intel-iot/tree/master/examples/upm_hmc5883l' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('edison', { adaptor: 'intel-iot' })
+          .device('hmc5883l', { driver: 'upm-hmc5883l' })
+          .on('ready', function(bot) {
+            setInterval(function() {
+              bot.hmc5883l.update();
+              console.log("heading: " + bot.hmc5883l.heading());
+            }, 1000);
+          });
+
+        Cylon.start();
+

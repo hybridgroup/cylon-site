@@ -1,0 +1,30 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - lsm9ds0g"
+page_title: "Example: lsm9ds0g"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup//tree/master/examples/lsm9ds0g' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('arduino', { adaptor: 'firmata', port: '/dev/tty.usbmodem1421' })
+          .device('gyro', { driver: 'lsm9ds0g' })
+
+          .on('ready', function(bot) {
+            setInterval(function() {
+              bot.gyro.getGyro(function(err, data) {
+                console.log(data);
+              });
+            }, 1000);
+          });
+
+        Cylon.start();
+

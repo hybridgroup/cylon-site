@@ -1,0 +1,30 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - color"
+page_title: "Example: color"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-ollie/tree/master/examples/color' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('bluetooth', { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble' })
+          .device('ollie', { driver: 'ollie' })
+          .on('ready', function(bot) {
+
+            bot.ollie.wake(function(err, data) {
+              every((1).second(), function() {
+                bot.ollie.setRGB(Math.floor(Math.random() * 100000));
+              });
+            });
+          });
+
+        Cylon.start();
+

@@ -1,0 +1,48 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - roll"
+page_title: "Example: roll"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-ollie/tree/master/examples/roll' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'}
+          },
+
+          devices: {
+            ollie: { driver: 'ollie'}
+          },
+
+          work: function(my) {
+            my.ollie.wake(function(err, data){
+              console.log("wake");
+
+              after(200, function() {
+                my.ollie.setRGB(0x00FFFF);
+              });
+
+              after(500, function() {
+                my.ollie.setRGB(0xFF0000);
+                my.ollie.roll(60, 0, 1);
+
+                after(1000, function(){
+                  my.ollie.roll(60, 90, 1);
+
+                  after(1000, function(){
+                    my.ollie.stop();
+                  });
+                });
+              });
+            });
+          }
+        }).start();
+
