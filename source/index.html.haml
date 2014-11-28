@@ -78,7 +78,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
             %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
     .clear
 
-  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the cylon-gpio module:
+  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the `cylon-gpio` module:
 
   %ul.platform-list
     - data.drivers.GPIO.each do |name, url|
@@ -88,7 +88,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
     .clear
 
-  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the cylon-i2c module:
+  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the `cylon-i2c` module:
 
   %ul.platform-list
     - data.drivers.I2C.each do |name, url|
@@ -102,7 +102,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   :markdown
     ## Browser & Mobile Support
 
-    Cylon.js can be run directly in-browser, using the `browserify` NPM module. You can also run it from withing a Chrome connected app, or a PhoneGap mobile app.
+    Cylon.js can be run directly in-browser, using the `browserify` NPM module. You can also run it from within a Chrome connected app, or a PhoneGap mobile app.
 
     For more info on browser support, and for help with different configurations, you can find more info [in our docs](/documentation/guides/browser-support).
 
@@ -121,7 +121,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
     Then visit `https://localhost:3000/` and you are ready to control your robots from a web browser!
     <img src="http://cylonjs.com/images/screenshots/robeaux.png" style="margin-top: 15px; width: 100%">
 
-    You can check out more information on the Cylon API in the docs [here](/documentation/guides/api).
+    You can check out more information on the Cylon API in the docs [here](/documentation/core/api).
 
 %section#cli
   :markdown
