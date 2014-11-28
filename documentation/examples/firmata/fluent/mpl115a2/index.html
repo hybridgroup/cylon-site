@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="A Cylon.JS code example" name="description">
+    <meta content="A Cylon.JS fluentcode example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - temperature-sensor-fluebt-style</title>
+    <title>Cylon.JS Fluent Example - MPL115A2</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -248,29 +250,22 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/cu.usbmodem1451</span><span class="delimiter">'</span></span> },
-  <span class="comment">// For this example we are using TMP36 sensor</span>
-  <span class="key">device</span>:     { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span> },
-})
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">mpl115a2</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mpl115a2</span><span class="delimiter">'</span></span> })
+  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+    bot.mpl115a2.getTemperature(<span class="keyword">function</span>(err, data) {
+      <span class="keyword">var</span> temp = data[<span class="string"><span class="delimiter">'</span><span class="content">temperature</span><span class="delimiter">'</span></span>],
+      pressure = data[<span class="string"><span class="delimiter">'</span><span class="content">pressure</span><span class="delimiter">'</span></span>];
 
-.on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(robot) {
-  <span class="keyword">var</span> analogValue = <span class="integer">0</span>,
-  voltage = <span class="integer">0</span>,
-  temperature = <span class="integer">0</span>;
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">temperature </span><span class="delimiter">"</span></span> + temp  + <span class="string"><span class="delimiter">"</span><span class="content"> pressure </span><span class="delimiter">"</span></span> + pressure);
+    });
+  });
 
-  setInterval(<span class="keyword">function</span>() {
-    analogValue = robot.sensor.analogRead();
-    voltage     = (analogValue * <span class="float">5.0</span>) / <span class="integer">1024</span>;
-    temperature = (voltage - <span class="float">0.5</span>) * <span class="integer">100</span>;
-
-    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Current Temperature =&gt; </span><span class="delimiter">'</span></span>, temperature);
-  }, <span class="integer">5000</span>);
-})
-
-.start();
+Cylon.start();
 </pre>
             </div>
           </div>

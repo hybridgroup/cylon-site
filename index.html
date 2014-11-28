@@ -81,7 +81,7 @@
               JavaScript Robotics, By Your Command
             </h1>
             <h2 class="subtitle">
-              Next generation robotics framework with support for <a href="#platforms">31 different platforms</a>
+              Next generation robotics framework with support for <a href="#platforms">32 different platforms</a>
             </h2>
             <a href="/documentation/getting-started" class="call-to-action"> Get Started</a>
             <div class="social">
@@ -144,8 +144,13 @@
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
   <span class="comment">// Change the port to the correct port for your Arduino.</span>
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
@@ -268,6 +273,12 @@ $ node script.js
                 <a href="/documentation/platforms/neurosky">
                   <p class="title">Neurosky</p>
                   <img src="/images/devices/neurosky.jpg" style="width: 90%">
+                </a>
+              </li>
+              <li class="platform">
+                <a href="/documentation/platforms/ollie">
+                  <p class="title">Ollie</p>
+                  <img src="/images/devices/ollie.jpg" style="width: 90%">
                 </a>
               </li>
               <li class="platform">

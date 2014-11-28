@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -257,215 +259,191 @@
             <p>Next up, we'll configure the API Cylon will serve, telling it to serve on port
             <code>8080</code>.</p>
             
-            <pre class="CodeRay">Cylon.config({
-  <span class="key">api</span>: { <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> }
-});
-
-Cylon.api();
-</pre>
-            
-            <p>We'll also setup a convenince function for some binding we'll need to do later:</p>
-            
-            <pre class="CodeRay"><span class="keyword">var</span> <span class="function">bind</span> = <span class="keyword">function</span>(fn, me) {
-  <span class="keyword">return</span> <span class="keyword">function</span>() { <span class="keyword">return</span> fn.apply(me, <span class="local-variable">arguments</span>); };
-};
+            <pre class="CodeRay">Cylon.api({ <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> });
 </pre>
             
             <p>Now that we have Cylon imported, we can start defining our Pebble robot:</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> PebbleRobot = (<span class="keyword">function</span>() {
+            <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
 </pre>
             
             <p>Let's define the connections and devices:</p>
             
-            <pre class="CodeRay">  PebbleRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> };
-  PebbleRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> };
+            <pre class="CodeRay">  connections: {
+    <span class="key">pebble</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+  },
 
-  PebbleRobot.prototype.<span class="function">message</span> = <span class="keyword">function</span>(robot, msg) {
-    robot.message_queue().push(msg);
-  };
+  <span class="key">devices</span>: {
+    <span class="key">pebble</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>Now that Cylon knows about the necessary hardware we're going to be using, we'll
             tell it what work we want to do:</p>
             
-            <pre class="CodeRay">  PebbleRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    me.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() { console.log(<span class="string"><span class="delimiter">"</span><span class="content">Connected!</span><span class="delimiter">"</span></span>); });
-  };
+            <pre class="CodeRay">  <span class="function">message</span>: <span class="keyword">function</span>(msg) {
+    <span class="local-variable">this</span>.message_queue().push(msg);
+  },
 
-  <span class="keyword">return</span> PebbleRobot;
-
-})();
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Pebble connected</span><span class="delimiter">'</span></span>);
+  }
+});
 </pre>
             
             <p>Next, let's define our SalesForce robot:</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> SalesforceRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">SalesforceRobot</span>() {}
+            <pre class="CodeRay">Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>,
 </pre>
             
             <p>Let's define the connections and devices:</p>
             
-            <pre class="CodeRay">  SalesforceRobot.prototype.connection = {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
-    <span class="key">sfuser</span>: process.env.SF_USERNAME,
-    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
-    <span class="key">orgCreds</span>: {
-      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
-      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+            <pre class="CodeRay">  connections: {
+    <span class="key">sfcon</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">sfuser</span>: process.env.SF_USERNAME,
+      <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
+      <span class="key">orgCreds</span>: {
+        <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
+        <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
+        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+      }
     }
-  };
+  },
 
-  SalesforceRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> };
-
-  SalesforceRobot.prototype.spheroReport = {};
+  <span class="key">devices</span>: {
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>Tell it what work we want to do:</p>
             
-            <pre class="CodeRay">  SalesforceRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    me.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">var</span> bucks, key, msg, name, toPebble, val, _ref;
+            <pre class="CodeRay">  spheroReport: {},
 
-        name = data.sobject.Sphero_Name__c;
-        bucks = data.sobject.Bucks__c;
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+        <span class="keyword">var</span> toPebble = <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
+            name = data.sobject.Sphero_Name__c,
+            bucks = data.sobject.Bucks__c;
 
-        msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + name + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
+        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + name + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">data Bucks: </span><span class="delimiter">"</span></span> + bucks + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
 
         console.log(msg);
 
-        <span class="keyword">var</span> spheroBot = Cylon.robots[name];
-        spheroBot.react(spheroBot.devices.sphero);
+        <span class="keyword">var</span> sphero = Cylon.robots[name];
+        sphero.react();
 
-        me.spheroReport[name] = bucks;
-        toPebble = <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>;
+        my.spheroReport[name] = bucks;
 
-        _ref = me.spheroReport;
-
-        <span class="keyword">for</span> (key <span class="keyword">in</span> _ref) {
-          val = _ref[key];
-          toPebble += <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + key + <span class="string"><span class="delimiter">"</span><span class="content">: $</span><span class="delimiter">"</span></span> + val + <span class="string"><span class="delimiter">"</span><span class="char">\n</span><span class="delimiter">"</span></span>;
+        <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> my.spheroReport) {
+          <span class="keyword">var</span> val = my.spheroReport[key];
+          toPebble += key + <span class="string"><span class="delimiter">"</span><span class="content">: $</span><span class="delimiter">"</span></span> + val + <span class="string"><span class="delimiter">"</span><span class="char">\n</span><span class="delimiter">"</span></span>;
         }
 
-        <span class="keyword">var</span> pebbleBot = Cylon.robots[<span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>];
-        pebbleBot.message(pebbleBot.devices.pebble, toPebble);
+        <span class="keyword">var</span> pebble = Cylon.robots.pebble;
+        pebble.message(toPebble);
       });
     });
-  };
-
-  <span class="keyword">return</span> SalesforceRobot;
-
-})();
+  }
+});
 </pre>
             
-            <p>Now, Let's define our Sphero robot</p>
+            <p>Now, Let's define our Sphero robots:</p>
             
-            <pre class="CodeRay"><span class="keyword">var</span> SpheroRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">SpheroRobot</span>() {}
-
-  SpheroRobot.prototype.totalBucks = <span class="integer">1</span>;
-
-  SpheroRobot.prototype.payingPower = <span class="predefined-constant">true</span>;
-
-  SpheroRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-  SpheroRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-
-  SpheroRobot.prototype.<span class="function">react</span> = <span class="keyword">function</span>(device) {
-    device.setRGB(<span class="hex">0x00FF00</span>);
-    device.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-    <span class="local-variable">this</span>.payingPower = <span class="predefined-constant">true</span>;
-  };
-
-  SpheroRobot.prototype.<span class="function">bankrupt</span> = <span class="keyword">function</span>() {
-    <span class="keyword">var</span> _this = <span class="local-variable">this</span>;
-    every(<span class="integer">3</span>..seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (_this.payingPower &amp;&amp; _this.totalBucks &gt; <span class="integer">0</span>) {
-        _this.totalBucks += -<span class="integer">1</span>;
-        <span class="keyword">if</span> (_this.totalBucks === <span class="integer">0</span>) {
-          _this.sphero.setRGB(<span class="hex">0xFF000</span>);
-          _this.sphero.stop();
-        }
-      }
-    });
-  };
-
-  SpheroRobot.prototype.<span class="function">changeDirection</span> = <span class="keyword">function</span>() {
-    <span class="keyword">var</span> _this = <span class="local-variable">this</span>;
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (_this.payingPower) {
-        _this.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-      }
-    });
-  };
-</pre>
-            
-            <p>Tell it what work we want to do:</p>
-            
-            <pre class="CodeRay">  SpheroRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(me) {
-    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">'</span></span>);
-      me.sphero.detectCollisions();
-      me.sphero.stop();
-      me.sphero.setRGB(<span class="hex">0x00FF00</span>);
-      me.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-      me.bankrupt();
-      me.changeDirection();
-    });
-
-    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      me.sphero.setRGB(<span class="hex">0x0000FF</span>);
-      me.sphero.stop();
-      me.payingPower = <span class="predefined-constant">false</span>;
-
-      data = JSON.stringify({
-        <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + me.name,
-        <span class="key">bucks</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + (me.totalBucks++)
-      });
-
-      <span class="keyword">var</span> sf = Cylon.robots[<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>];
-      sf.devices.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">SpheroController</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">POST</span><span class="delimiter">"</span></span>, data);
-    });
-  };
-
-  <span class="keyword">return</span> SpheroRobot;
-
-})();
-</pre>
-            
-            <p>Now that we've defined all of our bots, let's tell Cylon about them:</p>
-            
-            <pre class="CodeRay"><span class="keyword">var</span> salesforceRobot = <span class="keyword">new</span> SalesforceRobot();
-salesforceRobot.name = <span class="string"><span class="delimiter">"</span><span class="content">salesforce</span><span class="delimiter">"</span></span>;
-Cylon.robot(salesforceRobot);
-
-<span class="keyword">var</span> pebbleRobot = <span class="keyword">new</span> PebbleRobot();
-pebbleRobot.name = <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>;
-Cylon.robot(pebbleRobot);
-
-<span class="keyword">var</span> bots = [
+            <pre class="CodeRay"><span class="keyword">var</span> bots = [
   { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.Sphero-ROY-AMP-SPP</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ROY</span><span class="delimiter">'</span></span> },
   { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.Sphero-GBO-AMP-SPP</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">GBO</span><span class="delimiter">'</span></span> },
   { <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.Sphero-RRY-AMP-SPP</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">RRY</span><span class="delimiter">'</span></span> }
 ];
 
-<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> SpheroRobot;
+bots.forEach(<span class="keyword">function</span>(bot) {
+  Cylon.robot({
+    <span class="key">name</span>: bot.name,
 
-  robot.connection.port = bot.port;
-  robot.name = bot.name;
+    <span class="key">connections</span>: {
+      <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: bot.port }
+    },
 
-  Cylon.robot(robot);
-}
+    <span class="key">devices</span>: {
+      <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    },
+
+    <span class="key">totalBucks</span>: <span class="integer">1</span>,
+    <span class="key">payingPower</span>: <span class="predefined-constant">true</span>,
 </pre>
             
-            <p>Now that Cylon knows about all our robots, and what they'll be doing, we can
-            start:</p>
+            <p>Tell them what work we want to do:</p>
+            
+            <pre class="CodeRay">    <span class="function">react</span>: <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.sphero.setRGB(<span class="hex">0x00FF00</span>);
+      <span class="local-variable">this</span>.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+
+      <span class="local-variable">this</span>.payingPower = <span class="predefined-constant">true</span>;
+    },
+
+    <span class="function">bankrupt</span>: <span class="keyword">function</span>() {
+      <span class="keyword">var</span> my = <span class="local-variable">this</span>;
+
+      every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (my.payingPower &amp;&amp; my.totalBucks &gt; <span class="integer">0</span>) {
+          my.totalBucks += -<span class="integer">1</span>;
+
+          <span class="keyword">if</span> (my.totalBucks === <span class="integer">0</span>) {
+            my.sphero.setRGB(<span class="hex">0xFF000</span>);
+            my.sphero.stop();
+          }
+        }
+      });
+    },
+
+    <span class="function">changeDirection</span>: <span class="keyword">function</span>() {
+      <span class="keyword">var</span> my = <span class="local-variable">this</span>;
+
+      every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
+        <span class="keyword">if</span> (my.payingPower) {
+          my.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+        }
+      });
+    },
+
+    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up collision detection for </span><span class="delimiter">"</span></span> + my.name);
+
+      my.sphero.detectCollisions();
+
+      my.sphero.stop();
+
+      my.sphero.setRGB(<span class="hex">0x00FF00</span>);
+
+      my.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+
+      my.bankrupt();
+      my.changeDirection();
+
+      my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+        my.sphero.setRGB(<span class="hex">0x0000FF</span>);
+        my.sphero.stop();
+        my.payingPower = <span class="predefined-constant">false</span>;
+
+        <span class="keyword">var</span> data = JSON.stringify({
+          <span class="key">spheroName</span>: my.name,
+          <span class="key">bucks</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + (my.totalBucks++)
+        });
+
+        <span class="keyword">var</span> sf = Cylon.robots[<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>];
+        sf.devices.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">SpheroController</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">POST</span><span class="delimiter">"</span></span>, data);
+      });
+    }
+  });
+});
+</pre>
+            
+            <p>Now that Cylon knows about all our robots, and what they'll be doing, we can start:</p>
             
             <pre class="CodeRay">Cylon.start();
 </pre>

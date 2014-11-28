@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -261,28 +263,31 @@
             
             <p>Let's define the connections and devices:</p>
             
-            <pre class="CodeRay">  connection: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
-    <span class="key">sfuser</span>: process.env.SF_USERNAME,
-    <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
-    <span class="key">orgCreds</span>: {
-      <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
-      <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-      <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+            <pre class="CodeRay">  connections: {
+    <span class="key">sfcon</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">sfuser</span>: process.env.SF_USERNAME,
+      <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
+      <span class="key">orgCreds</span>: {
+        <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
+        <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
+        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+      }
     }
   },
 
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: {
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>Now that Cylon knows about the necessary hardware we're going to be using, we'll
             tell it what work we want to do:</p>
             
-            <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(me) {
-    me.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
+            <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Namy__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">Bucks: </span><span class="delimiter">"</span></span> + data.sobject.Bucks__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
 
@@ -294,11 +299,11 @@
 
     every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
       <span class="keyword">var</span> data = JSON.stringify({
-        <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + me.name,
+        <span class="key">spheroNamy</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + my.namy,
         <span class="key">bucks</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + i
       });
 
-      me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, data);
+      my.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, data);
     });
   }
 </pre>

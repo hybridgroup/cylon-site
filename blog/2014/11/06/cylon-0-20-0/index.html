@@ -154,13 +154,16 @@ Cylon.config({
               <pre class="CodeRay">Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">testbot</span><span class="delimiter">'</span></span>,
 
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">myspark</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">myspark</span><span class="delimiter">'</span></span>,
-    <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+  <span class="key">connections</span>: {
+    <span class="key">myspark</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">myspark</span><span class="delimiter">'</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+    }
   },
 
-  <span class="key">devices</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-gpio</span><span class="delimiter">'</span></span> },
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-gpio</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>() {
   }
@@ -249,8 +252,10 @@ module.exports = {
             <li>
               <p><strong><code>extraParams</code> removal:</strong> - all params passed in the connection/device configuration objects are now kept there, instead of put into <code>extraParams</code>.</p>
           
-              <pre class="CodeRay"><span class="comment">// for the connection hash:</span>
-connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">accountToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_ACCOUNT_TOKEN</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_DEVICE_ID</span><span class="delimiter">'</span></span> }
+              <pre class="CodeRay"><span class="comment">// for the connections hash:</span>
+connections: {
+  <span class="key">spark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">accountToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_ACCOUNT_TOKEN</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_DEVICE_ID</span><span class="delimiter">'</span></span> }
+}
 
 <span class="comment">// Cylon 0.19.0 - Spark adaptor constructor:</span>
 opts.extraParams.accountToken <span class="comment">// =&gt; 'YOUR_ACCOUNT_TOKEN'</span>
@@ -316,6 +321,7 @@ opts.accountToken <span class="comment">// =&gt; 'YOUR_ACCOUNT_TOKEN'</span>
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>
               <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>
               <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
               <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>

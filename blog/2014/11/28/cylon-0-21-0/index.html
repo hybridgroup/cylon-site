@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="Andrew Stewart" name="author">
+    <title>Cylon 0.21.0 is out!</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="page-title">
+        <div class="container">
+          <h1 class="title">Blog</h1>
+        </div>
+      </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <header class="header">
+            <div class="dates">
+              <div class="date-top">
+                <div class="month">
+                  Nov
+                </div>
+                <div class="day">
+                  28
+                </div>
+              </div>
+              <div class="date-bottom">
+                <div class="year">
+                  2014
+                </div>
+              </div>
+            </div>
+            <h3 class="article-title">
+              <a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a>
+              <br>
+            </h3>
+            <div class="author">
+              by Andrew Stewart
+            </div>
+          </header>
+          <p>Just in time for <a href="http://robotsconf.com">RobotsConf</a>, we've released Cylon 0.21.0!</p>
+          
+          <p>This release focuses on stability and simplifying some long-standing architecture concerns.</p>
+          
+          <h2 id="updates-for-application-developers">Updates For Application Developers</h2>
+          
+          <ul>
+            <li>
+              <p><strong>New <code>connections/devices</code> syntax:</strong> - we've updated the syntax for how multiple devices or connections are specified in Cylon.js.
+          This new object-based syntax makes it more straightforward to specify many connections or devices.
+          The existing array syntax, as well as the single-object <code>device/connection</code> syntax, is deprecated, and will be removed in 1.0.0.
+          Here's a comparison of the two:</p>
+          
+              <pre class="CodeRay"><span class="comment">// previous syntax, now deprecated:</span>
+Cylon.robot({
+  <span class="key">connections</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leap</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
+  ],
+
+  <span class="key">devices</span>: [
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
+    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
+  ]
+});
+
+<span class="comment">// new object-based syntax:</span>
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
+    <span class="key">leap</span>:    { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>:    { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,    <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
+    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>,  <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
+  }
+});
+</pre>
+            </li>
+            <li>
+              <p><strong>Fluent syntax updates</strong> - we've updated our fluent JS syntax a bit, adding <code>#device</code> and <code>#connection</code> methods to help make it easier to set up robots.
+          Here's a comparison:</p>
+          
+              <pre class="CodeRay"><span class="comment">// declarative syntax:</span>
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), my.led.toggle);
+  }
+}).start();
+
+<span class="comment">// fluent syntax</span>
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> })
+  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+    setInterval(bot.led.toggle, <span class="integer">1000</span>);
+  });
+
+Cylon.start();
+</pre>
+            </li>
+          </ul>
+          
+          <h2 id="updates-for-platform-developers">Updates For Platform Developers</h2>
+          
+          <ul>
+            <li>
+              <p><strong>No more Connection/Device class:</strong> - Cylon's internal 'Connection' and 'Device' classes are no more.
+          Now, when a user adds a Connection or Device to their robot, they're getting a direct instance of an Adaptor/Driver.
+          For the most part, this shouldn't result in issues, but if you're doing manual method proxying you may have issues.
+          These are the requisite changes to sub-modules:</p>
+          
+              <ul>
+                <li>in Adaptor subclasses, instead of referencing <code>this.connection</code>, just reference <code>this</code>.</li>
+                <li>in Driver subclasses, instead of referencing <code>this.device</code>, just reference <code>this</code>.</li>
+                <li>in Driver subclasses, <code>this.connection</code> is now an Adaptor instance, not a Connection instance.</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <h2 id="ollie-up-at-robotsconf">Ollie Up at RobotsConf!</h2>
+          
+          <p>Every Cylon.js release adds some new hardware support, and this time we've added <a href="https://github.com/hybridgroup/cylon-ollie">cylon-ollie</a> with early support for the new <a href="http://www.gosphero.com/ollie/">Ollie</a> robot from our friends at Orbotix. We're bringing some to <a href="http://robotsconf.com">RobotsConf</a> for people to play with.</p>
+          
+          <p>Look for our "preview" blog post about RobotsConf coming next week…</p>
+          
+          <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+          <div class="comments">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+              <a class="addthis_button_preferred_2"></a>
+              <a class="addthis_button_preferred_3"></a>
+              <a class="addthis_button_preferred_1"></a>
+              <a class="addthis_button_preferred_4"></a>
+              <a class="addthis_button_compact"></a>
+              <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <div id="disqus_thread"></div>
+            <noscript>
+              Please enable JavaScript to view the
+              <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <a class="dsq-brlink" href="http://disqus.com">
+              comments powered by
+              <span class="logo-disqus">Disqus</span>
+            </a>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>
+              <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>
+              <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
+              <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
+              <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
+              <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
+              <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
+              <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
+              <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+              <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
+              <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+              <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
+              <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+              <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
+              <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
+              <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
+              <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
+              <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
+              <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
+              <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
+              <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
+              <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
+              <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
+              <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
+              <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
+              <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
+              <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
+              <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
+              <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
+              <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
+              <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
+              <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
+              <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
+              <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/javascripts/disqus.js"></script>
+  <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53632dea5fd71564" type="text/javascript"></script>
+</html>

@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -248,72 +250,38 @@
           <div class="container-documentation">
             
             <section class="dreamforce">
-              <h2>Connect Salesforce to Intel Edison In 60 Lines Of JavaScript</h2>
-              <p>Welcome! In this workshop, we're going to show you how to create a Salesforce connected device, using the brand new Intel Edison, in 60 lines of JavaScript. Plus we're going to have some fun too.</p>
+              <h2 id="connect-salesforce-to-intel-edison-in-60-lines-of-javascript">Connect Salesforce to Intel Edison In 60 Lines Of JavaScript</h2>
+              
+              <p>Welcome!
+              In this workshop, we're going to show you how to create a Salesforce connected device, using the brand new Intel Edison, in 60 lines of JavaScript.
+              Plus we're going to have some fun too.</p>
             </section>
             <section class="dreamforce">
-              <h2>Getting Started</h2>
+              <h2 id="getting-started">Getting Started</h2>
+              
               <ul>
-                <li>
-                  <p>
-                    We have provided an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    We have already plugged in each Intel Edison to the workshop computers, so they are ready for you to use.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    The computers in the workshop area also already have pre-installed the Intel XDK (Cross-platform Developer Kit) IoT Edition, and the needed drivers for Microsoft Windows.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Get started by running the "Intel XDK IoT Edition" program.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    That's it, now you are ready to get going!
-                  </p>
-                </li>
+                <li>We have provided an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.</li>
+                <li>We have already plugged in each Intel Edison to the workshop computers, so they are ready for you to use.</li>
+                <li>The computers in the workshop area also already have pre-installed the Intel XDK (Cross-platform Developer Kit) IoT Edition, and the needed drivers for Microsoft Windows.</li>
+                <li>Get started by running the "Intel XDK IoT Edition" program.</li>
+                <li>The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.</li>
+                <li>That's it, now you are ready to get going!</li>
               </ul>
             </section>
             <section class="dreamforce">
-              <h2>Create A Blank Project</h2>
+              <h2 id="create-a-blank-project">Create a Blank Project</h2>
+              
               <ul>
+                <li>First, we need to create a new project. Choose "New Project".</li>
+                <li>Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.</li>
+                <li>Click on "Blank Template", and then click on "Use This Template".</li>
+                <li>Enter in a name for this project, such as "df14", then click on the "Create" button.</li>
                 <li>
-                  <p>
-                    First, we need to create a new project. Choose "New Project".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Click on "Blank Template", and then click on "Use This Template".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Enter in a name for this project, such as "df14", then click on the "Create" button.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Click on the file named "package.json". The file will open in the XDK editor. Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:
-                  </p>
-                  <h3>package.json</h3>
+                  <p>Click on the file named "package.json".
+              The file will open in the XDK editor.
+              Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:</p>
+              
+                  <h3 id="packagejson">package.json</h3>
                   <pre class="CodeRay">{
   <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">blankapp</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">description</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
@@ -328,67 +296,73 @@
 }
 </pre>
                 </li>
-                <li>
-                  <p>
-                    You will need to connect to your Edison board from your computer to send code to it. Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right. Enter "192.168.2.15" for the Address, and "58888" for the Port. Click on the "Connect" button to save your connection.
-                  </p>
-                </li>
+                <li>You will need to connect to your Edison board from your computer to send code to it.
+              Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right.
+              Enter "192.168.2.15" for the Address, and "58888" for the Port.
+              Click on the "Connect" button to save your connection.</li>
               </ul>
             </section>
             <section class="dreamforce">
-              <h2>Blinking LED</h2>
+              <h2 id="blinking-led">Blinking LED</h2>
+              
               <p>Let's start with the 'Hello, World' of the Internet of Things: making an LED blink.</p>
+              
               <ul>
                 <li>
-                  <p>Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:</p>
-                  <img alt="Plug the LED" src="/images/tutorials/df14/led.jpg">
+                  <p>Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:
+              <img src="/images/tutorials/df14/led.jpg" alt="Plug the LED"></p>
                 </li>
                 <li>
                   <p>Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:</p>
-                  <h3>main.js</h3>
-                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              
+                  <h3 id="mainjs">main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> }
-})
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
   .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
     setInterval(<span class="keyword">function</span>() {
       my.led.toggle();
     }, <span class="integer">1000</span>);
-  })
-  .start();
+  });
+
+Cylon.start();
 </pre>
                 </li>
                 <li>
-                  <p>Click on the "Install/Build" icon located at the bottom of the XDK editor. This will install the needed Cylon.js software on the Edison, as well as copying your code.</p>
+                  <p>Click on the "Install/Build" icon located at the bottom of the XDK editor.
+              This will install the needed Cylon.js software on the Edison, as well as copying your code.</p>
                 </li>
                 <li>
                   <p>Now, click on the "Run" icon located at the bottom of the XDK editor.</p>
                 </li>
               </ul>
+              
               <p>The Cylon.js program will execute on the Edison itself, and will make the LED turn on/off every second.</p>
             </section>
             <section class="dreamforce">
-              <h2>LED + Touch Sensor</h2>
+              <h2 id="led--touch-sensor">LED + Touch Sensor</h2>
               <p>Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.</p>
+              
               <ul>
                 <li>
                   <p>Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:</p>
-                  <img alt="Touch Example" src="/images/tutorials/df14/touch.jpg">
+              
+                  <p><img src="/images/tutorials/df14/touch.jpg" alt="Touch Example"></p>
                 </li>
                 <li>
                   <p>Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:</p>
-                  <h3>main.js</h3>
-                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              
+                  <h3 id="mainjs">main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">touch</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-  ]
-})
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">touch</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
   .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
     my.touch.on(<span class="string"><span class="delimiter">'</span><span class="content">press</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.led.turnOn();
@@ -397,42 +371,46 @@ cylon.robot({
     my.touch.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.led.turnOff();
     });
-  })
-  .start();
+  });
+
+Cylon.start();
 </pre>
                 </li>
                 <li>
                   <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
                 </li>
               </ul>
+              
               <p>Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.</p>
             </section>
             <section class="dreamforce">
-              <h2>Salesforce + LED + Touch Sensor</h2>
-              <p>Now, we're ready to connect our device to Salesforce. Leave the touch sensor and LED plugged in. All we will need is to change the CYlon.js program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
+              <h2 id="salesforce--led--touch-sensor">Salesforce + LED + Touch Sensor</h2>
+              
+              <p>Now, we're ready to connect our device to Salesforce.
+              Leave the touch sensor and LED plugged in.
+              All we will need is to change the Cylon.js program to connect our device to the Salesforce Apex &amp; Streaming APIs.</p>
+              
               <ul>
                 <li>
                   <p>Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:</p>
-                  <h3>main.js</h3>
-                  <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              
+                  <h3 id="mainjs">main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 <span class="keyword">var</span> robotName = <span class="string"><span class="delimiter">'</span><span class="content">cylon01</span><span class="delimiter">'</span></span>;
 <span class="keyword">var</span> username = <span class="string"><span class="delimiter">'</span><span class="content">user</span><span class="delimiter">'</span></span>;
 <span class="keyword">var</span> password = <span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>;
 <span class="comment">// Paste Cylon.js robot code below this line</span>
 
-cylon.robot({
-  <span class="key">name</span>: robotName,
-  <span class="key">connections</span>: {
-    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-    <span class="key">sfcon</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password}
-  },
+Cylon
+  .robot({ <span class="key">name</span>: robotName })
 
-  <span class="key">device</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> },
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">touch</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-  }
-})
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password })
+
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">touch</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+
   .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
     my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">BoardMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, data) {
       <span class="keyword">if</span> (err != <span class="predefined-constant">null</span>) {
@@ -451,6 +429,7 @@ cylon.robot({
         <span class="key">boardId</span>: my.name,
         <span class="key">touchSensor</span>: <span class="predefined-constant">true</span>
       };
+
       my.salesforce.post(<span class="string"><span class="delimiter">'</span><span class="content">/Boards/</span><span class="delimiter">'</span></span>, toSend, <span class="keyword">function</span>(err, data) {
         <span class="keyword">if</span> (err != <span class="predefined-constant">null</span>) {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error sending touch sensor information: </span><span class="delimiter">"</span></span> + err);
@@ -473,8 +452,8 @@ cylon.robot({
         }
       });
     });
-  })
-  .start();
+  });
+Cylon.start();
 </pre>
                 </li>
                 <li>
@@ -485,7 +464,8 @@ cylon.robot({
                 </li>
                 <li>
                   <p>You will need to add the "cylon-force" module to your "package.json" as well. Replace the entire file's contents with this code:</p>
-                  <h3>package.json</h3>
+              
+                  <h3 id="packagejson">package.json</h3>
                   <pre class="CodeRay">{
   <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">blankapp</span><span class="delimiter">"</span></span>,
   <span class="key"><span class="delimiter">"</span><span class="content">description</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>,
@@ -505,33 +485,37 @@ cylon.robot({
                   <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
                 </li>
               </ul>
+              
               <p>Once the program is running, now when you press the sensor, it communcates with the Salesforce cloud, and then turns the LED on or off, when the Salesforce API sends an update to the device.</p>
             </section>
             <section class="dreamforce">
-              <h2>Salesforce + LED + Touch Sensor + Analog Sensor</h2>
-              <p>Now, let's add an 'analog sensor'. An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.</p>
+              <h2 id="salesforce--led--touch-sensor--analog-sensor">Salesforce + LED + Touch Sensor + Analog Sensor</h2>
+              
+              <p>Now, let's add an 'analog sensor'.
+              An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.</p>
+              
               <ul>
                 <li>
                   <p>Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:</p>
-                  <img alt="Dial it in" src="/images/tutorials/df14/dial.jpg">
+              
+                  <p><img src="/images/tutorials/df14/dial.jpg" alt="Dial it in"></p>
                 </li>
                 <li>
-                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from before.</p>
-                  <h3>JavaScript</h3>
-                  <pre class="CodeRay">cylon.robot({
-  <span class="key">name</span>: robotName,
-  <span class="key">connections</span>: {
-    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-    <span class="key">sfcon</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password}
-  },
+                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line".
+              Please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from before.</p>
+              
+                  <h3 id="javascript">JavaScript</h3>
+                  <pre class="CodeRay">Cylon
+  .robot({ <span class="key">name</span>: robotName })
 
-  <span class="key">device</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> },
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">touch</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">sensor</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> }
-  }
-})
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password })
+
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">touch</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+
   .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> ready = <span class="predefined-constant">false</span>;
     <span class="keyword">var</span> sensorVal = <span class="integer">0</span>;
@@ -607,41 +591,42 @@ cylon.robot({
                   <p>Click on the "Run" icon located at the bottom of the XDK editor.</p>
                 </li>
               </ul>
+              
               <p>Once the program is running, when you touch the touch sensor from before, you can adjust the value by turning the dial to send a new value to Salesforce every 2 seconds. Both data sources are going thru Salesforce!</p>
             </section>
             <section class="dreamforce">
-              <h2>Salesforce + LED + Button + Analog Sensor + LCD Display</h2>
+              <h2 id="salesforce--led--button--analog-sensor--lcd-display">Salesforce + LED + Button + Analog Sensor + LCD Display</h2>
+              
               <p>Finally, let's add a backlit LCD display, so we can display some useful data on the device itself.</p>
+              
               <ul>
                 <li>
                   <p>Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:</p>
-                  <img alt="LCD Display" src="/images/tutorials/df14/lcd.jpg">
+              
+                  <p><img src="/images/tutorials/df14/lcd.jpg" alt="LCD Display"></p>
                 </li>
                 <li>
-                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line". Once again, please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from earlier.</p>
-                </li>
-              </ul>
-              <h3>main.js</h3>
-              <pre class="CodeRay"><span class="keyword">function</span> <span class="function">writeToScreen</span>(screen, message) {
+                  <p>Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line".
+              Once again, please note that you need to replace the previous code below this comment, while leaving in the "robotName", "username", and "password" values from earlier.</p>
+              
+                  <h3 id="mainjs">main.js</h3>
+                  <pre class="CodeRay"><span class="keyword">function</span> <span class="function">writeToScreen</span>(screen, message) {
   screen.setCursor(<span class="integer">0</span>,<span class="integer">0</span>);
   screen.write(message);
 }
 
-cylon.robot({
-  <span class="key">name</span>: robotName,
-  <span class="key">connections</span>: {
-    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> },
-    <span class="key">sfcon</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password}
-  },
+Cylon
+  .robot({ <span class="key">name</span>: robotName })
 
-  <span class="key">device</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> },
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">touch</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">sensor</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
-    <span class="key">screen</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">upm-jhd1313m1</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> }
-  }
-})
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">sfuser</span>: username, <span class="key">sfpass</span>: password})
+
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">4</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">touch</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">screen</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">upm-jhd1313m1</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> })
+
   .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> ready = <span class="predefined-constant">false</span>;
     <span class="keyword">var</span> sensorVal = <span class="integer">0</span>;
@@ -718,12 +703,17 @@ cylon.robot({
   })
   .start();
 </pre>
+                </li>
+              </ul>
               
               <p>Once the program is running, the values that you change by moving the dial, will be displayed on the LCD display. As before, you must be touching the touch sensor, in order to move the dial.</p>
             </section>
             <section class="dreamforce">
-              <h2>Wrap Up</h2>
-              <p>That concludes this workshop. You've just connected the Intel Edison to 4 different devices and the Salesforce Apex &amp; Streaming APIs. Great job!</p>
+              <h2 id="wrap-up">Wrap Up</h2>
+              
+              <p>That concludes this workshop.
+              You've just connected the Intel Edison to 4 different devices and the Salesforce Apex &amp; Streaming APIs.
+              Great job!</p>
             </section>
           </div>
         </div>

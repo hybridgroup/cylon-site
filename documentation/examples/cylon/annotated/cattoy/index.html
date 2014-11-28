@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -277,17 +279,17 @@
             tell it what work we want to do:</p>
             
             <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my[<span class="string"><span class="delimiter">'</span><span class="content">x</span><span class="delimiter">'</span></span>] = <span class="integer">90</span>;
-    my[<span class="string"><span class="delimiter">'</span><span class="content">z</span><span class="delimiter">'</span></span>] = <span class="integer">90</span>;
+    my.x = <span class="integer">90</span>;
+    my.z = <span class="integer">90</span>;
 
     my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
-      my[<span class="string"><span class="delimiter">'</span><span class="content">x</span><span class="delimiter">'</span></span>] = hand.palmX.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
-      my[<span class="string"><span class="delimiter">'</span><span class="content">z</span><span class="delimiter">'</span></span>] = hand.palmZ.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
+      my.x = hand.palmX.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
+      my.z = hand.palmZ.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
     });
 
     every(<span class="integer">100</span>, <span class="keyword">function</span>() {
-      my.servo1.angle(my[<span class="string"><span class="delimiter">'</span><span class="content">x</span><span class="delimiter">'</span></span>]);
-      my.servo2.angle(my[<span class="string"><span class="delimiter">'</span><span class="content">z</span><span class="delimiter">'</span></span>]);
+      my.servo1.angle(my.x);
+      my.servo2.angle(my.z);
 
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span> + my.servo1.currentAngle() + <span class="string"><span class="delimiter">"</span><span class="content">, </span><span class="delimiter">"</span></span> + my.servo2.currentAngle());
     });

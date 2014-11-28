@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -252,22 +254,15 @@
 
 <span class="keyword">var</span> bots = [ <span class="string"><span class="delimiter">'</span><span class="content">Huey</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Dewey</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">Louie</span><span class="delimiter">'</span></span> ];
 
-<span class="keyword">var</span> MinionBot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">MinionBot</span>() {}
+bots.forEach(<span class="keyword">function</span>(name) {
+  Cylon.robot({
+    <span class="key">name</span>: name,
 
-  MinionBot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(my) {
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Robot </span><span class="delimiter">"</span></span> + my.name + <span class="string"><span class="delimiter">"</span><span class="content"> is now working!</span><span class="delimiter">"</span></span>);
-  };
-
-  <span class="keyword">return</span> MinionBot;
-
-})();
-
-<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> MinionBot;
-  robot.name = bots[i];
-  Cylon.robot(robot);
-}
+    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Robot </span><span class="delimiter">"</span></span> + my.name + <span class="string"><span class="delimiter">"</span><span class="content"> is now working!</span><span class="delimiter">"</span></span>);
+    }
+  });
+});
 
 Cylon.start();
 </pre>

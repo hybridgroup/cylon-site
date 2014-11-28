@@ -120,6 +120,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
@@ -180,6 +181,7 @@
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
                   <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
@@ -248,69 +250,79 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">..</span><span class="delimiter">'</span></span>),
-    arduino1, arduino2;
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-Arduino = (<span class="keyword">function</span>(){
-  <span class="keyword">function</span> <span class="function">Arduino</span>(){}
+<span class="keyword">var</span> arduinos = [
+  {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino0</span><span class="delimiter">"</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>,
+    <span class="key">devices</span>: {
+      <span class="key">led00</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+    }
+  },
 
-  Arduino.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> };
-
-  Arduino.prototype.<span class="function">work</span> = <span class="keyword">function</span>(my) {
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Name =====&gt;</span><span class="delimiter">"</span></span>);
-    console.log(my.name);
+  {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduin01</span><span class="delimiter">"</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM1</span><span class="delimiter">"</span></span>,
+    <span class="key">devices</span>: {
+      <span class="key">led10</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> }
+      led11: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">12</span> }
+      led12: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+    }
   }
+];
 
-  <span class="keyword">return</span> Arduino;
-})();
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">SkynetBot</span><span class="delimiter">"</span></span>,
 
-skynet = {
-  <span class="key">connection</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
-    <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">96630051-a3dc-11e3-8442-5bf31d98c912</span><span class="delimiter">"</span></span>,
-    <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">2s67o7ek98pycik98f43reqr90t6s9k9</span><span class="delimiter">"</span></span>
+  <span class="key">connections</span>: {
+    <span class="key">skynet</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
+      <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">96630051-a3dc-11e3-8442-5bf31d98c912</span><span class="delimiter">"</span></span>,
+      <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">2s67o7ek98pycik98f43reqr90t6s9k9</span><span class="delimiter">"</span></span>
+    }
+  },
+
+  <span class="function">handler</span>: <span class="keyword">function</span>(data) {
+    <span class="keyword">if</span> (data.payload == <span class="predefined-constant">null</span>) {
+      <span class="keyword">return</span>;
+    }
+
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Data: </span><span class="delimiter">"</span></span>, data);
+
+    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> data.payload.robots) {
+      <span class="keyword">var</span> robot = data.payload.robots[i],
+          bot = Cylon.robots[robot.name];
+
+      <span class="keyword">if</span> (robot.cmd === <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
+        bot.devices[robot.device].turnOn();
+      } <span class="keyword">else</span> {
+        bot.devices[robot.device].turnOff();
+      }
+    }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Skynet is listening...</span><span class="delimiter">"</span></span>);
-
-    my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(data);
-      <span class="keyword">if</span> (data.payload != <span class="predefined-constant">null</span>){
-        <span class="keyword">var</span> robot,
-            bot,
-            robots = data.payload.robots;
-        <span class="keyword">for</span>(<span class="keyword">var</span> index <span class="keyword">in</span> robots){
-          robot = robots[index];
-          console.log(robot);
-          bot = Cylon.robots[robot.name];
-          <span class="keyword">if</span> (robot.cmd == <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>)
-            bot.devices[robot.device].turnOn();
-          <span class="keyword">else</span>
-            bot.devices[robot.device].turnOff();
-        }
-      }
-    });
+    my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, my.handler)
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Skynet is listening</span><span class="delimiter">"</span></span>);
   }
-}
-Cylon.robot(skynet);
+});
 
-arduino0 = <span class="keyword">new</span> Arduino();
-console.log(arduino0);
-arduino0.name = <span class="string"><span class="delimiter">'</span><span class="content">arduino0</span><span class="delimiter">'</span></span>;
-arduino0.device = {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led00</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>};
-Cylon.robot(arduino0);
+arduinos.forEach(<span class="keyword">function</span>(bot) {
+  Cylon.robot({
+    <span class="key">name</span>: bot.name,
 
-arduino1 = <span class="keyword">new</span> Arduino();
-arduino1.name = <span class="string"><span class="delimiter">'</span><span class="content">arduino1</span><span class="delimiter">'</span></span>
-arduino1.connection.port = <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM1</span><span class="delimiter">'</span></span>;
-arduino1.devices = [
-  {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led10</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span>},
-  {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led11</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">12</span>},
-  {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led12</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>}
-];
-Cylon.robot(arduino1);
+    <span class="key">connections</span>: {
+      <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: bot.port }
+    },
+
+    <span class="key">devices</span>: bot.devices,
+
+    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      console.log(my.name + <span class="string"><span class="delimiter">"</span><span class="content"> is online</span><span class="delimiter">"</span></span>);
+    }
+  });
+});
 
 Cylon.start();
 </pre>
