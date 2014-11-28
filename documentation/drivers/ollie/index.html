@@ -283,11 +283,16 @@
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">bluetooth</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span>},
-  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">battery</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-battery-service</span><span class="delimiter">'</span></span>},
-            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">deviceInfo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-device-information</span><span class="delimiter">'</span></span>},
-            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">generic</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-generic-access</span><span class="delimiter">'</span></span>},
-            {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>}],
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">battery</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-battery-service</span><span class="delimiter">'</span></span> },
+    <span class="key">deviceInfo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-device-information</span><span class="delimiter">'</span></span> },
+    <span class="key">generic</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-generic-access</span><span class="delimiter">'</span></span> },
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">display</span>: <span class="keyword">function</span>(err, data) {
     <span class="keyword">if</span> (err) {
@@ -320,7 +325,7 @@ Cylon.robot({
 
                 after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
                   my.ollie.stop();
-                });                
+                });
               });
             });
           });
@@ -337,8 +342,13 @@ Cylon.robot({
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">bluetooth</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span>},
-  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>},
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.ollie.wake(<span class="keyword">function</span>(err, data){
