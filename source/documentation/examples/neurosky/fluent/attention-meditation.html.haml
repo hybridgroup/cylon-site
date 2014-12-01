@@ -1,10 +1,10 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Cylon.JS Example - attention-meditation"
+title: "Cylon.JS Fluent Example - attention-meditation"
 page_title: "Example: attention-meditation"
 author: The Hybrid Group
-description: A Cylon.JS code example
+description: A Cylon.JS fluentcode example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-neurosky/tree/master/examples/attention-meditation' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
@@ -13,23 +13,20 @@ active_menu_docs: true
         :::javascript
         var Cylon = require('cylon');
 
-        Cylon.robot({
-          connections: {
-            neurosky: { adaptor: 'neurosky', port: '/dev/rfcomm0' }
-          },
+        Cylon
+          .robot()
+          .connection('neurosky', { adaptor: 'neurosky', port: '/dev/rfcomm0' })
+          .device('headset', { driver: 'neurosky' })
 
-          devices: {
-            headset: { driver: 'neurosky' }
-          },
-
-          work: function(my) {
-            my.headset.on('attention', function(data) {
+          .on('ready', function(bot) {
+            bot.headset.on('attention', function(data) {
               console.log("attention:" + data);
             });
 
-            my.headset.on('meditation', function(data) {
+            bot.headset.on('meditation', function(data) {
               console.log("meditation:" + data);
             });
-          }
-        }).start();
+          });
+
+        Cylon.start();
 
