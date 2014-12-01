@@ -29,8 +29,13 @@ active_menu_docs: true
   know about the LED we'll be modifying, on pin #11 of the Raspberry Pi.
 
       :::javascript
-        connection: { name: 'raspi', adaptor: 'raspi', port: '/dev/ttyACM0' },
-        device: { name: 'led', driver: 'led', pin: 11 },
+        connections: {
+          raspi: { adaptor: 'raspi' }
+        },
+
+        devices: {
+          led: { driver: 'led', pin: 11 }
+        },
 
   Next up, we'll define our robot's work:
 

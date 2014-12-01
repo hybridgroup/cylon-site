@@ -31,7 +31,10 @@ active_menu_docs: true
   7.
 
       :::javascript
-        connection: { name: 'raspi', adaptor: 'raspi' },
+        connections: {
+          raspi: { adaptor: 'raspi' }
+        },
+
         devices: {
           led: { driver: 'led', pin: 11 },
           button: { driver: 'button', pin: 7 }
