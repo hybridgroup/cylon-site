@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - eeg</title>
+    <title>Cylon.JS Example - led_brightness</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -254,21 +254,24 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">neurosky</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>  }
+    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">headset</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>  }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">3</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">eeg</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Data:</span><span class="delimiter">'</span></span>, data);
+    <span class="keyword">var</span> brightness = <span class="integer">0</span>,
+        fade = <span class="integer">5</span>;
+
+    every((<span class="float">0.05</span>).seconds(), <span class="keyword">function</span>() {
+      brightness += fade;
+      my.led.brightness(brightness);
+      <span class="keyword">if</span> ((brightness === <span class="integer">0</span>) || (brightness === <span class="integer">255</span>)) { fade = -fade; }
     });
   }
-});
-
-Cylon.start();
+}).start();
 </pre>
             </div>
           </div>

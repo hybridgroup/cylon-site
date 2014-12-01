@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - eeg</title>
+    <title>Cylon.JS Example - analog_sensor</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -254,21 +254,29 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">neurosky</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>  }
+    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">headset</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>  }
+    <span class="key">sensor</span>: {
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>,
+      <span class="key">pin</span>: <span class="integer">0</span>,
+      <span class="key">upperLimit</span>: <span class="integer">900</span>,
+      <span class="key">lowerLimit</span>: <span class="integer">100</span>
+    }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">eeg</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Data:</span><span class="delimiter">'</span></span>, data);
+    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">upperLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Upper limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
+    });
+
+    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">lowerLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lower limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
     });
   }
-});
 
-Cylon.start();
+}).start();
 </pre>
             </div>
           </div>

@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - eeg</title>
+    <title>Cylon.JS Example - color</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -254,21 +254,21 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">neurosky</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>  }
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">headset</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>  }
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">eeg</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Data:</span><span class="delimiter">'</span></span>, data);
+    my.ollie.wake(<span class="keyword">function</span>(err, data) {
+      every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+        my.ollie.setRGB(Math.floor(Math.random() * <span class="integer">100000</span>));
+      });
     });
   }
-});
-
-Cylon.start();
+}).start();
 </pre>
             </div>
           </div>
