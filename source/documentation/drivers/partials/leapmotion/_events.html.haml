@@ -21,3 +21,54 @@
   use in event handlers.
 
   For an example of a gesture JS object, please see [this gist](https://gist.github.com/stewart/ed49d2cac9a63a75e09c).
+
+  # What's new with V2 Tracking
+
+  V2 tracking allows for more robust hand models, so that full information about the hand can be inferred despite occlusion. The position and rotation basis for every joint is both consistent and accessible.
+
+  ## Pinch
+
+  Pinch indicates whether one finger is touching another, on a scale of zero to one.
+
+  `hand.pinchStrength`
+
+  ## Grab
+
+  Grab indicates how close a hand is to being a fist – any fingers that aren't curled will reduce grab strength.
+
+  `hand. grabStrength`
+
+  ## Data Confidence
+
+  Know when it is hard for the Leap to see a hand. When near the edge of the screen or when one hand is occluding another, confidence will drop from one to zero.
+
+  `hand.confidence`
+
+  ## Left or Right
+
+  The tracking labels hands as left or right, which is useful in a variety of interaction models.
+
+  `hand.type`
+
+  ## Finger Type
+
+  The new tracking model always provides hands with five fingers composed of bone-segments.
+
+  `hand.thumb, hand.indexFinger, etc..`
+
+  ## Bone Positions.
+
+  The positions and rotations of each finger bone are provided by the Bone API.
+
+  Get the bones:
+  `finger.metacarpal`
+  `finger.proximal`
+  `finger.medial`
+  `finger.distal`
+
+  Get the joint positions:
+  `bone.prevJoint`
+  `bone.nextJoint`
+
+  For a complete list of all Leapmomotion options check their [API reference docs](https://developer.leapmotion.com/documentation/skeletal/csharp/api/Leap_Classes.html?proglang=current),
+  for a list of all the new features in V2 Tracking check their [what's new section](https://developer.leapmotion.com/features#hand-model).
