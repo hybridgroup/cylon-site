@@ -1,0 +1,37 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - crazyflie"
+page_title: "Example: crazyflie"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-crazyflie/tree/master/examples/crazyflie' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            crazyflie: { adaptor: 'crazyflie', port: 'radio://1/20/1MPS' }
+          },
+
+          devices: {
+            drone: { driver: 'crazyflie'}
+          },
+
+          work: function(my) {
+            my.drone.takeoff();
+
+            after((2).seconds(), function() {
+              my.drone.land();
+            });
+
+            after((5).seconds(), function() {
+              my.drone.stop();
+            });
+          }
+        }).start();
+

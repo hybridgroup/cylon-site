@@ -1,0 +1,52 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - rgb-led-strobe"
+page_title: "Example: rgb-led-strobe"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-digispark/tree/master/examples/rgb-led-strobe' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            digispark: { adaptor: 'digispark' }
+          },
+
+          devices: {
+            red: { driver: 'led', pin: 0 },
+            green: { driver: 'led', pin: 1 },
+            blue: { driver: 'led', pin: 2 }
+          },
+
+          work: function(my) {
+            var brightness = 0,
+                fade = 5,
+                index = 0,
+                keys = Object.keys(my.devices);
+
+            every((0.05).seconds(), function() {
+              brightness += fade;
+
+              console.log('brightness =>', brightness);
+              console.log('index =>', index);
+              my[keys[index]].brightness(brightness);
+
+              if ((brightness === 0) || (brightness === 255)) {
+                if (index === 2) {
+                  index = 0;
+                  fade = -fade;
+                }else{
+                  brightness = (fade > 0) ? 0 : 255;
+                  index++;
+                }
+              }
+            });
+          }
+        }).start();
+

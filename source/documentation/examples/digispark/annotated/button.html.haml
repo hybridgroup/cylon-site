@@ -32,7 +32,9 @@ active_menu_docs: true
   often we want to read the inputs, in this case every 0.1 seconds:
 
       :::javascript
-        connection: { name: 'digispark', adaptor: 'digispark', interval: 0.1 },
+        connections: {
+          digispark: { adaptor: 'digispark', interval: 0.1 }
+        },
 
   Our robot will have two devices, an LED and a button:
 
@@ -63,6 +65,9 @@ active_menu_docs: true
             my.led.toggle();
           });
         }
+
   And with all that done, we can start our robot:
+
+      :::javascript
       }).start();
 

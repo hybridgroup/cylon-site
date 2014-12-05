@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - led_brightness"
+page_title: "Example: led_brightness"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-digispark/tree/master/examples/led_brightness' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('digispark', { adaptor: 'digispark' })
+          .device('led', { driver: 'led', pin: 0 })
+
+          .on('ready', function(bot) {
+            var brightness = 0,
+                fade = 5;
+
+            setInterval(function() {
+              brightness += fade;
+
+              bot.led.brightness(brightness);
+
+              fade = ((brightness === 0) || (brightness === 255)) ? -fade : fade;
+            }, 50);
+          });
+
+        Cylon.start();
+

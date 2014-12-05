@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - salesforce"
+page_title: "Example: salesforce"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-force/tree/master/examples/salesforce' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('sfcon', {
+            adaptor: 'force',
+            sfuser: process.env.SF_USERNAME,
+            sfpass: process.env.SF_SECURITY_TOKEN
+          })
+
+          .device('salesforce', { driver: 'force' })
+
+          .on('ready', function(bot) {
+            bot.salesforce.subscribe('SpheroMsgOutbound', function(data) {
+              console.log(data);
+            });
+
+            setInterval(function() {
+              var toSend = { spheroName: 'globo', bucks: 1 };
+              bot.salesforce.push('/SpheroController/', toSend);
+            }, 2000);
+          });
+
+        Cylon.start();
+
