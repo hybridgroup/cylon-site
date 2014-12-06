@@ -270,8 +270,13 @@
             <p>We'll be connecting to an Raspberry Pi, and using a servo attached to the
             Raspberry Pi on pin 11.</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> },
+            <pre class="CodeRay">  connections: {
+    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">servo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> }
+  },
 </pre>
             
             <p>We'll start defining the work for our robot next:</p>

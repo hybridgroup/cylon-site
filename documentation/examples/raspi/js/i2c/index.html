@@ -253,8 +253,13 @@
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pixel</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> },
+  <span class="key">connections</span>: {
+    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">pixel</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="comment">// Before you can use and work with I2C in the raspberry pi you</span>

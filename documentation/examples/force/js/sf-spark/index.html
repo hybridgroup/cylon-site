@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - Raspberry Pi - Blink</title>
+    <title>Cylon.JS Example - sf-spark</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -254,15 +254,58 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
+    <span class="key">spark</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>,
+      <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">accessToken1</span><span class="delimiter">'</span></span>,
+      <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">deviceId1</span><span class="delimiter">'</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+    },
+
+    <span class="key">spark2</span>: {
+      <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark2</span><span class="delimiter">'</span></span>,
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>,
+      <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">accessToken1</span><span class="delimiter">'</span></span>,
+      <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">deviceId1</span><span class="delimiter">'</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+    },
+
+    <span class="key">sfcon</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">sfuser</span>: process.env.SF_USERNAME,
+      <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
+    }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> }
+    <span class="key">spark</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">connections</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span> },
+    <span class="key">sensor</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">A0</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">lowerLimit</span>: <span class="integer">100</span>, <span class="key">upperLimit</span>: <span class="integer">900</span> },
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">A1</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark2</span><span class="delimiter">'</span></span> },
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), my.led.toggle);
+    my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">SparkOutboundMsg</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, data) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Spark Data received from Salesforce:</span><span class="delimiter">'</span></span>, data);
+
+      <span class="keyword">var</span> analogValue = data.sobject.Analog_Read__c || <span class="integer">0</span>;
+      <span class="keyword">var</span> scaledBrightness = (analogValue).fromScale(<span class="integer">0</span>, <span class="integer">4095</span>).toScale(<span class="integer">0</span>,<span class="integer">255</span>);
+
+      my.led.brightness(Math.round(scaledBrightness));
+
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Analog value =&gt; </span><span class="delimiter">'</span></span>, analogValue);
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">scaled brightness for led:</span><span class="delimiter">'</span></span>, scaledBrightness);
+    });
+
+    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      <span class="keyword">var</span> analogValue = my.sensor.analogRead() || <span class="integer">0</span>,
+          toSend = { <span class="key">sparkName</span>: my.spark.core().name, <span class="key">value</span>: analogValue };
+
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Data to send to Salesforce:</span><span class="delimiter">'</span></span>, toSend);
+
+      my.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SparkController/</span><span class="delimiter">'</span></span>, toSend, <span class="keyword">function</span>(err, data) {
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Spark core "</span><span class="delimiter">'</span></span> + my.spark.core().name + <span class="string"><span class="delimiter">'</span><span class="content">" analog read has been sent to Salesforce.</span><span class="delimiter">'</span></span>);
+      });
+    });
   }
 }).start();
 </pre>

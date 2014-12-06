@@ -253,12 +253,16 @@
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: {
-    <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>,
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>,
-    <span class="key">pin</span>: <span class="integer">11</span>,
-    <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> }
+  <span class="key">connections</span>: {
+    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">servo</span>: {
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>,
+      <span class="key">pin</span>: <span class="integer">11</span>,
+      <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> }
+    }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {

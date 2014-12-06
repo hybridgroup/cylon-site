@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="A Cylon.JS code example" name="description">
+    <meta content="A Cylon.JS fluentcode example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - Raspberry Pi - Blink</title>
+    <title>Cylon.JS Fluent Example - Raspberry Pi BlinkM</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -252,19 +252,55 @@
             <div class="example">
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
-  },
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">pixel</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> })
 
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> }
-  },
+  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+    <span class="comment">// Before you can use and work with I2C in the raspberry pi you</span>
+    <span class="comment">// need to configure it, follow the instructions to enable it here:</span>
+    <span class="comment">//</span>
+    <span class="comment">// http://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c</span>
 
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), my.led.toggle);
-  }
-}).start();
+    <span class="comment">// We first stop the BlinkM light script</span>
+    bot.pixel.stopScript();
+
+    <span class="comment">// You can pass a callback to all blinkm functions as the last param,</span>
+    <span class="comment">// If you do the command would be executed asynchronously.</span>
+    <span class="comment">// For write operations you get an (err) param passed back,</span>
+    <span class="comment">// null/undefined for success, and containing the error y any encountered.</span>
+
+    <span class="comment">// BlimkM  Write Commands.</span>
+    <span class="comment">//   bot.pixel.goToRGB(255, 0, 0)</span>
+    <span class="comment">//   bot.pixel.fadeToRGB(0, 255, 0)</span>
+    <span class="comment">//   bot.pixel.fadeToRGB(0, 0, 255)</span>
+    <span class="comment">//   bot.pixel.fadeToHSB(100, 180, 90)</span>
+    <span class="comment">//   bot.pixel.fadeToRandomRGB(0, 0, 255)</span>
+    <span class="comment">//   bot.pixel.fadeToRandomHSB(100, 180, 90)</span>
+    <span class="comment">//   bot.pixel.playLightScript(1, 0, 0)</span>
+    <span class="comment">//   bot.pixel.stopScript()</span>
+    <span class="comment">//   bot.pixel.setFadeSpeed(50)</span>
+    <span class="comment">//   bot.pixel.setTimeAdjust(50)</span>
+
+    bot.pixel.goToRGB(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>);
+    bot.pixel.fadeToRGB(<span class="integer">0</span>, <span class="integer">255</span>, <span class="integer">0</span>);
+    bot.pixel.fadeToRGB(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">255</span>);
+
+
+    <span class="comment">// For read commands you get (err, data) passed back to the callback,</span>
+    <span class="comment">// data contains the read data buffer, in case of Sync call (no callback)</span>
+    <span class="comment">// you get a regular return with the data buffer.</span>
+    <span class="keyword">var</span> color = bot.pixel.getRGBColor();
+    console.log(color);
+
+    <span class="comment">// Example getting the color usinc async call and a callback</span>
+    bot.pixel.getRGBColor(<span class="keyword">function</span>(err, data) {
+      <span class="keyword">if</span> (err == <span class="predefined-constant">null</span>) { console.log(data); }
+    });
+  });
+
+Cylon.start();
 </pre>
             </div>
           </div>

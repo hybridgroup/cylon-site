@@ -271,7 +271,9 @@
             littlewire protocol, we also include an <code>interval</code> param to specify how
             often we want to read the inputs, in this case every 0.1 seconds:</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span>, <span class="key">interval</span>: <span class="float">0.1</span> },
+            <pre class="CodeRay">  connections: {
+    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span>, <span class="key">interval</span>: <span class="float">0.1</span> }
+  },
 </pre>
             
             <p>Our robot will have two devices, an LED and a button:</p>
@@ -301,8 +303,12 @@
       console.log(<span class="string"><span class="delimiter">'</span><span class="content">push: </span><span class="delimiter">'</span></span>, my.button.isPressed());
       my.led.toggle();
     });
-  } And <span class="keyword">with</span> all that done, we can start our robot:
-}).start();
+  }
+</pre>
+            
+            <p>And with all that done, we can start our robot:</p>
+            
+            <pre class="CodeRay">}).start();
 </pre>
           </div>
         </div>

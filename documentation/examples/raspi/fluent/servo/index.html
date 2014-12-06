@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="A Cylon.JS code example" name="description">
+    <meta content="A Cylon.JS fluentcode example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - Raspberry Pi - Blink</title>
+    <title>Cylon.JS Fluent Example - Raspberry Pi - Servo</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -252,19 +252,24 @@
             <div class="example">
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
-  },
+Cylon
+  .robot()
+  .connection(<span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span>, <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> } })
+  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+    <span class="keyword">var</span> angle = <span class="integer">30</span>,
+    increment = <span class="integer">40</span>;
 
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">11</span> }
-  },
+    setInterval(<span class="keyword">function</span>() {
+      angle += increment;
+      bot.servo.angle(angle);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span> + (bot.servo.currentAngle()));
 
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), my.led.toggle);
-  }
-}).start();
+      <span class="keyword">if</span> ((angle === <span class="integer">30</span>) || (angle === <span class="integer">150</span>)) { increment = -increment; }
+    }, <span class="integer">1000</span>);
+  });
+
+Cylon.start();
 </pre>
             </div>
           </div>

@@ -263,8 +263,13 @@
             
             <p>Let's define the connections and devices:</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pixel</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> },
+            <pre class="CodeRay">  connections: {
+    <span class="key">raspi</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">raspi</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">pixel</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">blinkm</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>Now that Cylon knows about the necessary hardware we're going to be using, we'll

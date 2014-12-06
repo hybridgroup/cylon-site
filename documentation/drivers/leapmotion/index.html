@@ -345,6 +345,57 @@ Cylon.robot({
                 use in event handlers.</p>
                 
                 <p>For an example of a gesture JS object, please see <a href="https://gist.github.com/stewart/ed49d2cac9a63a75e09c">this gist</a>.</p>
+                
+                <h1 id="whats-new-with-v2-tracking">What's new with V2 Tracking</h1>
+                
+                <p>V2 tracking allows for more robust hand models, so that full information about the hand can be inferred despite occlusion. The position and rotation basis for every joint is both consistent and accessible.</p>
+                
+                <h2 id="pinch">Pinch</h2>
+                
+                <p>Pinch indicates whether one finger is touching another, on a scale of zero to one.</p>
+                
+                <p><code>hand.pinchStrength</code></p>
+                
+                <h2 id="grab">Grab</h2>
+                
+                <p>Grab indicates how close a hand is to being a fist – any fingers that aren't curled will reduce grab strength.</p>
+                
+                <p><code>hand. grabStrength</code></p>
+                
+                <h2 id="data-confidence">Data Confidence</h2>
+                
+                <p>Know when it is hard for the Leap to see a hand. When near the edge of the screen or when one hand is occluding another, confidence will drop from one to zero.</p>
+                
+                <p><code>hand.confidence</code></p>
+                
+                <h2 id="left-or-right">Left or Right</h2>
+                
+                <p>The tracking labels hands as left or right, which is useful in a variety of interaction models.</p>
+                
+                <p><code>hand.type</code></p>
+                
+                <h2 id="finger-type">Finger Type</h2>
+                
+                <p>The new tracking model always provides hands with five fingers composed of bone-segments.</p>
+                
+                <p><code>hand.thumb, hand.indexFinger, etc..</code></p>
+                
+                <h2 id="bone-positions">Bone Positions.</h2>
+                
+                <p>The positions and rotations of each finger bone are provided by the Bone API.</p>
+                
+                <p>Get the bones:
+                <code>finger.metacarpal</code>
+                <code>finger.proximal</code>
+                <code>finger.medial</code>
+                <code>finger.distal</code></p>
+                
+                <p>Get the joint positions:
+                <code>bone.prevJoint</code>
+                <code>bone.nextJoint</code></p>
+                
+                <p>For a complete list of all Leapmomotion options check their <a href="https://developer.leapmotion.com/documentation/skeletal/csharp/api/Leap_Classes.html?proglang=current">API reference docs</a>,
+                for a list of all the new features in V2 Tracking check their <a href="https://developer.leapmotion.com/features#hand-model">what's new section</a>.</p>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">
