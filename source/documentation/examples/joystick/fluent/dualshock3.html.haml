@@ -1,10 +1,10 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Cylon.JS Example - Joystick - DualShock 3 Controller"
+title: "Cylon.JS Fluent Example - Joystick - DualShock 3 Controller"
 page_title: "Example: Joystick - DualShock 3 Controller"
 author: The Hybrid Group
-description: A Cylon.JS code example
+description: A Cylon.JS fluentcode example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-joystick/tree/master/examples/dualshock3' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
@@ -13,16 +13,11 @@ active_menu_docs: true
         :::javascript
         var Cylon = require('cylon');
 
-        Cylon.robot({
-          connections: {
-            joystick: { adaptor: 'joystick' }
-          },
-
-          devices: {
-            controller: { driver: 'dualshock-3' }
-          },
-
-          work: function(my) {
+        Cylon
+          .robot()
+          .connection('joystick', { adaptor: 'joystick' })
+          .device('controller', { driver: 'dualshock-3' })
+          .on('ready', function(my) {
             ["square", "circle", "x", "triangle"].forEach(function(button) {
               my.controller.on(button + ":press", function() {
                 console.log("Button " + button + " pressed.");
@@ -48,6 +43,7 @@ active_menu_docs: true
             my.controller.on("right_y:move", function(pos) {
               console.log("Right Stick - Y:", pos);
             });
-          }
-        }).start();
+          });
+
+        Cylon.start();
 

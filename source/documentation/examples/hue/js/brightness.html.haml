@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - brightness"
+page_title: "Example: brightness"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-hue/tree/master/examples/brightness' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            hue: { adaptor: 'hue', host: process.argv[2], username: process.argv[3] }
+          },
+
+          devices: {
+            bulb: { driver: 'hue-light', lightId: 2 }
+          },
+
+          work: function(my) {
+            var brightness = 0,
+                fade = 5;
+
+            my.bulb.turnOn();
+
+            every(0.5.seconds(), function() {
+              brightness += fade;
+              my.bulb.brightness(brightness);
+              if ((brightness === 0) || (brightness === 100)) { fade = -fade; }
+            });
+          }
+        }).start();
+

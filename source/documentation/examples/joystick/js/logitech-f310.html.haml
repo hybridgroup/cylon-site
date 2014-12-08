@@ -14,8 +14,13 @@ active_menu_docs: true
         var Cylon = require('cylon');
 
         Cylon.robot({
-          connection: { name: 'joystick', adaptor: 'joystick' },
-          device: { name: 'controller', driver: 'joystick', config: './config/logitech-f310' },
+          connections: {
+            joystick: { adaptor: 'joystick' }
+          },
+
+          devices: {
+            controller: { driver: 'joystick', config: './config/logitech-f310' }
+          },
 
           work: function(my) {
             ["a", "b", "x", "y"].forEach(function(button) {

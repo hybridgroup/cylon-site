@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - bridge-state"
+page_title: "Example: bridge-state"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-hue/tree/master/examples/bridge-state' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        // To run:
+        // $ node examples/bridge-state/bridge-state.js 192.168.1.85 35dacee025cd94cf3f50bb301ad8b4bf
+
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            hue: { adaptor: 'hue', host: process.argv[2], username: process.argv[3] }
+          },
+
+          devices: {
+            bridge: { driver: 'hue-bridge' }
+          },
+
+          work: function(my) {
+            my.bridge.getFullState(function(err, config) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(config);
+              }
+            });
+          }
+        }).start();
+

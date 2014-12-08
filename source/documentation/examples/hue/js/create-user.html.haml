@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - create-user"
+page_title: "Example: create-user"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-hue/tree/master/examples/create-user' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        // To run:
+        // $ node examples/create-user/create-user.js 192.168.1.85 35dacee025cd94cf3f50bb301ad8b4bf newdescription
+
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            hue: { adaptor: 'hue', host: process.argv[2], username: process.argv[3] }
+          },
+
+          devices: {
+            bridge: { driver: 'hue-bridge' }
+          },
+
+          work: function(my) {
+            my.bridge.createUser(null, process.argv[4], function(err, user) {
+              console.log(err || user);
+            });
+          }
+        }).start();
+

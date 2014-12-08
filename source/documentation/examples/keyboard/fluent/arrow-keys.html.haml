@@ -1,0 +1,39 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - arrow-keys"
+page_title: "Example: arrow-keys"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-keyboard/tree/master/examples/arrow-keys' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('keyboard', { adaptor: 'keyboard' })
+          .device('keyboard', { driver: 'keyboard' })
+          .on('ready', function(robot) {
+            robot.keyboard.on('up', function(){
+              console.log("UP!");
+            });
+
+            robot.keyboard.on('down', function(){
+              console.log("DOWN!");
+            });
+
+            robot.keyboard.on('left', function(){
+              console.log("LEFT!");
+            });
+
+            robot.keyboard.on('RIGHT', function(){
+              console.log("RIGHT!");
+            });
+          });
+
+        Cylon.start();
+

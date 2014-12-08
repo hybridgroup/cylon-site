@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - rgb"
+page_title: "Example: rgb"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-hue/tree/master/examples/rgb' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            hue: { adaptor: 'hue', host: process.argv[2], username: process.argv[3] }
+          },
+
+          devices: {
+            bulb: { driver: 'hue-light', lightId: 2 }
+          },
+
+          randomNumber: function() {
+            return Math.floor(Math.random() * 255);
+          },
+
+          work: function(my) {
+            my.bulb.turnOn();
+
+            every(0.5.seconds(), function() {
+              my.bulb.rgb(my.randomNumber(), my.randomNumber(), my.randomNumber());
+            });
+          }
+        }).start();
+
+
