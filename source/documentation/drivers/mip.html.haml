@@ -1,0 +1,63 @@
+---
+title: Cylon.js - MiP Driver
+author: The Hybrid Group
+page_title: Drivers - MiP
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MiP
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/mip.jpg", class: "display"
+  .info-intro
+    :markdown
+      This is the Cylon driver for the MiP allowing you to interract with its many capabilities.
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+    You need to determine the `uuid` of your MiP. One way to do this, is to use the `cylon-ble-scan` command line utility installed as part of [cylon-ble](/documentation/platforms/ble).
+
+    Once you know your `uuid` just substititute it into your code.
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'd03972a24e55', module: 'cylon-ble'},
+          devices: [{name: 'mip', driver: 'mip'}],
+
+          work: function(my) {
+            my.mip.setHeadLED(2, 2, 2, 2);
+            after((2).seconds(), function() {
+              my.mip.distanceDrive(0, 10, 0, 0);
+            });
+            after((3).seconds(), function() {
+              my.mip.setHeadLED(1, 1, 1, 1);
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    = partial "/documentation/drivers/partials/mip/commands"
+  .commands-api#Events
+    = partial "/documentation/drivers/partials/mip/events"
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "MiP" }

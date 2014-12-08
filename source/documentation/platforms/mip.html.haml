@@ -1,0 +1,72 @@
+---
+title: MiP with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - MiP
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: MiP
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-mip' target='_blank' class='repository'>Repository</a>| <a class+'issues' href='https://github.com/hybridgroup/cylon-mip/issues' target='_blank' >Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/mip.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+
+      The MiP is a self-balancing autonomous robot from Wowwee. It can move, dance, talk, and more.
+
+      To learn out more about the MiP, click <a href="http://www.wowwee.com/mip/" target="_blank">here</a>.
+
+  .clear
+
+%section#HowToInstall
+  :markdown
+    ## How To Install
+
+        $ npm install cylon-mip
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connection: { name: 'bluetooth', adaptor: 'central', uuid: 'd03972a24e55', module: 'cylon-ble'},
+          devices: [{name: 'mip', driver: 'mip'}],
+
+          work: function(my) {
+            my.mip.setHeadLED(2, 2, 2, 2);
+            after((2).seconds(), function() {
+              my.mip.distanceDrive(0, 10, 0, 0);
+            });
+            after((3).seconds(), function() {
+              my.mip.setHeadLED(1, 1, 1, 1);
+            });
+          }
+        }).start();
+
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+    You need to determine the `uuid` of your MiP. One way to do this, is to use the `cylon-ble-scan` command line utility installed as part of [cylon-ble](/documentation/platforms/ble).
+
+    Once you know your `uuid` just substititute it into your code.
+
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    There is only one driver for the MiP.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "MiP" }
