@@ -117,6 +117,7 @@
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
                   <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mip">MiP</a>
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
@@ -177,6 +178,7 @@
                   <a href="/documentation/drivers/keyboard">Keyboard</a>
                   <a href="/documentation/drivers/leapmotion">Leap Motion</a>
                   <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mip">MiP</a>
                   <a href="/documentation/drivers/mqtt">MQTT</a>
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
@@ -253,8 +255,13 @@
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> },
+  <span class="key">connections</span>: {
+    <span class="key">joystick</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     [<span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
@@ -283,9 +290,7 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
   }
-});
-
-Cylon.start();
+}).start();
 </pre>
             </div>
           </div>
