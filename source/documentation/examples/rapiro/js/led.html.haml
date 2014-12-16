@@ -1,0 +1,42 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - led"
+page_title: "Example: led"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-rapiro/tree/master/examples/led' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        // Initialize the robot
+        Cylon.robot({
+          connections: {
+            rapiro: { adaptor: 'rapiro', port: '/dev/ttyUSB0' }
+          },
+
+          devices: {
+            rapiro: { driver: 'rapiro' }
+          },
+
+          work: function(my) {
+            var on = false;
+
+            every((1).second(), function() {
+              if (on == true) {
+                console.log('on');
+                my.rapiro.led(255, 0, 0);
+                on = false;
+              } else {
+                console.log('off');
+                my.rapiro.led(0, 0, 0);
+                on = true;
+              }
+            });
+          }
+        }).start();
+

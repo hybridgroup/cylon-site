@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - ble_ble113a"
+page_title: "Example: ble_ble113a"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/ble_ble113a' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('tessel', { adaptor: 'tessel', port: 'A' })
+          .device('ble', { driver: 'ble-ble113a' })
+          .on('ready', function(bot) {
+            bot.ble.on('error', console.log);
+
+            bot.ble.on('discover', function(peripheral) {
+              console.log("Discovered peripheral!", peripheral.toString());
+            });
+
+            setTimeout(function() {
+              console.log("scanning...");
+              bot.ble.startScanning();
+            }, 2000);
+          });
+
+        Cylon.start();
+

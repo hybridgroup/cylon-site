@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - speech"
+page_title: "Example: speech"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-speech/tree/master/examples/speech' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        // The voice for eSpeak can be specified all in one string, or as adaptor
+        // params. Both of the below connections will produce the same voice.
+        //
+        //  { adaptor: 'speech', voice: 'en-f3', speed: 120 }
+        //  { adaptor: 'speech', language: 'en, gender: 'f', 'voice: '1' },
+        //
+        // 'speed' is the number of words per minute
+
+        Cylon
+          .robot()
+          .connection("speech", { adaptor: 'speech', voice: 'en-f3', speed: 120 })
+          .device("mouth", { driver: 'speech' })
+          .on('ready', function(bot) {
+            bot.mouth.say("This is awesome!");
+            bot.mouth.say("I'm a Cylon.JS bot, and I'm talking!");
+          });
+
+        Cylon.start();
+

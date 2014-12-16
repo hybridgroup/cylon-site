@@ -29,8 +29,13 @@ active_menu_docs: true
   the same Sphero.
 
       :::javascript
-        connection: { name: 'sphero', adaptor: 'sphero', port: '/dev/rfcomm0' },
-        device: { name: 'sphero', driver: 'sphero' },
+        connections: {
+          sphero: { adaptor: 'sphero', port: '/dev/rfcomm0' }
+        },
+
+        devices: {
+          sphero: { driver: 'sphero' }
+        },
 
   And now we can start defining our robot's work.
 

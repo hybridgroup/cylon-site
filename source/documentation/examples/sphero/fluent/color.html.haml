@@ -1,0 +1,27 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - Sphero Color"
+page_title: "Example: Sphero Color"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-sphero/tree/master/examples/color' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection("sphero", { adaptor: 'sphero', port: '/dev/rfcomm0' })
+          .device("sphero", { driver: 'sphero' })
+          .on('ready', function(bot) {
+            setInterval(function() {
+              bot.sphero.setRGB(Math.floor(Math.random() * 100000));
+            }, 1000);
+          });
+
+        Cylon.start();
+

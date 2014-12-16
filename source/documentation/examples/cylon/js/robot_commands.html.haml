@@ -11,12 +11,14 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.api();
 
         Cylon.robot({
-          name: 'Frankie',
+          name: "Frankie",
 
           sayRelax: function() {
             return this.name + " says relax";

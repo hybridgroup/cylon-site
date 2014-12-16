@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - climate_si7005"
+page_title: "Example: climate_si7005"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/climate_si7005' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('tessel', { adaptor: 'tessel', port: 'A' })
+          .device('climate', { driver: 'climate-si7005' })
+
+          .on('ready', function(bot) {
+            bot.climate.on('error', function (err) {
+              console.log(err);
+            });
+
+            setInterval(function() {
+              bot.climate.readHumidity(function (err, humid) {
+                console.log('Humidity:', humid.toFixed(4) + '%RH');
+              });
+
+              bot.climate.readTemperature('f', function (err, temp) {
+                console.log('Degrees:', temp.toFixed(4) + 'F');
+              });
+            }, 1000);
+          });
+
+        Cylon.start();
+

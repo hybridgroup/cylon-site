@@ -11,6 +11,8 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
+        "use strict";
+
         var Cylon = require("cylon");
 
         var bots = [
@@ -39,10 +41,10 @@ active_menu_docs: true
             },
 
             work: function(my) {
-              my.skynet.on('message', function(data) {
-                if (data.led13 === 'on') {
+              my.skynet.on("message", function(data) {
+                if (data.led13 === "on") {
                   my.led13.turnOn();
-                } else if (data.led13 === 'off') {
+                } else if (data.led13 === "off") {
                   my.led13.turnOff();
                 }
 

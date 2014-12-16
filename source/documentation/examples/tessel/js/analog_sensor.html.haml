@@ -1,0 +1,31 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog_sensor"
+page_title: "Example: analog_sensor"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/analog_sensor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            tessel: { adaptor: 'tessel', port: 'GPIO' }
+          },
+
+          devices: {
+            sensor: { driver: 'analogSensor', pin: "A6" }
+          },
+
+          work: function(my) {
+            every((0.05).seconds(), function() {
+              console.log("value: ", my.sensor.analogRead());
+            });
+          }
+        }).start();
+

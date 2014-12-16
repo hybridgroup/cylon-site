@@ -34,8 +34,13 @@ active_menu_docs: true
   the controller up as a device the robot can talk to:
 
       :::javascript
-        connection: { name: 'joystick', adaptor: 'joystick' },
-        device: { name: 'controller', driver: 'dualshock-3' },
+        connections: {
+          joystick: { adaptor: 'joystick' }
+        },
+
+        devices: {
+          controller: { driver: 'dualshock-3' }
+        },
 
   With our connection to the controller established, we'll tell it what to do:
 

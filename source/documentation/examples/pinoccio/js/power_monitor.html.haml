@@ -1,0 +1,47 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - power_monitor"
+page_title: "Example: power_monitor"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-pinoccio/tree/master/examples/power_monitor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            pinoccio: {
+              adaptor: 'pinoccio',
+              token: 'SECRET_TOKEN',
+              troop: '1',
+              scout: '1'
+            }
+          },
+
+          devices: {
+            led: { driver: 'pinoccio-led' },
+            power: { driver: 'pinoccio-power' }
+          },
+
+          work: function(my) {
+            my.led.blue();
+
+            every((2).seconds(), function() {
+              my.power.percent(function(err, data){
+                if (data < 10) {
+                  my.led.red();
+                } else if (data < 20) {
+                  my.led.yellow();
+                } else {
+                  my.led.green();
+                }
+              });
+            });
+          }
+        }).start();
+

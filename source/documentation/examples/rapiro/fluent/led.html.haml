@@ -1,0 +1,37 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - led"
+page_title: "Example: led"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-rapiro/tree/master/examples/led' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection("rapiro", { adaptor: 'rapiro', port: '/dev/ttyUSB0' })
+          .device("rapiro", { driver: 'rapiro' })
+          .on('ready', function(bot) {
+            var on = false;
+
+            setInterval(function() {
+              if (on) {
+                console.log('on');
+                bot.rapiro.led(255, 0, 0);
+                on = false;
+              } else {
+                console.log('off');
+                bot.rapiro.led(0, 0, 0);
+                on = true;
+              }
+            }, 1000);
+          });
+
+        Cylon.start();
+

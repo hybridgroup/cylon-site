@@ -1,0 +1,31 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - accel_mma84"
+page_title: "Example: accel_mma84"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/accel_mma84' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('tessel', { adaptor: 'tessel', port: 'A' })
+          .device('accel', { driver: 'accel-mma84' })
+          .on('ready', function(bot) {
+            bot.accel.on('error', console.log);
+
+            bot.accel.on('data', function (xyz) {
+              console.log('x:', xyz[0].toFixed(2),
+                          'y:', xyz[1].toFixed(2),
+                          'z:', xyz[2].toFixed(2));
+            });
+          });
+
+        Cylon.start();
+

@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - display-image"
+page_title: "Example: display-image"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-opencv/tree/master/examples/display-image' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection("opencv", { name: 'opencv', adaptor: 'opencv' })
+          .device("window", { driver: 'window' })
+          .device("camera", { driver: 'camera', camera: 0 })
+          .on('ready', function(bot) {
+            bot.camera.on('cameraReady', function() {
+              console.log('the camera is ready!');
+
+              bot.camera.on('frameReady', function(err, im) {
+                bot.window.show(im, 5000);
+              });
+
+              bot.camera.readFrame();
+            });
+          });
+
+        Cylon.start();
+

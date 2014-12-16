@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - power"
+page_title: "Example: power"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-pinoccio/tree/master/examples/power' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('pinoccio', {
+            adaptor: 'pinoccio',
+            token: 'SECRET_TOKEN',
+            troop: '1',
+            scout: '1'
+          })
+          .device("power", { driver: 'pinoccio-power' })
+          .on('ready', function(bot) {
+            every((3).seconds(), function() {
+              bot.power.voltage(function(err, data) {
+                console.log(err);
+                console.log(data);
+              });
+            });
+          });
+
+        Cylon.start();
+

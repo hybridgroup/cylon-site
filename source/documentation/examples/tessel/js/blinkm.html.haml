@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - blinkm"
+page_title: "Example: blinkm"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/blinkm' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            tessel: { adaptor: 'tessel', port: 'A' }
+          },
+
+          devices: {
+            blinkm: { driver: 'blinkm' }
+          },
+
+          work: function(my) {
+            my.blinkm.stopScript();
+
+            my.blinkm.getFirmware(function(err, version) {
+              console.log("Started BlinkM version " + version);
+            });
+
+            my.blinkm.goToRGB(0,0,0);
+            my.blinkm.getRGBColor(function(err, data) {
+              console.log("Starting Color: ", data);
+            });
+
+            every((2).second(), function() {
+              my.blinkm.getRGBColor(function(err, data) {
+                console.log("Current Color: ", data);
+              });
+              my.blinkm.fadeToRandomRGB(128, 128, 128);
+            });
+          }
+        }).start();
+

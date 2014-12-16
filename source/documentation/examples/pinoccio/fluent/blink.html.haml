@@ -1,0 +1,33 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Fluent Example - blink"
+page_title: "Example: blink"
+author: The Hybrid Group
+description: A Cylon.JS fluentcode example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-pinoccio/tree/master/examples/blink' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon
+          .robot()
+          .connection('pinoccio', {
+            adaptor: 'pinoccio',
+            token: 'SECRET_TOKEN',
+            troop: '1',
+            scout: '1'
+          })
+          .device("led", { driver: 'led', pin: 'D5' })
+
+          .on('ready', function(bot) {
+            every((1).second(), function() {
+              bot.led.toggle();
+            });
+          });
+
+        Cylon.start();
+

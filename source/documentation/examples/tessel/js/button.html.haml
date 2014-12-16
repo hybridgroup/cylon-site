@@ -1,0 +1,32 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - button"
+page_title: "Example: button"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/button' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            tessel: { adaptor: 'tessel' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 1 },
+            button: { driver: 'button', pin: 'config' }
+          },
+
+          work: function(my) {
+            my.button.on('push', function() {
+              my.led.toggle();
+            });
+          }
+        }).start();
+

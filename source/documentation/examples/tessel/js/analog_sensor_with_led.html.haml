@@ -1,0 +1,34 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog_sensor_with_led"
+page_title: "Example: analog_sensor_with_led"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/analog_sensor_with_led' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            tessel: { adaptor: 'tessel', port: 'GPIO' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: "G4" },
+            sensor: { driver: 'analogSensor', pin: "A6" }
+          },
+
+          work: function(my) {
+            every((0.05).seconds(), function() {
+              var val = my.sensor.analogRead().fromScale(0, 1024).toScale(0, 255) | 0;
+              console.log("brightness: ", val);
+              my.led.brightness(val);
+            });
+          }
+        }).start();
+

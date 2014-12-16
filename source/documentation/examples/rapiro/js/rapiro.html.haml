@@ -1,0 +1,44 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - rapiro"
+page_title: "Example: rapiro"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-rapiro/tree/master/examples/rapiro' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        // Initialize the robot
+        Cylon.robot({
+          connections: {
+            rapiro: { adaptor: 'rapiro', port: '/dev/ttyUSB0' }
+          },
+
+          devices: {
+            rapiro: { driver: 'rapiro' }
+          },
+
+          work: function(my) {
+            my['doneWalking'] = false ;
+            console.log("forward");
+            my.rapiro.led(255, 0, 0);
+
+            every(1..second(), function() {
+              if (my['doneWalking'] == false) {
+                my.rapiro.forward();
+              }
+            });
+            after(10..seconds(), function() {
+              console.log("stop");
+              my.rapiro.stop();
+              my.rapiro.led(0, 0, 0);
+              my['doneWalking'] = true;
+            });
+          }
+        }).start();
+

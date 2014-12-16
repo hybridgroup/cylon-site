@@ -1,0 +1,38 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - m2x"
+page_title: "Example: m2x"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup//tree/master/examples/m2x' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            m2x: { adaptor: 'm2x', apiKey: '???', feedId: '???' }
+          },
+
+          devices: {
+            m2x: { driver: 'm2x' }
+          },
+
+          work: function(my) {
+            var count = 1;
+
+            every(2000, function() {
+              console.log("Setting 'money' to " + count);
+              my.m2x.push('money', { value: count++ });
+            });
+
+            my.m2x.subscribe('money', function(err, data) {
+              console.log("Latest value from M2X: " + data);
+            });
+          }
+        }).start();
+

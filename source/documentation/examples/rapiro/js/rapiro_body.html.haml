@@ -1,0 +1,57 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - rapiro_body"
+page_title: "Example: rapiro_body"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-rapiro/tree/master/examples/rapiro_body' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            rapiro: { adaptor: 'rapiro', port: '/dev/ttyUSB0' }
+          },
+
+          devices: {
+            rapiro: { driver: 'rapiro' }
+          },
+
+          work: function(my) {
+            after(3..seconds(), function() {
+              console.log("rightHand");
+              my.rapiro.rightHand(50);
+            });
+
+            after(6..seconds(), function() {
+              console.log("rightHand");
+              my.rapiro.rightHand(90);
+            });
+
+            after(9..seconds(), function() {
+              console.log("rightHand");
+              my.rapiro.rightHand(50);
+            });
+
+            after(12..seconds(), function() {
+              console.log("leftHand");
+              my.rapiro.leftHand(50);
+            });
+
+            after(15..seconds(), function() {
+              console.log("leftHand");
+              my.rapiro.leftHand(90);
+            });
+
+            after(18..seconds(), function() {
+              console.log("leftHand");
+              my.rapiro.leftHand(50);
+            });
+          }
+        }).start();
+

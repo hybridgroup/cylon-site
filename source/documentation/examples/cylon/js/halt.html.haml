@@ -11,18 +11,20 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            loopback: { adaptor: 'loopback' }
+            loopback: { adaptor: "loopback" }
           },
 
           devices: {
-            ping: { driver: 'ping' }
+            ping: { driver: "ping" }
           },
 
-          work: function(my) {
+          work: function() {
             after((1).second(), function() {
               console.log("Hello human!");
               console.log("I'm going to automatically stop in a few seconds.");

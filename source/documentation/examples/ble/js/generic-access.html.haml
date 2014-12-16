@@ -1,0 +1,36 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - generic-access"
+page_title: "Example: generic-access"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-ble/tree/master/examples/generic-access' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: '207377654321', module: 'cylon-ble' }
+          },
+
+          devices: {
+            generic: { driver: 'ble-generic-access' }
+          },
+
+          work: function(my) {
+            my.generic.getDeviceName(function(err, data){
+              if (!!err) {
+                console.log("error: ", err);
+                return;
+              }
+
+              console.log("data: ", data);
+            });
+          }
+        }).start();
+

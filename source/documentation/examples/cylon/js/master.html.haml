@@ -11,9 +11,11 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
 
-        var bots = [ 'Huey', 'Dewey', 'Louie' ];
+        var Cylon = require("cylon");
+
+        var bots = [ "Huey", "Dewey", "Louie" ];
 
         bots.forEach(function(name) {
           Cylon.robot({
