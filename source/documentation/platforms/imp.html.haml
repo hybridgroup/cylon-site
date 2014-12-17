@@ -1,0 +1,51 @@
+---
+title: Imp with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - Imp
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Imp
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-imp' target='_blank' class='repository'>Repository</a>| <a class+'issues' href='https://github.com/hybridgroup/cylon-imp/issues' target='_blank' >Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/imp.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+
+      The Electric Imp is a cloud and hardware solution used to connect devices to the Internet of Things .
+
+      For more information on the Imp click [here](https://electricimp.com/).
+
+  .clear
+
+%section#HowToInstall
+  :markdown
+    ## How To Install
+
+        $ npm install cylon-imp
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Imp" }
