@@ -1,0 +1,138 @@
+#!/usr/bin/env node
+
+var path = require("path");
+
+var _ = require("lodash"),
+    fs = require("fs-extra"),
+    glob = require("glob").sync,
+    dox = require("dox"),
+    shell = require("shelljs"),
+    exec = shell.exec;
+
+var repoCloner = require("./support/repo-cloner.js");
+
+var repos = require("./support/repos.json");
+
+var stdout = process.stdout;
+
+var dirs = {
+  clone: path.resolve(__dirname, "./../.import"),
+  dest: path.resolve(__dirname, "./../source/documentation/import")
+};
+
+var templates = (function() {
+  var commands = fs.readFileSync(__dirname + "/support/commands.jst"),
+      events = fs.readFileSync(__dirname + "/support/events.jst");
+
+  return {
+    commands: _.template(commands, null),
+    events: _.template(events, null)
+  };
+})();
+
+var docs = {};
+
+function pad(str, length) {
+  return str.length < length ? pad(str + " ", length) : str;
+}
+
+repoCloner();
+
+console.log("Clearing out existing imported docs.");
+
+fs.deleteSync(dirs.dest);
+fs.ensureDirSync(dirs.dest);
+
+console.log("Finding files.");
+
+_.each(repos, function(repo) {
+  var dir = dirs.clone + "/" + repo;
+
+  docs[repo] = glob(dir + "/lib/**/*.js");
+});
+
+console.log("Extracting docs.");
+
+_.forIn(docs, function(files, repo) {
+  var dest = dirs.dest + "/" + repo + "/";
+
+  _.each(files, function(filename) {
+    var basename = "_" + path.basename(filename, ".js");
+
+    var code = fs.readFileSync(filename).toString(),
+        docs = dox.parseComments(code, { skipSingleStar: true, raw: true });
+
+    var files = {
+      events: dest + basename + "-events.haml",
+      commands: dest + basename + "-commands.haml"
+    };
+
+    var content = "";
+
+    var commands = _.filter(docs, function(doc) {
+      return _.some(doc.tags, { type: "publish" });
+    });
+
+    var events = _.filter(docs, { isEvent: true });
+
+    if (commands.length) {
+      content = ":markdown\n";
+
+      var cmds = _.map(commands, function(cmd) {
+        var name,
+            description = cmd.description.full;
+
+        if (cmd.ctx) {
+          name = cmd.ctx.name;
+        } else {
+          // lib/commands.js or something similar (comments above strings)
+          name = cmd.code.replace(/\n.*/g, '').replace(/[^A-Za-z0-9]/g, '');
+        }
+
+        var params = _.filter(cmd.tags, { type: 'param' });
+        var ret = _.filter(cmd.tags, { type: 'return' })[0];
+
+        ret = ret || { typesDescription: "`null`" };
+
+        return templates.commands({
+          name: name,
+          description: description,
+          params: params,
+          ret: ret
+        }).replace(/[^\S\r\n]+$/gm, '');
+      });
+
+      content += cmds.join("\n  * * *\n\n");
+
+      fs.outputFileSync(files.commands, content);
+    }
+
+    if (events.length) {
+      content = ":markdown\n";
+
+      var evts = _.map(events, function(event) {
+        var name = _.find(event.tags, { type: 'event'}).string,
+            description = event.description.full;
+
+        var values = _.filter(event.tags, { type: 'value' }).map(function(v) {
+          var split = v.string.split(' ');
+
+          return {
+            name: split.shift(),
+            description: split.join(' ')
+          };
+        });
+
+        return templates.events({
+          name: name,
+          description: description,
+          values: values
+        }).replace(/[^\S\r\n]+$/gm, '');
+      });
+
+      content += evts.join("\n  * * *\n\n");
+
+      fs.outputFileSync(files.events, content);
+    }
+  });
+});
