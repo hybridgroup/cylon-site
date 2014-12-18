@@ -246,6 +246,19 @@ subnavjs: true
     Once you have this url, which should like something along the lines of `https://agent.electricimp.com/45QYZvoB41bu`, you can 
     pass it along the adaptor parameters in your Cylon code.
 
+    This is how you setup the connection using the agent url in Cylon:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            imp: { adaptor: 'imp', agentUrl: 'https://agent.electricimp.com/45QYZvoB41bu', module: 'cylon-imp' }
+          },
+
+        // Rest of code ...
+        }).start()
+
 
 %section.drivers#Drivers
   :markdown
