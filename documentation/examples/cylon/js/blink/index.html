@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,15 +253,17 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> }
+    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">1</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {

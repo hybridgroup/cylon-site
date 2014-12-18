@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Imp with Cylon.js</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/subnav.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a class="active" href="/documentation/platforms">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mip">MiP</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mip">MiP</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Core')}">
+                <div class="name" ng-click="show('Core')">Core</div>
+                <div class="links" ng-show="active('Core')">
+                  <a href="/documentation/core/api">API</a>
+                  <a href="/documentation/core/helpers">Helper Methods</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">Imp</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>Imp</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToInstall">How To Install</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#Drivers">Drivers</a>
+                  <a href="#top">Top</a>
+                </nav>
+              </div>
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/imp.jpg">
+              <div class="info-intro">
+                <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-imp" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-imp/issues" target="_blank">Issues</a>
+</h4>
+                <p>The Electric Imp is a cloud and hardware solution used to connect devices to the Internet of Things .</p>
+                
+                <p>For more information on the Imp click <a href="https://electricimp.com/product">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section id="HowToInstall">
+              <h2 id="how-to-install">How To Install</h2>
+              
+              <pre class="CodeRay">$ npm install cylon-imp
+</pre>
+              
+              <p>You'll also need to setup your Imp, for this you can go here: <a href="https://electricimp.com/docs/gettingstarted/">Electric Imp Getting Started</a></p>
+              
+              <p>Once you have completed the Getting Started process and have a connected Imp, you need to go to the <a href="https://ide.electricimp.com/ide">Electric Imp IDE</a> page and create a new model that you can attach your Imp to. You can check how that process works in detail on the <a href="https://electricimp.com/docs/gettingstarted/ide/">Electric Imp IDE docs</a></p>
+            </section>
+            <section id="HowToUse">
+              <h2 id="how-to-use">How To Use</h2>
+              
+              <p>The following examples shows you how to use the Imp with a Blink LED: Digital GPIO</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">imp</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">imp</span><span class="delimiter">'</span></span>, <span class="key">agentUrl</span>: <span class="string"><span class="delimiter">'</span><span class="content">https://agent.electricimp.com/45QYZvoB41bu</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-imp</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      my.led.toggle();
+    });
+  }
+}).start()
+</pre>
+            </section>
+            <section id="HowToConnect">
+              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <p>We need to setup the Agent code and Device code so we can control the Imp over the internet. First we need to setup the agent that
+              will serve as the endpoint URL for our Imp.</p>
+              
+              <h3 id="setting-up-the-agent">Setting up the Agent</h3>
+              
+              <p><img src="/images/screenshots/imp-agent-screenshot.png" style="margin-top: 15px; width: 100%"></p>
+              
+              <p>Inside the Electric Imp IDE, on the left side (for the default layout), you'll find the Agent section, you need to paste the following code:</p>
+              
+              <pre class="CodeRay"><span class="comment">// Log the URLs we need</span>
+server.log(<span class="string"><span class="delimiter">"</span><span class="content">Agent URL: </span><span class="delimiter">"</span></span> + http.agenturl());
+
+saved_response &lt;- null;
+
+function requestHandler(request, response) {
+  local jsonRes = {};
+  try {
+    <span class="comment">// check if the user sent led as a query parameter</span>
+
+    <span class="keyword">if</span> (<span class="string"><span class="delimiter">"</span><span class="content">mode</span><span class="delimiter">"</span></span> in request.query) {
+      local value = (<span class="string"><span class="delimiter">"</span><span class="content">value</span><span class="delimiter">"</span></span> in request.query) ? request.query.value : <span class="integer">0</span>;
+      local pin = (<span class="string"><span class="delimiter">"</span><span class="content">pin</span><span class="delimiter">"</span></span> in request.query) ? request.query.pin : <span class="integer">0</span>;
+      local address = (<span class="string"><span class="delimiter">"</span><span class="content">address</span><span class="delimiter">"</span></span> in request.query) ? request.query.address : null;
+      local buffer = (<span class="string"><span class="delimiter">"</span><span class="content">buffer</span><span class="delimiter">"</span></span> in request.query) ? request.query.buffer : null;
+      local bytes = (<span class="string"><span class="delimiter">"</span><span class="content">bytes</span><span class="delimiter">"</span></span> in request.query) ? request.query.bytes : null;
+
+      device.send(request.query.mode, {
+        <span class="string"><span class="delimiter">"</span><span class="content">mode</span><span class="delimiter">"</span></span>: request.query.mode,
+        <span class="string"><span class="delimiter">"</span><span class="content">pin</span><span class="delimiter">"</span></span>: pin,
+        <span class="string"><span class="delimiter">"</span><span class="content">value</span><span class="delimiter">"</span></span>: value,
+        <span class="string"><span class="delimiter">"</span><span class="content">address</span><span class="delimiter">"</span></span>: address,
+        <span class="string"><span class="delimiter">"</span><span class="content">buffer</span><span class="delimiter">"</span></span>: buffer,
+        <span class="string"><span class="delimiter">"</span><span class="content">bytes</span><span class="delimiter">"</span></span>: bytes
+      })
+    }
+    <span class="comment">// send a response back saying everything was OK.</span>
+    <span class="comment">//response.send(200, jsonRes);</span>
+    saved_response = response;
+  } catch (ex) {
+    response.send(<span class="integer">500</span>, <span class="string"><span class="delimiter">"</span><span class="content">Internal Server Error: </span><span class="delimiter">"</span></span> + ex);
+  }
+}
+
+function responseHandler(data) {
+  saved_response.send(<span class="integer">200</span>, http.jsonencode(data));
+}
+
+<span class="comment">// register the HTTP handler</span>
+http.onrequest(requestHandler);
+
+<span class="comment">// register device response listener for digital and analog reads</span>
+device.on(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, responseHandler);
+</pre>
+              
+              <p>This will allow use to send commands to the Imp, specify modes, setup pins and consotrl I2C devices. You can also find
+              this code in the utils section of this repo.</p>
+              
+              <h3 id="setting-up-the-device-firmware">Setting up the Device firmware</h3>
+              
+              <p><img src="/images/screenshots/imp-device-screenshot.png" style="margin-top: 15px; width: 100%"></p>
+              
+              <p>Same as with the Agent code we do this inside the Electric Imp IDE, but now on the right side viewport, there you'll see the Device section, same as before paste the following code:</p>
+              
+              <pre class="CodeRay"><span class="comment">// create a global variabled called led and assign pin9 to it</span>
+pins &lt;- {
+  <span class="string"><span class="delimiter">"</span><span class="content">1</span><span class="delimiter">"</span></span>: hardware.pin1,
+  <span class="string"><span class="delimiter">"</span><span class="content">2</span><span class="delimiter">"</span></span>: hardware.pin2,
+  <span class="string"><span class="delimiter">"</span><span class="content">5</span><span class="delimiter">"</span></span>: hardware.pin5,
+  <span class="string"><span class="delimiter">"</span><span class="content">7</span><span class="delimiter">"</span></span>: hardware.pin7,
+  <span class="string"><span class="delimiter">"</span><span class="content">8</span><span class="delimiter">"</span></span>: hardware.pin8,
+  <span class="string"><span class="delimiter">"</span><span class="content">9</span><span class="delimiter">"</span></span>: hardware.pin9,
+};
+
+function digitalWrite(args) {
+  pins[args.pin].configure(DIGITAL_OUT);
+  pins[args.pin].write(args.value.tointeger());
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: null });
+}
+
+function digitalRead(args) {
+  pins[args.pin].configure(DIGITAL_IN);
+  local readVal = pins[args.pin].read();
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: readVal });
+}
+
+function analogWrite(args) {
+  pins[args.pin].configure(ANALOG_OUT);
+  pins[args.pin].write(args.value.tofloat());
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: null });
+}
+
+function analogRead(args) {
+  pins[args.pin].configure(ANALOG_IN);
+  local readVal = pins[args.pin].read();
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: readVal });
+}
+
+function pwmWrite(args) {
+  local freq = <span class="float">0</span><span class="float">.02</span>;
+
+  <span class="keyword">if</span> (<span class="string"><span class="delimiter">"</span><span class="content">freq</span><span class="delimiter">"</span></span> in args) {
+    freq = args.freq;
+  }
+
+  pins[args.pin].configure(PWM_OUT, freq, <span class="integer">1</span>);
+  pins[args.pin].write(args.value.tofloat());
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: null });
+}
+
+function i2cWrite(args) {
+  hardware.i2c89.configure(CLOCK_SPEED_400_KHZ);
+  local i2c = hardware.i2c89;
+
+  local buffer = split(args.buffer, <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>);
+  local binaryAddress = <span class="hex">0x00</span>;
+  local binaryBuffer = <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>;
+
+  binaryAddress += args.address.tointeger() &lt;&lt; <span class="integer">1</span>;
+
+  foreach(val in buffer){
+    binaryBuffer += val.tointeger().tochar();
+  }
+
+  i2c.write(binaryAddress, binaryBuffer);
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: null });
+}
+
+function i2cRead(args) {
+  hardware.i2c89.configure(CLOCK_SPEED_400_KHZ);
+  local i2c = hardware.i2c89;
+
+  local buffer = split(args.buffer, <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>);
+  local binaryAddress = <span class="hex">0x00</span>;
+  local binaryBuffer = <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span>;
+  local bytesLength = args.bytes.tointeger();
+
+  binaryAddress += args.address.tointeger() &lt;&lt; <span class="integer">1</span>;
+
+  foreach(val in buffer){
+    binaryBuffer += val.tointeger().tochar();
+  }
+
+  <span class="comment">//i2c.write(binaryAddress, binaryBuffer);</span>
+  local data = i2c.read(binaryAddress, binaryBuffer, bytesLength)
+  local dataArray = [];
+
+  foreach(val in data) {
+    dataArray.push(val);
+  }
+
+  agent.send(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, { <span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>: dataArray });
+}
+
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">digitalWrite</span><span class="delimiter">"</span></span>, digitalWrite);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">digitalRead</span><span class="delimiter">"</span></span>, digitalRead);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">analogWrite</span><span class="delimiter">"</span></span>, analogWrite);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">analogRead</span><span class="delimiter">"</span></span>, analogRead);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">pwmWrite</span><span class="delimiter">"</span></span>, pwmWrite);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">i2cWrite</span><span class="delimiter">"</span></span>, i2cWrite);
+agent.on(<span class="string"><span class="delimiter">"</span><span class="content">i2cRead</span><span class="delimiter">"</span></span>, i2cRead);
+</pre>
+              
+              <p>This will execute code in your Imp device when you make calls to the Agent using the agent URL,
+              you can check how to do this in the following section.</p>
+              
+              <p>Your Imp device is one click away of being ready to communicate and execute code, just click on the <code>Build and Run</code> button
+              on the top of the IDE and you should be ready to go.</p>
+              
+              <h3 id="talking-to-your-imp-through-the-agent-url">Talking to your imp through the Agent URL</h3>
+              
+              <p>In order to use Cylon to communicate with your Imp we'll need the agent URL. You can find this URL right above the Agent 
+              viewport of the IDE, alternatively you can look for it in the log after you click <code>Build and Run</code>.</p>
+              
+              <p>Once you have this url, which should like something along the lines of <code>https://agent.electricimp.com/45QYZvoB41bu</code>, you can 
+              pass it along the adaptor parameters in your Cylon code.</p>
+              
+              <p>This is how you setup the connection using the agent url in Cylon:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">imp</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">imp</span><span class="delimiter">'</span></span>, <span class="key">agentUrl</span>: <span class="string"><span class="delimiter">'</span><span class="content">https://agent.electricimp.com/45QYZvoB41bu</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-imp</span><span class="delimiter">'</span></span> }
+  },
+
+<span class="comment">// Rest of code ...</span>
+}).start()
+</pre>
+            </section>
+            <section class="drivers" id="Drivers">
+              <h2 id="drivers">Drivers</h2>
+              <p>The Imp works with all GPIO and I2C drivers supported by Cylon.</p>
+              <div class="hardware">
+                <div class="devices">
+                  <div class="clear"></div>
+                  <h2>GPIO Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <p class="title">Analog Sensor</p>
+                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/button" title="Button">
+                        <p class="title">Button</p>
+                        <img src="/images/devices/button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <p class="title">Continuous Servo</p>
+                        <img src="/images/devices/continuous-servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <p class="title">Direct Pin</p>
+                        <img src="/images/devices/direct-pin.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
+                        <p class="title">IR Range Finder</p>
+                        <img src="/images/devices/ir-range-finder.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/led" title="LED">
+                        <p class="title">LED</p>
+                        <img src="/images/devices/led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/makey-button" title="Makey Button">
+                        <p class="title">Makey Button</p>
+                        <img src="/images/devices/makey-button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/maxbotix" title="Maxbotix">
+                        <p class="title">Maxbotix</p>
+                        <img src="/images/devices/maxbotix.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/motor" title="Motor">
+                        <p class="title">Motor</p>
+                        <img src="/images/devices/motor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/servo" title="Servo">
+                        <p class="title">Servo</p>
+                        <img src="/images/devices/servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                  <div class="clear"></div>
+                  <h2>I2C Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/blinkm" title="BlinkM">
+                        <p class="title">BlinkM</p>
+                        <img src="/images/devices/blinkm.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/bmp180" title="BMP180">
+                        <p class="title">BMP180</p>
+                        <img src="/images/devices/bmp180.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/hmc6352-compass" title="HMC6352 Compass">
+                        <p class="title">HMC6352 Compass</p>
+                        <img src="/images/devices/hmc6352-compass.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lcd" title="LCD">
+                        <p class="title">LCD</p>
+                        <img src="/images/devices/lcd.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lsm9ds0g" title="LSM9DS0G">
+                        <p class="title">LSM9DS0G</p>
+                        <img src="/images/devices/lsm9ds0g.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/lsm9ds0xm" title="LSM9DS0XM">
+                        <p class="title">LSM9DS0XM</p>
+                        <img src="/images/devices/lsm9ds0xm.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpl115a2" title="MPL115A2">
+                        <p class="title">MPL115A2</p>
+                        <img src="/images/devices/mpl115a2.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/mpu6050" title="MPU6050">
+                        <p class="title">MPU6050</p>
+                        <img src="/images/devices/mpu6050.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2014</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

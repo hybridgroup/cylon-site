@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -272,8 +273,13 @@
             <p>We'll be setting up a connection to our 360 controller, and also setting the
             controller up as a device the robot can talk to:</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox-360</span><span class="delimiter">'</span></span> },
+            <pre class="CodeRay">  connections: {
+    <span class="key">joystick</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">xbox-360</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>With our connection to the controller established, we'll tell it what to do:</p>

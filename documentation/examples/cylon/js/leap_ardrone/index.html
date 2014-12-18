@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -260,10 +261,11 @@
  * Licensed under the Apache 2.0 license.
 */</span>
 
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-<span class="keyword">var</span> TURN_SPEED = <span class="float">0.5</span>,
-    TURN_TRESHOLD = <span class="float">0.2</span>,
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+<span class="keyword">var</span> TURN_TRESHOLD = <span class="float">0.2</span>,
     TURN_SPEED_FACTOR = <span class="float">2.0</span>;
 
 <span class="keyword">var</span> DIRECTION_THRESHOLD = <span class="float">0.25</span>,
@@ -280,33 +282,35 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">leapmotion</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
-    <span class="key">ardrone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span> },
-    <span class="key">keyboard</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> }
+    <span class="key">leapmotion</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> },
+    <span class="key">ardrone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">192.168.1.1</span><span class="delimiter">"</span></span> },
+    <span class="key">keyboard</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
-    <span class="key">keyboard</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> }
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span> },
+    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> },
+    <span class="key">keyboard</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">right</span><span class="delimiter">'</span></span>, my.drone.rightFlip);
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">left</span><span class="delimiter">'</span></span>, my.drone.leftFlip);
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">up</span><span class="delimiter">'</span></span>, my.drone.frontFlip);
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">down</span><span class="delimiter">'</span></span>, my.drone.backFlip);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">right</span><span class="delimiter">"</span></span>, my.drone.rightFlip);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>, my.drone.leftFlip);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">up</span><span class="delimiter">"</span></span>, my.drone.frontFlip);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">down</span><span class="delimiter">"</span></span>, my.drone.backFlip);
 
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">w</span><span class="delimiter">'</span></span>, my.drone.wave);
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">s</span><span class="delimiter">'</span></span>, my.drone.stop);
-    my.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">l</span><span class="delimiter">'</span></span>, my.drone.land);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">w</span><span class="delimiter">"</span></span>, my.drone.wave);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">s</span><span class="delimiter">"</span></span>, my.drone.stop);
+    my.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">l</span><span class="delimiter">"</span></span>, my.drone.land);
 
-    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">gesture</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(gesture) {
+    my.leapmotion.on(<span class="string"><span class="delimiter">"</span><span class="content">gesture</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(gesture) {
       <span class="keyword">var</span> type = gesture.type,
           state = gesture.state,
           progress = gesture.progress;
 
-      <span class="keyword">if</span> (type === <span class="string"><span class="delimiter">'</span><span class="content">circle</span><span class="delimiter">'</span></span> &amp;&amp; state === <span class="string"><span class="delimiter">'</span><span class="content">stop</span><span class="delimiter">'</span></span> &amp;&amp; progress &gt; CIRCLE_THRESHOLD) {
+      <span class="keyword">var</span> stop = (state === <span class="string"><span class="delimiter">"</span><span class="content">stop</span><span class="delimiter">"</span></span>);
+
+      <span class="keyword">if</span> (type === <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span> &amp;&amp; stop &amp;&amp; progress &gt; CIRCLE_THRESHOLD) {
         <span class="keyword">if</span> (gesture.normal[<span class="integer">2</span>] &lt; <span class="integer">0</span>) {
           my.drone.takeoff();
         }
@@ -317,12 +321,14 @@ Cylon.robot({
       }
 
       <span class="comment">// emergency stop</span>
-      <span class="keyword">if</span> (type === <span class="string"><span class="delimiter">'</span><span class="content">keyTap</span><span class="delimiter">'</span></span> || type === <span class="string"><span class="delimiter">'</span><span class="content">screenTap</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">if</span> (type === <span class="string"><span class="delimiter">"</span><span class="content">keyTap</span><span class="delimiter">"</span></span> || type === <span class="string"><span class="delimiter">"</span><span class="content">screenTap</span><span class="delimiter">"</span></span>) {
         my.drone.stop();
       }
     });
 
-    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
+    my.leapmotion.on(<span class="string"><span class="delimiter">"</span><span class="content">hand</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(hand) {
+      <span class="keyword">var</span> signal, value;
+
       <span class="keyword">var</span> handOpen = !!hand.fingers.filter(<span class="keyword">function</span>(f) {
         <span class="keyword">return</span> f.extended;
       }).length;
@@ -333,10 +339,13 @@ Cylon.robot({
           handStartDirection = hand.direction;
         }
 
+        <span class="keyword">var</span> horizontal = Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]),
+            vertical = Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]);
+
         <span class="comment">// TURNS</span>
-        <span class="keyword">if</span> (Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]) &gt; TURN_TRESHOLD) {
-          <span class="keyword">var</span> signal = handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>],
-              value = (Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>])- TURN_TRESHOLD) * TURN_SPEED_FACTOR;
+        <span class="keyword">if</span> (horizontal &gt; TURN_TRESHOLD) {
+          signal = handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>];
+          value = (horizontal - TURN_TRESHOLD) * TURN_SPEED_FACTOR;
 
           <span class="keyword">if</span> (signal &gt; <span class="integer">0</span>){
             my.drone.counterClockwise(value);
@@ -348,9 +357,14 @@ Cylon.robot({
         }
 
         <span class="comment">// UP and DOWN</span>
-        <span class="keyword">if</span> (Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &gt; UP_CONTROL_THRESHOLD) {
-          <span class="keyword">var</span> signal = (hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &gt;= <span class="integer">0</span> ? <span class="integer">1</span> :  - <span class="integer">1</span>;
-          <span class="keyword">var</span> value = Math.round(Math.abs((hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>])) - UP_CONTROL_THRESHOLD) * UP_SPEED_FACTOR;
+        <span class="keyword">if</span> (vertical &gt; UP_CONTROL_THRESHOLD) {
+          <span class="keyword">if</span> ((hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &gt;= <span class="integer">0</span>) {
+            signal = <span class="integer">1</span>;
+          } <span class="keyword">else</span> {
+            signal = -<span class="integer">1</span>;
+          }
+
+          value = Math.round(vertical - UP_CONTROL_THRESHOLD) * UP_SPEED_FACTOR;
 
           <span class="keyword">if</span> (signal &gt; <span class="integer">0</span>) {
             my.drone.up(value);
@@ -364,12 +378,20 @@ Cylon.robot({
         <span class="comment">// DIRECTION FRONT/BACK</span>
         <span class="keyword">if</span> ((Math.abs(hand.palmNormal[<span class="integer">2</span>]) &gt; DIRECTION_THRESHOLD)) {
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">2</span>] &gt; <span class="integer">0</span>) {
-            <span class="keyword">var</span> value = Math.abs(Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD) * DIRECTION_SPEED_FACTOR);
+            value = Math.abs(
+              Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD) *
+              DIRECTION_SPEED_FACTOR
+            );
+
             my.drone.forward(value);
           }
 
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">2</span>] &lt; <span class="integer">0</span>) {
-              <span class="keyword">var</span> value = Math.abs(Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) * DIRECTION_SPEED_FACTOR);
+              value = Math.abs(
+                Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
+                DIRECTION_SPEED_FACTOR
+              );
+
               my.drone.back(value);
           }
         }
@@ -377,23 +399,40 @@ Cylon.robot({
         <span class="comment">// DIRECTION LEFT/RIGHT</span>
         <span class="keyword">if</span> ((Math.abs(hand.palmNormal[<span class="integer">0</span>])&gt;DIRECTION_THRESHOLD)) {
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>] &gt; <span class="integer">0</span>) {
-              <span class="keyword">var</span> value = Math.abs(Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD ) * DIRECTION_SPEED_FACTOR);
+              value = Math.abs(
+                Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD) *
+                DIRECTION_SPEED_FACTOR
+              );
+
               my.drone.left(value);
           }
 
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>] &lt; <span class="integer">0</span>) {
-              <span class="keyword">var</span> value = Math.abs(Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) * DIRECTION_SPEED_FACTOR);
+              value = Math.abs(
+                Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
+                DIRECTION_SPEED_FACTOR
+              );
+
               my.drone.right(value);
           }
         }
 
         <span class="comment">// AUTO FREEZE</span>
-        <span class="keyword">if</span> ((Math.abs(hand.palmNormal[<span class="integer">0</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp; <span class="comment">// within left/right threshold</span>
-            (Math.abs(hand.palmNormal[<span class="integer">2</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp; <span class="comment">// within forward/back threshold</span>
-            Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &lt; UP_CONTROL_THRESHOLD &amp;&amp; <span class="comment">// within up/down threshold</span>
-            Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]) &lt; TURN_TRESHOLD) <span class="comment">// within turn threshold</span>
-        {
-            my.drone.stop();
+        <span class="keyword">if</span> (
+            <span class="comment">// within left/right threshold</span>
+            (Math.abs(hand.palmNormal[<span class="integer">0</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
+
+            <span class="comment">// within forward/back threshold</span>
+            (Math.abs(hand.palmNormal[<span class="integer">2</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
+
+            <span class="comment">// within up/down threshold</span>
+            Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &lt;
+            UP_CONTROL_THRESHOLD &amp;&amp;
+
+            <span class="comment">// within turn threshold</span>
+            Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]) &lt;
+            TURN_TRESHOLD) {
+          my.drone.stop();
         }
       }
 

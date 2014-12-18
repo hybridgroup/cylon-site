@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,25 +253,27 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> },
-    <span class="key">leapmotion</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
+    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span> },
+    <span class="key">leapmotion</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">servo1</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> },
-    <span class="key">servo2</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> },
-    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
+    <span class="key">servo1</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span> },
+    <span class="key">servo2</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span> },
+    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.x = <span class="integer">90</span>;
     my.z = <span class="integer">90</span>;
 
-    my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(hand) {
+    my.leapmotion.on(<span class="string"><span class="delimiter">"</span><span class="content">hand</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(hand) {
       my.x = hand.palmX.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
       my.z = hand.palmZ.fromScale(-<span class="integer">300</span>, <span class="integer">300</span>).toScale(<span class="integer">30</span>, <span class="integer">150</span>);
     });
@@ -279,7 +282,12 @@ Cylon.robot({
       my.servo1.angle(my.x);
       my.servo2.angle(my.z);
 
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span> + my.servo1.currentAngle() + <span class="string"><span class="delimiter">"</span><span class="content">, </span><span class="delimiter">"</span></span> + my.servo2.currentAngle());
+      <span class="keyword">var</span> str = <span class="string"><span class="delimiter">"</span><span class="content">Current Angle: </span><span class="delimiter">"</span></span>;
+      str += my.servo1.currentAngle();
+      str += <span class="string"><span class="delimiter">"</span><span class="content">, </span><span class="delimiter">"</span></span>;
+      str += my.servo2.currentAngle();
+
+      console.log(str);
     });
   }
 }).start();

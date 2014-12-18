@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - Multiple Spheros</title>
+    <title>Cylon.JS Example - Multiple Sphero</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -251,49 +252,16 @@
           </div>
           <div class="container-documentation">
             
-            <h1 id="multiple-spheros">Multiple Spheros</h1>
+            <h1 id="multiple-sphero">Multiple Sphero</h1>
             
-            <p>Let's do an example of Cylon controlling multiple Spheros at the same time. The
-            Spheros will both randomly roll around and change their colors every second.</p>
+            <p>Let's do an example of Cylon controlling multiple Spheros at the same time.
+            The Spheros will both randomly roll around and change their colors every second.</p>
             
-            <p>Before we run this example, make sure to have <code>cylon-sphero</code> installed (<code>npm
-install cylon-sphero</code>)</p>
+            <p>Before we run this example, make sure to have <code>cylon-sphero</code> installed (<code>npm install cylon-sphero</code>)</p>
             
             <p>First, load up Cylon:</p>
             
             <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-</pre>
-            
-            <p>Since both of our Spheros are going to have faily similar behaviour, we can
-            define a class to hold their attributes:</p>
-            
-            <pre class="CodeRay"><span class="keyword">var</span> SpheroRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">SpheroRobot</span>() {}
-</pre>
-            
-            <p>We'll define the Sphero's connection sans port, which we'll add later.</p>
-            
-            <pre class="CodeRay">  SpheroRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-</pre>
-            
-            <p>Both Spheros have the same device configuration</p>
-            
-            <pre class="CodeRay">  SpheroRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-</pre>
-            
-            <p>Now we can define the work for the Spheros. Every second, they'll print their
-            name, change to a random color, and roll in a random direction.</p>
-            
-            <pre class="CodeRay">  SpheroRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      console.log(my.name);
-      my.sphero.setRandomColor();
-      my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
-    });
-  };
-
-  <span class="keyword">return</span> SpheroRobot;
-})();
 </pre>
             
             <p>Next up, let's define what's different about our bots so we can tell them apart
@@ -306,31 +274,42 @@ install cylon-sphero</code>)</p>
 ];
 </pre>
             
-            <p>Now that the pieces are in place, we can start making our robots.</p>
+            <p>With our different bots described in code, let's start telling Cylon about them:</p>
             
-            <pre class="CodeRay"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
+            <pre class="CodeRay">bots.forEach(<span class="keyword">function</span>(bot) {
+  Cylon.robot({
+    <span class="key">name</span>: bot.name,
 </pre>
             
-            <p>We'll make a new instance of <code>SpheroRobot</code>, and modify it.</p>
+            <p>Next up, let's tell the robot about the Sphero's port:</p>
             
-            <pre class="CodeRay">  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> SpheroRobot;
+            <pre class="CodeRay">    connections: {
+      <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: bot.port }
+    },
 </pre>
             
-            <p>Now we'll tell the robot what it's name is, and what it's connection port should
-            be:</p>
+            <p>Spheros will both have the same device configuration:</p>
             
-            <pre class="CodeRay">  robot.name = bot.name;
-  robot.connection.port = bot.port;
+            <pre class="CodeRay">    devices: {
+      <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    },
 </pre>
             
-            <p>Now our robot's ready, and we can add it to Cylon's collection of robots.</p>
+            <p>Now we can define the work for the Spheros.
+            Every second, they'll print their name, change to a random color, and roll in a random direction.</p>
             
-            <pre class="CodeRay">  Cylon.robot(robot);
-}
+            <pre class="CodeRay">    <span class="function">work</span>: <span class="keyword">function</span>(my) {
+      every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+        console.log(my.name);
+        my.sphero.setRandomColor();
+        my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+      });
+    }
+  });
+});
 </pre>
             
-            <p>And now that our robots have all been set up, we can start them all at once:</p>
+            <p>And with our robots defined, we'll start up Cylon.</p>
             
             <pre class="CodeRay">Cylon.start();
 </pre>

@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -269,8 +270,13 @@
             
             <p>We'll be using one connection and one device, both the Sphero.</p>
             
-            <pre class="CodeRay">  connection: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
-  <span class="key">device</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
+            <pre class="CodeRay">  connections: {
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+  },
 </pre>
             
             <p>The work for this robot is pretty straight-forward. Every second, we're going to

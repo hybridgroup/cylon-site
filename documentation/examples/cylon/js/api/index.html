@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,16 +253,18 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.api({
-  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>
+  <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.0.0</span><span class="delimiter">"</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">8080</span><span class="delimiter">"</span></span>
 });
 
 <span class="keyword">var</span> bots = {
-  <span class="key"><span class="delimiter">'</span><span class="content">Thelma</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>,
-  <span class="key"><span class="delimiter">'</span><span class="content">Louise</span><span class="delimiter">'</span></span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm1</span><span class="delimiter">'</span></span>
+  <span class="key"><span class="delimiter">"</span><span class="content">Thelma</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
+  <span class="key"><span class="delimiter">"</span><span class="content">Louise</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span>
 };
 
 Object.keys(bots).forEach(<span class="keyword">function</span>(name) {
@@ -271,11 +274,11 @@ Object.keys(bots).forEach(<span class="keyword">function</span>(name) {
     <span class="key">name</span>: name,
 
     <span class="key">connections</span>: {
-      <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: port }
+      <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: port }
     },
 
     <span class="key">devices</span>: {
-      <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+      <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> }
     },
 
     <span class="function">work</span>: <span class="keyword">function</span>(my) {

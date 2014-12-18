@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,30 +253,32 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">sfcon</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span>,
       <span class="key">sfuser</span>: process.env.SF_USERNAME,
       <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
       <span class="key">orgCreds</span>: {
         <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
         <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">"</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">"</span></span>
       }
     }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Namy__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
+    my.salesforce.on(<span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      my.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">Bucks: </span><span class="delimiter">"</span></span> + data.sobject.Bucks__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
 
@@ -287,11 +290,11 @@ Cylon.robot({
 
     every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
       <span class="keyword">var</span> data = JSON.stringify({
-        <span class="key">spheroNamy</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + my.namy,
+        <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + my.name,
         <span class="key">bucks</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + i
       });
 
-      my.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, data);
+      my.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">SpheroController</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">POST</span><span class="delimiter">"</span></span>, data);
     });
   }
 }).start();

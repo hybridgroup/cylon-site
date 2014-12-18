@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,7 +253,9 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 <span class="keyword">var</span> bots = [
   {
@@ -280,10 +283,10 @@ bots.forEach(<span class="keyword">function</span>(bot) {
     },
 
     <span class="function">work</span>: <span class="keyword">function</span>(my) {
-      my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">if</span> (data.led13 === <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
+      my.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+        <span class="keyword">if</span> (data.led13 === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
           my.led13.turnOn();
-        } <span class="keyword">else</span> <span class="keyword">if</span> (data.led13 === <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
+        } <span class="keyword">else</span> <span class="keyword">if</span> (data.led13 === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
           my.led13.turnOff();
         }
 

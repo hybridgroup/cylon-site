@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,19 +253,21 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">crazyflie</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">radio://1/10/250KPS</span><span class="delimiter">"</span></span> }
+    <span class="key">crazyflie</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">crazyflie</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">radio://1/10/250KPS</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">crazyflie</span><span class="delimiter">'</span></span> }
-  }
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">crazyflie</span><span class="delimiter">"</span></span> }
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.drone.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    my.drone.on(<span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       my.drone.takeoff();
       after((<span class="integer">10</span>).seconds(), my.drone.land);
       after((<span class="integer">15</span>).seconds(), my.drone.stop);

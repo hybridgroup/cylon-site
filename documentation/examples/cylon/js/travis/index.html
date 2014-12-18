@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,18 +253,20 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>),
-    Travis = require(<span class="string"><span class="delimiter">'</span><span class="content">travis-ci</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-<span class="keyword">var</span> travis = <span class="keyword">new</span> Travis({<span class="key">version</span>: <span class="string"><span class="delimiter">'</span><span class="content">2.0.0</span><span class="delimiter">'</span></span>});
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>),
+    Travis = require(<span class="string"><span class="delimiter">"</span><span class="content">travis-ci</span><span class="delimiter">"</span></span>);
+
+<span class="keyword">var</span> travis = <span class="keyword">new</span> Travis({<span class="key">version</span>: <span class="string"><span class="delimiter">"</span><span class="content">2.0.0</span><span class="delimiter">"</span></span>});
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -272,23 +275,23 @@ Cylon.robot({
 
     <span class="keyword">var</span> <span class="function">checkTravis</span> = <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Checking repo </span><span class="delimiter">"</span></span> + user + <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> + name);
-      my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+      my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>);
 
       travis.repos({ <span class="key">owner_name</span>: user, <span class="key">name</span>: name }, <span class="keyword">function</span>(err, res) {
-        <span class="keyword">if</span> (res.repo === <span class="predefined-constant">undefined</span>) { my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>); }
+        <span class="keyword">if</span> (res.repo === <span class="predefined-constant">undefined</span>) { my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>); }
 
         <span class="keyword">switch</span> (res.repo.last_build_state) {
-          <span class="keyword">case</span> <span class="string"><span class="delimiter">'</span><span class="content">passed</span><span class="delimiter">'</span></span>:
-            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">green</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+          <span class="keyword">case</span> <span class="string"><span class="delimiter">"</span><span class="content">passed</span><span class="delimiter">"</span></span>:
+            my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">green</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>);
             <span class="keyword">break</span>;
-          <span class="keyword">case</span> <span class="string"><span class="delimiter">'</span><span class="content">failed</span><span class="delimiter">'</span></span>:
-            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">red</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+          <span class="keyword">case</span> <span class="string"><span class="delimiter">"</span><span class="content">failed</span><span class="delimiter">"</span></span>:
+            my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>);
             <span class="keyword">break</span>;
           <span class="keyword">default</span>:
-            my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">blue</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
+            my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>);
         }
       });
-    }
+    };
 
     checkTravis();
 

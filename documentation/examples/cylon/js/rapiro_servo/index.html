@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,16 +253,18 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">'</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">17</span> },
-    <span class="key">servo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>, <span class="key">range</span>: { <span class="key">min</span>: <span class="integer">30</span>, <span class="key">max</span>: <span class="integer">150</span> } }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">17</span> },
+    <span class="key">servo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">2</span>, <span class="key">range</span>: { <span class="key">min</span>: <span class="integer">30</span>, <span class="key">max</span>: <span class="integer">150</span> } }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -270,7 +273,7 @@ Cylon.robot({
     <span class="keyword">var</span> angle = <span class="integer">30</span>;
     <span class="keyword">var</span> increment = <span class="integer">40</span>;
 
-    every(<span class="integer">1</span>..seconds(), <span class="keyword">function</span>() {
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       angle += increment;
       my.servo.angle(angle);
 

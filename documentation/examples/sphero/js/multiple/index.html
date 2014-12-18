@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - Multiple Spheros</title>
+    <title>Cylon.JS Example - Multiple Sphero</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -252,41 +253,36 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay">    <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-<span class="keyword">var</span> SpheroRobot = (<span class="keyword">function</span>() {
-  <span class="keyword">function</span> <span class="function">SpheroRobot</span>() {}
+    <span class="keyword">var</span> bots = [
+      { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Thelma</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> },
+      { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Louise</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span> }
+    ];
 
-  SpheroRobot.prototype.connection = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Sphero</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
-  SpheroRobot.prototype.device = { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> };
+    bots.forEach(<span class="keyword">function</span>(bot) {
+      Cylon.robot({
+        <span class="key">name</span>: bot.name,
 
-  SpheroRobot.prototype.<span class="function">work</span> = <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      console.log(my.name);
-      my.sphero.setRandomColor();
-      my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+        <span class="key">connections</span>: {
+          <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: bot.port }
+        },
+
+        <span class="key">devices</span>: {
+          <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+        },
+
+        <span class="function">work</span>: <span class="keyword">function</span>(my) {
+          every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+            console.log(my.name);
+            my.sphero.setRandomColor();
+            my.sphero.roll(<span class="integer">60</span>, Math.floor(Math.random() * <span class="integer">360</span>));
+          });
+        }
+      });
     });
-  };
 
-  <span class="keyword">return</span> SpheroRobot;
-})();
-
-<span class="keyword">var</span> bots = [
-  { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Thelma</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> },
-  { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">Louise</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span> }
-];
-
-<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="integer">0</span>; i &lt; bots.length; i++) {
-  <span class="keyword">var</span> bot = bots[i];
-  <span class="keyword">var</span> robot = <span class="keyword">new</span> SpheroRobot;
-
-  robot.name = bot.name;
-  robot.connection.port = bot.port;
-
-  Cylon.robot(robot);
-}
-
-Cylon.start();
+    Cylon.start();
 </pre>
             </div>
           </div>

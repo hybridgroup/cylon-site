@@ -111,6 +111,7 @@
                   <a href="/documentation/platforms/ble">BLE</a>
                   <a href="/documentation/platforms/crazyflie">Crazyflie</a>
                   <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
@@ -289,7 +290,7 @@
             <pre class="CodeRay">  <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.salesforce.on(<span class="string"><span class="delimiter">'</span><span class="content">start</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
       my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Namy__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
+        <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">Bucks: </span><span class="delimiter">"</span></span> + data.sobject.Bucks__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
         msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
 
@@ -301,7 +302,7 @@
 
     every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
       <span class="keyword">var</span> data = JSON.stringify({
-        <span class="key">spheroNamy</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + my.namy,
+        <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + my.name,
         <span class="key">bucks</span>: <span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span> + i
       });
 
