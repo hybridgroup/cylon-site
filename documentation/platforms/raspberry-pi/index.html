@@ -341,34 +341,40 @@ i2c-dev
               
               <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
               
-              <p>You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install on our repo here:</p>
+              <p>You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install in the pi-blaster repo here:</p>
               
-              <p><a href="https://github.com/hybridgroup/pi-blaster">https://github.com/hybridgroup/pi-blaster</a></p>
+              <p><a href="https://github.com/sarfata/pi-blaster">https://github.com/sarfata/pi-blaster</a></p>
               
               <h3 id="available-pins">Available PINS</h3>
+              
+              <p>The following object depicts available pins for all revisions of raspberry-pi, the <code>key</code> is the actual number of the physical pin header on the board,
+              the <code>value</code> is the GPIO pin number assigned by the OS, for the pins with changes between board revisions, the value contains the variations of GPIO pin number
+              assignment between them (eg.rev1, rev2, rev3).</p>
+              
+              <p>You should just be concerned with the <code>key</code> (number of the physical pin header on the board), Cylon.JS takes care
+              of the board revision and GPIO pin numbers for you, this full list is for reference only.</p>
               
               <pre class="CodeRay">PINS = {
   <span class="integer">3</span>: {
     <span class="key">rev1</span>: <span class="integer">0</span>,
-    <span class="key">rev2</span>: <span class="integer">2</span>
+    <span class="key">rev2</span>: <span class="integer">2</span>,
+    <span class="key">rev3</span>: <span class="integer">2</span>
   },
-
   <span class="integer">5</span>: {
     <span class="key">rev1</span>: <span class="integer">1</span>,
-    <span class="key">rev2</span>: <span class="integer">3</span>
+    <span class="key">rev2</span>: <span class="integer">3</span>,
+    <span class="key">rev3</span>: <span class="integer">3</span>
   },
-
   <span class="integer">7</span>: <span class="integer">4</span>,
   <span class="integer">8</span>: <span class="integer">14</span>,
   <span class="integer">10</span>: <span class="integer">15</span>,
   <span class="integer">11</span>: <span class="integer">17</span>,
   <span class="integer">12</span>: <span class="integer">18</span>,
-
   <span class="integer">13</span>: {
     <span class="key">rev1</span>: <span class="integer">21</span>,
-    <span class="key">rev2</span>: <span class="integer">27</span>
+    <span class="key">rev2</span>: <span class="integer">27</span>,
+    <span class="key">rev3</span>: <span class="integer">27</span>
   },
-
   <span class="integer">15</span>: <span class="integer">22</span>,
   <span class="integer">16</span>: <span class="integer">23</span>,
   <span class="integer">18</span>: <span class="integer">24</span>,
@@ -377,7 +383,33 @@ i2c-dev
   <span class="integer">22</span>: <span class="integer">25</span>,
   <span class="integer">23</span>: <span class="integer">11</span>,
   <span class="integer">24</span>: <span class="integer">8</span>,
-  <span class="integer">26</span>: <span class="integer">7</span>
+  <span class="integer">29</span>: {
+    <span class="key">rev3</span>: <span class="integer">5</span>
+  },
+  <span class="integer">31</span>: {
+    <span class="key">rev3</span>: <span class="integer">6</span>
+  },
+  <span class="integer">32</span>: {
+    <span class="key">rev3</span>: <span class="integer">12</span>
+  },
+  <span class="integer">33</span>: {
+    <span class="key">rev3</span>: <span class="integer">13</span>
+  },
+  <span class="integer">35</span>: {
+    <span class="key">rev3</span>: <span class="integer">19</span>
+  },
+  <span class="integer">36</span>: {
+    <span class="key">rev3</span>: <span class="integer">16</span>
+  },
+  <span class="integer">37</span>: {
+    <span class="key">rev3</span>: <span class="integer">26</span>
+  },
+  <span class="integer">38</span>: {
+    <span class="key">rev3</span>: <span class="integer">20</span>
+  },
+  <span class="integer">40</span>: {
+    <span class="key">rev3</span>: <span class="integer">21</span>
+  }
 };
 </pre>
             </section>
