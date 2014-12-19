@@ -81,35 +81,41 @@ subnavjs: true
 
     ### Enabling PWM output on GPIO pins.
 
-    You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install on our repo here:
+    You need to install and have pi-blaster running in the raspberry-pi, you can follow the instructions for pi-blaster install in the pi-blaster repo here:
 
-    [https://github.com/hybridgroup/pi-blaster](https://github.com/hybridgroup/pi-blaster)
+    [https://github.com/sarfata/pi-blaster](https://github.com/sarfata/pi-blaster)
 
     ### Available PINS
+
+    The following object depicts available pins for all revisions of raspberry-pi, the `key` is the actual number of the physical pin header on the board,
+    the `value` is the GPIO pin number assigned by the OS, for the pins with changes between board revisions, the value contains the variations of GPIO pin number
+    assignment between them (eg.rev1, rev2, rev3).
+
+    You should just be concerned with the `key` (number of the physical pin header on the board), Cylon.JS takes care
+    of the board revision and GPIO pin numbers for you, this full list is for reference only.
 
         :::javascript
         PINS = {
           3: {
             rev1: 0,
-            rev2: 2
+            rev2: 2,
+            rev3: 2
           },
-
           5: {
             rev1: 1,
-            rev2: 3
+            rev2: 3,
+            rev3: 3
           },
-
           7: 4,
           8: 14,
           10: 15,
           11: 17,
           12: 18,
-
           13: {
             rev1: 21,
-            rev2: 27
+            rev2: 27,
+            rev3: 27
           },
-
           15: 22,
           16: 23,
           18: 24,
@@ -118,7 +124,33 @@ subnavjs: true
           22: 25,
           23: 11,
           24: 8,
-          26: 7
+          29: {
+            rev3: 5
+          },
+          31: {
+            rev3: 6
+          },
+          32: {
+            rev3: 12
+          },
+          33: {
+            rev3: 13
+          },
+          35: {
+            rev3: 19
+          },
+          36: {
+            rev3: 16
+          },
+          37: {
+            rev3: 26
+          },
+          38: {
+            rev3: 20
+          },
+          40: {
+            rev3: 21
+          }
         };
 
 %section.drivers#Drivers
