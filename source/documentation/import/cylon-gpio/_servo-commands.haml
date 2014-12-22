@@ -1,0 +1,43 @@
+:markdown
+  ## currentAngle
+
+  Returns the current angle of the Servo
+
+
+  ### Returns
+
+  - (<code>Number</code>) the current servo angle value (0-180)
+
+  * * *
+
+  ## angle
+
+  Sets the angle of the servo to the provided value
+
+
+  ### Params
+
+
+  - **value** (<code>Number</code>) the angle to point the servo to (0-180)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## safeAngle
+
+  Given a servo angle, determines if it's safe or not, and returns a safe value
+
+
+  ### Params
+
+
+  - **value** (<code>Number</code>) the angle the user wants to set the servo to
+
+
+  ### Returns
+
+  - (<code>Number</code>) a made-safe angle to set the servo to

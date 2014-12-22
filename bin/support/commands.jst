@@ -1,0 +1,13 @@
+  ## <%= name %>
+
+  <%= description %>
+  <% if (params.length) { %>
+  ### Params
+  <% _.forEach(params, function(param) { %>
+
+  - **<%= param.name %>** (<%= param.typesDescription %>) <%= param.description %>
+  <% }); %>
+  <% } %>
+  ### Returns
+
+  - (<%= ret.typesDescription %>) <%= ret.description %>

@@ -1,0 +1,74 @@
+:markdown
+  ## turnOn
+
+  Writes a HIGH (1) value to the pin, turning the LED on.
+
+  Also sets `this.isHigh` to `true`.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## turnOff
+
+  Writes a LOW (0) value to the pin, turning the LED off.
+
+  Also sets `this.isHigh` to `false`.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## toggle
+
+  Toggles the LED on or off, depending on its current state
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## currentBrightness
+
+  Returns the current brightness of the LED.
+
+
+  ### Returns
+
+  - (<code>Number</code>) the current LED brightness value (0-255)
+
+  * * *
+
+  ## brightness
+
+  Sets brightness of the LED to the specified value using PWM.
+
+
+  ### Params
+
+
+  - **value** (<code>Number</code>) PWM value to set the brightness to (0-255)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## isOn
+
+  Returns whether or not the LED is currently on
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) whether or not the LED is currently on

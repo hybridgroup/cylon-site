@@ -1,0 +1,9 @@
+  ## <%= name %>
+
+  <%= description %>
+  <% if (values.length) { %>
+  ### Values
+  <% _.forEach(values, function(value) { %>
+  - **<%= value.name %>** <%= value.description %>
+  <% }); %>
+  <% } %>

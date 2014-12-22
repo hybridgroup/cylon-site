@@ -3,16 +3,16 @@
 This is the code for the website for Cylon (http://cylonjs.com) is a JavaScript framework for robotics, physical computing, and the Internet of Things using Node.js.
 If you are looking for the actual Cylon code itself, it is at https://github.com/hybridgroup/cylon
 
-This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)  
+This site is build using [Middleman](http://middlemanapp.com/basics/getting-started/)
 
-To run locally:  
+To run locally:
 
       bundle install
       bundle exec middleman
 
 ### Deploy
 
-[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.  
+[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.
 
 For deploying the webpage, your must be in 'master' branch and run the following command:
 
@@ -30,15 +30,15 @@ If you want to help us with the documentation of the site, you can follow this s
 
 - 1) Download the zip of the branch "master" or clone the project with git.
 
-		  git clone git@github.com:hybridgroup/cylon-site.git "name"
+      git clone git@github.com:hybridgroup/cylon-site.git "name"
 
 - 2) Create a new branch for the project and switch to that new branch.
 
-		  git branch "new_name"
-		  git checkout "new_name"
+      git branch "new_name"
+      git checkout "new_name"
 
   or
-  
+
       git checkout -b "new_name"
 
 - 3) Open the project with your favourite text editor.
@@ -72,25 +72,13 @@ This script will:
 #### Repo Docs
 
 To import docs partials from Cylon adaptor repositories, run the
-`bin/import_repo_docs` script.
+`bin/import-docs` script.
 
 This script will:
 
-- clone down Cylon adaptor repositories
-- extract all `docs/*.md` documents
-- add them as partials to `source/documentation/drivers/partials`
-
-If you want to only import docs from a single repo:
-
-```
-bin/import_repo_docs hybridgroup/cylon-gpio
-```
-
-or
-
-```
-bin/import_repo_docs https://github.com/hybridgroup/cylon-gpio.git
-```
+- clone down Cylon repositories
+- extract all inline JSDoc documentation, with the [dox](https://github.com/tj/dox) tool
+- add command/event data as partials to `source/documentation/imports/#{repo}`
 
 ### Send your Pull Request
 
