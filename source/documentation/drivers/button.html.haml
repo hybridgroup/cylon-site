@@ -65,9 +65,11 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_button"
+    %h1 Commands
+    = partial "/documentation/import/cylon-gpio/button-commands"
   .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_button"
+    %h1 Events
+    = partial "/documentation/import/cylon-gpio/button-events"
 
 %section.circuit#Circuit
   %h2 Circuit

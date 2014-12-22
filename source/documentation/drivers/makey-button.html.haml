@@ -60,10 +60,9 @@ subnavjs: trues
         }).start();
 
 %section.public-methods
-  .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_makey_button"
   .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_makey_button"
+    %h1 Events
+    = partial "/documentation/import/cylon-gpio/makey-button-events"
 
 %section.circuit#Circuit
   %h2 Circuit

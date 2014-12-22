@@ -64,9 +64,8 @@ subnavjs: trues
 
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/gpio/commands_motor"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/gpio/events_motor"
+    %h1 Commands
+    = partial "/documentation/import/cylon-gpio/motor-commands"
 
 %section.circuit#Circuit
   %h2 Circuit
@@ -75,8 +74,6 @@ subnavjs: trues
   .image-circuit
     %img{:src => "/documentation/drivers/breadboards/gpio/motor_bb.png", :alt => ""}/
   .clear
-
-
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
