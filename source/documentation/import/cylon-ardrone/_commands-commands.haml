@@ -37,7 +37,7 @@
 
   Sets all drone movements to 0.
 
-This effectively makes it hover in place.
+  This effectively makes it hover in place.
 
 
   ### Returns
@@ -84,8 +84,8 @@ This effectively makes it hover in place.
 
   Makes the drone bank to the left.
 
-Controls the roll and horizontal movement using the camera as a reference
-point.
+  Controls the roll and horizontal movement using the camera as a reference
+  point.
 
 
   ### Params
@@ -104,8 +104,8 @@ point.
 
   Makes the drone bank to the right.
 
-Controls the roll and horizontal movement using the camera as a reference
-point.
+  Controls the roll and horizontal movement using the camera as a reference
+  point.
 
 
   ### Params
@@ -124,8 +124,8 @@ point.
 
   Makes the drone bank forwards.
 
-Controls the pitch and horizontal movement using the camera as a reference
-point.
+  Controls the pitch and horizontal movement using the camera as a reference
+  point.
 
 
   ### Params
@@ -144,8 +144,8 @@ point.
 
   Makes the drone bank backwards.
 
-Controls the pitch and horizontal movement using the camera as a reference
-point.
+  Controls the pitch and horizontal movement using the camera as a reference
+  point.
 
 
   ### Params
@@ -257,7 +257,7 @@ point.
   ## animateLeds
 
   Performs a pre-programmed LED animation sequence for a given duration, at
-a given frequency.
+  a given frequency.
 
 
   ### Params
@@ -282,13 +282,13 @@ a given frequency.
 
   Resets the emergency state of the drone.
 
-It does this by setting the emergency REF bit to `1` until
+  It does this by setting the emergency REF bit to `1` until
 `navdata.droneState.emergencyLanding` is `0`.
 
-This reccovers a drone that has flipped over and shows red lights to be
-flyable again (with green LEDs).
+  This reccovers a drone that has flipped over and shows red lights to be
+  flyable again (with green LEDs).
 
-It is also done implicitly when creating a new high-level client.
+  It is also done implicitly when creating a new high-level client.
 
 
   ### Returns
@@ -404,8 +404,8 @@ It is also done implicitly when creating a new high-level client.
 
   Requests a stream of PNGs from the ARDrone's camera.
 
-PNGs are emitted through the `data` event on the returned object as they
-become ready.
+  PNGs are emitted through the `data` event on the returned object as they
+  become ready.
 
 
   ### Returns

@@ -99,7 +99,7 @@ _.forIn(docs, function(files, repo) {
           description: description,
           params: params,
           ret: ret
-        }).replace(/[^\S\r\n]+$/gm, '');
+        }).replace(/[^\S\r\n]+$/gm, '').replace(/^(\w+)/gm, "  $1");
       });
 
       content += cmds.join("\n  * * *\n\n");
@@ -127,7 +127,7 @@ _.forIn(docs, function(files, repo) {
           name: name,
           description: description,
           values: values
-        }).replace(/[^\S\r\n]+$/gm, '');
+        }).replace(/[^\S\r\n]+$/gm, '').replace(/^(\w+)/gm, "  $1");
       });
 
       content += evts.join("\n  * * *\n\n");
