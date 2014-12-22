@@ -1,0 +1,430 @@
+:markdown
+  ## takeoff
+
+  Sets the internal 'fly' state to true.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be invoked once the drone is hovering
+
+
+  ### Returns
+
+  - (<code>Boolean</code>|<code>null</code>)
+
+  * * *
+
+  ## land
+
+  Sets the internal fly state to 'false'.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be invoked when the drone has landed
+
+
+  ### Returns
+
+  - (<code>Boolean</code>|<code>null</code>)
+
+  * * *
+
+  ## stop
+
+  Sets all drone movements to 0.
+
+This effectively makes it hover in place.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## up
+
+  Makes the drone gain altitude.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone should climb
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## down
+
+  Makes the drone lose altitude.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone should fall
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## left
+
+  Makes the drone bank to the left.
+
+Controls the roll and horizontal movement using the camera as a reference
+point.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone moves left
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## right
+
+  Makes the drone bank to the right.
+
+Controls the roll and horizontal movement using the camera as a reference
+point.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone moves right
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## front
+
+  Makes the drone bank forwards.
+
+Controls the pitch and horizontal movement using the camera as a reference
+point.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone moves forward
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## back
+
+  Makes the drone bank backwards.
+
+Controls the pitch and horizontal movement using the camera as a reference
+point.
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone moves backwards
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## clockwise
+
+  Makes the drone spin in a clockwise direction
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone should spin
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## counterClockwise
+
+  Makes the drone spin in a counter-clockwise direction
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone should spin
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## calibrate
+
+  Tells the drone to calibrate a device
+
+
+  ### Params
+
+
+  - **deviceNum** (<code>Number</code>) the device the drone should calibrate
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## config
+
+  Tells the drone to set a configuration value
+
+
+  ### Params
+
+
+  - **key** (<code>String</code>) the config value to set
+
+
+  - **value** (<code>String</code>) the value to set it to
+
+
+  - **callback** (<code>Function</code>) a callback to be triggered when it's done
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## animate
+
+  Performs a pre-programmed flight sequence for a given duration.
+
+
+  ### Params
+
+
+  - **animation** (<code>String</code>) the animation to perform
+
+
+  - **duration** (<code>Number</code>) the duration to perform the animation
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## animateLeds
+
+  Performs a pre-programmed LED animation sequence for a given duration, at
+a given frequency.
+
+
+  ### Params
+
+
+  - **animation** (<code>String</code>) the animation to perform
+
+
+  - **hz** (<code>Number</code>) the frequency to perform the animation at
+
+
+  - **duration** (<code>Number</code>) the duration to perform the animation
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## disableEmergency
+
+  Resets the emergency state of the drone.
+
+It does this by setting the emergency REF bit to `1` until
+`navdata.droneState.emergencyLanding` is `0`.
+
+This reccovers a drone that has flipped over and shows red lights to be
+flyable again (with green LEDs).
+
+It is also done implicitly when creating a new high-level client.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## forward
+
+  Makes the drone bank forwards.
+
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) a 0-1 value for how fast the drone moves forward
+
+
+  ### Returns
+
+  - (<code>Number</code>)
+
+  * * *
+
+  ## frontFlip
+
+  Tells the drone to do as many front flips as it can in `duration`.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to do front-flips for
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## backFlip
+
+  Tells the drone to do as many back flips as it can in `duration`.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to do back-flips for
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## leftFlip
+
+  Tells the drone to do as many left flips as it can in `duration`.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to do left-flips for
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## rightFlip
+
+  Tells the drone to do as many right flips as it can in `duration`.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to do right-flips for
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## wave
+
+  Tells the drone to do as many waves as it can in `duration`.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to wave for
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getPngStream
+
+  Requests a stream of PNGs from the ARDrone's camera.
+
+PNGs are emitted through the `data` event on the returned object as they
+become ready.
+
+
+  ### Returns
+
+  - (<code>Object</code>) an object that streams PNGs from the drone's camera
+
+  * * *
+
+  ## hover
+
+  Tells the drone to hover in place.
+
+
+  ### Params
+
+
+  - **duration** (<code>Number</code>) the duration to wave for
+
+
+  ### Returns
+
+  - (<code>null</code>)

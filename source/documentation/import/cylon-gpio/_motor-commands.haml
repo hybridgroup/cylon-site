@@ -1,0 +1,63 @@
+:markdown
+  ## turnOn
+
+  Turns the Motor on by writing a HIGH (1) value to the pin
+
+Also sets `this.isOn` to `true`.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## turnOff
+
+  Turns the Motor off by writing a LOW (0) value to the pin
+
+Also sets `this.isOn` to `false`.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## toggle
+
+  Toggles the Motor on or off, depending on its current state
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## currentSpeed
+
+  Returns the Motor's current speed value
+
+
+  ### Returns
+
+  - (<code>Number</code>) the current motor speed
+
+  * * *
+
+  ## speed
+
+  Sets the Motor's speed to the PWM value provided (0-255)
+
+
+  ### Params
+
+
+  - **value** (<code>Number</code>) PWM value to set the speed to (0-255)
+
+
+  ### Returns
+
+  - (<code>null</code>)
