@@ -12,21 +12,21 @@ active_menu_docs: true
   :markdown
         :::javascript
         var Cylon = require('cylon');
-        
+
         Cylon.robot({
           connections: {
             tessel: { adaptor: 'tessel', port: 'A' }
           },
-        
+
           devices: {
             climate: { driver: 'climate-si7005' }
           },
-        
+
           work: function(my) {
             my.climate.on('error', function (err) {
               console.log(err);
             });
-        
+
             every((1).seconds(), function() {
               my.climate.readHumidity(function (err, humid) {
                 console.log('Humidity:', humid.toFixed(4) + '%RH');
@@ -37,4 +37,3 @@ active_menu_docs: true
             });
           }
         }).start();
-

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+"use strict";
+
 var path = require("path");
 
 var _ = require("lodash"),
@@ -31,10 +33,6 @@ var templates = (function() {
 })();
 
 var docs = {};
-
-function pad(str, length) {
-  return str.length < length ? pad(str + " ", length) : str;
-}
 
 repoCloner();
 

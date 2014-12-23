@@ -12,33 +12,33 @@ active_menu_docs: true
   :markdown
         :::javascript
         var Cylon = require('cylon');
-        
+
         Cylon.robot({
           connections: {
             tessel: { adaptor: 'tessel' },
             tessel_A: { adaptor: 'tessel', port: 'A' },
           },
-        
+
           devices: {
             button: { driver: 'button', pin: 'config', connection: 'tessel' },
             audio: { driver: 'audio-vs1053b', connection: 'tessel_A' },
           },
-        
+
           work: function(my) {
             var chunks = [];
             var recording = false;
-        
+
             my.audio.on('error', function (err) {
               console.log(err);
             });
-        
+
             // When we get data, push it into our array
             my.audio.on('data', function(data) {
               chunks.push(data);
             });
-        
+
             console.log('Hold the config button to record...');
-        
+
             my.button.on('push', function() {
               // Tell the audio module to start recording
               if (!recording) {
@@ -51,7 +51,7 @@ active_menu_docs: true
                 });
               }
             });
-        
+
             // Once the button is released, stop recording
             my.button.on('release', function() {
               // Tell the audio module to stop recording
@@ -75,4 +75,3 @@ active_menu_docs: true
             });
           }
         }).start();
-
