@@ -1,8 +1,8 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Cylon.JS Example - ir_attx4"
-page_title: "Example: ir_attx4"
+title: 'Cylon.JS Example - ir_attx4'
+page_title: 'Example: ir_attx4'
 author: The Hybrid Group
 description: A Cylon.JS code example
 page_subtitle: "<a href='https://github.com/hybridgroup/cylon-tessel/tree/master/examples/ir_attx4' target='_blank'>View In Repo</a>"
@@ -12,25 +12,25 @@ active_menu_docs: true
   :markdown
         :::javascript
         var Cylon = require('cylon');
-        
+
         Cylon.robot({
           connections: {
             tessel: { adaptor: 'tessel', port: 'A' }
           },
-        
+
           devices: {
             ir: { driver: 'ir-attx4' }
           },
-        
+
           work: function(my) {
             my.ir.on('error', function (err) {
               console.log(err);
             });
-        
+
             my.ir.on('data', function(data) {
               console.log("Received RX Data: ", data);
             });
-        
+
             every((3).seconds(), function() {
               /*********************************************
               This infrared module example transmits the
@@ -52,4 +52,3 @@ active_menu_docs: true
             });
           }
         }).start();
-
