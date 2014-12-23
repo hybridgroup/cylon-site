@@ -59,12 +59,12 @@ To add new information to any driver, do this :
 
 #### Examples
 
-To import examples from the main Cylon repository, run the `bin/import_examples`
+To import examples from the main Cylon repository, run the `bin/import-examples`
 script. You'll need to have Git installed.
 
 This script will:
 
-- clone down the Cylon repo
+- clone down the Cylon repos
 - extract all examples
 - create missing example pages and remove those that have also been removed from the main repo
 - create/update examples index page
