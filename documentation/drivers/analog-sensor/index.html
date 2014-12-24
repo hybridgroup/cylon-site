@@ -335,97 +335,37 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="analogread">analogRead</h2>
                 
-                <h2 id="analogreadpinnumber">analogRead(pin_number)</h2>
+                <p>Gets the current value from the Analog Sensor</p>
                 
-                <p>Returns an integer value that represents the analog read from the sensor.</p>
-                
-                <h5 id="params">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>pin_number</strong> -  The pin number for which to return data</li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>integer</code> Current analog sensor value.</p>
-                
-                <h2 id="upperlimitlimit">upperLimit(limit)</h2>
-                
-                <p>Sets an upper limit for the sensor, that when exceeded, triggers a notification event of the same name.</p>
-                
-                <h5 id="params-1">Params</h5>
+                <h3 id="returns">Returns</h3>
                 
                 <ul>
-                  <li>
-<strong>limit</strong> -  The upper limit that triggers notification event</li>
+                  <li>(<code>Number</code>) the current <code>this.analogVal</code>
+</li>
                 </ul>
-                
-                <h5 id="returns-1">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="lowerlimitlimit">lowerLimit(limit)</h2>
-                
-                <p>Sets an lower limit for the sensor, that when exceeded, triggers a notification event of the same name.</p>
-                
-                <h5 id="params-2">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>limit</strong> -  The lower limit that triggers notification event</li>
-                </ul>
-                
-                <h5 id="returns-2">Returns</h5>
-                
-                <p><code>null</code></p>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Events</h1>
+                <h2 id="analogread">analogRead</h2>
                 
-                <h2 id="update">update</h2>
+                <p>Emitted when the Analog Sensor has fetched a new value</p>
                 
-                <p>This event will contain one of the events listed below. 
-                You can also subscribe to one of the specific events, if that is the information you are interested in.</p>
+                <hr>
                 
-                <h2 id="analogreaddata">analogRead(data)</h2>
+                <h2 id="upperlimit">upperLimit</h2>
                 
-                <p>The analogRead event data contains an integer value that represents the analog read from the sensor.</p>
+                <p>Emitted when the Analog Sensor reads a value above the specified upper
+                limit</p>
                 
-                <h5 id="data">Data</h5>
+                <hr>
                 
-                <ul>
-                  <li>
-<strong>data</strong> -  integer Current sensor reading</li>
-                </ul>
+                <h2 id="lowerlimit">lowerLimit</h2>
                 
-                <h2 id="upperlimitdata">upperLimit(data)</h2>
-                
-                <p>Gets triggered if the value read by the sensor is greater or equal to upperLimit (value passed when setting up the sensor).</p>
-                
-                <h5 id="data-1">Data</h5>
-                
-                <ul>
-                  <li>
-<strong>data</strong> -  integer Current sensor reading that triggered the notification</li>
-                </ul>
-                
-                <h2 id="lowerlimitdata">lowerLimit(data)</h2>
-                
-                <p>Gets triggered if the value read by the sensor is less or equal to lowerLimit (value passed when setting up the sensor).</p>
-                
-                <h5 id="data-2">Data</h5>
-                
-                <ul>
-                  <li>
-<strong>data</strong> -  integer Current sensor reading that triggered the notification</li>
-                </ul>
-                
-                <h2 id="start">start</h2>
-                
-                <p>Sent when the device has been started and is ready to use.</p>
+                <p>Emitted when the Analog Sensor reads a value below the specified lower
+                limit</p>
               </div>
             </section>
             <section class="circuit" id="Circuit">

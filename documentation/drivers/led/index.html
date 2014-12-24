@@ -321,53 +321,87 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="turnon">turnOn</h2>
                 
-                <h2 id="turnon">turnOn()</h2>
+                <p>Writes a HIGH (1) value to the pin, turning the LED on.</p>
                 
-                <p>Turns LED on.</p>
+                <p>Also sets <code>this.isHigh</code> to <code>true</code>.</p>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>true or false</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="turnoff">turnOff()</h2>
+                <hr>
                 
-                <p>Turns LED off.</p>
+                <h2 id="turnoff">turnOff</h2>
                 
-                <h5 id="returns-1">Returns</h5>
+                <p>Writes a LOW (0) value to the pin, turning the LED off.</p>
                 
-                <p><code>true or false</code></p>
+                <p>Also sets <code>this.isHigh</code> to <code>false</code>.</p>
                 
-                <h2 id="toggle">toggle()</h2>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p>Turns the LED on, or off, depending on if it is already off, or on, respectively.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <hr>
                 
-                <p><code>on or off</code></p>
+                <h2 id="toggle">toggle</h2>
                 
-                <h2 id="brightnessbrightnessint">brightness(brightness_int)</h2>
+                <p>Toggles the LED on or off, depending on its current state</p>
                 
-                <p>Sets brightness of the led to the specified brightness value passed to brightness(brightness_int) using PWM, brightness can be any integer value between <code>0</code> and <code>255</code>.</p>
+                <h3 id="returns-2">Returns</h3>
                 
-                <h5 id="params">Params</h5>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="currentbrightness">currentBrightness</h2>
+                
+                <p>Returns the current brightness of the LED.</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Number</code>) the current LED brightness value (0-255)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="brightness">brightness</h2>
+                
+                <p>Sets brightness of the LED to the specified value using PWM.</p>
+                
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>brightness_int</strong> - The brightness for which to return data</li>
+<strong>value</strong> (<code>Number</code>) PWM value to set the brightness to (0-255)</li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <h3 id="returns-4">Returns</h3>
                 
-                <p><code>integer</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="start">start</h2>
+                <hr>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <h2 id="ison">isOn</h2>
+                
+                <p>Returns whether or not the LED is currently on</p>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) whether or not the LED is currently on</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

@@ -322,88 +322,122 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="digitalwrite">digitalWrite</h2>
                 
-                <h2 id="digitalreadcallback">digitalRead(callback)</h2>
+                <p>Writes a digital value to the pin</p>
                 
-                <p>Returns an integer value that represents the digital read from the pin.</p>
-                
-                <h5 id="data">Data</h5>
-                
-                <ul>
-                  <li>
-<strong>callback</strong> -  to be executed upon reading the pin state.</li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="digitalwrite">digitalWrite()</h2>
-                
-                <p>Writes a ON/OFF using digital write to a pin.</p>
-                
-                <h5 id="returns-1">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="analogreadcallback">analogRead(callback)</h2>
-                
-                <p>Returns an integer value that represents the analog read from the pin.</p>
-                
-                <h5 id="data-1">Data</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>callback</strong> -  to be executed upon reading the pin state.</li>
+<strong>value</strong> (<code>Number</code>) value to write to the pin</li>
                 </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="analogwrite">analogWrite()</h2>
+                <hr>
                 
-                <p>Writes a value using analog write to a pin.</p>
+                <h2 id="digitalread">digitalRead</h2>
                 
-                <h5 id="returns-3">Returns</h5>
+                <p>Reads the value from the pin</p>
                 
-                <p><code>null</code></p>
+                <p>Triggers the provided callback when the pin state has been read.</p>
                 
-                <h2 id="pwmwritecallback">pwmWrite(callback)</h2>
-                
-                <p>Writes a value using Pulse Width Modulation (PWM) to a pin.</p>
-                
-                <h5 id="data-2">Data</h5>
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-<strong>callback</strong> -  PWM value.</li>
+<strong>callback</strong> (<code>Function</code>) triggered when the pin state has been read</li>
                 </ul>
                 
-                <h5 id="returns-4">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="servowriteangle">servoWrite(angle)</h2>
+                <hr>
                 
-                <p>Writes a value using an angle to a pin.</p>
+                <h2 id="analogwrite">analogWrite</h2>
                 
-                <h5 id="data-3">Data</h5>
+                <p>Writes an analog value to the pin</p>
+                
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> -  angle value.</li>
+<strong>value</strong> (<code>Number</code>) value to write to the pin</li>
                 </ul>
                 
-                <h5 id="returns-5">Returns</h5>
+                <h3 id="returns-2">Returns</h3>
                 
-                <p><code>null</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p>no events</p>
+                <hr>
+                
+                <h2 id="analogread">analogRead</h2>
+                
+                <p>Reads the value from the pin</p>
+                
+                <p>Triggers the provided callback when the pin state has been read.</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) triggered when the pin state has been read</li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="servowrite">servoWrite</h2>
+                
+                <p>Writes a servo value to the pin</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> (<code>Number</code>) value to write to the pin</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="pwmwrite">pwmWrite</h2>
+                
+                <p>Writes a PWM value to the pin</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> (<code>Number</code>) value to write to the pin</li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

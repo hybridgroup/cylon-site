@@ -321,42 +321,54 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="range">range</h2>
                 
-                <h2 id="analogvalue">analogValue()</h2>
+                <p>Gets the distance measured by the sonar, in inches.</p>
                 
-                <p>Text here.</p>
+                <h3 id="returns">Returns</h3>
                 
-                <h5 id="returns">Returns</h5>
+                <ul>
+                  <li>(<code>Number</code>) the current measured distance, in inches</li>
+                </ul>
                 
-                <p><code>integer</code></p>
+                <hr>
                 
-                <h2 id="range">range()</h2>
+                <h2 id="rangecm">rangeCm</h2>
                 
-                <p>Returns the distance measured by the sonar in inches.</p>
+                <p>Gets the distance measured by the sonar, in centimeters.</p>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>integer</code></p>
-                
-                <h2 id="rangecm">rangeCm()</h2>
-                
-                <p>Returns the distance measured by the sonar in cm.</p>
-                
-                <h5 id="returns-2">Returns</h5>
-                
-                <p><code>integer</code></p>
+                <ul>
+                  <li>(<code>Number</code>) the current measured distance, in centimeters</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Events</h1>
+                <h2 id="range">range</h2>
                 
-                <h2 id="start">start</h2>
+                <p>Emitted when the Maxbotix has detected the current range</p>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <h3 id="values">Values</h3>
                 
-                <h2 id="stop">stop</h2>
+                <ul>
+                  <li>
+<strong>distance</strong> the current distance in inches</li>
+                </ul>
                 
-                <p>Sent when the device has been stopped.</p>
+                <hr>
+                
+                <h2 id="rangecm">rangeCm</h2>
+                
+                <p>Emitted when the Maxbotix has detected the current range</p>
+                
+                <h3 id="values-1">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>distance</strong> the current distance in centimeters</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

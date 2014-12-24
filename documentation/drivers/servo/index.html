@@ -327,30 +327,54 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="currentangle">currentAngle</h2>
                 
-                <h2 id="angle">angle()</h2>
+                <p>Returns the current angle of the Servo</p>
                 
-                <p>Moves the servo to the specified angle, angle must be an integer value between <code>0</code> and <code>180</code>.</p>
+                <h3 id="returns">Returns</h3>
                 
-                <h5 id="returns">Returns</h5>
+                <ul>
+                  <li>(<code>Number</code>) the current servo angle value (0-180)</li>
+                </ul>
                 
-                <p><code>integer</code> (between 0 and 180).</p>
+                <hr>
                 
-                <h2 id="currentangle">currentAngle()</h2>
+                <h2 id="angle">angle</h2>
                 
-                <p>Returns the current angle of the servo, an integer value between <code>0</code> and <code>180</code>.</p>
+                <p>Sets the angle of the servo to the provided value</p>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="params">Params</h3>
                 
-                <p><code>integer</code> (between 0 and 180).</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>
+<strong>value</strong> (<code>Number</code>) the angle to point the servo to (0-180)</li>
+                </ul>
                 
-                <h2 id="start">start</h2>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="safeangle">safeAngle</h2>
+                
+                <p>Given a servo angle, determines if it's safe or not, and returns a safe value</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> (<code>Number</code>) the angle the user wants to set the servo to</li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Number</code>) a made-safe angle to set the servo to</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

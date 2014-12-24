@@ -322,26 +322,66 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="analogread">analogRead</h2>
                 
-                <h2 id="analogread">analogRead()</h2>
+                <p>Returns the current analog value from the pin</p>
                 
-                <p>Returns an integer value that represents the analog read from the sensor.</p>
+                <h3 id="returns">Returns</h3>
                 
-                <h2 id="rangecm">rangeCm()</h2>
+                <ul>
+                  <li>(<code>Number</code>) current analog value, or 0 if it's not been read yet</li>
+                </ul>
                 
-                <p>Returns the distance measured by the sensor in cm.</p>
+                <hr>
                 
-                <h2 id="range">range()</h2>
+                <h2 id="rangecm">rangeCm</h2>
                 
-                <p>Returns the distance measured by the sensor in cm.</p>
+                <p>Returns the current range, in centimeters</p>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Number</code>) current detected range in centimeters</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="range">range</h2>
+                
+                <p>Returns the current range, in inches</p>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Number</code>) current detected range in inches</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Events</h1>
+                <h2 id="range">range</h2>
                 
-                <h2 id="start">start</h2>
+                <p>Emitted when the IR Range Sensor has detected the current range</p>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <h3 id="values">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>distance</strong> the current distance in inches</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="rangecm">rangeCm</h2>
+                
+                <p>Emitted when the IR Range Sensor has detected the current range</p>
+                
+                <h3 id="values-1">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>distance</strong> the current distance in centimeters</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

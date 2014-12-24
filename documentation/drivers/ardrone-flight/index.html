@@ -330,341 +330,137 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="hover">hover</h2>
                 
-                <h2 id="takeoffcallback">takeoff(callback)</h2>
+                <p>Tells the drone to hover in place.</p>
                 
-                <p>Sets the internal <code>fly</code> state to <code>true</code>, <code>callback</code> is invoked after the 
-                drone reports that it is hovering.</p>
-                
-                <h5 id="params">Params</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>callback</strong> - The callback for which to return data</li>
+<strong>duration</strong> (<code>Number</code>) the duration to wave for</li>
                 </ul>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="landcallback">land(callback)</h2>
+                <hr>
                 
-                <p>Sets the internal <code>fly</code> state to <code>false</code>, <code>callback</code> is invoked after 
-                the drone reports it has landed.</p>
+                <h2 id="forward">forward</h2>
                 
-                <h5 id="params-1">Params</h5>
+                <p>Makes the drone bank forwards.</p>
+                
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-<strong>callback</strong> - The callback for which to return data</li>
+<strong>speed</strong> (<code>Number</code>) a 0-1 value for how fast the drone moves forward</li>
                 </ul>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>Number</code>)</li>
+                </ul>
                 
-                <h2 id="stop">stop()</h2>
+                <hr>
                 
-                <p>Sets all drone movement commands to <code>0</code>, making it effectively hover in place.</p>
+                <h2 id="frontflip">frontFlip</h2>
                 
-                <h5 id="returns-2">Returns</h5>
+                <p>Tells the drone to do as many front flips as it can in <code>duration</code>.</p>
                 
-                <p><code>nil</code></p>
-                
-                <h2 id="upspeed">up(speed)</h2>
-                
-                <p>Makes the drone gain altitude. 
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-2">Params</h5>
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-<strong>speed</strong> - The speed for which to return data</li>
+<strong>duration</strong> (<code>Number</code>) the duration to do front-flips for</li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <h3 id="returns-2">Returns</h3>
                 
-                <p><code>integer</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="downspeed">down(speed)</h2>
+                <hr>
                 
-                <p>Makes the drone reduce altitude. 
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
+                <h2 id="backflip">backFlip</h2>
                 
-                <h5 id="params-3">Params</h5>
+                <p>Tells the drone to do as many back flips as it can in <code>duration</code>.</p>
+                
+                <h3 id="params-3">Params</h3>
                 
                 <ul>
                   <li>
-<strong>speed</strong> - The speed for which to return data</li>
+<strong>duration</strong> (<code>Number</code>) the duration to do back-flips for</li>
                 </ul>
                 
-                <h5 id="returns-4">Returns</h5>
+                <h3 id="returns-3">Returns</h3>
                 
-                <p><code>integer</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="leftspeed">left(speed)</h2>
+                <hr>
                 
-                <p>Causes the drone to bank to the left, controls the roll, which is 
-                a horizontal movement using the camera as a reference point.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
+                <h2 id="leftflip">leftFlip</h2>
                 
-                <h5 id="params-4">Params</h5>
+                <p>Tells the drone to do as many left flips as it can in <code>duration</code>.</p>
+                
+                <h3 id="params-4">Params</h3>
                 
                 <ul>
                   <li>
-<strong>speed</strong> - The speed for which to return data</li>
+<strong>duration</strong> (<code>Number</code>) the duration to do left-flips for</li>
                 </ul>
                 
-                <h5 id="returns-5">Returns</h5>
+                <h3 id="returns-4">Returns</h3>
                 
-                <p><code>integer</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="rightspeed">right(speed)</h2>
+                <hr>
                 
-                <p>Causes the drone to bank to the right, controls the roll, which is 
-                a horizontal movement using the camera as a reference point.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
+                <h2 id="rightflip">rightFlip</h2>
                 
-                <h5 id="params-5">Params</h5>
+                <p>Tells the drone to do as many right flips as it can in <code>duration</code>.</p>
+                
+                <h3 id="params-5">Params</h3>
                 
                 <ul>
                   <li>
-<strong>speed</strong> - The speed for which to return data</li>
+<strong>duration</strong> (<code>Number</code>) the duration to do right-flips for</li>
                 </ul>
                 
-                <h5 id="returns-6">Returns</h5>
-                
-                <p><code>integer</code></p>
-                
-                <h2 id="frontspeed">front(speed)</h2>
-                
-                <p>Causes the drone to bank forward, controls the pitch, which a horizontal 
-                movement using the camera as a reference point.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-6">Params</h5>
+                <h3 id="returns-5">Returns</h3>
                 
                 <ul>
-                  <li>
-<strong>speed</strong> - The speed for which to return data</li>
-                  <li>
-<strong>forward(speed)</strong> - The speed for which to return data</li>
+                  <li>(<code>null</code>)</li>
                 </ul>
                 
-                <h5 id="returns-7">Returns</h5>
-                
-                <p><code>integer</code></p>
-                
-                <h2 id="backspeed">back(speed)</h2>
-                
-                <p>Causes the drone to bank to the back, controls the pitch, which a horizontal 
-                movement using the camera as a reference point.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-7">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>speed</strong> - The speed for which to return data</li>
-                </ul>
-                
-                <h5 id="returns-8">Returns</h5>
-                
-                <p><code>integer</code></p>
-                
-                <h2 id="clockwisespeed">clockwise(speed)</h2>
-                
-                <p>Causes the drone to spin.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-8">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>speed</strong> - The speed for which to return data</li>
-                </ul>
-                
-                <h5 id="returns-9">Returns</h5>
-                
-                <p><code>integer</code></p>
-                
-                <h2 id="counterclockwisespeed">counterClockwise(speed)</h2>
-                
-                <p>Causes the drone to spin.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-9">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>speed</strong> - The speed for which to return data</li>
-                </ul>
-                
-                <h5 id="returns-10">Returns</h5>
-                
-                <p><code>integer</code></p>
-                
-                <h2 id="calibratedevicenum">calibrate(device_num)</h2>
-                
-                <p>Causes the drone to spin.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-10">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>device_num</strong> - The device number for which to return data</li>
-                </ul>
-                
-                <h5 id="returns-11">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="configkeyvaluecallback">config(key,value,callback)</h2>
-                
-                <p>Sends a config command to the drone.
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-11">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>key</strong> - params</li>
-                  <li>
-<strong>value</strong> - params</li>
-                  <li>
-<strong>callback</strong> - params</li>
-                </ul>
-                
-                <h5 id="returns-12">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="animateanimationduration">animate(animation,duration)</h2>
-                
-                <p>Performs a pre-programmed flight sequence for a given duration (in ms).
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-12">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>animation</strong> - params</li>
-                  <li>
-<strong>duration</strong> - params</li>
-                </ul>
-                
-                <h5 id="returns-13">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="animateledsanimationhzduration">animateLeds(animation,hz,duration)</h2>
-                
-                <p>Performs a pre-programmed led sequence at given hz frequency and duration (in sec!). 
-                speed can be a value from <code>0</code> to <code>1</code>.</p>
-                
-                <h5 id="params-13">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>animation</strong> - params</li>
-                  <li>
-<strong>hz</strong> - params</li>
-                  <li>
-<strong>duration</strong> - params</li>
-                </ul>
-                
-                <h5 id="returns-14">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="disableemergency">disableEmergency()</h2>
-                
-                <p>Causes the emergency REF bit to be set to 1 until 
-                <code>navdata.droneState.emergencyLanding</code> is <code>0.</code> This recovers a drone that has 
-                flipped over and is showing red lights to be flyable again and show green 
-                lights. It is also done implicitly when creating a new high level client. </p>
-                
-                <h5 id="returns-15">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="forward">forward()</h2>
-                
-                <p>Causes the drone to go forward.</p>
-                
-                <h5 id="returns-16">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="frontflip">frontFlip()</h2>
-                
-                <p>Tells the drone to do a front-flip. </p>
-                
-                <h5 id="example">Example:</h5>
-                
-                <p>animate('flipAhead', 150)</p>
-                
-                <h5 id="returns-17">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="backflip">backFlip()</h2>
-                
-                <p>Tells the drone to do a back-flip.</p>
-                
-                <h5 id="example-1">Example:</h5>
-                
-                <p>animate("flipBehind", 150)</p>
-                
-                <h5 id="returns-18">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="leftflip">leftFlip()</h2>
-                
-                <p>Tells the drone to do a left-flip.</p>
-                
-                <h5 id="example-2">Example:</h5>
-                
-                <p>animate("flipLeft", 150)</p>
-                
-                <h5 id="returns-19">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="rightflip">rightFlip()</h2>
-                
-                <p>Tells the drone to do a right-flip.</p>
-                
-                <h5 id="example-3">Example:</h5>
-                
-                <p>animate("flipRight", 150)</p>
-                
-                <h5 id="returns-20">Returns</h5>
-                
-                <p><code>nil</code></p>
+                <hr>
                 
                 <h2 id="wave">wave</h2>
                 
-                <p>+Tells the drone to do a wave.</p>
+                <p>Tells the drone to do as many waves as it can in <code>duration</code>.</p>
                 
-                <h5 id="example-4">Example:</h5>
+                <h3 id="params-6">Params</h3>
                 
-                <p>animate("wave", 750)</p>
+                <ul>
+                  <li>
+<strong>duration</strong> (<code>Number</code>) the duration to wave for</li>
+                </ul>
                 
-                <h5 id="returns-21">Returns</h5>
+                <h3 id="returns-6">Returns</h3>
                 
-                <p><code>nil</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                
-                <h2 id="start">start</h2>
-                
-                <p>Sent when the device has been started and is ready to use.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

@@ -321,61 +321,75 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="turnon">turnOn</h2>
                 
-                <h2 id="turnon">turnOn()</h2>
+                <p>Turns the Motor on by writing a HIGH (1) value to the pin</p>
                 
-                <p>Starts the motor.</p>
+                <p>Also sets <code>this.isOn</code> to <code>true</code>.</p>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>true or nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="turnoff">turnOff()</h2>
+                <hr>
                 
-                <p>Stops the motor.</p>
+                <h2 id="turnoff">turnOff</h2>
                 
-                <h5 id="returns-1">Returns</h5>
+                <p>Turns the Motor off by writing a LOW (0) value to the pin</p>
                 
-                <p><code>true or nil</code></p>
+                <p>Also sets <code>this.isOn</code> to <code>false</code>.</p>
                 
-                <h2 id="toggle">toggle()</h2>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p>Sets the state of the motor to the oposite of the current state, if motor is on then sets it to off.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <hr>
                 
-                <p><code>true or nil</code></p>
+                <h2 id="toggle">toggle</h2>
                 
-                <h2 id="speedspeedvalue">speed(speed_value)</h2>
+                <p>Toggles the Motor on or off, depending on its current state</p>
                 
-                <p>Sets the speed of the motor to the value provided in the speed param, speed value must be an integer between <code>0</code> and <code>255</code>.</p>
+                <h3 id="returns-2">Returns</h3>
                 
-                <h5 id="params">Params</h5>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="currentspeed">currentSpeed</h2>
+                
+                <p>Returns the Motor's current speed value</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Number</code>) the current motor speed</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="speed">speed</h2>
+                
+                <p>Sets the Motor's speed to the PWM value provided (0-255)</p>
+                
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>speed_value</strong> -  The speed value for which to return data</li>
+<strong>value</strong> (<code>Number</code>) PWM value to set the speed to (0-255)</li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <h3 id="returns-4">Returns</h3>
                 
-                <p><code>integer</code></p>
-                
-                <h2 id="currentspeed">currentSpeed()</h2>
-                
-                <p>Returns the current speed of the motor as an integer between 0 and 255.</p>
-                
-                <h5 id="returns-4">Returns</h5>
-                
-                <p><code>integer</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                
-                <h2 id="start">start</h2>
-                
-                <p>Sent when the device has been started and is ready to use.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">
