@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Imp</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,8 +282,10 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-imp
 </pre>
@@ -291,11 +293,10 @@
               <p>You'll also need to setup your Imp, for this you can go here: <a href="https://electricimp.com/docs/gettingstarted/">Electric Imp Getting Started</a></p>
               
               <p>Once you have completed the Getting Started process and have a connected Imp, you need to go to the <a href="https://ide.electricimp.com/ide">Electric Imp IDE</a> page and create a new model that you can attach your Imp to. You can check how that process works in detail on the <a href="https://electricimp.com/docs/gettingstarted/ide/">Electric Imp IDE docs</a></p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
               
-              <p>The following examples shows you how to use the Imp with a Blink LED: Digital GPIO</p>
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <h3 id="blink-led-digital-gpio">Blink LED: Digital GPIO</h3>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -315,16 +316,15 @@ Cylon.robot({
   }
 }).start()
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>We need to setup the Agent code and Device code so we can control the Imp over the internet. First we need to setup the agent that
               will serve as the endpoint URL for our Imp.</p>
               
               <h3 id="setting-up-the-agent">Setting up the Agent</h3>
               
-              <p><img src="/images/screenshots/imp-agent-screenshot.png" style="margin-top: 15px; width: 100%"></p>
+              <p><img src="http://cylonjs.com/images/screenshots/imp-agent-screenshot.png" style="margin-top: 15px; width: 100%"></p>
               
               <p>Inside the Electric Imp IDE, on the left side (for the default layout), you'll find the Agent section, you need to paste the following code:</p>
               
@@ -378,7 +378,7 @@ device.on(<span class="string"><span class="delimiter">"</span><span class="cont
               
               <h3 id="setting-up-the-device-firmware">Setting up the Device firmware</h3>
               
-              <p><img src="/images/screenshots/imp-device-screenshot.png" style="margin-top: 15px; width: 100%"></p>
+              <p><img src="http://cylonjs.com/images/screenshots/imp-device-screenshot.png" style="margin-top: 15px; width: 100%"></p>
               
               <p>Same as with the Agent code we do this inside the Electric Imp IDE, but now on the right side viewport, there you'll see the Device section, same as before paste the following code:</p>
               
@@ -495,11 +495,9 @@ agent.on(<span class="string"><span class="delimiter">"</span><span class="conte
               
               <h3 id="talking-to-your-imp-through-the-agent-url">Talking to your imp through the Agent URL</h3>
               
-              <p>In order to use Cylon to communicate with your Imp we'll need the agent URL. You can find this URL right above the Agent 
-              viewport of the IDE, alternatively you can look for it in the log after you click <code>Build and Run</code>.</p>
+              <p>In order to use Cylon to communicate with your Imp we'll need the agent URL. You can find this URL right above the Agent viewport of the IDE, alternatively you can look for it in the log after you click <code>Build and Run</code>.</p>
               
-              <p>Once you have this url, which should like something along the lines of <code>https://agent.electricimp.com/45QYZvoB41bu</code>, you can 
-              pass it along the adaptor parameters in your Cylon code.</p>
+              <p>Once you have this url, which should like something along the lines of <code>https://agent.electricimp.com/45QYZvoB41bu</code>, you can pass it along the adaptor parameters in your Cylon code.</p>
               
               <p>This is how you setup the connection using the agent url in Cylon:</p>
               

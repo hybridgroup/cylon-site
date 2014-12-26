@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Force</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -284,14 +284,13 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <pre class="CodeRay">$ npm install cylon-force
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -305,7 +304,7 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>}
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(me) {
@@ -326,84 +325,80 @@ Cylon.start();
               
               <p>To run the above example:</p>
               
-              <pre class="CodeRay">$ SF_USERNAME='yourusername' SF_SECURITY_TOKEN='yourpasswordandtoken' node salesforce.js
+              <p><code>
+SF_USERNAME='yourusername' SF_SECURITY_TOKEN='yourpasswordandtoken' node examples/salesforce.js</code></p>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>To setup Salesforce connection, authentication, app/object creation and streaming follo the instructions in:
+              https://github.com/hybridgroup/cylon-force/blob/master/salesforce-setup.md</p>
+              
+              <h3 id="connecting-to-salesforce-using-cylon-force">Connecting to Salesforce using cylon-force</h3>
+              
+              <p>If you are using a Salesforce developer account(or personal account), you only need to provide <code>sfuser</code> (username)
+              and <code>sfpass</code> (password + security_token to connect to the API as explain in Salesforce site) in the robot connection, as shown here:</p>
+              
+              <pre class="CodeRay">  connections: {
+    <span class="key">sfcon</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">sfuser</span>: process.env.SF_USERNAME,
+      <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
+    }
+  },
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <h3 id="salesforce-setup">Salesforce Setup</h3>
-              <ol>
-                <li>
-                  <p>First you'll need an account on DeveloperForce. If you don't already have one, you can create one at: http://developer.force.com/join</p>
-                </li>
-                <li>Next, you need to configure a new connected app in your developer profile in order to retrieve all the keys, tokens, urls nedded to connect your app with SalesForce. In order to do this:
-                  <ul>
-                    <li>Go to -&gt; <code>Setup (top)</code> &gt; <code>Create (side)</code> &gt; <code>Apps</code> &gt; <code>Connected Apps</code> (scroll down ) &gt; <code>New</code> Check "Enable Oauth Settings".</li>
-                    <li>Next, add all permissions. Use "http://localhost:3000/oauth/_callback" as your callback URL.</li>
-                    <li>You'll be using the Oauth2 web server flow, so you need your personal security code. If you don't have one, you'll need to reset it for Salesforce to email it to you.</li>
-                    <li>Go to your Profile by clicking in your name (top right) &gt; <code>My Settings</code> &gt; <code>Personal</code> (left menu) &gt; <code>Reset my security token</code>. After that Salesforce should email it to you.</li>
-                    <li>You'll need your password + security token to be able to login (PASSWORDsecurityCode (concatenated, no space)).</li>
-                  </ul>
-                </li>
-                <li>Now we need to setup an object with a couple of custom fields for streaming communication. In this example we'll create a new object and call it 'Sphero_Message':
-                We also add two custom fields to this object: 'Sphero_Name' and 'Bucks'.
-                  <ul>
-                    <li>Go to <code>Setup</code> -&gt; <code>Create</code> -&gt; <code>Object</code> -&gt; <code>New Custom Object</code> and name it <code>Sphero_Message</code>, then click <code>Save</code>.</li>
-                    <li>Once in the <code>Object Details</code> view create two custom fields, <code>Sphero_Name</code> and <code>Bucks</code> both of type text.</li>
-                    <li>We've created a Salesforce package that installs the Sphero_Message Object and the apexRest class for you to speed things up. Install it <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti00000004IoN">here</a>
-</li>
-                  </ul>
-                </li>
-                <li>Setup apexRest code so we can create new objects using RESTfull implementation:
-                  <ul>
-                    <li>Go click in in you profile name (top right) &gt; <code>Developer Console</code>.</li>
-                    <li>
-                      <p>When the developer console opens click <code>File</code> &gt; <code>New Apex Class</code>, name it SpheroApex and then copy/paste the following code to that window:</p>
+              <p>However if you are part of an organization, and having trouble querying/updating objects and streaming events,
+              you probably need to provide the organization credentials for authorization, this are the orgCreds/oauth2 credentials,
+              you can either pass <code>orgCreds</code> or <code>oauth2</code> parameter to the connection, as shown below and explain in the
+              <a href="https://jsforce.github.io/document/">JSForce Docs</a>:</p>
               
-                      <pre class="CodeRay"> @RestResource(urlMapping='/SpheroController/*')
- global with sharing class SpheroController {
-   @HttpPost
-     global static void create(String spheroName, String bucks) {
-       SpheroController.handleSpheroMessage(spheroName, bucks);
-     }
+              <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
-   public static void handleSpheroMessage(String spheroName, String bucks) {
-     Sphero_Message__c sm = new Sphero_Message__c();
-     sm.Sphero_Name__c = spheroName;
-     sm.Bucks__c = bucks;
-     insert sm;
-   }
- }
+cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">sfcon</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">sfuser</span>: process.env.SF_USERNAME,
+      <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
+      <span class="comment">// orgCreds and oauth2 are interchangeable here, you can use either.</span>
+      <span class="key">orgCreds</span>: {
+        <span class="key">clientId</span>: <span class="string"><span class="delimiter">'</span><span class="content">CLIENT_ID</span><span class="delimiter">'</span></span>,
+        <span class="key">clientSecret</span>: <span class="string"><span class="delimiter">'</span><span class="content">CLIENT_SECRET</span><span class="delimiter">'</span></span>,
+        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+      }
+    }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(me) {
+    me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, data) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">arguments: </span><span class="delimiter">'</span></span>, <span class="local-variable">arguments</span>);
+      cylon.Logger.info(<span class="string"><span class="delimiter">'</span><span class="content">err received:</span><span class="delimiter">'</span></span>, err);
+      cylon.Logger.info(<span class="string"><span class="delimiter">'</span><span class="content">data received:</span><span class="delimiter">'</span></span>, data);
+    });
+
+    <span class="keyword">var</span> counter = <span class="integer">0</span>;
+
+    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      <span class="keyword">var</span> toSend = { <span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span> + counter, <span class="key">bucks</span>: counter };
+
+      me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SpheroController/</span><span class="delimiter">'</span></span>, toSend, <span class="keyword">function</span>(err, data) {
+        cylon.Logger.info(<span class="string"><span class="delimiter">'</span><span class="content">Sphero globo</span><span class="delimiter">'</span></span> + counter + <span class="string"><span class="delimiter">'</span><span class="content"> has been sent to Salesforce.</span><span class="delimiter">'</span></span>);
+      });
+
+      counter++;
+    });
+  }
+});
+
+cylon.start();
 </pre>
-                    </li>
-                  </ul>
-                </li>
-              </ol>
               
-              <ul>
-                <li>Save the SpheroApex class, <code>File</code> &gt; <code>Save</code>.</li>
-              </ul>
-              
-              <ol>
-                <li>To be able to stream we need to setup a PushTopic to connect to.
-                  <ul>
-                    <li>Go to <code>Developer Console</code> click on <code>Debug</code> -&gt; <code>Open Execute Anonymus Code</code> or (Ctrl+E)</li>
-                    <li>
-                      <p>Add the following code to create the new pushTopic with the query you want to execute and the events you want it to report.</p>
-              
-                      <pre class="CodeRay"> PushTopic pt = new PushTopic();
- pt.apiversion = 28.0;
- pt.name = 'SpheroMsgOutbound'; pt.description = 'All new Sphero Message records';
- pt.query = 'SELECT Id, Name, Sphero_Name__c, Bucks__c FROM Sphero_Message__c';
- insert pt;
- System.debug('Created new PushTopic: '+ pt.Id);
-</pre>
-                    </li>
-                  </ul>
-                </li>
-                <li>At this point everything in salesforce should be ready and we should be able to connect, authenticate, push/create records through apexRest and stream information using the pushTopic.</li>
-              </ol>
+              <p>If you provide all credentials and still have problems to create/query/update objects and stream info from salesforce please
+              create an issue here: <a href="https://github.com/hybridgroup/cylon-force/issues">cylon-force issues</a>.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

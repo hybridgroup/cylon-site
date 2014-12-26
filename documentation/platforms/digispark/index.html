@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Digispark</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -283,8 +283,8 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Installing the cylon-digispark requires the <code>libusb</code> package already be installed.</p>
               
@@ -302,12 +302,14 @@
               <pre class="CodeRay">$ sudo apt-get install libusb-dev
 </pre>
               
-              <p>Now you can install the module with: <code>npm install cylon-digispark</code></p>
+              <p>Now you can install the module with:</p>
+              
+              <pre class="CodeRay">$ npm install cylon-digispark`
+</pre>
               
               <p>If you're experiencing the <code>AttributeError: 'module' object has no attribute 'script_main'</code> build issue, then please refer to this <a href="https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812">comment</a></p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <p>This small program lets you toggle an LED on and off.</p>
               
@@ -327,32 +329,69 @@ Cylon.robot({
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <p>To connect to the Digispark, we first need to upload the <a href="http://littlewire.cc">Littlewire protocol</a> to the Digispark.</p>
+              <h2 id="how-to-connect">How to Connect</h2>
               
-              <p><strong>IMPORTANT:</strong> The ports on the 2012 Macbook Pros will cause issues due to their USB controllers.
-              Currently, the best workaround is to use a cheap non-USB3 USB hub.</p>
+              <h3 id="upload-the-littlewire-firmware-to-the-digispark">Upload the Littlewire Firmware to the Digispark</h3>
               
-              <p><strong>Do not</strong> plug your Digispark into a USB port until prompted.</p>
+              <p>Connecting to the <a href="http://www.kickstarter.com/projects/digistump/digispark-the-tiny-arduino-enabled-usb-dev-board">Digispark</a>
+              ATTiny-based USB development board is very easy using Cylon, first we need to install the <a href="http://littlewire.cc/">littlewire</a>
+              protocol to communicate with the digispark, Cylon includes CLI commands to make the process of uploading littlewire to the
+              digispark as simple as possible, after littlewire has been uploaded you can connect and communicate using Cylon.</p>
               
-              <p>First, install the cylon-digispark module:</p>
+              <h3 id="osx-1">OSX</h3>
+              
+              <p>IMPORTANT: 2012 MBP The USB ports on the 2012 MBPs (Retina and non) cause issues due to their USB3 controllers, currently the best work around is to use a cheap USB hub (non USB3) - we are working on future solutions. The hub on a Cinema display will work as well.</p>
+              
+              <p>DO NOT plug in the Digispark to your computer's USB port until prompted.</p>
+              
+              <p>Install the cylon-digispark module:</p>
               
               <pre class="CodeRay">$ npm install cylon-digispark
 </pre>
               
-              <p>Next, run the following <a href="http://gort.io">Gort</a> command to upload Littlewire to the Digispark.
-              Plug the Digispark in when prompted.</p>
+              <p>After installing the cylon-digispark npm module run the following command to upload littlewire to the digispark, plug it to a USB port when prompted:</p>
               
               <pre class="CodeRay">$ gort digispark upload
 </pre>
               
-              <p>Once this is done and your Digispark is connected, run <code>gort scan usb</code> to verify your connection info.
-              Use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> IDs required to connect to the Digispark from Cylon.</p>
+              <p>Once plugged in, use the <code>cylon scan usb</code> command to verify your connection info:</p>
               
-              <p>If you're on Linux, the <code>gort digispark upload</code> command will have installed some new udev rules to <code>/etc/udev/rules.d/49-micronucleus.rules</code>.</p>
+              <pre class="CodeRay">$ gort scan usb
+</pre>
+              
+              <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required to establish a connection with the Digispark in your Cylon code.</p>
+              
+              <p>That is it, you are set to start running Cylon digispark examples.</p>
+              
+              <h3 id="ubuntu-1">Ubuntu</h3>
+              
+              <p>DO NOT plug in the Digispark to your computer's USB port until prompted.</p>
+              
+              <p>Install the cylon-digispark npm module:</p>
+              
+              <pre class="CodeRay">$ npm install cylon-digispark
+</pre>
+              
+              <p>After installing the cylon-digispark module run the following command to upload littlewire to the digispark, plug it to a USB port when prompted. You might be asked to enter your sudo password, since uploading littlewire to the digispark requires some new udev rules, you can check and review them in /etc/udev/rules.d/49-micronucleus.rules after running the <code>gort digispark set-udev-rules</code> command:</p>
+              
+              <pre class="CodeRay">$ gort digispark upload
+</pre>
+              
+              <p>Once plugged in, use the <code>cylon scan usb</code> command to verify your connection info:</p>
+              
+              <pre class="CodeRay">$ gort scan usb
+</pre>
+              
+              <p>Now use the <code>ID</code> info returned to find the <code>product</code> and <code>vendor</code> ID's required to establish a connection with the Digispark in your cylon code.</p>
+              
+              <p>That is it, you are set to start running Cylon digispark examples.</p>
+              
+              <p>Thanks to <a href="https://github.com/Bluebie">@bluebie</a> for the help with udev rules used when uploading littlewire to the digispark! (https://github.com/Bluebie/micronucleus-t85/wiki/Ubuntu-Linux)</p>
+              
+              <h3 id="windows">Windows</h3>
+              
+              <p>We are currently working on docs and instructions for Windows. Please check back soon!</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

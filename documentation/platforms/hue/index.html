@@ -281,26 +281,15 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-hue
 </pre>
               
-              <h4 id="setting-up-your-phillips-hue">Setting up your Phillips Hue</h4>
-              
-              <p>To connect cylon-hue to a Phillips Hue bridge, you will need to know which host IP address the bridge has on the local network. You can find this out by using your router, or logging into the "Meet Hue" website at <a href="https://www.meethue.com/en-us/user/bridge">https://www.meethue.com/en-us/user/bridge</a> if you have linked your bridge.</p>
-              
-              <p>You also need to either already have a user account on the bridge, or create a new account, so you can obtain the username. You can do this by using the JS file located at <code>examples/create_user.js</code>.</p>
-              
-              <p>Lastly, you need to know the ID for each light bulb that you want to control. You can do this by using the JS file located at <code>examples/bridge_state.js</code>.</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
-              
-              <p>Here's an example:</p>
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -313,7 +302,6 @@ Cylon.robot({
     <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue-light</span><span class="delimiter">'</span></span>, <span class="key">lightId</span>: <span class="integer">2</span> }
   },
 
-
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       my.bulb.toggle();
@@ -321,6 +309,14 @@ Cylon.robot({
   }
 }).start();
 </pre>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>To connect cylon-hue to a Phillips Hue bridge, you will need to know which host IP address the bridge has on the local network. You can find this out by using your router, or logging into the "Meet Hue" website at <a href="https://www.meethue.com/en-us/user/bridge">https://www.meethue.com/en-us/user/bridge</a> if you have linked your bridge.</p>
+              
+              <p>You also need to either already have a user account on the bridge, or create a new account, so you can obtain the username. You can do this by using the JS file located at <code>examples/create_user.js</code>.</p>
+              
+              <p>Lastly, you need to know the ID for each light bulb that you want to control. You can do this by using the JS file located at <code>examples/bridge_state.js</code>.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2>Drivers</h2>

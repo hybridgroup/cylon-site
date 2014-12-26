@@ -277,20 +277,19 @@
 </h4>
                 <p>Open Communications Network and API for the internet of things.</p>
                 
-                <p>For more info about the Skynet platform click <a href="http://skynet.im/">here</a>.</p>
+                <p>For more info about the Skynet platform click <a href="http://skynet.im/">here </a>.</p>
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-skynet
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -308,20 +307,20 @@ Cylon.robot({
     my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
         my.led.turnOn()
-      } <span class="keyword">else</span> <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
+      }
+      <span class="keyword">else</span> <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
         my.led.turnOff()
       }
     });
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:</p>
               
-              <pre class="CodeRay">$ curl -X POST -d "name=arduino&amp;led=off" http://skynet.im/devices
+              <pre class="CodeRay">curl -X POST -d "name=arduino&amp;led=off" http://skynet.im/devices
 </pre>
               
               <p>This will return the new registration information for the device, most importantly the <code>uuid</code> and <code>token</code>:</p>

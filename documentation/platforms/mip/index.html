@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>MiP</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,25 +282,24 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <pre class="CodeRay">$ npm install cylon-mip
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
-  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">bluetooth</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">d03972a24e55</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span>},
-  <span class="key">devices</span>: [{<span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">mip</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mip</span><span class="delimiter">'</span></span>}],
+  <span class="key">connections</span>: { <span class="key">bluetooth</span>: {<span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">d03972a24e55</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span>}},
+  <span class="key">devices</span>: {<span class="key">mip</span>: {<span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mip</span><span class="delimiter">'</span></span>}},
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.mip.setHeadLED(<span class="integer">2</span>, <span class="integer">2</span>, <span class="integer">2</span>, <span class="integer">2</span>);
     after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-      my.mip.distanceDrive(<span class="integer">0</span>, <span class="integer">10</span>, <span class="integer">0</span>, <span class="integer">0</span>);
+      my.mip.driveDistance(<span class="integer">0</span>, <span class="integer">10</span>, <span class="integer">0</span>, <span class="integer">0</span>);
     });
     after((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
       my.mip.setHeadLED(<span class="integer">1</span>, <span class="integer">1</span>, <span class="integer">1</span>, <span class="integer">1</span>);
@@ -308,11 +307,10 @@ Cylon.robot({
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <p>You need to determine the <code>uuid</code> of your MiP. One way to do this, is to use the <code>cylon-ble-scan</code> command line utility installed as part of <a href="/documentation/platforms/ble">cylon-ble</a>.</p>
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>You need to determine the <code>uuid</code> of your MiP. One way to do this, is to use the <code>cylon-ble-scan</code> command line utility installed as part of <a href="https://github.com/hybridgroup/cylon-ble">cylon-ble</a>.</p>
               
               <p>Once you know your <code>uuid</code> just substititute it into your code.</p>
             </section>

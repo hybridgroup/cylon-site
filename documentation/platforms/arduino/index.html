@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Arduino</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -283,17 +283,17 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
-              <p>Installing Cylon.js with Arduino support is pretty easy.</p>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>To get started, just install the NPM module:</p>
               
               <pre class="CodeRay">$ npm install cylon-firmata
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
               
-              <p>This small program lets you push a button on the arduino board to turn a LED on or off, in less than 10 lines of code using Cylon.</p>
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <p>This quick example blinks an LED connected to an Arduino once per second:</p>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -303,31 +303,22 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
-    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      my.led.toggle();
-    });
+    every((<span class="integer">1</span>).second(), my.led.toggle);
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <h3 id="upload-the-firmata-firmware-to-the-arduino">Upload the Firmata Firmware to the Arduino</h3>
+              
+              <p>This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux). If you already have the Firmata sketch installed, you can skip straight to the examples.</p>
               
               <h3 id="os-x">OS X</h3>
-              
-              <p>The main steps are:</p>
-              
-              <ul>
-                <li>Install the cylon-firmata npm module</li>
-                <li>Find out what serial port your arduino is connected to</li>
-                <li>Upload the Firmata protocol to the arduino</li>
-                <li>Connect to the device using Cylon</li>
-              </ul>
               
               <p>First plug the Arduino into your computer via the USB/serial port.
               A dialog box will appear telling you that a new network interface has been detected.
@@ -356,15 +347,6 @@ Cylon.robot({
               <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
               
               <h3 id="ubuntu">Ubuntu</h3>
-              
-              <p>The main steps are:</p>
-              
-              <ul>
-                <li>Install the cylon-firmata npm module</li>
-                <li>Find out what serial port your arduino is connected to</li>
-                <li>Upload the Firmata protocol to the arduino</li>
-                <li>Connect to the device using Cylon</li>
-              </ul>
               
               <p>First plug the Arduino into your computer via the USB/serial port.</p>
               

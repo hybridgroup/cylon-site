@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Joysticks</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,21 +282,21 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               <p>Installing Cylon.js with Joystick support is pretty easy.</p>
               
               <pre class="CodeRay">$ npm install cylon-joystick
 </pre>
               
               <h3 id="note">Note</h3>
-              <p>If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
               
-              <p>This short Cylon.js program will respond to joystick input, as well as
-              button presses:</p>
+              <ul>
+                <li>OS X does not provide native support for Xbox 360 controllers. As such, a <a href="https://github.com/d235j/360Controller/releases">third-party driver is required</a>.</li>
+                <li>If you're using a PS3 controller and want to communicate with it over USB, plug it in and then press the PlayStation button to make sure it's connected.</li>
+              </ul>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -336,14 +336,14 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
   }
-}).start();
+});
+
+Cylon.start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <p>Plug your USB joystick or game controller into your USB port.
-              If your device is supported by SDL, you are now ready.</p>
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

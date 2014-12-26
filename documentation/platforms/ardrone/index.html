@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>ARDrone</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -283,18 +283,15 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Installing cylon.js with ardrone support is pretty easy.</p>
               
-              <pre class="CodeRay">$ npm install cylon-ardrone
+              <pre class="CodeRay">npm install cylon-ardrone
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
               
-              <p>This small program lets the ARDrone take-off, hover, and land.</p>
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -309,23 +306,19 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.takeoff();
-
     after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.land();
     });
-
     after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.stop();
     });
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <p>The ARDrone is a WiFi device, so there is no additional work to establish a connection to a single drone.
-              However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.</p>
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>The ARDrone is a WiFi device, so there is no additional work to establish a connection to a single drone. However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

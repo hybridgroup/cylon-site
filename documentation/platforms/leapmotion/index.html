@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Leapmotion</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,18 +282,23 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
-              <pre class="CodeRay">$ npm install cylon-leapmotion
+              <p>Install the module via NPM:</p>
+              
+              <pre class="CodeRay">npm install cylon-leapmotion
 </pre>
               
-              <p>In order to use this module, you'll need to install the <a href="https://www.leapmotion.com/setup">Leap Motion software</a> from their site.</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              <p>In order to use this module, you need to install the Leap Motion driver/SDK from the <a href="https://www.leapmotion.com/setup">Leap Motion site</a>.</p>
               
-              <p>This small program uses a Leap Motion to detect the user's hand position</p>
+              <p>Inside Leap Motion's setup, ensure "Allow Web Apps" and "Allow Background Apps" are both checked.</p>
+              
+              <p><img src="http://i.imgur.com/3Mjsiwn.jpg" style="width: 100%"></p>
+              
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <p>This basic program uses a Leap Motion to detect the user's hand position:</p>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -308,14 +313,13 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.leapmotion.on(<span class="string"><span class="delimiter">'</span><span class="content">hand</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(payload) {
-      console.log(payload.toString());
+      Logger.info(payload.toString());
     });
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <h3 id="os-x">OS X</h3>
               

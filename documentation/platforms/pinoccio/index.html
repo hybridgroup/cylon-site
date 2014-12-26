@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Pinoccio</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,14 +282,15 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-pinoccio
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <h3 id="blink">Blink</h3>
               
@@ -301,7 +302,7 @@ Cylon.robot({
       <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio</span><span class="delimiter">'</span></span>,
       <span class="key">token</span>: <span class="string"><span class="delimiter">'</span><span class="content">[your token]</span><span class="delimiter">'</span></span>,
       <span class="key">troop</span>: <span class="string"><span class="delimiter">'</span><span class="content">[your troop ID]</span><span class="delimiter">'</span></span>,
-      <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">[your scout ID]</span><span class="delimiter">'</span></span> 
+      <span class="key">scout</span>: <span class="string"><span class="delimiter">'</span><span class="content">[your scout ID]</span><span class="delimiter">'</span></span>
     }
   },
 
@@ -333,28 +334,27 @@ Cylon.robot({
 
   <span class="key">devices</span>: {
     <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-led</span><span class="delimiter">'</span></span> },
-    <span class="key">power</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> }
-  }
+    <span class="key">power</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pinoccio-power</span><span class="delimiter">'</span></span> },
+  },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
-      my.led.toggle();
-
-      my.power.voltage(<span class="keyword">function</span>(err, data) {
-        console.log(err);
-        console.log(data);
-      });
-    });
+    every((<span class="integer">1</span>).second(), my.led.toggle);
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <p>We currently have drivers for the following built-in Pinoccio devices:</p>
+              
+              <ul>
+                <li>LED</li>
+                <li>Power</li>
+              </ul>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>You need to have an access token generated using the Pinoccio cloud. The easiest way to do this is to use curl:</p>
               
-              <pre class="CodeRay">$ curl -X POST -v --data 'email=your@email.com&amp;password=yourpassword' https://api.pinocc.io/v1/login
+              <pre class="CodeRay">curl -X POST -v --data 'email=your@email.com&amp;password=yourpassword' https://api.pinocc.io/v1/login
 </pre>
               
               <p>It will return a JSON payload that contains the access token:</p>

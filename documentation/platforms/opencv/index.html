@@ -285,8 +285,8 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <pre class="CodeRay">$ npm install cylon-opencv
 </pre>
@@ -295,6 +295,7 @@
               You can follow the tutorials in the <a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">OpenCV site</a> to install it in your particular OS:</p>
               
               <h3 id="ubuntu">Ubuntu</h3>
+              
               <pre class="CodeRay">#!/bin/bash
 sudo apt-get -y install autoconf automake build-essential git libass-dev libgpac-dev \
   libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev \
@@ -336,9 +337,8 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 make
 sudo make install
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <p>Using cylon-opencv is pretty easy, same as any other cylon adaptor making use of the appropiate cylon drivers.</p>
               
@@ -397,6 +397,12 @@ Cylon.robot({
 
 Cylon.start();
 </pre>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>In order to use OpenCV you first need to install it and make sure it is working correctly on your computer. You can follow the tutorials in the OpenCV site to install it in your particular OS:</p>
+              
+              <p><a href="http://docs.opencv.org/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html#table-of-content-introduction">How to install OpenCV</a></p>
             </section>
           </div>
         </div>

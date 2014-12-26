@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Spark</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -283,42 +283,42 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-spark
 </pre>
               
-              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Spark.
-              You can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
+              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to yourSpark, and you can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
               
               <ul>
                 <li>
-<strong>access_token:</strong> In the Build tool, click on the Settings cog in the bottom-left corner to find your access token.</li>
+<strong>access_token:</strong> In the Build tool, click on the Settings cog in the
+              bottom-left corner to find your access token.</li>
                 <li>
-<strong>device_id:</strong> After you have your Spark Core registered to your account through the Tinker app, click on the Cores section (just above the Settings cog) on the Build tool. Then, click on the arrow next to your core's name to get its device ID.</li>
+<strong>device_id:</strong> After you have your Spark Core registered to your account
+              through the Tinker app, click on the Cores section (just above the Settings
+              cog) on the Build tool. Then, click on the arrow next to your core's name to
+              get its device ID.</li>
               </ul>
               
-              <h2 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h2>
+              <h3 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h3>
               
               <p>You will need to install the appropriate firmware on your Spark Core to use it from Cylon.js.</p>
               
-              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the <a href="http://gort.io">Gort CLI</a>.
-              This routes all of your calls through the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
+              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the Gort CLI (http://gort.io). This routes all of your calls thru the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
               
-              <p>Another option is to use the VoodooSpark firmware, which communicates directly to the Spark over your local connection.
-              This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device.
-              This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
+              <p>Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device. This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
               
               <p>For more information on how to program your Spark, please see <a href="http://docs.spark.io/#/examples">Spark's examples</a>.</p>
               
               <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <h3 id="spark-using-tinker-api">Spark using Tinker API:</h3>
-              
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
@@ -328,13 +328,11 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span>}
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      my.led.toggle()
-    });
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
   }
 }).start();
 </pre>
@@ -346,177 +344,35 @@ Cylon.robot({
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">voodoospark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span> }
+    <span class="key">voodoospark</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>,
+      <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>,
+      <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+    }
   },
 
-  <span class="key">devices</span>:  {
+  <span class="key">devices</span>: {
     <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      my.led.toggle();
-    });
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
   }
 }).start();
 </pre>
-            </section>
-            <section class="public-methods" id="PublicMethods">
-              <div class="commands-api">
-                <h1 id="commands">Commands</h1>
-                
-                <h2 id="digitalreadpin-callback">digitalRead(pin, callback)</h2>
-                
-                <p>Reads a value using digital write to a pin.</p>
-                
-                <h5 id="params">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>pin</strong> - the value of the pin</li>
-                  <li>
-<strong>callback</strong> - params for the pin value</li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>callback integer</code> </p>
-                
-                <h2 id="digitalwritepin-value">digitalWrite(pin, value)</h2>
-                
-                <p>Writes a value using digital write to a pin.</p>
-                
-                <h5 id="params-1">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>pin</strong> - the value of the pin</li>
-                  <li>
-<strong>value</strong> - paramas for the pin value </li>
-                </ul>
-                
-                <h5 id="returns-1">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="analogreadpin-callback">analogRead(pin, callback)</h2>
-                
-                <p>Reads a value using analog write to a pin.</p>
-                
-                <h5 id="params-2">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>pin</strong> - pin data </li>
-                  <li>
-<strong>callback</strong> - callback data</li>
-                </ul>
-                
-                <h5 id="returns-2">Returns</h5>
-                
-                <p><code>callback integer</code> </p>
-                
-                <h2 id="analogwritepin-value">analogWrite(pin, value)</h2>
-                
-                <p>Writes a value using analog write to a pin.</p>
-                
-                <h5 id="params-3">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>pin</strong> - the value of the pin</li>
-                  <li>
-<strong>value</strong> - paramas for the pin value </li>
-                </ul>
-                
-                <h5 id="returns-3">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="pwmwrite">pwmWrite()</h2>
-                
-                <p>Writes the pwm value.(analogWrite)</p>
-                
-                <h5 id="returns-4">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="servowrite">servoWrite()</h2>
-                
-                <p>Writes the servo value.(analogWrite)</p>
-                
-                <h5 id="returns-5">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="commandcommandname-args-callback">command(commandName, args, callback)</h2>
-                
-                <p>Calls a function on the Spark Core via the API.</p>
-                
-                <h5 id="params-4">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>commandName</strong> - string name of the function to call on the Spark</li>
-                  <li>
-<strong>args</strong> - array of arguments to pass to the function call</li>
-                  <li>
-<strong>callback</strong> - optional, callback to be triggered with the response_value from
-                Spark's API</li>
-                </ul>
-                
-                <h5 id="returns-6">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="variablevariablename-callback">variable(variableName, callback)</h2>
-                
-                <p>Requests the value of a variable from the Spark Core via the API</p>
-                
-                <h5 id="params-5">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>variableName</strong> - name of the variable to request from the Spark Core</li>
-                  <li>
-<strong>callback</strong> - callback to be triggered with the value from the Spark Core</li>
-                </ul>
-                
-                <h5 id="returns-7">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="listenforeventsevents">listenForEvents(events)</h2>
-                
-                <p>Listens to Server-Sent Events coming from the Spark Core, and emits the same
-                events.</p>
-                
-                <h5 id="params-6">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>events</strong> - array of events to add listeners for</li>
-                </ul>
-                
-                <h5 id="returns-8">Returns</h5>
-                
-                <p><code>null</code></p>
-                <p><strong>Note:</strong> In addition to the above methods, the Spark adaptor supports the full GPIO pin interface, as long as you are using Tinker, or a Tinker compatible program running on the Spark itself.</p>
-              </div>
-            </section>
-            <section id="HowToConnect">
+              
               <h2 id="how-to-connect">How to Connect</h2>
               
               <p>The setup process for the Spark core is fully explained by <a href="http://docs.spark.io/connect/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
               
-              <p>Once your Spark is connected, you can get the <code>accessToken</code><code> and </code>deviceId` necessary to communicate with it from Cylon.</p>
+              <p>Once your Spark is connected, you can get the <code>accessToken</code> and <code>deviceId</code> necessary to communicate with it from Cylon.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
               
               <p>Available drivers for the Spark platform are listed below:</p>
               <div class="hardware">
-                <h2>GPIO Drivers</h2>
                 <div class="devices">
                   <div class="clear"></div>
                   <h2>GPIO Drivers</h2>

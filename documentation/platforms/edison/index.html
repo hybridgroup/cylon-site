@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Intel Edison</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -285,35 +285,171 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
-              <h3 id="setting-up-your-intel-edison">Setting up your Intel Edison</h3>
+              <h4 id="setting-up-your-intel-edison">Setting up your Intel Edison</h4>
               
-              <p>Everything you need to get started with the Edison is in the Intel Getting Started Guide 
-              located <a href="https://communities.intel.com/docs/DOC-23147">here</a>. Don't forget to 
-              configure your Edison's wifi connection and <a href="https://communities.intel.com/docs/DOC-23192">flash</a> 
+              <p>Everything you need to get started with the Edison is in the Intel Getting Started Guide
+              located <a href="https://communities.intel.com/docs/DOC-23147">here</a>. Don't forget to
+              configure your Edison's wifi connection and <a href="https://communities.intel.com/docs/DOC-23192">flash</a>
               your Edison with the latest firmware image!</p>
               
-              <p>After you have flashed your Edison and followed the steps in the Intel Getting Started Guide,
-              you must now install the latest version of the 
+              <p>In order to enable Ethernet over USB on your Edison, follow the appropriate guide for your OS</p>
+              
+              <h6 id="windows">Windows</h6>
+              <ul>
+                <li>Go to control panel -&gt; network and sharing center -&gt; change adaptor settings</li>
+                <li>When you plug both usb cables into your computer, you should see a new network device show up</li>
+                <li>Right click on the new device and select properties</li>
+                <li>Scroll down to IPv4 and select properties</li>
+                <li>Select "Use the following IP address"</li>
+                <li>Set the IP information to:
+                  <ul>
+                    <li>IP address:           <code>192.168.2.1</code>
+</li>
+                    <li>Subnet mask:          <code>255.255.255.0</code>
+</li>
+                    <li>Default gateway:      <code>192.168.2.255</code>
+</li>
+                    <li>Preferred DNS server: <code>8.8.8.8</code>
+</li>
+                  </ul>
+                </li>
+                <li>Save the changes</li>
+                <li>open putty</li>
+                <li>ssh to 192.168.2.15</li>
+                <li>The user is 'root' and the password is what you configured during the getting started guide</li>
+              </ul>
+              
+              <h6 id="os-x">OS X</h6>
+              <ul>
+                <li>Install the usb tethering driver http://joshuawise.com/horndis#available_versions</li>
+                <li>Open network preferences</li>
+                <li>Plug your Edison into your computer</li>
+                <li>Find the device <code>Edison</code>
+</li>
+                <li>Configure IPv4: Using DHCP with manual address
+                  <ul>
+                    <li><code>192.168.2.1</code></li>
+                  </ul>
+                </li>
+                <li>Open a terminal</li>
+                <li>$ ssh root@192.168.2.15</li>
+              </ul>
+              
+              <h6 id="linux">Linux</h6>
+              <ul>
+                <li>Examine your <code>/etc/network/interfaces</code> file, if you do not have this line, you must add it and then restart your computer
+              <code>
+iface usb0 inet dhcp</code>
+</li>
+                <li>Plug your Edison into your computer</li>
+                <li>$ sudo ifconfig usb0 192.168.2.1 255.255.255.0</li>
+                <li>$ ssh root@192.168.2.15</li>
+              </ul>
+              
+              <p>The Edison is now able to use it's wifi connection to reach the internet and your local USB to Ethernet connection for local ssh access and programming. If you have problems reaching the internet, you may need to setup the DNS on your Edison.</p>
+              
+              <p>Execute the following command on the Edison itself</p>
+              
+              <pre class="CodeRay"># cat "nameserver 8.8.8.8 &gt; /etc/resolv.conf"
+</pre>
+              
+              <p>If you have a valid wifi connection, you should be able to reach out of your network!</p>
+              
+              <p>Now you're ready to install MRAA and Cylon.</p>
+              
+              <h4 id="setting-up-your-intel-galileo">Setting up your Intel Galileo</h4>
+              
+              <p>In order to use <code>cylon-intel-iot</code> on your Galileo, you need to install the Intel IoT linux boot image onto an sd card.
+              You can download the latest image <a href="https://software.intel.com/sites/landingpage/iotdk/board-boot-image.html">here</a>.</p>
+              
+              <p>For Windows hosts you can follow the instruction for flashing your sd card image <a href="https://software.intel.com/en-us/node/530353">here</a>.</p>
+              
+              <p>For Mac or Linux hosts, it's as easy as extracting the image from the downloaded archive and executing the command</p>
+              
+              <pre class="CodeRay">$ sudo dd if=/path/to/iot-devkit-latest-mmcblkp0.direct of=/dev/sdX bs=1M &amp;&amp; sudo sync
+</pre>
+              
+              <p>where <code>/dev/sdX</code> is the location of your sd card. For help determing the location of your sd card, consult the appropriate guide for your OS below.</p>
+              
+              <h6 id="os-x-users">OS X Users</h6>
+              
+              <p>To prepare your SD card for flashing on OS X, you need to find out it's drive name and eject the volume.</p>
+              
+              <p>To find the name, use the built-in <code>diskutil</code> utility:</p>
+              
+              <pre class="CodeRay">$ diskutil list
+/dev/disk0
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:      GUID_partition_scheme                        *500.3 GB   disk0
+  1:                        EFI EFI                     209.7 MB   disk0s1
+  2:                  Apple_HFS Macintosh HD            499.4 GB   disk0s2
+  3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+/dev/disk1
+  #:                       TYPE NAME                    SIZE       IDENTIFIER
+  0:     FDisk_partition_scheme                        *15.7 GB    disk1
+  1:             Windows_FAT_32 NO NAME                 15.7 GB    disk1s1
+</pre>
+              
+              <p>According to this, our SD card is found at <code>/dev/disk1</code>.</p>
+              
+              <p>Before you flash it with the above <code>dd</code> command, use <code>diskutil</code> to eject the existing volume (<code>disk1s1</code>):</p>
+              
+              <pre class="CodeRay">$ diskutil unmount /dev/disk1s1
+</pre>
+              
+              <h6 id="linux-users">Linux Users</h6>
+              <p>To prepare your SD card for flashing on Linux, you need to find the device location of your SD card. An easy way to determin the location is by filtering the <code>/dev/</code> directory for new storage devices. Before you plug in your SD card, execute the following <code>ls</code> command</p>
+              
+              <pre class="CodeRay">$ ls -l /dev/sd*
+brw-rw---- 1 root disk 8,  0 Sep 16 21:48 /dev/sda
+brw-rw---- 1 root disk 8,  1 Sep 16 21:48 /dev/sda1
+brw-rw---- 1 root disk 8,  2 Sep 16 21:48 /dev/sda2
+brw-rw---- 1 root disk 8,  5 Sep 16 21:48 /dev/sda5
+</pre>
+              
+              <p>You can see that I only have one storage device <code>/dev/sda</code>. Now plug in your SD card and execute the <code>ls</code> command again</p>
+              
+              <pre class="CodeRay">$ ls -l /dev/sd*
+brw-rw---- 1 root disk 8,  0 Sep 16 21:48 /dev/sda
+brw-rw---- 1 root disk 8,  1 Sep 16 21:48 /dev/sda1
+brw-rw---- 1 root disk 8,  2 Sep 16 21:48 /dev/sda2
+brw-rw---- 1 root disk 8,  5 Sep 16 21:48 /dev/sda5
+brw-rw---- 1 root disk 8, 16 Sep 17 17:46 /dev/sdb
+brw-rw---- 1 root disk 8, 17 Sep 17 17:46 /dev/sdb1
+brw-rw---- 1 root disk 8, 18 Sep 17 17:46 /dev/sdb2
+</pre>
+              
+              <p>You can see from this output that I now have a new storage device <code>/dev/sdb</code>. That is the location of my SD card, so in this instance the <code>/dev/sdX</code> in our <code>dd</code> command will be <code>/dev/sdb</code>.</p>
+              
+              <p>After the image has been flashed to your sd card, install the sd card into the Galileo, connect it to your local network and power it up!</p>
+              
+              <p>Now you're ready to install MRAA and Cylon.</p>
+              
+              <h4 id="install-mraa">Install MRAA</h4>
+              <p>After you have flashed your Intel board and connected it to a network,
+              you must now install the latest version of the
               <a href="https://github.com/intel-iot-devkit/mraa">Intel MRAA library</a>. In order to update MRAA
-              you simply log into your Edison, through ssh or the uart serial connection, and follow 
+              you simply log into your Intel board, through ssh or the uart serial connection, and follow
               the steps <a href="https://github.com/intel-iot-devkit/mraa#installing-on-your-board">here</a>.</p>
               
-              <h3 id="installing-cylon">Installing Cylon</h3>
+              <h4 id="install-cylon">Install Cylon</h4>
               
-              <p>Once you have flashed your Edison with the latest firmware as well as updated MRAA, 
-              you will now install <code>cylon-intel-iot</code> on the Edison. To do this you must be
+              <p>Once you have flashed your Intel board with the latest firmware as well as updated MRAA,
+              you will now install <code>cylon-intel-iot</code>. To do this you must be
               logged into the board, through ssh or the uart serial connection, and execute the
-              following command <code>npm install cylon-intel-iot</code>.</p>
+              following command</p>
               
-              <p>Once <code>cylon-intel-iot</code> has been installed on your Edison, you're ready to start
-              programming!</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              <pre class="CodeRay">$ npm install cylon-intel-iot
+</pre>
               
+              <p>Once <code>cylon-intel-iot</code> has been installed , you're ready to start programming!</p>
+              
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <h3 id="blinking-the-built-in-led">Blinking the built in LED</h3>
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
@@ -326,18 +462,57 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+    every((<span class="integer">1</span>).second(), my.led.toggle);
+  }
+}).start();
+</pre>
+              
+              <h3 id="bluetooth-programming-on-the-intel-edison-featuring-sphero">Bluetooth Programming on the Intel Edison featuring Sphero</h3>
+              
+              <p>The Edison includes a bluetooth radio right on the board itself, so it's easy to get started programming bluetooth devices out of the box. First we need to enable bluetooth on the Edison.
+               - ssh into your Edison
+               - <code># rfkill unblock bluetooth</code>
+               - <code># bluetoothctl</code>
+                  - <code>[bluetooth]# scan on</code>
+              	- Find your Sphero and take note of the MAC address
+              	- <code>[bluetooth]# scan off</code>
+              	- <code>[bluetooth]# pair [MAC address of Sphero]</code>
+              	- <code>[bluetooth]# exit</code>
+               - <code># rfcomm bind 0 [MAC address of Sphero] 1</code>
+               - This will create a sphero connection bound to <code>/dev/rfcomm0</code>
+               - <code># npm install cylon-intel-iot cylon-sphero</code></p>
+              
+              <p>This example will flash the built in LED whenever the Sphero detects a collision</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span>},
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">edison</span><span class="delimiter">'</span></span> },
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
+    my.sphero.stop();
+    my.sphero.detectCollisions();
+
+    my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision</span><span class="delimiter">"</span></span>);
       my.led.toggle();
     });
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <p>The <a href="https://communities.intel.com/docs/DOC-23147">Intel Edison Getting Started Guide</a>
-              details connection instructions for Windows, Mac and Linux.</p>
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>The <a href="https://communities.intel.com/docs/DOC-23147">Intel Edison Getting Started Guide</a> details connection instructions for Windows, Mac and Linux.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

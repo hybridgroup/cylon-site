@@ -281,16 +281,15 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-m2x
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -298,8 +297,8 @@ Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">m2x</span>: {
       <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">m2x</span><span class="delimiter">'</span></span>,
-      <span class="key">apiKey</span>: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_API_KEY</span><span class="delimiter">'</span></span>
-      feedId: <span class="string"><span class="delimiter">'</span><span class="content">YOUR_FEED_ID</span><span class="delimiter">'</span></span>
+      <span class="key">apiKey</span>: <span class="string"><span class="delimiter">'</span><span class="content">???</span><span class="delimiter">'</span></span>,
+      <span class="key">feedId</span>: <span class="string"><span class="delimiter">'</span><span class="content">???</span><span class="delimiter">'</span></span>
     }
   },
 
@@ -320,9 +319,8 @@ Cylon.robot({
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>On the <a href="https://m2x.att.com">M2X site</a>, sign up for an account, or log into your existing account.
               After doing so, create a new Data Source Blueprint.

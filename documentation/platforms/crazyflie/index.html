@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Crazyflie</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -283,8 +283,8 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section class="how-to" id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <h3 id="dependencies">Dependencies</h3>
               
@@ -305,9 +305,8 @@
               
               <p>You will also need to install the latest beta firmware to the Crazyflie itself to use the 'hover' mode:
               <a href="https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin">https://bitbucket.org/bitcraze/crazyflie-firmware/downloads/Crazyflie_2014.01.0.bin</a>.</p>
-            </section>
-            <section class="how-to" id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <p>This small program causes the Crazyflie to takeoff for 10 seconds.</p>
               
@@ -324,11 +323,9 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.takeoff();
-
     after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.land();
     });
-
     after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
       my.drone.stop();
     });
@@ -336,15 +333,15 @@ Cylon.robot({
 }).start();
 </pre>
               
-              <h2 id="hover-mode">Hover Mode</h2>
+              <h3 id="hover-mode">Hover Mode</h3>
               
-              <pre class="CodeRay">my.drone.setParam(<span class="string"><span class="delimiter">'</span><span class="content">flightmode.althold</span><span class="delimiter">'</span></span>, <span class="predefined-constant">true</span>);
-</pre>
+              <p><code>
+  my.drone.setParam('flightmode.althold', true);</code></p>
               
-              <h2 id="how-to-connect">How to connect</h2>
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>The Crazyflie uses a 2.4 GHz radio to communicate.
-                There is a USB dongle called the Crazyradio that is required to control the Crazyflie quadcopter.</p>
+              There is a USB dongle called the Crazyradio that is required to control the Crazyflie quadcopter.</p>
               
               <p>If you are have a USB 3.0 port, you might run into this issue:</p>
               

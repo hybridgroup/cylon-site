@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Tessel</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -287,12 +287,12 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How to install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
-              <p>Follow the installation instructions detailed <a href="http://start.tessel.io/install">here</a>.</p>
+              <p>Follow the installation instructions detailed <a href="https://tessel.io/install/">here</a></p>
               
-              <p>You can use the Cylon CLI to generate a new Tessel project:</p>
+              <p>You may now use the Cylon command line interface to generate a new Tessel project.</p>
               
               <pre class="CodeRay">$ sudo npm install -g cylon-cli
 $ cylon generate tessel my-tessel-project
@@ -302,9 +302,8 @@ $ tessel run blink.js
 </pre>
               
               <p>If the blue light starts to blink, then you're all set!</p>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How to use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <h3 id="led">LED</h3>
               
@@ -318,13 +317,11 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      my.led.toggle();
-    });
+    every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() { my.led.toggle() });
   }
 }).start();
 </pre>
@@ -353,7 +350,6 @@ Cylon.robot({
       my.climate.readHumidity(<span class="keyword">function</span> (err, humid) {
         console.log(<span class="string"><span class="delimiter">'</span><span class="content">Humidity:</span><span class="delimiter">'</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">%RH</span><span class="delimiter">'</span></span>);
       });
-
       my.climate.readTemperature(<span class="string"><span class="delimiter">'</span><span class="content">f</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err, temp) {
         console.log(<span class="string"><span class="delimiter">'</span><span class="content">Degrees:</span><span class="delimiter">'</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">F</span><span class="delimiter">'</span></span>);
       });
@@ -361,14 +357,59 @@ Cylon.robot({
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
+              
               <h2 id="how-to-connect">How to Connect</h2>
               
               <p>As mentioned in the How To Install section, connecting to the Tessel is easy.
               You just need to follow the provided instructions on the <a href="http://start.tessel.io/install">Tessel site</a>.</p>
               
               <p>If you've already done this, your Tessel should already be connected and ready to run Cylon.JS code.</p>
+              
+              <h2 id="tessel-module-support">Tessel Module Support</h2>
+              
+              <p>The Tessel has a variety of custom hardware modules specifically for use with Tessel. Cylon.js has support for the following Tessel modules:</p>
+              
+              <ul>
+                <li><a href="https://tessel.io/modules#module-accelerometer">Accelerometer</a></li>
+                <li><a href="https://tessel.io/modules#module-ambient">Ambient Light + Sound</a></li>
+                <li><a href="https://tessel.io/modules#module-audio">Audio</a></li>
+                <li><a href="https://tessel.io/modules#module-ble">Bluetooth Low Energy</a></li>
+                <li><a href="https://tessel.io/modules#module-camera">Camera</a></li>
+                <li><a href="https://tessel.io/modules#module-climate">Climate</a></li>
+                <li><a href="https://tessel.io/modules#module-gps">GPS</a></li>
+                <li><a href="https://tessel.io/modules#module-infrared">Infrared</a></li>
+                <li><a href="https://tessel.io/modules#module-relay">Relay</a></li>
+                <li><a href="https://tessel.io/modules#module-servo">Servo</a></li>
+              </ul>
+              
+              <h2 id="gpio--i2c-support">GPIO &amp; I2C Support</h2>
+              
+              <p>In addition to the custom Tessel modules, you can also use the standard Cylon.js GPIO and I2C drivers:</p>
+              
+              <ul>
+                <li>
+<a href="https://en.wikipedia.org/wiki/General_Purpose_Input/Output">GPIO</a> &lt;=&gt; <a href="https://github.com/hybridgroup/cylon-gpio">Drivers</a>
+                  <ul>
+                    <li>Analog Sensor</li>
+                    <li>Button</li>
+                    <li>IR Rangefinder</li>
+                    <li>LED</li>
+                    <li>MakeyButton</li>
+                    <li>Maxbotix Ultrasonic Range Finder</li>
+                  </ul>
+                </li>
+                <li>
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> &lt;=&gt; <a href="https://github.com/hybridgroup/cylon-i2c">Drivers</a>
+                  <ul>
+                    <li>BlinkM</li>
+                    <li>BMP180</li>
+                    <li>HMC6352 Digital Compass</li>
+                    <li>LCD</li>
+                    <li>MPL115A2 Barometer/Thermometer</li>
+                    <li>MPU6050</li>
+                  </ul>
+                </li>
+              </ul>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

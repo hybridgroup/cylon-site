@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Ollie</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -282,36 +282,37 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <pre class="CodeRay">$ npm install cylon-ollie
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span>}
   },
 
   <span class="key">devices</span>: {
-    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>}
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.ollie.wake(<span class="keyword">function</span>(err, data){
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">wake</span><span class="delimiter">"</span></span>);
+
       after(<span class="integer">200</span>, <span class="keyword">function</span>() {
         my.ollie.setRGB(<span class="hex">0x00FFFF</span>);
       });
+
       after(<span class="integer">500</span>, <span class="keyword">function</span>() {
         my.ollie.setRGB(<span class="hex">0xFF0000</span>);
-
         my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>, <span class="integer">1</span>);
+
         after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
           my.ollie.roll(<span class="integer">60</span>, <span class="integer">90</span>, <span class="integer">1</span>);
 
@@ -322,10 +323,10 @@ Cylon.robot({
       });
     });
   }
+}).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>Before you will be able to program the Ollie, you will need to put it into "developer mode" using a compatible mobile app. If you do not have an app that can do this, you will not be able to use cylon-ollie.</p>
               

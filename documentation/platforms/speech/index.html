@@ -281,29 +281,17 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <p>Install the module via NPM:</p>
               
               <pre class="CodeRay">$ npm install cylon-speech
 </pre>
               
-              <p>After the module is installed, but before you run any scripts using it, ensure the espeak utility is installed on your computer.</p>
+              <p>After the module is installed, but before you run any scripts using it, ensure the <code>espeak</code> utility is installed on your computer.</p>
               
               <p>There are packages available for Linux, OS X, and Windows.</p>
-              
-              <h3 id="os-x">OS X</h3>
-              
-              <p>Install espeak through Homebrew. For now, we have a custom formula in our repo, but in the future we hope to contribute a formula to the main Homebrew library.</p>
-              
-              <pre class="CodeRay">$ brew install https://raw.githubusercontent.com/hybridgroup/cylon-speech/5f32fb3df8fe7031213849f52b14cad5e9846691/lib/espeak.rb
-</pre>
-              
-              <p>After installing, test it out:</p>
-              
-              <pre class="CodeRay">$ espeak "This is awesome, OS X speaking"
-</pre>
               
               <h3 id="linux">Linux</h3>
               
@@ -321,19 +309,30 @@
 </pre>
               
               <p>If you hear your computer talking to you, everything is working as expected.
-              If not, please refer to the espeak docs for more help.</p>
+              If not, please refer to the <a href="http://espeak.sourceforge.net/commands.html">espeak docs</a> for more help.</p>
               
-              <h3 id="windows">Windows</h3>
+              <h3 id="os-x">OS X</h3>
               
-              <p>For Windows systems there is a .exe file you can download from <a href="http://espeak.sourceforge.net/download.html">SourceForge</a>.</p>
+              <p>Install espeak through Homebrew.</p>
+              
+              <pre class="CodeRay">$ brew install espeak
+</pre>
+              
+              <p>After installing, test it out:</p>
+              
+              <pre class="CodeRay">$ espeak "This is awesome, OS X speaking"
+</pre>
+              
+              <h3 id="on-windows">On Windows</h3>
+              
+              <p>For Windows systems there is a <code>.exe</code> file you can download from <a href="http://espeak.sourceforge.net/download.html">SourceForge</a>.</p>
               
               <p>Same as with the above operating systems, make sure it works as advertized when the instalation has completed.</p>
               
               <pre class="CodeRay">$ espeak "This is awesome, Windows OS speaking!"
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -342,7 +341,7 @@ Cylon.robot({
   <span class="comment">// both connections below will reproduce with the same voice.</span>
   <span class="comment">// connections: { speech: { adaptor: 'speech', language: 'en, gender: 'f', 'voice: '3' } },</span>
   <span class="key">connections</span>: {
-    <span class="key">speech</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>, <span class="key">voice</span>: <span class="string"><span class="delimiter">'</span><span class="content">en-f4</span><span class="delimiter">'</span></span>, <span class="key">speed</span>: <span class="integer">130</span> }
+    <span class="key">speech</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>, <span class="key">voice</span>: <span class="string"><span class="delimiter">'</span><span class="content">en-f3</span><span class="delimiter">'</span></span>, <span class="key">speed</span>: <span class="integer">130</span> }
   },
 
   <span class="key">devices</span>: {

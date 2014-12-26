@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Pebble</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -284,19 +284,22 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
               
               <pre class="CodeRay">$ npm install cylon-pebble
 </pre>
               
               <p>First, install the Pebble 2.0 iOS or Android app. (If you haven't already)</p>
               
-              <p>With that done, download WatchBot (our Pebble App) from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.
-              %a{href: ""} Pebble App Store</p>
-              <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">
-                <img src="/images/blog/2014-07-22/watchbot_appstore.png" width="100%">
-              </a>
+              <p>With that done, download WatchBot (our Pebble App) from the <a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">Pebble App Store</a>.</p>
+              
+              <p><a href="https://apps.getpebble.com/applications/52b11885b0661fb292000004">
+                <img src="http://cylonjs.com/images/blog/2014-07-22/watchbot_appstore.png" alt="Pebble App Store" style="width: 100%">
+              </a></p>
+              
+              <p><img src="http://cylonjs.com/images/blog/2014-07-22/watchbot_config.png" alt="Watchbot configuration screenshot" style="width: 50%"></p>
+              
               <h3 id="configuration">Configuration</h3>
               
               <p>Once you've got WatchBot installed, go to "My Pebble" on your smartphone's Pebble app. Once there, configure the following settings:</p>
@@ -315,10 +318,13 @@
                 <li>
 <strong>accelerometer:</strong> leave this unchecked</li>
               </ul>
-              <img src="/images/blog/2014-07-22/watchbot_config.png" width="50%">
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <ul>
+                <li>Before running the example, make sure configuration settings match with your program,
+              in example, api host is your computer IP, robot name is 'pebble', and robot api port is 8080</li>
+              </ul>
               
               <p>This small program receives message queue events from a Pebble smart watch.</p>
               
@@ -352,12 +358,10 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>);
     });
   }
-
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <p>This software requires version 2.X of the Pebble watch firmware.</p>
               

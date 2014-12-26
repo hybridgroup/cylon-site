@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Raspberry Pi</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -284,18 +284,19 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-raspi
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <p>This small program causes an LED to blink.</p>
               
-              <pre class="CodeRay">Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">..</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
@@ -307,20 +308,16 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      my.led.toggle();
-    });
+    every((<span class="integer">1</span>).second(), my.led.toggle);
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
               
               <h3 id="connecting-to-raspberry-pi-gpio">Connecting to Raspberry Pi GPIO</h3>
               
-              <p>This module only works on a real Raspberry Pi.
-              Do not bother trying on any other kind of computer it will not work.
+              <p>This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer it will not work.
               Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.</p>
               
               <h3 id="enabling-the-raspberry-pi-i2c-on-raspbian">Enabling the Raspberry Pi i2c on Raspbian</h3>
@@ -347,12 +344,9 @@ i2c-dev
               
               <h3 id="available-pins">Available PINS</h3>
               
-              <p>The following object depicts available pins for all revisions of raspberry-pi, the <code>key</code> is the actual number of the physical pin header on the board,
-              the <code>value</code> is the GPIO pin number assigned by the OS, for the pins with changes between board revisions, the value contains the variations of GPIO pin number
-              assignment between them (eg.rev1, rev2, rev3).</p>
+              <p>The following object depicts available pins for all revisions of raspberry-pi, the <code>key</code> is the actual number of the physical pin header on the board,the <code>value</code> is the GPIO pin number assigned by the OS, for the pins with changes between board revisions, the value contains the variations of GPIO pin number assignment between them (eg.rev1, rev2, rev3).</p>
               
-              <p>You should just be concerned with the <code>key</code> (number of the physical pin header on the board), Cylon.JS takes care
-              of the board revision and GPIO pin numbers for you, this full list is for reference only.</p>
+              <p>You should just be concerned with the <code>key</code> (number of the physical pin header on the board), Cylon.JS takes care of the board revision and GPIO pin numbers for you, this full list is for reference only.</p>
               
               <pre class="CodeRay">PINS = {
   <span class="integer">3</span>: {

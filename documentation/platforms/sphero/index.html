@@ -261,9 +261,9 @@
               <div class="container">
                 <h5>Sphero</h5>
                 <nav class="documentation-nav">
-                  <a href="#HowToInstall">How To Install</a>
-                  <a href="#HowToUse">How To Use</a>
-                  <a href="#HowToConnect">How To Connect</a>
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
                   <a href="#Drivers">Drivers</a>
                   <a href="#top">Top</a>
                 </nav>
@@ -285,14 +285,15 @@
               </div>
               <div class="clear"></div>
             </section>
-            <section id="HowToInstall">
-              <h2 id="how-to-install">How To Install</h2>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon-sphero
 </pre>
-            </section>
-            <section id="HowToUse">
-              <h2 id="how-to-use">How To Use</h2>
+              
+              <h2 id="how-to-use">How to Use</h2>
               
               <p>Example of a simple program that makes the Sphero roll.</p>
               
@@ -314,34 +315,52 @@ Cylon.robot({
   }
 }).start();
 </pre>
-            </section>
-            <section id="HowToConnect">
-              <h2 id="how-to-connect">How To Connect</h2>
               
-              <h3 id="os-x">OS X</h3>
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <h3 id="osx">OSX</h3>
               
               <p>In order to allow Cylon.js running on your Mac to access the Sphero, go to "Bluetooth &gt; Open Bluetooth Preferences &gt; Sharing Setup" and make sure that "Bluetooth Sharing" is checked.</p>
               
               <p>Thank you to <a href="https://github.com/kopipejst">@kopipejst</a> for the above connnection info.</p>
               
+              <p>First pair your computer and Sphero. You can do this using bluetooth preferences. (Sphero won't stay connected)</p>
+              
+              <p>Find out serial port address by running this command:</p>
+              
+              <pre class="CodeRay">ls /dev/tty.Sphero*
+</pre>
+              
+              <p>The port will look something like this:</p>
+              
+              <pre class="CodeRay">/dev/tty.Sphero-BBP-AMP-SPP
+</pre>
+              
+              <p>Now you are ready to run the example code, be sure to update this line with the correct port:</p>
+              
+              <pre class="CodeRay">connections: {
+  sphero: { adaptor: "sphero", port: "/dev/tty.Sphero-BBP-AMP-SPP" }
+},
+</pre>
+              
               <h3 id="ubuntu">Ubuntu</h3>
               
-              <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line with <a href="http://gort.io">Gort</a>.
-              Here are the steps:</p>
+              <p>Connecting to the Sphero from Ubuntu or any other Linux-based OS can be done entirely from the command line
+              using CylonJS CLI commands. Here are the steps.</p>
               
               <p>Find the address of the Sphero, by using:</p>
               
-              <pre class="CodeRay">$ gort bluetooth scan
+              <pre class="CodeRay">gort bluetooth scan
 </pre>
               
               <p>Pair to Sphero using this command (substituting the actual address of your Sphero):</p>
               
-              <pre class="CodeRay">$ gort bluetooth pair &lt;address&gt;
+              <pre class="CodeRay">gort bluetooth pair &lt;address&gt;
 </pre>
               
               <p>Connect to the Sphero using this command (substituting the actual address of your Sphero):</p>
               
-              <pre class="CodeRay">$ gort bluetooth connect &lt;address&gt;
+              <pre class="CodeRay">gort bluetooth connect &lt;address&gt;
 </pre>
               
               <h3 id="windows">Windows</h3>
@@ -350,14 +369,11 @@ Cylon.robot({
               
               <h2 id="how-to-calibrate-sphero">How To Calibrate Sphero</h2>
               
-              <p>You might want to calibrate the orientation of the Sphero so that it is pointed 'forward'.
-              There are 2 functions that have been added to the Sphero driver to help with this.</p>
+              <p>You might want to calibrate the orientation of the Sphero so that it is pointed 'forward'. There are 2 functions that have been added to the Sphero driver to help with this.</p>
               
-              <p>Call <code>startCalibration()</code> to put the Sphero into 'calibration mode' by turning on the tail LED and turning off the auto-stablization.
-              You can now manually turn the Sphero to so the tail LED is pointed to the rear of the direction in which you want the Sphero to go.</p>
+              <p>Call <code>startCalibration()</code> to put the Sphero into 'calibration mode' by turning on the tail LED and turning off the auto-stablization. You can now manually turn the Sphero to so the tail LED is pointed to the rear of the direction in which you want the Sphero to go.</p>
               
-              <p>Call <code>finishCalibration()</code> to turn off 'calibration mode' by turning off the tail LED and turning back on the auto-stablization.
-              Whichever direction that the tail LED was pointed, is now the rear direction for the Sphero.</p>
+              <p>Call <code>finishCalibration()</code> to turn off 'calibration mode' by turning off the tail LED and turning back on the auto-stablization. Whichever direction that the tail LED was pointed, is now the rear direction for the Sphero.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
