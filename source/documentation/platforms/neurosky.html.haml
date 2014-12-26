@@ -22,73 +22,7 @@ subnavjs: true
       For more info about the Neurosky platform click [here](http://neurosky.com/products-markets/eeg-biosensors/hardware/).
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-        $ npm install cylon-neurosky
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-    This example displays the Attention and Meditation data reading sent by the Mindwave Headset:
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            neurosky: {
-              adaptor: 'neurosky',
-              port: '/dev/rfcomm0'
-            }
-          },
-
-          devices: {
-            headset: { driver: 'neurosky' }
-          },
-
-          work: function(my) {
-            my.headset.on('attention', function(data) {
-              console.log("attention:" + data);
-            });
-
-            my.headset.on('meditation', function(data) {
-              console.log("meditation:" + data);
-            });
-          }
-        }).start();
-
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    ### OSX
-
-    In order to allow Cylon.js running on your Mac to access the Mindwave, go to "Bluetooth > Open Bluetooth Preferences > Sharing Setup" and make sure that "Bluetooth Sharing" is checked.
-
-    ### Ubuntu
-
-    Connecting to the Mindwave from Ubuntu or any other Linux-based OS can be done entirely from the command line using [Gort](http://gort.io) commands.
-    Here are the steps:
-
-    Find the address of the Mindwave, by using:
-
-        $ gort scan bluetooth
-
-    Pair to Mindwave using this command (substituting the actual address of your Mindwave):
-
-        $ gort bluetooth pair <address>
-
-    Connect to the Mindwave using this command (substituting the actual address of your Mindwave):
-
-        $ gort bluetooth connect <address>
-
-    ### Windows
-
-    You should be able to pair your Mindwave using your normal system tray applet for Bluetooth, and then connect to the COM port that is bound to the device, such as `COM3`.
+= partial "documentation/platforms/partials/neurosky"
 
 %section.drivers#Drivers
   :markdown

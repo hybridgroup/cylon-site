@@ -1,0 +1,33 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    Install the module with:
+
+        $ npm install cylon-audio
+
+    ## How to Use
+
+    Using the cylon-audio module is pretty easy, pretty much just install the npm module and you are good to go, use it as you would any other device passing along the audio you wish to reproduce. To play audio, pass a full or relative path to the `play` function.  See the example below for further details.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            audio: { adaptor: 'audio' }
+          },
+
+          devices: {
+            audio: { driver: 'audio' }
+          },
+
+          work: function(my) {
+            my.audio.on('playing', function(song){
+              console.log('Playing this nice tune: "' + song + '"');
+            });
+
+            // You can pass a string with a full or relative path here,
+            my.audio.play('./audio_samples/audio-sample.mp3');
+          }
+        }).start();

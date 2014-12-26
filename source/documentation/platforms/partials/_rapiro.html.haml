@@ -1,0 +1,48 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    Install the module with:
+
+        $ npm install cylon-rapiro
+
+    ## How to Use
+
+    Here is an example of a simple program that makes the Rapiro walk:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        // Initialize the robot
+        Cylon.robot({
+          connections: {
+            rapiro: { adaptor: 'rapiro', port: '/dev/ttyUSB0' }
+          },
+
+          devices: {
+            rapiro: { driver: 'rapiro' }
+          },
+
+          work: function(my) {
+            my['doneWalking'] = false ;
+
+            console.log("forward");
+
+            every(1..second(), function() {
+              if (my['doneWalking'] == false) {
+                my.rapiro.forward();
+              }
+            });
+            after(10..seconds(), function() {
+              console.log("halt");
+              my.rapiro.stop();
+              my['doneWalking'] = true;
+            });
+
+          }
+        }).start();
+
+    ## How to Connect
+
+    If you are connected from a Raspberry Pi to the Rapiro board, it will appear as serial port `/dev/ttyACM0`.
+    You can find out by running [Gort](http://gort.io)'s `gort scan serial` command.

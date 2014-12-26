@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var path = require("path");
+
+var _ = require("lodash"),
+    glob = require("glob").sync,
+    fs = require("fs-extra");
+
+var repoCloner = require("./support/repo-cloner.js");
+
+var repos = require("./support/repos.json");
+
+var stdout = process.stdout;
+
+var dirs = {
+  clone: path.resolve(__dirname, "./../.import"),
+  dest: path.resolve(__dirname, "./../source/documentation/platforms/partials")
+};
+
+var readmes = {};
+
+repoCloner();
+
+console.log("Clearing out existing imported platform partials.");
+
+fs.deleteSync(dirs.dest);
+fs.ensureDirSync(dirs.dest);
+
+console.log("Finding files.");
+
+_.each(repos, function(repo) {
+  if (repo === "cylon") {
+    return;
+  }
+
+  readmes[repo] = glob(dirs.clone + "/" + repo + "/README.{md,markdown}")[0];
+});
+
+console.log("Extracting README content.");
+
+_.forIn(readmes, function(readme, repo) {
+  var slug = (repo === "cylon") ? repo : repo.replace(/^cylon-/, ''),
+      dest = dirs.dest + "/_" + slug + ".html.haml";
+
+  var content = fs.readFileSync(readme, "utf8").toString(),
+      lines = content.split("\n").splice(2);
+
+  var beginLine = _.findIndex(
+    lines,
+    function(l) { return _.include(l, "## How to Install"); }
+  );
+
+  var endLine = _.findIndex(
+    lines,
+    function(l) { return _.include(l, "## Documentation"); }
+  );
+
+
+  if (endLine >= 0) {
+    lines = lines.splice(beginLine, (endLine - beginLine));
+  }
+
+  content = lines.join("\n");
+
+  content = content.replace(/```(\w+?)\n([\s\S]+?)\n```/gim, function(str, lang, code) {
+    code = code.replace(/^(.+)/gm, "    $1");
+    return "    :::" + lang + "\n" + code;
+  });
+
+  var body = [
+    "%section.how-to",
+    "  :markdown",
+    content.replace(/^(.+)/gm, "    $1")
+  ].join("\n");
+
+  fs.ensureFileSync(dest);
+  fs.writeFileSync(dest, body);
+});

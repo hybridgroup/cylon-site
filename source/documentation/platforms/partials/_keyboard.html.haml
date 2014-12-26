@@ -1,0 +1,32 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    Installing cylon.js with a keyboard support is pretty easy.
+
+        $ npm install cylon-keyboard
+
+    ## How to Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            keyboard: { adaptor: 'keyboard' }
+          },
+
+          devices: {
+            keyboard: { driver: 'keyboard' }
+          },
+
+          work: function(my) {
+            my.keyboard.on('a', function(key) {
+              console.log("A PRESSED!");
+            });
+          }
+        }).start();
+
+    ## How to Connect
+
+    All that you need to do is plug the keyboard into your computer as usual.

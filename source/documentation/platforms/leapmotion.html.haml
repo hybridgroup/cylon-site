@@ -21,67 +21,7 @@ subnavjs: true
       For more info about the Leap Motion platform click [here](https://www.leapmotion.com/).
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-        $ npm install cylon-leapmotion
-
-    In order to use this module, you'll need to install the [Leap Motion software](https://www.leapmotion.com/setup) from their site.
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-    This small program uses a Leap Motion to detect the user's hand position
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            leapmotion: { adaptor: 'leapmotion' }
-          },
-
-          devices: {
-            leapmotion: { driver: 'leapmotion' }
-          },
-
-          work: function(my) {
-            my.leapmotion.on('hand', function(payload) {
-              console.log(payload.toString());
-            });
-          }
-        }).start();
-
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    ### OS X
-
-    Our driver works out-of-the-box with the vanilla installation of the [Leap Motion software](https://www.leapmotion.com/setup).
-
-    ### Ubuntu
-
-    The Linux download of the Leap Motion software can be obtained from the [Leap Motion Dev Center](https://developer.leapmotion.com/downloads).
-
-    To make sure everything's working:
-
-    - Run the leapd daemon to open a websocket connection in port 6437.
-    - Connect your computer and the Leap Motion controller
-    - Connect to the device via Cylon.js
-
-    ### Connecting To Another Machine
-
-    By default, `cylon-leapmotion` attempts to connect to the LeapMotion websocket server running on localhost.
-    You can, however, provide it with another IP in the `connection` object and it'll attempt to connect to that instead:
-
-        :::javascript
-        connections: {
-          leapmotion: { adaptor: 'leapmotion', host: '192.168.1.64' }
-        }
+= partial "documentation/platforms/partials/leapmotion"
 
 %section.drivers#Drivers
   :markdown

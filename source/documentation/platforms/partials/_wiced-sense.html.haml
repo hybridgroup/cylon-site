@@ -1,0 +1,42 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    To connect to the WICED Sense with Cylon, you'll need to install the `cylon-wiced-sense` NPM module.
+    You will also need to bundle in `cylon-ble`, which is needed to communicate with the device.
+
+        $ npm install cylon-ble cylon-wiced-sense
+
+    ## How to Use
+
+    Here's a short example of getting data from the WICED Sense with Cylon:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: 'ble', uuid: '207377654321' }
+          },
+
+          devices: {
+            wiced: { driver: 'wiced-sense' }
+          },
+
+          work: function(my) {
+            my.wiced.getData(function(err, data) {
+              if (!!err) {
+                console.log("Error: ", err);
+                return;
+              }
+
+              console.log("Data: ", data);
+            });
+          }
+        }).start();
+
+    ## How to Connect
+
+    The WICED Sense is a Bluetooth Low-Energy device, and is paired and connected as with any other BLE device. As long as you have the needed hardware in your computer for Bluetooth LE (Bluetooth 4.0), you can connect to the WICED Sense.
+
+    For more info, check out the [BLE platform page](http://cylonjs.com/documentation/platforms/ble).

@@ -23,52 +23,7 @@ subnavjs: true
 
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-    Installing cylon.js with ardrone support is pretty easy.
-
-        $ npm install cylon-ardrone
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-    This small program lets the ARDrone take-off, hover, and land.
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            ardrone: { adaptor: 'ardrone', port: '192.168.1.1' }
-          },
-
-          devices: {
-            drone: { driver: 'ardrone' }
-          },
-
-          work: function(my) {
-            my.drone.takeoff();
-
-            after((10).seconds(), function() {
-              my.drone.land();
-            });
-
-            after((15).seconds(), function() {
-              my.drone.stop();
-            });
-          }
-        }).start();
-
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    The ARDrone is a WiFi device, so there is no additional work to establish a connection to a single drone.
-    However, in order to connect to multiple drones, you need to perform some configuration steps on each drone via SSH.
+= partial "documentation/platforms/partials/ardrone"
 
 %section.drivers#Drivers
   :markdown

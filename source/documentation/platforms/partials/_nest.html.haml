@@ -1,0 +1,50 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+        $ npm install cylon-nest
+
+    ## How to Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            nest: { adaptor: 'nest', accessToken: 'XXX' }
+          },
+
+          devices: {
+            thermostat: { driver: 'nest-thermostat', deviceId: 'XXX' }
+          },
+
+          work: function(my) {
+            // Listen to the status event to obtain all thermostat
+            // related data in a single object.
+            my.thermostat.on('status', function(data) {
+              console.log('The Thermostat at a glance--->', data);
+            });
+
+            every((60).seconds(), function(){
+              console.log('NEST ambient temp C:', my.thermostat.ambientTemperatureC());
+              console.log('NEST ambient temp F:', my.thermostat.ambientTemperatureF());
+            });
+          }
+        }).start();
+
+    We currently have drivers for the following Nest devices:
+
+    - Thermostat
+    - Nest Home
+
+    ## How to Connect
+
+    First, you need to create a developer account with [Nest Labs](https://developer.nest.com/).
+
+    Once you've created an account, you need to create a client app.
+    The Developer Portal UI will guide you through it.
+    You don't need an OAuth redirect URL, since we're going to be using the generated PIN to get an access token.
+
+    Next step is to obtain the access token for your Nest account in order to authenticate, as instructed [here](https://developer.nest.com/documentation/how-to-auth).
+
+    Once you have done this, you should be able to use the `access_token` you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js
