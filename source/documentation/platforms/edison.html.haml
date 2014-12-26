@@ -24,62 +24,7 @@ subnavjs: true
       [here](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html).
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-    ### Setting up your Intel Edison
-
-    Everything you need to get started with the Edison is in the Intel Getting Started Guide 
-    located [here](https://communities.intel.com/docs/DOC-23147). Don't forget to 
-    configure your Edison's wifi connection and [flash](https://communities.intel.com/docs/DOC-23192) 
-    your Edison with the latest firmware image!
-
-    After you have flashed your Edison and followed the steps in the Intel Getting Started Guide,
-    you must now install the latest version of the 
-    [Intel MRAA library](https://github.com/intel-iot-devkit/mraa). In order to update MRAA
-    you simply log into your Edison, through ssh or the uart serial connection, and follow 
-    the steps [here](https://github.com/intel-iot-devkit/mraa#installing-on-your-board).
-
-    ### Installing Cylon
-
-    Once you have flashed your Edison with the latest firmware as well as updated MRAA, 
-    you will now install `cylon-intel-iot` on the Edison. To do this you must be
-    logged into the board, through ssh or the uart serial connection, and execute the
-    following command `npm install cylon-intel-iot`.
-
-    Once `cylon-intel-iot` has been installed on your Edison, you're ready to start
-    programming!
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            edison: { adaptor: 'intel-iot' }
-          },
-
-          devices: {
-            led: { driver: 'led', pin: 13 }
-          },
-
-          work: function(my) {
-            every((1).second(), function() {
-              my.led.toggle();
-            });
-          }
-        }).start();
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    The [Intel Edison Getting Started Guide](https://communities.intel.com/docs/DOC-23147)
-    details connection instructions for Windows, Mac and Linux.
+= partial "documentation/platforms/partials/intel-iot"
 
 %section.drivers#Drivers
   :markdown

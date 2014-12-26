@@ -1,0 +1,32 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+        $ npm install cylon-mip
+
+    ## How to Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: { bluetooth: {adaptor: 'central', uuid: 'd03972a24e55', module: 'cylon-ble'}},
+          devices: {mip: {driver: 'mip'}},
+
+          work: function(my) {
+            my.mip.setHeadLED(2, 2, 2, 2);
+            after((2).seconds(), function() {
+              my.mip.driveDistance(0, 10, 0, 0);
+            });
+            after((3).seconds(), function() {
+              my.mip.setHeadLED(1, 1, 1, 1);
+            });
+          }
+        }).start();
+
+
+    ## How to Connect
+
+    You need to determine the `uuid` of your MiP. One way to do this, is to use the `cylon-ble-scan` command line utility installed as part of [cylon-ble](https://github.com/hybridgroup/cylon-ble).
+
+    Once you know your `uuid` just substititute it into your code.

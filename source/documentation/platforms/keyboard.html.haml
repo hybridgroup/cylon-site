@@ -22,42 +22,7 @@ subnavjs: true
 
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-    Installing cylon.js with a keyboard support is pretty easy.
-
-        $ npm install cylon-keyboard
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            keyboard: { adaptor: 'keyboard' }
-          },
-
-          devices: {
-            keyboard: { driver: 'keyboard' }
-          },
-
-          work: function(my) {
-            my.keyboard.on('a', function(key) {
-              console.log("a pressed");
-            });
-          }
-        }).start();
-
-%section#HowToConnect
-  :markdown
-    ## How to Connect
-
-    Plug the keyboard to your computer as usual.
+= partial "documentation/platforms/partials/keyboard"
 
 %section.drivers#Drivers
   :markdown

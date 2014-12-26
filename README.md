@@ -47,9 +47,21 @@ If you want to help us with the documentation of the site, you can follow this s
 
 #### Platforms
 
-To add new information to any platform, do this :
+To import platforms from the main Cylon repository, run the `bin/import-platforms` script. You'll need to have Git installed.
 
-- 1) Go to the file `source/documentation/platforms` , and select the platform you want to edit.
+This script will:
+
+- clone down the Cylon repos
+- extract all platform readmes
+- convert github markdown syntax to be haml compatible
+- save the platform documentation to `source/documentation/platforms/partials`
+
+In order for the readme to be properly extracted, it must:
+
+- begin with `## How to Install` and include a `## Documentation` section following the platform information
+- have a new line after each code block
+
+To add new information to any platform, edit the platform readme in the respective Cylon module's repository.
 
 #### Drivers
 

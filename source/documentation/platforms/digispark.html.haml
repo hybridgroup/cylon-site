@@ -22,76 +22,7 @@ subnavjs: true
       For more info about the Digispark platform click [here](http://digistump.com/category/1).
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-    Installing the cylon-digispark requires the `libusb` package already be installed.
-
-    ### OSX
-
-    To install libusb on OSX using Homebrew:
-
-        $ brew install libusb
-
-    ### Ubuntu
-
-    To install libusb on linux:
-
-        $ sudo apt-get install libusb-dev
-
-    Now you can install the module with: `npm install cylon-digispark`
-
-    If you're experiencing the `AttributeError: 'module' object has no attribute 'script_main'` build issue, then please refer to this [comment](https://github.com/TooTallNate/node-gyp/issues/363#issuecomment-33212812)
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-    This small program lets you toggle an LED on and off.
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            digispark: { adaptor: 'digispark' }
-          },
-
-          devices: {
-            led: { driver: 'led', pin: 2 }
-          },
-
-          work: function(my) {
-            every((1).seconds(), function() { my.led.toggle() });
-          }
-        }).start();
-
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    To connect to the Digispark, we first need to upload the [Littlewire protocol](http://littlewire.cc) to the Digispark.
-
-    **IMPORTANT:** The ports on the 2012 Macbook Pros will cause issues due to their USB controllers.
-    Currently, the best workaround is to use a cheap non-USB3 USB hub.
-
-    **Do not** plug your Digispark into a USB port until prompted.
-
-    First, install the cylon-digispark module:
-
-        $ npm install cylon-digispark
-
-    Next, run the following [Gort](http://gort.io) command to upload Littlewire to the Digispark.
-    Plug the Digispark in when prompted.
-
-        $ gort digispark upload
-
-    Once this is done and your Digispark is connected, run `gort scan usb` to verify your connection info.
-    Use the `ID` info returned to find the `product` and `vendor` IDs required to connect to the Digispark from Cylon.
-
-    If you're on Linux, the `gort digispark upload` command will have installed some new udev rules to `/etc/udev/rules.d/49-micronucleus.rules`.
+= partial "documentation/platforms/partials/digispark"
 
 %section.drivers#Drivers
   :markdown

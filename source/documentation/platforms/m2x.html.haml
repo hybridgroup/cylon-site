@@ -21,68 +21,7 @@ subnavjs: true
       For more info about the M2X platform click [here](https://m2x.att.com/).
   .clear
 
-%section#HowToInstall
-  :markdown
-    ## How To Install
-
-    Install the module with:
-
-        $ npm install cylon-m2x
-
-%section#HowToUse
-  :markdown
-    ## How To Use
-
-        :::javascript
-        var Cylon = require('cylon');
-
-        Cylon.robot({
-          connections: {
-            m2x: {
-              adaptor: 'm2x',
-              apiKey: 'YOUR_API_KEY'
-              feedId: 'YOUR_FEED_ID'
-            }
-          },
-
-          devices: {
-            m2x: { driver: 'm2x' }
-          },
-
-          work: function(my) {
-            var count = 1;
-
-            every(2000, function() {
-              my.m2x.push('money', { value: count++ });
-            });
-
-            my.m2x.subscribe('money', function(data) {
-              console.log("Latest value from M2X: " + data);
-            });
-          }
-        }).start();
-
-%section#HowToConnect
-  :markdown
-    ## How To Connect
-
-    On the [M2X site][M2X], sign up for an account, or log into your existing account.
-    After doing so, create a new Data Source Blueprint.
-    The name and details don't matter that much, but they should be meaningful.
-
-    <img src="http://i.imgur.com/YWIPHKr.png" alt="New Data Source Blueprint" width="100%">
-
-    With that done, inside the new Data Source, create a new Stream.
-    This will be the data repository you can push and subscribe to from Cylon.
-
-    <img src="http://i.imgur.com/piKM1ey.png" alt="New Stream" width="100%">
-
-    Once that's done, you're good to go.
-    Make sure to grab the API key and Feed ID from the Data Source page.
-
-    Now you're ready to hook up Cylon to M2X!
-
-    [M2X]: https://m2x.att.com
+= partial "documentation/platforms/partials/m2x"
 
 %section.drivers#Drivers
   :markdown

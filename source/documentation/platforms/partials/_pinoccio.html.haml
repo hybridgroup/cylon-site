@@ -1,0 +1,81 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    Install the module with:
+
+        $ npm install cylon-pinoccio
+
+    ## How to Use
+
+    ### Blink
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            pinoccio: {
+              adaptor: 'pinoccio',
+              token: '[your token]',
+              troop: '[your troop ID]',
+              scout: '[your scout ID]'
+            }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 'D5' }
+          },
+
+          work: function(my) {
+            every((1).second(), my.led.toggle);
+          }
+        }).start();
+
+    ### Built-In Features
+
+    You can also access the built-in features of the Pinoccio such as the LED and Power status:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            pinoccio: {
+              adaptor: 'pinoccio',
+              token: '[your token]',
+              troop: '[your troop ID]',
+              scout: '[your scout ID]'
+            }
+          },
+
+          devices: {
+            led: { driver: 'pinoccio-led' },
+            power: { driver: 'pinoccio-power' },
+          },
+
+          work: function(my) {
+            every((1).second(), my.led.toggle);
+          }
+        }).start();
+
+    We currently have drivers for the following built-in Pinoccio devices:
+
+    - LED
+    - Power
+
+    ## How to Connect
+
+    You need to have an access token generated using the Pinoccio cloud. The easiest way to do this is to use curl:
+
+        curl -X POST -v --data 'email=your@email.com&password=yourpassword' https://api.pinocc.io/v1/login
+
+    It will return a JSON payload that contains the access token:
+
+        < HTTP/1.1 200 OK
+        < content-type: application/json
+        < Date: Sat, 21 Jun 2014 16:08:05 GMT
+        < Connection: close
+        < Transfer-Encoding: chunked
+        <
+        {"data":{"token":"thisisthetokenhere","account":1234,"perms":true}}
