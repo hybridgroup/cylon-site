@@ -1,0 +1,165 @@
+:markdown
+  ## digitalWrite
+
+  Writes a digital value to the specified pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) The pin number to write to
+
+
+  - **value** (<code>Number</code>) Either 1 or 0 (High or Low)
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to the a pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) The pin number to read from
+
+
+  - **value** (<code>Number</code>) Value to be written from 0 - 1
+
+
+  - **freq** (<code>Number</code>) Frequency for the PWM write
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## digitalRead
+
+  Does a digital read in the specified pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) The pin number to read from
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## analogRead
+
+  Does an analog read in the specified pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) The pin number to read from
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## servoWrite
+
+  Writes a PWM value for servos to a pin (freq = 50)
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) The pin number to read from
+
+
+  - **value** (<code>Number</code>) Value to be written from 0 - 1
+
+
+  - **freq** (<code>Number</code>) Frequency for the PWM write
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## i2cWrite
+
+  Writes a command and buffer to a I2C device
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) Address for the I2C device in the bus line
+
+
+  - **command** (<a href="Byte.html">Byte</a>) Write command to be written to the I2C device 1byte = 8bit (0xFF)
+
+
+  - **buffer** (<code>Array</code>) Array of bytes to be written to the bus [0xFF, 0x00, 0xFF ...]
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## i2cRead
+
+  Reads from a I2C device
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) Address for the I2C device in the bus line
+
+
+  - **command** (<a href="Byte.html">Byte</a>) Read command to be written to the I2C device 1byte = 8bit (0xFF)
+
+
+  - **bytes** (<code>Number</code>) Amount of bytes to be read from the I2C device
+
+
+  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+
+
+  ### Returns
+
+  - (`null`)
