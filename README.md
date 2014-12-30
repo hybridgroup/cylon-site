@@ -10,18 +10,6 @@ To run locally:
       bundle install
       bundle exec middleman
 
-### Deploy
-
-[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.
-
-For deploying the webpage, your must be in 'master' branch and run the following command:
-
-      rake publish
-
-You must not have any uncomitted or untracked files in the site dirs, or the publish operation will fail with a message such as `Directory not clean`.
-
-If the publish fails, you might need to remove the `build` dir before trying to run `rake publish` again.
-
 ### Documentation
 
 This project uses HAML.
@@ -47,6 +35,17 @@ If you want to help us with the documentation of the site, you can follow this s
 
 #### Platforms
 
+To update the introduction information of a platform:
+
+- 1) Go to the file `source/documentation/platforms` , and select the platform you want to edit.
+
+All of the content beginning with `How to Install` is generated from the platform's github repo. To add new documentation to any platform, edit the readme in the respective Cylon module's repository.
+
+In order for the readme to be properly extracted, the content being pushed to the site must:
+
+- begin with `## How to Install` and end with `## Documentation`
+- have a new line after each code block
+
 To import platforms from the main Cylon repository, run the `bin/import-platforms` script. You'll need to have Git installed.
 
 This script will:
@@ -55,13 +54,6 @@ This script will:
 - extract all platform readmes
 - convert github markdown syntax to be haml compatible
 - save the platform documentation to `source/documentation/platforms/partials`
-
-In order for the readme to be properly extracted, it must:
-
-- begin with `## How to Install` and include a `## Documentation` section following the platform information
-- have a new line after each code block
-
-To add new information to any platform, edit the platform readme in the respective Cylon module's repository.
 
 #### Drivers
 
@@ -95,3 +87,15 @@ This script will:
 ### Send your Pull Request
 
 When you have your code ready, create a new PR : `base: master` and `compare:"your_branch"`
+
+### Deploy
+
+[middleman-gh-pages](https://github.com/neo/middleman-gh-pages) gem is being used to build the webpage and deploy to gh-pages branch.
+
+For deploying the webpage, your must be in 'master' branch and run the following command:
+
+      rake publish
+
+You must not have any uncomitted or untracked files in the site dirs, or the publish operation will fail with a message such as `Directory not clean`.
+
+If the publish fails, you might need to remove the `build` dir before trying to run `rake publish` again.
