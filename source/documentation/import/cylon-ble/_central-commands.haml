@@ -1,0 +1,137 @@
+:markdown
+  ## startScanning
+
+  Tells the BLE adaptor to start scanning for peripherals
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## stopScanning
+
+  Tells the BLE adaptor to stop scanning for peripherals
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## peripherals
+
+  Returns all connected peripherals Central is aware of
+
+
+  ### Returns
+
+  - (<code>Object</code>) connected peripherals
+
+  * * *
+
+  ## readServiceCharacteristic
+
+  Reads a service characteristic from the BLE peripheral.
+
+  Triggers the provided callback when data is retrieved.
+
+
+  ### Params
+
+
+  - **serviceId** (<code>Number</code>) ID of service to get details for
+
+
+  - **characteristicId** (<code>Number</code>) ID of characteristic to get details for
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## writeServiceCharacteristic
+
+  Writes a service characteristic value to the BLE peripheral.
+
+  Triggers the provided callback when data is written.
+
+
+  ### Params
+
+
+  - **serviceId** (<code>Number</code>) ID of service to get details for
+
+
+  - **characteristicId** (<code>Number</code>) ID of characteristic to get details for
+
+
+  - **value** (<code>Number</code>) value to write to the characteristic
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## notifyServiceCharacteristic
+
+  Changes a service characteristic's notification state on the BLE peripheral.
+
+  Triggers the provided callback when data is written.
+
+
+  ### Params
+
+
+  - **serviceId** (<code>Number</code>) ID of service to get details for
+
+
+  - **characteristicId** (<code>Number</code>) ID of characteristic to get details for
+
+
+  - **state** (<code>String</code>) notify state to write
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getCharacteristic
+
+  Finds a BLE service characteristic
+
+  Triggers the provided callback when the characteristic is found
+
+
+  ### Params
+
+
+  - **serviceId** (<code>Number</code>) ID of service to look for
+
+
+  - **characteristicId** (<code>Number</code>) ID of characteristic to look for
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (`null`)

@@ -1,0 +1,112 @@
+:markdown
+  ## initVideoCapture
+
+  Initializes video capture from the supplied feed
+
+
+  ### Params
+
+
+  - **feed** (<code>Object</code>) feed to capture video from
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## readFrame
+
+  Reads frames from a video feed
+
+
+  ### Params
+
+
+  - **feed** (<code>Object</code>) feed to read video frames from
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## readImage
+
+  Reads an image through OpenCV
+
+
+  ### Params
+
+
+  - **feed** (<code>Object</code>) feed to read video frames from
+
+
+  - **cb** (<code>Function</code>) callback to be triggered when the image is read
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## detectFaces
+
+  Detects faces in an image, using the provided haarcascade file
+
+
+  ### Params
+
+
+  - **im** (<code>Object</code>) image to scan for faces
+
+
+  - **haarcascade** (<code>Object</code>) file to use for image detection
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## createWindow
+
+  Creates a new, named OpenCV window
+
+
+  ### Params
+
+
+  - **name** (<code>String</code>) name for OpenCV window
+
+
+  ### Returns
+
+  - (<code>Object</code>) OpenCV NamedWindow instance
+
+  * * *
+
+  ## showFrame
+
+  Shows a video frame in an OpenCV window
+
+
+  ### Params
+
+
+  - **name** (<code>String</code>) OpenCV NamedWindow to display in
+
+
+  - **frame** (<code>Object</code>) frame to display
+
+
+  - **delay** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>Object</code>) blocking delay

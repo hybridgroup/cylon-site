@@ -1,0 +1,68 @@
+:markdown
+  ## read
+
+  Reads data from the Neurosky serialport.
+
+  Triggers the callback with any new data
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) to be triggered when new data is available
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## parse
+
+  Parses data from the Mindwave
+
+
+  ### Params
+
+
+  - **data** (<code>Object</code>) buffered data to be parsed
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## parsePacket
+
+  Parses a packet of data from the Mindwave
+
+
+  ### Params
+
+
+  - **data** (<code>Object</code>) packet to be parsed
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## parseEEG
+
+  Parses data from a Mindwave packet to get current EEG state
+
+
+  ### Params
+
+
+  - **data** (<code>Object</code>) packet content to be parsed
+
+
+  ### Returns
+
+  - (<code>Object</code>) eeg data

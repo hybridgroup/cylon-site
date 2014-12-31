@@ -1,0 +1,57 @@
+:markdown
+  ## send_notification
+
+  Sends a notification to the Pebble
+
+
+  ### Params
+
+
+  - **message** (<code>String</code>)
+
+
+  ### Returns
+
+  - (<code>String</code>) message
+
+  * * *
+
+  ## message_queue
+
+  Returns the current message queue
+
+
+  ### Returns
+
+  - (<code>Array</code>.&lt;<code>String</code>&gt;) message queue
+
+  * * *
+
+  ## pending_message
+
+  Checks if there are pending messages
+
+
+  ### Returns
+
+  - (<code>String</code>|<code>null</code>) message
+
+  * * *
+
+  ## publish_event
+
+  Emits an event, with the supplied data
+
+
+  ### Params
+
+
+  - **name** (<code>String</code>) name of the event to emit
+
+
+  - **data** (<code>Object</code>) any payload that should be emitted with the event
+
+
+  ### Returns
+
+  - (<code>null</code>)

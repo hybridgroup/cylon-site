@@ -1,0 +1,110 @@
+:markdown
+  ## data
+
+  Emitted whenever the Mindwave serialport sends data
+
+
+  ### Values
+
+  - **data** direct data from serialport
+
+
+
+  * * *
+
+  ## packet
+
+  Emitted whenever a Mindwave packet is received over the serialport
+
+
+  ### Values
+
+  - **packet**
+
+
+
+  * * *
+
+  ## extended
+
+  Emitted whenever the extended code is found in a Mindwave packet
+
+
+
+  * * *
+
+  ## signal
+
+  Emitted when packets are received, as an indicator of poor signal quality
+
+
+  ### Values
+
+  - **quality** 0-255
+
+
+
+  * * *
+
+  ## attention
+
+  Emitted when the Attention code is detected in a packet
+
+
+  ### Values
+
+  - **value** 0-100
+
+
+
+  * * *
+
+  ## meditation
+
+  Emitted when the Meditation code is detected in a packet
+
+
+  ### Values
+
+  - **value** 0-100
+
+
+
+  * * *
+
+  ## blink
+
+  Emitted with the packet's provided blink strength
+
+
+  ### Values
+
+  - **value** 0-255
+
+
+
+  * * *
+
+  ## wave
+
+  Emitted per packet, contains raw EEG wave value
+
+
+  ### Values
+
+  - **value** 2-byte big-endian 2s-complement
+
+
+
+  * * *
+
+  ## eeg
+
+  Emitted with processed EEG data per-packet.
+
+
+  ### Values
+
+  - **eeg** an object containing EEG info (delta, theta, etc wave states)
+
+

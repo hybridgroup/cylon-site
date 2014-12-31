@@ -1,0 +1,206 @@
+:markdown
+  ## core
+
+  Returns attributes of the Spark Core
+
+
+  ### Returns
+
+  - (<code>Object</code>) attributes
+
+  * * *
+
+  ## digitalRead
+
+  Reads a value from a digital pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## digitalWrite
+
+  Writes a value to a digital pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## analogRead
+
+  Reads a value from an analog pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## analogWrite
+
+  Writes a value to an analog pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to a pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## servoWrite
+
+  Writes a servo value to a pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## callFunction
+
+  Calls a function on the Spark Core
+
+
+  ### Params
+
+
+  - **functionName** (<code>String</code>) name of the function to call
+
+
+  - **args** (<code>Array</code>.&lt;<code>String</code>&gt;) arguments to pass to the function call
+
+
+  - **callback** (<code>Function</code>) optional callback to be triggered with the response_value from the API
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getVariable
+
+  Requests the value of a variable from the Spark Core.
+
+
+  ### Params
+
+
+  - **varName** (<code>String</code>) name of the variable to request
+
+
+  - **callback** (<code>Function</code>) function to be triggered with the value
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## onEvent
+
+  Adds an event listener to a specified event on the Spark Core.
+
+  Emits the same event from the adaptor.
+
+
+  ### Params
+
+
+  - **varName** (<code>String</code>) name of the event to listen for
+
+
+  - **callback** (<code>Function</code>) function to be triggered when the event is emitted
+
+
+  ### Returns
+
+  - (<code>null</code>)

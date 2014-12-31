@@ -1,0 +1,89 @@
+:markdown
+  ## setLightState
+
+  Sets the state of a specific Hue
+
+
+  ### Params
+
+
+  - **lightId** (<code>Number</code>) ID of the Hue to be changed
+
+
+  - **state** (<code>Object</code>)
+
+
+  - **state.on** (<code>Boolean</code>) whether or not the light should be on
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## lightState
+
+  Fetches the current state of the Hues
+
+
+  ### Returns
+
+  - (<code>Object</code>) lightState
+
+  * * *
+
+  ## createUser
+
+  Creates a User through the Hue API
+
+
+  ### Params
+
+
+  - **username** (<code>String</code>) preferred username
+
+
+  - **description** (<code>String</code>) description of User
+
+
+  - **callback** (<code>Function</code>) to be triggered when the user is created
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## locateBridges
+
+  Locates Hue bridges through the API
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) to be triggered when the bridges are found
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getFullState
+
+  Gets the full configuration state of the Hue setup
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) to be triggered when config is found
+
+
+  ### Returns
+
+  - (<code>null</code>)

@@ -1,0 +1,130 @@
+:markdown
+  ## digitalWrite
+
+  Writes a value to a digital pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to a pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## analogRead
+
+  Reads a value from an analog pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## digitalRead
+
+  Reads a value from a digital pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cWrite
+
+  Writes an I2C value to the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **buff** (<code>Array</code>) buffered data to write
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cRead
+
+  Reads an I2C value from the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **length** (<code>Number</code>) amount of data to read
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)

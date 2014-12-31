@@ -1,0 +1,175 @@
+:markdown
+  ## analogRead
+
+  Reads values from an analog pin on the board.
+
+  When values are read from the pin, emits then as (err, val) to the provided
+  callback.
+
+  Also emits values through the "analogRead" event.
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the analog pin to read from
+
+
+  - **callback** (<code>Function</code>) a function to be triggered when a value is read
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## digitalRead
+
+  Reads values from a digital pin on the board.
+
+  When values are read from the pin, emits then as (err, val) to the provided
+  callback.
+
+  Also emits values through the "digitalRead" event.
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the digital pin to read from
+
+
+  - **callback** (<code>Function</code>) a function to be triggered when a value is read
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## digitalWrite
+
+  Writes a value to a digital pin on the board.
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the digital pin to write to
+
+
+  - **value** (<code>Number</code>) the value to be written to the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to a pin on the board.
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the pin to write to
+
+
+  - **scaledDuty** (<code>Number</code>) the scaled PWM duty to use
+
+
+  - **freq** (<code>Number</code>) the frequency to use
+
+
+  - **pulseWidth** (<code>Number</code>) the pulse width to use
+
+
+  - **eventName** (<code>String</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## servoWrite
+
+  Writes a Servo value to a pin on the board.
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the pin to write to
+
+
+  - **scaledDuty** (<code>Number</code>) the scaled PWM duty to use
+
+
+  - **freq** (<code>Number</code>) the frequency to use
+
+
+  - **pulseWidth** (<code>Number</code>) the pulse width to use
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cWrite
+
+  Writes an I2C value to the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **buff** (<code>Array</code>) buffered data to write
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cRead
+
+  Reads an I2C value from the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **length** (<code>Number</code>) amount of data to read
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)

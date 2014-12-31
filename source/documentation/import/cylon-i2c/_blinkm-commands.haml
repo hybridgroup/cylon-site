@@ -1,0 +1,291 @@
+:markdown
+  ## goToRGB
+
+  Sets the color of the BlinkM to the specified combination of RGB values.
+
+
+  ### Params
+
+
+  - **r** (<code>Number</code>) red value, 0-255
+
+
+  - **g** (<code>Number</code>) green value, 0-255
+
+
+  - **b** (<code>Number</code>) blue value, 0-255
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## fadeToRGB
+
+  Fades the color of the BlinkM to the specified combination of RGB values.
+
+
+  ### Params
+
+
+  - **r** (<code>Number</code>) red value, 0-255
+
+
+  - **g** (<code>Number</code>) green value, 0-255
+
+
+  - **b** (<code>Number</code>) blue value, 0-255
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## fadeToHSB
+
+  Fades the color of the BlinkM to the specified combination of HSB values.
+
+
+  ### Params
+
+
+  - **h** (<code>Number</code>) hue value, 0-359
+
+
+  - **s** (<code>Number</code>) saturation value, 0-100
+
+
+  - **b** (<code>Number</code>) brightness value, 0-100
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## fadeToRandomRGB
+
+  Fades the color of the BlinkM to a random combination of RGB values.
+
+
+  ### Params
+
+
+  - **r** (<code>Number</code>) red value, 0-255
+
+
+  - **g** (<code>Number</code>) green value, 0-255
+
+
+  - **b** (<code>Number</code>) blue value, 0-255
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## fadeToRandomHSB
+
+  Fades the color of the BlinkM to a random combination of HSB values.
+
+
+  ### Params
+
+
+  - **h** (<code>Number</code>) hue value, 0-359
+
+
+  - **s** (<code>Number</code>) saturation value, 0-100
+
+
+  - **b** (<code>Number</code>) brightness value, 0-100
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## playLightScript
+
+  Plays a light script for the BlinkM.
+
+  Available scripts are available in the BlinkM datasheet.
+
+  A `repeats` value of `0` causes the script to execute until the the
+`#stopScript` command is called.
+
+
+  ### Params
+
+
+  - **id** (<code>Number</code>) light script to play
+
+
+  - **repeats** (<code>Number</code>) whether the script should repeat
+
+
+  - **startAtLine** (<code>Number</code>) which line in the light script to start at
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## stopScript
+
+  Stops the currently executing BlinkM light script.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setFadeSpeed
+
+  Sets the fade speed for the BlinkM
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) how fast colors should fade (1-255)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setTimeAdjust
+
+  Sets a time adjust for the BlinkM.
+
+  This affects the duration of scripts.
+
+
+  ### Params
+
+
+  - **time** (<code>Number</code>) an integer between -128 and 127. 0 resets the time.
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getRGBColor
+
+  Gets the RGB values for the current BlinkM color.
+
+  Yields an array in the form `[r, g, b]`, each a 0-255 integer.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getAddress
+
+  Returns a string describing the current I2C address being used.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setAddress
+
+  Sets an address to the BlinkM driver
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getFirmware
+
+  Returns a string describing the I2C firmware version being used
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)

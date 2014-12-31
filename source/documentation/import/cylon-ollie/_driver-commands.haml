@@ -1,0 +1,180 @@
+:markdown
+  ## wake
+
+  Tells the Ollie to wake up
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered when the Ollie is awake
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setTXPower
+
+  Sets the BLE transmit power for the Ollie.
+
+  Uses more battery, but gives longer range
+
+
+  ### Params
+
+
+  - **level** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setRGB
+
+  Sets the RGB color of Ollie's built-in LED
+
+
+  ### Params
+
+
+  - **color** (<code>Number</code>)
+
+
+  - **persist** (<code>Boolean</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## roll
+
+  Tells Ollie to roll in a particular speed and heading
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>)
+
+
+  - **heading** (<code>Number</code>)
+
+
+  - **state** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## stop
+
+  Tells Ollie to stop rolling
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setRawMotorValues
+
+  Allows for direct control of both motors, rather than auto-control via the
+  stabilization system.
+
+  Each motor (left and right) requires a mode (see below) and a power value
+  from 0-255. This command will disable stabilization if both modes aren't
+"ignore" so you'll need to re-enable it via setStabilization() once you're
+  done.
+
+
+  ### Params
+
+
+  - **leftMode** (<code>Number</code>)
+
+
+  - **leftPower** (<code>Number</code>)
+
+
+  - **rightMode** (<code>Number</code>)
+
+
+  - **rightPower** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setStabilization
+
+  Used to enable/disable Ollie's auto-stabilization
+
+  Often used after setting raw motor commands.
+
+
+  ### Params
+
+
+  - **enable** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## devModeOn
+
+  Enables developer mode on the Ollie.
+
+  This is accomplished via sending a special string to the Anti-DoS service,
+  setting TX power to 7, and telling the Sphero to wake up.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)

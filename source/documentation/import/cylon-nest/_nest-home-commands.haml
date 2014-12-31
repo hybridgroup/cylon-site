@@ -1,0 +1,115 @@
+:markdown
+  ## structures
+
+  Returns all structures the Nest API knows about
+
+
+  ### Returns
+
+  - (<code>Object</code>) structures
+
+  * * *
+
+  ## getStructure
+
+  Gets a specific structure from the Structures reference
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Object</code>) structure
+
+  * * *
+
+  ## structureName
+
+  Gets name of specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure name
+
+  * * *
+
+  ## thermostats
+
+  Gets thermostats in specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Array</code>.&lt;<code>Object</code>&gt;) structure thermostats
+
+  * * *
+
+  ## smokeCoAlarms
+
+  Gets Smoke/Carbon Monoxide alarms in specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Array</code>.&lt;<code>Object</code>&gt;) structure Smoke/C0 alarms
+
+  * * *
+
+  ## away
+
+  Gets the current `away` value of the structure, or assigns a new value if
+  provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `away`
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Number</code>|<code>null</code>) structure `away` status
+
+  * * *
+
+  ## eta
+
+  Gets ETA for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Array</code>.&lt;<code>Object</code>&gt;) structure ETA
