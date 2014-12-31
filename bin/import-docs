@@ -97,7 +97,7 @@ _.forIn(docs, function(files, repo) {
           description: description,
           params: params,
           ret: ret
-        }).replace(/[^\S\r\n]+$/gm, '').replace(/^(\w+)/gm, "  $1");
+        }).replace(/[^\S\r\n]+$/gm, '').replace(/^(\S+)/gm, "  $1");
       });
 
       content += cmds.join("\n  * * *\n\n");
