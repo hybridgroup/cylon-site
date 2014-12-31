@@ -64,18 +64,10 @@ subnavjs: true
           }
         }).start();
 
-
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/hue/commands_bridge"
-      
-
-  .commands-api#Events
-    :markdown
-      # Events
-      no events
-
-      
+    %h1 Commands
+    = partial "/documentation/import/cylon-hue/bridge-commands"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

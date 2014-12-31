@@ -77,61 +77,8 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commands
-
-      ## isCharging(cb)
-
-      Returns a value if the drivers is charging
-
-      - **cb** - The value for which to return data
-
-      ##### Returns
-
-      `nil`
-
-      ## percent(cb)
-
-      Returns the percent
-
-      - **cb** - The value for which to return data
-
-      ##### Returns
-
-      `nil`
-
-      ## voltage(cb)
-
-      Returns the voltage
-
-      - **cb** - The value for which to return data
-
-      ##### Returns
-
-      `nil`
-
-      ## enableVcc()
-
-      Enables the VCC
-
-      ## disableVcc()
-
-      Disables the VCC
-
-      ## report(cb)
-
-      Returns a report of the driver
-
-      - **cb** - The value for which to return data
-
-      ##### Returns
-
-      `nil`
-
-  .commands-api#Events
-    :markdown
-      # Events
-      no events
+    %h1 Commands
+    = partial "/documentation/import/cylon-pinoccio/pinoccio-power-commands"
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

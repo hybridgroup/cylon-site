@@ -58,23 +58,8 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commands
-
-      ## getData
-
-      Gets publicly exposed data.
-
-      ##### Returns
-
-      Hash containing temperature, pressure, magnetometer, humidity, gyroscope and accelerometer
-
-
-  .commands-api#Events
-    :markdown
-      # Events
-
-      No Events
+    %h1 Commands
+    = partial "/documentation/import/cylon-wiced-sense/driver-commands"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

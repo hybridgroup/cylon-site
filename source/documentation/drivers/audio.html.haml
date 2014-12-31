@@ -63,18 +63,12 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commands
-
-      ## play(path)
-
-      Plays the audio file passed as parameter.
+    %h1 Commands
+    = partial "/documentation/import/cylon-audio/driver-commands"
 
   .commands-api#Events
-    :markdown
-      # Events
-
-      no events
+    %h1 Events
+    = partial "/documentation/import/cylon-audio/driver-events"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

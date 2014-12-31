@@ -97,30 +97,8 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commands
-
-      ## setThrust(thrust, cb([err]))
-
-      Sets the thrust to a value between 0,254 and executes the callback on completion
-
-      ##### Return
-
-      nil
-
-      ## setRudder(rudder, cb([err]))
-
-      Sets the rudder to a value between -128,127 and executes the callback on completion
-
-      ##### Return
-
-      nil
-
-  .commands-api#Events
-    :markdown
-      # Events
-
-      no events
+    %h1 Commands
+    = partial "/documentation/import/cylon-powerup/driver-commands"
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

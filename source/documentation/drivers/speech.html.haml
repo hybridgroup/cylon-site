@@ -64,18 +64,8 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commads
-
-      ## say(message)
-
-      Reproduces the text string passed as audio, text to speech.
-
-  .commands-api#Events
-    :markdown
-      # Events
-
-      no events
+    %h1 Commands
+    = partial "/documentation/import/cylon-speech/driver-commands"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

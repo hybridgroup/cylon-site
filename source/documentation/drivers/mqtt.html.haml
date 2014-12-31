@@ -80,20 +80,12 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    :markdown
-      # Commands
-
-      ## publish
-
-      Publishes data to specific topic.
+    %h1 Commands
+    = partial "/documentation/import/cylon-mqtt/driver-commands"
 
   .commands-api#Events
-    :markdown
-      # Events
-
-      ## message
-
-      Emitted when new topic is published.
+    %h1 Events
+    = partial "/documentation/import/cylon-mqtt/driver-events"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

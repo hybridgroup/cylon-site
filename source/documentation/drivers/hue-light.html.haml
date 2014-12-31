@@ -25,7 +25,7 @@ subnavjs: true
         Cylon.robot({
           connections: {
             hue: { adaptor: 'hue', host: '192.168.1.101', username: 'XXX' }
-          }, 
+          },
 
           devices: {
             bulb: { driver: 'hue-light', lightId: 2}
@@ -53,19 +53,12 @@ subnavjs: true
               my.bulb.toggle();
             });
           }
-        }).start();        
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/hue/commands_light"
-      
-
-  .commands-api#Events
-    :markdown
-      # Events
-      no events
-
-      
+    %h1 Commands
+    = partial "/documentation/import/cylon-hue/light-commands"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility

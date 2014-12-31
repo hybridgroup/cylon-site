@@ -68,12 +68,14 @@ subnavjs: true
 
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/sphero/commands"
+    %h1 Commands
+    = partial "/documentation/import/cylon-sphero/driver-commands"
     %h5
       Note: for more information about the documentation of the Sphero driver click
       =link_to "here.", "https://github.com/orbotix/DeveloperResources/blob/master/docs/Sphero_API_1.50.pdf"
   .commands-api#Events
-    = partial "/documentation/drivers/partials/sphero/events"
+    %h1 Events
+    = partial "/documentation/import/cylon-sphero/driver-events"
 
 %section#SpheroColors
   %h2 Sphero Colors
