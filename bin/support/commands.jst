@@ -5,7 +5,7 @@
   ### Params
   <% _.forEach(params, function(param) { %>
 
-  - **<%= param.name %>** (<%= param.typesDescription %>) <%= param.description %>
+  - **<%= param.name %>** (<%= param.typesDescription.replace("|", ",") %>) <%= param.description %>
   <% }); %>
   <% } %>
   ### Returns
