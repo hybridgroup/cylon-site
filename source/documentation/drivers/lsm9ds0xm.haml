@@ -61,12 +61,10 @@ subnavjs: true
           }
         }).start();
 
-
 %section.public-methods
   .commands-api#Commands
-    = partial "/documentation/drivers/partials/i2c/_commands_lsm9ds0xm"
-  .commands-api#Events
-    = partial "/documentation/drivers/partials/i2c/_events_lsm9ds0xm"
+    %h1 Commands
+    = partial "/documentation/import/cylon-i2c/lsm9ds0xm-commands"
 
 %section.circuit#Circuit
   %h2 Circuit
