@@ -1,0 +1,33 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - groups"
+page_title: "Example: groups"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-m2x/tree/master/examples/groups' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            m2x: { adaptor: "m2x", masterKey: "<masterKey>" }
+          },
+
+          devices: {
+            m2x: { driver: "m2x" }
+          },
+
+          work: function(my) {
+            my.m2x.groups(function(err, data) {
+              console.log("Err: ", err);
+              console.log("Groups: ", data.groups);
+            });
+          }
+        }).start();

@@ -11,27 +11,29 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.api({
-          host: '0.0.0.0',
-          port: '8080',
+          host: "0.0.0.0",
+          port: "8080",
           ssl:  false
         });
 
         Cylon.robot({
-          name: 'pebble',
+          name: "pebble",
 
           connections: {
-            pebble: { adaptor: 'pebble' }
+            pebble: { adaptor: "pebble" }
           },
 
           devices: {
-            pebble: { driver: 'pebble' }
+            pebble: { driver: "pebble" }
           },
 
           work: function(my) {
-            my.pebble.on('accel', function(data) {
+            my.pebble.on("accel", function(data) {
               console.log(data);
             });
           }

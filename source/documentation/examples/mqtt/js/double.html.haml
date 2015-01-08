@@ -11,28 +11,30 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            server: { adaptor: 'mqtt', host: 'mqtt://localhost:1883' }
+            server: { adaptor: "mqtt", host: "mqtt://localhost:1883" }
           },
 
           devices: {
-            uno: { driver: 'mqtt', topic: 'hi' },
-            dos: { driver: 'mqtt', topic: 'hola' }
+            uno: { driver: "mqtt", topic: "hi" },
+            dos: { driver: "mqtt", topic: "hola" }
           },
 
           work: function(my) {
-            my.server.on('message', function(topic, message) {
+            my.server.on("message", function(topic, message) {
               console.log(topic + ": " + message);
             });
 
             every((1).seconds(), function() {
               console.log("Saying hello...");
 
-              my.uno.publish('hello');
-              my.dos.publish('buenos');
+              my.uno.publish("hello");
+              my.dos.publish("buenos");
             });
           }
         }).start();

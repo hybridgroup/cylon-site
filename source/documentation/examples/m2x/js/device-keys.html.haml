@@ -1,0 +1,39 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - device-keys"
+page_title: "Example: device-keys"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-m2x/tree/master/examples/device-keys' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            m2x: { adaptor: "m2x", masterKey: "<masterKey>" }
+          },
+
+          devices: {
+            m2x: { driver: "m2x" }
+          },
+
+          work: function(my) {
+            my.m2x.list(function(err, data) {
+              console.log("Err: ", err);
+              console.log("Private devices: ", data.devices);
+              data.devices.forEach(function(device) {
+                my.m2x.keys(device.id, function(err, data) {
+                  console.log("Err: ", err);
+                  console.log("Keys: ", data.keys);
+                });
+              });
+            });
+          }
+        }).start();

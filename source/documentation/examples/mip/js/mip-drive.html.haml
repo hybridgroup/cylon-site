@@ -1,0 +1,36 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - mip-drive"
+page_title: "Example: mip-drive"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-mip/tree/master/examples/mip-drive' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: 'd03972a24e55', module: 'cylon-ble' }
+          },
+
+          devices: {
+            mip: { driver: 'mip' }
+          },
+
+          work: function(my) {
+            my.mip.setHeadLED(2, 2, 2, 2);
+
+            after((2).seconds(), function() {
+              my.mip.driveDistance(0, 10, 0, 0);
+            });
+
+            after((3).seconds(), function() {
+              my.mip.setHeadLED(1, 1, 1, 1);
+            });
+          }
+        }).start();

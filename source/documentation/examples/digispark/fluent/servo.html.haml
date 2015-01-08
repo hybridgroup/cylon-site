@@ -11,19 +11,25 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon
           .robot()
-          .connection('digispark', { adaptor: 'digispark' })
+          .connection("digispark", { adaptor: "digispark" })
 
           // when declaring the servo driver you can add an optional `angleLimits` param
           // (defaults to min: 30 max 150). This param sets limits for the angle,
           // so sot he servo can't be damaged if it cannot move in the full 0-180
           // range, most servos are not capable of this.
-          .device('servo', { driver: 'servo', pin: 0, limits: { bottom: 20, top: 160 } })
+          .device("servo", {
+            driver: "servo",
+            pin: 0,
+            limits: { bottom: 20, top: 160 }
+          })
 
-          .on('ready', function(bot) {
+          .on("ready", function(bot) {
             var angle = 0,
                 increment = 20;
 

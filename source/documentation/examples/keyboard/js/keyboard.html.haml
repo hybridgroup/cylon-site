@@ -11,31 +11,33 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            keyboard: { adaptor: 'keyboard' }
+            keyboard: { adaptor: "keyboard" }
           },
 
           devices: {
-            keyboard: { name: 'keyboard', driver: 'keyboard' }
+            keyboard: { name: "keyboard", driver: "keyboard" }
           },
 
           work: function(my) {
-            my.keyboard.on('a', function(key) {
+            my.keyboard.on("a", function(key) {
               console.log(key.name + " a pressed!");
             });
 
-            my.keyboard.on('keypress',function(key) {
+            my.keyboard.on("keypress",function(key) {
               console.log(key.name + " key press!");
             });
 
-            my.keyboard.on('keydown', function(key) {
+            my.keyboard.on("keydown", function(key) {
               console.log(key.name + " keydown!");
             });
 
-            my.keyboard.on('keyup', function(key) {
+            my.keyboard.on("keyup", function(key) {
               console.log(key.name + " keyup!");
             });
           }

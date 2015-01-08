@@ -12,17 +12,19 @@ active_menu_docs: true
   :markdown
         :::javascript
         // To run:
-        // $ node examples/create-user/create-user.js 192.168.1.85 35dacee025cd94cf3f50bb301ad8b4bf newdescription
+        // $ node examples/create-user/create-user.js [IP] [username] [new description]
 
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            hue: { adaptor: 'hue', host: process.argv[2], username: process.argv[3] }
+            hue: { adaptor: "hue", host: process.argv[2], username: process.argv[3] }
           },
 
           devices: {
-            bridge: { driver: 'hue-bridge' }
+            bridge: { driver: "hue-bridge" }
           },
 
           work: function(my) {

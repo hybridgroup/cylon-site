@@ -9,30 +9,21 @@
     ## How to Use
 
         :::javascript
-        var Cylon = require('cylon');
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            m2x: {
-              adaptor: 'm2x',
-              apiKey: '???',
-              feedId: '???'
-            }
+            m2x: { adaptor: "m2x", masterKey: "<masterKey>" }
           },
 
           devices: {
-            m2x: { driver: 'm2x' }
+            m2x: { driver: "m2x" }
           },
 
           work: function(my) {
-            var count = 1;
-
-            every(2000, function() {
-              my.m2x.push('money', { value: count++ });
-            });
-
-            my.m2x.subscribe('money', function(data) {
-              console.log("Latest value from M2X: " + data);
+            my.m2x.streamValues("<deviceId>", "temp", {}, function(err, data) {
+              console.log("Err: ", err);
+              console.log("Values: ", data);
             });
           }
         }).start();
@@ -40,18 +31,19 @@
     ## How to Connect
 
     On the [M2X site][M2X], sign up for an account, or log into your existing account.
-    After doing so, create a new Data Source Blueprint.
-    The name and details don't matter that much, but they should be meaningful.
+    After doing so, create a new Device.
+    The name of the device and details don't matter that much, but they should be meaningful.
 
-    <img src="http://i.imgur.com/YWIPHKr.png" alt="New Data Source Blueprint" width="100%">
+    <img src="http://i.imgur.com/3BZkKU2.png" alt="Create New Device" width="100%">
 
-    With that done, inside the new Data Source, create a new Stream.
-    This will be the data repository you can push and subscribe to from Cylon.
+    With that done, inside the new Device, create a new Stream.
+    This will be the data repository you can push and read values from Cylon.
 
-    <img src="http://i.imgur.com/piKM1ey.png" alt="New Stream" width="100%">
+    <img src="http://i.imgur.com/wcsjTyX.png" alt="New Stream" width="100%">
 
     Once that's done, you're good to go.
-    Make sure to grab the API key and Feed ID from the Data Source page.
+    Make sure to grab the Master API key from your account details page and Device ID from the
+    devices page.
 
     Now you're ready to hook up Cylon to M2X!
 

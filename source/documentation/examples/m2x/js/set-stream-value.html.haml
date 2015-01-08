@@ -1,0 +1,41 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - set-stream-value"
+page_title: "Example: set-stream-value"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-m2x/tree/master/examples/set-stream-value' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            m2x: { adaptor: "m2x", masterKey: "<masterKey>" }
+          },
+
+          devices: {
+            m2x: { driver: "m2x" }
+          },
+
+          work: function(my) {
+            my.m2x.stream("<deviceId>", "<streamName>", function(err, data) {
+              console.log("Err: ", err);
+              console.log("Stream: ", data);
+              my.m2x.setStreamValue(
+                "<deviceId>", "<streamName>",
+                { value: 25 },
+                function(err, locations) {
+                  console.log("Err: ", err);
+                  console.log("locations: ", locations);
+                }
+              );
+            });
+          }
+        }).start();
