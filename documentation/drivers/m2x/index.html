@@ -327,18 +327,19 @@ Cylon.robot({
             <section class="public-methods">
               <div class="commands-api" id="Commands">
                 <h1>Commands</h1>
-                <h2 id="subscribe">subscribe</h2>
+                <h2 id="catalog">catalog</h2>
                 
-                <p>Subscribes to messages on a topic through M2X</p>
+                <p>Retrieves a list of public devices</p>
                 
                 <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>topic</strong> (<code>String</code>) topic name to subscribe to</p>
+                    <p><strong>params</strong> (<code>String</code>) list of params to filter the list of devices</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with new data on the topic</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered   @param {Error} err error if any exists
+                @param {Array} devices an array of objects</p>
                   </li>
                 </ul>
                 
@@ -350,22 +351,776 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="push">push</h2>
+                <h2 id="list">list</h2>
                 
-                <p>Publishes a new message to a topic through M2X</p>
+                <p>Retrieves a list of private devices</p>
                 
                 <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>id</strong> (<code>String</code>) topic name to publish to</p>
+                    <p><strong>params</strong> (<code>String</code>) list of params to filter the list of devices</p>
                   </li>
                   <li>
-                    <p><strong>data</strong> (<code>Object</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, devices)   @param {Error} err error if any exists
+                @param {Array} devices an array of objects</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="groups">groups</h2>
+                
+                <p>Retrieves an array of groups  to which the devices belong to</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>params</strong> (<code>String</code>) list of params to filter for</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, groups)   @param {Error} err error if any exists
+                @param {Array} groups an array of groups</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="create">create</h2>
+                
+                <p>Creates a new Device</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) list of device attrs</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response on creating the array</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="update">update</h2>
+                
+                <p>Updates a Device</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device to update</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) list of device attrs</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response on updating the array</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="view">view</h2>
+                
+                <p>Returns an object with device details for the specified id</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, device)   @param {Error} err error if any exists
+                @param {Object} device details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="location">location</h2>
+                
+                <p>Returns the location of a device</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, location)   @param {Error} err error if any exists
+                @param {Object} location details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="updatelocation">updateLocation</h2>
+                
+                <p>Updates the location of a device</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, location)   @param {Error} err error if any exists
+                @param {Object} location details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streams">streams</h2>
+                
+                <p>Retrieve a list of streams for the device</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with new (err, streams)   @param {Error} err error if any exists
+                @param {Array} streams array</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="updatestream">updateStream</h2>
+                
+                <p>Updates(or creates) stream with the params passed</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response with the update operation details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setstreamvalue">setStreamValue</h2>
+                
+                <p>Creates a new stream value</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) { value: myValue[, timestamp: ISOTimestamp ]}</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response with the set value operation details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stream">stream</h2>
+                
+                <p>Retrieve stream details</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+                @param {Object} stream details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamvalues">streamValues</h2>
+                
+                <p>Retrieve stream values</p>
+                
+                <h3 id="params-12">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>filters</strong> (<code>Object</code>) for the values</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+                @param {Object} stream details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="samplestreamvalues">sampleStreamValues</h2>
+                
+                <p>Retrieve a sample of stream values</p>
+                
+                <h3 id="params-13">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>filters</strong> (<code>Object</code>) for the values</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+                @param {Object} stream details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-13">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamstats">streamStats</h2>
+                
+                <p>Retrieve stream stats</p>
+                
+                <h3 id="params-14">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>filters</strong> (<code>Object</code>) for the values</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+                @param {Object} stream details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-14">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="postvalues">postValues</h2>
+                
+                <p>Add multiple values to a stream</p>
+                
+                <h3 id="params-15">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>values</strong> (<code>array</code>) array of { value: val, timestamp: ISODateString }</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-15">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="deletestreamvalues">deleteStreamValues</h2>
+                
+                <p>Deletes stream values</p>
+                
+                <h3 id="params-16">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>filters</strong> (<code>Object</code>) to delete values</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-16">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="deletestream">deleteStream</h2>
+                
+                <p>Deletes a stream</p>
+                
+                <h3 id="params-17">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the stream to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-17">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="postmultiple">postMultiple</h2>
+                
+                <p>Post to multiple streams</p>
+                
+                <h3 id="params-18">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>values</strong> (<code>Array</code>) array of { name: n, value: v, timestamp: t }</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-18">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="triggers">triggers</h2>
+                
+                <p>returns a list of triggers for the device</p>
+                
+                <h3 id="params-19">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-19">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="createtrigger">createTrigger</h2>
+                
+                <p>creates a new trigger</p>
+                
+                <h3 id="params-20">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) for the trigger</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-20">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="trigger">trigger</h2>
+                
+                <p>creates a new trigger</p>
+                
+                <h3 id="params-21">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the trigger</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-21">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="updatetrigger">updateTrigger</h2>
+                
+                <p>updates a trigger</p>
+                
+                <h3 id="params-22">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the trigger</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<code>Object</code>) to be updated</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-22">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="testtrigger">testTrigger</h2>
+                
+                <p>tests a trigger</p>
+                
+                <h3 id="params-23">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the trigger</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-23">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="deletetrigger">deleteTrigger</h2>
+                
+                <p>deletes a trigger</p>
+                
+                <h3 id="params-24">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) of the trigger</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-24">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="log">log</h2>
+                
+                <p>Returns a log of access to the supplied device</p>
+                
+                <h3 id="params-25">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} log details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-25">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="deletedevice">deleteDevice</h2>
+                
+                <p>deletes a device</p>
+                
+                <h3 id="params-26">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-26">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="keys">keys</h2>
+                
+                <p>returns a list of keys associated to a device</p>
+                
+                <h3 id="params-27">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} keys detail</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-27">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="createkey">createKey</h2>
+                
+                <p>creates a new key</p>
+                
+                <h3 id="params-28">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<a href="obejct.html">obejct</a>) to create the new key</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-28">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="updatekey">updateKey</h2>
+                
+                <p>updates a key</p>
+                
+                <h3 id="params-29">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>String</code>) of the device</p>
+                  </li>
+                  <li>
+                    <p><strong>params</strong> (<a href="obejct.html">obejct</a>) to update the key</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+                @param {Object} response details</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-29">Returns</h3>
                 
                 <ul>
                   <li>(<code>null</code>)</li>
