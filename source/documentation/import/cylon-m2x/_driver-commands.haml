@@ -1,16 +1,17 @@
 :markdown
-  ## subscribe
+  ## catalog
 
-  Subscribes to messages on a topic through M2X
+  Retrieves a list of public devices
 
 
   ### Params
 
 
-  - **topic** (<code>String</code>) topic name to subscribe to
+  - **params** (<code>String</code>) list of params to filter the list of devices
 
 
-  - **callback** (<code>Function</code>) function to be triggered with new data on the topic
+  - **callback** (<code>Function</code>) function to be triggered   @param {Error} err error if any exists
+  @param {Array} devices an array of objects
 
 
   ### Returns
@@ -19,18 +20,688 @@
 
   * * *
 
-  ## push
+  ## list
 
-  Publishes a new message to a topic through M2X
+  Retrieves a list of private devices
 
 
   ### Params
 
 
-  - **id** (<code>String</code>) topic name to publish to
+  - **params** (<code>String</code>) list of params to filter the list of devices
 
 
-  - **data** (<code>Object</code>)
+  - **callback** (<code>Function</code>) function to be triggered with (err, devices)   @param {Error} err error if any exists
+  @param {Array} devices an array of objects
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## groups
+
+  Retrieves an array of groups  to which the devices belong to
+
+
+  ### Params
+
+
+  - **params** (<code>String</code>) list of params to filter for
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, groups)   @param {Error} err error if any exists
+  @param {Array} groups an array of groups
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## create
+
+  Creates a new Device
+
+
+  ### Params
+
+
+  - **params** (<code>Object</code>) list of device attrs
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response on creating the array
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## update
+
+  Updates a Device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device to update
+
+
+  - **params** (<code>Object</code>) list of device attrs
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response on updating the array
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## view
+
+  Returns an object with device details for the specified id
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, device)   @param {Error} err error if any exists
+  @param {Object} device details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## location
+
+  Returns the location of a device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, location)   @param {Error} err error if any exists
+  @param {Object} location details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## updateLocation
+
+  Updates the location of a device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **params** (<code>Object</code>) to be updated
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, location)   @param {Error} err error if any exists
+  @param {Object} location details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## streams
+
+  Retrieve a list of streams for the device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with new (err, streams)   @param {Error} err error if any exists
+  @param {Array} streams array
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## updateStream
+
+  Updates(or creates) stream with the params passed
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **params** (<code>Object</code>) to be updated
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response with the update operation details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setStreamValue
+
+  Creates a new stream value
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **params** (<code>Object</code>) { value: myValue[, timestamp: ISOTimestamp ]}
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response with the set value operation details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## stream
+
+  Retrieve stream details
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+  @param {Object} stream details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## streamValues
+
+  Retrieve stream values
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **filters** (<code>Object</code>) for the values
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+  @param {Object} stream details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## sampleStreamValues
+
+  Retrieve a sample of stream values
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **filters** (<code>Object</code>) for the values
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+  @param {Object} stream details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## streamStats
+
+  Retrieve stream stats
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **filters** (<code>Object</code>) for the values
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, stream)   @param {Error} err error if any exists
+  @param {Object} stream details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## postValues
+
+  Add multiple values to a stream
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **values** (<code>array</code>) array of { value: val, timestamp: ISODateString }
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## deleteStreamValues
+
+  Deletes stream values
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **filters** (<code>Object</code>) to delete values
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## deleteStream
+
+  Deletes a stream
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the stream to be updated
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## postMultiple
+
+  Post to multiple streams
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **values** (<code>Array</code>) array of { name: n, value: v, timestamp: t }
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## triggers
+
+  returns a list of triggers for the device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## createTrigger
+
+  creates a new trigger
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **params** (<code>Object</code>) for the trigger
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## trigger
+
+  creates a new trigger
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the trigger
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## updateTrigger
+
+  updates a trigger
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the trigger
+
+
+  - **params** (<code>Object</code>) to be updated
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## testTrigger
+
+  tests a trigger
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the trigger
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## deleteTrigger
+
+  deletes a trigger
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **name** (<code>String</code>) of the trigger
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## log
+
+  Returns a log of access to the supplied device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} log details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## deleteDevice
+
+  deletes a device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## keys
+
+  returns a list of keys associated to a device
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} keys detail
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## createKey
+
+  creates a new key
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **params** (<a href="obejct.html">obejct</a>) to create the new key
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## updateKey
+
+  updates a key
+
+
+  ### Params
+
+
+  - **id** (<code>String</code>) of the device
+
+
+  - **params** (<a href="obejct.html">obejct</a>) to update the key
+
+
+  - **callback** (<code>Function</code>) function to be triggered with (err, res)   @param {Error} err error if any exists
+  @param {Object} response details
 
 
   ### Returns
