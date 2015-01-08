@@ -253,22 +253,26 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">records</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span>, <span class="key">tracks</span>: [<span class="string"><span class="delimiter">'</span><span class="content">./audio_samples/audio-sample.mp3</span><span class="delimiter">'</span></span>] })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">jukebox</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(robot) {
-    robot.jukebox.on(<span class="string"><span class="delimiter">'</span><span class="content">playing</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(song){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing this nice tune: "</span><span class="delimiter">'</span></span> + song + <span class="string"><span class="delimiter">'</span><span class="content">"</span><span class="delimiter">'</span></span>);
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">records</span><span class="delimiter">"</span></span>, {
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">audio</span><span class="delimiter">"</span></span>, <span class="key">tracks</span>: [ <span class="string"><span class="delimiter">"</span><span class="content">./audio_samples/audio-sample.mp3</span><span class="delimiter">"</span></span> ]
+  })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">jukebox</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">audio</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(robot) {
+    robot.jukebox.on(<span class="string"><span class="delimiter">"</span><span class="content">playing</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(song){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Playing this nice tune: </span><span class="char">\"</span><span class="delimiter">"</span></span> + song + <span class="string"><span class="delimiter">"</span><span class="char">\"</span><span class="delimiter">"</span></span>);
     });
 
     <span class="comment">// You can also pass a string with a full or relative path here,</span>
     <span class="comment">// in case you do not want to define a list of tracks for the adaptor.</span>
-    <span class="comment">// robot.jukebox.play('./audio_samples/audio-sample.mp3');</span>
+    <span class="comment">// robot.jukebox.play("./audio_samples/audio-sample.mp3");</span>
     robot.jukebox.play(<span class="integer">0</span>);
-  })
+  });
 
 Cylon.start();
 </pre>

@@ -336,18 +336,35 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
-                
+                <h1>Commands</h1>
                 <h2 id="publish">publish</h2>
                 
-                <p>Publishes data to specific topic.</p>
+                <p>Publishes a new message on the Driver's topic</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>data</strong> (<code>Object</code>,<code>String</code>) the data to publish to the topic</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                
+                <h1>Events</h1>
                 <h2 id="message">message</h2>
                 
-                <p>Emitted when new topic is published.</p>
+                <p>Emitted when the MQTT client receives a new message on the Driver's topic</p>
+                
+                <h3 id="values">Values</h3>
+                
+                <ul>
+                  <li><strong>message</strong></li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

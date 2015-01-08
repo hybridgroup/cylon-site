@@ -253,15 +253,17 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">hue</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue</span><span class="delimiter">'</span></span>, <span class="key">host</span>: process.argv[<span class="integer">2</span>], <span class="key">username</span>: process.argv[<span class="integer">3</span>] }
+    <span class="key">hue</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">hue</span><span class="delimiter">"</span></span>, <span class="key">host</span>: process.argv[<span class="integer">2</span>], <span class="key">username</span>: process.argv[<span class="integer">3</span>] }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue-light</span><span class="delimiter">'</span></span>, <span class="key">lightId</span>: <span class="integer">2</span> }
+    <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">hue-light</span><span class="delimiter">"</span></span>, <span class="key">lightId</span>: <span class="integer">2</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -270,7 +272,7 @@ Cylon.robot({
 
     my.bulb.turnOn();
 
-    every(<span class="float">0.5</span>.seconds(), <span class="keyword">function</span>() {
+    every((<span class="float">0.5</span>).seconds(), <span class="keyword">function</span>() {
       brightness += fade;
       my.bulb.brightness(brightness);
       <span class="keyword">if</span> ((brightness === <span class="integer">0</span>) || (brightness === <span class="integer">100</span>)) { fade = -fade; }

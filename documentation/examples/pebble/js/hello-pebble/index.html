@@ -253,33 +253,35 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.api({
-  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>,
+  <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.0.0</span><span class="delimiter">"</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">8080</span><span class="delimiter">"</span></span>,
   <span class="key">ssl</span>:  <span class="predefined-constant">false</span>
 });
 
 Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
 
   <span class="key">connections</span>: {
-    <span class="key">pebble</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+    <span class="key">pebble</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">pebble</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+    <span class="key">pebble</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.pebble.send_notification(<span class="string"><span class="delimiter">"</span><span class="content">Hello Pebble!</span><span class="delimiter">"</span></span>);
 
-    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.pebble.on(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button pushed: </span><span class="delimiter">"</span></span> + data);
     });
 
-    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">tap</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.pebble.on(<span class="string"><span class="delimiter">"</span><span class="content">tap</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Tap event detected</span><span class="delimiter">"</span></span>);
     });
   }

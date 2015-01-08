@@ -253,25 +253,27 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.api({
-  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span>,
+  <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.0.0</span><span class="delimiter">"</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">8080</span><span class="delimiter">"</span></span>,
   <span class="key">ssl</span>:  <span class="predefined-constant">false</span>
 });
 
 Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>,
+  <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>,
 
   <span class="key">connections</span>: {
-    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.Sphero-YBW-RN-SPP</span><span class="delimiter">'</span></span> },
-    <span class="key">pebble</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.Sphero-YBW-RN-SPP</span><span class="delimiter">"</span></span> },
+    <span class="key">pebble</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> },
-    <span class="key">pebble</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">pebble</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> },
+    <span class="key">pebble</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">pebble</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">heading</span>: <span class="integer">0</span>,
@@ -282,13 +284,16 @@ Cylon.robot({
       my.sphero.roll(my.speed, my.heading);
     });
 
-    my.pebble.on(<span class="string"><span class="delimiter">'</span><span class="content">accel</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      values = data.split(<span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>);
-      x      = values[<span class="integer">0</span>];
-      y      = values[<span class="integer">1</span>];
+    my.pebble.on(<span class="string"><span class="delimiter">"</span><span class="content">accel</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      <span class="keyword">var</span> values = data.split(<span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>),
+          x = values[<span class="integer">0</span>],
+          y = values[<span class="integer">1</span>];
 
-      my.speed   = Math.round(Math.max(Math.abs(x)/<span class="integer">6</span>, Math.abs(y)/<span class="integer">6</span>));
-      my.heading = Math.round(((<span class="float">180.0</span> - (Math.atan2(y,x) * (<span class="float">180.0</span> / Math.PI)))));
+      my.speed = Math.round(Math.max(Math.abs(x)/<span class="integer">6</span>, Math.abs(y)/<span class="integer">6</span>));
+
+      my.heading = Math.round(
+        ((<span class="float">180.0</span> - (Math.atan2(y,x) * (<span class="float">180.0</span> / Math.PI))))
+      );
     });
   }
 

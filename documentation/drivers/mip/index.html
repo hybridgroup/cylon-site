@@ -309,216 +309,301 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="setheadled">setHeadLED</h2>
                 
-                <h2 id="setheadledlight1-light2-light3-light4-callback">setHeadLED(light1, light2, light3, light4, callback)</h2>
+                <p>Sets the Head LEDs of the MiP</p>
                 
-                <p>Sets the 4 LEDs on the MiP's head.</p>
-                
-                <h5 id="params">Params</h5>
-                
-                <ul>
-                  <li>
-                    <p><strong>light1</strong></p>
-                  </li>
-                  <li>
-                    <p><strong>light2</strong></p>
-                  </li>
-                  <li>
-                    <p><strong>light3</strong></p>
-                  </li>
-                  <li>
-                    <p><strong>light4</strong></p>
-                  </li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="setchestledr-g-b-callback">setChestLED(r, g, b, callback)</h2>
-                
-                <p>Sets the MiP's chest LED as r, g, and b values.</p>
-                
-                <h5 id="params-1">Params</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>r</strong> - red value</p>
+                    <p><strong>light1</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>g</strong> - green value</p>
+                    <p><strong>light2</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>b</strong> - blue value</p>
+                    <p><strong>light3</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>light4</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="flashchestledr-g-b-timeon-timeoff-callback">flashChestLED(r, g, b, timeOn, timeOff, callback)</h2>
+                <hr>
                 
-                <p>Flashes the MiP's chest LED, accepting a specific interval and color.</p>
+                <h2 id="setchestled">setChestLED</h2>
                 
-                <h5 id="params-2">Params</h5>
+                <p>Sets the Chest LED color of the MiP</p>
+                
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>r</strong> - red value</p>
+                    <p><strong>r</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>g</strong> - green value</p>
+                    <p><strong>g</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>b</strong> - blue value</p>
+                    <p><strong>b</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>timeOn</strong></p>
-                  </li>
-                  <li>
-                    <p><strong>timeOff</strong></p>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-2">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="getupstand-callback">getUp(stand, callback)</h2>
-                
-                <p>Orders the MiP to stand upright.</p>
-                
-                <h5 id="params-3">Params</h5>
+                <h3 id="returns-1">Returns</h3>
                 
                 <ul>
-                  <li><strong>stand</strong></li>
+                  <li>(<code>null</code>)</li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <hr>
                 
-                <p><code>nil</code></p>
+                <h2 id="flashchestled">flashChestLED</h2>
                 
-                <h2 id="drivedistancedirection-distance-turndirection-turnangle-callback">driveDistance(direction, distance, turnDirection, turnAngle, callback)</h2>
+                <p>Flashes the chest LED of the MiP</p>
                 
-                <p>Orders the MiP to drive a particular distance and direction.</p>
-                
-                <h5 id="params-4">Params</h5>
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>direction</strong></p>
+                    <p><strong>r</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>distance</strong></p>
+                    <p><strong>g</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>turnDirection</strong></p>
+                    <p><strong>b</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>turnAngle</strong></p>
+                    <p><strong>timeOn</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>timeOff</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-4">Returns</h5>
+                <h3 id="returns-2">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="driveforwardspeed-time-callback">driveForward(speed, time, callback)</h2>
+                <hr>
                 
-                <p>Orders the MiP to drive forward.</p>
+                <h2 id="getup">getUp</h2>
                 
-                <h5 id="params-5">Params</h5>
+                <p>Tells the MiP to get up.</p>
+                
+                <h3 id="params-3">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong></p>
+                    <p><strong>stand</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>time</strong></p>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-5">Returns</h5>
+                <h3 id="returns-3">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="drivebackwardspeed-time-callback">driveBackward(speed, time, callback)</h2>
+                <hr>
                 
-                <p>Orders the MiP to drive backward.</p>
+                <h2 id="drivedistance">driveDistance</h2>
                 
-                <h5 id="params-6">Params</h5>
+                <p>Tells the MiP to drive a distance, in a direction</p>
+                
+                <h3 id="params-4">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong></p>
+                    <p><strong>direction</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>time</strong></p>
+                    <p><strong>distance</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>turnDirection</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>turnAngle</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-6">Returns</h5>
+                <h3 id="returns-4">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="turnleftangle-speed-callback">turnLeft(angle, speed, callback)</h2>
+                <hr>
                 
-                <p>Orders the MiP to turn left.</p>
+                <h2 id="driveforward">driveForward</h2>
                 
-                <h5 id="params-7">Params</h5>
+                <p>Tells the MiP to drive forward</p>
+                
+                <h3 id="params-5">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>angle</strong></p>
+                    <p><strong>speed</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>speed</strong></p>
+                    <p><strong>time</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-7">Returns</h5>
+                <h3 id="returns-5">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="turnrightangle-speed-callback">turnRight(angle, speed, callback)</h2>
+                <hr>
                 
-                <p>Orders the MiP to turn right.</p>
+                <h2 id="drivebackward">driveBackward</h2>
                 
-                <h5 id="params-8">Params</h5>
+                <p>Tells the MiP to drive backward</p>
+                
+                <h3 id="params-6">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>angle</strong></p>
+                    <p><strong>speed</strong> (<code>Number</code>)</p>
                   </li>
                   <li>
-                    <p><strong>speed</strong></p>
+                    <p><strong>time</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
                   </li>
                 </ul>
                 
-                <h5 id="returns-8">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="setgamemodemode-callback">setGameMode(mode, callback)</h2>
-                
-                <p>Sets the MiP game mode.</p>
-                
-                <h5 id="params-9">Params</h5>
+                <h3 id="returns-6">Returns</h3>
                 
                 <ul>
-                  <li><strong>mode</strong></li>
+                  <li>(<code>null</code>)</li>
                 </ul>
                 
-                <h2 id="stopcallback">stop(callback)</h2>
+                <hr>
                 
-                <p>Orders the MiP to stop.</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h2 id="turnleft">turnLeft</h2>
                 
-                <p>No events</p>
+                <p>Tells the MiP to turn to the left</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>angle</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="turnright">turnRight</h2>
+                
+                <p>Tells the MiP to turn to the right</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>angle</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setgamemode">setGameMode</h2>
+                
+                <p>Tells the MiP to start the specified game mode</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>mode</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stop">stop</h2>
+                
+                <p>Tells the MiP to stop whatever it's doing.</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

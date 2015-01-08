@@ -324,43 +324,167 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="registeredusers">registeredUsers</h2>
                 
-                <h2 id="registeredusers">registeredUsers()</h2>
+                <p>Finds all registered users.</p>
                 
-                <p>Obtain list of registered users</p>
+                <h3 id="params">Params</h3>
                 
-                <h2 id="createuser">createUser()</h2>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered when users are found</li>
+                </ul>
                 
-                <p>Creates new user</p>
+                <h3 id="returns">Returns</h3>
                 
-                <h2 id="deleteuser">deleteUser()</h2>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p>Deletes user</p>
+                <hr>
                 
-                <h2 id="locatebridges">locateBridges()</h2>
+                <h2 id="createuser">createUser</h2>
                 
-                <p>Locate bridges using connection to 'Meet Hue' site.</p>
+                <p>Creates a new user</p>
                 
-                <h2 id="searchforbridges">searchForBridges()</h2>
+                <h3 id="params-1">Params</h3>
                 
-                <p>Search for bridges using local WIFi connection</p>
+                <ul>
+                  <li>
+                    <p><strong>username</strong> (<code>String</code>) preferred username</p>
+                  </li>
+                  <li>
+                    <p><strong>description</strong> (<code>String</code>) description of new User</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when user is created</p>
+                  </li>
+                </ul>
                 
-                <h2 id="config">config()</h2>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p>Return config data for a specific Bridge</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="getfullstate">getFullState()</h2>
+                <hr>
                 
-                <p>Return state data for a specific Bridge</p>
+                <h2 id="deleteuser">deleteUser</h2>
                 
-                <h2 id="lights">lights()</h2>
+                <p>Deletes the specified user</p>
                 
-                <p>Returns all Lights connected to a specific Bridge</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                <p>no events</p>
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>username</strong> (<code>String</code>) username of user to delete</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when user is deleted</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="locatebridges">locateBridges</h2>
+                
+                <p>Returns info on known Hue bridges</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with bridge info</li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="searchforbridges">searchForBridges</h2>
+                
+                <p>Searches for Hue bridges on the network</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with bridge info</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="config">config</h2>
+                
+                <p>Obtains a summary of bridge configuration</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with bridge info</li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getfullstate">getFullState</h2>
+                
+                <p>Obtains the complete status of a bridge</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with bridge info</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="lights">lights</h2>
+                
+                <p>Obtains all lights registered with the bridge</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with lights info</li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

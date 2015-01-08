@@ -253,44 +253,46 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">rapiro</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">'</span></span> }
+    <span class="key">rapiro</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">rapiro</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span> }
+    <span class="key">rapiro</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    after(<span class="integer">3</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">3</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">rightHand</span><span class="delimiter">"</span></span>);
       my.rapiro.rightHand(<span class="integer">50</span>);
     });
 
-    after(<span class="integer">6</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">6</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">rightHand</span><span class="delimiter">"</span></span>);
       my.rapiro.rightHand(<span class="integer">90</span>);
     });
 
-    after(<span class="integer">9</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">9</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">rightHand</span><span class="delimiter">"</span></span>);
       my.rapiro.rightHand(<span class="integer">50</span>);
     });
 
-    after(<span class="integer">12</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">12</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">leftHand</span><span class="delimiter">"</span></span>);
       my.rapiro.leftHand(<span class="integer">50</span>);
     });
 
-    after(<span class="integer">15</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">leftHand</span><span class="delimiter">"</span></span>);
       my.rapiro.leftHand(<span class="integer">90</span>);
     });
 
-    after(<span class="integer">18</span>..seconds(), <span class="keyword">function</span>() {
+    after((<span class="integer">18</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">leftHand</span><span class="delimiter">"</span></span>);
       my.rapiro.leftHand(<span class="integer">50</span>);
     });

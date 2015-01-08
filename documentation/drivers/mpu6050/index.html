@@ -312,7 +312,7 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      my.mpu6050.getMotionAndTemp(<span class="keyword">function</span>(data) {
+      my.mpu6050.getMotionAndTemp(<span class="keyword">function</span>(err, data) {
         console.log(data);
       });
 
@@ -323,26 +323,61 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
-                
+                <h1>Commands</h1>
                 <h2 id="getangularvelocity">getAngularVelocity</h2>
                 
                 <p>Gets the value of the Angular Velocity</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="getacceleration">getAcceleration</h2>
                 
                 <p>Gets the value of the Acceleration</p>
                 
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
                 <h2 id="getmotionandtemp">getMotionAndTemp</h2>
                 
                 <p>Gets the value of the Motion.</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
                 
-                <h2 id="start">start</h2>
+                <h3 id="params-2">Params</h3>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

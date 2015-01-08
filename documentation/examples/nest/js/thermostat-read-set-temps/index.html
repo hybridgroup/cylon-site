@@ -253,41 +253,43 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">accessToken</span><span class="delimiter">'</span></span> }
+    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">"</span><span class="content">accessToken</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">DEVICE_ID</span><span class="delimiter">'</span></span> }
+    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest-thermostat</span><span class="delimiter">"</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">"</span><span class="content">DEVICE_ID</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
 
-    my.thermostat.on(<span class="string"><span class="delimiter">'</span><span class="content">value</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Thermostat SnapShoot ---&gt;</span><span class="delimiter">'</span></span>, data);
+    my.thermostat.on(<span class="string"><span class="delimiter">"</span><span class="content">value</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The Thermostat SnapShoot ---&gt;</span><span class="delimiter">"</span></span>, data);
     });
 
     every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>(){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp C:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureC());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp F:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureF());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST target temp F:</span><span class="delimiter">'</span></span>, my.thermostat.targetTemperatureC());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST target temp F:</span><span class="delimiter">'</span></span>, my.thermostat.targetTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp C:</span><span class="delimiter">"</span></span>, my.thermostat.ambientTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp F:</span><span class="delimiter">"</span></span>, my.thermostat.ambientTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST target temp F:</span><span class="delimiter">"</span></span>, my.thermostat.targetTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST target temp F:</span><span class="delimiter">"</span></span>, my.thermostat.targetTemperatureF());
 
       my.thermostat.setTargetTemperatureC(<span class="integer">24</span>);
 
-      my.thermostat.write(<span class="string"><span class="delimiter">'</span><span class="content">target_temperature_high_c</span><span class="delimiter">'</span></span>, <span class="integer">30</span>, <span class="keyword">function</span>(err) {
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">ERR OBJ =====&gt;</span><span class="delimiter">'</span></span>, err);
+      my.thermostat.write(<span class="string"><span class="delimiter">"</span><span class="content">target_temperature_high_c</span><span class="delimiter">"</span></span>, <span class="integer">30</span>, <span class="keyword">function</span>(err) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">ERR OBJ =====&gt;</span><span class="delimiter">"</span></span>, err);
         <span class="keyword">if</span> (err) {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Target Temp was NOT updated!</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Target Temp was NOT updated!</span><span class="delimiter">"</span></span>);
         } <span class="keyword">else</span> {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Target Temp updated!</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Target Temp updated!</span><span class="delimiter">"</span></span>);
         }
       });
 
-      my.thermostat.read(<span class="string"><span class="delimiter">'</span><span class="content">away_temperature_high_c</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      my.thermostat.read(<span class="string"><span class="delimiter">"</span><span class="content">away_temperature_high_c</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Away Temp High C on read Callback --&gt;</span><span class="delimiter">"</span></span>, data);
       });
     });

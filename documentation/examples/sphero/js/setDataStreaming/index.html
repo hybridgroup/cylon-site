@@ -253,15 +253,17 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -273,15 +275,15 @@ Cylon.robot({
       my.sphero.detectCollisions();
       <span class="comment">// The data sources available for data Streaming from the</span>
       <span class="comment">// sphero API are as follows:</span>
-      <span class="comment">// ['motorsPWM', 'imu', 'accelerometer', 'gyroscope', 'motorsIMF'</span>
-      <span class="comment">//  'quaternion', 'locator', 'accelOne', 'velocity']</span>
+      <span class="comment">// ["motorsPWM", "imu", "accelerometer", "gyroscope", "motorsIMF"</span>
+      <span class="comment">//  "quaternion", "locator", "accelOne", "velocity"]</span>
       <span class="comment">// It is also possible to pass an opts object to setDataStreaming():</span>
       <span class="keyword">var</span> opts = {
         <span class="comment">// n: int, divisor of the max sampling rate, 400 hz/s</span>
         <span class="comment">// n = 40 means 400/40 = 10 data samples per second,</span>
         <span class="comment">// n = 200 means 400/200 = 2 data samples per second</span>
         <span class="key">n</span>: <span class="integer">40</span>,
-        <span class="comment">// m: int, number of data packets buffered before passing them to the stream</span>
+        <span class="comment">// m: int, number of data packets buffered before passing to the stream</span>
         <span class="comment">// m = 10 means each time you get data it will contain 10 data packets</span>
         <span class="comment">// m = 1 is usually best for real time data readings.</span>
         <span class="key">m</span>: <span class="integer">1</span>,
@@ -291,17 +293,21 @@ Cylon.robot({
         <span class="key">pcnt</span>: <span class="integer">0</span>,
       };
 
-      my.sphero.setDataStreaming([<span class="string"><span class="delimiter">'</span><span class="content">motorsPWM</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">imu</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">accelerometer</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">gyroscope</span><span class="delimiter">'</span></span>], opts);
+      my.sphero.setDataStreaming(
+        [<span class="string"><span class="delimiter">"</span><span class="content">motorsPWM</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">imu</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">accelerometer</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">gyroscope</span><span class="delimiter">"</span></span>],
+        opts
+      );
+
       my.sphero.setRGB(color);
       my.sphero.stop();
     });
 
-    my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">data:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
-    my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision:</span><span class="delimiter">"</span></span>);
       color = color ^ bitFilter;
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Color: </span><span class="delimiter">"</span></span> + (color.toString(<span class="integer">16</span>)) + <span class="string"><span class="delimiter">"</span><span class="content"> </span><span class="delimiter">"</span></span>);

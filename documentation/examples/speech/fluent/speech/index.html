@@ -253,21 +253,23 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 <span class="comment">// The voice for eSpeak can be specified all in one string, or as adaptor</span>
 <span class="comment">// params. Both of the below connections will produce the same voice.</span>
 <span class="comment">//</span>
-<span class="comment">//  { adaptor: 'speech', voice: 'en-f3', speed: 120 }</span>
-<span class="comment">//  { adaptor: 'speech', language: 'en, gender: 'f', 'voice: '1' },</span>
+<span class="comment">//  { adaptor: "speech", voice: "en-f3", speed: 120 }</span>
+<span class="comment">//  { adaptor: "speech", language: "en, gender: "f", "voice: "1" },</span>
 <span class="comment">//</span>
-<span class="comment">// 'speed' is the number of words per minute</span>
+<span class="comment">// "speed" is the number of words per minute</span>
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">speech</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span>, <span class="key">voice</span>: <span class="string"><span class="delimiter">'</span><span class="content">en-f3</span><span class="delimiter">'</span></span>, <span class="key">speed</span>: <span class="integer">120</span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">mouth</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">speech</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">speech</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">speech</span><span class="delimiter">"</span></span>, <span class="key">voice</span>: <span class="string"><span class="delimiter">"</span><span class="content">en-f3</span><span class="delimiter">"</span></span>, <span class="key">speed</span>: <span class="integer">120</span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">mouth</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">speech</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     bot.mouth.say(<span class="string"><span class="delimiter">"</span><span class="content">This is awesome!</span><span class="delimiter">"</span></span>);
     bot.mouth.say(<span class="string"><span class="delimiter">"</span><span class="content">I'm a Cylon.JS bot, and I'm talking!</span><span class="delimiter">"</span></span>);
   });

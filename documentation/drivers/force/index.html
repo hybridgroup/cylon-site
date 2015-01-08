@@ -337,48 +337,99 @@ Cylon.start();
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="subscribe">subscribe</h2>
                 
-                <h2 id="subscribestreampath-callback">subscribe(streamPath, callback)</h2>
+                <p>Subscribes to a topic in Salesforce</p>
                 
-                <p>This allows you to subscribe the device.</p>
-                
-                <h5 id="params">Params</h5>
-                
-                <ul>
-                  <li>
-<strong>streamPath</strong> - params</li>
-                  <li>
-<strong>callback</strong> - params</li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="pushapexpath-data">push(apexPath, data)</h2>
-                
-                <p>This allows you to push data.</p>
-                
-                <h5 id="params-1">Params</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>apexPath</strong> - params</li>
+                    <p><strong>topic</strong> (<code>String</code>) name of the topic to subscribe to</p>
+                  </li>
                   <li>
-<strong>data</strong> - params</li>
+                    <p><strong>callback</strong> (<code>Function</code>) triggered when new data is received for the topic</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>null</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="start">start</h2>
+                <hr>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <h2 id="post">post</h2>
+                
+                <p>Posts data to a Salesforce Apex Class</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>apexPath</strong> (<code>String</code>) SF apex path to send data to</p>
+                  </li>
+                  <li>
+                    <p><strong>data</strong> (<code>Object</code>) information to store in Salesforce</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) triggered when data is sent to SF</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="get">get</h2>
+                
+                <p>Gets data from a Salesforce Apex Class</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>apexPath</strong> (<code>String</code>) SF apex path to get data from</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) triggered when new data is received</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="query">query</h2>
+                
+                <p>Queries data from Salesforce</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>query</strong> (<code>String</code>) SF query to look for data with</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) triggered when new data is received</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

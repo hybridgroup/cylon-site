@@ -253,14 +253,16 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, {
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>,
-    <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>,
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, {
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>,
+    <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_14</span><span class="delimiter">"</span></span>,
     <span class="key">freq</span>: <span class="integer">50</span>,
     <span class="comment">// pulseWidth in MicroSeconds as per servo spec sheet</span>
     <span class="comment">// e.g. http://www.servodatabase.com/servo/towerpro/sg90</span>
@@ -268,7 +270,7 @@ Cylon
     <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> }
   })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     <span class="comment">// Be carefull with your servo angles or you might DAMAGE the servo!</span>
     <span class="comment">// Cylon uses a 50hz/s (20ms period) frequency and a Duty Cycle</span>
     <span class="comment">// of 0.500 microseconds to 2400 microseconds to control the servo</span>

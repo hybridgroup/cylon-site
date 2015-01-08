@@ -356,53 +356,61 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="getpressure">getPressure</h2>
+                
+                <p>Gets the value of the pressure in Pascals. Since temperature is also calculated to determine pressure, it returns the temperature as well:</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>object</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="gettemperature">getTemperature</h2>
                 
-                <p>Gets the value of the temperature in degrees Celsius.  Returns it as an object:</p>
+                <p>Gets the value of the temperature in degrees Celsius. Returns it as an object:</p>
                 
-                <h5 id="return">Return</h5>
+                <h3 id="params-1">Params</h3>
                 
-                <p><code>object</code></p>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
                 
-                <p>{
-                    temp: 19.9
-                }</p>
+                <h3 id="returns-1">Returns</h3>
                 
-                <h2 id="getpressure">getPressure</h2>
+                <ul>
+                  <li>(<code>object</code>) temp, press</li>
+                </ul>
                 
-                <p>Gets the value of the pressure in Pascals.  Since temperature is also calculated to determine pressure, it returns the temperature as well:</p>
-                
-                <h5 id="return-1">Return</h5>
-                
-                <p><code>object</code></p>
-                
-                <p>{
-                    temp: 19.9
-                    press: 84862
-                }</p>
+                <hr>
                 
                 <h2 id="getaltitude">getAltitude</h2>
                 
-                <p>Calculates the altitude from the pressure and temperature.  Since temperature and pressure are calculated to determine altitude, it returns all three.</p>
+                <p>Calculates the altitude from the pressure and temperature. Since temperature and pressure are calculated to determine altitude, it returns all three.</p>
                 
-                <h5 id="return-2">Return</h5>
+                <h3 id="params-2">Params</h3>
                 
-                <p><code>object</code></p>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
                 
-                <p>{
-                    temp: 19.9
-                    press: 84862
-                    alt: 1470.81
-                }</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h3 id="returns-2">Returns</h3>
                 
-                <h2 id="start">start</h2>
-                
-                <p>Sent when the device has been started and is ready to use.</p>
+                <ul>
+                  <li>(<code>object</code>) temp, press, alt</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

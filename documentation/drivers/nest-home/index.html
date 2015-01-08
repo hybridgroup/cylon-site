@@ -336,11 +336,152 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                Coming soon.
+                <h1>Commands</h1>
+                <h2 id="structures">structures</h2>
+                
+                <p>Returns all structures the Nest API knows about</p>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Object</code>) structures</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getstructure">getStructure</h2>
+                
+                <p>Gets a specific structure from the Structures reference</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Object</code>) structure</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="structurename">structureName</h2>
+                
+                <p>Gets name of specified structure</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure name</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="thermostats">thermostats</h2>
+                
+                <p>Gets thermostats in specified structure</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Array</code>.&lt;<code>Object</code>&gt;) structure thermostats</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="smokecoalarms">smokeCoAlarms</h2>
+                
+                <p>Gets Smoke/Carbon Monoxide alarms in specified structure</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Array</code>.&lt;<code>Object</code>&gt;) structure Smoke/C0 alarms</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="away">away</h2>
+                
+                <p>Gets the current <code>away</code> value of the structure, or assigns a new value if
+                provided</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>val</strong> (<code>Number</code>) new value for <code>away</code></p>
+                  </li>
+                  <li>
+                    <p><strong>structureId</strong> (<code>Number</code>) identifier of structure to get</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>(<code>Number</code>
+</td>
+                          <td>
+<code>null</code>) structure <code>away</code> status</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="eta">eta</h2>
+                
+                <p>Gets ETA for specified structure</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Array</code>.&lt;<code>Object</code>&gt;) structure ETA</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
                 <h1>Events</h1>
-                <p>no events</p>
+                <h2 id="status">status</h2>
+                
+                <p>Emitted with the home status on startup</p>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

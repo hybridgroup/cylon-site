@@ -253,19 +253,21 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 <span class="keyword">var</span> haarcascade = __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>;
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">opencv</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> },
-    <span class="key">ardrone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span> }
+    <span class="key">opencv</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span> },
+    <span class="key">ardrone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">192.168.1.1</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    <span class="key">window</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> }
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span> },
+    <span class="key">window</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -273,14 +275,14 @@ Cylon.robot({
     <span class="local-variable">this</span>.image = <span class="predefined-constant">null</span>;
     <span class="keyword">var</span> self = <span class="local-variable">this</span>;
 
-    my.drone.getPngStream().on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(png) {
+    my.drone.getPngStream().on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(png) {
       my.opencv.readImage(png, <span class="keyword">function</span>(err, img) {
         self.image = img;
         <span class="keyword">if</span> (self.detect === <span class="predefined-constant">false</span>) { my.window.show(img); }
       });
     });
 
-    my.opencv.on(<span class="string"><span class="delimiter">'</span><span class="content">facesDetected</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im, faces) {
+    my.opencv.on(<span class="string"><span class="delimiter">"</span><span class="content">facesDetected</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im, faces) {
       <span class="keyword">var</span> biggest = <span class="integer">0</span>,
           face = <span class="predefined-constant">null</span>;
 

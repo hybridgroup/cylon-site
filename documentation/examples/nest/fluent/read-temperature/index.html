@@ -253,31 +253,32 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">thermostat</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">DEVICE_ID</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">"</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">thermostat</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest-thermostat</span><span class="delimiter">"</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">"</span><span class="content">DEVICE_ID</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
 
     <span class="comment">// Listen to the status event to obtain all thermostat</span>
     <span class="comment">// related data in a single object.</span>
-    bot.thermostat.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Thermostat at a glance---&gt;</span><span class="delimiter">'</span></span>, data);
+    bot.thermostat.on(<span class="string"><span class="delimiter">"</span><span class="content">status</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The Thermostat at a glance---&gt;</span><span class="delimiter">"</span></span>, data);
     });
 
     every((<span class="integer">30</span>).seconds(), <span class="keyword">function</span>(){
-      <span class="comment">// Use one of the device pre-defined functions to obtain the thermostat data</span>
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp C:</span><span class="delimiter">'</span></span>, bot.thermostat.ambientTemperatureC());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp F:</span><span class="delimiter">'</span></span>, bot.thermostat.ambientTemperatureF());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST target temp F:</span><span class="delimiter">'</span></span>, bot.thermostat.targetTemperatureC());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST target temp F:</span><span class="delimiter">'</span></span>, bot.thermostat.targetTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp C:</span><span class="delimiter">"</span></span>, bot.thermostat.ambientTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp F:</span><span class="delimiter">"</span></span>, bot.thermostat.ambientTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST target temp F:</span><span class="delimiter">"</span></span>, bot.thermostat.targetTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST target temp F:</span><span class="delimiter">"</span></span>, bot.thermostat.targetTemperatureF());
 
-      <span class="comment">// Use the read function to obtain any value you have a key for and read privileges</span>
-      <span class="comment">// you can check all vailable keys by checking the data obj passed to the status</span>
-      <span class="comment">// event.</span>
-      bot.thermostat.read(<span class="string"><span class="delimiter">'</span><span class="content">away_temperature_high_c</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      <span class="comment">// Use the read function to obtain any value you have a key for and read</span>
+      <span class="comment">// privileges you can check all vailable keys by checking the data obj</span>
+      <span class="comment">// passed to the status event.</span>
+      bot.thermostat.read(<span class="string"><span class="delimiter">"</span><span class="content">away_temperature_high_c</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Away Temp High C on read callback --&gt;</span><span class="delimiter">"</span></span>, data);
       });
     });

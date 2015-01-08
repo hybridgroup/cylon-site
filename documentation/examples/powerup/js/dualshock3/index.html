@@ -253,17 +253,19 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">84dd20eb3d89</span><span class="delimiter">'</span></span> },
-    <span class="key">dualshock3</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> }
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">ble</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">84dd20eb3d89</span><span class="delimiter">"</span></span> },
+    <span class="key">dualshock3</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock3</span><span class="delimiter">'</span></span> }, 
-    <span class="key">powerup</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">powerup</span><span class="delimiter">'</span></span> }
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">dualshock-3</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">dualshock3</span><span class="delimiter">"</span></span> }, 
+    <span class="key">powerup</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">powerup</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -283,7 +285,7 @@ Cylon.robot({
           my.powerup.setThrust(thrust, cb);
         }
       }
-    }
+    };
 
     my.powerup.setThrust(thrust, cb);
 

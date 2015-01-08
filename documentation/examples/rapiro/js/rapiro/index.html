@@ -253,33 +253,40 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 <span class="comment">// Initialize the robot</span>
 Cylon.robot({
+  <span class="key">connection</span>: { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">"</span></span> },
+  <span class="key">device</span>: {<span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>},
+
   <span class="key">connections</span>: {
-    <span class="key">rapiro</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">'</span></span> }
+    <span class="key">rapiro</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyUSB0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">rapiro</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">rapiro</span><span class="delimiter">'</span></span> }
+    <span class="key">rapiro</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">rapiro</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">false</span> ;
+    my.doneWalking = <span class="predefined-constant">false</span>;
+
     console.log(<span class="string"><span class="delimiter">"</span><span class="content">forward</span><span class="delimiter">"</span></span>);
     my.rapiro.led(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>);
 
-    every(<span class="integer">1</span>..second(), <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] == <span class="predefined-constant">false</span>) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      <span class="keyword">if</span> (!my.doneWalking) {
         my.rapiro.forward();
       }
     });
-    after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
+
+    after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">stop</span><span class="delimiter">"</span></span>);
       my.rapiro.stop();
       my.rapiro.led(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">0</span>);
-      my[<span class="string"><span class="delimiter">'</span><span class="content">doneWalking</span><span class="delimiter">'</span></span>] = <span class="predefined-constant">true</span>;
+      my.doneWalking = <span class="predefined-constant">true</span>;
     });
   }
 }).start();

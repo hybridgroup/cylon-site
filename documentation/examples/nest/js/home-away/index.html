@@ -253,35 +253,37 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">'</span></span> }
+    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">"</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">home</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-home</span><span class="delimiter">'</span></span>, <span class="key">structureId</span>: <span class="string"><span class="delimiter">'</span><span class="content">STRUCTURE_ID</span><span class="delimiter">'</span></span> }
+    <span class="key">home</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest-home</span><span class="delimiter">"</span></span>, <span class="key">structureId</span>: <span class="string"><span class="delimiter">"</span><span class="content">STRUCTURE_ID</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.home.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Nest Home at a glance:</span><span class="delimiter">'</span></span>, data);
+    my.home.on(<span class="string"><span class="delimiter">"</span><span class="content">status</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The Nest Home at a glance:</span><span class="delimiter">"</span></span>, data);
     });
 
     every((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>(){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home structures:</span><span class="delimiter">'</span></span>, my.home.structures());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home structure name:</span><span class="delimiter">'</span></span>, my.home.structureName());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home thermostats:</span><span class="delimiter">'</span></span>, my.home.thermostats());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home smokeCoAlarms:</span><span class="delimiter">'</span></span>, my.home.smokeCoAlarms());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home away status:</span><span class="delimiter">'</span></span>, my.home.away());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Nest home eta:</span><span class="delimiter">'</span></span>, my.home.eta());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home structures:</span><span class="delimiter">"</span></span>, my.home.structures());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home structure name:</span><span class="delimiter">"</span></span>, my.home.structureName());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home thermostats:</span><span class="delimiter">"</span></span>, my.home.thermostats());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home smokeCoAlarms:</span><span class="delimiter">"</span></span>, my.home.smokeCoAlarms());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home away status:</span><span class="delimiter">"</span></span>, my.home.away());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home eta:</span><span class="delimiter">"</span></span>, my.home.eta());
 
-      my.home.read(<span class="string"><span class="delimiter">'</span><span class="content">country_code</span><span class="delimiter">'</span></span>, my.home.structureId, <span class="keyword">function</span>(data) {
+      my.home.read(<span class="string"><span class="delimiter">"</span><span class="content">country_code</span><span class="delimiter">"</span></span>, my.home.structureId, <span class="keyword">function</span>(data) {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Nest home country id: </span><span class="delimiter">"</span></span>, data);
       });
 
-      my.home.away(<span class="string"><span class="delimiter">'</span><span class="content">away</span><span class="delimiter">'</span></span>);
+      my.home.away(<span class="string"><span class="delimiter">"</span><span class="content">away</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();

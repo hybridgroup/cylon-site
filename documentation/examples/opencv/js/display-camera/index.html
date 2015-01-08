@@ -253,37 +253,39 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">opencv</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> }
+    <span class="key">opencv</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">window</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span> },
+    <span class="key">window</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span> },
     <span class="key">camera</span>: {
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>,
       <span class="key">camera</span>: <span class="integer">0</span>,
       <span class="key">haarcascade</span>: __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>
     }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.camera.once(<span class="string"><span class="delimiter">'</span><span class="content">cameraReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The camera is ready!</span><span class="delimiter">'</span></span>);
+    my.camera.once(<span class="string"><span class="delimiter">"</span><span class="content">cameraReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The camera is ready!</span><span class="delimiter">"</span></span>);
 
       <span class="comment">// We listen for frame ready event, when triggered</span>
       <span class="comment">// we display the frame/image passed as an argument to</span>
       <span class="comment">// the listener function, and we tell the window to wait 40 milliseconds</span>
-      my.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">frameReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im) {
+      my.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">frameReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im) {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">FRAMEREADY!</span><span class="delimiter">"</span></span>);
         my.window.show(im, <span class="integer">40</span>);
       });
 
       <span class="comment">// Here we have two options to start reading frames from</span>
       <span class="comment">// the camera feed.</span>
-      <span class="comment">// 1. 'As fast as possible': triggering the next frame read</span>
+      <span class="comment">// 1. "As fast as possible": triggering the next frame read</span>
       <span class="comment">//    in the listener for frameReady, if you need video</span>
       <span class="comment">//    as smooth as possible uncomment #my.camera.readFrame()</span>
       <span class="comment">//    in the listener above and the one below this comment.</span>

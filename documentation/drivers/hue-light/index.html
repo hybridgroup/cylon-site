@@ -284,7 +284,7 @@
               <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">hue</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue</span><span class="delimiter">'</span></span>, <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.101</span><span class="delimiter">'</span></span>, <span class="key">username</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span> }
-  }, 
+  },
 
   <span class="key">devices</span>: {
     <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue-light</span><span class="delimiter">'</span></span>, <span class="key">lightId</span>: <span class="integer">2</span>}
@@ -311,60 +311,190 @@ Cylon.robot({
       my.bulb.toggle();
     });
   }
-}).start();        
+}).start();
 </pre>
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="turnon">turnOn</h2>
                 
-                <h2 id="turnon">turnOn()</h2>
+                <p>Turns the light on.</p>
                 
-                <p>Sets light state to on</p>
+                <p>Also sets <code>this.isOn</code> to <code>true</code>.</p>
                 
-                <h2 id="turnoff">turnOff()</h2>
+                <h3 id="returns">Returns</h3>
                 
-                <p>Sets light state to off</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="alert">alert()</h2>
+                <hr>
                 
-                <p>Flashes light once</p>
+                <h2 id="turnoff">turnOff</h2>
                 
-                <h2 id="longalert">longAlert()</h2>
+                <p>Turns the light off.</p>
                 
-                <p>Flashes light for 10 seconds</p>
+                <p>Also sets <code>this.isOn</code> to <code>false</code>.</p>
                 
-                <h2 id="white">white()</h2>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p>Sets 'whiteness' level</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="brightness">brightness()</h2>
+                <hr>
                 
-                <p>Sets light brightness </p>
+                <h2 id="toggle">toggle</h2>
                 
-                <h2 id="hsl">hsl()</h2>
+                <p>Toggles the light on or off</p>
                 
-                <p>Sets hue, haturation, and brightness</p>
+                <h3 id="returns-2">Returns</h3>
                 
-                <h2 id="xy">xy()</h2>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p>Sets Phillips <code>xy</code> values</p>
+                <hr>
                 
-                <h2 id="rgb">rgb()</h2>
+                <h2 id="alert">alert</h2>
                 
-                <p>Sets RGB color</p>
+                <p>Sets the light to an 'alert' state</p>
                 
-                <h2 id="setlightstate">setLightState()</h2>
+                <h3 id="returns-3">Returns</h3>
                 
-                <p>Used to set a Light to a specific <code>lightState</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="lightstate">lightState()</h2>
+                <hr>
                 
-                <p>Returns object used to set various Light parameters</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                <p>no events</p>
+                <h2 id="longalert">longAlert</h2>
+                
+                <p>Sets the light to a longer 'alert' state</p>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="white">white</h2>
+                
+                <p>Sets the light to white</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>colorTemp</strong> (<code>Number</code>) the color temperature to use for "white"</p>
+                  </li>
+                  <li>
+                    <p><strong>brightPercent</strong> (<code>Number</code>) 0-100 brightness percentage to use</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="brightness">brightness</h2>
+                
+                <p>Sets the light's brightness</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>percent</strong> (<code>Number</code>) 0-100 brightness percentage to use</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="hsl">hsl</h2>
+                
+                <p>Sets the light's color via HSL</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>hue</strong> (<code>Number</code>) (0-359)</p>
+                  </li>
+                  <li>
+                    <p><strong>saturation</strong> (<code>Number</code>) (0-100)</p>
+                  </li>
+                  <li>
+                    <p><strong>brightPercent</strong> (<code>Number</code>) (0-100)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="xy">xy</h2>
+                
+                <p>Sets the light's color via the Philips Color coordinate system</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>x</strong> (<code>Number</code>) (0-1)</p>
+                  </li>
+                  <li>
+                    <p><strong>y</strong> (<code>Number</code>) (0-1)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="rgb">rgb</h2>
+                
+                <p>Sets the light's color via RGB</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>r</strong> (<code>Number</code>) red (0-255)</p>
+                  </li>
+                  <li>
+                    <p><strong>g</strong> (<code>Number</code>) green (0-255)</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) blue (0-255)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

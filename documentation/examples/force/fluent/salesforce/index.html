@@ -253,26 +253,28 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">sfcon</span><span class="delimiter">'</span></span>, {
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">sfcon</span><span class="delimiter">"</span></span>, {
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span>,
     <span class="key">sfuser</span>: process.env.SF_USERNAME,
     <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
   })
 
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">salesforce</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span> })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(data);
     });
 
     setInterval(<span class="keyword">function</span>() {
-      <span class="keyword">var</span> toSend = { <span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span>, <span class="key">bucks</span>: <span class="integer">1</span> };
-      bot.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SpheroController/</span><span class="delimiter">'</span></span>, toSend);
+      <span class="keyword">var</span> toSend = { <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="content">globo</span><span class="delimiter">"</span></span>, <span class="key">bucks</span>: <span class="integer">1</span> };
+      bot.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">/SpheroController/</span><span class="delimiter">"</span></span>, toSend);
     }, <span class="integer">2000</span>);
   });
 

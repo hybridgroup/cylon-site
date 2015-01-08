@@ -323,106 +323,332 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="gotorgb">goToRGB</h2>
                 
-                <h2 id="gotorgbr-g-b-cb">goToRGB(r, g, b, cb)</h2>
+                <p>Sets the color of the BlinkM to the specified combination of RGB values.</p>
                 
-                <p>Sets the color of the BlinkM RGB LED to the specified combination of RGB color provided. 
-                (red, green and blue values should be between <code>0</code> and <code>255</code>)</p>
+                <h3 id="params">Params</h3>
                 
-                <h5 id="returns">Returns</h5>
+                <ul>
+                  <li>
+                    <p><strong>r</strong> (<code>Number</code>) red value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>g</strong> (<code>Number</code>) green value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) blue value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <p><code>nil</code></p>
+                <h3 id="returns">Returns</h3>
                 
-                <h2 id="fadetorgbr-g-b-cb">fadeToRGB(r, g, b, cb)</h2>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p>Fades the color of the BlinkM RGB LED to the specified combination of RGB color provided. 
-                (red, green and blue values should be between <code>0</code> and <code>255</code>)</p>
+                <hr>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h2 id="fadetorgb">fadeToRGB</h2>
                 
-                <p><code>nil</code></p>
+                <p>Fades the color of the BlinkM to the specified combination of RGB values.</p>
                 
-                <h2 id="fadetohsbh-s-b-cb">fadeToHSB(h, s, b, cb)</h2>
+                <h3 id="params-1">Params</h3>
                 
-                <p>Fades the color of the BlinkM RGB LED to the specified combination of HSB provided.</p>
+                <ul>
+                  <li>
+                    <p><strong>r</strong> (<code>Number</code>) red value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>g</strong> (<code>Number</code>) green value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) blue value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="fadetorandomrgbr-g-b-cb">fadeToRandomRGB(r, g, b, cb)</h2>
+                <hr>
                 
-                <p>Fades the color of the BlinkM RGB LED to a random combination of RGB color. 
-                (red, green and blue values should be between <code>0</code> and <code>255</code>)</p>
+                <h2 id="fadetohsb">fadeToHSB</h2>
                 
-                <h5 id="returns-3"> Returns</h5>
+                <p>Fades the color of the BlinkM to the specified combination of HSB values.</p>
                 
-                <p><code>nil</code></p>
+                <h3 id="params-2">Params</h3>
                 
-                <h2 id="fadetorandomhsbh-s-b-cb">fadeToRandomHSB(h, s, b, cb)</h2>
+                <ul>
+                  <li>
+                    <p><strong>h</strong> (<code>Number</code>) hue value, 0-359</p>
+                  </li>
+                  <li>
+                    <p><strong>s</strong> (<code>Number</code>) saturation value, 0-100</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) brightness value, 0-100</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <p>Fades the color of the BlinkM RGB LED to a random combination of HSB .</p>
+                <h3 id="returns-2">Returns</h3>
                 
-                <h5 id="returns-4">Returns</h5>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p><code>nil</code></p>
+                <hr>
                 
-                <h2 id="playlightscriptid-repeats-startatline-cb">playLightScript(id, repeats, startAtLine, cb)</h2>
+                <h2 id="fadetorandomrgb">fadeToRandomRGB</h2>
                 
-                <p>Plays a light script for the BlinkM RGB LED.</p>
+                <p>Fades the color of the BlinkM to a random combination of RGB values.</p>
                 
-                <h5 id="returns-5">Returns</h5>
+                <h3 id="params-3">Params</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>
+                    <p><strong>r</strong> (<code>Number</code>) red value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>g</strong> (<code>Number</code>) green value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) blue value, 0-255</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <h2 id="stopscriptcb">stopScript(cb)</h2>
+                <h3 id="returns-3">Returns</h3>
                 
-                <p>Stops an specific script for the BlinkM RGB LED.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h5 id="returns-6">Returns</h5>
+                <hr>
                 
-                <p><code>nil</code></p>
+                <h2 id="fadetorandomhsb">fadeToRandomHSB</h2>
                 
-                <h2 id="setfadespeedtime-cb">setFadeSpeed(time, cb)</h2>
+                <p>Fades the color of the BlinkM to a random combination of HSB values.</p>
                 
-                <p>Sets a time adjust for the BlinkM RGB LED.</p>
+                <h3 id="params-4">Params</h3>
                 
-                <h5 id="returns-7">Returns</h5>
+                <ul>
+                  <li>
+                    <p><strong>h</strong> (<code>Number</code>) hue value, 0-359</p>
+                  </li>
+                  <li>
+                    <p><strong>s</strong> (<code>Number</code>) saturation value, 0-100</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>) brightness value, 0-100</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <p><code>nil</code></p>
+                <h3 id="returns-4">Returns</h3>
                 
-                <h2 id="getrgbcolor">getRGBColor()</h2>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <p>Returns an array containing the RGB values for the current color
-                (all integer between <code>0</code> and <code>255</code>).</p>
+                <hr>
                 
-                <h5 id="returns-8">Returns</h5>
+                <h2 id="playlightscript">playLightScript</h2>
                 
-                <p><code>integer_array</code> (cb).</p>
+                <p>Plays a light script for the BlinkM.</p>
                 
-                <h2 id="setaddressaddress-cb">setAddress(address, cb)</h2>
+                <p>Available scripts are available in the BlinkM datasheet.</p>
                 
-                <p>Returns an sring describing the I2C addresss being used.</p>
+                <p>A <code>repeats</code> value of <code>0</code> causes the script to execute until the the
+                <code>#stopScript</code> command is called.</p>
                 
-                <h5 id="returns-9">Returns</h5>
+                <h3 id="params-5">Params</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>Number</code>) light script to play</p>
+                  </li>
+                  <li>
+                    <p><strong>repeats</strong> (<code>Number</code>) whether the script should repeat</p>
+                  </li>
+                  <li>
+                    <p><strong>startAtLine</strong> (<code>Number</code>) which line in the light script to start at</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
                 
-                <h2 id="getfirmware">getFirmware()</h2>
+                <h3 id="returns-5">Returns</h3>
                 
-                <p>Returns an sring describing the I2C firmware version being used.</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h5 id="returns-10">Returns</h5>
+                <hr>
                 
-                <p><code>integer_value</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h2 id="stopscript">stopScript</h2>
                 
-                <h2 id="start">start</h2>
+                <p>Stops the currently executing BlinkM light script.</p>
                 
-                <p>Sent when the device has been started and is ready to use.</p>
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setfadespeed">setFadeSpeed</h2>
+                
+                <p>Sets the fade speed for the BlinkM</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>) how fast colors should fade (1-255)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="settimeadjust">setTimeAdjust</h2>
+                
+                <p>Sets a time adjust for the BlinkM.</p>
+                
+                <p>This affects the duration of scripts.</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) an integer between -128 and 127. 0 resets the time.</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getrgbcolor">getRGBColor</h2>
+                
+                <p>Gets the RGB values for the current BlinkM color.</p>
+                
+                <p>Yields an array in the form <code>[r, g, b]</code>, each a 0-255 integer.</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getaddress">getAddress</h2>
+                
+                <p>Returns a string describing the current I2C address being used.</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setaddress">setAddress</h2>
+                
+                <p>Sets an address to the BlinkM driver</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>address</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getfirmware">getFirmware</h2>
+                
+                <p>Returns a string describing the I2C firmware version being used</p>
+                
+                <h3 id="params-12">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="circuit" id="Circuit">

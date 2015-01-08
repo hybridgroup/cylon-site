@@ -253,34 +253,36 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">sfcon</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span>,
       <span class="key">sfuser</span>: process.env.SF_USERNAME,
       <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN
     }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span> }
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(me) {
-    me.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">err received:</span><span class="delimiter">'</span></span>, err);
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">data received:</span><span class="delimiter">'</span></span>, data);
+    me.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">SpheroMsgOutbound</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">err received:</span><span class="delimiter">"</span></span>, err);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">data received:</span><span class="delimiter">"</span></span>, data);
     });
 
     <span class="keyword">var</span> counter = <span class="integer">0</span>;
 
     every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-      <span class="keyword">var</span> toSend = { <span class="key">spheroName</span>: <span class="string"><span class="delimiter">'</span><span class="content">globo</span><span class="delimiter">'</span></span> + counter, <span class="key">bucks</span>: counter };
+      <span class="keyword">var</span> toSend = { <span class="key">spheroName</span>: <span class="string"><span class="delimiter">"</span><span class="content">globo</span><span class="delimiter">"</span></span> + counter, <span class="key">bucks</span>: counter };
 
-      me.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">/SpheroController/</span><span class="delimiter">'</span></span>, toSend, <span class="keyword">function</span>(err, data) {
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Sphero globo</span><span class="delimiter">'</span></span> + counter + <span class="string"><span class="delimiter">'</span><span class="content"> has been sent to Salesforce.</span><span class="delimiter">'</span></span>);
+      me.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">/SpheroController/</span><span class="delimiter">"</span></span>, toSend, <span class="keyword">function</span>() {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Sphero globo</span><span class="delimiter">"</span></span> + counter + <span class="string"><span class="delimiter">"</span><span class="content"> has been sent to Salesforce.</span><span class="delimiter">"</span></span>);
       });
 
       counter++;

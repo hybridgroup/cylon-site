@@ -340,54 +340,99 @@ Cylon.start();
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
-                
+                <h1>Commands</h1>
                 <h2 id="sendnotification">send_notification</h2>
                 
-                <p>Used to send a notification to pebble watch</p>
+                <p>Sends a notification to the Pebble</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>message</strong> (<code>String</code>)</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) message</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="messagequeue">message_queue</h2>
+                
+                <p>Returns the current message queue</p>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Array</code>.&lt;<code>String</code>&gt;) message queue</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="pendingmessage">pending_message</h2>
                 
-                <p>Used from watchbot app to get pending notification message. DIRECT USE IS NOT RECOMMENDED.</p>
+                <p>Checks if there are pending messages</p>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="returns-2">Returns</h3>
                 
-                <p><code>String</code> with the last message on the queue.</p>
+                <ul>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>(<code>String</code>
+</td>
+                          <td>
+<code>null</code>) message</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="publishevent">publish_event</h2>
                 
-                <p>Used from watchbot app to publish "Button" events. DIRECT USE IS NOT RECOMMENDED.</p>
+                <p>Emits an event, with the supplied data</p>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="params-1">Params</h3>
                 
-                <p><code>boolean</code> operation result</p>
+                <ul>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) name of the event to emit</p>
+                  </li>
+                  <li>
+                    <p><strong>data</strong> (<code>Object</code>) any payload that should be emitted with the event</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                
-                <h2 id="stop">stop</h2>
-                
-                <p>Stop the driver.</p>
-                
-                <h2 id="start">start</h2>
-                
-                <p>Sent when the device has been started and is ready to use.</p>
-                
-                <h2 id="startdriver">start_driver</h2>
-                
-                <p>Starts the driver.</p>
-                
+                <h1>Events</h1>
                 <h2 id="button">button</h2>
                 
-                <p>When a pebble button is pushed.</p>
+                <p>Emitted when a Pebble button is pushed.</p>
+                
+                <hr>
                 
                 <h2 id="accel">accel</h2>
                 
-                <p>Receives x,y,z values from pebble accelerometer.</p>
+                <p>Emitted when an accelerometer event is triggered in the Pebble.</p>
+                
+                <hr>
                 
                 <h2 id="tap">tap</h2>
                 
-                <p>When a pebble tap event is detected.</p>
+                <p>Emitted when the Pebble detects a tap.</p>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

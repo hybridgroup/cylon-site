@@ -253,25 +253,31 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM1</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, {
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ir-range-sensor</span><span class="delimiter">'</span></span>,
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, {
+    <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>,
+    <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM1</span><span class="delimiter">"</span></span>
+  })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, {
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ir-range-sensor</span><span class="delimiter">"</span></span>,
     <span class="key">pin</span>: <span class="integer">0</span>,
     <span class="key">upperLimit</span>: <span class="integer">400</span>,
     <span class="key">lowerLimit</span>: <span class="integer">100</span>,
-    <span class="key">model</span>: <span class="string"><span class="delimiter">'</span><span class="content">gp2y0a41sk0f</span><span class="delimiter">'</span></span>
+    <span class="key">model</span>: <span class="string"><span class="delimiter">"</span><span class="content">gp2y0a41sk0f</span><span class="delimiter">"</span></span>
   })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">range</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(range){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Range in inches ===&gt;</span><span class="delimiter">'</span></span>, range);
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">range</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in inches ===&gt;</span><span class="delimiter">"</span></span>, range);
     });
 
-    bot.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">rangeCm</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(range){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Range in cm ===&gt;</span><span class="delimiter">'</span></span>, range);
+    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">rangeCm</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in cm ===&gt;</span><span class="delimiter">"</span></span>, range);
     });
   });
 

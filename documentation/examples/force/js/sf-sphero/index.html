@@ -253,7 +253,9 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">salesforce</span><span class="delimiter">"</span></span>,
@@ -261,10 +263,10 @@ Cylon.robot({
   <span class="key">totalBucks</span>: <span class="integer">0</span>,
 
   <span class="key">connections</span>: {
-    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> },
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> },
 
     <span class="key">salesforce</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>,
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span>,
 
       <span class="key">sfuser</span>: process.env.SF_USERNAME,
       <span class="key">sfpass</span>: process.env.SF_SECURITY_TOKEN,
@@ -272,14 +274,14 @@ Cylon.robot({
       <span class="key">orgCreds</span>: {
         <span class="key">clientId</span>: process.env.SF_CLIENT_ID,
         <span class="key">clientSecret</span>: process.env.SF_CLIENT_SECRET,
-        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">'</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">'</span></span>
+        <span class="key">redirectUri</span>: <span class="string"><span class="delimiter">"</span><span class="content">http://localhost:3000/oauth/_callback</span><span class="delimiter">"</span></span>
       }
     }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">force</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">salesforce</span><span class="delimiter">'</span></span> },
-    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    <span class="key">salesforce</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">force</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">salesforce</span><span class="delimiter">"</span></span> },
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -290,23 +292,27 @@ Cylon.robot({
     my.sphero.setRGB(<span class="hex">0x00FF00</span>);
     my.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
 
-    my.salesforce.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       <span class="keyword">var</span> name = data.sobject.Sphero_Name__c,
           bucks = data.sobject.Bucks__c;
 
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + name + <span class="string"><span class="delimiter">"</span><span class="content">, data Bucks: </span><span class="delimiter">"</span></span> + bucks + <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id);
+      console.log(
+        <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + name +
+        <span class="string"><span class="delimiter">"</span><span class="content">, data Bucks: </span><span class="delimiter">"</span></span> + bucks +
+        <span class="string"><span class="delimiter">"</span><span class="content">, SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id
+      );
 
       my.sphero.setRGB(<span class="hex">0x00FF00</span>);
       my.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
     });
 
-    my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       <span class="keyword">var</span> data = { <span class="key">spheroName</span>: my.name, <span class="key">bucks</span>: my.totalBucks++ };
 
       my.sphero.setRGB(<span class="hex">0x0000FF</span>);
       my.sphero.stop();
 
-      my.salesforce.push(<span class="string"><span class="delimiter">'</span><span class="content">SpheroController</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">POST</span><span class="delimiter">'</span></span>, JSON.stringify(data));
+      my.salesforce.push(<span class="string"><span class="delimiter">"</span><span class="content">SpheroController</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">POST</span><span class="delimiter">"</span></span>, JSON.stringify(data));
     });
   }
 }).start();

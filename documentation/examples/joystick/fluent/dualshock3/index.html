@@ -253,13 +253,15 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">controller</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">dualshock-3</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(my) {
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">controller</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">dualshock-3</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(my) {
     [<span class="string"><span class="delimiter">"</span><span class="content">square</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">circle</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">x</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">triangle</span><span class="delimiter">"</span></span>].forEach(<span class="keyword">function</span>(button) {
       my.controller.on(button + <span class="string"><span class="delimiter">"</span><span class="content">:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Button </span><span class="delimiter">"</span></span> + button + <span class="string"><span class="delimiter">"</span><span class="content"> pressed.</span><span class="delimiter">"</span></span>);

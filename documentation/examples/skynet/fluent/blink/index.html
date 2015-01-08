@@ -253,19 +253,20 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-firmata</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> })
   .connection(<span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, {
-    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>,
+    <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>,
     <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>,
     <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span>,
-    <span class="key">module</span>: <span class="string"><span class="delimiter">"</span><span class="content">cylon-skynet</span><span class="delimiter">"</span></span>
   })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     console.log(<span class="string"><span class="delimiter">"</span><span class="content">connected...</span><span class="delimiter">"</span></span>);
 
     bot.skynet.subscribe({
@@ -273,12 +274,12 @@ Cylon
       <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span>,
     });
 
-    bot.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(data);
 
-      <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
+      <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
         bot.led.turnOn();
-      } <span class="keyword">else</span> <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
+      } <span class="keyword">else</span> <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
         bot.led.turnOff();
       }
     });

@@ -253,26 +253,28 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">keyboard</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(robot) {
-    robot.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">up</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(robot) {
+    robot.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">up</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(){
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">UP!</span><span class="delimiter">"</span></span>);
     });
 
-    robot.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">down</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+    robot.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">down</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(){
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">DOWN!</span><span class="delimiter">"</span></span>);
     });
 
-    robot.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">left</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+    robot.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">left</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(){
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">LEFT!</span><span class="delimiter">"</span></span>);
     });
 
-    robot.keyboard.on(<span class="string"><span class="delimiter">'</span><span class="content">RIGHT</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+    robot.keyboard.on(<span class="string"><span class="delimiter">"</span><span class="content">RIGHT</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(){
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">RIGHT!</span><span class="delimiter">"</span></span>);
     });
   });

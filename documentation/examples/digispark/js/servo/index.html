@@ -253,11 +253,13 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">digispark</span><span class="delimiter">'</span></span> }
+    <span class="key">digispark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">digispark</span><span class="delimiter">"</span></span> }
   },
 
   <span class="comment">// when declaring the servo driver you can add an optional `angleLimits` param</span>
@@ -265,7 +267,7 @@ Cylon.robot({
   <span class="comment">// so sot he servo can't be damaged if it cannot move in the full 0-180</span>
   <span class="comment">// range, most servos are not capable of this.</span>
   <span class="key">devices</span>: {
-    <span class="key">servo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> } }
+    <span class="key">servo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">0</span>, <span class="key">limits</span>: { <span class="key">bottom</span>: <span class="integer">20</span>, <span class="key">top</span>: <span class="integer">160</span> } }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {

@@ -291,30 +291,21 @@
               
               <h2 id="how-to-use">How to Use</h2>
               
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">m2x</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">m2x</span><span class="delimiter">'</span></span>,
-      <span class="key">apiKey</span>: <span class="string"><span class="delimiter">'</span><span class="content">???</span><span class="delimiter">'</span></span>,
-      <span class="key">feedId</span>: <span class="string"><span class="delimiter">'</span><span class="content">???</span><span class="delimiter">'</span></span>
-    }
+    <span class="key">m2x</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">masterKey</span>: <span class="string"><span class="delimiter">"</span><span class="content">&lt;masterKey&gt;</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">m2x</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">m2x</span><span class="delimiter">'</span></span> }
+    <span class="key">m2x</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    <span class="keyword">var</span> count = <span class="integer">1</span>;
-
-    every(<span class="integer">2000</span>, <span class="keyword">function</span>() {
-      my.m2x.push(<span class="string"><span class="delimiter">'</span><span class="content">money</span><span class="delimiter">'</span></span>, { <span class="key">value</span>: count++ });
-    });
-
-    my.m2x.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">money</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Latest value from M2X: </span><span class="delimiter">"</span></span> + data);
+    my.m2x.streamValues(<span class="string"><span class="delimiter">"</span><span class="content">&lt;deviceId&gt;</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>, {}, <span class="keyword">function</span>(err, data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, err);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Values: </span><span class="delimiter">"</span></span>, data);
     });
   }
 }).start();
@@ -323,18 +314,19 @@ Cylon.robot({
               <h2 id="how-to-connect">How to Connect</h2>
               
               <p>On the <a href="https://m2x.att.com">M2X site</a>, sign up for an account, or log into your existing account.
-              After doing so, create a new Data Source Blueprint.
-              The name and details don't matter that much, but they should be meaningful.</p>
+              After doing so, create a new Device.
+              The name of the device and details don't matter that much, but they should be meaningful.</p>
               
-              <p><img src="http://i.imgur.com/YWIPHKr.png" alt="New Data Source Blueprint" width="100%"></p>
+              <p><img src="http://i.imgur.com/3BZkKU2.png" alt="Create New Device" width="100%"></p>
               
-              <p>With that done, inside the new Data Source, create a new Stream.
-              This will be the data repository you can push and subscribe to from Cylon.</p>
+              <p>With that done, inside the new Device, create a new Stream.
+              This will be the data repository you can push and read values from Cylon.</p>
               
-              <p><img src="http://i.imgur.com/piKM1ey.png" alt="New Stream" width="100%"></p>
+              <p><img src="http://i.imgur.com/wcsjTyX.png" alt="New Stream" width="100%"></p>
               
               <p>Once that's done, you're good to go.
-              Make sure to grab the API key and Feed ID from the Data Source page.</p>
+              Make sure to grab the Master API key from your account details page and Device ID from the
+              devices page.</p>
               
               <p>Now you're ready to hook up Cylon to M2X!</p>
             </section>

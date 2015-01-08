@@ -253,38 +253,40 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     setTimeout(<span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
       bot.sphero.detectCollisions();
       bot.sphero.setRGB(<span class="hex">0x00FF00</span>);
     }, <span class="integer">1000</span>);
 
-    bot.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">update</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">update</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Update event eventName: </span><span class="delimiter">"</span></span> + data + <span class="string"><span class="delimiter">"</span><span class="content"> </span><span class="delimiter">"</span></span>);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Update event args: </span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
-    bot.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       bot.sphero.setRGB(<span class="hex">0x0000FF</span>);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Message:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
-    bot.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       bot.sphero.setRGB(<span class="hex">0xFF0000</span>);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
-    bot.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">notification</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">notification</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       bot.sphero.setRGB(<span class="hex">0xFF0000</span>);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Notification:</span><span class="delimiter">"</span></span>);
       console.log(data);

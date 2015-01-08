@@ -321,16 +321,29 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="play">play</h2>
                 
-                <h2 id="playpath">play(path)</h2>
+                <p>Plays a track</p>
                 
-                <p>Plays the audio file passed as parameter.</p>
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>track</strong> (<code>String</code>,<code>Number</code>) path to track to be played, or index of <code>this.tracks</code> to play</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Events</h1>
+                <h2 id="playing">playing</h2>
                 
-                <p>no events</p>
+                <p>Emitted when the adaptor starts playing a file</p>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

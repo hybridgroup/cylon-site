@@ -331,310 +331,438 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="move">move</h2>
                 
-                <h2 id="halt">halt()</h2>
+                <p>Makes the Rapiro move, the specific movement is dependent on the provided
+                motion number.</p>
                 
-                <p>Stop moving.</p>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="forward">forward()</h2>
-                
-                <p>Move forward.</p>
-                
-                <h5 id="returns-1">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="backward">backward()</h2>
-                
-                <p>Move backward.</p>
-                
-                <h5 id="returns-2">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="right">right()</h2>
-                
-                <p>Turn right.</p>
-                
-                <h5 id="returns-3">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="left">left()</h2>
-                
-                <p>Turn left.</p>
-                
-                <h5 id="returns-4">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="happy">happy()</h2>
-                
-                <p>Make a happy move.</p>
-                
-                <h5 id="returns-5">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="unhappy">unhappy()</h2>
-                
-                <p>Make an unhappy move :(</p>
-                
-                <h5 id="returns-6">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="concerned">concerned()</h2>
-                
-                <p>Act concerned.</p>
-                
-                <h5 id="returns-7">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="mad">mad()</h2>
-                
-                <p>Get mad.</p>
-                
-                <h5 id="returns-8">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="push">push()</h2>
-                
-                <p>Push things around.</p>
-                
-                <h5 id="returns-9">Returns</h5>
-                
-                <p><code>null</code></p>
-                
-                <h2 id="ledred-green-blue">led(red, green, blue)</h2>
-                
-                <p>Sets the RGB LED to a specific color.</p>
-                
-                <h5 id="params">Params</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>red</strong> - Numeric value for red.</li>
-                  <li>
-<strong>green</strong> - Numeric value for green.</li>
-                  <li>
-<strong>blue</strong> - Numeric value for blue.</li>
+<strong>motionNumber</strong> (<code>Number</code>) which movement to make</li>
                 </ul>
                 
-                <h5 id="returns-10">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="headangle">head(angle)</h2>
+                <hr>
                 
-                <p>Sets head servo to a specific angle.</p>
+                <h2 id="stop">stop</h2>
                 
-                <h5 id="params-1">Params</h5>
+                <p>Makes the Rapiro stop moving</p>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="forward">forward</h2>
+                
+                <p>Makes the Rapiro move forward</p>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="backward">backward</h2>
+                
+                <p>Makes the Rapiro move backward</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="right">right</h2>
+                
+                <p>Makes the Rapiro move to the right</p>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="left">left</h2>
+                
+                <p>Makes the Rapiro move to the left</p>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="happy">happy</h2>
+                
+                <p>Makes the Rapiro make a 'happy' expression</p>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="unhappy">unhappy</h2>
+                
+                <p>Makes the Rapiro make a 'unhappy' expression</p>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="concerned">concerned</h2>
+                
+                <p>Makes the Rapiro make a 'concerned' expression</p>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="mad">mad</h2>
+                
+                <p>Makes the Rapiro make a 'mad' expression</p>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="push">push</h2>
+                
+                <p>Makes the Rapiro make a 'push' motion</p>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="led">led</h2>
+                
+                <p>Sets the Rapiro's LED color</p>
+                
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+                    <p><strong>r</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>g</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>b</strong> (<code>Number</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-11">Returns</h5>
+                <h3 id="returns-11">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="waistangle">waist(angle)</h2>
+                <hr>
                 
-                <p>Sets waist servo to a specific angle.</p>
+                <h2 id="setservo">setServo</h2>
                 
-                <h5 id="params-2">Params</h5>
+                <p>Sets the angle of a specific Rapiro servo</p>
+                
+                <p>The servos are:</p>
+                
+                <ul>
+                  <li>0: Head</li>
+                  <li>1: waist</li>
+                  <li>2: right shoulder roll</li>
+                  <li>3: right shoulder pitch</li>
+                  <li>4: right hand</li>
+                  <li>5: left shoulder roll</li>
+                  <li>6: left shoulder pitch</li>
+                  <li>7: left hand</li>
+                  <li>8: right foot yaw</li>
+                  <li>9: right foot pitch</li>
+                  <li>10: left foot yaw</li>
+                  <li>11: left foot pitch</li>
+                </ul>
+                
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+                    <p><strong>servo</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>angle</strong> (<code>Number</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-12">Returns</h5>
+                <h3 id="returns-12">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="rightshoulderrollangle">rightShoulderRoll(angle)</h2>
+                <hr>
                 
-                <p>Sets rightShoulderRoll servo to a specific angle.</p>
+                <h2 id="head">head</h2>
                 
-                <h5 id="params-3">Params</h5>
+                <p>Sets the angle of Rapiro's head servo</p>
+                
+                <h3 id="params-3">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-13">Returns</h5>
+                <h3 id="returns-13">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="rightshoulderpitchangle">rightShoulderPitch(angle)</h2>
+                <hr>
                 
-                <p>Sets rightShoulderPitch servo to a specific angle.</p>
+                <h2 id="waist">waist</h2>
                 
-                <h5 id="params-4">Params</h5>
+                <p>Sets the angle of Rapiro's waist servo</p>
+                
+                <h3 id="params-4">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-14">Returns</h5>
+                <h3 id="returns-14">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="righthandangle">rightHand(angle)</h2>
+                <hr>
                 
-                <p>Sets rightHand servo to a specific angle.</p>
+                <h2 id="rightshoulderroll">rightShoulderRoll</h2>
                 
-                <h5 id="params-5">Params</h5>
+                <p>Sets the angle of Rapiro's right shoulder roll servo</p>
+                
+                <h3 id="params-5">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-15">Returns</h5>
+                <h3 id="returns-15">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="rightfootyawangle">rightFootYaw(angle)</h2>
+                <hr>
                 
-                <p>Sets rightFootYaw servo to a specific angle.</p>
+                <h2 id="rightshoulderpitch">rightShoulderPitch</h2>
                 
-                <h5 id="params-6">Params</h5>
+                <p>Sets the angle of Rapiro's right shoulder pitch servo</p>
+                
+                <h3 id="params-6">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-16">Returns</h5>
+                <h3 id="returns-16">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="rightfootpitchangle">rightFootPitch(angle)</h2>
+                <hr>
                 
-                <p>Sets rightFootPitch servo to a specific angle.</p>
+                <h2 id="righthand">rightHand</h2>
                 
-                <h5 id="params-7">Params</h5>
+                <p>Sets the angle of Rapiro's right hand servo</p>
+                
+                <h3 id="params-7">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-17">Returns</h5>
+                <h3 id="returns-17">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="leftshoulderrollangle">leftShoulderRoll(angle)</h2>
+                <hr>
                 
-                <p>Sets leftShoulderRoll servo to a specific angle.</p>
+                <h2 id="leftshoulderroll">leftShoulderRoll</h2>
                 
-                <h5 id="params-8">Params</h5>
+                <p>Sets the angle of Rapiro's left shoulder roll servo</p>
+                
+                <h3 id="params-8">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-18">Returns</h5>
+                <h3 id="returns-18">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="leftshoulderpitchangle">leftShoulderPitch(angle)</h2>
+                <hr>
                 
-                <p>Sets leftShoulderPitch servo to a specific angle.</p>
+                <h2 id="leftshoulderpitch">leftShoulderPitch</h2>
                 
-                <h5 id="params-9">Params</h5>
+                <p>Sets the angle of Rapiro's left shoulder pitch servo</p>
+                
+                <h3 id="params-9">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-19">Returns</h5>
+                <h3 id="returns-19">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="lefthandangle">leftHand(angle)</h2>
+                <hr>
                 
-                <p>Sets leftHand servo to a specific angle.</p>
+                <h2 id="lefthand">leftHand</h2>
                 
-                <h5 id="params-10">Params</h5>
+                <p>Sets the angle of Rapiro's left hand servo</p>
+                
+                <h3 id="params-10">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-20">Returns</h5>
+                <h3 id="returns-20">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="leftfootyawangle">leftFootYaw(angle)</h2>
+                <hr>
                 
-                <p>Sets leftFootYaw servo to a specific angle.</p>
+                <h2 id="rightfootyaw">rightFootYaw</h2>
                 
-                <h5 id="params-11">Params</h5>
+                <p>Sets the angle of Rapiro's right foot yaw servo</p>
+                
+                <h3 id="params-11">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-21">Returns</h5>
+                <h3 id="returns-21">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="leftfootpitchangle">leftFootPitch(angle)</h2>
+                <hr>
                 
-                <p>Sets leftFootPitch servo to a specific angle.</p>
+                <h2 id="rightfootpitch">rightFootPitch</h2>
                 
-                <h5 id="params-12">Params</h5>
+                <p>Sets the angle of Rapiro's right foot pitch servo</p>
+                
+                <h3 id="params-12">Params</h3>
                 
                 <ul>
                   <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-22">Returns</h5>
+                <h3 id="returns-22">Returns</h3>
                 
-                <p><code>null</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="setservoservo-angle">setServo(servo, angle)</h2>
+                <hr>
                 
-                <p>Sets a servo to a specific angle.</p>
+                <h2 id="leftfootyaw">leftFootYaw</h2>
                 
-                <h5 id="params-13">Params</h5>
+                <p>Sets the angle of Rapiro's left foot yaw servo</p>
+                
+                <h3 id="params-13">Params</h3>
                 
                 <ul>
                   <li>
-<strong>servo</strong> - Servo number.</li>
-                  <li>
-<strong>angle</strong> - Servo angle.</li>
+<strong>angle</strong> (<code>Number</code>)</li>
                 </ul>
                 
-                <h5 id="returns-23">Returns</h5>
+                <h3 id="returns-23">Returns</h3>
                 
-                <p><code>null</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="start">start</h2>
+                <hr>
                 
-                <p>Gets triggered when the connection to Rapiro driver has been started.</p>
+                <h2 id="leftfootpitch">leftFootPitch</h2>
+                
+                <p>Sets the angle of Rapiro's left foot pitch servo</p>
+                
+                <h3 id="params-14">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>angle</strong> (<code>Number</code>)</li>
+                </ul>
+                
+                <h3 id="returns-24">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

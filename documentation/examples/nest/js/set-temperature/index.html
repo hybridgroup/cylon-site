@@ -253,34 +253,35 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">MY_ACCESS_TOKEN</span><span class="delimiter">'</span></span> }
+    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">"</span><span class="content">MY_ACCESS_TOKEN</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">DEVICE_ID</span><span class="delimiter">'</span></span> }
+    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest-thermostat</span><span class="delimiter">"</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">"</span><span class="content">DEVICE_ID</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
 
-    my.thermostat.on(<span class="string"><span class="delimiter">'</span><span class="content">value</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Thermostat at a glance ---&gt;</span><span class="delimiter">'</span></span>, data);
+    my.thermostat.on(<span class="string"><span class="delimiter">"</span><span class="content">value</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The Thermostat at a glance ---&gt;</span><span class="delimiter">"</span></span>, data);
     });
 
     every((<span class="integer">30</span>).seconds(), <span class="keyword">function</span>(){
-      <span class="comment">// Set temperature of the Nest thermostat using one of the device functions:</span>
       my.thermostat.setTargetTemperatureC(<span class="integer">24</span>);
 
-      <span class="comment">// Set any attribute in the of the Nest thermostat, that you have write privileges for,</span>
-      <span class="comment">// using write function:</span>
-      my.thermostat.write(<span class="string"><span class="delimiter">'</span><span class="content">target_temperature_high_c</span><span class="delimiter">'</span></span>, <span class="integer">30</span>, <span class="keyword">function</span>(err) {
+      <span class="comment">// Set any attribute in the of the Nest thermostat that you have write</span>
+      <span class="comment">// privileges for, using write function:</span>
+      my.thermostat.write(<span class="string"><span class="delimiter">"</span><span class="content">target_temperature_high_c</span><span class="delimiter">"</span></span>, <span class="integer">30</span>, <span class="keyword">function</span>(err) {
         <span class="keyword">if</span> (err) {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Target Temp was NOT updated!</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Target Temp was NOT updated!</span><span class="delimiter">"</span></span>);
         } <span class="keyword">else</span> {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Target Temp updated!</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Target Temp updated!</span><span class="delimiter">"</span></span>);
         }
       });
     });

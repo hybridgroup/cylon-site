@@ -253,31 +253,33 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span> })
   .device(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, {
-    <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>,
+    <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>,
     <span class="key">camera</span>: <span class="integer">0</span>,
     <span class="key">haarcascade</span>: __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>
   })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     <span class="comment">// We setup our face detection when the camera is ready to</span>
     <span class="comment">// display images, we use `once` instead of `on` to make sure</span>
     <span class="comment">// other event listeners are only registered once.</span>
-    bot.camera.once(<span class="string"><span class="delimiter">'</span><span class="content">cameraReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The camera is ready!</span><span class="delimiter">'</span></span>);
+    bot.camera.once(<span class="string"><span class="delimiter">"</span><span class="content">cameraReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">The camera is ready!</span><span class="delimiter">"</span></span>);
 
       <span class="comment">// We add a listener for the facesDetected event</span>
       <span class="comment">// here, we will get (err, image/frame, faces) params back in</span>
       <span class="comment">// the listener function that we pass.</span>
       <span class="comment">// The faces param is an array conaining any face detected</span>
       <span class="comment">// in the frame (im).</span>
-      bot.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">facesDetected</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im, faces) {
+      bot.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">facesDetected</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im, faces) {
         <span class="comment">// We loop through the faces and manipulate the image</span>
         <span class="comment">// to display a square in the coordinates for the detected</span>
         <span class="comment">// faces.</span>
@@ -307,7 +309,7 @@ Cylon
       <span class="comment">// We listen for frameReady event, when triggered</span>
       <span class="comment">// we start the face detection passing the frame</span>
       <span class="comment">// that we just got from the camera feed.</span>
-      bot.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">frameReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im) {
+      bot.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">frameReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im) {
         bot.camera.detectFaces(im);
       });
 

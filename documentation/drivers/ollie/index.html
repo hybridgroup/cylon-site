@@ -377,112 +377,207 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
-                
+                <h1>Commands</h1>
                 <h2 id="wake">wake</h2>
                 
-                <p>Wakes up the Ollie.</p>
+                <p>Tells the Ollie to wake up</p>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="params">Params</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered when the Ollie is awake</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="settxpower">setTXPower</h2>
                 
-                <p>Sets the BLE transmit power. Higher transmit power uses more battery, but provides longer range.</p>
+                <p>Sets the BLE transmit power for the Ollie.</p>
                 
-                <h5 id="params">Params</h5>
+                <p>Uses more battery, but gives longer range</p>
                 
-                <ul>
-                  <li>
-<strong>level</strong> -</li>
-                </ul>
-                
-                <h5 id="returns-1">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="setrgb">SetRGB</h2>
-                
-                <p>Set the RGB color of the built-in LED.</p>
-                
-                <h5 id="params-1">Params</h5>
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-<strong>color</strong> - hex number (<code>0xFF1500</code>) or to set the Sphero to</li>
+                    <p><strong>level</strong> (<code>Number</code>)</p>
+                  </li>
                   <li>
-<strong>persist</strong> - boolean, whether or not the color should persist. Defaults to
-                <code>true</code>
-</li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrgb">setRGB</h2>
+                
+                <p>Sets the RGB color of Ollie's built-in LED</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>color</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>persist</strong> (<code>Boolean</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="roll">roll</h2>
                 
-                <p>Roll the Ollie in a paticular speed and direction.</p>
+                <p>Tells Ollie to roll in a particular speed and heading</p>
                 
-                <h5 id="params-2">Params</h5>
+                <h3 id="params-3">Params</h3>
                 
                 <ul>
-                  <li><strong>speed</strong></li>
-                  <li><strong>heading</strong></li>
-                  <li><strong>state</strong></li>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>state</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <h3 id="returns-3">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="stop">stop</h2>
                 
-                <p>Stops the Ollie from rolling.</p>
+                <p>Tells Ollie to stop rolling</p>
                 
-                <h5 id="returns-4">Returns</h5>
+                <h3 id="params-4">Params</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="setrawmotorvalues">setRawMotorValues</h2>
                 
-                <p>This allows you to take over one or both of the motor output values, instead of having the stabilization  system control them. Each motor (left and right) requires a mode (see below) and a power value from 0-255. This command will disable stabilization if both modes aren't "ignore" so you'll need to re-enable it via setStabilization() once you're done.</p>
+                <p>Allows for direct control of both motors, rather than auto-control via the
+                stabilization system.</p>
                 
-                <p>You can use the defined raw Motor* commands:
-                <code>MotorOff</code>,
-                <code>MotorForward</code>,
-                <code>MotorReverse</code>,
-                <code>MotorBrake</code> (motor is shorted),
-                <code>MotorIgnore</code> (motor mode and power is left unchanged).</p>
+                <p>Each motor (left and right) requires a mode (see below) and a power value
+                from 0-255. This command will disable stabilization if both modes aren't
+                "ignore" so you'll need to re-enable it via setStabilization() once you're
+                done.</p>
                 
-                <h5 id="params-3">Params</h5>
+                <h3 id="params-5">Params</h3>
                 
                 <ul>
-                  <li><strong>leftMode</strong></li>
-                  <li><strong>leftPower</strong></li>
-                  <li><strong>rightMode</strong></li>
-                  <li><strong>rightPower</strong></li>
+                  <li>
+                    <p><strong>leftMode</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>leftPower</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>rightMode</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>rightPower</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-5">Returns</h5>
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
                 
                 <h2 id="setstabilization">setStabilization</h2>
                 
-                <p>Enables/disables the auto-stabilization. Often used after setting raw motor commands.</p>
+                <p>Used to enable/disable Ollie's auto-stabilization</p>
                 
-                <h5 id="params-4">Params</h5>
+                <p>Often used after setting raw motor commands.</p>
+                
+                <h3 id="params-6">Params</h3>
                 
                 <ul>
-                  <li><strong>enable</strong></li>
+                  <li>
+                    <p><strong>enable</strong> (<code>Number</code>)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                  </li>
                 </ul>
                 
-                <h5 id="returns-6">Returns</h5>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h3 id="returns-6">Returns</h3>
                 
-                <p>no events</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="devmodeon">devModeOn</h2>
+                
+                <p>Enables developer mode on the Ollie.</p>
+                
+                <p>This is accomplished via sending a special string to the Anti-DoS service,
+                setting TX power to 7, and telling the Sphero to wake up.</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>)</li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

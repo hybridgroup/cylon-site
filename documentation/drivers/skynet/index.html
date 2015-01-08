@@ -328,40 +328,54 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="message">message</h2>
                 
-                <h2 id="messagedata">message(data)</h2>
+                <p>Posts a message to Skynet</p>
                 
-                <p>Sends a message thru the Skynet network.</p>
-                
-                <h5 id="params">Params</h5>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>data</strong> - Hash or JSON string with the message data to be sent.</li>
+<strong>data</strong> (<code>Object</code>) to be posted</li>
                 </ul>
                 
-                <h5 id="returns">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p>`null</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="subscribe">subscribe</h2>
+                
+                <p>Subscribes to data from Skynet</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>data</strong> (<code>Object</code>)</li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Commands</h1>
+                <h2 id="message">message</h2>
                 
-                <h2 id="messagedata">message(data)</h2>
+                <p>Emitted when Skynet has received a new message</p>
                 
-                <p>Gets triggered when Skynet sends a message notification.</p>
-                
-                <h5 id="params">Params</h5>
+                <h3 id="values">Values</h3>
                 
                 <ul>
-                  <li>
-<strong>data</strong> - the hash with the message data.</li>
+                  <li><strong>data</strong></li>
                 </ul>
-                
-                <h2 id="connect">connect</h2>
-                
-                <p>Gets triggered when the connection to Skynet has been opened.</p>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

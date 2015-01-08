@@ -323,49 +323,114 @@ Cylon.start();
 </pre>
             </section>
             <section class="public-methods">
-              <div class="commands-api" id="Commands">
-                <h1>Commands</h1>
-                <p>no commands</p>
-              </div>
               <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <h1>Events</h1>
+                <h2 id="data">data</h2>
                 
-                <h2 id="attentiondata">attention(data)</h2>
+                <p>Emitted whenever the Mindwave serialport sends data</p>
                 
-                <p>Event with the user's current attention level.</p>
+                <h3 id="values">Values</h3>
                 
-                <h2 id="blinkdata">blink(data)</h2>
+                <ul>
+                  <li>
+<strong>data</strong> direct data from serialport</li>
+                </ul>
                 
-                <p>Event with the user's current blink level.</p>
+                <hr>
                 
-                <h2 id="meditationdata">meditation(data)</h2>
+                <h2 id="packet">packet</h2>
                 
-                <p>Event with the user's current meditation level.</p>
+                <p>Emitted whenever a Mindwave packet is received over the serialport</p>
                 
-                <h2 id="signaldata">signal(data)</h2>
+                <h3 id="values-1">Values</h3>
                 
-                <p>Event showing signal strength.</p>
+                <ul>
+                  <li><strong>packet</strong></li>
+                </ul>
                 
-                <h2 id="wavedata">wave(data)</h2>
+                <hr>
                 
-                <p>Event showing wave data.</p>
+                <h2 id="extended">extended</h2>
                 
-                <h2 id="eegdata">eeg(data)</h2>
+                <p>Emitted whenever the extended code is found in a Mindwave packet</p>
                 
-                <p>Event showing EEG data.</p>
+                <hr>
                 
-                <p>{ delta: 3291648,
-                  theta: 3226112,
-                  loAlpha: 3550720,
-                  hiAlpha: 3225856,
-                  loBeta: 6103040,
-                  hiBeta: 4804096,
-                  loGamma: 5185536,
-                  midGamma: 2957370 }</p>
+                <h2 id="signal">signal</h2>
                 
-                <h2 id="start">start</h2>
+                <p>Emitted when packets are received, as an indicator of poor signal quality</p>
                 
-                <p>Gets triggered when the Mindwave is started and ready to be used.</p>
+                <h3 id="values-2">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>quality</strong> 0-255</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="attention">attention</h2>
+                
+                <p>Emitted when the Attention code is detected in a packet</p>
+                
+                <h3 id="values-3">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> 0-100</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="meditation">meditation</h2>
+                
+                <p>Emitted when the Meditation code is detected in a packet</p>
+                
+                <h3 id="values-4">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> 0-100</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="blink">blink</h2>
+                
+                <p>Emitted with the packet's provided blink strength</p>
+                
+                <h3 id="values-5">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> 0-255</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="wave">wave</h2>
+                
+                <p>Emitted per packet, contains raw EEG wave value</p>
+                
+                <h3 id="values-6">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>value</strong> 2-byte big-endian 2s-complement</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="eeg">eeg</h2>
+                
+                <p>Emitted with processed EEG data per-packet.</p>
+                
+                <h3 id="values-7">Values</h3>
+                
+                <ul>
+                  <li>
+<strong>eeg</strong> an object containing EEG info (delta, theta, etc wave states)</li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

@@ -253,20 +253,22 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">neurosky</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span>  }
+    <span class="key">neurosky</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">neurosky</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>  }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">headset</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">neurosky</span><span class="delimiter">'</span></span>  }
+    <span class="key">headset</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">neurosky</span><span class="delimiter">"</span></span>  }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.headset.on(<span class="string"><span class="delimiter">'</span><span class="content">packet</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(packet) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">packet:</span><span class="delimiter">'</span></span>, packet);
+    my.headset.on(<span class="string"><span class="delimiter">"</span><span class="content">packet</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(packet) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">packet:</span><span class="delimiter">"</span></span>, packet);
     });
   }
 });

@@ -256,15 +256,17 @@
               <pre class="CodeRay"><span class="comment">// To run:</span>
 <span class="comment">// $ node examples/blink/blink.js 192.168.1.85 35dacee025cd94cf3f50bb301ad8b4bf</span>
 
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">hue</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue</span><span class="delimiter">'</span></span>, <span class="key">host</span>: process.argv[<span class="integer">2</span>], <span class="key">username</span>: process.argv[<span class="integer">3</span>] }
+    <span class="key">hue</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">hue</span><span class="delimiter">"</span></span>, <span class="key">host</span>: process.argv[<span class="integer">2</span>], <span class="key">username</span>: process.argv[<span class="integer">3</span>] }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">hue-light</span><span class="delimiter">'</span></span>, <span class="key">lightId</span>: <span class="integer">2</span> }
+    <span class="key">bulb</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">hue-light</span><span class="delimiter">"</span></span>, <span class="key">lightId</span>: <span class="integer">2</span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {

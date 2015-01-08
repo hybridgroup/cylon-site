@@ -253,47 +253,54 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
     <span class="key">sensor</span>: {
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ir-range-sensor</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ir-range-sensor</span><span class="delimiter">"</span></span>,
       <span class="key">pin</span>: <span class="integer">0</span>,
       <span class="key">upperLimit</span>: <span class="integer">400</span>,
       <span class="key">lowerLimit</span>: <span class="integer">100</span>,
-      <span class="key">model</span>: <span class="string"><span class="delimiter">'</span><span class="content">gp2y0a41sk0f</span><span class="delimiter">'</span></span>
+      <span class="key">model</span>: <span class="string"><span class="delimiter">"</span><span class="content">gp2y0a41sk0f</span><span class="delimiter">"</span></span>
     }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> highest,
-        lowest;
+    lowest;
 
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">analogRead</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Analor Read Value ===&gt;</span><span class="delimiter">'</span></span>, val);
-      <span class="keyword">if</span> (highest === <span class="predefined-constant">undefined</span>) highest = val;
-      <span class="keyword">if</span> (lowest === <span class="predefined-constant">undefined</span>) lowest = val;
+    my.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">analogRead</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(val){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Analor Read Value ===&gt;</span><span class="delimiter">"</span></span>, val);
+      <span class="keyword">if</span> (highest === <span class="predefined-constant">undefined</span>) {
+        highest = val;
+      }
+
+      <span class="keyword">if</span> (lowest === <span class="predefined-constant">undefined</span>) {
+        lowest = val;
+      }
 
       highest = (val &gt; highest) ? val : highest;
       lowest = (val &lt; lowest) ? val : lowest;
 
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Highest IR Range Value read: </span><span class="delimiter">"</span></span>, highest)
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lowest IR Range Value read: </span><span class="delimiter">"</span></span>, lowest)
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Highest IR Range Value read: </span><span class="delimiter">"</span></span>, highest);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lowest IR Range Value read: </span><span class="delimiter">"</span></span>, lowest);
 
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in CM =&gt;</span><span class="delimiter">"</span></span>, my.sensor.rangeCm());
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in Inches =&gt;</span><span class="delimiter">"</span></span>, my.sensor.range());
     });
 
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">upperLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+    my.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">upperLimit</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(val) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Upper limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
     });
 
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">lowerLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+    my.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">lowerLimit</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(val) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lower limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
     });
   }

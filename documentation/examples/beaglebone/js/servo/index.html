@@ -253,17 +253,19 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">beaglebone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">beaglebone</span><span class="delimiter">'</span></span> }
+    <span class="key">beaglebone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
     <span class="key">servo</span>: {
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>,
-      <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">P9_14</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>,
+      <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_14</span><span class="delimiter">"</span></span>,
       <span class="key">freq</span>: <span class="integer">50</span>,
       <span class="comment">// pulseWidth in MicroSeconds as per servo spec sheet</span>
       <span class="comment">// e.g. http://www.servodatabase.com/servo/towerpro/sg90</span>

@@ -253,29 +253,36 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/rfcomm0</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">sphero</span><span class="delimiter">'</span></span> }
+    <span class="key">sphero</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> max = <span class="integer">0</span>;
     <span class="keyword">var</span> changingColor = <span class="predefined-constant">false</span>;
 
-    my.sphero.setDataStreaming([<span class="string"><span class="delimiter">'</span><span class="content">velocity</span><span class="delimiter">'</span></span>], { <span class="key">n</span>: <span class="integer">40</span>, <span class="key">m</span>: <span class="integer">1</span>, <span class="key">pcnt</span>: <span class="integer">0</span> });
-    my.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      <span class="keyword">if</span>(!changingColor) {
-        x = Math.abs(data[<span class="integer">0</span>]);
-        y = Math.abs(data[<span class="integer">1</span>]);
+    my.sphero.setDataStreaming([<span class="string"><span class="delimiter">"</span><span class="content">velocity</span><span class="delimiter">"</span></span>], { <span class="key">n</span>: <span class="integer">40</span>, <span class="key">m</span>: <span class="integer">1</span>, <span class="key">pcnt</span>: <span class="integer">0</span> });
+    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      <span class="keyword">if</span> (!changingColor) {
+        <span class="keyword">var</span> x = Math.abs(data[<span class="integer">0</span>]),
+            y = Math.abs(data[<span class="integer">1</span>]);
 
-        <span class="keyword">if</span> (x &gt; max) max = x;
-        <span class="keyword">if</span> (y &gt; max) max = y;
+        <span class="keyword">if</span> (x &gt; max) {
+          max = x;
+        }
+
+        <span class="keyword">if</span> (y &gt; max) {
+          max = y;
+        }
       }
     });
 
@@ -283,19 +290,19 @@ Cylon.robot({
       changingColor = <span class="predefined-constant">true</span>;
 
       <span class="keyword">if</span> (max &lt; <span class="integer">10</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">white</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">white</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> <span class="keyword">if</span> (max &lt; <span class="integer">100</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">lightyellow</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">lightyellow</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> <span class="keyword">if</span> (max &lt; <span class="integer">150</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">yellow</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">yellow</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> <span class="keyword">if</span> (max &lt; <span class="integer">250</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">orange</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">orange</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> <span class="keyword">if</span> (max &lt; <span class="integer">350</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">orangered</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">orangered</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> <span class="keyword">if</span> (max &lt; <span class="integer">450</span>) {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">red</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">red</span><span class="delimiter">"</span></span>);
       } <span class="keyword">else</span> {
-        my.sphero.setColor(<span class="string"><span class="delimiter">'</span><span class="content">darkred</span><span class="delimiter">'</span></span>);
+        my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">darkred</span><span class="delimiter">"</span></span>);
       }
 
       max = <span class="integer">0</span>;

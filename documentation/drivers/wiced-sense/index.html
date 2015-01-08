@@ -315,20 +315,34 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
-                
+                <h1>Commands</h1>
                 <h2 id="getdata">getData</h2>
                 
-                <p>Gets publicly exposed data.</p>
+                <p>Gets data from the WICED Sense device.</p>
                 
-                <h5 id="returns">Returns</h5>
+                <p>This includes the following sensor data:</p>
                 
-                <p>Hash containing temperature, pressure, magnetometer, humidity, gyroscope and accelerometer</p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
+                <ul>
+                  <li>temperature</li>
+                  <li>pressure</li>
+                  <li>magnetometer</li>
+                  <li>humidity</li>
+                  <li>gyroscope</li>
+                  <li>accelerometer</li>
+                </ul>
                 
-                <p>No Events</p>
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) to be triggered when data is retrieved</li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">

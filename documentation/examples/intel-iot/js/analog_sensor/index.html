@@ -253,16 +253,18 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">intel-iot</span><span class="delimiter">'</span></span> }
+    <span class="key">edison</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">intel-iot</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
     <span class="key">sensor</span>: {
-      <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>,
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">analogSensor</span><span class="delimiter">"</span></span>,
       <span class="key">pin</span>: <span class="integer">0</span>,
       <span class="key">upperLimit</span>: <span class="integer">900</span>,
       <span class="key">lowerLimit</span>: <span class="integer">100</span>
@@ -270,11 +272,11 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">upperLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+    my.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">upperLimit</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(val) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Upper limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
     });
 
-    my.sensor.on(<span class="string"><span class="delimiter">'</span><span class="content">lowerLimit</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(val) {
+    my.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">lowerLimit</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(val) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lower limit reached ===&gt; </span><span class="delimiter">"</span></span> + val);
     });
   }

@@ -253,28 +253,30 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">mqtt</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>, <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt://localhost:1883</span><span class="delimiter">'</span></span> },
-    <span class="key">firmata</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+    <span class="key">mqtt</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span>, <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt://localhost:1883</span><span class="delimiter">"</span></span> },
+    <span class="key">firmata</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">toggle</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span> },
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">13</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span> },
+    <span class="key">toggle</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">"</span><span class="content">toggle</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span> },
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">13</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span> },
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.toggle.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.toggle.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Message on 'toggle': </span><span class="delimiter">"</span></span> + data);
       my.led.toggle();
     });
 
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Toggling LED.</span><span class="delimiter">"</span></span>);
-      my.toggle.publish(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+      my.toggle.publish(<span class="string"><span class="delimiter">"</span><span class="content">toggle</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();

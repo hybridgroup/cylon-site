@@ -253,18 +253,20 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">opencv</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">window</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>, <span class="key">camera</span>: <span class="integer">0</span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">cameraReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">the camera is ready!</span><span class="delimiter">'</span></span>);
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, { <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">opencv</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">window</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, <span class="key">camera</span>: <span class="integer">0</span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">cameraReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">the camera is ready!</span><span class="delimiter">"</span></span>);
 
-      bot.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">frameReady</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err, im) {
+      bot.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">frameReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im) {
         bot.window.show(im, <span class="integer">5000</span>);
       });
 

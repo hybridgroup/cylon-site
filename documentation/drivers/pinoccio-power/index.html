@@ -333,71 +333,104 @@ Cylon.robot({
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
-                <h1 id="commands">Commands</h1>
+                <h1>Commands</h1>
+                <h2 id="ischarging">isCharging</h2>
                 
-                <h2 id="ischargingcb">isCharging(cb)</h2>
+                <p>Checks whether or not the Pinoccio's battery is charging</p>
                 
-                <p>Returns a value if the drivers is charging</p>
-                
-                <ul>
-                  <li>
-<strong>cb</strong> - The value for which to return data</li>
-                </ul>
-                
-                <h5 id="returns">Returns</h5>
-                
-                <p><code>nil</code></p>
-                
-                <h2 id="percentcb">percent(cb)</h2>
-                
-                <p>Returns the percent</p>
+                <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>cb</strong> - The value for which to return data</li>
+<strong>callback</strong> (<code>Function</code>) to be triggered when information is available</li>
                 </ul>
                 
-                <h5 id="returns-1">Returns</h5>
+                <h3 id="returns">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="voltagecb">voltage(cb)</h2>
+                <hr>
                 
-                <p>Returns the voltage</p>
+                <h2 id="percent">percent</h2>
+                
+                <p>Gets the current battery percentage</p>
+                
+                <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-<strong>cb</strong> - The value for which to return data</li>
+<strong>callback</strong> (<code>Function</code>) to be triggered when information is available</li>
                 </ul>
                 
-                <h5 id="returns-2">Returns</h5>
+                <h3 id="returns-1">Returns</h3>
                 
-                <p><code>nil</code></p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
                 
-                <h2 id="enablevcc">enableVcc()</h2>
+                <hr>
                 
-                <p>Enables the VCC</p>
+                <h2 id="voltage">voltage</h2>
                 
-                <h2 id="disablevcc">disableVcc()</h2>
+                <p>Gets the current battery voltage</p>
                 
-                <p>Disables the VCC</p>
-                
-                <h2 id="reportcb">report(cb)</h2>
-                
-                <p>Returns a report of the driver</p>
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-<strong>cb</strong> - The value for which to return data</li>
+<strong>callback</strong> (<code>Function</code>) to be triggered when information is available</li>
                 </ul>
                 
-                <h5 id="returns-3">Returns</h5>
+                <h3 id="returns-2">Returns</h3>
                 
-                <p><code>nil</code></p>
-              </div>
-              <div class="commands-api" id="Events">
-                <h1 id="events">Events</h1>
-                <p>no events</p>
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="enablevcc">enableVcc</h2>
+                
+                <p>Enables VCC on the battery</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="disablevcc">disableVcc</h2>
+                
+                <p>Disables VCC on the battery</p>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="report">report</h2>
+                
+                <p>Gets a report from the battery</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) to be triggered when information is available</li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>null</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">

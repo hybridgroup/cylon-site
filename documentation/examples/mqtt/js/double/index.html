@@ -253,28 +253,30 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">server</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>, <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt://localhost:1883</span><span class="delimiter">'</span></span> }
+    <span class="key">server</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span>, <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt://localhost:1883</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">uno</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">'</span><span class="content">hi</span><span class="delimiter">'</span></span> },
-    <span class="key">dos</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">'</span><span class="content">hola</span><span class="delimiter">'</span></span> }
+    <span class="key">uno</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">"</span><span class="content">hi</span><span class="delimiter">"</span></span> },
+    <span class="key">dos</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">mqtt</span><span class="delimiter">"</span></span>, <span class="key">topic</span>: <span class="string"><span class="delimiter">"</span><span class="content">hola</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.server.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(topic, message) {
+    my.server.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(topic, message) {
       console.log(topic + <span class="string"><span class="delimiter">"</span><span class="content">: </span><span class="delimiter">"</span></span> + message);
     });
 
     every((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Saying hello...</span><span class="delimiter">"</span></span>);
 
-      my.uno.publish(<span class="string"><span class="delimiter">'</span><span class="content">hello</span><span class="delimiter">'</span></span>);
-      my.dos.publish(<span class="string"><span class="delimiter">'</span><span class="content">buenos</span><span class="delimiter">'</span></span>);
+      my.uno.publish(<span class="string"><span class="delimiter">"</span><span class="content">hello</span><span class="delimiter">"</span></span>);
+      my.dos.publish(<span class="string"><span class="delimiter">"</span><span class="content">buenos</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();
