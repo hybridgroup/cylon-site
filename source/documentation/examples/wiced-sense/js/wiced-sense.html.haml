@@ -11,18 +11,20 @@ active_menu_docs: true
 .example
   :markdown
         :::javascript
-        var Cylon = require('cylon');
+        "use strict";
+
+        var Cylon = require("cylon");
 
         Cylon.robot({
           connections: {
-            bluetooth: { adaptor: 'ble', uuid: '207377654321' }
+            bluetooth: { adaptor: "ble", uuid: "207377654321" }
           },
 
           devices: {
-            battery: { driver: 'ble-battery-service' },
-            deviceInfo: { driver: 'ble-device-information' },
-            generic: { driver: 'ble-generic-access' },
-            wiced: { driver: 'wiced-sense' }
+            battery: { driver: "ble-battery-service" },
+            deviceInfo: { driver: "ble-device-information" },
+            generic: { driver: "ble-generic-access" },
+            wiced: { driver: "wiced-sense" }
           },
 
           display: function(err, data) {
