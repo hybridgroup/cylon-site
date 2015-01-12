@@ -11,7 +11,11 @@ active_menu_docs: true
   :markdown
     # How To Connect with the API
 
-    Cylon.js comes with a built-in API server so, you can view details about your robots and control them from anywhere.
+    Cylon's HTTP API plugin can be used to interact with your robots remotely.
+
+    To use it, install it alongside Cylon:
+
+        $ npm install cylon-api-http
 
     ### Running your robot:
 
@@ -35,9 +39,7 @@ active_menu_docs: true
           }
         }).start();
 
-    By default, an unconfigured API instance will listen on
-    `https://127.0.0.1:3000`, using a self-signed cert and with no
-    authentication.
+    By default, an unconfigured API instance will listen on `https://127.0.0.1:3000`, using a self-signed cert and with no authentication.
 
     For more information API configuration, see the [configuration page](/documentation/configuration).
 
