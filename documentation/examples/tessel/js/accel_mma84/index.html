@@ -253,26 +253,28 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> }
+    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">accel</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">accel-mma84</span><span class="delimiter">'</span></span> }
+    <span class="key">accel</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">accel-mma84</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.accel.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+    my.accel.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
-    my.accel.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (xyz) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">x:</span><span class="delimiter">'</span></span>, xyz[<span class="integer">0</span>].toFixed(<span class="integer">2</span>),
-                  <span class="string"><span class="delimiter">'</span><span class="content">y:</span><span class="delimiter">'</span></span>, xyz[<span class="integer">1</span>].toFixed(<span class="integer">2</span>),
-                  <span class="string"><span class="delimiter">'</span><span class="content">z:</span><span class="delimiter">'</span></span>, xyz[<span class="integer">2</span>].toFixed(<span class="integer">2</span>));
+    my.accel.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (xyz) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">x:</span><span class="delimiter">"</span></span>, xyz[<span class="integer">0</span>].toFixed(<span class="integer">2</span>),
+                  <span class="string"><span class="delimiter">"</span><span class="content">y:</span><span class="delimiter">"</span></span>, xyz[<span class="integer">1</span>].toFixed(<span class="integer">2</span>),
+                  <span class="string"><span class="delimiter">"</span><span class="content">z:</span><span class="delimiter">"</span></span>, xyz[<span class="integer">2</span>].toFixed(<span class="integer">2</span>));
     });
   }
 }).start();

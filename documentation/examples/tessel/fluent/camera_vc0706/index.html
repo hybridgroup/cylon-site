@@ -253,19 +253,21 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> })
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">tessel_A</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> })
 
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">config</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">camera</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">camera-vc0706</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">1</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">config</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">camera</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">camera-vc0706</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel_A</span><span class="delimiter">"</span></span> })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.camera.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Camera error: </span><span class="delimiter">"</span></span>, err);
     });
 
@@ -275,16 +277,16 @@ Cylon
       }
     });
 
-    bot.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    bot.button.on(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       bot.led.turnOn();
       bot.camera.takePicture(<span class="keyword">function</span>(err, image) {
         <span class="keyword">if</span> (err) {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">error taking image</span><span class="delimiter">'</span></span>, err);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">error taking image</span><span class="delimiter">"</span></span>, err);
         } <span class="keyword">else</span> {
           <span class="comment">// Name the image</span>
-          <span class="keyword">var</span> name = <span class="string"><span class="delimiter">'</span><span class="content">picture-</span><span class="delimiter">'</span></span> + Math.floor(Date.now()*<span class="integer">1000</span>) + <span class="string"><span class="delimiter">'</span><span class="content">.jpg</span><span class="delimiter">'</span></span>;
+          <span class="keyword">var</span> name = <span class="string"><span class="delimiter">"</span><span class="content">picture-</span><span class="delimiter">"</span></span> + Math.floor(Date.now()*<span class="integer">1000</span>) + <span class="string"><span class="delimiter">"</span><span class="content">.jpg</span><span class="delimiter">"</span></span>;
           <span class="comment">// Save the image</span>
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Picture saving as</span><span class="delimiter">'</span></span>, name, <span class="string"><span class="delimiter">'</span><span class="content">...</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Picture saving as</span><span class="delimiter">"</span></span>, name, <span class="string"><span class="delimiter">"</span><span class="content">...</span><span class="delimiter">"</span></span>);
           process.sendfile(name, image);
         }
         bot.led.turnOff();

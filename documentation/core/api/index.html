@@ -255,7 +255,12 @@
             <div class="api">
               <h1 id="how-to-connect-with-the-api">How To Connect with the API</h1>
               
-              <p>Cylon.js comes with a built-in API server so, you can view details about your robots and control them from anywhere.</p>
+              <p>Cylon's HTTP API plugin can be used to interact with your robots remotely.</p>
+              
+              <p>To use it, install it alongside Cylon:</p>
+              
+              <pre class="CodeRay">$ npm install cylon-api-http
+</pre>
               
               <h3 id="running-your-robot">Running your robot:</h3>
               
@@ -279,9 +284,7 @@ Cylon.robot({
 }).start();
 </pre>
               
-              <p>By default, an unconfigured API instance will listen on
-              <code>https://127.0.0.1:3000</code>, using a self-signed cert and with no
-              authentication.</p>
+              <p>By default, an unconfigured API instance will listen on <code>https://127.0.0.1:3000</code>, using a self-signed cert and with no authentication.</p>
               
               <p>For more information API configuration, see the <a href="/documentation/configuration">configuration page</a>.</p>
               

@@ -253,23 +253,26 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="comment">// jshint maxlen:false</span>
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> }
+    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">ir</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ir-attx4</span><span class="delimiter">'</span></span> }
+    <span class="key">ir</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ir-attx4</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.ir.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+    my.ir.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
-    my.ir.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.ir.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Received RX Data: </span><span class="delimiter">"</span></span>, data);
     });
 
@@ -283,6 +286,7 @@ Cylon.robot({
       *********************************************/</span>
       <span class="comment">// Make a buffer of on/off durations (each duration is 16 bits)</span>
       <span class="keyword">var</span> powerBuffer = <span class="keyword">new</span> Buffer([<span class="integer">0</span>, <span class="integer">178</span>, <span class="integer">255</span>, <span class="integer">168</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">225</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">225</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">247</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">246</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">13</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>, <span class="integer">255</span>, <span class="integer">224</span>, <span class="integer">0</span>, <span class="integer">12</span>]);
+
       <span class="comment">// Send the signal at 38 kHz</span>
       my.ir.sendRawSignal(<span class="integer">38</span>, powerBuffer, <span class="keyword">function</span>(err) {
         <span class="keyword">if</span> (err) {

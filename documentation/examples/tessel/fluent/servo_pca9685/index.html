@@ -253,17 +253,19 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection({ <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> })
-  .device({ <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">servo-pca9685</span><span class="delimiter">'</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .connection({ <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> })
+  .device({ <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">servo-pca9685</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     <span class="keyword">var</span> servo1 = <span class="integer">1</span>; <span class="comment">// We have a servo plugged in at position 1</span>
-    <span class="keyword">var</span> position = <span class="integer">0</span>;  <span class="comment">//  Target position of the servo between 0 (min) and 1 (max).</span>
+    <span class="keyword">var</span> position = <span class="integer">0</span>;  <span class="comment">// Target position of the servo between 0 and 1.</span>
 
-    bot.servo.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+    bot.servo.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
@@ -274,7 +276,7 @@ Cylon
     <span class="comment">//  Moving them apart = more range, more likely to stall and burn out</span>
     bot.servo.configure(servo1, <span class="float">0.05</span>, <span class="float">0.12</span>, <span class="keyword">function</span> () {
       setInterval(<span class="keyword">function</span>() {
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Position (in range 0-1):</span><span class="delimiter">'</span></span>, position);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Position (in range 0-1):</span><span class="delimiter">"</span></span>, position);
         <span class="comment">//  Set servo #1 to position pos.</span>
         bot.servo.move(servo1, position);
 

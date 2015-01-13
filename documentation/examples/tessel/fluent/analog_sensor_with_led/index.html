@@ -253,14 +253,16 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">GPIO</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">G4</span><span class="delimiter">"</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">sensor</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">analogSensor</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">A6</span><span class="delimiter">"</span></span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">GPIO</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">G4</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">sensor</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">analogSensor</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">A6</span><span class="delimiter">"</span></span> })
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     setInterval(<span class="keyword">function</span>() {
       <span class="keyword">var</span> val = bot.sensor.analogRead().fromScale(<span class="integer">0</span>, <span class="integer">1024</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>) | <span class="integer">0</span>;
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">brightness: </span><span class="delimiter">"</span></span>, val);

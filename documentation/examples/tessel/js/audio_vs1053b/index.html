@@ -253,57 +253,59 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
-    <span class="key">tessel_A</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> },
+    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span> },
+    <span class="key">tessel_A</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> },
   },
 
   <span class="key">devices</span>: {
-    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">config</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span> },
-    <span class="key">audio</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">audio-vs1053b</span><span class="delimiter">'</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel_A</span><span class="delimiter">'</span></span> },
+    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">button</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">config</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span> },
+    <span class="key">audio</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">audio-vs1053b</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel_A</span><span class="delimiter">"</span></span> },
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> chunks = [];
     <span class="keyword">var</span> recording = <span class="predefined-constant">false</span>;
 
-    my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+    my.audio.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
     <span class="comment">// When we get data, push it into our array</span>
-    my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.audio.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       chunks.push(data);
     });
 
-    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Hold the config button to record...</span><span class="delimiter">'</span></span>);
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hold the config button to record...</span><span class="delimiter">"</span></span>);
 
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    my.button.on(<span class="string"><span class="delimiter">"</span><span class="content">push</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       <span class="comment">// Tell the audio module to start recording</span>
       <span class="keyword">if</span> (!recording) {
-        my.audio.startRecording(<span class="string"><span class="delimiter">'</span><span class="content">voice</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(err) {
+        my.audio.startRecording(<span class="string"><span class="delimiter">"</span><span class="content">voice</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err) {
           <span class="keyword">if</span> (err) {
             console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error while startRecording: </span><span class="delimiter">"</span></span>, err);
           }
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Recording...</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Recording...</span><span class="delimiter">"</span></span>);
           recording = <span class="predefined-constant">true</span>;
         });
       }
     });
 
     <span class="comment">// Once the button is released, stop recording</span>
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">release</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
+    my.button.on(<span class="string"><span class="delimiter">"</span><span class="content">release</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       <span class="comment">// Tell the audio module to stop recording</span>
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">stopping the recording...</span><span class="delimiter">'</span></span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">stopping the recording...</span><span class="delimiter">"</span></span>);
       recording = <span class="predefined-constant">false</span>;
       my.audio.stopRecording(<span class="keyword">function</span>(err) {
         <span class="keyword">if</span> (err) {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error while stopRecording: </span><span class="delimiter">"</span></span>, err);
         }
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing it back...</span><span class="delimiter">'</span></span>);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Playing it back...</span><span class="delimiter">"</span></span>);
         <span class="comment">// Concat the data and play it</span>
         my.audio.play(Buffer.concat(chunks), <span class="keyword">function</span>(err) {
           <span class="keyword">if</span> (err) {
@@ -311,7 +313,7 @@ Cylon.robot({
           }
           <span class="comment">// When we're done playing, clear recordings</span>
           chunks = [];
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">Hold the config button to record...</span><span class="delimiter">'</span></span>);
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hold the config button to record...</span><span class="delimiter">"</span></span>);
         });
       });
     });

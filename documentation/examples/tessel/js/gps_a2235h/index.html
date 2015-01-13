@@ -253,47 +253,52 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> }
+    <span class="key">tessel</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">gps</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">gps-a2235h</span><span class="delimiter">'</span></span> }
+    <span class="key">gps</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">gps-a2235h</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> satsInRange = <span class="integer">0</span>;
     <span class="keyword">var</span> satsFixed = <span class="integer">0</span>;
 
-    console.log(<span class="string"><span class="delimiter">'</span><span class="content">GPS module powered and ready. Waiting for satellites...</span><span class="delimiter">'</span></span>);
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">GPS module powered and ready. Waiting for satellites...</span><span class="delimiter">"</span></span>);
 
-    my.gps.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
     <span class="comment">// Emit coordinates when we get a coordinate fix</span>
-    my.gps.on(<span class="string"><span class="delimiter">'</span><span class="content">coordinates</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (coords) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Lat:</span><span class="delimiter">'</span></span>, coords.lat, <span class="string"><span class="delimiter">'</span><span class="content">\t</span><span class="content">Lon:</span><span class="delimiter">'</span></span>, coords.lon, <span class="string"><span class="delimiter">'</span><span class="content">\t</span><span class="content">Timestamp:</span><span class="delimiter">'</span></span>, coords.timestamp);
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">coordinates</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (c) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lat:</span><span class="delimiter">"</span></span>, c.lat, <span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Lon:</span><span class="delimiter">"</span></span>, c.lon, <span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Timestamp:</span><span class="delimiter">"</span></span>, c.timestamp);
     });
 
     <span class="comment">// Emit altitude when we get an altitude fix</span>
-    my.gps.on(<span class="string"><span class="delimiter">'</span><span class="content">altitude</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (alt) {
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Got an altitude of</span><span class="delimiter">'</span></span>, alt.alt, <span class="string"><span class="delimiter">'</span><span class="content">meters (timestamp: </span><span class="delimiter">'</span></span> + alt.timestamp + <span class="string"><span class="delimiter">'</span><span class="content">)</span><span class="delimiter">'</span></span>);
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">altitude</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (alt) {
+      <span class="keyword">var</span> a = alt.alt,
+          t = alt.timestamp;
+
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Got an altitude of</span><span class="delimiter">"</span></span>, a, <span class="string"><span class="delimiter">"</span><span class="content">meters (timestamp: </span><span class="delimiter">"</span></span> + t + <span class="string"><span class="delimiter">"</span><span class="content">)</span><span class="delimiter">"</span></span>);
     });
 
     <span class="comment">// Emitted whenever satellites are in view</span>
-    my.gps.on(<span class="string"><span class="delimiter">'</span><span class="content">satellite-list-partial</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (data) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">satellite-list-partial</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (data) {
       satsInRange = data.satsInView;
-      console.log(satsInRange, <span class="string"><span class="delimiter">'</span><span class="content">satellites in range,</span><span class="delimiter">'</span></span>, satsFixed, <span class="string"><span class="delimiter">'</span><span class="content">fixed.</span><span class="delimiter">'</span></span>);
+      console.log(satsInRange, <span class="string"><span class="delimiter">"</span><span class="content">satellites in range,</span><span class="delimiter">"</span></span>, satsFixed, <span class="string"><span class="delimiter">"</span><span class="content">fixed.</span><span class="delimiter">"</span></span>);
     });
 
     <span class="comment">// Emitted when we have information about a fix on satellites</span>
-    my.gps.on(<span class="string"><span class="delimiter">'</span><span class="content">fix</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (data) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">fix</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (data) {
       satsFixed = data.numSat;
-      console.log(satsInRange, <span class="string"><span class="delimiter">'</span><span class="content">satellites in range,</span><span class="delimiter">'</span></span>, satsFixed, <span class="string"><span class="delimiter">'</span><span class="content">fixed.</span><span class="delimiter">'</span></span>);
+      console.log(satsInRange, <span class="string"><span class="delimiter">"</span><span class="content">satellites in range,</span><span class="delimiter">"</span></span>, satsFixed, <span class="string"><span class="delimiter">"</span><span class="content">fixed.</span><span class="delimiter">"</span></span>);
     });
   }
 }).start();

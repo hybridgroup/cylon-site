@@ -253,15 +253,17 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/tty.usbmodem1421</span><span class="delimiter">'</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1421</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">mpu6050</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">mpu6050</span><span class="delimiter">'</span></span> }
+    <span class="key">mpu6050</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">mpu6050</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {

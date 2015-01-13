@@ -262,7 +262,9 @@
             <p>Next up, we'll configure the API Cylon will serve, telling it to serve on port
             <code>8080</code>.</p>
             
-            <pre class="CodeRay">Cylon.api({ <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> });
+            <pre class="CodeRay"><span class="comment">// ensure you install the API plugin first:</span>
+<span class="comment">// $ npm install cylon-api-http</span>
+Cylon.api({ <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">8080</span><span class="delimiter">'</span></span> });
 </pre>
             
             <p>Now that we have Cylon imported, we can start defining our Pebble robot:</p>

@@ -343,7 +343,23 @@ Cylon.start();
               
               <h2 id="how-to-connect">How to Connect</h2>
               
-              <p>Plug your USB joystick or game controller into your USB port. If your device is supported by SDL, you are now ready.</p>
+              <p>Plug your USB joystick or game controller into your USB port.
+              If your device is supported by SDL, you are now ready.</p>
+              
+              <h2 id="cylon-joystick-explorer"><code>cylon-joystick-explorer</code></h2>
+              
+              <p><code>cylon-joystick</code> includes the <code>cylon-joystick-explorer</code> binary.
+              It's useful for figuring out what compatible gamepads you have connected, as well as making it easier to generate custom bindings JSON files.</p>
+              
+              <p>For best use, install <code>cylon-joystick</code> globally:</p>
+              
+              <pre class="CodeRay">$ npm install -g cylon-joystick
+</pre>
+              
+              <p>Then just run the command:</p>
+              
+              <pre class="CodeRay">$ cylon-joystick-explorer
+</pre>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

@@ -253,25 +253,27 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">climate</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">climate-si7005</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">climate</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">climate-si7005</span><span class="delimiter">"</span></span> })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.climate.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.climate.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
     setInterval(<span class="keyword">function</span>() {
       bot.climate.readHumidity(<span class="keyword">function</span> (err, humid) {
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Humidity:</span><span class="delimiter">'</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">%RH</span><span class="delimiter">'</span></span>);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Humidity:</span><span class="delimiter">"</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">"</span><span class="content">%RH</span><span class="delimiter">"</span></span>);
       });
 
-      bot.climate.readTemperature(<span class="string"><span class="delimiter">'</span><span class="content">f</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err, temp) {
-        console.log(<span class="string"><span class="delimiter">'</span><span class="content">Degrees:</span><span class="delimiter">'</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">'</span><span class="content">F</span><span class="delimiter">'</span></span>);
+      bot.climate.readTemperature(<span class="string"><span class="delimiter">"</span><span class="content">f</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err, temp) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Degrees:</span><span class="delimiter">"</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">"</span><span class="content">F</span><span class="delimiter">"</span></span>);
       });
     }, <span class="integer">1000</span>);
   });

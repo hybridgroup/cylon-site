@@ -253,19 +253,22 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="comment">// jshint maxlen:false</span>
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">tessel</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">A</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">ir</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ir-attx4</span><span class="delimiter">'</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">tessel</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">A</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">ir</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ir-attx4</span><span class="delimiter">"</span></span> })
 
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    bot.ir.on(<span class="string"><span class="delimiter">'</span><span class="content">error</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (err) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
+    bot.ir.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
       console.log(err);
     });
 
-    bot.ir.on(<span class="string"><span class="delimiter">'</span><span class="content">data</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    bot.ir.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Received RX Data: </span><span class="delimiter">"</span></span>, data);
     });
 
@@ -287,8 +290,8 @@ Cylon
         }
 
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Signal sent!</span><span class="delimiter">"</span></span>);
-        });
-      }, <span class="integer">3000</span>);
+      });
+    }, <span class="integer">3000</span>);
   });
 
 Cylon.start();
