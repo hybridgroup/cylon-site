@@ -1,0 +1,42 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - led-brightness"
+page_title: "Example: led-brightness"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-imp/tree/master/examples/led-brightness' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            imp: {
+              adaptor: "imp",
+              agentUrl: "https://agent.electricimp.com/79QYWvoV21bu"
+            }
+          },
+
+          device: { name: "led", driver: "led", pin: 1 },
+
+          work: function(my){
+            var brightness = 0;
+            var fade = 20;
+
+            every((1).seconds(), function(){
+              brightness += fade;
+              brightness = (brightness > 255) ? 255 : brightness;
+              brightness = (brightness < 0) ? 0 : brightness;
+
+              my.led.brightness(brightness);
+
+              fade = ((brightness === 0) || (brightness === 255)) ? -fade : fade;
+            });
+          }
+        }).start();

@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - blink"
+page_title: "Example: blink"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-imp/tree/master/examples/blink' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            imp: {
+              adaptor: "imp",
+              agentUrl: "https://agent.electricimp.com/79QYWvoV21bu"
+            }
+          },
+
+          devices: {
+            led: { driver: "led", pin: 1 }
+          },
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.led.toggle();
+            });
+          }
+        }).start();

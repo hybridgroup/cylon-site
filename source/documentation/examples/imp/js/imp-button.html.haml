@@ -1,0 +1,49 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - imp-button"
+page_title: "Example: imp-button"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-imp/tree/master/examples/imp-button' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            imp: {
+              adaptor: "imp",
+              agentUrl: "https://agent.electricimp.com/79QYWvoV21bu",
+            }
+          },
+
+          devices: {
+            led: { driver: "led", pin: "1" },
+            button: { driver: "button", pin: "2" }
+          },
+
+          work: function(my) {
+            my.button.on("release", function(err, data) {
+              console.log("err ->", err);
+              console.log("data ->", data);
+              console.log("Button released:");
+            });
+
+            my.button.on("press", function(err, data) {
+              console.log("err ->", err);
+              console.log("data ->", data);
+              console.log("Button pressed:");
+            });
+
+            my.button.on("push", function() {
+              console.log("Button pushed:");
+              my.led.toggle();
+            });
+          }
+        }).start();

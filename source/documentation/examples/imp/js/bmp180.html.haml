@@ -1,0 +1,80 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - bmp180"
+page_title: "Example: bmp180"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-imp/tree/master/examples/bmp180' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            imp: {
+              adaptor: "imp",
+              agentUrl: "https://agent.electricimp.com/79QYWvoV21bu",
+            }
+          },
+
+          devices: {
+            bmp180: { driver:"bmp180" }
+          },
+
+          work: function(my) {
+            my.bmp180.getTemperature(function(err, val) {
+              if(err) {
+                console.log(err);
+              } else {
+                console.log("getTemperature call:");
+                console.log("\tTemp: " + val.temp + " C");
+              }
+            });
+
+            after((1).seconds(), function() {
+              console.log("reading pressure --->");
+              my.bmp180.getPressure(1, function(err, val) {
+                if(err) {
+                  console.log(err);
+                } else {
+                  console.log("getPressure call:");
+                  console.log("\tTemperature: " + val.temp + " C");
+                  console.log("\tPressure: " + val.press + " Pa");
+                }
+              });
+            });
+
+            after((2).seconds(), function() {
+              my.bmp180.getAltitude(1, null, function(err, val) {
+                if(err) {
+                  console.log(err);
+                } else {
+                  console.log("getAltitude call:");
+                  console.log("\tTemperature: " + val.temp + " C");
+                  console.log("\tPressure: " + val.press + " Pa");
+                  console.log("\tAltitude: " + val.alt + " m");
+                }
+              });
+            });
+
+            every(2000, function() {
+              my.bmp180.getAltitude(1, null, function(err, val) {
+                if(err) {
+                  console.log(err);
+                } else {
+                  console.log("getAltitude call:");
+                  console.log("\tTemperature: " + val.temp + " C");
+                  console.log("\tPressure: " + val.press + " Pa");
+                  console.log("\tAltitude: " + val.alt + " m");
+                }
+              });
+            });
+
+          }
+        }).start();

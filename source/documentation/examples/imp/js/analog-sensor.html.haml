@@ -1,0 +1,54 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog-sensor"
+page_title: "Example: analog-sensor"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-imp/tree/master/examples/analog-sensor' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            imp: {
+              adaptor: "imp",
+              agentUrl: "https://agent.electricimp.com/79QYWvoV21bu"
+            }
+          },
+
+          devices: {
+            sensor: {
+              driver: "analog-sensor",
+              pin: 2,
+              lowerLimit: 10000,
+              upperLimit: 50000
+            }
+          },
+
+          work: function(my) {
+
+            var analogValue = 0;
+
+            every((1).second(), function() {
+              analogValue = my.sensor.analogRead();
+              console.log("Analog value => ", analogValue);
+            });
+
+            my.sensor.on("lowerLimit", function(val) {
+              console.log("Lower limit reached!");
+              console.log("Analog value => ", val);
+            });
+
+            my.sensor.on("upperLimit", function(val) {
+              console.log("Upper limit reached!");
+              console.log("Analog value => ", val);
+            });
+          }
+        }).start();
