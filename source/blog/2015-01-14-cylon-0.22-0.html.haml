@@ -1,0 +1,76 @@
+---
+page_title_show: true
+title: "Cylon 0.22.0 is out!"
+page_title: Blog
+date: 2015-01-14
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+:markdown
+  Happy New Year, everyone!
+  We hope you had an amazing holiday season.
+
+  This release of Cylon.JS is focused on slimming down core and stabilizing some features.
+
+  As always, you can check out the [compare view][] on GitHub.
+
+  ## Updates for Application Develoeprs
+
+  - **New `device` syntax:** - to simplify associations between devices and connections, and to support an upcoming projects, the following syntax is now valid:
+
+        :::javascript
+        // these are equivalent
+        Cylon.robot({
+          connections: {
+            leap: { adaptor: 'leapmotion' },
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13, connection: 'arduino' },
+            button: { driver: 'button', pin: 9,  connection: 'arduino' }
+          }
+        });
+
+        Cylon.robot({
+          connections: {
+            leap: { adaptor: 'leapmotion' },
+
+            arduino: {
+              adaptor: 'firmata',
+              port: '/dev/ttyACM0',
+
+              devices: {
+                led:    { driver: 'led', pin: 13 },
+                button: { driver: 'button', pin: 9 }
+              }
+            }
+          }
+        });
+
+  - **API no longer default::** - Cylon's built-in API has been extracted out into the [cylon-api-http][] plugin.
+  We think this is a better fit for most users, since it dramatically reduces the number of dependencies Cylon has.
+  This also opens up support for additional Cylon API plugins down the road.
+
+  [cylon-api-http]:  https://github.com/hybridgroup/cylon-api-http
+
+  - **Smaller install:** - The removal of the API, combined with a few other changes, dramatically slims down the size of a Cylon.JS install.
+  Our absolutely un-scientific estimates show a size drop of several megabytes, from **4.1MB** down to **320kb**.
+  This space savings is cumulative, as `cylon-*` modules also include their own version of Cylon for internal use.
+  It also makes it easier to install Cylon on smaller hardware devices with less storage.
+
+  ## Updates For Platform Developers
+
+  - **JSHint:** - we've added stricter JSHint rules to the Cylon repos, along with CI enforcement.
+  This should help enforce code quality in the future, and catch more obvious bugs before they make it into a release.
+
+  ## Check us out at SCALE 13x
+
+  We'll be at SCALE 13x at the Hilton Los Angeles Airport, showing off Cylon.JS.
+  Come say hi!
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [@CylonJS]: https://twitter.com/CylonJS
+  [compare view]: https://github.com/hybridgroup/cylon/compare/v0.21.1...v0.22.0
