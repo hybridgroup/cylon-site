@@ -39,7 +39,7 @@
   - **freq** (<code>Number</code>) Frequency for the PWM write
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
@@ -59,7 +59,7 @@
   - **pin** (<code>Number</code>) The pin number to read from
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
@@ -79,7 +79,7 @@
   - **pin** (<code>Number</code>) The pin number to read from
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
@@ -105,7 +105,7 @@
   - **freq** (<code>Number</code>) Frequency for the PWM write
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
@@ -125,13 +125,13 @@
   - **address** (<code>Number</code>) Address for the I2C device in the bus line
 
 
-  - **command** (<a href="Byte.html">Byte</a>) Write command to be written to the I2C device 1byte = 8bit (0xFF)
+  - **command** (<a href="Byte.html">Byte</a>) command to be written to the device 1byte = 8bit (0xFF)
 
 
-  - **buffer** (<code>Array</code>) Array of bytes to be written to the bus [0xFF, 0x00, 0xFF ...]
+  - **buffer** (<code>Array</code>.&lt;<a href="Byte.html">Byte</a>&gt;) bytes to be written to the bus [0xFF, 0x00, 0xFF ...]
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
@@ -151,13 +151,13 @@
   - **address** (<code>Number</code>) Address for the I2C device in the bus line
 
 
-  - **command** (<a href="Byte.html">Byte</a>) Read command to be written to the I2C device 1byte = 8bit (0xFF)
+  - **command** (<a href="Byte.html">Byte</a>) command to be written to the device 1byte = 8bit (0xFF)
 
 
   - **bytes** (<code>Number</code>) Amount of bytes to be read from the I2C device
 
 
-  - **callback** (<code>Function</code>) Callback to be triggered when done, gets passed (err, data)
+  - **callback** (<code>Function</code>) triggered when done, passed (err, data)
 
 
   ### Returns
