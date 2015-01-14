@@ -33,183 +33,183 @@ var templates = (function() {
 
 var examples = {};
 
-repoCloner();
+repoCloner(function() {
+  console.log("Clearing out existing imported examples.");
 
-console.log("Clearing out existing imported examples.");
-
-_.each(glob(dirs.dest + "/*"), function(d) {
-  if (fs.lstatSync(d).isDirectory()) {
-    fs.removeSync(d);
-  }
-});
-fs.ensureDirSync(dirs.dest);
-
-console.log("Finding files.");
-
-_.each(repos, function(repo) {
-  var dir = dirs.clone + "/" + repo;
-  var files = _.reject(
-    glob(dir + "/examples/*/*.js"),
-    function(file) { return /fluent/.test(path.basename(file)); }
-  );
-
-  examples[repo] = files;
-});
-
-console.log("Extracting examples.");
-
-_.forIn(examples, function(files, repo) {
-
-  if (!files.length) {
-    return;
-  }
-
-  var slug = (repo === "cylon") ? repo : repo.replace(/^cylon-/, '');
-
-  var dest = dirs.dest + "/" + slug + "/",
-      partialPath = dirs.dest + "/partials/" + "_" + slug + ".html.haml";
-
-  var partial = [
-    "%h2 #{name}",
-    "%table",
-    "  %thead",
-    "    %th Example",
-    "    %th.links{:colspan => '3'} Links",
-    "  %tbody\n"
-  ].join("\n");
-
-  _.each(files, function(filename) {
-    var basename = path.basename(filename, ".js"),
-        fluent = filename.replace(basename + ".js", "fluent-" + basename + ".js"),
-        annotated = filename.replace(".js", ".markdown");
-
-    var filenames = {
-      base: filename,
-      fluent: filename.replace(basename + ".js", "fluent-" + basename + ".js"),
-      annotated: filename.replace(".js", ".markdown")
-    };
-
-    var dests = {
-      base: dest + "js/" + basename + ".html.haml",
-      fluent: dest + "fluent/" + basename + ".html.haml",
-      annotated: dest + "annotated/" + basename + ".html.haml"
-    };
-
-    var contents = (function() {
-      var ret = {};
-
-      _.forIn(filenames, function(name, type) {
-        if (fs.existsSync(name)) {
-          ret[type] = fs
-            .readFileSync(name, "utf8")
-            .toString()
-            .replace("../..", "cylon");
-
-          if (type !== "annotated") {
-            ret[type] = ret[type].replace(/^(.+)/gm, "        $1");
-          } else {
-            ret[type] = ret[type].replace(/^(.+)/gm, "  $1");
-          }
-        } else {
-          ret[type] = false;
-        }
-      });
-
-      return ret;
-    })();
-
-    var title = (function() {
-      if (contents.annotated) {
-        return contents.annotated
-          .split("\n")[0]
-          .replace(/#/, "")
-          .trim()
-      } else {
-        return basename;
-      }
-    })();
-
-    _.forIn(contents, function(body, type) {
-
-      if (!body) {
-        return;
-      }
-
-      var content = [
-        "---",
-        "layout: documentation",
-        "page_title_show: true",
-        "title: \"Cylon.JS Example - " + title + "\"",
-        "page_title: \"Example: " + title + "\"",
-        "author: The Hybrid Group",
-        "description: A Cylon.JS code example",
-        "page_subtitle: \"<a href='https://github.com/hybridgroup/" + repo + "/tree/master/examples/" + basename + "' target='_blank'>View In Repo</a>\"",
-        "active_menu_docs: true",
-        "---\n"
-      ].join("\n");
-
-      if (type === "base" || type === "fluent") {
-        // basic or fluent example
-        content += [
-          ".example",
-          "  :markdown",
-          "        :::javascript",
-          body
-        ].join("\n");
-      } else {
-        // annotated example
-
-        var indented_code_regex = new RegExp([
-          "(\r?\n)",              // $1: CODE must be preceded by blank line
-          "(",                    // $2: CODE contents
-            "(?:",                // Group for multiple lines of code.
-              "(?:\r?\n)+",       // Each line preceded by a newline,
-              "(?:[ ]{4}|\t).*",  // and begins with four spaces or tab.
-            ")+",                 // One or more CODE lines
-            "\r?\n",              // CODE folowed by blank line.
-          ")",                    // End $2: CODE contents
-          "(?=\r?\n)?"            // CODE folowed by blank line.
-        ].join(''), "gm");
-
-        body = body.replace(indented_code_regex, function(code) {
-          return code.replace(/^\n+/, "\n\n      :::javascript\n")
-        });
-
-        content += [
-          ":markdown",
-          body
-        ].join("\n");
-      }
-
-      fs.ensureFileSync(dests[type]);
-      fs.writeFileSync(dests[type], content);
-    });
-
-    // continue constructing partial
-    var base = "/documentation/examples/" + slug;
-
-    var string = [
-      "%tr",
-      "  %td " + title,
-      "  %td.links= link_to 'Code', '" + base + "/js/" + basename + "'\n"
-    ].join("\n");
-
-    if (contents.fluent) {
-      string += "  %td.links= link_to 'Fluent JS', '" + base + "/fluent/" + basename +"'\n"
-    } else {
-      string += "  %td.links\n"
+  _.each(glob(dirs.dest + "/*"), function(d) {
+    if (fs.lstatSync(d).isDirectory()) {
+      fs.removeSync(d);
     }
+  });
+  fs.ensureDirSync(dirs.dest);
 
-    if (contents.annotated) {
-      string += "  %td.links= link_to 'Annotated Code', '" + base + "/annotated/" + basename + "'\n"
-    } else {
-      string += "  %td.links\n"
-    }
+  console.log("Finding files.");
 
-    string = string.replace(/^(.+)/gm, "    $1")
-    partial += string
+  _.each(repos, function(repo) {
+    var dir = dirs.clone + "/" + repo;
+    var files = _.reject(
+      glob(dir + "/examples/*/*.js"),
+      function(file) { return /fluent/.test(path.basename(file)); }
+    );
+
+    examples[repo] = files;
   });
 
-  fs.ensureFileSync(partialPath);
-  fs.writeFileSync(partialPath, partial);
+  console.log("Extracting examples.");
+
+  _.forIn(examples, function(files, repo) {
+
+    if (!files.length) {
+      return;
+    }
+
+    var slug = (repo === "cylon") ? repo : repo.replace(/^cylon-/, '');
+
+    var dest = dirs.dest + "/" + slug + "/",
+        partialPath = dirs.dest + "/partials/" + "_" + slug + ".html.haml";
+
+    var partial = [
+      "%h2 #{name}",
+      "%table",
+      "  %thead",
+      "    %th Example",
+      "    %th.links{:colspan => '3'} Links",
+      "  %tbody\n"
+    ].join("\n");
+
+    _.each(files, function(filename) {
+      var basename = path.basename(filename, ".js"),
+          fluent = filename.replace(basename + ".js", "fluent-" + basename + ".js"),
+          annotated = filename.replace(".js", ".markdown");
+
+      var filenames = {
+        base: filename,
+        fluent: filename.replace(basename + ".js", "fluent-" + basename + ".js"),
+        annotated: filename.replace(".js", ".markdown")
+      };
+
+      var dests = {
+        base: dest + "js/" + basename + ".html.haml",
+        fluent: dest + "fluent/" + basename + ".html.haml",
+        annotated: dest + "annotated/" + basename + ".html.haml"
+      };
+
+      var contents = (function() {
+        var ret = {};
+
+        _.forIn(filenames, function(name, type) {
+          if (fs.existsSync(name)) {
+            ret[type] = fs
+              .readFileSync(name, "utf8")
+              .toString()
+              .replace("../..", "cylon");
+
+            if (type !== "annotated") {
+              ret[type] = ret[type].replace(/^(.+)/gm, "        $1");
+            } else {
+              ret[type] = ret[type].replace(/^(.+)/gm, "  $1");
+            }
+          } else {
+            ret[type] = false;
+          }
+        });
+
+        return ret;
+      })();
+
+      var title = (function() {
+        if (contents.annotated) {
+          return contents.annotated
+            .split("\n")[0]
+            .replace(/#/, "")
+            .trim()
+        } else {
+          return basename;
+        }
+      })();
+
+      _.forIn(contents, function(body, type) {
+
+        if (!body) {
+          return;
+        }
+
+        var content = [
+          "---",
+          "layout: documentation",
+          "page_title_show: true",
+          "title: \"Cylon.JS Example - " + title + "\"",
+          "page_title: \"Example: " + title + "\"",
+          "author: The Hybrid Group",
+          "description: A Cylon.JS code example",
+          "page_subtitle: \"<a href='https://github.com/hybridgroup/" + repo + "/tree/master/examples/" + basename + "' target='_blank'>View In Repo</a>\"",
+          "active_menu_docs: true",
+          "---\n"
+        ].join("\n");
+
+        if (type === "base" || type === "fluent") {
+          // basic or fluent example
+          content += [
+            ".example",
+            "  :markdown",
+            "        :::javascript",
+            body
+          ].join("\n");
+        } else {
+          // annotated example
+
+          var indented_code_regex = new RegExp([
+            "(\r?\n)",              // $1: CODE must be preceded by blank line
+            "(",                    // $2: CODE contents
+              "(?:",                // Group for multiple lines of code.
+                "(?:\r?\n)+",       // Each line preceded by a newline,
+                "(?:[ ]{4}|\t).*",  // and begins with four spaces or tab.
+              ")+",                 // One or more CODE lines
+              "\r?\n",              // CODE folowed by blank line.
+            ")",                    // End $2: CODE contents
+            "(?=\r?\n)?"            // CODE folowed by blank line.
+          ].join(''), "gm");
+
+          body = body.replace(indented_code_regex, function(code) {
+            return code.replace(/^\n+/, "\n\n      :::javascript\n")
+          });
+
+          content += [
+            ":markdown",
+            body
+          ].join("\n");
+        }
+
+        fs.ensureFileSync(dests[type]);
+        fs.writeFileSync(dests[type], content);
+      });
+
+      // continue constructing partial
+      var base = "/documentation/examples/" + slug;
+
+      var string = [
+        "%tr",
+        "  %td " + title,
+        "  %td.links= link_to 'Code', '" + base + "/js/" + basename + "'\n"
+      ].join("\n");
+
+      if (contents.fluent) {
+        string += "  %td.links= link_to 'Fluent JS', '" + base + "/fluent/" + basename +"'\n"
+      } else {
+        string += "  %td.links\n"
+      }
+
+      if (contents.annotated) {
+        string += "  %td.links= link_to 'Annotated Code', '" + base + "/annotated/" + basename + "'\n"
+      } else {
+        string += "  %td.links\n"
+      }
+
+      string = string.replace(/^(.+)/gm, "    $1")
+      partial += string
+    });
+
+    fs.ensureFileSync(partialPath);
+    fs.writeFileSync(partialPath, partial);
+  });
 });

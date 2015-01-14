@@ -1,64 +1,88 @@
+// jshint node:true
 "use strict";
 
-var path = require("path");
+var cluster = require("cluster"),
+    path = require("path"),
+    numberOfCores = require("os").cpus().length;
 
 var exec = require("shelljs").exec,
     fs = require("fs-extra"),
     _ = require("lodash");
 
-var repos = require("./repos.json");
-
-var stdout = process.stdout;
-
 var dir = path.resolve(__dirname, "./../../.import");
 
-function pad(str, length) {
-  return str.length < length ? pad(str + " ", length) : str;
-}
-
-console.log("Cloning repos.");
-
-var padding = _.max(
-  repos, function(s) { return s.length; }
-).length;
-
-var cwd = process.cwd();
-
-module.exports = function clone() {
-  _.each(repos, function(slug) {
-    var uri = "git://github.com/hybridgroup/" + slug + ".git",
-        dest = dir + "/" + slug;
-
-    if (!fs.existsSync(dest)) {
-      var cmd = "git clone " + uri + " " + dest;
-
-      stdout.write("\rCloning " + slug + "...");
-
-      var result = exec(cmd, { silent: true });
-
-      if (result.code !== 0) {
-        console.log("\nError during 'git clone': " + result.output);
-        process.exit(1);
-      }
-    } else {
-      process.chdir(dest);
-
-      stdout.write("\rUpdating " + slug + "...");
-
-      var cmd = "git fetch && git reset --hard origin/master";
-
-      var result = exec(cmd, { silent: true });
-
-      process.chdir(cwd);
-
-      if (result.code !== 0) {
-        console.log("\nError during 'git fetch': " + result.output);
-        process.exit(1);
-      }
-    }
-
-    stdout.write("\r" + pad("", padding + 11) + "\r");
+if (cluster.isMaster) {
+  cluster.setupMaster({
+    exec: __dirname + "/repo-cloner.js"
   });
 
-  return true;
-}
+  module.exports = function(callback) {
+    var repos = require("./repos").slice();
+
+    console.log("Cloning/updating repos.");
+
+    var updateWorker = function(worker) {
+      if (repos.length) {
+        worker.send({ repo: repos.shift() });
+        return;
+      }
+
+      worker.kill();
+
+      // fully shutdown, trigger callback if we're done
+      if (!_.keys(cluster.workers).length) {
+        cluster.disconnect(callback);
+      }
+    };
+
+    _.times(numberOfCores, cluster.fork);
+
+    cluster.on("online", updateWorker);
+
+    _.forIn(cluster.workers, function(worker, id) {
+      worker.on("message", function(msg) {
+        if (msg === "done") {
+          updateWorker(worker);
+          return;
+        }
+      });
+    });
+  }
+} else {
+  var wid = cluster.worker.id;
+
+  process.on("message", function(msg) {
+    if (msg.repo) {
+      var repo = msg.repo,
+          cmd,
+          result;
+
+      var uri = "git://github.com/hybridgroup/" + repo + ".git",
+          dest = dir + "/" + repo;
+
+      if (!fs.existsSync(dest)) {
+        cmd = "git clone " + uri + " " + dest;
+
+        result = exec(cmd, { silent: true });
+
+        if (result.code !== 0) {
+          console.log("\nError during 'git clone': " + result.output);
+          process.exit(1);
+        }
+      } else {
+        process.chdir(dest);
+
+        cmd = "git fetch && git reset --hard origin/master";
+
+        result = exec(cmd, { silent: true });
+
+        if (result.code !== 0) {
+          console.log("\nError during 'git fetch': " + result.output);
+          process.exit(1);
+        }
+      }
+
+      process.send("done");
+    }
+  });
+  }
