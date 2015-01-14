@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: "Cylon 0.22.0 is out!"
+title: "Cylon 0.22.0 - A New Year's Release"
 page_title: Blog
 date: 2015-01-14
 tags: robots
@@ -15,9 +15,9 @@ active_menu_blog: true
 
   As always, you can check out the [compare view][] on GitHub.
 
-  ## Updates for Application Develoeprs
+  ## Updates for Application Developers
 
-  - **New `device` syntax:** - to simplify associations between devices and connections, and to support an upcoming projects, the following syntax is now valid:
+  - **New `device` syntax:** - to simplify associations between devices and connections, and to support some upcoming projects, the following syntax is now valid:
 
         :::javascript
         // these are equivalent
@@ -49,7 +49,7 @@ active_menu_blog: true
           }
         });
 
-  - **API no longer default::** - Cylon's built-in API has been extracted out into the [cylon-api-http][] plugin.
+  - **API no longer installed by default::** - Cylon's built-in API has been extracted out into the [cylon-api-http][] plugin.
   We think this is a better fit for most users, since it dramatically reduces the number of dependencies Cylon has.
   This also opens up support for additional Cylon API plugins down the road.
 
@@ -65,12 +65,14 @@ active_menu_blog: true
   - **JSHint:** - we've added stricter JSHint rules to the Cylon repos, along with CI enforcement.
   This should help enforce code quality in the future, and catch more obvious bugs before they make it into a release.
 
-  ## Check us out at SCALE 13x
+  ## New Platform Support
 
-  We'll be at SCALE 13x at the Hilton Los Angeles Airport, showing off Cylon.JS.
-  Come say hi!
+  Of course, any Cylon.js release would not be complete without some new and enhanced platform support. Since our last release, we've added support for the Electric Imp ([cylon-imp]), we've updated our support for AT&T's M2X to support their 2.0 release ([cylon-m2x]), and we've just added support for Intel's IoT Analytics ([cylon-intel-iot-analytics]). We will talk about the latter in more detail in an upcoming post.
 
-  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+  This is going to be an exciting year for us! For the latest updates, be sure to follow us on Twitter at [@CylonJS][].
 
   [@CylonJS]: https://twitter.com/CylonJS
   [compare view]: https://github.com/hybridgroup/cylon/compare/v0.21.1...v0.22.0
+  [cylon-imp]: https://github.com/hybridgroup/cylon-imp
+  [cylon-m2x]: https://github.com/hybridgroup/cylon-m2x
+  [cylon-intel-iot-analytics]: https://github.com/hybridgroup/cylon-intel-iot-analytics
