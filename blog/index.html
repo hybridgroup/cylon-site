@@ -89,6 +89,110 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    Jan
+                  </div>
+                  <div class="day">
+                    14
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2015
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2015/01/14/cylon-0.22-0/">Cylon 0.22.0 - A New Year's Release</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Andrew Stewart
+              </div>
+            </header>
+            <p>Happy New Year, everyone!
+            We hope you had an amazing holiday season.</p>
+            
+            <p>This release of Cylon.JS is focused on slimming down core and stabilizing some features.</p>
+            
+            <p>As always, you can check out the <a href="https://github.com/hybridgroup/cylon/compare/v0.21.1...v0.22.0">compare view</a> on GitHub.</p>
+            
+            <h2 id="updates-for-application-developers">Updates for Application Developers</h2>
+            
+            <ul>
+              <li>
+                <p><strong>New <code>device</code> syntax:</strong> - to simplify associations between devices and connections, and to support some upcoming projects, the following syntax is now valid:</p>
+            
+                <pre class="CodeRay"><span class="comment">// these are equivalent</span>
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">leap</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
+    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>,  <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
+  }
+});
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">leap</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> },
+
+    <span class="key">arduino</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>,
+      <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span>,
+
+      <span class="key">devices</span>: {
+        <span class="key">led</span>:    { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
+        <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span> }
+      }
+    }
+  }
+});
+</pre>
+              </li>
+              <li>
+                <p><strong>API no longer installed by default::</strong> - Cylon's built-in API has been extracted out into the <a href="https://github.com/hybridgroup/cylon-api-http">cylon-api-http</a> plugin.
+            We think this is a better fit for most users, since it dramatically reduces the number of dependencies Cylon has.
+            This also opens up support for additional Cylon API plugins down the road.</p>
+              </li>
+            </ul>
+            
+            <ul>
+              <li>
+<strong>Smaller install:</strong> - The removal of the API, combined with a few other changes, dramatically slims down the size of a Cylon.JS install.
+            Our absolutely un-scientific estimates show a size drop of several megabytes, from <strong>4.1MB</strong> down to <strong>320kb</strong>.
+            This space savings is cumulative, as <code>cylon-*</code> modules also include their own version of Cylon for internal use.
+            It also makes it easier to install Cylon on smaller hardware devices with less storage.</li>
+            </ul>
+            
+            <h2 id="updates-for-platform-developers">Updates For Platform Developers</h2>
+            
+            <ul>
+              <li>
+<strong>JSHint:</strong> - we've added stricter JSHint rules to the Cylon repos, along with CI enforcement.
+            This should help enforce code quality in the future, and catch more obvious bugs before they make it into a release.</li>
+            </ul>
+            
+            <h2 id="new-platform-support">New Platform Support</h2>
+            
+            <p>Of course, any Cylon.js release would not be complete without some new and enhanced platform support. Since our last release, we've added support for the Electric Imp (<a href="https://github.com/hybridgroup/cylon-imp">cylon-imp</a>), we've updated our support for AT&amp;T's M2X to support their 2.0 release (<a href="https://github.com/hybridgroup/cylon-m2x">cylon-m2x</a>), and we've just added support for Intel's IoT Analytics (<a href="https://github.com/hybridgroup/cylon-intel-iot-analytics">cylon-intel-iot-analytics</a>). We will talk about the latter in more detail in an upcoming post.</p>
+            
+            <p>This is going to be an exciting year for us! For the latest updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Nov
                   </div>
                   <div class="day">
@@ -112,6 +216,8 @@
             <p>Just in time for <a href="http://robotsconf.com">RobotsConf</a>, we've released Cylon 0.21.0!</p>
             
             <p>This release focuses on stability and simplifying some long-standing architecture concerns.</p>
+            
+            <p>As always, you can check out the <a href="https://github.com/hybridgroup/cylon/compare/v0.20.2...v0.21.0">compare view</a> on GitHub.</p>
             
             <h2 id="updates-for-application-developers">Updates For Application Developers</h2>
             
@@ -3267,6 +3373,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2015/01/14/cylon-0.22-0/">Cylon 0.22.0 - A New Year's Release</a></li>
               <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>
               <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>
               <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
