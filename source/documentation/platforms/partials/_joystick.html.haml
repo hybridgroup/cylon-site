@@ -51,14 +51,43 @@
               console.log("Right Stick - Y:", pos);
             });
           }
-        });
-
-        Cylon.start();
+        }).start();
 
     ## How to Connect
 
     Plug your USB joystick or game controller into your USB port.
     If your device is supported by SDL, you are now ready.
+
+    ## Custom joysticks
+
+    If you don't have one of the joysticks we support natively, or want to make changes to the configuration, `cylon-joystick` supports custom bindings.
+
+    To use a custom joystick with Cylon, simply supply the joystick bindings file when you're describing the device:
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        var config = __dirname + "/controller.json"
+
+        Cylon.robot({
+          connections: {
+            joystick: { adaptor: 'joystick' }
+          },
+
+          devices: {
+            controller: { driver: "joystick", config: config }
+          },
+
+          work: function(my) {
+            // your custom mappings will be reflected here as events
+          }
+        }).start();
+
+    A joystick bindings file needs to contain the device's `productID` and `vendorID`, as this is how cylon-joystick will find the appropriate device.
+
+    For an example of what a bindings file should look like, [here is the Xbox 360 controller bindings file we use][xbox-bindings].
+
+    [xbox-bindings]: https://github.com/hybridgroup/cylon-joystick/blob/master/lib/config/xbox_360.json
 
     ## `cylon-joystick-explorer`
 
