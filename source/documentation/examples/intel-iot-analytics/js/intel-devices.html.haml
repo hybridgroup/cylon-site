@@ -1,0 +1,41 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - intel-devices"
+page_title: "Example: intel-devices"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-intel-iot-analytics/tree/master/examples/intel-devices' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+
+          connections: {
+            "iot-analytics": {
+              adaptor: "intel-iot-analytics",
+              username: "username",
+              password: "password"
+            }
+          },
+
+          devices: {
+            iot: { driver: "iot" }
+          },
+
+          work: function(my) {
+            var aId = "f5dbea6a-7115-4f77-9919-63c23ec83d9b";
+            console.log("Connecting to IoT analytics:");
+            my.iot.devices(aId, function(err, devices) {
+              console.log("error:", err);
+              console.log("Devices:", devices);
+            });
+          }
+
+        }).start();
