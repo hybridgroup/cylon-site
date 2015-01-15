@@ -1,0 +1,113 @@
+---
+title: Cylon.js - Intel IoT Analytics Driver
+author: The Hybrid Group
+page_title: Drivers - Intel IoT Analytics
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Intel IoT Analytics
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/intel-iot-analytics.jpg", class: "display"
+  .info-intro
+    :markdown
+      Intel IoT Analytics is a cloud-based system designed for the Internet-of-Things (IoT). It includes resources for Intel Galileo/Edison device developers and provides easily acquirable data and analysis.
+
+      For more info on the Intel IoT Analytics platform click [here](https://software.intel.com/en-us/intel-iot-developer-kit-cloud-based-analytics-user-guide).
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+
+          connections: {
+            "iot-analytics": {
+              adaptor: "intel-iot-analytics",
+              username: "username",
+              password: "password"
+            }
+          },
+
+          devices: {
+            iot: { driver: "iot" }
+          },
+
+          work: function(my) {
+            var aId = "f5dbea6a-7115-4f77-9919-63c23ec83d9b";
+            var device = {
+              "deviceId": "raspi-01",
+              "gatewayId": "24-a5-80-21-5b-29",
+              "name": "Raspberry Pi 01",
+              "tags": ["raspi", "raspberry-pi", "cylon"],
+              "loc": [ 45.5434085, -122.654422, 124.3 ],
+              "attributes": {
+                  "vendor": "raspberry inc",
+                  "platform": "ARM",
+                  "os": "linux"
+              }
+            };
+
+            console.log("Connecting to IoT analytics:");
+            my.iot.createDevice(aId, device, function(err, res) {
+              console.log("error:", err);
+              console.log("New Device:", res);
+            });
+          }
+
+        }).start();
+
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+
+          connections: {
+            "iot-analytics": {
+              adaptor: "intel-iot-analytics",
+              username: "username",
+              password: "password"
+            }
+          },
+
+          devices: {
+            iot: { driver: "iot" }
+          },
+
+          work: function(my) {
+            var aId = "f5dbea6a-7115-4f77-9919-63c23ec83d9b";
+            console.log("Connecting to IoT analytics:");
+            my.iot.device(aId, "arduino-uno-id1", function(err, device) {
+              console.log("error:", err);
+              console.log("Device details:", device);
+            });
+          }
+
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-intel-iot-analytics/adaptor-commands"
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Intel IoT Analytics" }

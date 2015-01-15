@@ -1,0 +1,47 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - intel-update-component"
+page_title: "Example: intel-update-component"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-intel-iot-analytics/tree/master/examples/intel-update-component' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+
+          connections: {
+            "iot-analytics": {
+              adaptor: "intel-iot-analytics",
+              username: "edgar@hybridgroup.com",
+              password: "V0lvag1aIA"
+            }
+          },
+
+          devices: {
+            iot: { driver: "iot" }
+          },
+
+          work: function(my) {
+            var aId = "f5dbea6a-7115-4f77-9919-63c23ec83d9b";
+            var component ={
+              "format": "integer",
+              "min": -50,
+              "max": 9000
+            };
+
+            console.log("Connecting to IoT analytics:");
+            my.iot.updateComponent(aId, "altitute.v1.0", component, function(err, res) {
+              console.log("error:", err);
+              console.log("Component:", res);
+            });
+          }
+
+        }).start();
