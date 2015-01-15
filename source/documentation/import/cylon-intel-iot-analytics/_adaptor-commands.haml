@@ -1,0 +1,448 @@
+:markdown
+  ## accountInfo
+
+  Get account details
+  GET /accounts/<account_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## activationCode
+
+  Retrieve account activation code
+  GET /accounts/<account_id>/activationcode
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## refreshActivationCode
+
+  Forces the renewal of the account activation code
+  PUT /accounts/<account_id>/activationcode/refresh
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## devices
+
+  Get a list of devices
+  GET /accounts/<account_id>/devices
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the devices belong to
+
+
+  - **[filters]** (<code>String</code>) - Filter the list of devices
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## device
+
+  Get device details
+  GET /accounts/<account_id>/devices/<device_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **deviceId** (<code>String</code>) - The Id of the device
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## createDevice
+
+  Creates a new device
+  POST /accounts/<account_id>/devices
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to create the new device in
+
+
+  - **device** (<code>Object</code>) - The device
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## updateDevice
+
+  Update an existing device
+  POST /accounts/<account_id>/devices/<device_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be updated
+
+
+  - **device** (<code>Object</code>) - The device details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## activateDevice
+
+  Activate a existing device
+  POST /accounts/<account_id>/devices/<device_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be updated
+
+
+  - **device** (<code>Object</code>) - The device details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## deleteDevice
+
+  Delete a device
+  DELETE /accounts/<account_id>/devices/<device_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be deleted
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## addComponent
+
+  Add a componenent to a device
+  POST /accounts/<account_id>/devices/<device_id>/components
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be deleted
+
+
+  - **component** (<code>Object</code>) - The component to be added
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## removeComponent
+
+  Delete a componenent from a device
+  DELETE /accounts/<account_id>/devices/<device_id>/components/<cid>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device the component belongs to
+
+
+  - **componentId** (<code>String</code>) - The component to be deleted
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllTags
+
+  List all tags for devices
+  GET /accounts/<account_id>/devices/tags
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllAttrs
+
+  List all attributes for devices
+  GET /accounts/<account_id>/devices/attributes
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllComponents
+
+  List all componenets for an account
+  GET /accounts/<account_id>/cmpcatalog
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## component
+
+  Get component details
+  GET /accounts/<account_id>/cmpcatalog/<component_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **componentId** (<code>String</code>) - The component ID
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## createComponent
+
+  Creates a new custom component
+  POST /accounts/<account_id>/cmpcatalog
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## updateComponent
+
+  Update a custom component
+  POST /accounts/<account_id>/cmpcatalog/<cid>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **componentId** (<code>String</code>) - The component to be modified
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## submitData
+
+  Submit data to a devices component
+  POST /data/<device_id>
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **deviceId** (<code>String</code>) - The device we want to add data to
+
+
+  - **data** (<code>Array</code>) - Array of objects with component data details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## retrieveData
+
+  Retrieve data from device
+  POST /accounts/<account_id>/data/search
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **filters** (<code>Object</code>) - filters for the search
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)

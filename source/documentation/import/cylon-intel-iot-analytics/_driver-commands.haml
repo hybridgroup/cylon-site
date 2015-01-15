@@ -1,0 +1,432 @@
+:markdown
+  ## accountInfo
+
+  Get account details
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## activationCode
+
+  Retrieve account activation code
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## refreshActivationCode
+
+  Refresh account activation code
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## devices
+
+  Get a list of all devices
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## device
+
+  Get device details
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account to get details for
+
+
+  - **deviceId** (<code>String</code>) - The Id of the device
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## createDevice
+
+  Create a new device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the device to
+
+
+  - **device** (<code>Object</code>) - The device details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## updateDevice
+
+  Update an existing device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be updated
+
+
+  - **device** (<code>Object</code>) - The device details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## activateDevice
+
+  Activate a existing device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be updated
+
+
+  - **device** (<code>Object</code>) - The device details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## deleteDevice
+
+  Delete a device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be deleted
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## addComponent
+
+  Add a component to a device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device to be updated
+
+
+  - **component** (<code>Object</code>) - The component to be added
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## removeComponent
+
+  Delete a component from a device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **DeviceId** (<code>String</code>) - The device the component belongs to
+
+
+  - **componentId** (<code>String</code>) - The component to be deleted
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllTags
+
+  List all tags for devices
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllAttrs
+
+  List all attributes for devices
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## getAllComponents
+
+  List all components for an account
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## component
+
+  Get component details
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account the device belongs to
+
+
+  - **componentId** (<code>String</code>) - The component ID
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {} component
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## createComponent
+
+  Create a new component
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the device to
+
+
+  - **component** (<code>Object</code>) - The component details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## updateComponent
+
+  Update a component
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the device to
+
+
+  - **componentId** (<code>String</code>) - The account we want to add the device to
+
+
+  - **component** (<code>Object</code>) - The component details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## submitData
+
+  Submit data to a device component
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **deviceId** (<code>String</code>) - The device we want to add data to
+
+
+  - **data** (<code>Array</code>) - Array of objects with component data details
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## retrieveData
+
+  Retrieve data from device
+
+
+  ### Params
+
+
+  - **accountId** (<code>String</code>) - The account we want to add the new component to
+
+
+  - **filters** (<code>Object</code>) - filters for the search
+
+
+  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+
+
+  ### Returns
+
+  - (`null`)
