@@ -115,6 +115,7 @@
                   <a href="/documentation/platforms/imp">Imp</a>
                   <a href="/documentation/platforms/galileo">Intel Galileo</a>
                   <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/intel-iot-analytics">Intel IoT Analytics</a>
                   <a href="/documentation/platforms/joystick">Joystick</a>
                   <a href="/documentation/platforms/keyboard">Keyboard</a>
                   <a href="/documentation/platforms/leapmotion">Leap Motion</a>
@@ -175,6 +176,7 @@
                   <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
                   <a href="/documentation/drivers/audio">Audio</a>
                   <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
                   <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
                   <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
                   <a href="/documentation/drivers/keyboard">Keyboard</a>
@@ -336,15 +338,42 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Right Stick - Y:</span><span class="delimiter">"</span></span>, pos);
     });
   }
-});
-
-Cylon.start();
+}).start();
 </pre>
               
               <h2 id="how-to-connect">How to Connect</h2>
               
               <p>Plug your USB joystick or game controller into your USB port.
               If your device is supported by SDL, you are now ready.</p>
+              
+              <h2 id="custom-joysticks">Custom joysticks</h2>
+              
+              <p>If you don't have one of the joysticks we support natively, or want to make changes to the configuration, <code>cylon-joystick</code> supports custom bindings.</p>
+              
+              <p>To use a custom joystick with Cylon, simply supply the joystick bindings file when you're describing the device:</p>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> config = __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/controller.json</span><span class="delimiter">"</span></span>
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">joystick</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">joystick</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span>, <span class="key">config</span>: config }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="comment">// your custom mappings will be reflected here as events</span>
+  }
+}).start();
+</pre>
+              
+              <p>A joystick bindings file needs to contain the device's <code>productID</code> and <code>vendorID</code>, as this is how cylon-joystick will find the appropriate device.</p>
+              
+              <p>For an example of what a bindings file should look like, <a href="https://github.com/hybridgroup/cylon-joystick/blob/master/lib/config/xbox_360.json">here is the Xbox 360 controller bindings file we use</a>.</p>
               
               <h2 id="cylon-joystick-explorer"><code>cylon-joystick-explorer</code></h2>
               
