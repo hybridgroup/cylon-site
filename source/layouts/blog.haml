@@ -5,10 +5,9 @@
       - if is_blog_article?
         = partial "blog/header", {locals: { article: current_article } }
         = yield
+        = partial "blog/footer", {locals: { article: current_article } }
       - else
         = yield
-      - if is_blog_article?
-        = partial "blog/disqus"
     .side-column
       .categories
         %h4 Tags

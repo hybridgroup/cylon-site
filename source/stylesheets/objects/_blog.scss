@@ -43,9 +43,8 @@
     @include row();
   }
 
-  .comments {
-    @include span-columns(12 of 12);
-    margin-bottom: em(15);
+  .blog-footer {
+    padding-bottom: em(25);
   }
 
   .comments, .tags {
