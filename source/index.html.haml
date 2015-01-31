@@ -111,11 +111,15 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
     ## HTTP API
 
     Cylon has an HTTP API plugin which you can use to interact with your robots.
+    You can install it alongside Cylon with NPM:
 
-    All you need to start up the API server is to place the following command in your `.js` file after you require Cylon.
+        $ npm install cylon-api-http
+
+    Then, all you need to do is place the following command in your JS file after you require Cylon:
 
         :::javascript
         var Cylon = require("cylon");
+
         Cylon.api('http');
 
     Then visit `https://localhost:3000/` and you are ready to control your robots from a web browser!
