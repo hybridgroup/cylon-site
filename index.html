@@ -511,20 +511,25 @@ $ node script.js
           <p>For more info on browser support, and for help with different configurations, you can find more info <a href="/documentation/guides/browser-support">in our docs</a>.</p>
         </section>
         <section id="api">
-          <h2 id="api">API</h2>
+          <h2 id="http-api">HTTP API</h2>
           
-          <p>Cylon has a built-in API that you can interact with your robots.</p>
+          <p>Cylon has an HTTP API plugin which you can use to interact with your robots.
+          You can install it alongside Cylon with NPM:</p>
           
-          <p>All you need to start up the API server is to place the following command in your <code>.js</code> file after you require Cylon.</p>
+          <pre class="CodeRay">$ npm install cylon-api-http
+</pre>
+          
+          <p>Then, all you need to do is place the following command in your JS file after you require Cylon:</p>
           
           <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
-Cylon.api();
+
+Cylon.api(<span class="string"><span class="delimiter">'</span><span class="content">http</span><span class="delimiter">'</span></span>);
 </pre>
           
           <p>Then visit <code>https://localhost:3000/</code> and you are ready to control your robots from a web browser!
           <img src="/images/screenshots/robeaux.jpg" style="margin-top: 15px; width: 100%"></p>
           
-          <p>You can check out more information on the Cylon API in the docs <a href="/documentation/core/api">here</a>.</p>
+          <p>You can check out more information on the Cylon API in the docs <a href="/documentation/plugins/http-api">here</a>.</p>
         </section>
         <section id="cli">
           <h2 id="cli">CLI</h2>

@@ -224,13 +224,6 @@
                   </div>
                 </div>
               </div>
-              <div class="section" ng-class="{active: active('Core')}">
-                <div class="name" ng-click="show('Core')">Core</div>
-                <div class="links" ng-show="active('Core')">
-                  <a href="/documentation/core/api">API</a>
-                  <a href="/documentation/core/helpers">Helper Methods</a>
-                </div>
-              </div>
               <div class="section" ng-class="{active: active('Contribute')}">
                 <div class="name" ng-click="show('Contribute')">Contribute</div>
                 <div class="links" ng-show="active('Contribute')">
@@ -246,6 +239,14 @@
                   <a href="/documentation/tutorials/thingscon">Thingscon</a>
                 </div>
               </div>
+              <div class="section" ng-class="{active: active('Plugins')}">
+                <div class="name" ng-click="show('Plugins')">Plugins</div>
+                <div class="links" ng-show="active('Plugins')">
+                  <a href="/documentation/plugins/http-api">HTTP API</a>
+                  <a href="/documentation/plugins/socket-io">Socket.io</a>
+                </div>
+              </div>
+              <a href="/documentation/helpers">Helper Methods</a>
               <a href="/documentation/architecture">Architecture</a>
               <a href="/documentation/configuration">Configuration</a>
               <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>

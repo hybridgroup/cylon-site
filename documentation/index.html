@@ -230,13 +230,6 @@
                   </div>
                 </div>
               </div>
-              <div class="section" ng-class="{active: active('Core')}">
-                <div class="name" ng-click="show('Core')">Core</div>
-                <div class="links" ng-show="active('Core')">
-                  <a href="/documentation/core/api">API</a>
-                  <a href="/documentation/core/helpers">Helper Methods</a>
-                </div>
-              </div>
               <div class="section" ng-class="{active: active('Contribute')}">
                 <div class="name" ng-click="show('Contribute')">Contribute</div>
                 <div class="links" ng-show="active('Contribute')">
@@ -252,6 +245,14 @@
                   <a href="/documentation/tutorials/thingscon">Thingscon</a>
                 </div>
               </div>
+              <div class="section" ng-class="{active: active('Plugins')}">
+                <div class="name" ng-click="show('Plugins')">Plugins</div>
+                <div class="links" ng-show="active('Plugins')">
+                  <a href="/documentation/plugins/http-api">HTTP API</a>
+                  <a href="/documentation/plugins/socket-io">Socket.io</a>
+                </div>
+              </div>
+              <a href="/documentation/helpers">Helper Methods</a>
               <a href="/documentation/architecture">Architecture</a>
               <a href="/documentation/configuration">Configuration</a>
               <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
@@ -270,7 +271,7 @@
               <div class="box">
                 <a href="/documentation/platforms">
                   <div class="title">Platforms</div>
-                  <div class="description">Cylon.js has a extensible system for connecting to hardware.</div>
+                  <div class="description">Cylon.js has an extensible system for connecting to hardware.</div>
                 </a>
               </div>
               <div class="box">
@@ -286,9 +287,9 @@
                 </a>
               </div>
               <div class="box">
-                <a href="/documentation/core/api">
-                  <div class="title">Core</div>
-                  <div class="description">Internals of how Cylon.js works.</div>
+                <a href="/documentation/plugins/http-api">
+                  <div class="title">Plugins</div>
+                  <div class="description">Plugins to strengthen the power of Cylon.js.</div>
                 </a>
               </div>
               <div class="box">
