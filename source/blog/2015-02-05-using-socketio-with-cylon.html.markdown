@@ -7,26 +7,24 @@ tags: robots socket.io api plugin
 author: Edgar Silva
 active_menu_blog: true
 ---
-In the latest release of Cylon.js API plugins were stripped from the main module, this gives some
-advantages like a lighter `cylon` module if you do not need the API and makes it easier to implement
-and add new API plugins. We now have two different plugins to choose from depending on your needs,
-[cylon-api-http](https://github.com/hybridgroup/cylon-api-http) and [cylon-api-socketio](https://github.com/hybridgroup/cylon-api-socketio).
+In the latest release of Cylon.js, we made a big change to how the built-in API was implemented: we removed the API from the core Cylon.js module. Instead, we have implemented a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base `cylon` module if you do not need the API. It allows you to only use the interfaces you actually need. We have also tried to make it easy to implement new interfaces, just by adding new API plugins. 
 
-For this entry we'll focus on the newest adition `cylon-api-socketio`, wich as the name suggests ads
-support for the Socket.io module.
+We currently have two different API plugins to choose from, [cylon-api-http](https://github.com/hybridgroup/cylon-api-http) and [cylon-api-socketio](https://github.com/hybridgroup/cylon-api-socketio). The "http/https" API plugin is used to service REST-style API calls into Cylon.js, as well as supporting the [Robeaux](http://robeaux.io) web user interface.
 
-## Executing device commands and listening for events
+The newest API plugin, and what this post is about, is `cylon-api-socketio`, which as the name suggests adds support for the [socket.io](http://socket.io/) module. This makes it easy to command or retrieve data from a Cylon.js robot, simply by using a socket.io client such as a browser-based application.
 
-First make sure everything is installed, instalation is pretty simple as with any other cylon module,
-you need to first install `cylon` and then install `cylon-api-socketio`.
+## Executing Device Commands And Listening For Events
+
+First, you must make sure everything is installed. This is pretty simple. As with any other Cylon.js module,
+you first install `cylon`. Then install `cylon-api-socketio`, like this:
 
     :::bash
     $ npm install cylon
     $ npm install cylon-api-socketio
 
-### Creating the robot and settingup up the API
+### Creating The Robot and Setting Up The API
 
-We create our robot as usual using cylon, once this is done we can add our `Cylon.api()` call in our code,
+We declare our robot as usual using Cylon.js. Once this is done we can add our `Cylon.api()` call in our code, and then
 finally we start the work.
 
 `blink-server.js`
@@ -68,19 +66,13 @@ finally we start the work.
 
     Cylon.start()
 
-The example above would be our "server" side program, which is in charge of handling all of the
-API socket connections; it creates and setups the appropiate MCP sockets. Then when a user connects
-to the the cylon socket it creates sockets for the robots and devices, and sets up the appropiate
-routes, namespaces and listeners. Once you have connected, issuing commands and listening for events
-is pretty easy.
+The example above would be our "server" side program, which is in charge of handling all of the API socket connections. It creates and sets up the appropriate socket.io server listener. Once a user connects to the main Cylon.js socket, it creates sockets for the robots and devices, and sets up the appropriate routes, namespaces and listeners. Once you have connected, issuing commands and listening for events is pretty easy.
 
-### Connecting to a socket and sending commands
+### Connecting To A Socket and Sending Commands
 
-In the following example we connect to the robot defined above and make an LED blink by sending a
-command to the `led` device we setup in the robot, all of this running in the browser.
+In the following example, we will connect to the robot defined above, and then make an LED blink by sending a command to the `led` device from a client running in the browser.
 
-We run the `blink-server` program and wait for the work block to start. Then save the following
-html code in a file (`blink-client.html`) and we open it in a browser.
+First, run the `blink-server` program and wait for the work block to start. Then save the following html code in a file (`blink-client.html`) and open it in a browser:
 
 `blink-client.js`
 
@@ -151,21 +143,15 @@ html code in a file (`blink-client.html`) and we open it in a browser.
       </body>
     </html>
 
-You should see the led in your arduino start blinking, the commands to blink the led
-are all being send from the browser to the robot using the device socket we created and
-calling `device.emit('toggle');`.
+You should see the built-in LED in your Arduino start blinking. The commands to tell the LED to blink, are all being sent from the browser to the robot, using the device socket we created and then calling `device.emit('toggle');`.
 
-All device's commands and events you can use in a regular cylon program are available to the
-device socket. Let's check how to listen for events.
+All of the device commands and events you can use in a regular Cylon.js program are available to the device socket. Now, let's learn how to listen for events.
 
-### Listening for robot/device events in a socket
+### Listening For Robot Or Device Events In A Socket
 
-We'll dial up the complexity a little bit by using custom robot commands and
-events this time, it is worth mentioning that you can listen to any device
-emitted event in the same fashion, but connecting to the device socket instead.
+We'll dial up the complexity a little bit, by using custom robot commands and events. It is worth mentioning that you can listen to any device-emitted event in the same fashion, but by connecting to the device socket instead.
 
-As with the previous example we start by defining our robot and setting up
-the Socket.io API. Here we'll add the custom commands and events.
+As with the previous example, we start by defining our robot and setting up the Socket.io API. Here's how we add the custom commands and events:
 
 `robot-events-server.js`
 
@@ -244,17 +230,12 @@ the Socket.io API. Here we'll add the custom commands and events.
     Cylon.start();
 
 
-Let's go over the code above, we define a new robot and add `events` to it,
-these events are the ones the API plugin will register listeners for.
+Let's go over the code above. First, we define a new robot and add `events` to it. The API plugin will register listeners for these events.
 
-Then we define custom commands that will be available to the API,
-as you can see the definition of commands is slightly different, but this is
-for a reason, this way you create aliases your robot methods more easily. You could
-also just define methods in your robot and omit the `commands` definition, in
-that case all of the methods added to the robot would be available to the API, but
-we preffer this more explicit way of doing it.
+Then we define custom commands that will be available to the API. As you can see, defining commands is slightly different, but this is for a good reason. This way you can create aliases for your robot methods more easily. You can also just define methods in your robot and omit the `commands` definition, in
+which case all of the methods added to the robot would be available to the API. We prefer this more explicit way of doing it, which gives you more control over what you are exposing to the API.
 
-Now let's take a look at the client side of this example.
+Now, let's take a look at the client side of this example:
 
 `robot-events-client.js`
 
@@ -329,28 +310,15 @@ Now let's take a look at the client side of this example.
       </body>
     </html>
 
-In the above example we start by connecting to the robot namespace,
-in cylon all of out API routes(or API namespaces in this case) start
-at the `/api` level, from there we connect to a specific robot by
-pproviding the robot's entire namespace, in this case `/api/robots/chappie`.
+In the above example, we start by connecting to the robot namespace. In Cylon.js all of out API routes (or API namespaces, in this case) start at the `/api` level. From there we can connect to a specific robot, simply by providing the robot's entire namespace, in this case `/api/robots/chappie`.
 
-We then add a couple of listeners, one for the default `message` event that
-you can use to check socket connectivity to the robot, and two more for the
-two custom events we defined in our `robot-events-server` program.
+We then add a couple of listeners. First, one for the default `message` event that you can use to check socket connectivity to the robot. Then two more for the two custom events that we defined in our `robot-events-server` program.
 
-Finally we setup a time interval to accomplish the same blink LED
-functionality, but in this case we are doing it by calling/sending
-one of the custom commands we defined in the robot.
+Finally we setup a time interval to make the LED blink, but in this case we are do it by calling/sending one of the custom commands we defined in the robot.
 
-As you can see the posibilities and functionality for this is huge,
-you could add sensors to your robot and monitor in realtime, fly an ARDrone
-from the browser, connect to one robot and trigger funcionality in another
-one based on realtime sensor data, just to name a few.
+As you can see, the possibilities for what you can do with this are enormous! You could add sensors to your robot and monitor in real-time, fly a drone from your browser, or connect to one robot, then trigger functionality in another robot, based on real-time sensor data, just to name a few.
 
-I hope you find this blog post on how to use Socket.io with Cylon.js
-useful and don't forget to check our [platforms](/documentation/platforms)
-and [API](/api/socket-io/) docs, we are always adding new stuff and
-updating the site.
+We hope you find this blog post on how to use Socket.io with Cylon.js useful, and don't forget to check our [API](/documentation/api/socket-io) docs for more detailed information.
 
 ## Follow us on Twitter
 
