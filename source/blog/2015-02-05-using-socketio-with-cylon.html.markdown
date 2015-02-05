@@ -1,13 +1,13 @@
 ---
 page_title_show: true
-title: "Using Socket.io with Cylon.js"
+title: "Using Socket.io With The Cylon.js API"
 page_title: Blog
 date: 2015-02-05
 tags: robots socket.io api plugin
 author: Edgar Silva
 active_menu_blog: true
 ---
-In the latest release of Cylon.js, we made a big change to how the built-in API was implemented: we removed the API from the core Cylon.js module. Instead, we have implemented a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base `cylon` module if you do not need the API. It allows you to only use the interfaces you actually need. We have also tried to make it easy to implement new interfaces, just by adding new API plugins. 
+In the latest release of Cylon.js, we made a big change to how the built-in API was implemented: we removed the API from the core Cylon.js module. Instead, we have implemented a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base `cylon` module if you do not need the API. It also allows you to only use the interfaces you actually need. 
 
 We currently have two different API plugins to choose from, [cylon-api-http](https://github.com/hybridgroup/cylon-api-http) and [cylon-api-socketio](https://github.com/hybridgroup/cylon-api-socketio). The "http/https" API plugin is used to service REST-style API calls into Cylon.js, as well as supporting the [Robeaux](http://robeaux.io) web user interface.
 
@@ -322,7 +322,7 @@ We hope you find this blog post on how to use Socket.io with Cylon.js useful, an
 
 ## Follow us on Twitter
 
-For more updates, be sure to follow us on Twitter at [@CylonJS].
+We have now made it easy to implement new interfaces, just by adding new API plugins. Be sure to follow us on Twitter at [@CylonJS] to receive updates as we implement new ways to communicate with Cylon.js.
 
 [@CylonJS]: https://twitter.com/CylonJS
 [cylon-api-socketio]: https://github.com/hybridgroup/cylon-api-socketio
