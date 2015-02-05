@@ -89,6 +89,354 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    Feb
+                  </div>
+                  <div class="day">
+                    05
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2015
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2015/02/05/using-socketio-with-cylon/">Using Socket.io With The Cylon.js API</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Edgar Silva
+              </div>
+            </header>
+            <p>In the latest release of Cylon.js, we made a big change to how the built-in API was implemented: we removed the API from the core Cylon.js module. Instead, we have implemented a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base <code>cylon</code> module if you do not need the API. It also allows you to only use the interfaces you actually need. </p>
+            
+            <p>We currently have two different API plugins to choose from, <a href="https://github.com/hybridgroup/cylon-api-http">cylon-api-http</a> and <a href="https://github.com/hybridgroup/cylon-api-socketio">cylon-api-socketio</a>. The "http/https" API plugin is used to service REST-style API calls into Cylon.js, as well as supporting the <a href="http://robeaux.io">Robeaux</a> web user interface.</p>
+            
+            <p>The newest API plugin, and what this post is about, is <code>cylon-api-socketio</code>, which as the name suggests adds support for the <a href="http://socket.io/">socket.io</a> module. This makes it easy to command or retrieve data from a Cylon.js robot, simply by using a socket.io client such as a browser-based application.</p>
+            
+            <h2 id="executing-device-commands-and-listening-for-events">Executing Device Commands And Listening For Events</h2>
+            
+            <p>First, you must make sure everything is installed. This is pretty simple. As with any other Cylon.js module,
+            you first install <code>cylon</code>. Then install <code>cylon-api-socketio</code>, like this:</p>
+            
+            <pre class="CodeRay">            $ npm install cylon
+            $ npm install cylon-api-socketio
+            </pre>
+            
+            <h3 id="creating-the-robot-and-setting-up-the-api">Creating The Robot and Setting Up The API</h3>
+            
+            <p>We declare our robot as usual using Cylon.js. Once this is done we can add our <code>Cylon.api()</code> call in our code, and then
+            finally we start the work.</p>
+            
+            <p><code>blink-server.js</code></p>
+            
+            <pre class="CodeRay">            <span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+            
+            <span class="comment">// We require cylon and define our robot as usual</span>
+            <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+            
+            Cylon.robot({
+              <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
+            
+              <span class="key">connections</span>: {
+                <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+              },
+            
+              <span class="key">devices</span>: {
+                <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+              },
+            
+              <span class="function">work</span>: <span class="keyword">function</span>() {
+                <span class="comment">// Add your robot code here,</span>
+                <span class="comment">// for this example with socket.io</span>
+                <span class="comment">// we are going to be interacting</span>
+                <span class="comment">// with the robot using the code in</span>
+                <span class="comment">// the client side.</span>
+              }
+            });
+            
+            <span class="comment">// We setup the api specifying `socketio`</span>
+            <span class="comment">// as the preffered plugin</span>
+            Cylon.api(
+              <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
+              {
+              <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+              <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
+            });
+            
+            Cylon.start()
+            </pre>
+            
+            <p>The example above would be our "server" side program, which is in charge of handling all of the API socket connections. It creates and sets up the appropriate socket.io server listener. Once a user connects to the main Cylon.js socket, it creates sockets for the robots and devices, and sets up the appropriate routes, namespaces and listeners. Once you have connected, issuing commands and listening for events is pretty easy.</p>
+            
+            <h3 id="connecting-to-a-socket-and-sending-commands">Connecting To A Socket and Sending Commands</h3>
+            
+            <p>In the following example, we will connect to the robot defined above, and then make an LED blink by sending a command to the <code>led</code> device from a client running in the browser.</p>
+            
+            <p>First, run the <code>blink-server</code> program and wait for the work block to start. Then save the following html code in a file (<code>blink-client.html</code>) and open it in a browser:</p>
+            
+            <p><code>blink-client.js</code></p>
+            
+            <pre class="CodeRay">            &lt;!doctype html&gt;
+            <span class="tag">&lt;html&gt;</span>
+              <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+              <span class="tag">&lt;head&gt;</span>
+                <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
+                <span class="tag">&lt;style&gt;</span>
+<span class="inline">                  <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
+                  <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
+                  <span class="tag">form</span> {
+                    <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>; <span class="key">position</span>: <span class="value">fixed</span>;
+                    <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>;
+                  }
+                  <span class="tag">form</span> <span class="tag">input</span> {
+                    <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
+                    <span class="key">margin-right</span>: <span class="float">.5%</span>;
+                  }
+                  <span class="tag">form</span> <span class="tag">button</span> {
+                      <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
+                      <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>;
+                  }
+                  <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
+                  <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
+                  <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
+                <span class="tag">&lt;/style&gt;</span>
+              <span class="tag">&lt;/head&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+<span class="inline">                <span class="keyword">var</span> device;
+            
+                window.<span class="function">onload</span> = <span class="keyword">function</span>() {
+                  <span class="comment">// We connect to the device defined in the robot</span>
+                  device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie/devices/led</span><span class="delimiter">'</span></span>);
+            
+                  <span class="comment">// Listen to the 'message' event on device</span>
+                  device.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
+                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+                  });
+            
+                  <span class="comment">// The "hello world" program of robotics, the</span>
+                  <span class="comment">// blink and LED program, we just emit the command</span>
+                  <span class="comment">// we want our device to execute.</span>
+                  setInterval(<span class="keyword">function</span>() {
+                    device.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+                  }, <span class="integer">1000</span>);
+            
+                  msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon socket: </span><span class="delimiter">'</span></span> + device.nsp;
+            
+                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+            
+                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
+                    device.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
+                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
+            
+                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+                  });
+                };</span>
+              <span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;body&gt;</span>
+                <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
+                <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
+                <span class="tag">&lt;/form&gt;</span>
+              <span class="tag">&lt;/body&gt;</span>
+            <span class="tag">&lt;/html&gt;</span>
+            </pre>
+            
+            <p>You should see the built-in LED in your Arduino start blinking. The commands to tell the LED to blink, are all being sent from the browser to the robot, using the device socket we created and then calling <code>device.emit('toggle');</code>.</p>
+            
+            <p>All of the device commands and events you can use in a regular Cylon.js program are available to the device socket. Now, let's learn how to listen for events.</p>
+            
+            <h3 id="listening-for-robot-or-device-events-in-a-socket">Listening For Robot Or Device Events In A Socket</h3>
+            
+            <p>We'll dial up the complexity a little bit, by using custom robot commands and events. It is worth mentioning that you can listen to any device-emitted event in the same fashion, but by connecting to the device socket instead.</p>
+            
+            <p>As with the previous example, we start by defining our robot and setting up the Socket.io API. Here's how we add the custom commands and events:</p>
+            
+            <p><code>robot-events-server.js</code></p>
+            
+            <pre class="CodeRay">            <span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+            
+            <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+            
+            Cylon.robot({
+              <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
+            
+              <span class="comment">// This is how we define custom events that will be registered</span>
+              <span class="comment">// by the API.</span>
+              <span class="key">events</span>: [<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>],
+            
+              <span class="comment">// These are the commands that will be availble in the API</span>
+              <span class="comment">// Commands method needs to return an object with the aliases</span>
+              <span class="comment">// to the robot methods.</span>
+              <span class="function">commands</span>: <span class="keyword">function</span>() {
+                <span class="keyword">return</span> {
+                  <span class="key">turn_on</span>: <span class="local-variable">this</span>.turnOn,
+                  <span class="key">turn_off</span>: <span class="local-variable">this</span>.turnOff,
+                  <span class="key">toggle</span>: <span class="local-variable">this</span>.toggle
+                };
+              },
+            
+              <span class="key">connections</span>: {
+                <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+              },
+            
+              <span class="key">devices</span>: {
+                <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+              },
+            
+              <span class="function">work</span>: <span class="keyword">function</span>() {
+                <span class="comment">// We setup two time outs to turn on</span>
+                <span class="comment">// and turn off the led device.</span>
+                <span class="comment">// this will trigger an event that</span>
+                <span class="comment">// we'll to listen to in the client</span>
+                after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+                  <span class="local-variable">this</span>.turnOn();
+                }.bind(<span class="local-variable">this</span>));
+            
+                after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+                  <span class="local-variable">this</span>.turnOff();
+                }.bind(<span class="local-variable">this</span>));
+              },
+            
+              <span class="function">turnOn</span>: <span class="keyword">function</span>() {
+                <span class="local-variable">this</span>.led.turnOn();
+                <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
+              },
+            
+              <span class="function">turnOff</span>: <span class="keyword">function</span>() {
+                <span class="local-variable">this</span>.led.turnOff();
+                <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
+              },
+            
+              <span class="function">toggle</span>: <span class="keyword">function</span>() {
+                <span class="local-variable">this</span>.led.toggle();
+                <span class="keyword">if</span> (<span class="local-variable">this</span>.led.isOn()) {
+                  <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
+                } <span class="keyword">else</span> {
+                  <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
+                }
+              }
+            });
+            
+            Cylon.api(
+              <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
+              {
+              <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+              <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
+            });
+            
+            Cylon.start();
+            </pre>
+            
+            <p>Let's go over the code above. First, we define a new robot and add <code>events</code> to it. The API plugin will register listeners for these events.</p>
+            
+            <p>Then we define custom commands that will be available to the API. As you can see, defining commands is slightly different, but this is for a good reason. This way you can create aliases for your robot methods more easily. You can also just define methods in your robot and omit the <code>commands</code> definition, in
+            which case all of the methods added to the robot would be available to the API. We prefer this more explicit way of doing it, which gives you more control over what you are exposing to the API.</p>
+            
+            <p>Now, let's take a look at the client side of this example:</p>
+            
+            <p><code>robot-events-client.js</code></p>
+            
+            <pre class="CodeRay">            <span class="doctype">&lt;!doctype html&gt;</span>
+            <span class="tag">&lt;html&gt;</span>
+              <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+              <span class="tag">&lt;head&gt;</span>
+                <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
+                <span class="tag">&lt;style&gt;</span>
+<span class="inline">                  <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
+                  <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
+                  <span class="tag">form</span> { <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>;
+                    <span class="key">position</span>: <span class="value">fixed</span>; <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>; }
+                  <span class="tag">form</span> <span class="tag">input</span> { <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
+                    <span class="key">margin-right</span>: <span class="float">.5%</span>; }
+                  <span class="tag">form</span> <span class="tag">button</span> { <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
+                    <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>; }
+                  <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
+                  <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
+                  <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
+                <span class="tag">&lt;/style&gt;</span>
+              <span class="tag">&lt;/head&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+<span class="inline">                <span class="keyword">var</span> robot;
+            
+                window.<span class="function">onload</span> = <span class="keyword">function</span>() {
+                  <span class="comment">// We connect to the 'chappie' robot using its namespace(nsp)</span>
+                  robot = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie</span><span class="delimiter">'</span></span>);
+            
+                  <span class="comment">// Listen to the 'message' event on the robot</span>
+                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
+                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+                  });
+            
+                  <span class="comment">// Listen for robot specific events, this must be declared</span>
+                  <span class="comment">// when defining a robot in cylon</span>
+                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+                    console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned ON its led!!!</span><span class="delimiter">'</span></span>);
+                  });
+            
+                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+                    console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned OFF its led!!!</span><span class="delimiter">'</span></span>);
+                  });
+            
+                  <span class="comment">// The "hello world" program of robotics, the</span>
+                  <span class="comment">// blink and LED program, we accomplish this just</span>
+                  <span class="comment">// by emitting the command we want our robot to execute</span>
+                  setInterval(<span class="keyword">function</span>() {
+                    robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+                  }, <span class="integer">1000</span>);
+            
+                  msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon sockets:</span><span class="delimiter">'</span></span> + robot.nsp;
+            
+                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+            
+                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
+                    robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
+                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
+            
+                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+                  });
+                };</span>
+              <span class="tag">&lt;/script&gt;</span>
+              <span class="tag">&lt;body&gt;</span>
+                <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
+                <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+                  <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
+                <span class="tag">&lt;/form&gt;</span>
+              <span class="tag">&lt;/body&gt;</span>
+            <span class="tag">&lt;/html&gt;</span>
+            </pre>
+            
+            <p>In the above example, we start by connecting to the robot namespace. In Cylon.js all of out API routes (or API namespaces, in this case) start at the <code>/api</code> level. From there we can connect to a specific robot, simply by providing the robot's entire namespace, in this case <code>/api/robots/chappie</code>.</p>
+            
+            <p>We then add a couple of listeners. First, one for the default <code>message</code> event that you can use to check socket connectivity to the robot. Then two more for the two custom events that we defined in our <code>robot-events-server</code> program.</p>
+            
+            <p>Finally we setup a time interval to make the LED blink, but in this case we are do it by calling/sending one of the custom commands we defined in the robot.</p>
+            
+            <p>As you can see, the possibilities for what you can do with this are enormous! You could add sensors to your robot and monitor in real-time, fly a drone from your browser, or connect to one robot, then trigger functionality in another robot, based on real-time sensor data, just to name a few.</p>
+            
+            <p>We hope you find this blog post on how to use Socket.io with Cylon.js useful, and don't forget to check our <a href="/documentation/api/socket-io">API</a> docs for more detailed information.</p>
+            
+            <h2 id="follow-us-on-twitter">Follow us on Twitter</h2>
+            
+            <p>We have now made it easy to implement new interfaces, just by adding new API plugins. Be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a> to receive updates as we implement new ways to communicate with Cylon.js.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots-socket-io-api-plugin/">robots socket.io api plugin</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Jan
                   </div>
                   <div class="day">
@@ -3373,6 +3721,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2015/02/05/using-socketio-with-cylon/">Using Socket.io With The Cylon.js API</a></li>
               <li><a href="/blog/2015/01/14/cylon-0.22-0/">Cylon 0.22.0 - A New Year's Release</a></li>
               <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>
               <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>

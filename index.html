@@ -171,7 +171,7 @@ $ node script.js
         <section id="platforms">
           <h2 id="platforms">Platform Support</h2>
           <div>
-            <p>Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:</p>
+            <p>Cylon.js has an extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:</p>
             <ul class="platform-list">
               <li class="platform">
                 <a href="/documentation/platforms/ardrone">
@@ -511,25 +511,38 @@ $ node script.js
           <p>For more info on browser support, and for help with different configurations, you can find more info <a href="/documentation/guides/browser-support">in our docs</a>.</p>
         </section>
         <section id="api">
-          <h2 id="http-api">HTTP API</h2>
+          <h2 id="api">API</h2>
           
-          <p>Cylon has an HTTP API plugin which you can use to interact with your robots.
-          You can install it alongside Cylon with NPM:</p>
+          <p>Cylon.js features an API plugin system which enables you to send commands, stream real time data, and monitor the overall state of your robots. We currently support the following API plugins:</p>
+          
+          <ul>
+            <li>
+              <p>HTTP</p>
+            </li>
+            <li>
+              <p>Socket.io</p>
+            </li>
+            <li>
+              <p>and more coming soon</p>
+            </li>
+          </ul>
+          
+          <p>The Cylon.js HTTP plugin, for instance, allows you to interact with your robots over HTTP. You simply install the API plugin alongside Cylon.js with npm:</p>
           
           <pre class="CodeRay">$ npm install cylon-api-http
 </pre>
           
-          <p>Then, all you need to do is place the following command in your JS file after you require Cylon:</p>
+          <p>Then, all you need to do is place the following command in your Cylon.js program:</p>
           
           <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.api(<span class="string"><span class="delimiter">'</span><span class="content">http</span><span class="delimiter">'</span></span>);
 </pre>
           
-          <p>Then visit <code>https://localhost:3000/</code> and you are ready to control your robots from a web browser!
+          <p>Once your Cylon.js program is running, visit <code>https://localhost:3000/</code> and you're ready to control your robots from a web browser!
           <img src="/images/screenshots/robeaux.jpg" style="margin-top: 15px; width: 100%"></p>
           
-          <p>You can check out more information on the Cylon API in the docs <a href="/documentation/plugins/http-api">here</a>.</p>
+          <p>You can check out more information on the Cylon API in the docs <a href="/documentation/api/http">here</a>.</p>
         </section>
         <section id="cli">
           <h2 id="cli">CLI</h2>
@@ -549,7 +562,7 @@ Cylon.api(<span class="string"><span class="delimiter">'</span><span class="cont
           
           <p>If you'd like to find out more, you can check out our code on <a href="https://github.com/hybridgroup/cylon">GitHub</a>.</p>
           
-          <p>Want updates on what we're working on, follow us on <a href="https://twitter.com/CylonJS">Twitter</a>, or check out our <a href="https://trello.com/b/l1aEuqMU/cylon">Trello board</a>.</p>
+          <p>Want updates on what we're working on, follow us on <a href="https://twitter.com/CylonJS">Twitter</a>.</p>
           
           <p>If you want to talk to us, we can be found hanging out on IRC, <code>#cylon</code> on <code>irc.freenode.net</code></p>
         </section>
