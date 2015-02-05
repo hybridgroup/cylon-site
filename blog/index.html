@@ -120,9 +120,9 @@
             <p>First, you must make sure everything is installed. This is pretty simple. As with any other Cylon.js module,
             you first install <code>cylon</code>. Then install <code>cylon-api-socketio</code>, like this:</p>
             
-            <pre class="CodeRay">            $ npm install cylon
-            $ npm install cylon-api-socketio
-            </pre>
+            <pre class="CodeRay">$ npm install cylon
+$ npm install cylon-api-socketio
+</pre>
             
             <h3 id="creating-the-robot-and-setting-up-the-api">Creating The Robot and Setting Up The API</h3>
             
@@ -131,42 +131,42 @@
             
             <p><code>blink-server.js</code></p>
             
-            <pre class="CodeRay">            <span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
-            
-            <span class="comment">// We require cylon and define our robot as usual</span>
-            <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-            
-            Cylon.robot({
-              <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
-            
-              <span class="key">connections</span>: {
-                <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
-              },
-            
-              <span class="key">devices</span>: {
-                <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
-              },
-            
-              <span class="function">work</span>: <span class="keyword">function</span>() {
-                <span class="comment">// Add your robot code here,</span>
-                <span class="comment">// for this example with socket.io</span>
-                <span class="comment">// we are going to be interacting</span>
-                <span class="comment">// with the robot using the code in</span>
-                <span class="comment">// the client side.</span>
-              }
-            });
-            
-            <span class="comment">// We setup the api specifying `socketio`</span>
-            <span class="comment">// as the preffered plugin</span>
-            Cylon.api(
-              <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
-              {
-              <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-              <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
-            });
-            
-            Cylon.start()
-            </pre>
+            <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+
+<span class="comment">// We require cylon and define our robot as usual</span>
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
+
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {
+    <span class="comment">// Add your robot code here,</span>
+    <span class="comment">// for this example with socket.io</span>
+    <span class="comment">// we are going to be interacting</span>
+    <span class="comment">// with the robot using the code in</span>
+    <span class="comment">// the client side.</span>
+  }
+});
+
+<span class="comment">// We setup the api specifying `socketio`</span>
+<span class="comment">// as the preffered plugin</span>
+Cylon.api(
+  <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
+  {
+  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
+});
+
+Cylon.start()
+</pre>
             
             <p>The example above would be our "server" side program, which is in charge of handling all of the API socket connections. It creates and sets up the appropriate socket.io server listener. Once a user connects to the main Cylon.js socket, it creates sockets for the robots and devices, and sets up the appropriate routes, namespaces and listeners. Once you have connected, issuing commands and listening for events is pretty easy.</p>
             
@@ -178,72 +178,72 @@
             
             <p><code>blink-client.js</code></p>
             
-            <pre class="CodeRay">            &lt;!doctype html&gt;
-            <span class="tag">&lt;html&gt;</span>
-              <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-              <span class="tag">&lt;head&gt;</span>
-                <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
-                <span class="tag">&lt;style&gt;</span>
-<span class="inline">                  <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
-                  <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
-                  <span class="tag">form</span> {
-                    <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>; <span class="key">position</span>: <span class="value">fixed</span>;
-                    <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>;
-                  }
-                  <span class="tag">form</span> <span class="tag">input</span> {
-                    <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
-                    <span class="key">margin-right</span>: <span class="float">.5%</span>;
-                  }
-                  <span class="tag">form</span> <span class="tag">button</span> {
-                      <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
-                      <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>;
-                  }
-                  <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
-                  <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
-                  <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
-                <span class="tag">&lt;/style&gt;</span>
-              <span class="tag">&lt;/head&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-<span class="inline">                <span class="keyword">var</span> device;
-            
-                window.<span class="function">onload</span> = <span class="keyword">function</span>() {
-                  <span class="comment">// We connect to the device defined in the robot</span>
-                  device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie/devices/led</span><span class="delimiter">'</span></span>);
-            
-                  <span class="comment">// Listen to the 'message' event on device</span>
-                  device.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
-                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-                  });
-            
-                  <span class="comment">// The "hello world" program of robotics, the</span>
-                  <span class="comment">// blink and LED program, we just emit the command</span>
-                  <span class="comment">// we want our device to execute.</span>
-                  setInterval(<span class="keyword">function</span>() {
-                    device.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
-                  }, <span class="integer">1000</span>);
-            
-                  msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon socket: </span><span class="delimiter">'</span></span> + device.nsp;
-            
-                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-            
-                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
-                    device.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
-                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
-            
-                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-                  });
-                };</span>
-              <span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;body&gt;</span>
-                <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
-                <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-                  <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
-                <span class="tag">&lt;/form&gt;</span>
-              <span class="tag">&lt;/body&gt;</span>
-            <span class="tag">&lt;/html&gt;</span>
-            </pre>
+            <pre class="CodeRay">&lt;!doctype html&gt;
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+<span class="inline">      <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
+      <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
+      <span class="tag">form</span> {
+        <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>; <span class="key">position</span>: <span class="value">fixed</span>;
+        <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>;
+      }
+      <span class="tag">form</span> <span class="tag">input</span> {
+        <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
+        <span class="key">margin-right</span>: <span class="float">.5%</span>;
+      }
+      <span class="tag">form</span> <span class="tag">button</span> {
+          <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
+          <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>;
+      }
+      <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
+      <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
+      <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
+    <span class="tag">&lt;/style&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+<span class="inline">    <span class="keyword">var</span> device;
+
+    window.<span class="function">onload</span> = <span class="keyword">function</span>() {
+      <span class="comment">// We connect to the device defined in the robot</span>
+      device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie/devices/led</span><span class="delimiter">'</span></span>);
+
+      <span class="comment">// Listen to the 'message' event on device</span>
+      device.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+      });
+
+      <span class="comment">// The "hello world" program of robotics, the</span>
+      <span class="comment">// blink and LED program, we just emit the command</span>
+      <span class="comment">// we want our device to execute.</span>
+      setInterval(<span class="keyword">function</span>() {
+        device.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+      }, <span class="integer">1000</span>);
+
+      msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon socket: </span><span class="delimiter">'</span></span> + device.nsp;
+
+      <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+
+      <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
+        device.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
+
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+      });
+    };</span>
+  <span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/form&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
             
             <p>You should see the built-in LED in your Arduino start blinking. The commands to tell the LED to blink, are all being sent from the browser to the robot, using the device socket we created and then calling <code>device.emit('toggle');</code>.</p>
             
@@ -257,79 +257,79 @@
             
             <p><code>robot-events-server.js</code></p>
             
-            <pre class="CodeRay">            <span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
-            
-            <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-            
-            Cylon.robot({
-              <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
-            
-              <span class="comment">// This is how we define custom events that will be registered</span>
-              <span class="comment">// by the API.</span>
-              <span class="key">events</span>: [<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>],
-            
-              <span class="comment">// These are the commands that will be availble in the API</span>
-              <span class="comment">// Commands method needs to return an object with the aliases</span>
-              <span class="comment">// to the robot methods.</span>
-              <span class="function">commands</span>: <span class="keyword">function</span>() {
-                <span class="keyword">return</span> {
-                  <span class="key">turn_on</span>: <span class="local-variable">this</span>.turnOn,
-                  <span class="key">turn_off</span>: <span class="local-variable">this</span>.turnOff,
-                  <span class="key">toggle</span>: <span class="local-variable">this</span>.toggle
-                };
-              },
-            
-              <span class="key">connections</span>: {
-                <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
-              },
-            
-              <span class="key">devices</span>: {
-                <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
-              },
-            
-              <span class="function">work</span>: <span class="keyword">function</span>() {
-                <span class="comment">// We setup two time outs to turn on</span>
-                <span class="comment">// and turn off the led device.</span>
-                <span class="comment">// this will trigger an event that</span>
-                <span class="comment">// we'll to listen to in the client</span>
-                after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
-                  <span class="local-variable">this</span>.turnOn();
-                }.bind(<span class="local-variable">this</span>));
-            
-                after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
-                  <span class="local-variable">this</span>.turnOff();
-                }.bind(<span class="local-variable">this</span>));
-              },
-            
-              <span class="function">turnOn</span>: <span class="keyword">function</span>() {
-                <span class="local-variable">this</span>.led.turnOn();
-                <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
-              },
-            
-              <span class="function">turnOff</span>: <span class="keyword">function</span>() {
-                <span class="local-variable">this</span>.led.turnOff();
-                <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
-              },
-            
-              <span class="function">toggle</span>: <span class="keyword">function</span>() {
-                <span class="local-variable">this</span>.led.toggle();
-                <span class="keyword">if</span> (<span class="local-variable">this</span>.led.isOn()) {
-                  <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
-                } <span class="keyword">else</span> {
-                  <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
-                }
-              }
-            });
-            
-            Cylon.api(
-              <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
-              {
-              <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-              <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
-            });
-            
-            Cylon.start();
-            </pre>
+            <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">chappie</span><span class="delimiter">'</span></span>,
+
+  <span class="comment">// This is how we define custom events that will be registered</span>
+  <span class="comment">// by the API.</span>
+  <span class="key">events</span>: [<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>],
+
+  <span class="comment">// These are the commands that will be availble in the API</span>
+  <span class="comment">// Commands method needs to return an object with the aliases</span>
+  <span class="comment">// to the robot methods.</span>
+  <span class="function">commands</span>: <span class="keyword">function</span>() {
+    <span class="keyword">return</span> {
+      <span class="key">turn_on</span>: <span class="local-variable">this</span>.turnOn,
+      <span class="key">turn_off</span>: <span class="local-variable">this</span>.turnOff,
+      <span class="key">toggle</span>: <span class="local-variable">this</span>.toggle
+    };
+  },
+
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>() {
+    <span class="comment">// We setup two time outs to turn on</span>
+    <span class="comment">// and turn off the led device.</span>
+    <span class="comment">// this will trigger an event that</span>
+    <span class="comment">// we'll to listen to in the client</span>
+    after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.turnOn();
+    }.bind(<span class="local-variable">this</span>));
+
+    after((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
+      <span class="local-variable">this</span>.turnOff();
+    }.bind(<span class="local-variable">this</span>));
+  },
+
+  <span class="function">turnOn</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.led.turnOn();
+    <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
+  },
+
+  <span class="function">turnOff</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.led.turnOff();
+    <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
+  },
+
+  <span class="function">toggle</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.led.toggle();
+    <span class="keyword">if</span> (<span class="local-variable">this</span>.led.isOn()) {
+      <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>);
+    } <span class="keyword">else</span> {
+      <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>);
+    }
+  }
+});
+
+Cylon.api(
+  <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
+  {
+  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
+});
+
+Cylon.start();
+</pre>
             
             <p>Let's go over the code above. First, we define a new robot and add <code>events</code> to it. The API plugin will register listeners for these events.</p>
             
@@ -340,76 +340,76 @@
             
             <p><code>robot-events-client.js</code></p>
             
-            <pre class="CodeRay">            <span class="doctype">&lt;!doctype html&gt;</span>
-            <span class="tag">&lt;html&gt;</span>
-              <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-              <span class="tag">&lt;head&gt;</span>
-                <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
-                <span class="tag">&lt;style&gt;</span>
-<span class="inline">                  <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
-                  <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
-                  <span class="tag">form</span> { <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>;
-                    <span class="key">position</span>: <span class="value">fixed</span>; <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>; }
-                  <span class="tag">form</span> <span class="tag">input</span> { <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
-                    <span class="key">margin-right</span>: <span class="float">.5%</span>; }
-                  <span class="tag">form</span> <span class="tag">button</span> { <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
-                    <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>; }
-                  <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
-                  <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
-                  <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
-                <span class="tag">&lt;/style&gt;</span>
-              <span class="tag">&lt;/head&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-<span class="inline">                <span class="keyword">var</span> robot;
-            
-                window.<span class="function">onload</span> = <span class="keyword">function</span>() {
-                  <span class="comment">// We connect to the 'chappie' robot using its namespace(nsp)</span>
-                  robot = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie</span><span class="delimiter">'</span></span>);
-            
-                  <span class="comment">// Listen to the 'message' event on the robot</span>
-                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
-                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-                  });
-            
-                  <span class="comment">// Listen for robot specific events, this must be declared</span>
-                  <span class="comment">// when defining a robot in cylon</span>
-                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
-                    console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned ON its led!!!</span><span class="delimiter">'</span></span>);
-                  });
-            
-                  robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
-                    console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned OFF its led!!!</span><span class="delimiter">'</span></span>);
-                  });
-            
-                  <span class="comment">// The "hello world" program of robotics, the</span>
-                  <span class="comment">// blink and LED program, we accomplish this just</span>
-                  <span class="comment">// by emitting the command we want our robot to execute</span>
-                  setInterval(<span class="keyword">function</span>() {
-                    robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
-                  }, <span class="integer">1000</span>);
-            
-                  msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon sockets:</span><span class="delimiter">'</span></span> + robot.nsp;
-            
-                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-            
-                  <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
-                    robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
-                    <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
-            
-                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-                  });
-                };</span>
-              <span class="tag">&lt;/script&gt;</span>
-              <span class="tag">&lt;body&gt;</span>
-                <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
-                <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-                  <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
-                <span class="tag">&lt;/form&gt;</span>
-              <span class="tag">&lt;/body&gt;</span>
-            <span class="tag">&lt;/html&gt;</span>
-            </pre>
+            <pre class="CodeRay"><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+<span class="inline">      <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
+      <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
+      <span class="tag">form</span> { <span class="key">background</span>: <span class="color">#000</span>; <span class="key">padding</span>: <span class="float">3px</span>;
+        <span class="key">position</span>: <span class="value">fixed</span>; <span class="key">bottom</span>: <span class="float">0</span>; <span class="key">width</span>: <span class="float">100%</span>; }
+      <span class="tag">form</span> <span class="tag">input</span> { <span class="key">border</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">10px</span>; <span class="key">width</span>: <span class="float">90%</span>;
+        <span class="key">margin-right</span>: <span class="float">.5%</span>; }
+      <span class="tag">form</span> <span class="tag">button</span> { <span class="key">width</span>: <span class="float">9%</span>; <span class="key">background</span>: <span class="color">rgb(130, 224, 255)</span>;
+        <span class="key">border</span>: <span class="value">none</span>; <span class="key">padding</span>: <span class="float">10px</span>; }
+      <span class="id">#messages</span> { <span class="key">list-style-type</span>: <span class="value">none</span>; <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; }
+      <span class="id">#messages</span> <span class="tag">li</span> { <span class="key">padding</span>: <span class="float">5px</span> <span class="float">10px</span>; }
+      <span class="id">#messages</span> <span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">background</span>: <span class="color">#eee</span>; }</span>
+    <span class="tag">&lt;/style&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+<span class="inline">    <span class="keyword">var</span> robot;
+
+    window.<span class="function">onload</span> = <span class="keyword">function</span>() {
+      <span class="comment">// We connect to the 'chappie' robot using its namespace(nsp)</span>
+      robot = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie</span><span class="delimiter">'</span></span>);
+
+      <span class="comment">// Listen to the 'message' event on the robot</span>
+      robot.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+      });
+
+      <span class="comment">// Listen for robot specific events, this must be declared</span>
+      <span class="comment">// when defining a robot in cylon</span>
+      robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned ON its led!!!</span><span class="delimiter">'</span></span>);
+      });
+
+      robot.on(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(){
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">The robot "chappie" just turned OFF its led!!!</span><span class="delimiter">'</span></span>);
+      });
+
+      <span class="comment">// The "hello world" program of robotics, the</span>
+      <span class="comment">// blink and LED program, we accomplish this just</span>
+      <span class="comment">// by emitting the command we want our robot to execute</span>
+      setInterval(<span class="keyword">function</span>() {
+        robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+      }, <span class="integer">1000</span>);
+
+      msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon sockets:</span><span class="delimiter">'</span></span> + robot.nsp;
+
+      <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
+
+      <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">form</span><span class="delimiter">'</span></span>).submit(<span class="keyword">function</span>(){
+        robot.emit(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val());
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#m</span><span class="delimiter">'</span></span>).val(<span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>);
+
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+      });
+    };</span>
+  <span class="tag">&lt;/script&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/form&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
             
             <p>In the above example, we start by connecting to the robot namespace. In Cylon.js all of out API routes (or API namespaces, in this case) start at the <code>/api</code> level. From there we can connect to a specific robot, simply by providing the robot's entire namespace, in this case <code>/api/robots/chappie</code>.</p>
             
