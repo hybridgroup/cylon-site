@@ -246,7 +246,14 @@ Cylon.start()
           
           <p>You should see the built-in LED in your Arduino start blinking. The commands to tell the LED to blink, are all being sent from the browser to the robot, using the device socket we created and then calling <code>device.emit('toggle');</code>.</p>
           
-          <p>All of the device commands and events you can use in a regular Cylon.js program are available to the device socket. Now, let's learn how to listen for events.</p>
+          <p>This is the especially interesting part right here:</p>
+          
+          <pre class="CodeRay">device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/chappie/devices/led</span><span class="delimiter">'</span></span>);
+</pre>
+          
+          <p>Even though we are using a socket, we are using the same routing path style as we would use for the RESTful API call, following the <a href="http://cppp.io">Common Protocol for Programming Physical I/O</a> standard.</p>
+          
+          <p>By following this format for our "routes", all of the device commands and events you can use in a regular Cylon.js program are available to clients thanks to cylon-api-socket. Now, let's learn how to listen for events.</p>
           
           <h3 id="listening-for-robot-or-device-events-in-a-socket">Listening For Robot Or Device Events In A Socket</h3>
           
@@ -423,6 +430,8 @@ Cylon.start();
           <p>We hope you find this blog post on how to use Socket.io with Cylon.js useful, and don't forget to check our <a href="/documentation/api/socket-io">API</a> docs for more detailed information.</p>
           
           <p>We have now made it easy to implement new interfaces, just by adding new API plugins. Be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a> to receive updates as we implement new ways to communicate with Cylon.js.</p>
+          
+          <p>UPDATED 2/5/15: Added info about how cylon-api-socketio follows the CPPP.IO standard</p>
           <div class="comments">
             <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
               <a class="addthis_button_preferred_2"></a>
