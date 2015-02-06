@@ -7,7 +7,7 @@ tags: robots socket.io api plugin
 author: Edgar Silva
 active_menu_blog: true
 ---
-:markdown
+:markdown  
   In the latest release of Cylon.js, we made a big change to how the built-in API was implemented: we removed the API from the core Cylon.js module. Instead, we have implemented a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base `cylon` module if you do not need the API. It also allows you to only use the interfaces you actually need. 
 
   We currently have two different API plugins to choose from, [cylon-api-http](https://github.com/hybridgroup/cylon-api-http) and [cylon-api-socketio](https://github.com/hybridgroup/cylon-api-socketio). The "http/https" API plugin is used to service REST-style API calls into Cylon.js, as well as supporting the [Robeaux](http://robeaux.io) web user interface.
@@ -146,7 +146,14 @@ active_menu_blog: true
 
   You should see the built-in LED in your Arduino start blinking. The commands to tell the LED to blink, are all being sent from the browser to the robot, using the device socket we created and then calling `device.emit('toggle');`.
 
-  All of the device commands and events you can use in a regular Cylon.js program are available to the device socket. Now, let's learn how to listen for events.
+  This is the especially interesting part right here:
+  
+      :::javascript
+      device = io('http://127.0.0.1:3000/api/robots/chappie/devices/led');
+
+  Even though we are using a socket, we are using the same routing path style as we would use for the RESTful API call, following the [Common Protocol for Programming Physical I/O](http://cppp.io) standard.
+
+  By following this format for our "routes", all of the device commands and events you can use in a regular Cylon.js program are available to clients thanks to cylon-api-socket. Now, let's learn how to listen for events.
 
   ### Listening For Robot Or Device Events In A Socket
 
@@ -324,6 +331,8 @@ active_menu_blog: true
   We hope you find this blog post on how to use Socket.io with Cylon.js useful, and don't forget to check our [API](/documentation/api/socket-io) docs for more detailed information.
 
   We have now made it easy to implement new interfaces, just by adding new API plugins. Be sure to follow us on Twitter at [@CylonJS] to receive updates as we implement new ways to communicate with Cylon.js.
+
+  UPDATED 2/5/15: Added info about how cylon-api-socketio follows the CPPP.IO standard
 
   [@CylonJS]: https://twitter.com/CylonJS
   [cylon-api-socketio]: https://github.com/hybridgroup/cylon-api-socketio
