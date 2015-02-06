@@ -1384,32 +1384,25 @@ a:hover, a:focus {
       display: table;
       clear: both; }
   /* line 46, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
-  .blog .comments {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 100%;
-    margin-bottom: 0.9375em; }
-    /* line 38, /home/ron/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
-    .blog .comments:last-child {
-      margin-right: 0; }
-  /* line 51, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  .blog .blog-footer {
+    padding-bottom: 1.5625em; }
+  /* line 50, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .comments, .blog .tags {
     display: inline-block; }
-    /* line 54, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 53, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .comments a, .blog .tags a {
-      vertical-align: top;
+      vertical-align: text-top;
       text-decoration: underline; }
-    /* line 59, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 58, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .comments img, .blog .tags img {
       margin-right: 0.25em; }
-  /* line 64, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 63, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .img {
     vertical-align: top;
     display: inline-block;
     width: 24px;
     height: 24px; }
-  /* line 71, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 70, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .side-column {
     float: left;
     display: block;
@@ -1419,7 +1412,7 @@ a:hover, a:focus {
     .blog .side-column:last-child {
       margin-right: 0; }
     @media screen and (max-width: 768px) {
-      /* line 71, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 70, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .side-column {
         float: left;
         display: block;
@@ -1428,53 +1421,53 @@ a:hover, a:focus {
         /* line 38, /home/ron/.rvm/gems/ruby-2.0.0-p247@cylon/gems/neat-1.5.1/app/assets/stylesheets/grid/_span-columns.scss */
         .blog .side-column:last-child {
           margin-right: 0; } }
-  /* line 79, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 78, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .categories, .blog .network, .blog .tweets, .blog .titles {
     vertical-align: top;
     margin-bottom: 1.25em; }
-    /* line 83, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 82, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories a, .blog .network a, .blog .tweets a, .blog .titles a {
       color: black; }
-      /* line 86, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 85, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .categories a:hover, .blog .network a:hover, .blog .tweets a:hover, .blog .titles a:hover {
         text-decoration: underline; }
-    /* line 91, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 90, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories h4, .blog .network h4, .blog .tweets h4, .blog .titles h4 {
       font-size: 1.25em;
       line-height: 1.5em;
       color: #ee2a4a; }
-  /* line 98, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 97, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .titles ul {
     list-style: none;
     margin: 0; }
-  /* line 103, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 102, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .titles li {
     font-size: 0.8125em;
     border-bottom: #580a25 1px solid;
     padding: 0.125em 0.3125em; }
-    /* line 108, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 107, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .titles li:hover {
       background: #ee2a4a; }
-      /* line 111, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 110, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .titles li:hover a {
         color: white;
         text-decoration: none; }
-  /* line 120, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 119, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .network img {
     width: 30px; }
-  /* line 126, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+  /* line 125, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
   .blog .categories ul {
     margin: 0;
     list-style: none; }
-    /* line 130, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 129, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .categories ul a {
       color: black;
       font-size: 0.875em; }
-      /* line 134, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+      /* line 133, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
       .blog .categories ul a:hover {
         text-decoration: underline; }
   @media screen and (max-width: 320px) {
-    /* line 142, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
+    /* line 141, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_blog.scss */
     .blog .twitter-share-button {
       margin-bottom: 0.625em; } }
 
