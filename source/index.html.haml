@@ -68,7 +68,7 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   %h2#platforms Platform Support
 
   %div
-    %p Cylon.js has a extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:
+    %p Cylon.js has an extensible system for connecting to hardware devices. The following robotics and physical computing systems, and software platforms, are currently supported:
 
     %ul.platform-list
       - data.platforms.each do |name, info|
@@ -110,18 +110,30 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   :markdown
     ## API
 
-    Cylon has a built-in API that you can interact with your robots.
+    Cylon.js features an API plugin system which enables you to send commands, stream real time data, and monitor the overall state of your robots. We currently support the following API plugins:
 
-    All you need to start up the API server is to place the following command in your `.js` file after you require Cylon.
+
+    - HTTP
+
+    - Socket.io
+
+    - and more coming soon
+
+    The Cylon.js HTTP plugin, for instance, allows you to interact with your robots over HTTP. You simply install the API plugin alongside Cylon.js with npm:
+
+        $ npm install cylon-api-http
+
+    Then, all you need to do is place the following command in your Cylon.js program:
 
         :::javascript
         var Cylon = require("cylon");
-        Cylon.api();
 
-    Then visit `https://localhost:3000/` and you are ready to control your robots from a web browser!
+        Cylon.api('http');
+
+    Once your Cylon.js program is running, visit `https://localhost:3000/` and you're ready to control your robots from a web browser!
     <img src="/images/screenshots/robeaux.jpg" style="margin-top: 15px; width: 100%">
 
-    You can check out more information on the Cylon API in the docs [here](/documentation/core/api).
+    You can check out more information on the Cylon API in the docs [here](/documentation/api/http).
 
 %section#cli
   :markdown
@@ -144,10 +156,11 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
   :markdown
     ## Be Part of the Robot Evolution
 
-    Get involved with Cylon.js projects, ask questions, or stay up to date with the latest Cylon.js news on our [mailing list](https://groups.google.com/forum/#!forum/cylonjs)!
+    - Want updates on what we're working on? Follow us on [Twitter](https://twitter.com/CylonJS).
 
-    If you'd like to find out more, you can check out our code on [GitHub](https://github.com/hybridgroup/cylon).
+    - Get involved with Cylon.js projects, ask questions, or stay up to date with the latest Cylon.js news on our [mailing list](https://groups.google.com/forum/#!forum/cylonjs)!
 
-    Want updates on what we're working on, follow us on [Twitter](https://twitter.com/CylonJS).
+    - If you'd like to find out more, check out our code on [GitHub](https://github.com/hybridgroup/cylon). You can also open a [new issue](https://github.com/hybridgroup/cylon/issues/new) if you need help, feel we can improve something, or have a feature suggestion.
 
-    If you want to talk to us, we can be found hanging out on IRC, `#cylon` on `irc.freenode.net`
+    - If you want to talk to us, we can be found hanging out on IRC, `#cylon` on `irc.freenode.net`
+
