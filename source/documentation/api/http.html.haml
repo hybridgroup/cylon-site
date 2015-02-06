@@ -1,15 +1,15 @@
 ---
-title: Cylon.js API
+title: Cylon.js HTTP
 author: The Hybrid Group
-page_title: Core - API
-page_subtitle: Components which make up Cylon's core.
+page_title: API - HTTP
+page_subtitle: Components to strengthen the power of Cylon.
 layout: documentation
 page_title_show: true
 active_menu_docs: true
 ---
 .api
   :markdown
-    # How To Connect with the API
+    # How To Connect with the HTTP API
 
     Cylon's HTTP API plugin can be used to interact with your robots remotely.
 
@@ -24,7 +24,7 @@ active_menu_docs: true
         :::javascript
         var Cylon = require('cylon');
 
-        Cylon.api();
+        Cylon.api('http');
 
         Cylon.robot({
           connections: {
