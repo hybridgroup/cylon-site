@@ -263,7 +263,7 @@
 Cylon
   .robot()
   .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> })
-  .device(<span class="string"><span class="delimiter">"</span><span class="content">maxbotix</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">maxbotix</span><span class="delimiter">"</span></span> })
+  .device(<span class="string"><span class="delimiter">"</span><span class="content">maxbotix</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">maxbotix</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">1</span> })
   .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     setInterval(<span class="keyword">function</span>() {
       bot.maxbotix.range(<span class="keyword">function</span>(err, data) {
