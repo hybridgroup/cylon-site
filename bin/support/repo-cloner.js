@@ -28,12 +28,14 @@ if (cluster.isMaster) {
       }
 
       worker.kill();
+    };
 
+    cluster.on("exit", function() {
       // fully shutdown, trigger callback if we're done
       if (!_.keys(cluster.workers).length) {
         cluster.disconnect(callback);
       }
-    };
+    });
 
     _.times(numberOfCores, cluster.fork);
 
