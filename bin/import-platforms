@@ -56,12 +56,16 @@ repoCloner(function() {
       function(l) { return _.include(l, "## Documentation"); }
     );
 
-
     if (endLine >= 0) {
       lines = lines.splice(beginLine, (endLine - beginLine));
     }
 
     content = lines.join("\n");
+
+    //Specific for Intel Iot Edison page
+    content = content.replace(/#### Setting up your Intel Galileo\n[\s\S]*#### Install MRAA/gim, function() {
+      return "#### Install MRAA"
+    })
 
     content = content.replace(/```(\w+?)\n([\s\S]+?)\n```/gim, function(str, lang, code) {
       code = code.replace(/^(.+)/gm, "    $1");
