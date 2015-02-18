@@ -1,0 +1,83 @@
+---
+title: Cylon.js - LIDAR-Lite Driver
+author: The Hybrid Group
+page_title: Drivers - LIDAR-Lite Driver
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: LIDAR-Lite
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/lidar-lite.jpg", class: "display"
+  .info-intro
+    :markdown
+      The LIDAR-Lite uses optical lasers to measure distances up to 40 meters.
+
+      For more information click <a href="http://pulsedlight3d.com/" target="_blank">here</a>.
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+    Install the module with `npm install cylon-i2c`
+
+        :::javascript
+
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+          },
+
+          devices: {
+            lidar: { driver: "lidar-lite" }
+          },
+        });
+
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    Example using the LIDAR-lite to measure distance:
+
+        :::javascript
+
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+          },
+
+          devices: {
+            lidar: { driver: "lidar-lite" }
+          },
+
+          work: function(my) {
+            every(100, function() {
+              my.lidar.distance(function(err, data) {
+                console.log("distance: " + data);
+              });
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-i2c/lidar-lite-commands"
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "LIDAR-Lite" }
