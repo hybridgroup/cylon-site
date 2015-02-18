@@ -337,14 +337,14 @@ Cylon.robot({
               <pre class="CodeRay">$ gort scan serial
 </pre>
               
-              <p>Use the <code>gort firmata install</code> command to install <code>avrdude</code>, this will allow you to upload firmata to the arduino:</p>
+              <p>Use the <code>gort arduino install</code> command to install <code>avrdude</code>, this will allow you to upload firmata to the arduino:</p>
               
-              <pre class="CodeRay">$ gort firmata install
+              <pre class="CodeRay">$ gort arduino install
 </pre>
               
               <p>Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran <code>gort scan serial</code>:</p>
               
-              <pre class="CodeRay">$ gort firmata upload /dev/tty.usbmodem1421
+              <pre class="CodeRay">$ gort arduino upload firmata /dev/tty.usbmodem1421
 </pre>
               
               <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
@@ -363,14 +363,14 @@ Cylon.robot({
               <pre class="CodeRay">$ gort scan serial
 </pre>
               
-              <p>Use the <code>gort firmata install</code> command to install <code>avrdude</code>, this will allow you to upload firmata to the arduino:</p>
+              <p>Use the <code>gort arduino install</code> command to install <code>avrdude</code>, this will allow you to upload firmata to the arduino:</p>
               
-              <pre class="CodeRay">$ gort firmata install
+              <pre class="CodeRay">$ gort arduino install
 </pre>
               
               <p>Once the avrdude uploader is installed we upload the firmata protocol to the arduino, use the arduino serial port address found when you ran <code>gort scan serial</code>, or leave it blank to use the default address <code>ttyACM0</code>:</p>
               
-              <pre class="CodeRay">$ gort firmata upload ttyACM0
+              <pre class="CodeRay">$ gort arduino upload firmata /dev/ttyACM0
 </pre>
               
               <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
