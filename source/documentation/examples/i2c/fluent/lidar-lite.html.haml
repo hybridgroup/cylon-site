@@ -1,0 +1,30 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - lidar-lite"
+page_title: "Example: lidar-lite"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-i2c/tree/master/examples/lidar-lite' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon
+          .robot()
+          .connection("arduino", { adaptor: "firmata", port: "/dev/ttyACM0" })
+          .device("lidar", { driver: "lidar-lite" })
+          .on("ready", function(bot) {
+            setInterval(function() {
+              bot.lidar.distance(function(err, data) {
+                console.log(err, data);
+              });
+            }, 100);
+          });
+
+        Cylon.start();
