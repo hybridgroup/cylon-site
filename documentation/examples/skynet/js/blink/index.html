@@ -236,6 +236,7 @@
                 <div class="name" ng-click="show('API')">API</div>
                 <div class="links" ng-show="active('API')">
                   <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
                   <a href="/documentation/api/socket-io">Socket.io</a>
                 </div>
               </div>
@@ -257,14 +258,28 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+              <pre class="CodeRay"><span class="comment">// SkyNet cURL requests to create and message devices:</span>
+
+<span class="comment">// curl -X POST http://meshblu.octoblu.com/devices</span>
+
+<span class="comment">// curl -X POST http://meshblu.octoblu.com/messages \
+//   -d '{"devices": "DEVICE_ID", "payload": {"red":"on"}}' \
+//   --header "meshblu_auth_uuid: SKYNET_TOKEN" \
+//   --header "meshblu_auth_token: SKYNET_UUID"</span>
+
+<span class="comment">// curl -X POST http://meshblu.octoblu.com/messages \
+//   -d '{"devices": "DEVICE_ID", "payload": {"red":"off"}}' \
+//   --header "meshblu_auth_uuid: SKYNET_TOKEN" \
+//   --header "meshblu_auth_token: SKYNET_UUID"</span>
+
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> },
-    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">UUID</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">TOKEN</span><span class="delimiter">"</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1411</span><span class="delimiter">"</span></span> },
+    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_UUID</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_TOKEN</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
@@ -272,16 +287,12 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.skynet.subscribe({
-      <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">DEVICE_UUID</span><span class="delimiter">"</span></span>,
-      <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">TOKEN</span><span class="delimiter">"</span></span>
-    });
-
     my.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">data: </span><span class="delimiter">"</span></span>, data);
-      <span class="keyword">if</span>(data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
+      console.log(data);
+
+      <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
         my.led.turnOn();
-      } <span class="keyword">else</span> <span class="keyword">if</span>(data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
+      } <span class="keyword">else</span> <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
         my.led.turnOff();
       }
     });

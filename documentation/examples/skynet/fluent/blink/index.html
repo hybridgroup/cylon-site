@@ -236,6 +236,7 @@
                 <div class="name" ng-click="show('API')">API</div>
                 <div class="links" ng-show="active('API')">
                   <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
                   <a href="/documentation/api/socket-io">Socket.io</a>
                 </div>
               </div>
@@ -263,33 +264,25 @@
 
 Cylon
   .robot()
-  .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> })
+  .connection(<span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1411</span><span class="delimiter">"</span></span> })
   .connection(<span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, {
     <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>,
-    <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>,
-    <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span>,
+    <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_UUID</span><span class="delimiter">"</span></span>,
+    <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_TOKEN</span><span class="delimiter">"</span></span>
   })
   .device(<span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span> })
-  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
-    console.log(<span class="string"><span class="delimiter">"</span><span class="content">connected...</span><span class="delimiter">"</span></span>);
-
-    bot.skynet.subscribe({
-      <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>,
-      <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span>,
-    });
-
-    bot.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+  .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(my) {
+    my.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(data);
 
       <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
-        bot.led.turnOn();
+        my.led.turnOn();
       } <span class="keyword">else</span> <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
-        bot.led.turnOff();
+        my.led.turnOff();
       }
     });
-  });
-
-Cylon.start();
+  })
+  .start();
 </pre>
             </div>
           </div>

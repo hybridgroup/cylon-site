@@ -237,6 +237,7 @@
                 <div class="name" ng-click="show('API')">API</div>
                 <div class="links" ng-show="active('API')">
                   <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
                   <a href="/documentation/api/socket-io">Socket.io</a>
                 </div>
               </div>
@@ -295,25 +296,26 @@
               
               <h2 id="how-to-use">How to Use</h2>
               
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1411</span><span class="delimiter">"</span></span> },
+    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_UUID</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_TOKEN</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
-      <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
-        my.led.turnOn()
-      }
-      <span class="keyword">else</span> <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">off</span><span class="delimiter">'</span></span>) {
-        my.led.turnOff()
+    my.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(data);
+
+      <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
+        my.led.turnOn();
+      } <span class="keyword">else</span> <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span>) {
+        my.led.turnOff();
       }
     });
   }
@@ -324,12 +326,12 @@ Cylon.robot({
               
               <p>First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:</p>
               
-              <pre class="CodeRay">curl -X POST -d "name=arduino&amp;led=off" http://skynet.im/devices
+              <pre class="CodeRay">$ curl -X POST http://meshblu.octoblu.com/devices
 </pre>
               
               <p>This will return the new registration information for the device, most importantly the <code>uuid</code> and <code>token</code>:</p>
               
-              <pre class="CodeRay">=&gt; {"name":"arduino","led":"off","uuid":"8220cff0-2939-11e3-88cd-0b8e5fdfd7d4","timestamp":1380481272431,"token":"1yw0nfc54okcsor2tfqqsuvnrcf2yb9","online":false,"_id":"524878f8cc12f0877f000003"}
+              <pre class="CodeRay">{<span class="key"><span class="delimiter">"</span><span class="content">geo</span><span class="delimiter">"</span></span>:{<span class="key"><span class="delimiter">"</span><span class="content">range</span><span class="delimiter">"</span></span>:[<span class="integer">1344446976</span>,<span class="integer">1344447487</span>],<span class="key"><span class="delimiter">"</span><span class="content">country</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">ES</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">region</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">56</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">city</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">Cornellá De Llobregat</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">ll</span><span class="delimiter">"</span></span>:[<span class="float">41.35</span>,<span class="float">2.0833</span>],<span class="key"><span class="delimiter">"</span><span class="content">metro</span><span class="delimiter">"</span></span>:<span class="integer">0</span>},<span class="key"><span class="delimiter">"</span><span class="content">ipAddress</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">80.34.162.160</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">online</span><span class="delimiter">"</span></span>:<span class="value">false</span>,<span class="key"><span class="delimiter">"</span><span class="content">timestamp</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">2015-03-05T14:35:23.638Z</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">uuid</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">db895340-c344-11e4-9f09-df7578d68eac</span><span class="delimiter">"</span></span>,<span class="key"><span class="delimiter">"</span><span class="content">token</span><span class="delimiter">"</span></span>:<span class="string"><span class="delimiter">"</span><span class="content">d0a9f0d7e321657a38d25dd492492ffed0baf773</span><span class="delimiter">"</span></span>}
 </pre>
             </section>
             <section class="drivers" id="Drivers">
