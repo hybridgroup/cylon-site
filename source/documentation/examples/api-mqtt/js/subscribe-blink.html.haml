@@ -1,0 +1,37 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - subscribe-blink"
+page_title: "Example: subscribe-blink"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-api-mqtt/tree/master/examples/subscribe-blink' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        'use strict';
+
+        var mqtt    = require('mqtt');
+        var client  = mqtt.connect('mqtt://test.mosquitto.org');
+
+        client.on('message', function (topic, data) {
+          data = (!!data) ? JSON.parse(data) : data;
+
+          console.log('topic ==>', topic.toString());
+          console.log('payload ==>', data);
+        });
+
+        client.subscribe('/cybot/listen/api/robots');
+        client.publish('/cybot/emit/api/robots');
+
+        client.subscribe('/cybot/listen/api/robots/cybot/devices/led/toggle');
+
+        setInterval(function() {
+          client.publish(
+            '/cybot/emit/api/robots/cybot/devices/led/toggle',
+            JSON.stringify({ param1: 'uno' }));
+        }, 2000);
+
+        //client.end();

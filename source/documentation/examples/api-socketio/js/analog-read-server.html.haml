@@ -1,0 +1,48 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog-read-server"
+page_title: "Example: analog-read-server"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-api-socketio/tree/master/examples/analog-read-server' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        'use strict';
+
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          name: 'rosie',
+
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            asensor: { driver: 'analog-sensor', pin: 0 }
+          },
+
+          work: function() {
+            // Add your robot code here,
+            // for this example with sockets
+            // we are going to be interacting
+            // with the robot using the code in
+            // ./analog-read-client.html.
+
+          }
+        });
+
+        // ensure you install the API plugin first:
+        // $ npm install cylon-api-socket-io
+        Cylon.api(
+          'socketio',
+          {
+          host: '0.0.0.0',
+          port: '3000'
+        });
+
+        Cylon.start();
