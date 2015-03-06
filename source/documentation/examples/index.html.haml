@@ -10,6 +10,8 @@ active_menu_docs: true
 ---
 .examples
   = partial "partials/cylon", locals: { name: 'Cylon' }
+  = partial "partials/api-mqtt", locals: { name: 'API-MQTT' }
+  = partial "partials/api-socketio", locals: { name: 'API-Socketio' }
   = partial "partials/ardrone", locals: { name: 'ARDrone' }
   = partial "partials/audio", locals: { name: "Audio" }
   = partial "partials/beaglebone", locals: { name: 'Beaglebone' }
@@ -44,3 +46,4 @@ active_menu_docs: true
   = partial "partials/sphero", locals: { name: 'Sphero' }
   = partial "partials/tessel", locals: { name: "Tessel" }
   = partial "partials/wiced-sense", locals: { name: "WICED Sense" }
+

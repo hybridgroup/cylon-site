@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - analog-read-robot"
+page_title: "Example: analog-read-robot"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-api-mqtt/tree/master/examples/analog-read-robot' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        'use strict';
+
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          name: 'cybot',
+
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            sensor: { driver: 'analog-sensor', pin: 0 }
+          },
+
+          work: function() {
+            // Add your robot code here
+          },
+        });
+
+        // ensure you install the API plugin first:
+        // $ npm install cylon-api-mqtt
+        Cylon.api(
+          'mqtt',
+          {
+            broker: 'mqtt://test.mosquitto.org',
+            port: '3000',
+            prefix: 'cybot'
+          }
+        );
+
+        Cylon.start();
