@@ -1,0 +1,78 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+        :::bash
+        $ npm install cylon-api-mqtt
+
+    ## How to Use
+
+    Make sure you have Cylon.js installed, then we can add MQTT support to cylon
+    programs as follows:
+
+        :::javascript
+        'use strict';
+
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          name: 'cybot',
+
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'led', pin: 13 }
+          },
+
+          work: function() {
+            // Add your robot code here,
+            // for this simple blink example
+            // we'll interacting with the
+            // robot through the 'led' device.
+          }
+        });
+
+        // ensure you install the API plugin first:
+        // $ npm install cylon-api-socket-io
+        Cylon.api(
+          'mqtt',
+          {
+          broker: 'mqtt://test.mosquitto.org',
+          prefix: 'cybot', // Optional
+        });
+
+        Cylon.start();
+
+    ## How to Connect
+
+    Once you have added the api to your Cylon.js code, and your robots are up and running, you can connect
+    using MQTT, you need to subscribe to the topics you want to receive info for and publish the ones that
+    execute commands in your robot.
+
+        :::javascript
+        'use strict';
+
+        var mqtt    = require('mqtt');
+        var client  = mqtt.connect('mqtt://test.mosquitto.org');
+
+        client.on('message', function (topic, data) {
+          data = (!!data) ? JSON.parse(data) : data;
+
+          console.log('topic ==>', topic.toString());
+          console.log('payload ==>', data);
+        });
+
+        client.subscribe('/cybot/listen/api/robots');
+        client.publish('/cybot/emit/api/robots');
+
+        client.subscribe('/cybot/listen/api/robots/cybot/devices/led/toggle');
+
+        setInterval(function() {
+          client.publish(
+            '/cybot/emit/api/robots/cybot/devices/led/toggle',
+            JSON.stringify({ param1: 'uno' }));
+        }, 2000);
+
+        //client.end();
