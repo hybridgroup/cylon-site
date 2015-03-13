@@ -6,6 +6,12 @@
   Also sets `this.isOn` to `true`.
 
 
+  ### Params
+
+
+  - **[callback]** (<code>Function</code>) - (err, val) triggers when write is complete
+
+
   ### Returns
 
   - (<code>null</code>)
@@ -17,6 +23,12 @@
   Turns the Motor off by writing a LOW (0) value to the pin
 
   Also sets `this.isOn` to `false`.
+
+
+  ### Params
+
+
+  - **[callback]** (<code>Function</code>) - (err, val) triggers when write is complete
 
 
   ### Returns
@@ -56,6 +68,9 @@
 
 
   - **value** (<code>Number</code>) PWM value to set the speed to (0-255)
+
+
+  - **[callback]** (<code>Function</code>) - (err, val) triggers when write is complete
 
 
   ### Returns

@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - LED Driver
+title: Cylon.js - RGB LED Driver
 author: The Hybrid Group
-page_title: Drivers - LED
+page_title: Drivers - RGB LED
 page_subtitle: Cylon has an extensible system for connecting to hardware devices.
-page_title_docs: LED
+page_title_docs: RGB LED
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -13,10 +13,10 @@ active_menu_docs: true
 subnavjs: true
 ---
 %section.intro
-  =image_tag "/images/devices/led.jpg", class: "display"
+  =image_tag "/images/devices/rgb-led.jpg", class: "display"
   .info-intro
     :markdown
-      Allows user to interact with LEDs through digital output and PWM (Pulse Width Modulation)
+      Allows user to interact with LED strips, with each light accepting RBG values through PWM (Pulse Width Modulation)
 
       For more information click [here](http://es.wikipedia.org/wiki/Led).
   .clear
@@ -26,15 +26,18 @@ subnavjs: true
     ## How To Connect
 
         :::javascript
+        var Cylon = require('cylon');
+
         Cylon.robot({
           connections: {
-            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+            edison: { adaptor: 'intel-iot' }
           },
 
           devices: {
-            led: { driver: 'led', pin: 13 }
+            leds: { driver: 'rgb-led', redPin: 3, greenPin: 5, bluePin: 6 },
           },
         });
+
 
 %section#HowToUse
   :markdown
@@ -47,16 +50,23 @@ subnavjs: true
 
         Cylon.robot({
           connections: {
-            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+            edison: { adaptor: 'intel-iot' }
           },
 
           devices: {
-            led: { driver: 'led', pin: 13 }
+            leds: { driver: 'rgb-led', redPin: 3, greenPin: 5, bluePin: 6 },
           },
 
           work: function(my) {
+            var color;
             every((1).second(), function() {
-              my.led.toggle();
+              if (color == "ff0000") {
+                color = "00ff00"
+              } else
+              {
+                color = "ff0000"
+              };
+              my.leds.setRGB(color);
             });
           }
         }).start();
@@ -64,17 +74,9 @@ subnavjs: true
 %section.public-methods
   .commands-api#Commands
     %h1 Commands
-    = partial "/documentation/import/cylon-gpio/led-commands"
-
-%section.circuit#Circuit
-  %h2 Circuit
-  .description-circuit
-    %p
-  .image-circuit
-    %img{:src => "/documentation/drivers/breadboards/gpio/led_bb.png", :alt => ""}/
-  .clear
+    = partial "/documentation/import/cylon-gpio/rgb-led-commands"
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "LED" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "RGB LED" }
