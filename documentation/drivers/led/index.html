@@ -156,6 +156,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
@@ -334,6 +335,13 @@ Cylon.robot({
                 
                 <p>Also sets <code>this.isHigh</code> to <code>true</code>.</p>
                 
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</li>
+                </ul>
+                
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
@@ -347,6 +355,13 @@ Cylon.robot({
                 <p>Writes a LOW (0) value to the pin, turning the LED off.</p>
                 
                 <p>Also sets <code>this.isHigh</code> to <code>false</code>.</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</li>
+                </ul>
                 
                 <h3 id="returns-1">Returns</h3>
                 
@@ -384,11 +399,15 @@ Cylon.robot({
                 
                 <p>Sets brightness of the LED to the specified value using PWM.</p>
                 
-                <h3 id="params">Params</h3>
+                <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
-<strong>value</strong> (<code>Number</code>) PWM value to set the brightness to (0-255)</li>
+                    <p><strong>value</strong> (<code>Number</code>) - PWM value to set the brightness to (0-255)</p>
+                  </li>
+                  <li>
+                    <p><strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</p>
+                  </li>
                 </ul>
                 
                 <h3 id="returns-4">Returns</h3>

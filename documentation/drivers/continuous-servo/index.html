@@ -156,6 +156,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
@@ -342,6 +343,13 @@ Cylon.robot({
                 
                 <p>Stops the Continuous Servo's rotation</p>
                 
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) (err, val) triggers when write is complete</li>
+                </ul>
+                
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
@@ -364,6 +372,13 @@ Cylon.robot({
                 <h2 id="clockwise">clockwise</h2>
                 
                 <p>Rotates the Continuous Servo clockwise</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</li>
+                </ul>
                 
                 <h3 id="returns-1">Returns</h3>
                 
@@ -388,6 +403,13 @@ Cylon.robot({
                 
                 <p>Rotates the Continuous Servo counter-clockwise</p>
                 
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</li>
+                </ul>
+                
                 <h3 id="returns-2">Returns</h3>
                 
                 <ul>
@@ -410,6 +432,17 @@ Cylon.robot({
                 <h2 id="rotate">rotate</h2>
                 
                 <p>Rotates the Continuous Servo</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>direction</strong> (<code>String</code>) 'clockwise' or 'counter-clockwise'</p>
+                  </li>
+                  <li>
+                    <p><strong>[callback]</strong> (<code>Function</code>) - (err, val) triggers when write is complete</p>
+                  </li>
+                </ul>
                 
                 <h3 id="returns-3">Returns</h3>
                 

@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
                   </div>
@@ -264,22 +265,39 @@
 <span class="keyword">var</span> mqtt    = require(<span class="string"><span class="delimiter">'</span><span class="content">mqtt</span><span class="delimiter">'</span></span>);
 <span class="keyword">var</span> client  = mqtt.connect(<span class="string"><span class="delimiter">'</span><span class="content">mqtt://test.mosquitto.org</span><span class="delimiter">'</span></span>);
 
-client.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (topic, data) {
-  data = (!!data) ? JSON.parse(data) : data;
+client.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span> (topic, payload) {
+  <span class="comment">// MQTT only receives and sends message payload as</span>
+  <span class="comment">// string or buffer, so we need to parse the JSON string</span>
+  <span class="comment">// send by Cylon, this way we can access it as a regular</span>
+  <span class="comment">// JS object.</span>
+  <span class="keyword">var</span> data, sender;
 
-  console.log(<span class="string"><span class="delimiter">'</span><span class="content">topic ==&gt;</span><span class="delimiter">'</span></span>, topic.toString());
-  console.log(<span class="string"><span class="delimiter">'</span><span class="content">payload ==&gt;</span><span class="delimiter">'</span></span>, data);
+  <span class="keyword">if</span> (!!payload &amp;&amp; (payload.length &gt; <span class="integer">0</span>)) {
+    data = JSON.parse(payload);
+    sender = data.sender;
+  }
+
+  <span class="keyword">if</span> (sender !== <span class="string"><span class="delimiter">'</span><span class="content">self</span><span class="delimiter">'</span></span>) {
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Topic name ==&gt;</span><span class="delimiter">'</span></span>, topic);
+    console.log(<span class="string"><span class="delimiter">'</span><span class="content">Payload ==&gt;</span><span class="delimiter">'</span></span>, data);
+  }
 });
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/listen/api/robots</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/emit/api/robots</span><span class="delimiter">'</span></span>);
+<span class="comment">// Payload needs to be a JSON string</span>
+<span class="keyword">var</span> payload = JSON.stringify({
+  <span class="key">sender</span>: <span class="string"><span class="delimiter">'</span><span class="content">self</span><span class="delimiter">'</span></span>,
+  <span class="key">param1</span>: <span class="string"><span class="delimiter">'</span><span class="content">uno</span><span class="delimiter">'</span></span>
+});
+
+client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>);
+client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>, payload);
 
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/listen/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
   client.publish(
     <span class="string"><span class="delimiter">'</span><span class="content">/cybot/emit/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
-    JSON.stringify({ <span class="key">param1</span>: <span class="string"><span class="delimiter">'</span><span class="content">uno</span><span class="delimiter">'</span></span> }));
+    payload);
 }, <span class="integer">2000</span>);
 
 <span class="comment">//client.end();</span>
