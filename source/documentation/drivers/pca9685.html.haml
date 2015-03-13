@@ -1,0 +1,99 @@
+---
+title: Cylon.js - PCA9685 Driver
+author: The Hybrid Group
+page_title: Drivers - PCA9685 Driver
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: PCA9685
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/pca9685.jpg", class: "display"
+  .info-intro
+    :markdown
+      The PCA9685 is a PWM and servo driver breakout board with 16 channels.
+
+      For more information click [here](http://www.adafruit.com/product/815).
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+            connections: {
+                raspi: {
+                    adaptor: 'raspi'
+                }
+            },
+
+            devices: {
+                pca9685: {
+                    driver: 'pca9685'
+                }
+            },
+        });
+
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+            connections: {
+                raspi: {
+                    adaptor: 'raspi'
+                }
+            },
+
+            devices: {
+                pca9685: {
+                    driver: 'pca9685'
+                }
+            },
+
+            work: function(my) {
+
+                var min = 700;
+                var max = 1100;
+
+                // set the frequency to 60hz
+                my.pca9685.setPWMFreq(60);
+
+                // rotate to and hold the minium position
+                my.pca9685.setPWM(0, 0, min);
+
+                after((5).seconds(), function() {
+                    // rotate to and hold the maxium position
+                    my.pca9685.setPWM(0, 0, max);
+                });
+
+                after((10).seconds(), function() {
+                    // reset and stop all outputs
+                    my.pca9685.stop();
+                });
+            }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-i2c/pca9685-commands"
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "PCA9685" }
