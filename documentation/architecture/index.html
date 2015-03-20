@@ -256,6 +256,7 @@
                   <a href="/documentation/tutorials/thingscon">Thingscon</a>
                 </div>
               </div>
+              <a href="/documentation/user-contributed-platforms">User Contributed Platforms</a>
               <a href="/documentation/helpers">Helper Methods</a>
               <a href="/documentation/architecture">Architecture</a>
               <a href="/documentation/configuration">Configuration</a>
@@ -280,12 +281,16 @@
             
             <p><img src="/images/elements/architecture-mcp.png" width="100%"></p>
             
-            <h2 id="rest-api">REST API</h2>
+            <h2 id="api">API</h2>
             
-            <p>Cylon's built-in API offers both a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.</p>
+            <p>Cylon.js uses a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base <code>cylon</code> module if you do not need the API. It also allows you to only use the interfaces you actually need. </p>
             
-            <p>It interfaces directly with the MCP to fetch robots and information about them.
-            It's also capable of executing commands on Robots and Devices.</p>
+            <p>For example, the <a href="https://github.com/hybridgroup/cylon-api-http">cylon-api-http</a> plugin offers a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.</p>
+            
+            <p>Another API plugin <a href="https://github.com/hybridgroup/cylon-api-socketio">cylon-api-socketio</a> supports an interface for clients based on the popular <a href="http://socket.io/">socket.io</a> module.</p>
+            
+            <p>All API plugins interface directly with the MCP to fetch robots and information about them.
+            They are also capable of executing commands on Robots and Devices.</p>
             
             <h2 id="robots">Robots</h2>
             
