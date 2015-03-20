@@ -318,11 +318,13 @@ Cylon.robot({
             
             <h2 id="api">API</h2>
             
-            <p>The Cylon.js API server allows for port, host, SSL and auth configuration.</p>
+            <p>The Cylon.js API plugin system allows for configuration:</p>
             
             <p>In your scripts, you can set it up as so:</p>
             
-            <pre class="CodeRay">Cylon.api({
+            <pre class="CodeRay"><span class="comment">// instantiate, configure the HTTP API plugin</span>
+
+Cylon.api(<span class="string"><span class="delimiter">"</span><span class="content">http</span><span class="delimiter">"</span></span>, {
   <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">127.0.0.1</span><span class="delimiter">'</span></span>,
   <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">4321</span><span class="delimiter">'</span></span>,
 
@@ -337,9 +339,7 @@ Cylon.robot({
 });
 </pre>
             
-            <p>If you run a Cylon script with this code in it, it will start an API server
-            listening on <code>https://127.0.0.1:4321</code>, that will require basic auth for all
-            routes.</p>
+            <p>If you run a Cylon script with this code in it, it will start a HTTP API server listening on <code>https://127.0.0.1:4321</code>, that will require basic auth for all routes.</p>
             
             <h2 id="halt-timeout">Halt Timeout</h2>
             

@@ -288,7 +288,7 @@
 <code>my</code> vs. <code>this</code>
 </h2>
             
-            <p>Inside a Robot's work block, <code>this</code> is set to the Robot.
+            <p>A robot's work block is run in the context of the robot.
             To make code with closures and other nesting work better, we also pass it as an argument to the work block.
             So these two works blocks are equivalent in behaviour:</p>
             
@@ -314,17 +314,6 @@
             <p>When initializing a robot, you pass a <code>connections</code> object:</p>
             
             <pre class="CodeRay">Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">arduino</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>,
-      <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span>
-    }
-  }
-});
-
-<span class="comment">// vs</span>
-
-Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">loopback</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> },
     <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
@@ -385,8 +374,7 @@ Cylon.robot({
             
             <p>Inside a work block, the Robot's devices can be accessed through the <code>devices</code> attribute, which contains a mapping of names to devices.</p>
             
-            <p>Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
-            Also, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name</p>
+            <p>Devices are also aliased directly as properties on the robot. This aliasing overrides connection aliases if they happen to have the same name.</p>
             
             <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: {
@@ -586,7 +574,8 @@ setTimeout(<span class="keyword">function</span>() {
 
 setInterval(<span class="keyword">function</span>() {
   console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
-}, <span class="integer">0</span>)
+
+, <span class="integer">0</span>)
 </pre>
           </div>
         </div>
