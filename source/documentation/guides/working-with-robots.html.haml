@@ -34,7 +34,7 @@ active_menu_docs: true
 
   ## `my` vs. `this`
 
-  Inside a Robot's work block, `this` is set to the Robot.
+  A robot's work block is run in the context of the robot.
   To make code with closures and other nesting work better, we also pass it as an argument to the work block.
   So these two works blocks are equivalent in behaviour:
 
@@ -60,17 +60,6 @@ active_menu_docs: true
   When initializing a robot, you pass a `connections` object:
 
       :::javascript
-      Cylon.robot({
-        connections: {
-          arduino: {
-            adaptor: "firmata",
-            port: "/dev/ttyACM0"
-          }
-        }
-      });
-
-      // vs
-
       Cylon.robot({
         connections: {
           loopback: { adaptor: "loopback" },
@@ -131,8 +120,7 @@ active_menu_docs: true
 
   Inside a work block, the Robot's devices can be accessed through the `devices` attribute, which contains a mapping of names to devices.
 
-  Additionally, if they're not overridden by a Device's name, Connections are directly aliased as properties on the Robot for convenient access.
-  Also, Devices can be directly accessed as properties on the Robot itself. These override Connections with the same name
+  Devices are also aliased directly as properties on the robot. This aliasing overrides connection aliases if they happen to have the same name.
 
       :::javascript
       Cylon.robot({
@@ -333,4 +321,5 @@ active_menu_docs: true
 
       setInterval(function() {
         console.log("Hello world!");
-      }, 0)
+      
+      , 0)
