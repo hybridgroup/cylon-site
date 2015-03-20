@@ -98,6 +98,25 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
     .clear
 
+%section#user-contribution
+  %h2 User Contributed Platforms
+
+  %div
+    %p In addition to our supported platforms, we have the following user contributed platforms:
+
+    %h6
+      = link_to "Parrot Rolling Spider", "https://github.com/ChrisTheBaron/cylon-rolling-spider", target:"_blank",  class: "external-link"
+    %h6
+      = link_to "PCDuino", "https://github.com/alexwang2013/cylon-pcduino", target:"_blank",  class: "external-link"
+    %h6
+      = link_to "iBeacon", "https://github.com/juliancheal/cylon-beacon", target:"_blank",  class: "external-link"
+    %h6
+      = link_to "Robot Discovery", "https://github.com/lorenwest/cylon-robot-disco", target:"_blank",  class: "external-link"
+
+    %p<
+      If you have another platform you would like to add, please send us a
+      = link_to " pull request.", "https://github.com/hybridgroup/cylon-site#send-your-pull-request", class: "external-link" 
+
 %section#browser-mobile
   :markdown
     ## Browser & Mobile Support
