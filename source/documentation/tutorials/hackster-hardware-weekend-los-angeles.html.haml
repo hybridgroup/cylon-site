@@ -1,0 +1,216 @@
+---
+title: Cylon.js - Tutorials
+author: The Hybrid Group
+page_title: Hackster Hardware Weekend - Los Angeles 2015
+page_subtitle: Workshop
+layout: documentation
+page_title_show: true
+---
+
+%section.dreamforce
+  :markdown
+    ##  Connect Intel Edison To AT&T M2X In 60 Lines Of JavaScript
+
+    Welcome!
+    In this workshop, we're going to show you how to create a AT&T M2X connected device, using the brand new Intel Edison, in 60 lines of JavaScript.
+    Plus we're going to have some fun too.
+
+%section.dreamforce
+  :markdown
+    ## Getting Started
+
+    - You need an Intel Edison with Arduino Breakout Board, 2 USB Cables, and a Grove Starter Kit to participate in this workshop.
+    - You will need to install the Intel XDK (Cross-platform Developer Kit) IoT Edition, and if your are using Microsoft Windows, the needed drivers.
+    - Get started by running the "Intel XDK IoT Edition" program.
+    - The dialog "Please log into Intel XDK" will be displayed. You will need to register for an account, or else sign in using your existing Intel XDK account, if you have one.
+    - That is it, now you are ready to get going!
+
+%section.dreamforce
+  :markdown
+    ## Create a Blank Project
+
+    - First, we need to create a new project. Choose "New Project".
+    - Click on "Start With A Sample Or Template" in the "Internet Of Things (IoT) with Node.js Projects.
+    - Click on "Blank Template", and then click on "Use This Template".
+    - Enter in a name for this project, such as "hw15", then click on the "Create" button.
+    - Click on the file named "package.json".
+      The file will open in the XDK editor.
+      Copy the following code, and paste into your editor, replacing all of the code already in the "package.json" file:
+
+      ### package.json
+          :::javascript
+          {
+            "name": "blankapp",
+            "description": "",
+            "version": "0.0.1",
+            "main": "main.js",
+            "engines": {
+              "node": ">=0.10.0"
+            },
+            "dependencies": {
+                "cylon-intel-iot": "*"
+            }
+          }
+
+    - You will need to connect to your Edison board from your computer to send code to it.
+      Choose the "Add Manual Connection" from the "IoT Device" menu located at the bottom right.
+      Enter "192.168.2.15" for the Address, and "58888" for the Port.
+      Click on the "Connect" button to save your connection.
+
+%section.dreamforce
+  :markdown
+    ## Blinking LED
+
+    Let's start with the 'Hello, World' of the Internet of Things: making an LED blink.
+
+    - Plug the LED that is included with the Grove Starter Kit into the jack labeled 'D4', like this:
+      <img src="/images/tutorials/df14/led.jpg" alt="Plug the LED">
+
+    - Enter the following code into the Intel XDK editor into the file named "main.js", replacing everything in the file:
+
+      ### main.js
+          :::javascript
+          var Cylon = require('cylon');
+
+          Cylon
+            .robot()
+            .connection('edison', { adaptor: 'intel-iot' })
+            .device('led', { driver: 'led', pin: 4, connection: 'edison' })
+            .on('ready', function(my) {
+              setInterval(function() {
+                my.led.toggle();
+              }, 1000);
+            });
+
+          Cylon.start();
+
+    - Click on the "Install/Build" icon located at the bottom of the XDK editor.
+      This will install the needed Cylon.js software on the Edison, as well as copying your code.
+
+    - Now, click on the "Run" icon located at the bottom of the XDK editor.
+
+    The Cylon.js program will execute on the Edison itself, and will make the LED turn on/off every second.
+
+%section.dreamforce
+  :markdown
+    ## LED + Touch Sensor
+    Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.
+
+    - Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:
+
+      <img src="/images/tutorials/df14/touch.jpg" alt="Touch Example">
+
+    - Now, enter this code into the Intel XDK editor for the file "main.js", replacing everything:
+
+      ### main.js
+          :::javascript
+          var Cylon = require('cylon');
+
+          Cylon
+            .robot()
+            .connection('edison', { adaptor: 'intel-iot' })
+            .device('led', { driver: 'led', pin: 4, connection: 'edison' })
+            .device('touch', { driver: 'button', pin: 3, connection: 'edison' })
+            .on('ready', function(my) {
+              my.touch.on('press', function() {
+                my.led.turnOn();
+              });
+
+              my.touch.on('release', function() {
+                my.led.turnOff();
+              });
+            });
+
+          Cylon.start();
+
+    - Click on the "Run" icon located at the bottom of the XDK editor.
+
+    Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.
+
+%section.dreamforce
+  :markdown
+    ## ATT M2X + LED + Touch Sensor
+
+    Now, we're ready to connect our device to ATT M2X.
+    Leave the touch sensor and LED plugged in.
+    All we will need is to change the Cylon.js program to connect our device to the AT&T M2X APIs.
+
+    - Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:
+
+      ### main.js
+          :::javascript
+          // code here
+
+    - At the top of the "main.js" file, change the "masterKey" and "deviceId" located at line 3 and 4 to the AT&T M2X info that matches your device.
+
+    - You will need to add the "cylon-m2x" module to your "package.json" as well. Replace the entire file's contents with this code:
+
+      ### package.json
+          :::javascript
+          {
+            "name": "blankapp",
+            "description": "",
+            "version": "0.0.1",
+            "main": "main.js",
+            "engines": {
+              "node": ">=0.10.0"
+            },
+            "dependencies": {
+              "cylon-intel-iot": "*",
+              "cylon-m2x": "*"
+            }
+          }
+
+
+    - Click on the "Run" icon located at the bottom of the XDK editor.
+
+    Once the program is running, now when you press the sensor, it communcates with the AT&T M2X cloud, and then turns the LED on or off, when the M2X API sends an update to the device.
+
+%section.dreamforce
+  :markdown
+    ## AT&T M2X + LED + Touch Sensor + Analog Sensor
+
+    Now, let's add an 'analog sensor'.
+    An analog sensor allows you to have not just an 'on or off' signal, but actually send a range, like the control dial on a thermostat.
+
+      - Plug in the knob labeled "Rotation" that is included with the Grove Starter Kit into the jack labeled 'A0', like this:
+
+        <img src="/images/tutorials/df14/dial.jpg" alt="Dial it in">
+
+      - Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line".
+        Please note that you need to replace the previous code below this comment, while leaving in the "masterKey" and "deviceId" values from before.
+
+        ### JavaScript
+            :::javascript
+            // code here...
+
+      - Click on the "Run" icon located at the bottom of the XDK editor.
+
+    Once the program is running, when you touch the touch sensor from before, you can adjust the value by turning the dial to send a new value to M2X every 2 seconds. Both data sources are going thru M2X!
+
+%section.dreamforce
+  :markdown
+    ## AT&T M2X + LED + Button + Analog Sensor + LCD Display
+
+    Finally, let's add a backlit LCD display, so we can display some useful data on the device itself.
+
+    - Plug in the LCD Display that is included with the Grove Starter Kit into the jack labeled 'I2C', like this:
+
+      <img src="/images/tutorials/df14/lcd.jpg" alt="LCD Display">
+
+    - Instead of replacing all of the "main.js" file, copy this code and paste into the editor underneath the comment "Paste Cylon.js robot code below this line".
+      Once again, please note that you need to replace the previous code below this comment, leaving in the "masterKey" and "deviceId" values from earlier.
+
+      ### main.js
+          :::javascript
+          // code here...
+
+    Once the program is running, the values that you change by moving the dial, will be displayed on the LCD display. As before, you must be touching the touch sensor, in order to move the dial.
+
+%section.dreamforce
+  :markdown
+    ## Wrap Up
+
+    That concludes this workshop.
+    You've just connected the Intel Edison to 4 different devices and the AT&T M2X API.
+    Great job!
