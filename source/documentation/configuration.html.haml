@@ -61,13 +61,14 @@ main_nav: true
 
   ## API
 
-  The Cylon.js API server allows for port, host, SSL and auth configuration.
+  The Cylon.js API plugin system allows for configuration:
 
   In your scripts, you can set it up as so:
 
       :::javascript
+      // instantiate, configure the HTTP API plugin
 
-      Cylon.api({
+      Cylon.api("http", {
         host: '127.0.0.1',
         port: '4321',
 
@@ -81,9 +82,7 @@ main_nav: true
         }
       });
 
-  If you run a Cylon script with this code in it, it will start an API server
-  listening on `https://127.0.0.1:4321`, that will require basic auth for all
-  routes.
+  If you run a Cylon script with this code in it, it will start a HTTP API server listening on `https://127.0.0.1:4321`, that will require basic auth for all routes.
 
   ## Halt Timeout
 
