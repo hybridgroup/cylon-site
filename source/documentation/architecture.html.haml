@@ -24,12 +24,16 @@ main_nav: true
 
   <img src="/images/elements/architecture-mcp.png" width="100%">
 
-  ## REST API
+  ## API
 
-  Cylon's built-in API offers both a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.
+  Cylon.js uses a simple plug-in system for API modules. This gives several advantages, like a smaller file size for the base `cylon` module if you do not need the API. It also allows you to only use the interfaces you actually need. 
 
-  It interfaces directly with the MCP to fetch robots and information about them.
-  It's also capable of executing commands on Robots and Devices.
+  For example, the <a href="https://github.com/hybridgroup/cylon-api-http">cylon-api-http</a> plugin offers a RESTful HTTP interface, along with server-sent events that can be used to subscribe to device events.
+
+  Another API plugin <a href="https://github.com/hybridgroup/cylon-api-socketio">cylon-api-socketio</a> supports an interface for clients based on the popular <a href="http://socket.io/">socket.io</a> module.
+
+  All API plugins interface directly with the MCP to fetch robots and information about them.
+  They are also capable of executing commands on Robots and Devices.
 
   ## Robots
 
