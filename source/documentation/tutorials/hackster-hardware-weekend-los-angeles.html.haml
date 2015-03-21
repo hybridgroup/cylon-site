@@ -100,10 +100,14 @@ page_title_show: true
 
 %section.dreamforce
   :markdown
-    ## LED + Touch Sensor
-    Now, let's add a digital touch sensor, so you can control when the LED turns on or off yourself.
+    ## LCD + Temp Sensor + LED
+    Now, let's add a temperature sensor and LCD screen, so you can see the ambient room temperature and display it on the screen.
 
-    - Leave the LED plugged in, and plug in the touch sensor that is included with the Grove Starter Kit, into the jack labeled 'D3', like this:
+    - Leave the LED plugged in, and plug in the temperature sensor that is included with the Grove Starter Kit, into the jack labeled 'A3', like this:
+
+      <img src="/images/tutorials/df14/touch.jpg" alt="Touch Example">
+
+    - And the LCD into the jack labeled 'I2C', like this:
 
       <img src="/images/tutorials/df14/touch.jpg" alt="Touch Example">
 
@@ -118,23 +122,28 @@ page_title_show: true
               edison: { adaptor: 'intel-iot' }
             },
             devices: {
-              led: { driver: 'led', pin: 4, connection: 'edison' },
-              touch: { driver: 'button', pin: 3, connection: 'edison' }
+              led: { driver: 'led', pin: 4},
+              sensor: { driver: 'upm-grovetemp', pin: 0},
+              screen: { driver: 'upm-jhd1313m1'}
             },
             work: function(my) {
-              my.touch.on('push', function() {
-                my.led.turnOn()
-              });
+              my.screen.setColor(255,0,0);
 
-              my.touch.on('release', function() {
-                my.led.turnOff()
-              });
+              setInterval(function() {
+                my.led.turnOn()
+                setTimeout(function() {
+                  my.led.turnOff();
+                }, 300);
+
+                my.screen.setCursor(0,0);
+                my.screen.write(my.sensor.value().toString() + "C");
+              }, 2000);
             }
           }).start();
 
     - Click on the "Run" icon located at the bottom of the XDK editor.
 
-    Once the program is running, you should be able to turn the LED on or off, by touching the sensor with your finger.
+    Once the program is running, you should see the temperature displayed on the LCD and the LED will light up whenever a new sample is recorded.
 %section.dreamforce
   :markdown
     ## Create an ATT M2X application 
@@ -143,18 +152,18 @@ page_title_show: true
     - First navigate to [m2x signup](https://m2x.att.com/signup) and create a new account.  
     - Create a new device with the name "Edison" and "Private" visibility.  
     - Select the newly created "Edison" device and add a new stream  
-      - StremID "touch"  
-      - Unit "byte"  
+      - StremID "temp"  
+      - Unit "celsius"  
     - Save the new stream  
     - Take note of your "Device ID" 
     - Navigate to the [Master Key](https://m2x.att.com/account#master-keys) page and take note of your "Master Key"  
 
 %section.dreamforce
   :markdown
-    ## ATT M2X + LED + Touch Sensor
+    ## ATT M2X + LCD + Temp Sensor + LED
 
     Now, we're ready to connect our device to ATT M2X.
-    Leave the touch sensor and LED plugged in.
+    Leave the temp sensor, LCD and LED plugged in.
     All we will need is to change the Cylon.js program to connect our device to the AT&T M2X APIs.
 
     - Enter this code into the Intel XDK editor, replacing all of the previous code in the "main.js" file:
@@ -169,46 +178,38 @@ page_title_show: true
               m2x: { adaptor: "m2x", masterKey: "<masterKey>" }
             },
             devices: {
-              led: { driver: "led", pin: 4, connection: "edison" },
-              touch: { driver: "button", pin: 3, connection: "edison" },
+              led: { driver: 'led', pin: 4 },
+              sensor: { driver: 'upm-grovetemp', pin: 0 },
+              screen: { driver: 'upm-jhd1313m1' },
               m2x: { driver: "m2x", id: "<deviceId>", connection: "m2x" }
             },
             work: function(my) {
-              my.m2x.subscribe("touch", { interval: 1000 });
+              my.screen.setColor(255,0,0);
+              my.m2x.subscribe("temp", { interval: 1000 });
 
               my.m2x.on("error", function(err) {
                 console.log("m2x error: ", err);
               });
 
-              my.m2x.on("touch", function(data) {
+              my.m2x.on("temp", function(data) {
                 if (data.values.length > 0) {
-                  if (data.values[0].value === 1) {
-                    my.led.turnOn();
-                  } else {
-                    my.led.turnOff();
-                  }
+                  my.screen.setCursor(0,0);
+                  my.screen.write(data.values[0].value.toString() + "C");
                 }
               });
 
-              my.touch.on("push", function() {
-                console.log("sending 'push' event to m2x");
-                my.m2x.publish("touch", 1, function(err) {
+              setInterval(function() {
+                my.led.turnOn();
+                my.m2x.publish("temp", my.sensor.value(), function(err) {
+                  my.led.turnOff();
                   if (err) {
-                    console.log("push err: ", err);
+                    console.log("err: ", err);
                   }
                 });
-              });
-
-              my.touch.on("release", function() {
-                console.log("sending 'release' event to m2x");
-                my.m2x.publish("touch", 0, function(err, data) {
-                  if (err) {
-                    console.log("push err: ", err);
-                  }
-                });
-              });
+              }, 2000);
             }
           }).start();
+          
 
     - At the top of the "main.js" file, change the "masterKey" and "deviceId" located at line 3 and 4 to the AT&T M2X info that matches your device.
 
@@ -233,12 +234,12 @@ page_title_show: true
 
     - Click on the "Run" icon located at the bottom of the XDK editor.
 
-    Once the program is running, now when you press the sensor, it communcates with the AT&T M2X cloud, and then turns the LED on or off, when the M2X API sends an update to the device.
+    Once the program is running, the LED will light up while the Edison communcates with the AT&T M2X cloud, and then displays the new temp on the LCD, when the M2X API sends an update to the device.
 
 %section.dreamforce
   :markdown
     ## Wrap Up
 
     That concludes this workshop.
-    You've just connected the Intel Edison to 2 different devices and the AT&T M2X API.
+    You've just connected the Intel Edison to 3 different devices and the AT&T M2X API.
     Great job!
