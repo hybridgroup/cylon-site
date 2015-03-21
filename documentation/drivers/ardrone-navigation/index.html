@@ -247,6 +247,7 @@
               <div class="section" ng-class="{active: active('Tutorials')}">
                 <div class="name" ng-click="show('Tutorials')">Tutorials</div>
                 <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/hackster-hardware-weekend-los-angeles">Hackster Hardware Weekend</a>
                   <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
                   <a href="/documentation/tutorials/thingscon">Thingscon</a>
                 </div>
@@ -302,7 +303,7 @@
 
   <span class="key">devices</span>: {
     <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
+    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone-nav</span><span class="delimiter">'</span></span> }
   }
 });
 </pre>
@@ -321,13 +322,13 @@ Cylon.robot({
 
   <span class="key">devices</span>: {
     <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> },
-    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardroneNav</span><span class="delimiter">'</span></span> }
+    <span class="key">nav</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone-nav</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.drone.config(<span class="string"><span class="delimiter">'</span><span class="content">general:navdata_demo</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">TRUE</span><span class="delimiter">'</span></span>);
 
-    my.nav.on(<span class="string"><span class="delimiter">'</span><span class="content">update</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.nav.on(<span class="string"><span class="delimiter">'</span><span class="content">navdata</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       console.log(data);
     }
   }
