@@ -87,11 +87,11 @@ main_nav: true
   ## Halt Timeout
 
   When Cylon is told to shutdown, either via `Cylon#halt` or Ctrl-C, it tries to gracefully shut down all Robots/Devices/Connections.
-  If this isn't possible inside of the specified `halt_timeout`, Cylon will instead forcefully shut itself down.
+  If this isn't possible inside of the specified `haltTimeout`, Cylon will instead forcefully shut itself down.
 
       :::javascript
       Cylon.config({
-        halt_timeout: 4000 // time in milliseconds before forcefully shutting down
+        haltTimeout: 4000 // time in milliseconds before forcefully shutting down
       });
 
-  This value defaults to three thousand milliseconds (3000).
+  This value defaults to three seconds (3000 ms).
