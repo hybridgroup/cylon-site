@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.JS Example - blink-server</title>
+    <title>Cylon.JS Example - publish</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -262,68 +262,32 @@
           <div class="container-documentation">
             
             <div class="example">
-              <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
+              <pre class="CodeRay"><span class="comment">/*jslint node: true */</span>
+<span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
-  <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rosie</span><span class="delimiter">'</span></span>,
-
   <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
+    <span class="key">m2x</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">masterKey</span>: <span class="string"><span class="delimiter">"</span><span class="content">masterKey</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+    <span class="key">m2xDevice</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">id</span>: <span class="string"><span class="delimiter">"</span><span class="content">d9c3b48d3be2e...</span><span class="delimiter">"</span></span> }
   },
 
-  <span class="key">events</span>: [<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>],
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="keyword">var</span> baseTemp = <span class="integer">20</span>, temp = <span class="integer">0</span>;
 
-  <span class="function">commands</span>: <span class="keyword">function</span>() {
-    <span class="keyword">return</span> {
-      <span class="key">turn_on</span>: <span class="local-variable">this</span>.turnOn,
-      <span class="key">turn_off</span>: <span class="local-variable">this</span>.turnOff,
-      <span class="key">toggle</span>: <span class="local-variable">this</span>.toggle
-    };
-  },
-
-  <span class="function">toggle</span>: <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.led.toggle();
-    <span class="keyword">if</span> (<span class="local-variable">this</span>.led.isOn()) {
-      <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, { <span class="key">data</span>: <span class="string"><span class="delimiter">'</span><span class="content">pass some data to the listener</span><span class="delimiter">'</span></span>});
-    } <span class="keyword">else</span> {
-      <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, { <span class="key">data</span>: <span class="string"><span class="delimiter">'</span><span class="content">pass some data to the listener</span><span class="delimiter">'</span></span>});
-    }
-  },
-
-  <span class="function">turnOn</span>: <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.led.turnOn();
-    <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_on</span><span class="delimiter">'</span></span>, { <span class="key">data</span>: <span class="string"><span class="delimiter">'</span><span class="content">pass some data to the listener</span><span class="delimiter">'</span></span>});
-  },
-
-  <span class="function">turnOff</span>: <span class="keyword">function</span>() {
-    <span class="local-variable">this</span>.led.turnOff();
-    <span class="local-variable">this</span>.emit(<span class="string"><span class="delimiter">'</span><span class="content">turned_off</span><span class="delimiter">'</span></span>, { <span class="key">data</span>: <span class="string"><span class="delimiter">'</span><span class="content">pass some data to the listener</span><span class="delimiter">'</span></span>});
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>() {
-    <span class="comment">// Add your robot code here,</span>
-    <span class="comment">// for this example with sockets</span>
-    <span class="comment">// we are going to be interacting</span>
-    <span class="comment">// with the robot using the code in</span>
-    <span class="comment">// ./**-client.html</span>
+    every(<span class="integer">2000</span>, <span class="keyword">function</span>() {
+      temp = Math.floor(Math.random() * <span class="integer">6</span>) + <span class="integer">1</span> + baseTemp;
+      my.m2xDevice.publish(<span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>, temp, <span class="keyword">function</span>(err, data) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, err);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Values: </span><span class="delimiter">"</span></span>, data);
+      });
+    });
   }
-});
-
-<span class="comment">// ensure you install the API plugin first:</span>
-<span class="comment">// $ npm install cylon-api-socket-io</span>
-Cylon.api(
-  <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,{
-  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
-});
-
-Cylon.start();
+}).start();
 </pre>
             </div>
           </div>

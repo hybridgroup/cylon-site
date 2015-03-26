@@ -367,6 +367,11 @@ iface usb0 inet dhcp</code>
               
               <p>If you have a valid wifi connection, you should be able to reach out of your network!</p>
               
+              <h5 id="ethernet-over-usb-internet-sharing">Ethernet over USB internet sharing</h5>
+              <p>If you are using ethernet over USB then you can enable internet sharing on your Edison by executing this command on the Edison itself
+                  :::bash
+                  /sbin/route add default gw 192.168.2.1</p>
+              
               <p>Now you're ready to install MRAA and Cylon.</p>
               
               <h4 id="install-mraa">Install MRAA</h4>

@@ -304,17 +304,22 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">m2x</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">masterKey</span>: <span class="string"><span class="delimiter">"</span><span class="content">&lt;masterKey&gt;</span><span class="delimiter">"</span></span> }
+    <span class="key">m2x</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">masterKey</span>: <span class="string"><span class="delimiter">"</span><span class="content">masterKey</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">m2x</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span> }
+    <span class="key">m2xDevice</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">m2x</span><span class="delimiter">"</span></span>, <span class="key">id</span>: <span class="string"><span class="delimiter">"</span><span class="content">d9c3b48d3be2e...</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.m2x.streamValues(<span class="string"><span class="delimiter">"</span><span class="content">&lt;deviceId&gt;</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>, {}, <span class="keyword">function</span>(err, data) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, err);
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Values: </span><span class="delimiter">"</span></span>, data);
+    <span class="keyword">var</span> baseTemp = <span class="integer">20</span>, temp = <span class="integer">0</span>;
+
+    every(<span class="integer">2000</span>, <span class="keyword">function</span>() {
+      temp = Math.floor(Math.random() * <span class="integer">6</span>) + <span class="integer">1</span> + baseTemp;
+      my.m2xDevice.publish(<span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>, temp, <span class="keyword">function</span>(err, data) {
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, err);
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Values: </span><span class="delimiter">"</span></span>, data);
+      });
     });
   }
 }).start();

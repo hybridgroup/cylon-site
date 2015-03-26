@@ -262,20 +262,19 @@
           <div class="container-documentation">
             
             <div class="api">
-              <h1 id="how-to-connect-with-socketio">How To Connect with Socket.io</h1>
+              <h2 id="how-to-install-with-socketio">How to Install with Socket.io</h2>
               
-              <p>To use Socket.io, install it alongside Cylon:</p>
-              
-              <pre class="CodeRay">$ npm install cylon-api-socketio
+              <pre class="CodeRay">$ npm install cylon cylon-api-socketio
 </pre>
               
               <h2 id="how-to-use">How to Use</h2>
               
-              <p>Make sure you have Cylon.js installed, then we can add Socket.io support to cylon programs as follows:</p>
+              <p>Make sure you have Cylon.js installed, then we can add Socket.io support to cylon
+              programs as follows:</p>
               
-              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+              <pre class="CodeRay"><span class="string"><span class="delimiter">'</span><span class="content">use strict</span><span class="delimiter">'</span></span>;
 
-<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 Cylon.robot({
   <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">rosie</span><span class="delimiter">'</span></span>,
@@ -289,21 +288,19 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>() {
-    <span class="comment">// Add your robot code here,</span>
     <span class="comment">// for this example with sockets</span>
     <span class="comment">// we are going to be interacting</span>
     <span class="comment">// with the robot using the code in</span>
-    <span class="comment">// ./analog-read-client.html.</span>
+    <span class="comment">// ./**-client.html</span>
   }
 });
 
 <span class="comment">// ensure you install the API plugin first:</span>
 <span class="comment">// $ npm install cylon-api-socket-io</span>
-Cylon.api(
-  <span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
-  {
-  <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.0.0</span><span class="delimiter">"</span></span>,
-  <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">3000</span><span class="delimiter">"</span></span>
+Cylon.api(<span class="string"><span class="delimiter">'</span><span class="content">socketio</span><span class="delimiter">'</span></span>,
+{
+  <span class="key">host</span>: <span class="string"><span class="delimiter">'</span><span class="content">0.0.0.0</span><span class="delimiter">'</span></span>,
+  <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">3000</span><span class="delimiter">'</span></span>
 });
 
 Cylon.start();
@@ -311,12 +308,13 @@ Cylon.start();
               
               <h2 id="how-to-connect">How to Connect</h2>
               
-              <p>Once you have added the api to your Cylon.js code, and your robots are up and running, you can connect to them using Socket.io through cylon using the following code:</p>
+              <p>Once you have added the api to your Cylon.js code, and your robots are up and running, you can connect to them using Socket.io using the following code:</p>
               
               <pre class="CodeRay"><span class="doctype">&lt;!doctype html&gt;</span>
 <span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
   <span class="tag">&lt;head&gt;</span>
-    <span class="tag">&lt;title&gt;</span>Socket.IO chat<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;title&gt;</span>Simple Device Example<span class="tag">&lt;/title&gt;</span>
     <span class="tag">&lt;style&gt;</span>
 <span class="inline">      <span class="tag">*</span> { <span class="key">margin</span>: <span class="float">0</span>; <span class="key">padding</span>: <span class="float">0</span>; <span class="key">box-sizing</span>: <span class="value">border-box</span>; }
       <span class="tag">body</span> { <span class="key">font</span>: <span class="float">13px</span> <span class="value">Helvetica</span>, <span class="value">Arial</span>; }
@@ -331,67 +329,37 @@ Cylon.start();
   <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">https://cdn.socket.io/socket.io-1.2.0.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
   <span class="tag">&lt;script</span> <span class="attribute-name">src</span>=<span class="string"><span class="delimiter">"</span><span class="content">http://code.jquery.com/jquery-1.11.1.js</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/script&gt;</span>
   <span class="tag">&lt;script</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">"</span><span class="content">text/javascript</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-<span class="inline">    <span class="keyword">var</span> cylon, robot, device;
+<span class="inline">    <span class="keyword">var</span> device;
 
     window.<span class="function">onload</span> = <span class="keyword">function</span>() {
-      <span class="keyword">if</span> (!device) {
-        <span class="comment">// Since we already know which device we want to connect to,</span>
-        <span class="comment">// we create a new socket for the `led` device.</span>
-        device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1/api/robots/rosie/devices/led</span><span class="delimiter">'</span></span>);
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Setting up socket connections:</span><span class="delimiter">'</span></span>);
 
-        <span class="comment">// Listen to the 'message' event on device</span>
-        device.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(msg) {
-          <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-        });
+      <span class="comment">// We use the robot nsp (namespace) to connect to one of the devices</span>
+      <span class="comment">// in this case the led we added in our cylon robot code</span>
+      device = io(<span class="string"><span class="delimiter">'</span><span class="content">http://127.0.0.1:3000/api/robots/rosie/devices/led</span><span class="delimiter">'</span></span>);
+      setInterval(<span class="keyword">function</span>() {
+        device.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
+      }, <span class="integer">1000</span>);
 
-        <span class="comment">// Listen to the 'commands' event on device</span>
-        <span class="comment">// returns a list of available commands for the device,</span>
-        <span class="comment">// you need to first send a 'commands' event down</span>
-        <span class="comment">// the socket, so it knows to trigger this event</span>
-        <span class="comment">// with the list of commands.</span>
-        device.on(<span class="string"><span class="delimiter">'</span><span class="content">commands</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(commands) {
-          <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">'</span><span class="content">commands:</span><span class="delimiter">'</span></span> + commands.toString();
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">commands ==&gt;</span><span class="delimiter">'</span></span>, commands);
-          <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-        });
+      device.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(payload) {
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">On Device</span><span class="delimiter">'</span></span>);
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">  Event:</span><span class="delimiter">'</span></span>, payload.event);
+        console.log(<span class="string"><span class="delimiter">'</span><span class="content">  Data:</span><span class="delimiter">'</span></span>, payload.data);
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(<span class="string"><span class="delimiter">'</span><span class="content">On Device:</span><span class="delimiter">'</span></span>));
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(<span class="string"><span class="delimiter">'</span><span class="content">  Event:</span><span class="delimiter">'</span></span> + payload.event.toString()));
+        <span class="keyword">if</span> (!!payload.data) {
+          <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(<span class="string"><span class="delimiter">'</span><span class="content">  Data:</span><span class="delimiter">'</span></span> + payload.data.toString()));
+        }
+        <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;hr /&gt;</span><span class="delimiter">'</span></span>));
+      });
 
-        <span class="comment">// Every time a command is executed the 'command' event</span>
-        <span class="comment">// is triggered, returns the name of the command executed</span>
-        <span class="comment">// and the value returned by the method the command calls.</span>
-        device.on(<span class="string"><span class="delimiter">'</span><span class="content">command</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(command, value) {
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">command name ==&gt;</span><span class="delimiter">'</span></span>, command);
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">command returned ==&gt;</span><span class="delimiter">'</span></span>, value);
-        });
+      msg = <span class="string"><span class="delimiter">'</span><span class="content">You have been subscribed to Cylon sockets:</span><span class="delimiter">'</span></span> + device.nsp;
 
-        <span class="comment">// Listen to the 'events' event on device</span>
-        <span class="comment">// returns a list of available events for the device,</span>
-        <span class="comment">// same as with commands you need to emit a 'events'</span>
-        <span class="comment">// event first.</span>
-        device.on(<span class="string"><span class="delimiter">'</span><span class="content">events</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(events) {
-          <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">'</span><span class="content">events:</span><span class="delimiter">'</span></span> + events.toString();
-          console.log(<span class="string"><span class="delimiter">'</span><span class="content">events ==&gt;</span><span class="delimiter">'</span></span>, events);
-          <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
-        });
-
-        <span class="comment">// We emit 'commands' and 'events' so we can listen</span>
-        <span class="comment">// and get the lists of available items.</span>
-        device.emit(<span class="string"><span class="delimiter">'</span><span class="content">commands</span><span class="delimiter">'</span></span>);
-        device.emit(<span class="string"><span class="delimiter">'</span><span class="content">events</span><span class="delimiter">'</span></span>);
-
-        <span class="comment">// The "hello world" program of robotics, the</span>
-        <span class="comment">// blink and LED program, we just emit the command</span>
-        <span class="comment">// we want our device to execute.</span>
-        setInterval(<span class="keyword">function</span>() {
-          device.emit(<span class="string"><span class="delimiter">'</span><span class="content">toggle</span><span class="delimiter">'</span></span>);
-        }, <span class="integer">1000</span>);
-      }
+      <span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">#messages</span><span class="delimiter">'</span></span>).append(<span class="predefined">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">&lt;li&gt;</span><span class="delimiter">'</span></span>).text(msg));
     };</span>
   <span class="tag">&lt;/script&gt;</span>
   <span class="tag">&lt;body&gt;</span>
     <span class="tag">&lt;ul</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">messages</span><span class="delimiter">"</span></span><span class="tag">&gt;</span><span class="tag">&lt;/ul&gt;</span>
-    <span class="tag">&lt;form</span> <span class="attribute-name">action</span>=<span class="string"><span class="delimiter">"</span><span class="delimiter">"</span></span><span class="tag">&gt;</span>
-      <span class="tag">&lt;input</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">"</span><span class="content">m</span><span class="delimiter">"</span></span> <span class="attribute-name">autocomplete</span>=<span class="string"><span class="delimiter">"</span><span class="content">off</span><span class="delimiter">"</span></span> <span class="tag">/&gt;</span><span class="tag">&lt;button&gt;</span>Send<span class="tag">&lt;/button&gt;</span>
-    <span class="tag">&lt;/form&gt;</span>
   <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span>
 </pre>

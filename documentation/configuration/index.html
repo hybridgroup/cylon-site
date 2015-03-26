@@ -345,14 +345,14 @@ Cylon.api(<span class="string"><span class="delimiter">"</span><span class="cont
             <h2 id="halt-timeout">Halt Timeout</h2>
             
             <p>When Cylon is told to shutdown, either via <code>Cylon#halt</code> or Ctrl-C, it tries to gracefully shut down all Robots/Devices/Connections.
-            If this isn't possible inside of the specified <code>halt_timeout</code>, Cylon will instead forcefully shut itself down.</p>
+            If this isn't possible inside of the specified <code>haltTimeout</code>, Cylon will instead forcefully shut itself down.</p>
             
             <pre class="CodeRay">Cylon.config({
-  <span class="key">halt_timeout</span>: <span class="integer">4000</span> <span class="comment">// time in milliseconds before forcefully shutting down</span>
+  <span class="key">haltTimeout</span>: <span class="integer">4000</span> <span class="comment">// time in milliseconds before forcefully shutting down</span>
 });
 </pre>
             
-            <p>This value defaults to three thousand milliseconds (3000).</p>
+            <p>This value defaults to three seconds (3000 ms).</p>
           </div>
         </div>
       </div>
