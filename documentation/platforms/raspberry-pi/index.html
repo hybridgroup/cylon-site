@@ -296,6 +296,8 @@
             <section class="how-to">
               <h2 id="how-to-install">How to Install</h2>
               
+              <p>Installing Cylon.js for the Raspiberry Pi is easy, but must be done on the Raspi itself, or on another Linux computer. Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
+              
               <p>Install the module with:</p>
               
               <pre class="CodeRay">$ npm install cylon cylon-raspi
@@ -324,9 +326,44 @@ Cylon.robot({
               
               <h2 id="how-to-connect">How to Connect</h2>
               
+              <h3 id="install-the-lastest-raspbian-os">Install the lastest Raspbian OS</h3>
+              
+              <p>You can get it from here: http://www.raspberrypi.org/downloads/</p>
+              
+              <h3 id="setting-the-raspberry-pi-keyboard">Setting the Raspberry Pi keyboard</h3>
+              
+              <p>Having trouble with your Raspberry Pi keyboard layout? Use the <code>sudo dpkg-reconfigure keyboard-configuration</code> command.</p>
+              
+              <h3 id="update-your-raspbian-and-install-nodejs">Update your Raspbian and install Node.js</h3>
+              
+              <p>These commands need to be run after SSHing into the Raspi:</p>
+              
+              <pre class="CodeRay">sudo apt-get upgrade
+sudo apt-get update
+wget http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-arm-pi.tar.gz
+tar -xvzf node-v0.10.28-linux-arm-pi.tar.gz
+node-v0.10.28-linux-arm-pi/bin/node --version
+</pre>
+              
+              <p>You should see the node version you just installed.</p>
+              
+              <pre class="CodeRay">$ node --version
+v0.10.28
+</pre>
+              
+              <p>Once you have installed Node.js, you need to add the following to your <code>~/.bash_profile</code> file. Create this file if it does not already exist, and add this to it:</p>
+              
+              <pre class="CodeRay">NODE_JS_HOME=/home/pi/node-v0.10.28-linux-arm-pi
+PATH=$PATH:$NODE_JS_HOME/bin
+</pre>
+              
+              <p>This will setup the path for you every time you login. Run the <code>source ~/.bash_profile</code> command to load it right now without having to login again.</p>
+              
+              <p>Thanks <a href="https://github.com/joshmarinacci">@joshmarinacci</a> for the blog post at http://joshondesign.com/2013/10/23/noderpi where these modified instructions were taken.</p>
+              
               <h3 id="connecting-to-raspberry-pi-gpio">Connecting to Raspberry Pi GPIO</h3>
               
-              <p>This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer it will not work.
+              <p>This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer, it will not work.
               Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.</p>
               
               <h3 id="enabling-the-raspberry-pi-i2c-on-raspbian">Enabling the Raspberry Pi i2c on Raspbian</h3>
@@ -343,7 +380,18 @@ i2c-dev
 #blacklist i2c-bcm2708
 </pre>
               
-              <p>Now restart your raspberry pi.</p>
+              <p>You will also need to update the /boot/config.txt file. Edit it add the following text:</p>
+              
+              <pre class="CodeRay">dtparam=i2c1=on
+dtparam=i2c_arm=on
+</pre>
+              
+              <p>Finally, you need to allow the <code>pi</code> user permissions to access the i2c interface bu running this command:</p>
+              
+              <pre class="CodeRay">sudo usermod -G i2c pi
+</pre>
+              
+              <p>Now restart your Raspberry Pi.</p>
               
               <h3 id="enabling-pwm-output-on-gpio-pins">Enabling PWM output on GPIO pins.</h3>
               
@@ -415,6 +463,8 @@ i2c-dev
   }
 };
 </pre>
+              
+              <p>The website http://pi.gadgetoid.com/pinout has a great visual representation of this information.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
