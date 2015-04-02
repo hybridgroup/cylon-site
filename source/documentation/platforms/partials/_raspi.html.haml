@@ -2,6 +2,8 @@
   :markdown
     ## How to Install
 
+    Installing Cylon.js for the Raspiberry Pi is easy, but must be done on the Raspi itself, or on another Linux computer. Due to I2C device support, the module cannot be installed on OS X or Windows.
+
     Install the module with:
 
         $ npm install cylon cylon-raspi
@@ -29,9 +31,47 @@
 
     ## How to Connect
 
+    ### Install the lastest Raspbian OS
+
+    You can get it from here: http://www.raspberrypi.org/downloads/
+
+    ### Setting the Raspberry Pi keyboard
+
+    Having trouble with your Raspberry Pi keyboard layout? Use the `sudo dpkg-reconfigure keyboard-configuration` command.
+
+    ### Update your Raspbian and install Node.js
+
+    These commands need to be run after SSHing into the Raspi:
+
+    ```
+    sudo apt-get upgrade; 
+    sudo apt-get update
+    wget http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-arm-pi.tar.gz
+    tar -xvzf node-v0.10.28-linux-arm-pi.tar.gz
+    node-v0.10.28-linux-arm-pi/bin/node --version
+    ```
+
+    You should see the node version you just installed.
+
+    ```
+    $ node --version
+    v0.10.28
+    ```
+
+    Once you have installed Node.js, you need to add the following to your `~/.bash_profile` file. Create this file if it does not already exist, and add this to it:
+
+    ```
+    NODE_JS_HOME=/home/pi/node-v0.10.28-linux-arm-pi 
+    PATH=$PATH:$NODE_JS_HOME/bin 
+    ```
+
+    This will setup the path for you every time you login. Run the `source ~/.bash_profile` command to load it right now without having to login again.
+
+    Thanks [@joshmarinacci](https://github.com/joshmarinacci) for the blog post at http://joshondesign.com/2013/10/23/noderpi where these modified instructions were taken.
+
     ### Connecting to Raspberry Pi GPIO
 
-    This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer it will not work.
+    This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer, it will not work.
     Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.
 
     ### Enabling the Raspberry Pi i2c on Raspbian
@@ -46,7 +86,16 @@
         #blacklist spi-bcm2708
         #blacklist i2c-bcm2708
 
-    Now restart your raspberry pi.
+    You will also need to update the /boot/config.txt file. Edit it add the following text:
+
+        dtparam=i2c1=on
+        dtparam=i2c_arm=on
+
+    Finally, you need to allow the `pi` user permissions to access the i2c interface bu running this command:
+
+        sudo usermod -G i2c pi
+
+    Now restart your Raspberry Pi.
 
     ### Enabling PWM output on GPIO pins.
 
@@ -118,3 +167,5 @@
             rev3: 21
           }
         };
+
+    The website http://pi.gadgetoid.com/pinout has a great visual representation of this information.
