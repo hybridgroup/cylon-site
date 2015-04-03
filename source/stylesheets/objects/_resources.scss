@@ -25,16 +25,27 @@
     }
   }
 
-  .external-link span{
-    text-decoration: underline;
-    color: $color-anchor-hover;
+  .external-link {
+    display: block;
+    padding: 5px 0;
 
-    &:hover{
-      color: $color-red;
+    span{
+      text-decoration: underline;
+      color: $color-anchor-hover;
+      font-weight: bold;
+
+      &:hover{
+        color: $color-red;
+      }
+    }
+
+    &:last-child{
+      padding-bottom: em(40);
     }
   }
 
-  &:last-child{
-    padding-bottom: em(40);
+  .flag{
+    top: 6px;
+    position: relative;
   }
 }
