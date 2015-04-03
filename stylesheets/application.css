@@ -2414,15 +2414,24 @@ a:hover, a:focus {
         .resources .video:last-child {
           margin-right: 0; } }
   /* line 28, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
-  .resources .external-link span {
-    text-decoration: underline;
-    color: #580a25; }
+  .resources .external-link {
+    display: block;
+    padding: 5px 0; }
     /* line 32, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
-    .resources .external-link span:hover {
-      color: #ee2a4a; }
-  /* line 37, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
-  .resources:last-child {
-    padding-bottom: 2.5em; }
+    .resources .external-link span {
+      text-decoration: underline;
+      color: #580a25;
+      font-weight: bold; }
+      /* line 37, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
+      .resources .external-link span:hover {
+        color: #ee2a4a; }
+    /* line 42, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
+    .resources .external-link:last-child {
+      padding-bottom: 2.5em; }
+  /* line 47, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_resources.scss */
+  .resources .flag {
+    top: 6px;
+    position: relative; }
 
 /* line 1, /home/ron/Development/cylonjs/cylon-site/source/stylesheets/objects/_side-bar.scss */
 .side-documentation {
