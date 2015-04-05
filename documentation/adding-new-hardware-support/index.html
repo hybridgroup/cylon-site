@@ -301,11 +301,11 @@ LICENSE Makefile README.markdown lib/ package.json spec/
             
             <p>Some things to note about Adaptor subclasses:</p>
             
-            <p>They <strong>must</strong> implement <code>#start</code> - the 'start' method dictates what setup a Driver needs to do on startup.
-            This might involve connecting to the device, or listening for events.
+            <p>They <strong>must</strong> implement <code>#connect</code> - the 'connect' method dictates what setup an Adaptor needs to do on startup.
+            This might involve connecting to the hardware, or listening for events.
             This method must be implemented, and trigger the provided callback, or Cylon cannot start properly.</p>
             
-            <p>They <strong>must</strong> implement <code>#disconnect</code> - the 'disconnect' method dictates what teardown a Driver needs to do on shutdown.
+            <p>They <strong>must</strong> implement <code>#disconnect</code> - the 'disconnect' method dictates what teardown a Adaptor needs to do on shutdown.
             This can involve safely disconnecting from hardware, restoring device state, etc.
             This method must be implemented, and trigger the provided callback, or Cylon cannot shut down properly.</p>
             
