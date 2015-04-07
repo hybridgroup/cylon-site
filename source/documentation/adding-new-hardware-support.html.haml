@@ -21,15 +21,27 @@ main_nav: true
   With that done, you can use it to generate a new template Cylon module, by calling `cylon generate module` with the name of the platform you're adding support for.
   For example, to generate a module for the Leap Motion:
 
-      $ cylon generate module leapmotion
-      Creating new module 'cylon-leapmotion'
-      Compiling templates for 'cylon-leapmotion'
+      $ cylon leapmotion
+        create : leapmotion
+        create : leapmotion/.gitignore
+        create : leapmotion/.jshintrc
+        create : leapmotion/Makefile
+        create : leapmotion/package.json
+        create : leapmotion/lib
+        create : leapmotion/lib/index.js
+        create : leapmotion/lib/adaptor.js
+        create : leapmotion/lib/driver.js
+        create : leapmotion/spec
+        create : leapmotion/spec/helper.js
+        create : leapmotion/spec/lib
+        create : leapmotion/spec/lib/index.spec.js
+        create : leapmotion/spec/lib/adaptor.spec.js
+        create : leapmotion/spec/lib/driver.spec.js
 
   After running this, `cd` into the folder and look around:
 
-      $ cd cylon-leapmotion
-      $ ls
-      LICENSE Makefile README.markdown lib/ package.json spec/
+      $ cd leapmotion ; ls
+      Makefile  lib/  package.json  spec/
 
   The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.
 
@@ -60,17 +72,33 @@ main_nav: true
       // e.g. "takeoff", "hover", "land"
       var Commands = require('./commands');
 
+      /**
+       * An ARDrone adaptor
+       *
+       * @constructor ardrone
+       *
+       * @param {Object} opts
+       * @param {String=} opts.host IP address of the ARDrone
+       */
       var ARDrone = module.exports = function ARDrone(opts) {
         ARDrone.__super__.constructor.apply(this, arguments);
         opts = opts || {};
 
-        this.ip = opts.host || opts.port || "192.168.1.1"
+        this.ip = opts.host || opts.port || "192.168.1.1";
 
         this.connector = this.ardrone = null;
+
+        this.events = events;
       };
 
       Cylon.Utils.subclass(ARDrone, Cylon.Adaptor);
 
+      /**
+       * Connects to the ARDrone
+       *
+       * @param {Function} callback to be triggered when connected
+       * @return {null}
+       */
       ARDrone.prototype.connect = function(callback) {
         this.connector = this.ardrone = new LibARDrone.createClient({
           ip: this.ip
@@ -78,18 +106,19 @@ main_nav: true
 
         this.proxyMethods(Commands, this.ardrone, this);
 
-        var events = [
-          'navdata', 'landing', 'landed', 'takeoff', 'hovering', 'flying',
-          'lowBattery', 'batteryChange', 'altitudeChange'
-        ];
-
-        events.forEach(function(name) {
+        this.events.forEach(function(name) {
           this.defineAdaptorEvent(name);
         }.bind(this));
 
         callback();
       };
 
+      /**
+       * Disconnects from the ARDrone
+       *
+       * @param {Function} callback to be triggered when disconnected
+       * @return {null}
+       */
       ARDrone.prototype.disconnect = function(callback) {
         callback();
       }

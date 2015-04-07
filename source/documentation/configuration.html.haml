@@ -72,8 +72,10 @@ main_nav: true
         host: '127.0.0.1',
         port: '4321',
 
-        cert: '/path/to/ssl/cert',
-        key: '/path/to/ssl/key',
+        ssl: {
+          cert: '/path/to/ssl/cert',
+          key: '/path/to/ssl/key'
+        },
 
         auth: {
           type: 'basic',
