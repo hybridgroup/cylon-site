@@ -35,16 +35,13 @@ active_menu_docs: true
       ## How To Install Cylon.JS
 
       To get Cylon.JS up and running, you'll need the necessary modules for your hardware.
+
       For instance, if you're working with an Arduino, you'll most likely want the `cylon-firmata` module.
+      Additionally, you'll need the `cylon-gpio` and `cylon-i2c` modules to communicate with hardware attached to the Arduino.
 
-      Install it with NPM, and you'll also get the core Cylon.JS module, along with the `cylon-gpio` and `cylon-i2c` packages to make sure everything works:
+      You can install these packages through NPM:
 
-          $ npm install cylon-firmata
-          $ npm ls --depth 0
-            ├── cylon
-            ├── cylon-firmata
-            ├── cylon-gpio
-            └── cylon-i2c
+          $ npm install cylon cylon-firmata cylon-gpio cylon-i2c
 
   %section.running
     :markdown
@@ -71,10 +68,6 @@ active_menu_docs: true
           var Cylon = require('cylon');
 
           Cylon.robot({
-            connections: {
-              loopback: { adaptor: 'loopback' }
-            },
-
             work: function() {
               every((1).second(), function() {
                 console.log("Hello, human!");
@@ -90,15 +83,36 @@ active_menu_docs: true
 
           Cylon.robot({
             connections: {
-              arduino: {
-                adaptor: 'firmata',
-                port: '/dev/ttyACM0'
-              }
+              arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
             },
 
             devices: {
               led: { driver: 'led', pin: 13 },
               button: { driver: 'button', pin: 2 }
+            },
+
+            work: function(my) {
+              my.button.on('push', function() {
+                my.led.toggle()
+              });
+            }
+          }).start();
+
+      ### Multiple Arduinos
+
+          :::javascript
+
+          var Cylon = require('cylon');
+
+          Cylon.robot({
+            connections: {
+              arduino_A: { adaptor: 'firmata', port: '/dev/ttyACM0' },
+              arduino_B: { adaptor: 'firmata', port: '/dev/ttyACM1' }
+            },
+
+            devices: {
+              led: { driver: 'led', pin: 13, connection: "arduino_A" },
+              button: { driver: 'button', pin: 2, connection: "arduino_B" }
             },
 
             work: function(my) {
@@ -115,10 +129,7 @@ active_menu_docs: true
 
           Cylon.robot({
             connections: {
-              ardrone: {
-                adaptor: 'ardrone',
-                port: '192.168.1.1'
-              }
+              ardrone: { adaptor: 'ardrone', port: '192.168.1.1' }
             },
 
             devices: {
@@ -145,7 +156,7 @@ active_menu_docs: true
       To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
       <a href="http://gort.io" target="_blank">Gort</a>.
 
-          $ ./gort
+          $ gort
           NAME:
             gort - Command Line Utility for RobotOps
 
@@ -153,25 +164,29 @@ active_menu_docs: true
             gort [global options] command [command options] [arguments...]
 
           VERSION:
-            0.2.2
+            0.3.0
+
+          AUTHOR:
+            Author - <unknown@email>
 
           COMMANDS:
-            scan   Scan for connected devices on Serial, USB, or Bluetooth ports
-            bluetooth  Pair, unpair & connect to bluetooth devices.
-            arduino  Install avrdude, and upload sketches to your Arduino
-            spark  Upload sketches to your Spark
-            digispark  Configure your Digispark microcontroller
-            crazyflie  Configure your Crazyflie
-            klaatu barada nikto
-            help, h  Shows a list of commands or help for one command
+            scan         Scan for connected devices on Serial, USB, or Bluetooth ports
+            bluetooth    Pair, unpair & connect to bluetooth devices.
+            arduino      Install avrdude, and upload HEX files to your Arduino
+            spark        Upload sketches to your Spark
+            digispark    Configure your Digispark microcontroller
+            crazyflie    Configure your Crazyflie
+            klaatu       barada nikto
+            dronedrop    Install, uninstall, update and download dronedrop firmware
+            help, h      Shows a list of commands or help for one command
 
           GLOBAL OPTIONS:
-            --version, -v  print the version
-            --help, -h   show help
+            --help, -h           show help
+            --version, -v        print the versio
 
       There's also a separate
       <a href="https://github.com/hybridgroup/cylon-cli" target="_blank">Cylon CLI</a>
-      tool, used to generate new modules, robots, drivers, etc.
+      tool, used to generate new adaptor modules.
 
   %section.where-next
     :markdown
