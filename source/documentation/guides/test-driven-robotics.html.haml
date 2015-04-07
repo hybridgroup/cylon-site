@@ -45,8 +45,6 @@ active_menu_docs: true
         :::javascript
         "use strict";
 
-        // setting this env var tells Cylon to stub connections to adaptors and devices
-        process.env.CYLON_TEST = 'test';
         process.env.NODE_ENV = 'test';
 
         // setup for tests
@@ -60,6 +58,9 @@ active_menu_docs: true
 
         // load the robot, in test mode
         var Cylon = require('cylon');
+
+        Cylon.config({ testMode: true })
+
         require('./robot.js');
 
         describe("TestBot", function() {
