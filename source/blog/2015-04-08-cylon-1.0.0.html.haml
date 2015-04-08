@@ -16,9 +16,61 @@ active_menu_blog: true
 
   In addition, we have made a number of important changes:
 
-  (Andrew?)
+  #### Removed Single Connection/Device Syntax
 
-  As always, you can check out the [compare view][] on GitHub.
+  The outdated, deprecated method of specifying a single device or connection when creating a robot has now been fully removed.
+
+  Attempting to instantiate a robot in this manner will now throw an error.
+
+  #### Bound Functions By Default
+
+  Methods passed to the robot initializer are now auto-bound:
+
+        :::javascript
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+          },
+
+          devices: {
+            led: { driver: "led", pin: 13 }
+          },
+
+          blink: function() {
+            this.led.toggle();
+          },
+
+          work: function(my) {
+            every((1).second(), my.blink);
+          }
+        }).start();
+
+  #### Basestar#respond
+
+  A new method has been added to the base class for Drivers and Adaptors, `#respond`.
+
+  This method provides a simple interface for device/adaptor methods to handle both callbacks and events.
+
+  It's signature is `#respond(event, callback, err, ...vals)`.
+
+  The error/values are provided to the callback directly.
+  If `err` is a non-null value, the `"error"` event is emitted with `err` provided as a value.
+  Otherwise, the provided event is emitted, with `vals` passed as arguments.
+
+  Example usage:
+
+        :::javascript
+        Driver.prototype.write = function(pin, val, callback) {
+          doAsyncThing(pin, val, function(err, data) {
+            this.respond("write", callback, err, data);
+          }.bind(this));
+        }
+
+  #### Debug mode flag
+
+  This release also adds a quicker way to run your robots in debug logging mode - just add the `--debug` flag to your command when running it.
+
+  As always, you can check out the [compare view][] on GitHub for more details.
 
   Here is our press release about it: [http://cylonjs.com/news/cylon-1.0-release](http://cylonjs.com/news/cylon-1.0-release)
 
