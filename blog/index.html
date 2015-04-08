@@ -113,11 +113,67 @@
             
             <p>We're thrilled to share this with all of you.</p>
             
-            <p>Here is our press release about it: <a href="http://cylonjs.com/news/cylon-1.0-release">http://cylonjs.com/news/cylon-1.0-release</a></p>
+            <p>If you want a "media-friendly" version of the story, here is our press release about it: <a href="http://cylonjs.com/news/cylon-1.0-release">http://cylonjs.com/news/cylon-1.0-release</a></p>
             
-            <p>This release signifies we think the primary user-facing APIs in Cylon are stable, and we don't anticipate any more breaking changes in the near future.</p>
+            <p>This release signifies we think the core APIs in Cylon are stable, and we don't anticipate any more breaking changes in the near future.</p>
             
-            <p>As always, you can check out the <a href="https://github.com/hybridgroup/cylon/compare/v0.22.1...v1.0.0">compare view</a> on GitHub.</p>
+            <p>In addition, we have made a number of important changes:</p>
+            
+            <h4 id="removed-single-connectiondevice-syntax">Removed Single Connection/Device Syntax</h4>
+            
+            <p>The outdated, deprecated method of specifying a single device or connection when creating a robot has now been fully removed.</p>
+            
+            <p>Attempting to instantiate a robot in this manner will now throw an error.</p>
+            
+            <h4 id="bound-functions-by-default">Bound Functions By Default</h4>
+            
+            <p>Methods passed to the robot initializer are now auto-bound:</p>
+            
+            <pre class="CodeRay">Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
+  },
+
+  <span class="function">blink</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.led.toggle();
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), my.blink);
+  }
+}).start();
+</pre>
+            
+            <h4 id="basestarrespond">Basestar#respond</h4>
+            
+            <p>A new method has been added to the base class for Drivers and Adaptors, <code>#respond</code>.</p>
+            
+            <p>This method provides a simple interface for device/adaptor methods to handle both callbacks and events.</p>
+            
+            <p>It's signature is <code>#respond(event, callback, err, ...vals)</code>.</p>
+            
+            <p>The error/values are provided to the callback directly.
+            If <code>err</code> is a non-null value, the <code>"error"</code> event is emitted with <code>err</code> provided as a value.
+            Otherwise, the provided event is emitted, with <code>vals</code> passed as arguments.</p>
+            
+            <p>Example usage:</p>
+            
+            <pre class="CodeRay">Driver.prototype.<span class="function">write</span> = <span class="keyword">function</span>(pin, val, callback) {
+  doAsyncThing(pin, val, <span class="keyword">function</span>(err, data) {
+    <span class="local-variable">this</span>.respond(<span class="string"><span class="delimiter">"</span><span class="content">write</span><span class="delimiter">"</span></span>, callback, err, data);
+  }.bind(<span class="local-variable">this</span>));
+}
+</pre>
+            
+            <h4 id="debug-mode-flag">Debug mode flag</h4>
+            
+            <p>This release also adds a quicker way to run your robots in debug logging mode - just add the <code>--debug</code> flag to your command when running it.</p>
+            
+            <p>As always, you can check out the <a href="https://github.com/hybridgroup/cylon/compare/v0.22.1...v1.0.0">compare view</a> on GitHub for more details.</p>
             
             <h2 id="contributors">Contributors</h2>
             
