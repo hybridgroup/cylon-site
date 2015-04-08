@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="Cylon.js Getting Started" name="description">
-    <meta content="The Hybrid Group" name="author">
-    <title>Cylon.js Getting Started</title>
+    <meta name="description">
+    <meta name="author">
+    <title>Cylon 1.0 Release</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -76,6 +76,12 @@
       </div>
     </div>
     <div class="app-content">
+      <div class="page-title">
+        <div class="container">
+          <h1 class="title">Cylon.JS - Cylon 1.0 Release</h1>
+          <h2 class="subtitle">Made by Humans, for Humans.</h2>
+        </div>
+      </div>
       <div class="main-content" role="main">
         <div class="documentation">
           <div class="side-documentation">
@@ -261,216 +267,21 @@
           </div>
           <div class="container-documentation">
             
-            <div class="getting-started">
-              <section>
-                <h1 id="setup-your-environment">Setup Your Environment</h1>
-                
-                <h2 id="installing-nodejs">Installing Node.js</h2>
-                
-                <h3 id="os-x">OS X</h3>
-                
-                <p>To install Node on OS X, you can use Homebrew (<code>brew install node</code>), or download the package directly from the
-                <a href="http://nodejs.org/download/" target="_blank">Node website</a>.</p>
-                
-                <h3 id="ubuntu">Ubuntu</h3>
-                
-                <p>On Ubuntu, you can install Node via apt-get (<code>sudo apt-get install nodejs</code>), or via the instructions on the
-                <a href="http://nodejs.org/download/" target="_blank">Joyent wiki page</a>.</p>
-                
-                <h3 id="windows">Windows</h3>
-                
-                <p>For a Windows machine, your best bet is to download a Node installer directly from the 
-                <a href="http://nodejs.org/download/" target="_blank">Node website</a>.</p>
-              </section>
-              <section class="installation">
-                <h2 id="how-to-install-cylonjs">How To Install Cylon.JS</h2>
-                
-                <p>To get Cylon.JS up and running, you'll need the necessary modules for your hardware.</p>
-                
-                <p>For instance, if you're working with an Arduino, you'll most likely want the <code>cylon-firmata</code> module.
-                Additionally, you'll need the <code>cylon-gpio</code> and <code>cylon-i2c</code> modules to communicate with hardware attached to the Arduino.</p>
-                
-                <p>You can install these packages through NPM:</p>
-                
-                <pre class="CodeRay">$ npm install cylon cylon-firmata cylon-gpio cylon-i2c
-</pre>
-              </section>
-              <section class="running">
-                <h2 id="writing-and-running-cylonjs-robots">Writing And Running Cylon.JS Robots</h2>
-                
-                <p>With the Cylon modules installed, you're ready to start writing your own code.
-                You can take a look at some of the examples below, or read the guide page on
-                <a href="/documentation/guides/working-with-robots/" target="_blank">Working with Robots</a>.</p>
-                
-                <p>Additionally, if you want to find more examples of how to write robots with Cylon.JS, check out our
-                <a href="/documentation/guides/working-with-robots/" target="_blank">Examples page</a>.</p>
-                
-                <p>To run your robots, just pass the script to the <code>node</code> binary:</p>
-                
-                <pre class="CodeRay">$ node robot.js
-</pre>
-              </section>
-              <section class="app-code">
-                <h2 id="cylonjs-code-examples">Cylon.JS Code Examples</h2>
-                
-                <h3 id="hello">Hello</h3>
-                
-                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="function">work</span>: <span class="keyword">function</span>() {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello, human!</span><span class="delimiter">"</span></span>);
-    });
-  }
-}).start();
-</pre>
-                
-                <h3 id="arduino---led--button">Arduino - LED + Button</h3>
-                
-                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> },
-    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span> }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      my.led.toggle()
-    });
-  }
-}).start();
-</pre>
-                
-                <h3 id="multiple-arduinos">Multiple Arduinos</h3>
-                
-                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">arduino_A</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    <span class="key">arduino_B</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM1</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino_A</span><span class="delimiter">"</span></span> },
-    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">2</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino_B</span><span class="delimiter">"</span></span> }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.button.on(<span class="string"><span class="delimiter">'</span><span class="content">push</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      my.led.toggle()
-    });
-  }
-}).start();
-</pre>
-                
-                <h3 id="parrot-ardrone-20">Parrot ARDrone 2.0</h3>
-                
-                <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">ardrone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">192.168.1.1</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ardrone</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.drone.takeoff();
-
-    after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
-      my.drone.land();
-    }
-
-    after((<span class="integer">15</span>).seconds(), <span class="keyword">function</span>() {
-      my.drone.stop();
-    }
-  }
-}).start();
-</pre>
-              </section>
-              <section class="CLI">
-                <h2 id="cli">CLI</h2>
-                
-                <p>To get access to a number of useful command-line tools, you should check out our helpful CLI tool,
-                <a href="http://gort.io" target="_blank">Gort</a>.</p>
-                
-                <pre class="CodeRay">$ gort
-NAME:
-  gort - Command Line Utility for RobotOps
-
-USAGE:
-  gort [global options] command [command options] [arguments...]
-
-VERSION:
-  0.3.0
-
-AUTHOR:
-  Author - &lt;unknown@email&gt;
-
-COMMANDS:
-  scan         Scan for connected devices on Serial, USB, or Bluetooth ports
-  bluetooth    Pair, unpair &amp; connect to bluetooth devices.
-  arduino      Install avrdude, and upload HEX files to your Arduino
-  spark        Upload sketches to your Spark
-  digispark    Configure your Digispark microcontroller
-  crazyflie    Configure your Crazyflie
-  klaatu       barada nikto
-  dronedrop    Install, uninstall, update and download dronedrop firmware
-  help, h      Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-  --help, -h           show help
-  --version, -v        print the versio
-</pre>
-                
-                <p>There's also a separate
-                <a href="https://github.com/hybridgroup/cylon-cli" target="_blank">Cylon CLI</a>
-                tool, used to generate new adaptor modules.</p>
-              </section>
-              <section class="where-next">
-                <h2 id="where-next">Where Next?</h2>
-                
-                <p>Where do we go from here?</p>
-                
-                <p>Well, if you're interested in seeing some more examples of Cylon.JS in action, check out our <a href="/documentation/examples">Examples</a> page.</p>
-                
-                <p>If you'd like to find out more about a specific platform, our <a href="/documentation/platforms">Platforms</a> page will point you in the right direction.</p>
-                
-                <p>Instead, if you'd rather explore at your documentation, the sidebar should help you find what you're looking for.</p>
-                
-                <p>If you have any questions, please don't hesitate to get in touch with us and we'll try to help as best we can.</p>
-              </section>
-              <section class="contributing">
-                <h2 id="contributing">Contributing</h2>
-                
-                <p>We welcome your contributions!
-                If you want to make Cylon.JS even better (even fixing typos!), check out the
-                <a href="https://github.com/hybridgroup/cylon" target="_blank">GitHub page</a>!</p>
-                
-                <p>Have you noticed an error in our docs site?
-                Think a paragraph could be worded better?
-                Please send us an issue or pull request!
-                The site has it's own
-                <a href="https://github.com/hybridgroup/cylon-site" target="_blank">GitHub page</a> too!</p>
-                
-                <p>Want to suggest a feature? Report a bug? Show us something cool you made? Just say hi?
-                You can also get in touch with us directly on
-                <a href="https://twitter.com/CylonJS" target="_blank">Twitter</a>,
-                or ping us on
-                <a href="/documentation/chat/" target="_blank">IRC</a>.</p>
-              </section>
-              <section class="footer"></section>
-            </div>
+            <h2 id="cylonjs-makes-internet-of-things-development-as-easy-as-web-development">Cylon.js Makes Internet of Things Development As Easy As Web Development</h2>
+            <p><strong>Open Source JavaScript Robotics and IoT Framework Releases Version 1.0</strong></p>
+            
+            <p>Los Angeles, CA, April 8, 2015  -  <a href="http://cylonjs.com">Cylon.js</a> the open source robotics and Internet of Things (IoT) framework has just reached a major milestone today with the release of version 1.0. Now supporting over 35 different hardware and software platforms, the JavaScript framework can also connect using Machine to Machine (M2M) API standards such as REST and MQTT.</p>
+            
+            <p>"We created Cylon.js to make IoT development as easy as web development" says Ron Evans, the creator of Cylon.js and 'Ringleader' of <a href="http://hybridgroup.com">The Hybrid Group</a>, the software consultancy that has sponsored the open source project. "Thanks to contributions from all over the world, we have been able to achieve this major release."</p>
+            
+            <p>"Cylon.js has made robotics and hardware hacking a lot simpler for software and web developers of all ages and skill levels," according to Rex St. John, IoT Evangelist at <a href="http://www.intel.com/">Intel</a>. "I look forward to the coming era now that all that is needed to program advanced IoT projects is curiosity and the ability to write a little JavaScript."</p>
+            
+            <p>"Cylon.js significantly lowers the hurdle for developers to get started with robotics and Internet of Things projects," says Chris Matthieu, CTO of <a href="http://octoblu.com/">Octoblu</a>, a M2M messaging company owned by Citrix. "Being a JavaScript developer myself, I love the fact that I can easily write front and back end code for the Web in JavaScript and now control robots, drones, and other connected devices with it too!"</p>
+            
+            <p>Written in the JavaScript programming language, Cylon.js provides an easy way to program drones, robots and connected devices. Cylon.js has recently become one of the 99.9% most popular JavaScript projects on <a href="http://github.com">Github</a> the open source coding website. The 1.0 release of Cylon.js creates an industrial-strength technology for professional IoT application development.</p>
+            
+            <h4 id="about-the-hybrid-group">About the Hybrid Group</h4>
+            <p><a href="http://hybridgroup.com">The Hybrid Group</a> is a software development consultancy based in Los Angeles, CA. Some have called them "the software company that makes hardware companies look good", with clients such as <a href="http://www.gosphero.com/">Sphero</a>, <a href="https://www.spark.io/">Spark Devices</a>, and <a href="https://getpebble.com/">Pebble</a>. For more information, call 310-916-9924.</p>
           </div>
         </div>
       </div>

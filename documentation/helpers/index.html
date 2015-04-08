@@ -279,7 +279,7 @@
             
             <h3 id="examples">Examples:</h3>
             
-            <pre class="CodeRay">every(<span class="integer">5</span>..seconds(), <span class="keyword">function</span>() {
+            <pre class="CodeRay">every((<span class="integer">5</span>).seconds(), <span class="keyword">function</span>() {
   <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world! (and again in 5 seconds)</span><span class="delimiter">"</span></span>);
 });
 </pre>
@@ -300,7 +300,7 @@
             
             <h3 id="examples-1">Examples:</h3>
             
-            <pre class="CodeRay">after(<span class="integer">10</span>..seconds(), <span class="keyword">function</span>() {
+            <pre class="CodeRay">after((<span class="integer">10</span>).seconds(), <span class="keyword">function</span>() {
   <span class="keyword">return</span> console.log(<span class="string"><span class="delimiter">"</span><span class="content">Hello world!</span><span class="delimiter">"</span></span>);
 });
 </pre>
@@ -355,7 +355,7 @@ klass = <span class="keyword">new</span> BaseClass;
 klass.reverse(<span class="string"><span class="delimiter">"</span><span class="content">Hello, World!</span><span class="delimiter">"</span></span>);
 </pre>
             
-            <h2 id="numberseconds">Number::seconds</h2>
+            <h2 id="numberseconds">Number#seconds</h2>
             
             <p>A monkey-patch to Number that allows for using numbers to represent time in
             terms of seconds.</p>
@@ -378,21 +378,21 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
             
             <h3 id="examples-3">Examples:</h3>
             
-            <pre class="CodeRay"><span class="integer">10</span>..seconds();
+            <pre class="CodeRay">(<span class="integer">10</span>).seconds();
 </pre>
             
-            <h2 id="numbersecond">Number::second</h2>
+            <h2 id="numbersecond">Number#second</h2>
             
-            <p>Aliases to <code>Number::seconds</code>. See that method for more information</p>
+            <p>Aliases to <code>Number#seconds</code>. See that method for more information</p>
             
             <p>Returns a Number representing the time in milliseconds</p>
             
             <h3 id="examples-4">Examples:</h3>
             
-            <pre class="CodeRay"><span class="integer">1</span>..second();
+            <pre class="CodeRay">(<span class="integer">1</span>).second();
 </pre>
             
-            <h2 id="numberfromscalestart-end">Number::fromScale(start, end)</h2>
+            <h2 id="numberfromscalestart-end">Number#fromScale(start, end)</h2>
             
             <p>Monkey-patch on Number, converts a value from an old number scale (start, end)
             to (0..1) scale.</p>
@@ -408,12 +408,12 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
             
             <h3 id="examples-5">Examples:</h3>
             
-            <pre class="CodeRay"><span class="integer">150</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>);
+            <pre class="CodeRay">(<span class="integer">150</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>);
 
-<span class="integer">5</span>..fromScale(<span class="integer">0</span>, <span class="integer">10</span>);
+(<span class="integer">5</span>).fromScale(<span class="integer">0</span>, <span class="integer">10</span>);
 </pre>
             
-            <h2 id="numbertoscalestart-end">Number::toScale(start, end)</h2>
+            <h2 id="numbertoscalestart-end">Number#toScale(start, end)</h2>
             
             <p>Monkey-patch on Number, converts a value from (0..1) scale to a new (start,
             end) scale.</p>
@@ -425,10 +425,10 @@ klass.reverse(<span class="string"><span class="delimiter">"</span><span class="
 <strong>end</strong> - top number number of the scale</li>
             </ul>
             
-            <p>This can be chained together with <code>Number::fromScale</code> to quickly and handily
+            <p>This can be chained together with <code>Number#fromScale</code> to quickly and handily
             convert numbers between scales. e.g</p>
             
-            <pre class="CodeRay"><span class="integer">100</span>..fromScale(<span class="integer">0</span>, <span class="integer">200</span>).toScale(<span class="integer">0</span>, <span class="integer">100</span>);
+            <pre class="CodeRay">(<span class="integer">100</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>).toScale(<span class="integer">0</span>, <span class="integer">100</span>);
 </pre>
             
             <p>Returns a number representing the scaled value.</p>

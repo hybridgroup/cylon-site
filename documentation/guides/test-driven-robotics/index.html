@@ -297,8 +297,6 @@ Cylon.robot({
               
               <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
-<span class="comment">// setting this env var tells Cylon to stub connections to adaptors and devices</span>
-process.env.CYLON_TEST = <span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>;
 process.env.NODE_ENV = <span class="string"><span class="delimiter">'</span><span class="content">test</span><span class="delimiter">'</span></span>;
 
 <span class="comment">// setup for tests</span>
@@ -312,6 +310,9 @@ chai.use(sinonChai);
 
 <span class="comment">// load the robot, in test mode</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.config({ <span class="key">testMode</span>: <span class="predefined-constant">true</span> })
+
 require(<span class="string"><span class="delimiter">'</span><span class="content">./robot.js</span><span class="delimiter">'</span></span>);
 
 describe(<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {

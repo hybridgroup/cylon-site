@@ -280,16 +280,28 @@
             <p>With that done, you can use it to generate a new template Cylon module, by calling <code>cylon generate module</code> with the name of the platform you're adding support for.
             For example, to generate a module for the Leap Motion:</p>
             
-            <pre class="CodeRay">$ cylon generate module leapmotion
-Creating new module 'cylon-leapmotion'
-Compiling templates for 'cylon-leapmotion'
+            <pre class="CodeRay">$ cylon leapmotion
+  create : leapmotion
+  create : leapmotion/.gitignore
+  create : leapmotion/.jshintrc
+  create : leapmotion/Makefile
+  create : leapmotion/package.json
+  create : leapmotion/lib
+  create : leapmotion/lib/index.js
+  create : leapmotion/lib/adaptor.js
+  create : leapmotion/lib/driver.js
+  create : leapmotion/spec
+  create : leapmotion/spec/helper.js
+  create : leapmotion/spec/lib
+  create : leapmotion/spec/lib/index.spec.js
+  create : leapmotion/spec/lib/adaptor.spec.js
+  create : leapmotion/spec/lib/driver.spec.js
 </pre>
             
             <p>After running this, <code>cd</code> into the folder and look around:</p>
             
-            <pre class="CodeRay">$ cd cylon-leapmotion
-$ ls
-LICENSE Makefile README.markdown lib/ package.json spec/
+            <pre class="CodeRay">$ cd leapmotion ; ls
+Makefile  lib/  package.json  spec/
 </pre>
             
             <p>The generater makes a basic module, with Cylon as a dependency and a starting point for writing your own tests.</p>
@@ -320,17 +332,33 @@ LICENSE Makefile README.markdown lib/ package.json spec/
 <span class="comment">// e.g. "takeoff", "hover", "land"</span>
 <span class="keyword">var</span> Commands = require(<span class="string"><span class="delimiter">'</span><span class="content">./commands</span><span class="delimiter">'</span></span>);
 
+<span class="comment">/**
+ * An ARDrone adaptor
+ *
+ * @constructor ardrone
+ *
+ * @param {Object} opts
+ * @param {String=} opts.host IP address of the ARDrone
+ */</span>
 <span class="keyword">var</span> ARDrone = module.<span class="function">exports</span> = <span class="keyword">function</span> <span class="function">ARDrone</span>(opts) {
   ARDrone.__super__.constructor.apply(<span class="local-variable">this</span>, <span class="local-variable">arguments</span>);
   opts = opts || {};
 
-  <span class="local-variable">this</span>.ip = opts.host || opts.port || <span class="string"><span class="delimiter">"</span><span class="content">192.168.1.1</span><span class="delimiter">"</span></span>
+  <span class="local-variable">this</span>.ip = opts.host || opts.port || <span class="string"><span class="delimiter">"</span><span class="content">192.168.1.1</span><span class="delimiter">"</span></span>;
 
   <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.ardrone = <span class="predefined-constant">null</span>;
+
+  <span class="local-variable">this</span>.events = events;
 };
 
 Cylon.Utils.subclass(ARDrone, Cylon.Adaptor);
 
+<span class="comment">/**
+ * Connects to the ARDrone
+ *
+ * @param {Function} callback to be triggered when connected
+ * @return {null}
+ */</span>
 ARDrone.prototype.<span class="function">connect</span> = <span class="keyword">function</span>(callback) {
   <span class="local-variable">this</span>.connector = <span class="local-variable">this</span>.ardrone = <span class="keyword">new</span> LibARDrone.createClient({
     <span class="key">ip</span>: <span class="local-variable">this</span>.ip
@@ -338,18 +366,19 @@ ARDrone.prototype.<span class="function">connect</span> = <span class="keyword">
 
   <span class="local-variable">this</span>.proxyMethods(Commands, <span class="local-variable">this</span>.ardrone, <span class="local-variable">this</span>);
 
-  <span class="keyword">var</span> events = [
-    <span class="string"><span class="delimiter">'</span><span class="content">navdata</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">landing</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">landed</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">takeoff</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">hovering</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">flying</span><span class="delimiter">'</span></span>,
-    <span class="string"><span class="delimiter">'</span><span class="content">lowBattery</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">batteryChange</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">altitudeChange</span><span class="delimiter">'</span></span>
-  ];
-
-  events.forEach(<span class="keyword">function</span>(name) {
+  <span class="local-variable">this</span>.events.forEach(<span class="keyword">function</span>(name) {
     <span class="local-variable">this</span>.defineAdaptorEvent(name);
   }.bind(<span class="local-variable">this</span>));
 
   callback();
 };
 
+<span class="comment">/**
+ * Disconnects from the ARDrone
+ *
+ * @param {Function} callback to be triggered when disconnected
+ * @return {null}
+ */</span>
 ARDrone.prototype.<span class="function">disconnect</span> = <span class="keyword">function</span>(callback) {
   callback();
 }
