@@ -26,24 +26,24 @@ active_menu_blog: true
 
   Methods passed to the robot initializer are now auto-bound:
 
-        :::javascript
-        Cylon.robot({
-          connections: {
-            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
-          },
+      :::javascript
+      Cylon.robot({
+        connections: {
+          arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+        },
 
-          devices: {
-            led: { driver: "led", pin: 13 }
-          },
+        devices: {
+          led: { driver: "led", pin: 13 }
+        },
 
-          blink: function() {
-            this.led.toggle();
-          },
+        blink: function() {
+          this.led.toggle();
+        },
 
-          work: function(my) {
-            every((1).second(), my.blink);
-          }
-        }).start();
+        work: function(my) {
+          every((1).second(), my.blink);
+        }
+      }).start();
 
   #### Basestar#respond
 
@@ -59,12 +59,12 @@ active_menu_blog: true
 
   Example usage:
 
-        :::javascript
-        Driver.prototype.write = function(pin, val, callback) {
-          doAsyncThing(pin, val, function(err, data) {
-            this.respond("write", callback, err, data);
-          }.bind(this));
-        }
+      :::javascript
+      Driver.prototype.write = function(pin, val, callback) {
+        doAsyncThing(pin, val, function(err, data) {
+          this.respond("write", callback, err, data);
+        }.bind(this));
+      }
 
   #### Debug mode flag
 
