@@ -14,7 +14,7 @@ active_menu_docs: true
     Cylon works hand-in-hand with [Gort](http://gort.io), our command-line toolkit for "RobotOps", a.k.a. "DevOps for Robotics"
     You can use it to scan for hardware, connect to devices, update firmware, and more!
 
-    Cylon also has it's own CLI tool, used to generate new modules, robots, and drivers.
+    Cylon also has it's own CLI tool, used to generate new modules.
 
     This page will be talking about the Cylon-CLI tool, but if you'd like to find out more about Gort, check out [its site](http://gort.io).
 
@@ -29,22 +29,36 @@ active_menu_docs: true
 
     ## Usage
 
-    Running the command itself will provide a list of available subcommands:
+    The `cylon` command is run with a directory argument.
+    It will then create a new Cylon module in this directory, prompting for confirmation if the target directory isn't empty.
 
-        $ cylon
+          $ cylon leapmotion
+            create : leapmotion
+            create : leapmotion/.gitignore
+            create : leapmotion/.jshintrc
+            create : leapmotion/Makefile
+            create : leapmotion/package.json
+            create : leapmotion/lib
+            create : leapmotion/lib/index.js
+            create : leapmotion/lib/adaptor.js
+            create : leapmotion/lib/driver.js
+            create : leapmotion/spec
+            create : leapmotion/spec/helper.js
+            create : leapmotion/spec/lib
+            create : leapmotion/spec/lib/index.spec.js
+            create : leapmotion/spec/lib/adaptor.spec.js
+            create : leapmotion/spec/lib/driver.spec.js
 
-          Usage: cylon [command] [options]
+    Without a directory argument, `cylon` assumes you want to create the module in the current working directory.
 
-          Commands:
-            generate [module|driver|robot|tessel] [name]
-                Generate new Cylon components or modules
+    Running the command with the `-h` flag will provide a list of options:
 
-            help
-                Prints help for using the Cylon-CLI commands.
+        $ cylon -h
 
-    The `generate` command can be used to create:
+          Usage: cylon [dir]
 
-    - a new driver/adaptor module
-    - a new driver in a module
-    - a new test-driven robot
-    - a new robot, set up to run on the Tessel
+          Options:
+
+            -h, --help       output usage information
+            -v, --version    output the version number
+            -f, --force      force on non-empty directory
