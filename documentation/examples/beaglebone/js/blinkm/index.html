@@ -268,42 +268,30 @@
 
 Cylon.robot({
   <span class="key">connections</span>: {
-    <span class="key">beaglebone</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span> }
+    <span class="key">bbb</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">beaglebone</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">pixel</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">blinkm</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">"</span><span class="content">P9_20</span><span class="delimiter">"</span></span> }
+    <span class="key">blinkm</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">blinkm</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.pixel.stopScript();
+    my.blinkm.stopScript();
 
-    <span class="comment">// You can pass a callback to all blinkm functions as the last param,</span>
-    <span class="comment">// If you do the command would be executed asynchronously.</span>
-    <span class="comment">// For write operations you get an (err) param passed back,</span>
-    <span class="comment">// err is undefined when success, and contains the error if any encountered.</span>
-    <span class="comment">//</span>
-    <span class="comment">// Write BlimkM commands.</span>
-    my.pixel.goToRGB(<span class="integer">255</span>, <span class="integer">0</span>, <span class="integer">0</span>);
-    my.pixel.fadeToRGB(<span class="integer">0</span>, <span class="integer">255</span>, <span class="integer">0</span>);
-    my.pixel.fadeToHSB(<span class="integer">100</span>, <span class="integer">180</span>, <span class="integer">90</span>);
-    my.pixel.fadeToRandomRGB(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">255</span>);
-    my.pixel.fadeToRandomHSB(<span class="integer">100</span>, <span class="integer">180</span>, <span class="integer">90</span>);
-    my.pixel.playLightScript(<span class="integer">1</span>, <span class="integer">0</span>, <span class="integer">0</span>);
-    my.pixel.stopScript();
-    my.pixel.setFadeSpeed(<span class="integer">50</span>);
-    my.pixel.setTimeAdjust(<span class="integer">50</span>);
+    my.blinkm.getFirmware(<span class="keyword">function</span>(err, version) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
+    });
 
-    <span class="comment">// For read commands you get (err, data) passed back to the callback,</span>
-    <span class="comment">// data contains the read data buffer, in case of Sync call (no callback)</span>
-    <span class="comment">// you get a regular return.</span>
-    <span class="keyword">var</span> color = my.pixel.getRGBColor();
+    my.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
+    my.blinkm.getRGBColor(<span class="keyword">function</span>(err, data){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data);
+    });
 
-    console.log(color);
-
-    <span class="comment">// Example getting the color using async call and a callback</span>
-    my.pixel.getRGBColor(<span class="keyword">function</span>(err, data) {
-      <span class="keyword">if</span> (err == <span class="predefined-constant">null</span>) { console.log(data); }
+    every((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
+      my.blinkm.getRGBColor(<span class="keyword">function</span>(err, data){
+        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
+      });
+      my.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
     });
   }
 }).start();

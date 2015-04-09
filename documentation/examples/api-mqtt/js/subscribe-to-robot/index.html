@@ -319,11 +319,11 @@ client.publish(<span class="string"><span class="delimiter">'</span><span class=
 
 payload = JSON.stringify(params);
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/listen/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>);
+client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
   client.publish(
-    <span class="string"><span class="delimiter">'</span><span class="content">/emit/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>,
+    <span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>,
     payload);
 }, <span class="integer">2000</span>);
 

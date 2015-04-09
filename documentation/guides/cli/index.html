@@ -267,7 +267,7 @@
               <p>Cylon works hand-in-hand with <a href="http://gort.io">Gort</a>, our command-line toolkit for "RobotOps", a.k.a. "DevOps for Robotics"
               You can use it to scan for hardware, connect to devices, update firmware, and more!</p>
               
-              <p>Cylon also has it's own CLI tool, used to generate new modules, robots, and drivers.</p>
+              <p>Cylon also has it's own CLI tool, used to generate new modules.</p>
               
               <p>This page will be talking about the Cylon-CLI tool, but if you'd like to find out more about Gort, check out <a href="http://gort.io">its site</a>.</p>
               
@@ -283,28 +283,41 @@
               
               <h2 id="usage">Usage</h2>
               
-              <p>Running the command itself will provide a list of available subcommands:</p>
+              <p>The <code>cylon</code> command is run with a directory argument.
+              It will then create a new Cylon module in this directory, prompting for confirmation if the target directory isn't empty.</p>
               
-              <pre class="CodeRay">$ cylon
-
-  Usage: cylon [command] [options]
-
-  Commands:
-    generate [module|driver|robot|tessel] [name]
-        Generate new Cylon components or modules
-
-    help
-        Prints help for using the Cylon-CLI commands.
+              <pre class="CodeRay">  $ cylon leapmotion
+    create : leapmotion
+    create : leapmotion/.gitignore
+    create : leapmotion/.jshintrc
+    create : leapmotion/Makefile
+    create : leapmotion/package.json
+    create : leapmotion/lib
+    create : leapmotion/lib/index.js
+    create : leapmotion/lib/adaptor.js
+    create : leapmotion/lib/driver.js
+    create : leapmotion/spec
+    create : leapmotion/spec/helper.js
+    create : leapmotion/spec/lib
+    create : leapmotion/spec/lib/index.spec.js
+    create : leapmotion/spec/lib/adaptor.spec.js
+    create : leapmotion/spec/lib/driver.spec.js
 </pre>
               
-              <p>The <code>generate</code> command can be used to create:</p>
+              <p>Without a directory argument, <code>cylon</code> assumes you want to create the module in the current working directory.</p>
               
-              <ul>
-                <li>a new driver/adaptor module</li>
-                <li>a new driver in a module</li>
-                <li>a new test-driven robot</li>
-                <li>a new robot, set up to run on the Tessel</li>
-              </ul>
+              <p>Running the command with the <code>-h</code> flag will provide a list of options:</p>
+              
+              <pre class="CodeRay">$ cylon -h
+
+  Usage: cylon [dir]
+
+  Options:
+
+    -h, --help       output usage information
+    -v, --version    output the version number
+    -f, --force      force on non-empty directory
+</pre>
             </div>
           </div>
         </div>

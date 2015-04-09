@@ -294,11 +294,11 @@ client.on(<span class="string"><span class="delimiter">'</span><span class="cont
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>, payload);
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/listen/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
+client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
   client.publish(
-    <span class="string"><span class="delimiter">'</span><span class="content">/cybot/emit/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
+    <span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
     payload);
 }, <span class="integer">2000</span>);
 
