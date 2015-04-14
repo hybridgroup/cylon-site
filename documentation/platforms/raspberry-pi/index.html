@@ -296,7 +296,7 @@
             <section class="how-to">
               <h2 id="how-to-install">How to Install</h2>
               
-              <p>Installing Cylon.js for the Raspiberry Pi is easy, but must be done on the Raspi itself, or on another Linux computer. Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
+              <p>Installing Cylon.js for the Raspberry Pi is easy, but must be done on the Raspi itself, or on another Linux computer. Due to I2C device support, the module cannot be installed on OS X or Windows.</p>
               
               <p>Install the module with:</p>
               
@@ -328,18 +328,21 @@ Cylon.robot({
               
               <h3 id="install-the-lastest-raspbian-os">Install the lastest Raspbian OS</h3>
               
-              <p>You can get it from here: http://www.raspberrypi.org/downloads/</p>
+              <p>You can get it from here: <a href="http://www.raspberrypi.org/downloads/">http://www.raspberrypi.org/downloads/</a></p>
               
               <h3 id="setting-the-raspberry-pi-keyboard">Setting the Raspberry Pi keyboard</h3>
               
-              <p>Having trouble with your Raspberry Pi keyboard layout? Use the <code>sudo dpkg-reconfigure keyboard-configuration</code> command.</p>
+              <p>Having trouble with your Raspberry Pi keyboard layout? Use the following command:</p>
+              
+              <pre class="CodeRay">sudo dpkg-reconfigure keyboard-configuration
+</pre>
               
               <h3 id="update-your-raspbian-and-install-nodejs">Update your Raspbian and install Node.js</h3>
               
               <p>These commands need to be run after SSHing into the Raspi:</p>
               
-              <pre class="CodeRay">sudo apt-get upgrade
-sudo apt-get update
+              <pre class="CodeRay">sudo apt-get update
+sudo apt-get upgrade
 wget http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-arm-pi.tar.gz
 tar -xvzf node-v0.10.28-linux-arm-pi.tar.gz
 node-v0.10.28-linux-arm-pi/bin/node --version
@@ -366,6 +369,19 @@ PATH=$PATH:$NODE_JS_HOME/bin
               <p>This module only works on a real Raspberry Pi. Do not bother trying on any other kind of computer, it will not work.
               Also note you will need to connect actual circuits to the Raspberry Pi's GPIO pins.</p>
               
+              <p>In order to access the GPIO pins without using <code>sudo</code> you will need to both app the pi user to the <code>gpio</code> group:</p>
+              
+              <pre class="CodeRay">sudo usermod -G gpio pi
+</pre>
+              
+              <p>And also add the following udev rules file to <code>/etc/udev/rules.d/91-gpio.rules</code>:</p>
+              
+              <pre class="CodeRay">SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", PROGRAM="/bin/sh -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add", PROGRAM="/bin/sh -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+</pre>
+              
+              <p>Thanks to "MikeDK" for the above solution: <a href="https://www.raspberrypi.org/forums/viewtopic.php?p=198148#p198148">https://www.raspberrypi.org/forums/viewtopic.php?p=198148#p198148</a></p>
+              
               <h3 id="enabling-the-raspberry-pi-i2c-on-raspbian">Enabling the Raspberry Pi i2c on Raspbian</h3>
               
               <p>You must add these two entries to your <code>/etc/modules</code></p>
@@ -386,7 +402,7 @@ i2c-dev
 dtparam=i2c_arm=on
 </pre>
               
-              <p>Finally, you need to allow the <code>pi</code> user permissions to access the i2c interface bu running this command:</p>
+              <p>Finally, you need to allow the <code>pi</code> user permissions to access the i2c interface by running this command:</p>
               
               <pre class="CodeRay">sudo usermod -G i2c pi
 </pre>
