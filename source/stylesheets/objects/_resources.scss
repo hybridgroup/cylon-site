@@ -5,13 +5,18 @@
     @include span-columns(6 of 12);
     margin: .5%;
 
+    h4{
+      height: 50px;
+    }
+
     .video-description {
-      font:700 16px/22px $font-primary;
+      font: 400 14px/17px $font-primary;
     }
 
     iframe, object {
       @include span-columns(12 of 12);
       height: 300px;
+      margin-bottom: 15px;
     }
 
     @include media($design-edge) {
@@ -23,6 +28,12 @@
     @include media($tablet) {
       @include span-columns(12 of 12);
     }
+  }
+
+  .internal-link{
+    margin-top: 5px;
+    display: block;
+    font-weight: bold;
   }
 
   .external-link {
