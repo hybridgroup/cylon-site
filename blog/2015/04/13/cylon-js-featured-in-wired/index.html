@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
-    <meta content="Andrew Stewart" name="author">
-    <title>Cylon 0.21.0 is out!</title>
+    <meta content="Nathan Zankich" name="author">
+    <title>Cylon.js featured in Wired</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -88,125 +88,29 @@
             <div class="dates">
               <div class="date-top">
                 <div class="month">
-                  Nov
+                  Apr
                 </div>
                 <div class="day">
-                  28
+                  13
                 </div>
               </div>
               <div class="date-bottom">
                 <div class="year">
-                  2014
+                  2015
                 </div>
               </div>
             </div>
             <h3 class="article-title">
-              <a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a>
+              <a href="/blog/2015/04/13/cylon-js-featured-in-wired/">Cylon.js featured in Wired</a>
               <br>
             </h3>
             <div class="author">
-              by Andrew Stewart
+              by Nathan Zankich
             </div>
           </header>
-          <p>Just in time for <a href="http://robotsconf.com">RobotsConf</a>, we've released Cylon 0.21.0!</p>
+          <p>The Hybrid Group's own Ringleader Ron Evans got to speak with <a href="http://www.wired.com/">Wired</a> about the Internet of Things and open source robotics. The interview covers our robotics frameworks Cylon.js, Artoo, and Gobot, as well as what direction we see them moving towards in the future.</p>
           
-          <p>This release focuses on stability and simplifying some long-standing architecture concerns.</p>
-          
-          <p>As always, you can check out the <a href="https://github.com/hybridgroup/cylon/compare/v0.20.2...v0.21.0">compare view</a> on GitHub.</p>
-          
-          <h2 id="updates-for-application-developers">Updates For Application Developers</h2>
-          
-          <ul>
-            <li>
-              <p><strong>New <code>connections/devices</code> syntax:</strong> - we've updated the syntax for how multiple devices or connections are specified in Cylon.js.
-          This new object-based syntax makes it more straightforward to specify many connections or devices.
-          The existing array syntax, as well as the single-object <code>device/connection</code> syntax, is deprecated, and will be removed in 1.0.0.
-          Here's a comparison of the two:</p>
-          
-              <pre class="CodeRay"><span class="comment">// previous syntax, now deprecated:</span>
-Cylon.robot({
-  <span class="key">connections</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">leap</span><span class="delimiter">'</span></span>, <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
-  ],
-
-  <span class="key">devices</span>: [
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
-    { <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
-  ]
-});
-
-<span class="comment">// new object-based syntax:</span>
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    <span class="key">leap</span>:    { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">leapmotion</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>:    { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>,    <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> },
-    <span class="key">button</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">button</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">9</span>,  <span class="key">connection</span>: <span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span> }
-  }
-});
-</pre>
-            </li>
-            <li>
-              <p><strong>Fluent syntax updates</strong> - we've updated our fluent JS syntax a bit, adding <code>#device</code> and <code>#connection</code> methods to help make it easier to set up robots.
-          Here's a comparison:</p>
-          
-              <pre class="CodeRay"><span class="comment">// declarative syntax:</span>
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), my.led.toggle);
-  }
-}).start();
-
-<span class="comment">// fluent syntax</span>
-Cylon
-  .robot()
-  .connection(<span class="string"><span class="delimiter">'</span><span class="content">arduino</span><span class="delimiter">'</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> })
-  .device(<span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="integer">13</span> })
-  .on(<span class="string"><span class="delimiter">'</span><span class="content">ready</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(bot) {
-    setInterval(bot.led.toggle, <span class="integer">1000</span>);
-  });
-
-Cylon.start();
-</pre>
-            </li>
-          </ul>
-          
-          <h2 id="updates-for-platform-developers">Updates For Platform Developers</h2>
-          
-          <ul>
-            <li>
-              <p><strong>No more Connection/Device class:</strong> - Cylon's internal 'Connection' and 'Device' classes are no more.
-          Now, when a user adds a Connection or Device to their robot, they're getting a direct instance of an Adaptor/Driver.
-          For the most part, this shouldn't result in issues, but if you're doing manual method proxying you may have issues.
-          These are the requisite changes to sub-modules:</p>
-          
-              <ul>
-                <li>in Adaptor subclasses, instead of referencing <code>this.connection</code>, just reference <code>this</code>.</li>
-                <li>in Driver subclasses, instead of referencing <code>this.device</code>, just reference <code>this</code>.</li>
-                <li>in Driver subclasses, <code>this.connection</code> is now an Adaptor instance, not a Connection instance.</li>
-              </ul>
-            </li>
-          </ul>
-          
-          <h2 id="ollie-up-at-robotsconf">Ollie Up at RobotsConf!</h2>
-          
-          <p>Every Cylon.js release adds some new hardware support, and this time we've added <a href="https://github.com/hybridgroup/cylon-ollie">cylon-ollie</a> with early support for the new <a href="http://www.gosphero.com/ollie/">Ollie</a> robot from our friends at Orbotix. We're bringing some to <a href="http://robotsconf.com">RobotsConf</a> for people to play with.</p>
-          
-          <p>Look for our "preview" blog post about RobotsConf coming next week…</p>
-          
-          <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+          <p>Evans also went into detail about his experiences working on Apple's program Hypercard, and how that open source mentality went on to influence The Hybrid Group's other projects such as KidsRuby later on. Read the full article titled "Internet of Anything: Simple Tools Make It Possible for Anyone to Hack Robots" <a href="http://www.wired.com/2015/04/internet-anything-time-everyone-able-hack-robots/">here</a>.</p>
           <div class="blog-footer">
             <h2>Contact Us</h2>
             <ul>
