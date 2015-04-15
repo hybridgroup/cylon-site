@@ -7,28 +7,27 @@ layout: resources
 resources: true
 active_menu_resources: true
 page_title_show: true
-subnav_platform: true
-active_menu_platforms: true
+subnav_resources: true
+active_menu_platforms: false
 subnavjs: true
 ---
 
 %section.resources
-  %h2#news
-    = link_to "News", "/news"
-  = link_to "Cylon.js 1.0 Release", "/news/cylon-1.0-release"
+  %h1#news
+    = link_to "Recent News", "/news"
 
-  = link_to "Cylon.js featured on codegeekz", "http://codegeekz.com/15-new-frameworks-developers/", class: "external-link"
+  = link_to "<span>Cylon.js in Wired", "http://www.wired.com/2015/04/internet-anything-time-everyone-able-hack-robots/", target:"_blank", class: "external-link"
 
-  = link_to "Wired features Cylon.js", "http://www.wired.com/2015/04/internet-anything-time-everyone-able-hack-robots/", class: "external-link"
+  = link_to "<span>Cylon.js 1.0 Release", "/news/cylon-1.0-release", target:"_blank", class: "external-link"
 
-  = link_to "Building Robots and Rockets with Javascript", "http://makezine.com/2014/05/31/building-robots-and-rockets-with-javascript/", target:"_blank",  class: "external-link"
+  = link_to "<span>Cylon.js listed among 15 new frameworks for developers", "http://codegeekz.com/15-new-frameworks-developers/", target:"_blank", class: "external-link"
 
-  = link_to "View More", "/resources/videos", class: "internal-link"
+  = link_to "View More", "/news", class: "internal-link"
 
 %section.resources
-  %h2#videos
-    = link_to "Videos", "/resources/videos"
-  %p During the past few months we've been traveling around the world to many different conferences to talk about Cylon.js, here we have just some of those videos!
+  %h1#videos
+    = link_to "Featured Videos", "/resources/videos"
+  %p Here are some of videos of Cylon.js being used in action.
 
   .video
     %h4 Treehacks 2015: Turing Machine Simulator
@@ -37,16 +36,16 @@ subnavjs: true
 
   .video
     %h4 Light controlled servo with Intel Edison & Cylon.js
-    %p.video-description Using an Intel Edison with Arduino breakout to read an LDR and control a servo.
+    %h3.video-description Using an Intel Edison with Arduino breakout to read an LDR and control a servo.
     %iframe{:src => "//www.youtube.com/embed/hjRpLsVx-co", :frameborder => "0", :allowfullscreen => "true"}
   .clear
 
   = link_to "View More", "/resources/videos", class: "internal-link"
 
 %section.resources
-  %h2#links 
+  %h1#links 
     = link_to "Friends of Cylon.js Around the World", "/resources/links"
-  %p  Listed below are a few examples of blogs and magazines which have featured and explored Cylon.js. For the complete list, view <a href="/resources/links">here</a>.
+  %p  Listed below are a few recent examples of blogs and magazines which have featured and explored Cylon.js. For the complete list, view <a href="/resources/links">here</a>.
 
   %h2
     %img{:src => "/images/elements/United-States.png", :alt => "American Flag", :class => "flag"}/
@@ -68,4 +67,4 @@ subnavjs: true
 
   = link_to "Cylon.js : Node.js et robotique - <span>Meanjs.fr</span>", "http://www.meanjs.fr/cylon-js-javascript-et-robotique/", target:"_blank",  class: "external-link"
 
-  = link_to "View More", "/resources/videos", class: "internal-link"
+  = link_to "View More", "/resources/links", class: "internal-link"

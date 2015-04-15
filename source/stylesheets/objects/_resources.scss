@@ -1,6 +1,10 @@
 .resources {
   padding: 0 em(15);
 
+  #news{
+    margin-top: 0;
+  }
+
   .video {
     @include span-columns(6 of 12);
     margin: .5%;
