@@ -14,6 +14,7 @@
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/subnav.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
     <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
   <script type="text/javascript">
@@ -83,116 +84,262 @@
         </div>
       </div>
       <div class="main-content" role="main">
-        <section class="resources">
-          <h1>News</h1>
-          <h4>
-            <a href="/news/cylon-1.0-release">Cylon.js 1.0 Release</a>
-          </h4>
-        </section>
-        <section class="resources">
-          <h1>Our Videos</h1>
-          <p>During the past few months we've been traveling around the world to many different conferences to talk about Cylon.js, here we have just some of those videos!</p>
-          <div class="video">
-            <h2>JSConf 2014</h2>
-            <h3 class="video-description">Cylon.js: The Time for Open Source Robotics is Now</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/bnFWskconEg"></iframe>
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mip">MiP</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/spark">Spark</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      <a href="/documentation/drivers/pca9685">PCA9685</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mip">MiP</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Resources')}">
+                <div class="name" ng-click="show('Resources')">Resources</div>
+                <div class="links" ng-show="active('Resources')">
+                  <a href="/resources">Index</a>
+                  <a href="/news">News</a>
+                  <a href="/resources/videos">Videos</a>
+                  <a href="/resources/links">Links</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('API')}">
+                <div class="name" ng-click="show('API')">API</div>
+                <div class="links" ng-show="active('API')">
+                  <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
+                  <a href="/documentation/api/socket-io">Socket.io</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/hackster-hardware-weekend-los-angeles">Hackster Hardware Weekend</a>
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/user-contributed-platforms">User Contributed Platforms</a>
+              <a href="/documentation/helpers">Helper Methods</a>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
           </div>
-          <div class="video">
-            <h2>Scotland JS 2014</h2>
-            <h3 class="video-description">Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//player.vimeo.com/video/96477741?title=0&amp;amp;byline=0&amp;amp;portrait=0"></iframe>
+          <div class="container-documentation">
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5></h5>
+                <nav class="documentation-nav">
+                  <a href="#news">News</a>
+                  <a href="#videos">Videos</a>
+                  <a href="#links">Links</a>
+                  <a href="#top">Top</a>
+                </nav>
+              </div>
+            </section>
+            <br>
+            <section class="resources">
+              <h1 id="news">
+                <a href="/news">Recent News</a>
+              </h1>
+              <a target="_blank" class="external-link" href="http://www.wired.com/2015/04/internet-anything-time-everyone-able-hack-robots/"><span>Cylon.js in Wired</span></a>
+              <a target="_blank" class="external-link" href="/news/cylon-1.0-release"><span>Cylon.js 1.0 Release</span></a>
+              <a target="_blank" class="external-link" href="http://codegeekz.com/15-new-frameworks-developers/"><span>Cylon.js listed among 15 new frameworks for developers</span></a>
+              <a class="internal-link" href="/news">View More</a>
+            </section>
+            <section class="resources">
+              <h1 id="videos">
+                <a href="/resources/videos">Featured Videos</a>
+              </h1>
+              <p>Here are some of videos of Cylon.js being used in action.</p>
+              <div class="video">
+                <h4>Treehacks 2015: Turing Machine Simulator</h4>
+                <h3 class="video-description">An LCD connected to an Intel Edison displays a simulation of a Turing Machine.</h3>
+                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/aizo5qWE_KU"></iframe>
+              </div>
+              <div class="video">
+                <h4>Light controlled servo with Intel Edison &amp; Cylon.js</h4>
+                <h3 class="video-description">Using an Intel Edison with Arduino breakout to read an LDR and control a servo.</h3>
+                <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/hjRpLsVx-co"></iframe>
+              </div>
+              <div class="clear"></div>
+              <a class="internal-link" href="/resources/videos">View More</a>
+            </section>
+            <section class="resources">
+              <h1 id="links">
+                <a href="/resources/links">Friends of Cylon.js Around the World</a>
+              </h1>
+              <p>Listed below are a few recent examples of blogs and magazines which have featured and explored Cylon.js. For the complete list, view <a href="/resources/links">here</a>.</p>
+              <h2>
+                <img alt="American Flag" class="flag" src="/images/elements/United-States.png">
+                English
+              </h2>
+              <a target="_blank" class="external-link" href="http://developer.telerik.com/featured/connect-a-mobile-app-and-a-spark-core-an-international-iot-day-project/">Connect a Mobile App and a Spark Core - An International IoT Day Project <span>Telerik</span></a>
+              <a target="_blank" class="external-link" href="http://www.intel-software-academic-program.com/courses/diy/Intel_Academic_-_DIY_-_InternetOfThings/IntelAcademic_IoT-Edison_07_CylonJS.pdf">Internet of Things with Intel Edison CylonJS - <span>Intel Software Academic Program</span></a>
+              <h2>
+                <img alt="Spanish Flag" class="flag" src="/images/elements/Spain.png">
+                Spanish
+              </h2>
+              <a target="_blank" class="external-link" href="http://www.luistoscano.com/blog/2014/12/02/bootcamp-monteria-cylon-js-javascript-robotics/">BootCamp Monteria : Cylon.js – Javascript + Robotics - <span>Luis Toscano</span></a>
+              <h2>
+                <img alt="French Flag" class="flag" src="/images/elements/France.png">
+                French
+              </h2>
+              <a target="_blank" class="external-link" href="http://www.meanjs.fr/cylon-js-javascript-et-robotique/">Cylon.js : Node.js et robotique - <span>Meanjs.fr</span></a>
+              <a class="internal-link" href="/resources/links">View More</a>
+            </section>
           </div>
-          <div class="video">
-            <h2>MakerFaire 2014</h2>
-            <h3 class="video-description">Cylon.js: The JavaScript Evolution Of Open Source Robotics</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/AJ1VH4AqqWc?rel=0"></iframe>
-          </div>
-          <div class="clear"></div>
-        </section>
-        <section class="resources">
-          <h1>Friends of Cylon.js's Videos</h1>
-          <p>Here are some videos of what others have been able to do with Cylon.js.</p>
-          <div class="video">
-            <h2>Node.js + Cylon.js + LeapMotion</h2>
-            <h3 class="video-description">Using Cylon.js to Control a Robotic Hand</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/wJK6FxAowg4"></iframe>
-          </div>
-          <div class="video">
-            <h2>NodeRocket</h2>
-            <h3 class="video-description">NodeRocket First Parachute Deployment Success</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/uvkBWn1Pl2g"></iframe>
-          </div>
-          <div class="video">
-            <h2>Light controlled servo with Intel Edison &amp; Cylon.js</h2>
-            <h3 class="video-description">Using an Intel Edison with Arduino breakout to read an LDR and control a servo.</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/hjRpLsVx-co"></iframe>
-          </div>
-          <div class="video">
-            <h2>Treehacks 2015: Turing Machine Simulator</h2>
-            <h3 class="video-description">An LCD connected to an Intel Edison displays a simulation of a Turing Machine.</h3>
-            <iframe allowfullscreen="true" frameborder="0" src="//www.youtube.com/embed/aizo5qWE_KU"></iframe>
-          </div>
-          <div class="clear"></div>
-        </section>
-        <section class="resources">
-          <h1>Friends of Cylon.js Around the World</h1>
-          <p>Listed below are some examples of blogs and magazines which have featured and explored Cylon.js.</p>
-          <h2>
-            <img alt="American Flag" class="flag" src="/images/elements/United-States.png">
-            English
-          </h2>
-          <a target="_blank" class="external-link" href="http://developer.telerik.com/featured/connect-a-mobile-app-and-a-spark-core-an-international-iot-day-project/">Connect a Mobile App and a Spark Core - An International IoT Day Project <span>Telerik</span></a>
-          <a target="_blank" class="external-link" href="http://www.intel-software-academic-program.com/courses/diy/Intel_Academic_-_DIY_-_InternetOfThings/IntelAcademic_IoT-Edison_07_CylonJS.pdf">Internet of Things with Intel Edison CylonJS - <span>Intel Software Academic Program</span></a>
-          <a target="_blank" class="external-link" href="http://mirobot.io/programmable/">Program or be Programmed! - <span>Microbot</span></a>
-          <a target="_blank" class="external-link" href="http://noahkeitel.com/wp/an-open-source-experience-with-students-from-the-university-of-minnesota-morris/">An Open Source Experience with Students from the University of Minnesota, Morris - <span>Noah Keitel</span></a>
-          <a target="_blank" class="external-link" href="http://diydrones.com/profiles/blogs/control-a-fleet-of-drones-with-salesforce">Control a fleet of drones with Salesforce - <span>DIY Drones</span></a>
-          <a target="_blank" class="external-link" href="http://www.instructables.com/id/Using-Sensors-to-Make-Music-with-the-Intel-Edison/">Using Buttons and Sensors to Make Music with the Intel Edison - <span>Instructables</span></a>
-          <a target="_blank" class="external-link" href="https://github.com/mashery/edison-guides/wiki/Cylon.js-and-Intel-IoTDevKit-Example-Sketches">Cylon.js and Intel IoTDevKit Example Sketches - <span>Edison-Guides</span></a>
-          <a target="_blank" class="external-link" href="http://miphacking.blogspot.com/">MiP Hacking - <span>Mip Hacking</span></a>
-          <a target="_blank" class="external-link" href="http://julian.io/meteor-meets-arduino-and-cylon/">Meteor meets Arduino and Cylon - <span>Julian.io</span></a>
-          <a target="_blank" class="external-link" href="http://www.codefoster.com/edison-coding/">Writing JavaScript for an Intel Edison - <span>Codefoster </span></a>
-          <a target="_blank" class="external-link" href="http://makezine.com/2014/05/31/building-robots-and-rockets-with-javascript/">Building Robots and Rockets with Javascript - <span>Make Magazine</span></a>
-          <a target="_blank" class="external-link" href="https://charliegerard.wordpress.com/2015/01/12/sphero-leap-motion-cylon-js/">Controlling the Sphero using the Leap Motion in Cylon.js - <span>Charlie Gerard</span></a>
-          <a target="_blank" class="external-link" href="https://charliegerard.wordpress.com/2015/01/20/drone-leap-motion-cylon-js/">Control the Parrot ARDrone with the Leap Motion in Cylon.js - <span>Charlie Gerard</span></a>
-          <a target="_blank" class="external-link" href="http://reidcarlberg.com/2014/03/19/control-your-quadcopter-drone-fleet-with-salesforce1/">Control Your Quadcopter Drone Fleet with Salesforce1 - <span>Reid Carlberg</span></a>
-          <a target="_blank" class="external-link" href="http://www.sitepoint.com/javascript-beyond-web-2014/">JavaScript Beyond the Web in 2014 - <span>Sitepoint</span></a>
-          <a target="_blank" class="external-link" href="http://topideafactory.blogspot.com/2014/10/interacting-with-robot-through-nodejs.html">Interacting with a Robot (Sphero) Through Node.js - <span>Top Idea Factory</span></a>
-          <a target="_blank" class="external-link" href="http://fab-lab.eu/edison/">Getting Started with an Intel® Edison - <span>Fab Lab</span></a>
-          <a target="_blank" class="external-link" href="http://loicdescotte.github.io/posts/sphero/">Playing with Sphero - <span>LOÏC'S BLOG</span></a>
-          <a target="_blank" class="external-link" href="https://ms-iot.github.io/content/Firmata.htm">Firmata and Cylon - <span>Microsoft IoT</span></a>
-          <h2>
-            <img alt="Spanish Flag" class="flag" src="/images/elements/Spain.png">
-            Spanish
-          </h2>
-          <a target="_blank" class="external-link" href="http://www.luistoscano.com/blog/2014/12/02/bootcamp-monteria-cylon-js-javascript-robotics/">BootCamp Monteria : Cylon.js – Javascript + Robotics - <span>Luis Toscano</span></a>
-          <a target="_blank" class="external-link" href="http://www.whiledev.com/como-programar-plataformas-tipo-arduino-en-javascript-ruby-y-go">Cómo programar plataformas tipo Arduino en JavaScript, Ruby y Go - <span>WhileDev</span></a>
-          <a target="_blank" class="external-link" href="https://carlosazaustre.es/blog/programando-en-node-js-con-raspberrypi-primeros-pasos/">Programando en Node.js con RaspberryPi. Primeros pasos - <span>Carlos Azaustre</span></a>
-          <a target="_blank" class="external-link" href="http://carlosazaustre.es/blog/primera-aplicacion-web-en-raspberrypi-con-nodejs-cylonjs-controlando-leds-desde-el-movil/">Primera Aplicación Web en RaspberryPi con NodeJS + CylonJS - <span>Carlos Azaustre</span></a>
-          <a target="_blank" class="external-link" href="http://programacion.net/noticia/cylon_js-_una_forma_sencilla_de_programar_hardware_2178">Cylon.js, una forma sencilla de programar hardware - <span>Programacion en Castellano</span></a>
-          <h2>
-            <img alt="Japanese Flag" class="flag" src="/images/elements/Japan.png">
-            Japanese
-          </h2>
-          <a target="_blank" class="external-link" href="http://lpcwww.com/2014/12/08/cylonjs-on-arduino/">Cylon.js on Arduino - <span>lpcwww</span></a>
-          <a target="_blank" class="external-link" href="http://qiita.com/masato/items/98f2888fac4d0271d526">BeagleBone BlackのDebianでCylon.jsを使いMQTTを受信してLチカする - <span>Qiita</span></a>
-          <a target="_blank" class="external-link" href="http://qiita.com/masato/items/399a3b6c22a109c579cc">Raspberry PiにNode.jsをインストールしてCylon.jsでLチカする - <span>Qiita</span></a>
-          <a target="_blank" class="external-link" href="http://takuro.ws/2015/01/playing-with-cylonjs/">Cylon.jsで遊んでみた - <span>takuro wada</span></a>
-          <h2>
-            <img alt="Portuguese Flag" class="flag" src="/images/elements/Portugal.png">
-            Portuguese
-          </h2>
-          <a target="_blank" class="external-link" href="http://devtroll.blogspot.com/2014/03/nodejs-rodando-javascript-no-arduino.html">[NodeJS] Rodando Javascript no Arduino com Cylon.JS - <span>Troll Development</span></a>
-          <h2>
-            <img alt="Italian Flag" class="flag" src="/images/elements/Italy.png">
-            Italian
-          </h2>
-          <a target="_blank" class="external-link" href="http://www.queryonline.it/2015/03/27/i-robot-li-controlli-usando-cylon/">I robot? Li controlli usando Cylon - <span>Query</span></a>
-          <h2>
-            <img alt="French Flag" class="flag" src="/images/elements/France.png">
-            French
-          </h2>
-          <a target="_blank" class="external-link" href="http://www.meanjs.fr/cylon-js-javascript-et-robotique/">Cylon.js : Node.js et robotique - <span>Meanjs.fr</span></a>
-        </section>
+        </div>
       </div>
     </div>
     <div class="app-footer">
