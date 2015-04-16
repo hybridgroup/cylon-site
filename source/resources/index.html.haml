@@ -3,58 +3,49 @@ page_title_show: true
 title: Cylon.js Resources
 page_title: Resources
 page_subtitle: Cylon.js around the world.
-layout: page
+layout: resources
+resources: true
 active_menu_resources: true
+page_title_show: true
+subnav_resources: true
+active_menu_platforms: false
+subnavjs: true
 ---
 
 %section.resources
-  %h1 News
-  %h4
-    = link_to "Cylon.js 1.0 Release", "/news/cylon-1.0-release"
+  %h1#news
+    = link_to "Recent News", "/news"
+
+  = link_to "<span>Cylon.js in Wired", "http://www.wired.com/2015/04/internet-anything-time-everyone-able-hack-robots/", target:"_blank", class: "external-link"
+
+  = link_to "<span>Cylon.js 1.0 Release", "/news/cylon-1.0-release", target:"_blank", class: "external-link"
+
+  = link_to "<span>Cylon.js listed among 15 new frameworks for developers", "http://codegeekz.com/15-new-frameworks-developers/", target:"_blank", class: "external-link"
+
+  = link_to "View More", "/news", class: "internal-link"
 
 %section.resources
-  %h1 Our Videos
-  %p During the past few months we've been traveling around the world to many different conferences to talk about Cylon.js, here we have just some of those videos!
+  %h1#videos
+    = link_to "Featured Videos", "/resources/videos"
+  %p Here are some of videos of Cylon.js being used in action.
 
   .video
-    %h2 JSConf 2014
-    %h3.video-description Cylon.js: The Time for Open Source Robotics is Now
-    %iframe{:src => "//www.youtube.com/embed/bnFWskconEg", :frameborder => "0", :allowfullscreen => "true"}
-  .video
-    %h2 Scotland JS 2014
-    %h3.video-description Cylon.js: The JavaScript Evolution Of Open Source Robotics
-    %iframe{:src => "//player.vimeo.com/video/96477741?title=0&amp;byline=0&amp;portrait=0", :frameborder => "0", :allowfullscreen => "true"}
-  .video
-    %h2 MakerFaire 2014
-    %h3.video-description Cylon.js: The JavaScript Evolution Of Open Source Robotics
-    %iframe{:src => "//www.youtube.com/embed/AJ1VH4AqqWc?rel=0", :frameborder => "0", :allowfullscreen => "true"}
-  .clear
-%section.resources
-  %h1 Friends of Cylon.js's Videos
-  %p Here are some videos of what others have been able to do with Cylon.js.
-  .video
-    %h2 Node.js + Cylon.js + LeapMotion
-    %h3.video-description Using Cylon.js to Control a Robotic Hand
-    %iframe{:src => "//www.youtube.com/embed/wJK6FxAowg4", :frameborder => "0", :allowfullscreen => "true"}
-  .video
-    %h2 NodeRocket
-    %h3.video-description NodeRocket First Parachute Deployment Success
-    %iframe{:src => "//www.youtube.com/embed/uvkBWn1Pl2g", :frameborder => "0", :allowfullscreen => "true"}
-  .video
-    %h2 Light controlled servo with Intel Edison & Cylon.js
-    %h3.video-description Using an Intel Edison with Arduino breakout to read an LDR and control a servo.
-    %iframe{:src => "//www.youtube.com/embed/hjRpLsVx-co", :frameborder => "0", :allowfullscreen => "true"}
-  .video
-    %h2 Treehacks 2015: Turing Machine Simulator
+    %h4 Treehacks 2015: Turing Machine Simulator
     %h3.video-description An LCD connected to an Intel Edison displays a simulation of a Turing Machine.
     %iframe{:src => "//www.youtube.com/embed/aizo5qWE_KU", :frameborder => "0", :allowfullscreen => "true"}
+
+  .video
+    %h4 Light controlled servo with Intel Edison & Cylon.js
+    %h3.video-description Using an Intel Edison with Arduino breakout to read an LDR and control a servo.
+    %iframe{:src => "//www.youtube.com/embed/hjRpLsVx-co", :frameborder => "0", :allowfullscreen => "true"}
   .clear
 
+  = link_to "View More", "/resources/videos", class: "internal-link"
+
 %section.resources
-  %h1 Friends of Cylon.js Around the World
-  %p  Listed below are some examples of blogs and magazines which have featured and explored Cylon.js.
-
-
+  %h1#links 
+    = link_to "Friends of Cylon.js Around the World", "/resources/links"
+  %p  Listed below are a few recent examples of blogs and magazines which have featured and explored Cylon.js. For the complete list, view <a href="/resources/links">here</a>.
 
   %h2
     %img{:src => "/images/elements/United-States.png", :alt => "American Flag", :class => "flag"}/
@@ -64,79 +55,16 @@ active_menu_resources: true
 
   = link_to "Internet of Things with Intel Edison CylonJS - <span>Intel Software Academic Program</span>", "http://www.intel-software-academic-program.com/courses/diy/Intel_Academic_-_DIY_-_InternetOfThings/IntelAcademic_IoT-Edison_07_CylonJS.pdf", target:"_blank",  class: "external-link"
 
-  = link_to "Program or be Programmed! - <span>Microbot</span>", "http://mirobot.io/programmable/", target:"_blank",  class: "external-link"
-
-  = link_to "An Open Source Experience with Students from the University of Minnesota, Morris - <span>Noah Keitel</span>", "http://noahkeitel.com/wp/an-open-source-experience-with-students-from-the-university-of-minnesota-morris/", target:"_blank",  class: "external-link"
-
-  = link_to "Control a fleet of drones with Salesforce - <span>DIY Drones</span>", "http://diydrones.com/profiles/blogs/control-a-fleet-of-drones-with-salesforce", target:"_blank",  class: "external-link"
-
-  = link_to "Using Buttons and Sensors to Make Music with the Intel Edison - <span>Instructables</span>", "http://www.instructables.com/id/Using-Sensors-to-Make-Music-with-the-Intel-Edison/", target:"_blank",  class: "external-link"
-
-  = link_to "Cylon.js and Intel IoTDevKit Example Sketches - <span>Edison-Guides</span>", "https://github.com/mashery/edison-guides/wiki/Cylon.js-and-Intel-IoTDevKit-Example-Sketches", target:"_blank",  class: "external-link"
-
-  = link_to "MiP Hacking - <span>Mip Hacking</span>", "http://miphacking.blogspot.com/", target:"_blank",  class: "external-link"
-
-  = link_to "Meteor meets Arduino and Cylon - <span>Julian.io</span>", "http://julian.io/meteor-meets-arduino-and-cylon/", target:"_blank",  class: "external-link"
-
-  = link_to "Writing JavaScript for an Intel Edison - <span>Codefoster </span>", "http://www.codefoster.com/edison-coding/", target:"_blank",  class: "external-link"
-
-  = link_to "Building Robots and Rockets with Javascript - <span>Make Magazine</span>", "http://makezine.com/2014/05/31/building-robots-and-rockets-with-javascript/", target:"_blank",  class: "external-link"
-
-  = link_to "Controlling the Sphero using the Leap Motion in Cylon.js - <span>Charlie Gerard</span>", "https://charliegerard.wordpress.com/2015/01/12/sphero-leap-motion-cylon-js/", target:"_blank",  class: "external-link"
-
-  = link_to "Control the Parrot ARDrone with the Leap Motion in Cylon.js - <span>Charlie Gerard</span>", "https://charliegerard.wordpress.com/2015/01/20/drone-leap-motion-cylon-js/", target:"_blank",  class: "external-link"
-
-  = link_to "Control Your Quadcopter Drone Fleet with Salesforce1 - <span>Reid Carlberg</span>", "http://reidcarlberg.com/2014/03/19/control-your-quadcopter-drone-fleet-with-salesforce1/", target:"_blank",  class: "external-link"
-
-  = link_to "JavaScript Beyond the Web in 2014 - <span>Sitepoint</span>", "http://www.sitepoint.com/javascript-beyond-web-2014/", target:"_blank",  class: "external-link"
-
-  = link_to "Interacting with a Robot (Sphero) Through Node.js - <span>Top Idea Factory</span>", "http://topideafactory.blogspot.com/2014/10/interacting-with-robot-through-nodejs.html", target:"_blank",  class: "external-link"
-
-  = link_to "Getting Started with an Intel® Edison - <span>Fab Lab</span>", "http://fab-lab.eu/edison/", target:"_blank",  class: "external-link"
-
-  = link_to "Playing with Sphero - <span>LOÏC'S BLOG</span>", "http://loicdescotte.github.io/posts/sphero/", target:"_blank",  class: "external-link"
-
-  = link_to "Firmata and Cylon - <span>Microsoft IoT</span>", "https://ms-iot.github.io/content/Firmata.htm", target:"_blank",  class: "external-link"
-
   %h2
     %img{:src => "/images/elements/Spain.png", :alt => "Spanish Flag", :class => "flag"}/
     Spanish
 
   = link_to "BootCamp Monteria : Cylon.js – Javascript + Robotics - <span>Luis Toscano</span>", "http://www.luistoscano.com/blog/2014/12/02/bootcamp-monteria-cylon-js-javascript-robotics/", target:"_blank",  class: "external-link"
 
-  = link_to "Cómo programar plataformas tipo Arduino en JavaScript, Ruby y Go - <span>WhileDev</span>", "http://www.whiledev.com/como-programar-plataformas-tipo-arduino-en-javascript-ruby-y-go", target:"_blank",  class: "external-link"
-
-  = link_to "Programando en Node.js con RaspberryPi. Primeros pasos - <span>Carlos Azaustre</span>", "https://carlosazaustre.es/blog/programando-en-node-js-con-raspberrypi-primeros-pasos/", target:"_blank",  class: "external-link"
-
-  = link_to "Primera Aplicación Web en RaspberryPi con NodeJS + CylonJS - <span>Carlos Azaustre</span>", "http://carlosazaustre.es/blog/primera-aplicacion-web-en-raspberrypi-con-nodejs-cylonjs-controlando-leds-desde-el-movil/", target:"_blank",  class: "external-link"
-
-  = link_to "Cylon.js, una forma sencilla de programar hardware - <span>Programacion en Castellano</span>", "http://programacion.net/noticia/cylon_js-_una_forma_sencilla_de_programar_hardware_2178", target:"_blank",  class: "external-link"
-
-  %h2
-    %img{:src => "/images/elements/Japan.png", :alt => "Japanese Flag", :class => "flag"}/
-    Japanese
-
-  = link_to "Cylon.js on Arduino - <span>lpcwww</span>", "http://lpcwww.com/2014/12/08/cylonjs-on-arduino/", target:"_blank",  class: "external-link"
-
-  = link_to "BeagleBone BlackのDebianでCylon.jsを使いMQTTを受信してLチカする - <span>Qiita</span>", "http://qiita.com/masato/items/98f2888fac4d0271d526", target:"_blank",  class: "external-link"
-
-  = link_to "Raspberry PiにNode.jsをインストールしてCylon.jsでLチカする - <span>Qiita</span>", "http://qiita.com/masato/items/399a3b6c22a109c579cc", target:"_blank",  class: "external-link"
-
-  = link_to "Cylon.jsで遊んでみた - <span>takuro wada</span>", "http://takuro.ws/2015/01/playing-with-cylonjs/", target:"_blank",  class: "external-link"
-
-  %h2
-    %img{:src => "/images/elements/Portugal.png", :alt => "Portuguese Flag", :class => "flag"}/
-    Portuguese
-
-  = link_to "[NodeJS] Rodando Javascript no Arduino com Cylon.JS - <span>Troll Development</span>", "http://devtroll.blogspot.com/2014/03/nodejs-rodando-javascript-no-arduino.html", target:"_blank",  class: "external-link"
-
-  %h2
-    %img{:src => "/images/elements/Italy.png", :alt => "Italian Flag", :class => "flag"}/
-    Italian
-
-  = link_to "I robot? Li controlli usando Cylon - <span>Query</span>", "http://www.queryonline.it/2015/03/27/i-robot-li-controlli-usando-cylon/", target:"_blank",  class: "external-link"
   %h2
     %img{:src => "/images/elements/France.png", :alt => "French Flag", :class => "flag"}/
     French
 
   = link_to "Cylon.js : Node.js et robotique - <span>Meanjs.fr</span>", "http://www.meanjs.fr/cylon-js-javascript-et-robotique/", target:"_blank",  class: "external-link"
+
+  = link_to "View More", "/resources/links", class: "internal-link"
