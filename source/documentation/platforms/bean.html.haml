@@ -1,0 +1,32 @@
+---
+page_title_show: true
+title: LightBlue Bean with Cylon
+author: The Hybrid Group
+page_title: Platforms - LightBlue Bean
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: LightBlue Bean
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-bean' class='repository'>Repository</a>| <a class='issues' href='https://github.com/hybridgroup/cylon-bean/issues'>Issues</a>"
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/bean.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+       The LightBlue Bean is a microcontroller that is programmed wirelessly over Bluetooth Low Energy.
+
+      For more info about the LightBlue Bean click [here](https://punchthrough.com/bean/).
+  .clear
+
+//= partial "documentation/platforms/partials/bean"
+
+%section.drivers#Drivers
+  %h2 Drivers
+  %p All Cylon.js Digital, Analog & PWM GPIO drivers, as well as i2c drivers listed below should work with the Bean:
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "LightBlue Bean"}
