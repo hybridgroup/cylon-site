@@ -78,7 +78,10 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
             %img{src: "/images/devices/#{info.slug}.jpg", style: "width: 90%"}
     .clear
 
-  %p Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the `cylon-gpio` module:
+  %p
+    Support for many devices that use General Purpose Input/Output (GPIO) have a shared set of drivers provided using the
+    = link_to "cylon-gpio", "https://github.com/hybridgroup/cylon-gpio", target:"_blank",  class: "external-link"
+    module:
 
   %ul.platform-list
     - data.drivers.GPIO.each do |name, url|
@@ -88,7 +91,10 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
           %img{src: "/images/devices/#{url}.jpg", style: "width: 90%"}
     .clear
 
-  %p Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the `cylon-i2c` module:
+  %p
+    Support for devices that use Inter-Integrated Circuit (I2C) have a shared set of drivers provded using the
+    = link_to "cylon-i2c", "https://github.com/hybridgroup/cylon-i2c", target:"_blank",  class: "external-link"
+    module:
 
   %ul.platform-list
     - data.drivers.I2C.each do |name, url|
@@ -131,11 +137,13 @@ getting_started_button: "<a href='/documentation/getting-started' class='call-to
 
     Cylon.js features an API plugin system which enables you to send commands, stream real time data, and monitor the overall state of your robots. We currently support the following API plugins:
 
-    - HTTP
+    - [http/https (REST)](https://github.com/hybridgroup/cylon-api-http)
 
-    - Socket.io
+    - [socket.io](https://github.com/hybridgroup/cylon-api-socketio)
 
-    - and more coming soon
+    - [mqtt](https://github.com/hybridgroup/cylon-api-mqtt)
+
+    - and more coming soon!
 
     The Cylon.js HTTP plugin, for instance, allows you to interact with your robots over HTTP. You simply install the API plugin alongside Cylon.js with npm:
 
