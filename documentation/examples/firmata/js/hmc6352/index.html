@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -287,7 +288,7 @@ Cylon.robot({
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
       my.hmc6352.heading(<span class="keyword">function</span>(err, data) {
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">heading: </span><span class="delimiter">"</span></span> + data);
+        console.log(err || <span class="string"><span class="delimiter">"</span><span class="content">heading: </span><span class="delimiter">"</span></span> + data);
       });
     });
   }

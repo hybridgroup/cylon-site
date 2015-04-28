@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -286,10 +287,15 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.mpl115a2.getTemperature(<span class="keyword">function</span>(err, data) {
-      <span class="keyword">var</span> temp = data[<span class="string"><span class="delimiter">"</span><span class="content">temperature</span><span class="delimiter">"</span></span>],
-          pressure = data[<span class="string"><span class="delimiter">"</span><span class="content">pressure</span><span class="delimiter">"</span></span>];
+      <span class="keyword">if</span> (err) {
+        console.log(err);
+        <span class="keyword">return</span>;
+      }
 
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">temperature </span><span class="delimiter">"</span></span> + temp  + <span class="string"><span class="delimiter">"</span><span class="content"> pressure </span><span class="delimiter">"</span></span> + pressure);
+      <span class="keyword">var</span> temp = data.temperature,
+          pressure = data.pressure;
+
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">temperature </span><span class="delimiter">"</span></span> + temp + <span class="string"><span class="delimiter">"</span><span class="content"> pressure </span><span class="delimiter">"</span></span> + pressure);
     });
   }
 }).start();

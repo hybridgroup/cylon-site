@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -292,7 +293,7 @@ Cylon.robot({
 
     every((<span class="integer">5</span>).second(), <span class="keyword">function</span>() {
       analogValue = my.sensor.analogRead();
-      voltage     = (analogValue * <span class="float">5.0</span>) / <span class="integer">1024</span>;
+      voltage = (analogValue * <span class="float">5.0</span>) / <span class="integer">1024</span>;
       temperature = (voltage - <span class="float">0.5</span>) * <span class="integer">100</span>;
 
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Temperature =&gt; </span><span class="delimiter">"</span></span>, temperature);

@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -282,18 +283,20 @@ Cylon.robot()
     bot.blinkm.stopScript();
 
     bot.blinkm.getFirmware(<span class="keyword">function</span>(err, version) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
+      console.log(err || <span class="string"><span class="delimiter">"</span><span class="content">Started BlinkM version </span><span class="delimiter">"</span></span> + version);
     });
 
-    bot.blinkm.goToRGB(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>);
-    bot.blinkm.getRGBColor(<span class="keyword">function</span>(err, data){
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data);
+    bot.blinkm.goToRGB(<span class="integer">0</span>, <span class="integer">0</span>, <span class="integer">0</span>);
+
+    bot.blinkm.getRGBColor(<span class="keyword">function</span>(err, data) {
+      console.log(err || <span class="string"><span class="delimiter">"</span><span class="content">Starting Color: </span><span class="delimiter">"</span></span>, data);
     });
 
     setInterval(<span class="keyword">function</span>() {
-      bot.blinkm.getRGBColor(<span class="keyword">function</span>(err, data){
-        console.log(<span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
+      bot.blinkm.getRGBColor(<span class="keyword">function</span>(err, data) {
+        console.log(err || <span class="string"><span class="delimiter">"</span><span class="content">Current Color: </span><span class="delimiter">"</span></span>, data);
       });
+
       bot.blinkm.fadeToRandomRGB(<span class="integer">128</span>, <span class="integer">128</span>, <span class="integer">128</span>);
     }, <span class="integer">2000</span>);
   });

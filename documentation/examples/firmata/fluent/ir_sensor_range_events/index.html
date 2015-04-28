@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -290,11 +291,11 @@ Cylon
     <span class="key">model</span>: <span class="string"><span class="delimiter">"</span><span class="content">gp2y0a41sk0f</span><span class="delimiter">"</span></span>
   })
   .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
-    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">range</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range){
+    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">range</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in inches ===&gt;</span><span class="delimiter">"</span></span>, range);
     });
 
-    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">rangeCm</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range){
+    bot.sensor.on(<span class="string"><span class="delimiter">"</span><span class="content">rangeCm</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(range) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Range in cm ===&gt;</span><span class="delimiter">"</span></span>, range);
     });
   });

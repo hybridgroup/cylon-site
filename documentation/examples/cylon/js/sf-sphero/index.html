@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -299,8 +300,9 @@ Cylon.robot({
     my.salesforce.on(<span class="string"><span class="delimiter">"</span><span class="content">start</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
       my.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">/topic/SpheroMsgOutbound</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
         <span class="keyword">var</span> msg = <span class="string"><span class="delimiter">"</span><span class="content">Sphero: </span><span class="delimiter">"</span></span> + data.sobject.Sphero_Name__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
-            msg += <span class="string"><span class="delimiter">"</span><span class="content">Bucks: </span><span class="delimiter">"</span></span> + data.sobject.Bucks__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
-            msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
+
+        msg += <span class="string"><span class="delimiter">"</span><span class="content">Bucks: </span><span class="delimiter">"</span></span> + data.sobject.Bucks__c + <span class="string"><span class="delimiter">"</span><span class="content">,</span><span class="delimiter">"</span></span>;
+        msg += <span class="string"><span class="delimiter">"</span><span class="content">SM_Id: </span><span class="delimiter">"</span></span> + data.sobject.Id;
 
         console.log(msg);
 

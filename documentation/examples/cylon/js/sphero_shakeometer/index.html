@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -290,7 +291,7 @@ Cylon.robot({
 
     my.sphero.setDataStreaming([<span class="string"><span class="delimiter">"</span><span class="content">velocity</span><span class="delimiter">"</span></span>], { <span class="key">n</span>: <span class="integer">40</span>, <span class="key">m</span>: <span class="integer">1</span>, <span class="key">pcnt</span>: <span class="integer">0</span> });
     my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      <span class="keyword">if</span>(!changingColor) {
+      <span class="keyword">if</span> (!changingColor) {
         <span class="keyword">var</span> x = Math.abs(data[<span class="integer">0</span>]),
             y = Math.abs(data[<span class="integer">1</span>]);
 

@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -296,6 +297,10 @@ Cylon.robot({
       my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>);
 
       travis.repos({ <span class="key">owner_name</span>: user, <span class="key">name</span>: name }, <span class="keyword">function</span>(err, res) {
+        <span class="keyword">if</span> (err) {
+          console.log(err);
+        }
+
         <span class="keyword">if</span> (res.repo === <span class="predefined-constant">undefined</span>) { my.sphero.setColor(<span class="string"><span class="delimiter">"</span><span class="content">blue</span><span class="delimiter">"</span></span>, <span class="predefined-constant">true</span>); }
 
         <span class="keyword">switch</span> (res.repo.last_build_state) {

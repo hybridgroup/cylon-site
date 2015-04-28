@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -306,9 +307,9 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span> },
-    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> },
-    <span class="key">keyboard</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>, <span class="key">connection</span>:<span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> }
+    <span class="key">drone</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">ardrone</span><span class="delimiter">"</span></span> },
+    <span class="key">leapmotion</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> },
+    <span class="key">keyboard</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">keyboard</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -365,11 +366,11 @@ Cylon.robot({
           signal = handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>];
           value = (horizontal - TURN_TRESHOLD) * TURN_SPEED_FACTOR;
 
-          <span class="keyword">if</span> (signal &gt; <span class="integer">0</span>){
+          <span class="keyword">if</span> (signal &gt; <span class="integer">0</span>) {
             my.drone.counterClockwise(value);
           }
 
-          <span class="keyword">if</span> (signal &lt; <span class="integer">0</span>){
+          <span class="keyword">if</span> (signal &lt; <span class="integer">0</span>) {
             my.drone.clockwise(value);
           }
         }
@@ -405,51 +406,51 @@ Cylon.robot({
           }
 
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">2</span>] &lt; <span class="integer">0</span>) {
-              value = Math.abs(
-                Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
-                DIRECTION_SPEED_FACTOR
-              );
+            value = Math.abs(
+              Math.round(hand.palmNormal[<span class="integer">2</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
+              DIRECTION_SPEED_FACTOR
+            );
 
-              my.drone.back(value);
+            my.drone.back(value);
           }
         }
 
         <span class="comment">// DIRECTION LEFT/RIGHT</span>
-        <span class="keyword">if</span> ((Math.abs(hand.palmNormal[<span class="integer">0</span>])&gt;DIRECTION_THRESHOLD)) {
+        <span class="keyword">if</span> (Math.abs(hand.palmNormal[<span class="integer">0</span>]) &gt; DIRECTION_THRESHOLD) {
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>] &gt; <span class="integer">0</span>) {
-              value = Math.abs(
-                Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD) *
-                DIRECTION_SPEED_FACTOR
-              );
+            value = Math.abs(
+              Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> + DIRECTION_THRESHOLD) *
+              DIRECTION_SPEED_FACTOR
+            );
 
-              my.drone.left(value);
+            my.drone.left(value);
           }
 
           <span class="keyword">if</span> (hand.palmNormal[<span class="integer">0</span>] &lt; <span class="integer">0</span>) {
-              value = Math.abs(
-                Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
-                DIRECTION_SPEED_FACTOR
-              );
+            value = Math.abs(
+              Math.round(hand.palmNormal[<span class="integer">0</span>] * <span class="integer">10</span> - DIRECTION_THRESHOLD) *
+              DIRECTION_SPEED_FACTOR
+            );
 
-              my.drone.right(value);
+            my.drone.right(value);
           }
         }
 
         <span class="comment">// AUTO FREEZE</span>
         <span class="keyword">if</span> (
-            <span class="comment">// within left/right threshold</span>
-            (Math.abs(hand.palmNormal[<span class="integer">0</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
+          <span class="comment">// within left/right threshold</span>
+          (Math.abs(hand.palmNormal[<span class="integer">0</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
 
-            <span class="comment">// within forward/back threshold</span>
-            (Math.abs(hand.palmNormal[<span class="integer">2</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
+          <span class="comment">// within forward/back threshold</span>
+          (Math.abs(hand.palmNormal[<span class="integer">2</span>]) &lt; DIRECTION_THRESHOLD) &amp;&amp;
 
-            <span class="comment">// within up/down threshold</span>
-            Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &lt;
-            UP_CONTROL_THRESHOLD &amp;&amp;
+          <span class="comment">// within up/down threshold</span>
+          Math.abs(hand.palmPosition[<span class="integer">1</span>] - handStartPosition[<span class="integer">1</span>]) &lt;
+          UP_CONTROL_THRESHOLD &amp;&amp;
 
-            <span class="comment">// within turn threshold</span>
-            Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]) &lt;
-            TURN_TRESHOLD) {
+          <span class="comment">// within turn threshold</span>
+          Math.abs(handStartDirection[<span class="integer">0</span>] - hand.direction[<span class="integer">0</span>]) &lt;
+          TURN_TRESHOLD) {
           my.drone.stop();
         }
       }

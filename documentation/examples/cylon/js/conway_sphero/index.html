@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -279,10 +280,10 @@
     Red = <span class="hex">0xFF0000</span>;
 
 <span class="keyword">var</span> bots = {
-  <span class="key"><span class="delimiter">"</span><span class="content">Thelma</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
-  <span class="key"><span class="delimiter">"</span><span class="content">Louise</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span>,
-  <span class="key"><span class="delimiter">"</span><span class="content">Grace</span><span class="delimiter">"</span></span>:  <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm2</span><span class="delimiter">"</span></span>,
-  <span class="key"><span class="delimiter">"</span><span class="content">Ada</span><span class="delimiter">"</span></span>:    <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm3</span><span class="delimiter">"</span></span>
+  <span class="key">Thelma</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span>,
+  <span class="key">Louise</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm1</span><span class="delimiter">"</span></span>,
+  <span class="key">Grace</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm2</span><span class="delimiter">"</span></span>,
+  <span class="key">Ada</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm3</span><span class="delimiter">"</span></span>
 };
 
 Object.keys(bots).forEach(<span class="keyword">function</span>(name) {

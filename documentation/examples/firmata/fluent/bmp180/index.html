@@ -155,6 +155,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -281,10 +282,9 @@ Cylon
   .device(<span class="string"><span class="delimiter">"</span><span class="content">bmp180</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">bmp180</span><span class="delimiter">"</span></span> })
   .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
     bot.bmp180.getTemperature(<span class="keyword">function</span>(err, val) {
-      <span class="keyword">if</span>(err) {
+      <span class="keyword">if</span> (err) {
         console.log(err);
-      }
-      <span class="keyword">else</span> {
+      } <span class="keyword">else</span> {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">getTemperature call:</span><span class="delimiter">"</span></span>);
         console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temp: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
       }
@@ -292,10 +292,9 @@ Cylon
 
     setTimeout(<span class="keyword">function</span>() {
       bot.bmp180.getPressure(<span class="integer">1</span>, <span class="keyword">function</span>(err, val) {
-        <span class="keyword">if</span>(err) {
+        <span class="keyword">if</span> (err) {
           console.log(err);
-        }
-        <span class="keyword">else</span> {
+        } <span class="keyword">else</span> {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">getPressure call:</span><span class="delimiter">"</span></span>);
           console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
           console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
@@ -305,10 +304,9 @@ Cylon
 
     setTimeout(<span class="keyword">function</span>() {
       bot.bmp180.getAltitude(<span class="integer">1</span>, <span class="predefined-constant">null</span>, <span class="keyword">function</span>(err, val) {
-        <span class="keyword">if</span>(err) {
+        <span class="keyword">if</span> (err) {
           console.log(err);
-        }
-        <span class="keyword">else</span> {
+        } <span class="keyword">else</span> {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">getAltitude call:</span><span class="delimiter">"</span></span>);
           console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Temperature: </span><span class="delimiter">"</span></span> + val.temp + <span class="string"><span class="delimiter">"</span><span class="content"> C</span><span class="delimiter">"</span></span>);
           console.log(<span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Pressure: </span><span class="delimiter">"</span></span> + val.press + <span class="string"><span class="delimiter">"</span><span class="content"> Pa</span><span class="delimiter">"</span></span>);
