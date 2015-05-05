@@ -1,0 +1,145 @@
+---
+page_title_show: true
+title: "Hello, Node Bebop Drone"
+page_title: Blog
+date: 2015-05-06
+tags: drones bebop
+author: Ron Evans
+active_menu_blog: true
+---
+:markdown  
+  We love drones, and we've had our brand new [Parrot Bebop](http://www.parrot.com/products/bebop-drone/) for a little while. However, we did not have any way to control it using JavaScript.
+
+  Without further ado, introducing [node-bebop](https://github.com/hybridgroup/node-bebop), a node module to control the Parrot Bebop quadcopter.
+
+  There are already so many wonderful JavaScript code examples out there for the ARDrone, thanks to the fine efforts of the [NodeCopter](http://www.nodecopter.com/) crew. Our objective was to be able to use the Parrot Bebop with code compatible with NodeCopter. And we wanted to do this, despite the Bebop having an entirely new incompatible API with the ARDrone.
+
+  So we created `node-bebop` using a very similar outward-facing API as that pioneered by the NodeCopter team, but calling the new Bebop API within our implementation.
+
+  Here is an example of using `node-bebop`:
+
+      :::javascript
+      var bebop = require('node-bebop');
+
+      var drone = bebop.createClient();
+
+      drone.connect(function() {
+        drone.takeOff();
+
+        setTimeout(function() {
+          drone.land();
+        }, 5000);
+      });
+
+  This code should look very familiar to any of the thousands of people who attended a NodeCopter event.
+
+  ### We have cylon-bebop too
+
+  We have also created [cylon-bebop](https://github.com/hybridgroup/cylon-bebop) as a wrapper around node-bebop, so you can control the Bebop using Cylon.js if you would like.
+
+  Here is an example that uses `cylon-bebop` along with [cylon-joystick](https://github.com/hybridgroup/cylon-joystick), to control a Bebop using a Dualshock 3 controller:
+
+      :::javascript
+      var cylon = require("cylon");
+
+      function validatePitch(data) {
+        var value = Math.abs(data);
+        if (value >= 0.1) {
+          if (value <= 1.0) {
+            return (Math.round(value * 100.0) / 100.0) * 100;
+          } else {
+            return 1.0 * 100;
+          }
+        } else {
+          return 0.0;
+        }
+      }
+
+      cylon.robot({
+        connections: {
+          joystick: { adaptor: "joystick" },
+          bebop:  { adaptor: 'bebop' }
+        },
+        devices: {
+          controller: { driver: "dualshock-3", connection: "joystick" },
+          drone:      { driver: "bebop", connection: "bebop" }
+        },
+        work: function() {
+          var that = this,
+              rightStick = { x: 0.0, y: 0.0 },
+              leftStick = { x: 0.0, y: 0.0 };
+
+          that.controller.on("square:press", function() {
+            that.drone.takeOff();
+          });
+
+          that.controller.on("triangle:press", function() {
+            that.drone.stop();
+          });
+
+          that.controller.on("x:press", function() {
+            that.drone.land();
+          });
+
+          that.controller.on("right_x:move", function(data) {
+            rightStick.x = data;
+          });
+
+          that.controller.on("right_y:move", function(data) {
+            rightStick.y = data;
+          });
+
+          that.controller.on("left_x:move", function(data) {
+            leftStick.x = data;
+          });
+
+          that.controller.on("left_y:move", function(data) {
+            leftStick.y = data;
+          });
+
+          setInterval(function() {
+            var pair = leftStick;
+
+            if (pair.y < 0) {
+              that.drone.forward(validatePitch(pair.y));
+            } else if (pair.y > 0) {
+              that.drone.backward(validatePitch(pair.y));
+            }
+
+            if (pair.x > 0) {
+              that.drone.right(validatePitch(pair.x));
+            } else if (pair.x < 0) {
+              that.drone.left(validatePitch(pair.x));
+            }
+          }, 0);
+
+          setInterval(function() {
+            var pair = rightStick;
+
+            if (pair.y < 0) {
+              that.drone.up(validatePitch(pair.y));
+            } else if (pair.y > 0) {
+              that.drone.down(validatePitch(pair.y));
+            }
+
+            if (pair.x > 0) {
+              that.drone.clockwise(validatePitch(pair.x));
+            } else if (pair.x < 0) {
+              that.drone.counterClockwise(validatePitch(pair.x));
+            }
+          }, 0);
+
+          setInterval(function() {
+            that.drone.stop();
+          }, 10);
+        }
+      }).start();
+
+  ### Conclusion
+
+  The Parrot Bebop is a very cool new drone, and we're happy to offer up `node-bebop`, and `cylon-bebop`, so you can take flight using JavaScript at the controls.
+
+  Please follow us on Twitter at [@CylonJS] to receive updates as we continue to work on JavaScript-powered drones, robots, and connected devices.
+
+  [@CylonJS]: https://twitter.com/CylonJS
+  
