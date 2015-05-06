@@ -1,0 +1,29 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+        $ npm install cylon cylon-bebop
+
+    ## How to Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bebop: { adaptor: 'bebop' }
+          },
+
+          devices: {
+            drone: { driver: 'bebop' }
+          },
+
+          work: function(my) {
+            my.drone.takeOff();
+            after((5).seconds(), my.drone.land);
+          }
+        }).start();
+
+    ## How to Connect
+
+    The Bebop is a WiFi device, and by default it is configured to act as a WiFi access point. To connect to a single drone just connect your computer's WiFi to the drone's WiFi. The default name for the Bebop's access point will include "Bebop" in its name.
