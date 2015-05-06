@@ -89,6 +89,173 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    May
+                  </div>
+                  <div class="day">
+                    06
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2015
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2015/05/06/hello-node-bebop-drone/">Hello, Node Bebop Drone</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Ron Evans
+              </div>
+            </header>
+            <p>We love drones, and we've had our brand new <a href="http://www.parrot.com/products/bebop-drone/">Parrot Bebop</a> for a little while. However, we did not have any way to control it using JavaScript.</p>
+            
+            <p>Without further ado, introducing <a href="https://github.com/hybridgroup/node-bebop">node-bebop</a>, a node module to control the Parrot Bebop quadcopter.</p>
+            
+            <p>There are already so many wonderful JavaScript code examples out there for the ARDrone, thanks to the fine efforts of the <a href="http://www.nodecopter.com/">NodeCopter</a> crew. Our objective was to be able to use the Parrot Bebop with code compatible with NodeCopter. And we wanted to do this, despite the Bebop having an entirely new incompatible API with the ARDrone.</p>
+            
+            <p>So we created <code>node-bebop</code> using a very similar outward-facing API as that pioneered by the NodeCopter team, but calling the new Bebop API within our implementation.</p>
+            
+            <p>Here is an example of using <code>node-bebop</code>:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> bebop = require(<span class="string"><span class="delimiter">'</span><span class="content">node-bebop</span><span class="delimiter">'</span></span>);
+
+<span class="keyword">var</span> drone = bebop.createClient();
+
+drone.connect(<span class="keyword">function</span>() {
+  drone.takeOff();
+
+  setTimeout(<span class="keyword">function</span>() {
+    drone.land();
+  }, <span class="integer">5000</span>);
+});
+</pre>
+            
+            <p>This code should look very familiar to any of the thousands of people who attended a NodeCopter event.</p>
+            
+            <p>Most of the flight commands have already been implemented. In addition, <code>node-bebop</code> can receive basic navigation data, and streaming video data.</p>
+            
+            <h3 id="we-have-cylon-bebop-too">We have cylon-bebop too</h3>
+            
+            <p>We have also created <a href="https://github.com/hybridgroup/cylon-bebop">cylon-bebop</a> as a wrapper around <code>node-bebop</code>, so you can control the Bebop using Cylon.js if you so prefer.</p>
+            
+            <p>Here is an example that uses <code>cylon-bebop</code> along with <a href="https://github.com/hybridgroup/cylon-joystick">cylon-joystick</a>, to control a Bebop using a Dualshock 3 controller:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+<span class="keyword">function</span> <span class="function">validatePitch</span>(data) {
+  <span class="keyword">var</span> value = Math.abs(data);
+  <span class="keyword">if</span> (value &gt;= <span class="float">0.1</span>) {
+    <span class="keyword">if</span> (value &lt;= <span class="float">1.0</span>) {
+      <span class="keyword">return</span> (Math.round(value * <span class="float">100.0</span>) / <span class="float">100.0</span>) * <span class="integer">100</span>;
+    } <span class="keyword">else</span> {
+      <span class="keyword">return</span> <span class="float">1.0</span> * <span class="integer">100</span>;
+    }
+  } <span class="keyword">else</span> {
+    <span class="keyword">return</span> <span class="float">0.0</span>;
+  }
+}
+
+cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">joystick</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span> },
+    <span class="key">bebop</span>:  { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">bebop</span><span class="delimiter">'</span></span> }
+  },
+  <span class="key">devices</span>: {
+    <span class="key">controller</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">dualshock-3</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">joystick</span><span class="delimiter">"</span></span> },
+    <span class="key">drone</span>:      { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">bebop</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">bebop</span><span class="delimiter">"</span></span> }
+  },
+  <span class="function">work</span>: <span class="keyword">function</span>() {
+    <span class="keyword">var</span> that = <span class="local-variable">this</span>,
+        rightStick = { <span class="key">x</span>: <span class="float">0.0</span>, <span class="key">y</span>: <span class="float">0.0</span> },
+        leftStick = { <span class="key">x</span>: <span class="float">0.0</span>, <span class="key">y</span>: <span class="float">0.0</span> };
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">square:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      that.drone.takeOff();
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">triangle:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      that.drone.stop();
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">x:press</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      that.drone.land();
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      rightStick.x = data;
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">right_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      rightStick.y = data;
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_x:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      leftStick.x = data;
+    });
+
+    that.controller.on(<span class="string"><span class="delimiter">"</span><span class="content">left_y:move</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      leftStick.y = data;
+    });
+
+    setInterval(<span class="keyword">function</span>() {
+      <span class="keyword">var</span> pair = leftStick;
+
+      <span class="keyword">if</span> (pair.y &lt; <span class="integer">0</span>) {
+        that.drone.forward(validatePitch(pair.y));
+      } <span class="keyword">else</span> <span class="keyword">if</span> (pair.y &gt; <span class="integer">0</span>) {
+        that.drone.backward(validatePitch(pair.y));
+      }
+
+      <span class="keyword">if</span> (pair.x &gt; <span class="integer">0</span>) {
+        that.drone.right(validatePitch(pair.x));
+      } <span class="keyword">else</span> <span class="keyword">if</span> (pair.x &lt; <span class="integer">0</span>) {
+        that.drone.left(validatePitch(pair.x));
+      }
+    }, <span class="integer">0</span>);
+
+    setInterval(<span class="keyword">function</span>() {
+      <span class="keyword">var</span> pair = rightStick;
+
+      <span class="keyword">if</span> (pair.y &lt; <span class="integer">0</span>) {
+        that.drone.up(validatePitch(pair.y));
+      } <span class="keyword">else</span> <span class="keyword">if</span> (pair.y &gt; <span class="integer">0</span>) {
+        that.drone.down(validatePitch(pair.y));
+      }
+
+      <span class="keyword">if</span> (pair.x &gt; <span class="integer">0</span>) {
+        that.drone.clockwise(validatePitch(pair.x));
+      } <span class="keyword">else</span> <span class="keyword">if</span> (pair.x &lt; <span class="integer">0</span>) {
+        that.drone.counterClockwise(validatePitch(pair.x));
+      }
+    }, <span class="integer">0</span>);
+
+    setInterval(<span class="keyword">function</span>() {
+      that.drone.stop();
+    }, <span class="integer">10</span>);
+  }
+}).start();
+</pre>
+            
+            <h3 id="conclusion">Conclusion</h3>
+            
+            <p>The Parrot Bebop is a very cool new drone, and we're happy to offer up <code>node-bebop</code> and <code>cylon-bebop</code> so you can take flight using JavaScript at the controls.</p>
+            
+            <p>Please follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a> to receive updates as we continue to work on JavaScript-powered drones, robots, and connected devices.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/drones-bebop/">drones bebop</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Apr
                   </div>
                   <div class="day">
@@ -3921,6 +4088,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2015/05/06/hello-node-bebop-drone/">Hello, Node Bebop Drone</a></li>
               <li><a href="/blog/2015/04/13/cylon-js-featured-in-wired/">Cylon.js featured in Wired</a></li>
               <li><a href="/blog/2015/04/08/cylon-1.0.0/">Cylon.js 1.0.0 is here!</a></li>
               <li><a href="/blog/2015/02/05/using-socketio-with-cylonjs-api/">Using Socket.io With The Cylon.js API</a></li>
