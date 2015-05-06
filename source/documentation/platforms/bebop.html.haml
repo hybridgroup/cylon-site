@@ -1,0 +1,36 @@
+---
+title: Bebop with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - Bebop
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Bebop
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-bebop' target='_blank' class='repository'>Repository</a>|<a class+'issues' href='https://github.com/hybridgroup/cylon-bebop/issues' target='_blank'> Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/bebop.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+
+      The Parrot Bebop is the next generation of Drone, featuring a dual-core CPU, quad-core GPU and 8 GB of Flash Memory. The Bebop also comes with a 14 meagpixel camera and generates its own wifi hotspot.
+
+      For more info about the Bebop platform click [here](http://www.parrot.com/products/bebop-drone/).
+
+  .clear
+
+= partial "documentation/platforms/partials/bebop"
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    Available drivers for the Bebop platform are listed below.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Bebop" }

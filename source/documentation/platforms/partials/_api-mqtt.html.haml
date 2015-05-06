@@ -40,16 +40,17 @@
           'mqtt',
           {
           broker: 'mqtt://test.mosquitto.org',
-          prefix: 'cybot', // Optional
+          port: '3000'
         });
 
         Cylon.start();
-
     ## How to Connect
 
-    Once you have added the api to your Cylon.js code, and your robots are up and running, you can connect
-    using MQTT, you need to subscribe to the topics you want to receive info for and publish the ones that
-    execute commands in your robot.
+    Once you have added the api to your Cylon.js code, and your robots are up and running, you can communicate with it using the MQTT broker.
+
+    You send commands to the robot by publishing MQTT messages to the broker intended for that robot using an MQTT topic matching the CPPP.IO (http://cppp.io) based route.
+
+    You subscribe to events from that robot, again by using the correct MQTT topic matching the CPPP.IO (http://cppp.io) based route.
 
         :::javascript
         'use strict';
@@ -57,22 +58,35 @@
         var mqtt    = require('mqtt');
         var client  = mqtt.connect('mqtt://test.mosquitto.org');
 
-        client.on('message', function (topic, data) {
-          data = (!!data) ? JSON.parse(data) : data;
+        client.on('message', function (topic, payload) {
+          var data, sender;
 
-          console.log('topic ==>', topic.toString());
-          console.log('payload ==>', data);
+          if (!!payload && (payload.length > 0)) {
+            data = JSON.parse(payload);
+            sender = data.sender;
+          }
+
+          if (sender !== 'self') {
+            console.log('Topic name ==>', topic);
+            console.log('Payload ==>', data);
+          }
         });
 
-        client.subscribe('/cybot/listen/api/robots');
-        client.publish('/cybot/emit/api/robots');
+        var params = {
+          sender: 'self',
+          args: ['param1', 'param2', 'param3']
+        };
 
-        client.subscribe('/cybot/listen/api/robots/cybot/devices/led/toggle');
+        // Payload needs to be a JSON string
+        var payload = JSON.stringify(params);
+
+        // get response messages from the robot-level command `toggle`
+        client.subscribe('/api/robots/cybot/toggle');
 
         setInterval(function() {
+          // call robot-level command `toggle`
           client.publish(
-            '/cybot/emit/api/robots/cybot/devices/led/toggle',
-            JSON.stringify({ param1: 'uno' }));
+            '/api/robots/cybot/toggle',
+            payload);
         }, 2000);
-
-        //client.end();
+    You can also send commands or subscribe to events directly on any robot's devices. Take a look at the examples folder for more samples.

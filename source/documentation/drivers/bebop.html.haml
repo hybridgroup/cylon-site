@@ -1,0 +1,75 @@
+---
+title: Cylon.js - Bebop - Flight Driver
+author: The Hybrid Group
+page_title: Drivers - Bebop - Flight Driver
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Bebop - Flight
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/bebop.jpg", class: "display"
+  .info-intro
+    :markdown
+      Allows user to send flight control commands to Bebop.
+      Flight control commands are those used to tell the Bebop to take off, land, and or any number of other autonomous flight manuvers.
+
+      For more information click [here](http://www.parrot.com/products/bebop-drone/).
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bebop: { adaptor: 'bebop' }
+          },
+
+          devices: {
+            drone: { driver: 'bebop' }
+          },
+        });
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    This example controls a Bebop to take off, and then land.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bebop: { adaptor: 'bebop' }
+          },
+
+          devices: {
+            drone: { driver: 'bebop' }
+          },
+
+          work: function(my) {
+            my.drone.takeOff();
+            after((5).seconds(), my.drone.land);
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-bebop/commands-commands"
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Bebop - Flight" }

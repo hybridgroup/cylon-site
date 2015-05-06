@@ -1,0 +1,151 @@
+:markdown
+  ## takeOff
+
+  Sets the internal fly state to true, callback is invoked
+  after the drone reports that it is hovering.
+
+  callback - params
+
+
+  ### Returns
+
+  - (<code>Boolean</code>)
+
+  * * *
+
+  ## land
+
+  Sets the internal fly state to false, callback is invoked
+  after the drone reports it has landed.
+
+  callback - params
+
+
+  ### Returns
+
+  - (<code>Boolean</code>)
+
+  * * *
+
+  ## stop
+
+  Sets all drone movement commands to 0,
+  making it effectively hover in place.
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## up
+
+  Makes the drone gain altitude.
+  speed can be a value from 0 to 1.
+
+  speed - params
+
+
+  ### Returns
+
+  - (<code>Number</code>) value from 0 to 1
+
+  * * *
+
+  ## down
+
+  Makes the drone reduce altitude.
+  speed can be a value from 0 to 1.
+
+  speed - params
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## left
+
+  Causes the drone to bank to the left, controls the roll, which is
+  a horizontal movement using the camera as a reference point.
+  speed can be a value from 0 to 1.
+
+  speed - params
+
+
+  ### Returns
+
+  - (<code>Number</code>) value from 0 to 1
+
+  * * *
+
+  ## right
+
+  Causes the drone to bank to the right, controls the roll, which is
+  a horizontal movement using the camera as a reference point.
+  speed can be a value from 0 to 1.
+
+  speed - params
+
+
+  ### Returns
+
+  - (<code>Number</code>) value from 0 to 1
+
+  * * *
+
+  ## forward
+
+  Causes the drone to bank forward, controls the pitch,
+  which a horizontal movement using the camera as a reference point.
+  speed can be a value from 0 to 1.
+
+  speed - params
+  forward(speed) - params
+
+
+  ### Returns
+
+  - (`null`)
+
+  * * *
+
+  ## backward
+
+  Causes the drone to bank to the back, controls the pitch,
+  which a horizontal movement using the camera as a reference point.
+  speed can be a value from 0 to 1.
+
+  speed - params
+
+
+  ### Returns
+
+  - (<code>Number</code>) value from 0 to 1
+
+  * * *
+
+  ## clockwise
+
+  Causes the drone to spin.
+  speed can be a value from 0 to 1.
+
+
+  ### Returns
+
+  - (<code>Number</code>) value from 0 to 1
+
+  * * *
+
+  ## counterClockwise
+
+  Causes the drone to spin.
+  speed can be a value from 0 to 1.
+
+
+  ### Returns
+
+  - (`null`)
