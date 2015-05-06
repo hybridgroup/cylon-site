@@ -8,11 +8,13 @@ author: Ron Evans
 active_menu_blog: true
 ---
 :markdown  
-  We love drones, and we've had our brand new [Parrot Bebop](http://www.parrot.com/products/bebop-drone/) for a little while. However, we did not have any way to control it using JavaScript.
+  We love drones, and we've had our brand new [Parrot Bebop](http://www.parrot.com/products/bebop-drone/) for a little while. However, we did not have any way to control Parrot's new "high-end" consumer drone using JavaScript.
 
   Without further ado, introducing [node-bebop](https://github.com/hybridgroup/node-bebop), a node module to control the Parrot Bebop quadcopter.
 
-  There are already so many wonderful JavaScript code examples out there for the ARDrone, thanks to the fine efforts of the [NodeCopter](http://www.nodecopter.com/) crew. Our objective was to be able to use the Parrot Bebop with code compatible with NodeCopter. And we wanted to do this, despite the Bebop having an entirely new incompatible API with the ARDrone.
+  There are already so many wonderful JavaScript code examples out there for the ARDrone, thanks to the fine efforts of the [NodeCopter](http://www.nodecopter.com/) crew. 
+
+  Our objective was to be able to use the Parrot Bebop with code compatible with NodeCopter. And we wanted to do this, despite the Bebop having an entirely new API, one which is incompatible with the ARDrone, despite both of them being WiFi devices.
 
   So we created `node-bebop` using a very similar outward-facing API as that pioneered by the NodeCopter team, but calling the new Bebop API within our implementation.
 
@@ -34,6 +36,8 @@ active_menu_blog: true
   This code should look very familiar to any of the thousands of people who attended a NodeCopter event.
 
   Most of the flight commands have already been implemented. In addition, `node-bebop` can receive basic navigation data, and streaming video data.
+
+  In parallel to all of our efforts, [@voodootikigod](https://twitter.com/voodootikigod) aka Chris Williams has been rallying the forks of [node-rolling-spider](https://www.npmjs.com/package/rolling-spider), a JavaScript module for Parrot's OTHER new drone, the $99 [Rolling Spider](http://www.parrot.com/usa/products/rolling-spider/), into a 1.0 release. The API of the `node-rolling-spider` project is also "NodeCopter-compatible", and has its own rapidly growing community. Much of their example code will likely work with `node-bebop` as well.
 
   ### We have cylon-bebop too
 
