@@ -8,9 +8,7 @@ var _ = require("lodash"),
     glob = require("glob").sync,
     fs = require("fs-extra");
 
-var repoCloner = require("./support/repo-cloner.js");
-
-var repos = require("./support/repos.json");
+var updateRepos = require("./support/update-repos.js");
 
 var stdout = process.stdout;
 
@@ -21,7 +19,7 @@ var dirs = {
 
 var readmes = {};
 
-repoCloner(function() {
+updateRepos().then(function(repos) {
   console.log("Clearing out existing imported platform partials.");
 
   fs.deleteSync(dirs.dest);

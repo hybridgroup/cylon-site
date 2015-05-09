@@ -11,9 +11,7 @@ var _ = require("lodash"),
     shell = require("shelljs"),
     exec = shell.exec;
 
-var repoCloner = require("./support/repo-cloner.js");
-
-var repos = require("./support/repos.json").slice();
+var updateRepos = require("./support/update-repos.js");
 
 var stdout = process.stdout;
 
@@ -34,7 +32,7 @@ var templates = (function() {
 
 var docs = {};
 
-repoCloner(function() {
+updateRepos().then(function(repos) {
   console.log("Clearing out existing imported docs.");
 
   fs.deleteSync(dirs.dest);

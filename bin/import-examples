@@ -10,9 +10,7 @@ var _ = require("lodash"),
     dox = require("dox"),
     exec = require("shelljs").exec;
 
-var repoCloner = require("./support/repo-cloner.js");
-
-var repos = require("./support/repos.json");
+var updateRepos = require("./support/update-repos.js");
 
 var stdout = process.stdout;
 
@@ -33,7 +31,7 @@ var templates = (function() {
 
 var examples = {};
 
-repoCloner(function() {
+updateRepos().then(function(repos) {
   console.log("Clearing out existing imported examples.");
 
   _.each(glob(dirs.dest + "/*"), function(d) {
