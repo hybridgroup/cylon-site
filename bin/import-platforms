@@ -2,81 +2,83 @@
 
 "use strict";
 
-var path = require("path");
+var Promise = require("bluebird");
 
-var _ = require("lodash"),
-    glob = require("glob").sync,
-    fs = require("fs-extra");
+var path = require("path"),
+    fs = Promise.promisifyAll(require("fs-extra"));
 
-var updateRepos = require("./support/update-repos.js");
+var updateRepos = require("./support/update-repos");
 
-var stdout = process.stdout;
+var pwd = __dirname;
 
-var dirs = {
-  clone: path.resolve(__dirname, "./../.import"),
-  dest: path.resolve(__dirname, "./../source/documentation/platforms/partials")
-};
+var SOURCE = path.resolve(pwd, "./../.import"),
+    DEST = path.resolve(pwd, "./../source/documentation/platforms/partials");
 
-var readmes = {};
+function main() {
+  function cleanup() { return fs.deleteAsync(DEST).then(fs.en); }
+  function notCore(pkg) { return pkg !== "cylon"; }
 
-updateRepos().then(function(repos) {
-  console.log("Clearing out existing imported platform partials.");
+  cleanup()
+    .then(updateRepos)
+    .filter(notCore)
+    .map(update);
+}
 
-  fs.deleteSync(dirs.dest);
-  fs.ensureDirSync(dirs.dest);
+function update(project) {
+  var dest = DEST + "/_" + project.replace("cylon-", "") + ".html.haml",
+      write = fs.outputFileAsync.bind(null, dest);
 
-  console.log("Finding files.");
+  load(project)
+    .then(extract)
+    .then(edisonFix)
+    .then(codeBlocks)
+    .then(indent)
+    .then(generatePage)
+    .then(write);
+}
 
-  _.each(repos, function(repo) {
-    if (repo === "cylon") {
-      return;
-    }
+function load(project) {
+  function read(file) {
+    return fs.readFileAsync(path.join(SOURCE, project, file), "utf-8");
+  }
 
-    readmes[repo] = glob(dirs.clone + "/" + repo + "/README.{md,markdown}")[0];
+  // handle both cases
+  return read("README.md").catch(read.bind(null, "README.markdown"));
+}
+
+function extract(content) {
+  var lines = content.split("\n").splice(2);
+
+  var start = lines.indexOf("## How to Install"),
+      end = lines.indexOf("## Documentation");
+
+  if (end >= 0) {
+    lines = lines.splice(start, (end - start));
+  }
+
+  return lines.join("\n");
+}
+
+function edisonFix(content) {
+  var regex = /#### Setting up your Intel Galileo\n[\s\S]*#### Install MRAA/gim;
+  return content.replace(regex, "#### Install MRAA");
+}
+
+function codeBlocks(content) {
+  var regex = /```(\w+?)\n([\s\S]+?)\n```/gim;
+
+  return content.replace(regex, function(str, lang, code) {
+    code = code.replace(/^(.+)/gm, "    $1");
+    return "    :::" + lang + "\n" + code;
   });
+}
 
-  console.log("Extracting README content.");
+function indent(content) {
+  return content.replace(/^(.+)/gm, "    $1");
+}
 
-  _.forIn(readmes, function(readme, repo) {
-    var slug = (repo === "cylon") ? repo : repo.replace(/^cylon-/, ''),
-        dest = dirs.dest + "/_" + slug + ".html.haml";
+function generatePage(content) {
+  return [ "%section.how-to", "  :markdown", content ].join("\n");
+}
 
-    var content = fs.readFileSync(readme, "utf8").toString(),
-        lines = content.split("\n").splice(2);
-
-    var beginLine = _.findIndex(
-      lines,
-      function(l) { return _.include(l, "## How to Install"); }
-    );
-
-    var endLine = _.findIndex(
-      lines,
-      function(l) { return _.include(l, "## Documentation"); }
-    );
-
-    if (endLine >= 0) {
-      lines = lines.splice(beginLine, (endLine - beginLine));
-    }
-
-    content = lines.join("\n");
-
-    //Specific for Intel Iot Edison page
-    content = content.replace(/#### Setting up your Intel Galileo\n[\s\S]*#### Install MRAA/gim, function() {
-      return "#### Install MRAA"
-    })
-
-    content = content.replace(/```(\w+?)\n([\s\S]+?)\n```/gim, function(str, lang, code) {
-      code = code.replace(/^(.+)/gm, "    $1");
-      return "    :::" + lang + "\n" + code;
-    });
-
-    var body = [
-      "%section.how-to",
-      "  :markdown",
-      content.replace(/^(.+)/gm, "    $1")
-    ].join("\n");
-
-    fs.ensureFileSync(dest);
-    fs.writeFileSync(dest, body);
-  });
-});
+main();
