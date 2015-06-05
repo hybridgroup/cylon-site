@@ -156,6 +156,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -302,18 +303,21 @@ client.on(<span class="string"><span class="delimiter">'</span><span class="cont
   <span class="key">param1</span>: <span class="string"><span class="delimiter">'</span><span class="content">uno</span><span class="delimiter">'</span></span>
 });
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots</span><span class="delimiter">'</span></span>, payload);
+<span class="comment">// get list of all robots</span>
+client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/myappname/api/robots</span><span class="delimiter">'</span></span>);
+client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/myappname/api/robots</span><span class="delimiter">'</span></span>, payload);
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
+<span class="comment">// get messages from the robot 'cybot' device 'led' command `toggle`, </span>
+<span class="comment">// with the prefix 'myappname'</span>
+client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/myappname/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
+  <span class="comment">// send 'toggle' command to the robot 'cybot' device 'led'</span>
+  <span class="comment">// with the prefix 'myappname'</span>
   client.publish(
-    <span class="string"><span class="delimiter">'</span><span class="content">/cybot/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
+    <span class="string"><span class="delimiter">'</span><span class="content">/myappname/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
     payload);
 }, <span class="integer">2000</span>);
-
-<span class="comment">//client.end();</span>
 </pre>
             </div>
           </div>

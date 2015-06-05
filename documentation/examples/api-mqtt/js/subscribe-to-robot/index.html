@@ -156,6 +156,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -296,23 +297,27 @@ client.on(<span class="string"><span class="delimiter">'</span><span class="cont
   }
 });
 
-<span class="comment">// Payload needs to be a JSON string</span>
 <span class="keyword">var</span> payload = JSON.stringify({
   <span class="key">sender</span>: <span class="string"><span class="delimiter">'</span><span class="content">self</span><span class="delimiter">'</span></span>
 });
 
+<span class="comment">// get list of all robots</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get info about robot named 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get list of devices for robot named 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get list of events for robot named 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/events</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/events</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get list of commands for robot named 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/commands</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/commands</span><span class="delimiter">'</span></span>, payload);
 
@@ -328,17 +333,18 @@ client.publish(<span class="string"><span class="delimiter">'</span><span class=
   <span class="key">args</span>: [<span class="string"><span class="delimiter">'</span><span class="content">param1</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">param2</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">param3</span><span class="delimiter">'</span></span>]
 };
 
-payload = JSON.stringify(params);
+<span class="comment">// Payload needs to be a JSON string</span>
+<span class="keyword">var</span> payload = JSON.stringify(params);
 
+<span class="comment">// get messages from the robot-level command `toggle`</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
+  <span class="comment">// call robot-level command `toggle`</span>
   client.publish(
     <span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/toggle</span><span class="delimiter">'</span></span>,
     payload);
 }, <span class="integer">2000</span>);
-
-<span class="comment">//client.end();</span>
 </pre>
             </div>
           </div>

@@ -156,6 +156,7 @@
                       <a href="/documentation/drivers/makey-button">Makey Button</a>
                       <a href="/documentation/drivers/maxbotix">Maxbotix</a>
                       <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
                       <a href="/documentation/drivers/rgb-led">RGB LED</a>
                       <a href="/documentation/drivers/servo">Servo</a>
                     </div>
@@ -302,27 +303,19 @@ client.on(<span class="string"><span class="delimiter">'</span><span class="cont
   <span class="key">param1</span>: <span class="string"><span class="delimiter">'</span><span class="content">uno</span><span class="delimiter">'</span></span>
 });
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots</span><span class="delimiter">'</span></span>, payload);
-
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot</span><span class="delimiter">'</span></span>, payload);
-
+<span class="comment">// get list of all devices for robot 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices</span><span class="delimiter">'</span></span>, payload);
 
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/events</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/events</span><span class="delimiter">'</span></span>, payload);
-
-client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/commands</span><span class="delimiter">'</span></span>);
-client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/commands</span><span class="delimiter">'</span></span>, payload);
-
+<span class="comment">// get info for 'led' device of robot 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get events for 'led' device of robot 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/events</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/events</span><span class="delimiter">'</span></span>, payload);
 
+<span class="comment">// get commands for 'led' device of robot 'cybot'</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/commands</span><span class="delimiter">'</span></span>);
 client.publish(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/commands</span><span class="delimiter">'</span></span>, payload);
 
@@ -340,15 +333,15 @@ client.publish(<span class="string"><span class="delimiter">'</span><span class=
 <span class="comment">// commands, methods or functions as regular params.</span>
 payload = JSON.stringify(params);
 
+<span class="comment">// get messages from the robot 'cybot' device 'led' command `toggle`</span>
 client.subscribe(<span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>);
 
 setInterval(<span class="keyword">function</span>() {
+  <span class="comment">// send 'toggle' command to the robot 'cybot' device 'led'</span>
   client.publish(
     <span class="string"><span class="delimiter">'</span><span class="content">/api/robots/cybot/devices/led/toggle</span><span class="delimiter">'</span></span>,
     payload);
 }, <span class="integer">2000</span>);
-
-<span class="comment">//client.end();</span>
 </pre>
             </div>
           </div>
