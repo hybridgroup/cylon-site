@@ -1,0 +1,215 @@
+:markdown
+  ## digitalRead
+
+  Reads a value from a digital pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## digitalWrite
+
+  Writes a value to a digital pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## analogRead
+
+  Reads a value from an analog pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## analogWrite
+
+  Writes a value to an analog pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to a pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## servoWrite
+
+  Writes a servo value to a pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>)
+
+
+  - **value** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cWrite
+
+  Writes an I2C value to the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **buff** (<code>Array</code>) buffered data to write
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## i2cRead
+
+  Reads an I2C value from the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **length** (<code>Number</code>) amount of data to read
+
+
+  - **callback** (<code>Function</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## setLed
+
+  Sets the built-in LED to a specific color
+
+
+  ### Params
+
+
+  - **red** (<code>Number</code>)
+
+
+  - **green** (<code>Number</code>)
+
+
+  - **blue** (<code>Number</code>)
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getAcceleration
+
+  Reads the built-in accelerometer once
+
+
+  ### Returns
+
+  - (<code>null</code>)
+
+  * * *
+
+  ## getTemperature
+
+  Reads the built-in thermometer once
+
+
+  ### Returns
+
+  - (<code>null</code>)

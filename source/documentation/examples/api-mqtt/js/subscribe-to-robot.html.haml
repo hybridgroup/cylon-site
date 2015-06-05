@@ -34,23 +34,27 @@ active_menu_docs: true
           }
         });
 
-        // Payload needs to be a JSON string
         var payload = JSON.stringify({
           sender: 'self'
         });
 
+        // get list of all robots
         client.subscribe('/api/robots');
         client.publish('/api/robots', payload);
 
+        // get info about robot named 'cybot'
         client.subscribe('/api/robots/cybot');
         client.publish('/api/robots/cybot', payload);
 
+        // get list of devices for robot named 'cybot'
         client.subscribe('/api/robots/cybot/devices');
         client.publish('/api/robots/cybot/devices', payload);
 
+        // get list of events for robot named 'cybot'
         client.subscribe('/api/robots/cybot/events');
         client.publish('/api/robots/cybot/events', payload);
 
+        // get list of commands for robot named 'cybot'
         client.subscribe('/api/robots/cybot/commands');
         client.publish('/api/robots/cybot/commands', payload);
 
@@ -66,14 +70,15 @@ active_menu_docs: true
           args: ['param1', 'param2', 'param3']
         };
 
-        payload = JSON.stringify(params);
+        // Payload needs to be a JSON string
+        var payload = JSON.stringify(params);
 
+        // get messages from the robot-level command `toggle`
         client.subscribe('/api/robots/cybot/toggle');
 
         setInterval(function() {
+          // call robot-level command `toggle`
           client.publish(
             '/api/robots/cybot/toggle',
             payload);
         }, 2000);
-
-        //client.end();

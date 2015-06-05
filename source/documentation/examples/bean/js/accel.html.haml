@@ -1,0 +1,36 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - accel"
+page_title: "Example: accel"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-bean/tree/master/examples/accel' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            bean: { adaptor: "bean" }
+          },
+
+          devices: {
+            bean: { driver: "bean" }
+          },
+
+          work: function(my) {
+            my.bean.on("accel", function(x, y, z, valid) {
+              console.log(x, y, z, valid);
+            });
+
+            every(100, function(){
+            	my.bean.getAcceleration();
+            });
+          }
+        }).start();

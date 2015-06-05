@@ -1,0 +1,39 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - mqtt_relay"
+page_title: "Example: mqtt_relay"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-gpio/tree/master/examples/mqtt_relay' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: "firmata",
+                       port: '/dev/ttyACM0' },
+            mqtt: { adaptor: 'mqtt', host: 'mqtt://localhost:1883' }
+          },
+
+          devices: {
+            toggle: { driver: "mqtt", topic: "toggle", connection: "mqtt" },
+            relay: { driver: 'relay', pin: 2, type: "closed" }
+          },
+
+          work: function(my) {
+            my.toggle.on("message", function(data) {
+              console.log("Message on 'toggle': " + data);
+              my.relay.toggle();
+            });
+
+            every((1).second(), function() {
+              console.log("Toggling Relay.");
+              my.toggle.publish("toggle");
+            });
+          }
+        }).start();
