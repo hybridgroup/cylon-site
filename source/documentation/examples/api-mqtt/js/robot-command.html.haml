@@ -1,11 +1,11 @@
 ---
 layout: documentation
 page_title_show: true
-title: "Cylon.JS Example - subscribe-blink"
-page_title: "Example: subscribe-blink"
+title: "Cylon.JS Example - robot-command"
+page_title: "Example: robot-command"
 author: The Hybrid Group
 description: A Cylon.JS code example
-page_subtitle: "<a href='https://github.com/hybridgroup/cylon-api-mqtt/tree/master/examples/subscribe-blink' target='_blank'>View In Repo</a>"
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-api-mqtt/tree/master/examples/robot-command' target='_blank'>View In Repo</a>"
 active_menu_docs: true
 ---
 .example
@@ -34,24 +34,27 @@ active_menu_docs: true
           }
         });
 
-        // Payload needs to be a JSON string
-        var payload = JSON.stringify({
+        // In order to be able to pass params to the commands
+        // we need to convert them to json, since MQTT only
+        // accepts strings and buffers as the paylod.
+        // Cylon.js will convert the `args` array passed
+        // in the payload and pass the params to the
+        // command, method or function as regular params,
+        // in the same way `function.apply()` would do.
+        var params = {
           sender: 'self',
-          param1: 'uno'
-        });
+          args: ['param1', 'param2', 'param3']
+        };
 
-        // get list of all robots
-        client.subscribe('/myappname/api/robots');
-        client.publish('/myappname/api/robots', payload);
+        // Payload needs to be a JSON string
+        var payload = JSON.stringify(params);
 
-        // get messages from the robot 'cybot' device 'led' command `toggle`, 
-        // with the prefix 'myappname'
-        client.subscribe('/myappname/api/robots/cybot/devices/led/toggle');
+        // get messages from the robot-level command `toggle`
+        client.subscribe('/api/robots/cybot/toggle');
 
         setInterval(function() {
-          // send 'toggle' command to the robot 'cybot' device 'led'
-          // with the prefix 'myappname'
+          // call robot-level command `toggle`
           client.publish(
-            '/myappname/api/robots/cybot/devices/led/toggle',
+            '/api/robots/cybot/toggle',
             payload);
         }, 2000);
