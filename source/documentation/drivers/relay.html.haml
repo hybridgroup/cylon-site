@@ -1,0 +1,75 @@
+---
+title: Cylon.js - Relay Driver
+author: The Hybrid Group
+page_title: Drivers - Relay Driver
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Relay
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/relay.jpg", class: "display"
+  .info-intro
+    :markdown
+      Cylon Relay allows support for both Normally Open and Normally Closed relay boards.
+
+      For more information on relays click [here](http://developer.mbed.org/users/4180_1/notebook/relays1/).
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: 'firmata',
+                       port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            relay: { driver: 'relay', pin: 2, type: "closed" }
+          }
+        });
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    This example uses a relay with an arduino.
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: 'firmata',
+                       port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            relay: { driver: 'relay', pin: 2, type: "closed" }
+          },
+
+          work: function(my) {
+            every((1).second(), function() {
+              my.relay.toggle();
+            });
+          }
+        }).start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-gpio/relay-commands"
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Relay" }
