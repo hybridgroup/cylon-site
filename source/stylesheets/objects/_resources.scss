@@ -34,9 +34,20 @@
     }
   }
 
+
+
+  .resources-link{
+    color: $color-anchor-hover;
+    font-size: 34px;
+    font-weight: normal;
+    margin:0 5px 0 0;
+    opacity: 0.4;
+    vertical-align: bottom;
+  }
+
   .internal-link{
-    margin-top: 5px;
     display: block;
+    margin-top: 5px;
     font-weight: bold;
   }
 
@@ -44,7 +55,7 @@
     display: block;
     padding: 5px 0;
 
-    span{
+    .site-name{
       text-decoration: underline;
       color: $color-anchor-hover;
       font-weight: bold;
