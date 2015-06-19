@@ -78,6 +78,23 @@
 
   * * *
 
+  ## devices
+
+  Gets devices in specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>Array</code>.&lt;<code>Object</code>&gt;) structure devices
+
+  * * *
+
   ## away
 
   Gets the current `away` value of the structure, or assigns a new value if
@@ -101,7 +118,8 @@
 
   ## eta
 
-  Gets ETA for specified structure
+  Gets ETA for specified structure or assigns a new value if
+  provided
 
 
   ### Params
@@ -113,3 +131,88 @@
   ### Returns
 
   - (<code>Array</code>.&lt;<code>Object</code>&gt;) structure ETA
+
+  * * *
+
+  ## countryCode
+
+  Gets Country Code for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure Country Code
+
+  * * *
+
+  ## postalCode
+
+  Gets Postal Code for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure Postal Code
+
+  * * *
+
+  ## peakPeriodStartTime
+
+  Gets Peak Period Start Time for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure Peak Period Start Time
+
+  * * *
+
+  ## peakPeriodEndTime
+
+  Gets Peak Period End Time for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure Peak Period End Time
+
+  * * *
+
+  ## timeZone
+
+  Gets Time Zone for specified structure
+
+
+  ### Params
+
+
+  - **structureId** (<code>Number</code>) identifier of structure to get
+
+
+  ### Returns
+
+  - (<code>String</code>) structure Time Zone

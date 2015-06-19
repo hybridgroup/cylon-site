@@ -1,0 +1,90 @@
+---
+title: Cylon.js - Nest Protect Driver
+author: The Hybrid Group
+page_title: Drivers - Nest Protect
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Nest Protect
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/nest-protect.jpg", class: "display"
+  .info-intro
+    :markdown
+
+      The Nest Protect comes with an industrial-grade smoke sensor, has its own testing system, and lasts up to a decade. On top of that, it also has the ability to be hushed from your phone.
+
+      For more information click [here](https://nest.com/smoke-co-alarm/meet-nest-protect/).
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connections: {
+            nest: { adaptor: "nest", accessToken: "ACCESS_TOKEN" }
+          },
+
+          devices: {
+            protect: { driver: "nest-protect", deviceId: "DEVICE_ID" }
+          },
+        });
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            nest: { adaptor: "nest", accessToken: "ACCESS_TOKEN" }
+          },
+
+          devices: {
+            protect: { driver: "nest-protect", deviceId: "DEVICE_ID" }
+          },
+
+          work: function(my) {
+            my.protect.on("status", function() {
+              console.log("=========================Protect=========================");
+              console.log("id:", my.protect.deviceId);
+              console.log("locale:", my.protect.locale());
+              console.log("software version:", my.protect.softwareVersion());
+              console.log("structure id:", my.protect.structureId());
+              console.log("name:", my.protect.deviceName());
+              console.log("name long:", my.protect.nameLong());
+              console.log("last connection:", my.protect.lastConnection());
+              console.log("is online?:", my.protect.isOnline());
+              console.log("battery health:", my.protect.batteryHealth());
+              console.log("co alarm state:", my.protect.coAlarmState());
+              console.log("smoke alarm state:", my.protect.smokeAlarmState());
+              console.log("is manual test active:",my.protect.isManualTestActive());
+              console.log("last manual test time:", my.protect.lastManualTestTime());
+              console.log("ui color state:", my.protect.uiColorState());
+            });
+          }
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-nest/protect-commands"
+
+  .commands-api#Events
+    %h1 Events
+    %p no events
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "Nest - Protect" }
