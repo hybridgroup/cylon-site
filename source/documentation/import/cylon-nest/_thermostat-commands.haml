@@ -1,12 +1,343 @@
 :markdown
+  ## locale
+
+  Returns the thermostat's locale
+
+
+  ### Returns
+
+  - (<code>String</code>) locale
+
+  * * *
+
+  ## softwareVersion
+
+  Returns the thermostat's software version
+
+
+  ### Returns
+
+  - (<code>String</code>) software version
+
+  * * *
+
+  ## structureId
+
+  Returns the thermostat's structure id value
+
+
+  ### Returns
+
+  - (<code>String</code>) structure id
+
+  * * *
+
   ## deviceName
 
-  Returns the thermostat's name
+  Returns the thermostat's name value
 
 
   ### Returns
 
   - (<code>String</code>) name
+
+  * * *
+
+  ## nameLong
+
+  Returns the thermostat's name long value
+
+
+  ### Returns
+
+  - (<code>String</code>) name long
+
+  * * *
+
+  ## lastConnection
+
+  Returns the thermostat's last connection value
+
+
+  ### Returns
+
+  - (<code>String</code>) last connection
+
+  * * *
+
+  ## isOnline
+
+  Returns the thermostat's is online value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) is online
+
+  * * *
+
+  ## canCool
+
+  Returns the thermostat's can cool value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) can cool
+
+  * * *
+
+  ## canHeat
+
+  Returns the thermostat's can heat value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) can heat
+
+  * * *
+
+  ## isUsingEmergencyHeat
+
+  Returns the thermostat's is using emergency heat value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) is using emergency heat
+
+  * * *
+
+  ## hasFan
+
+  Returns the thermostat's has fan value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) has fan
+
+  * * *
+
+  ## fanTimerActive
+
+  Returns the thermostat's fan timer active value
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Boolean</code>) new value for `fan_timer_active`
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) fan timer active
+
+  * * *
+
+  ## fanTimerTimeout
+
+  Returns the thermostat's fan timer timeout value
+
+
+  ### Returns
+
+  - (<code>String</code>) fan timer timeout
+
+  * * *
+
+  ## hasLeaf
+
+  Returns the thermostat's has leaf value
+
+
+  ### Returns
+
+  - (<code>Boolean</code>) has leaf
+
+  * * *
+
+  ## temperatureScale
+
+  Returns the thermostat's temperature scale value
+
+
+  ### Returns
+
+  - (<code>String</code>) temperature scale
+
+  * * *
+
+  ## targetTemperatureF
+
+  Returns the current thermostat target temperature in Fahrenheit
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_f`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## targetTemperatureC
+
+  Returns the current thermostat target temperature in Celsius
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_c`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## targetTemperatureHighF
+
+  Returns the current thermostat target temperature high in Fahrenheit
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_high_f`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## targetTemperatureHighC
+
+  Returns the current thermostat target temperature high in Celsius
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_high_c`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## targetTemperatureLowF
+
+  Returns the current thermostat target temperature low in Fahrenheit
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_low_f`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## targetTemperatureLowC
+
+  Returns the current thermostat target temperature low in Celsius
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) new value for `target_temperature_low_c`
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## awayTemperatureHighF
+
+  Returns the thermostat's away temperature high in Fahrenheit
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## awayTemperatureHighC
+
+  Returns the thermostat's away temperature high in Celsius
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## awayTemperatureLowF
+
+  Returns the thermostat's away temperature low in Fahrenheit
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## awayTemperatureLowC
+
+  Returns the thermostat's away temperature low in Celsius
+
+
+  ### Returns
+
+  - (<code>String</code>) temp
+
+  * * *
+
+  ## hvacMode
+
+  Returns the current thermostat hvac mode value
+  or assigns the new value if provided
+
+
+  ### Params
+
+
+  - **val** (<code>String</code>) new value for `hvac_mode`
+
+
+  ### Returns
+
+  - (<code>String</code>) hvac mode
 
   * * *
 
@@ -32,56 +363,22 @@
 
   * * *
 
-  ## targetTemperatureF
+  ## humidity
 
-  Returns the thermostat's targeted temperature, in Fahrenheit
+  Returns the thermostat's detected humidity
 
 
   ### Returns
 
-  - (<code>String</code>) temp
+  - (<code>String</code>) humidity
 
   * * *
 
-  ## targetTemperatureC
+  ## hvacState
 
-  Returns the thermostat's targeted temperature, in Celsius
-
-
-  ### Returns
-
-  - (<code>String</code>) temp
-
-  * * *
-
-  ## setTargetTemperatureF
-
-  Sets the thermostat's targeted temperature, in Fahrenheit
-
-
-  ### Params
-
-
-  - **value** (<code>String</code>) temperature to set as target
+  Returns the thermostat's hvac state
 
 
   ### Returns
 
-  - (<code>null</code>)
-
-  * * *
-
-  ## setTargetTemperatureC
-
-  Sets the thermostat's targeted temperature, in Celsius
-
-
-  ### Params
-
-
-  - **value** (<code>String</code>) temperature to set as target
-
-
-  ### Returns
-
-  - (<code>null</code>)
+  - (<code>String</code>) hvac state
