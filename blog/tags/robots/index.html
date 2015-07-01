@@ -90,6 +90,89 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    Jul
+                  </div>
+                  <div class="day">
+                    01
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2015
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2015/07/01/cylon-1.1.0/">Cylon.js 1.1.0 - The Big Cleanup</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Andrew Stewart
+              </div>
+            </header>
+            <p>Cylon.js 1.1.0 has just been released, and from the external interfaces it appears only a few small changes and additions. However, the internals have had a fairly sizable refactoring, meriting a release.
+            There is a small potential for backwards compatability issues for users making use of undocumented properties on the main Cylon.js exports object.</p>
+            
+            <p>Here's a overview of the changes, but if you want to see more check out the <a href="http://github.com/hybridgroup/cylon/compare/v1.0.0...v1.1.0">compare view</a> on GitHub.</p>
+            
+            <ul>
+              <li>
+                <p><strong>ESLint</strong> - we've switched to using ESLint for linting, over JSHint.
+            ESLint's better support for validating coding styles and conventions has been a great asset to us.
+            This has also resulted in a number of fixes to prevent potential minor issues in core.</p>
+              </li>
+              <li>
+                <p><strong>async</strong> - we've removed Cylon's last remaining core dependency, <code>async</code>.
+            This has the benefit of reducing Cylon install sizes across projects.</p>
+              </li>
+              <li>
+                <p><strong>MCP refactor</strong> - we've split apart the existing <code>lib/cylon.js</code> exports module into three new files, for better separation of responsibilities.
+            This may result in some backwards compatability concerns if you were previously using undocumented properties on the main Cylon object, such as <code>Cylon.robots</code>, the <code>Cylon.toJSON</code> method, or <code>Cylon.apiInstances</code>.
+            For more details, see the <a href="https://github.com/hybridgroup/cylon/pull/301/files">pull request diff</a>.</p>
+              </li>
+              <li>
+                <p><strong>Robot Naming</strong> - previously, robot names were generated pseudo-randomly if the user didn't explicitly supply one.
+            While this helped avoid collisions, it led to confusion when Cylon programs were restarted, as Robots couldn't be found under the same name.
+            In Cylon 1.1.0, un-named robots are now assigned an incremental name, e.g. "Robot 1", "Robot 2", etc.</p>
+              </li>
+              <li>
+                <p><strong>Better validation</strong> - we've improved validation of Robot options, to provide better clues as to what's preventing your robot from working.
+            We now better check for invalid syntax that would possibly result in an obscure error, ensuring that a better response is generated.
+            Also, we now provide a useful warning message when multiple connections exist, and devices are specified without an explicit connection.</p>
+              </li>
+              <li>
+                <p><strong>Contribution Guidelines and CoC</strong> - We've added a more explicit set of <a href="https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md">contribution guidelines</a>, based on the iojs guidelines.
+            Additionally, we've outlined a <a href="https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md#code-of-conduct">Code of Conduct</a>, adapted from Rust's CoC guidelines.</p>
+              </li>
+            </ul>
+            
+            <h2 id="even-more-hardware-support">Even More Hardware Support</h2>
+            
+            <p>Of course, it wouldn't be a Cylon.js release without new or enhanced platform support, and we've got a bunch!</p>
+            
+            <p>We've now <a href="https://github.com/hybridgroup/cylon-bebop">added support</a> for the <a href="http://www.parrot.com/products/bebop-drone/">Parrot Bebop drone</a>.</p>
+            
+            <p>We've also updated our support for <a href="https://github.com/hybridgroup/cylon-nest">Nest</a>, to fully cover the <a href="https://nest.com/smoke-co-alarm/meet-nest-protect/">Nest Protect</a>, Nest Home, and <a href="https://nest.com/thermostat/meet-nest-thermostat/">Nest Thermostat</a>.</p>
+            
+            <p>Additionally, we've fixed compilation issues for a few of our modules that had issues on newer versions of V8.
+            <a href="https://github.com/hybridgroup/cylon-joystick">cylon-joystick</a> and <a href="https://github.com/hybridgroup/cylon-digispark">cylon-digispark</a> should now work fully on Node v0.12 and iojs. All the future nodes belong to us!</p>
+            
+            <p>And last, but certainly not least, we've also updated <a href="https://github.com/hybridgroup/cylon-sphero">cylon-sphero</a> to use the new <a href="https://github.com/orbotix/sphero.js">Sphero.js</a> library from Orbotix.</p>
+            
+            <p>For the latest updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Apr
                   </div>
                   <div class="day">
@@ -2879,6 +2962,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2015/07/01/cylon-1.1.0/">Cylon.js 1.1.0 - The Big Cleanup</a></li>
               <li><a href="/blog/2015/04/08/cylon-1.0.0/">Cylon.js 1.0.0 is here!</a></li>
               <li><a href="/blog/2015/01/14/cylon-0.22-0/">Cylon 0.22.0 - A New Year's Release</a></li>
               <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>

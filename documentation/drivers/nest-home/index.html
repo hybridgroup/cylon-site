@@ -191,6 +191,7 @@
                   <a href="/documentation/drivers/mip">MiP</a>
                   <a href="/documentation/drivers/mqtt">MQTT</a>
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/ollie">Ollie</a>
@@ -446,12 +447,31 @@ Cylon.robot({
                 
                 <hr>
                 
+                <h2 id="devices">devices</h2>
+                
+                <p>Gets devices in specified structure</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Array</code>.&lt;<code>Object</code>&gt;) structure devices</li>
+                </ul>
+                
+                <hr>
+                
                 <h2 id="away">away</h2>
                 
                 <p>Gets the current <code>away</code> value of the structure, or assigns a new value if
                 provided</p>
                 
-                <h3 id="params-4">Params</h3>
+                <h3 id="params-5">Params</h3>
                 
                 <ul>
                   <li>
@@ -462,7 +482,7 @@ Cylon.robot({
                   </li>
                 </ul>
                 
-                <h3 id="returns-5">Returns</h3>
+                <h3 id="returns-6">Returns</h3>
                 
                 <ul>
                   <li>
@@ -483,19 +503,115 @@ Cylon.robot({
                 
                 <h2 id="eta">eta</h2>
                 
-                <p>Gets ETA for specified structure</p>
+                <p>Gets ETA for specified structure or assigns a new value if
+                provided</p>
                 
-                <h3 id="params-5">Params</h3>
+                <h3 id="params-6">Params</h3>
                 
                 <ul>
                   <li>
 <strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
                 </ul>
                 
-                <h3 id="returns-6">Returns</h3>
+                <h3 id="returns-7">Returns</h3>
                 
                 <ul>
                   <li>(<code>Array</code>.&lt;<code>Object</code>&gt;) structure ETA</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="countrycode">countryCode</h2>
+                
+                <p>Gets Country Code for specified structure</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure Country Code</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="postalcode">postalCode</h2>
+                
+                <p>Gets Postal Code for specified structure</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure Postal Code</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="peakperiodstarttime">peakPeriodStartTime</h2>
+                
+                <p>Gets Peak Period Start Time for specified structure</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure Peak Period Start Time</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="peakperiodendtime">peakPeriodEndTime</h2>
+                
+                <p>Gets Peak Period End Time for specified structure</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure Peak Period End Time</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="timezone">timeZone</h2>
+                
+                <p>Gets Time Zone for specified structure</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>structureId</strong> (<code>Number</code>) identifier of structure to get</li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure Time Zone</li>
                 </ul>
               </div>
               <div class="commands-api" id="Events">

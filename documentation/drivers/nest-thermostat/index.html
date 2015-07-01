@@ -191,6 +191,7 @@
                   <a href="/documentation/drivers/mip">MiP</a>
                   <a href="/documentation/drivers/mqtt">MQTT</a>
                   <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/drivers/ollie">Ollie</a>
@@ -342,14 +343,386 @@ Cylon.robot({
             <section class="public-methods">
               <div class="commands-api" id="Commands">
                 <h1>Commands</h1>
-                <h2 id="devicename">deviceName</h2>
+                <h2 id="locale">locale</h2>
                 
-                <p>Returns the thermostat's name</p>
+                <p>Returns the thermostat's locale</p>
                 
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
+                  <li>(<code>String</code>) locale</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="softwareversion">softwareVersion</h2>
+                
+                <p>Returns the thermostat's software version</p>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) software version</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="structureid">structureId</h2>
+                
+                <p>Returns the thermostat's structure id value</p>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) structure id</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="devicename">deviceName</h2>
+                
+                <p>Returns the thermostat's name value</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
                   <li>(<code>String</code>) name</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="namelong">nameLong</h2>
+                
+                <p>Returns the thermostat's name long value</p>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) name long</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="lastconnection">lastConnection</h2>
+                
+                <p>Returns the thermostat's last connection value</p>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) last connection</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="isonline">isOnline</h2>
+                
+                <p>Returns the thermostat's is online value</p>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) is online</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="cancool">canCool</h2>
+                
+                <p>Returns the thermostat's can cool value</p>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) can cool</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="canheat">canHeat</h2>
+                
+                <p>Returns the thermostat's can heat value</p>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) can heat</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="isusingemergencyheat">isUsingEmergencyHeat</h2>
+                
+                <p>Returns the thermostat's is using emergency heat value</p>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) is using emergency heat</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="hasfan">hasFan</h2>
+                
+                <p>Returns the thermostat's has fan value</p>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) has fan</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="fantimeractive">fanTimerActive</h2>
+                
+                <p>Returns the thermostat's fan timer active value
+                or assigns the new value if provided</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Boolean</code>) new value for <code>fan_timer_active</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) fan timer active</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="fantimertimeout">fanTimerTimeout</h2>
+                
+                <p>Returns the thermostat's fan timer timeout value</p>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) fan timer timeout</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="hasleaf">hasLeaf</h2>
+                
+                <p>Returns the thermostat's has leaf value</p>
+                
+                <h3 id="returns-13">Returns</h3>
+                
+                <ul>
+                  <li>(<code>Boolean</code>) has leaf</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="temperaturescale">temperatureScale</h2>
+                
+                <p>Returns the thermostat's temperature scale value</p>
+                
+                <h3 id="returns-14">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temperature scale</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturef">targetTemperatureF</h2>
+                
+                <p>Returns the current thermostat target temperature in Fahrenheit
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_f</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-15">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturec">targetTemperatureC</h2>
+                
+                <p>Returns the current thermostat target temperature in Celsius
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_c</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-16">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturehighf">targetTemperatureHighF</h2>
+                
+                <p>Returns the current thermostat target temperature high in Fahrenheit
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_high_f</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-17">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturehighc">targetTemperatureHighC</h2>
+                
+                <p>Returns the current thermostat target temperature high in Celsius
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_high_c</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-18">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturelowf">targetTemperatureLowF</h2>
+                
+                <p>Returns the current thermostat target temperature low in Fahrenheit
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_low_f</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-19">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="targettemperaturelowc">targetTemperatureLowC</h2>
+                
+                <p>Returns the current thermostat target temperature low in Celsius
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>Number</code>) new value for <code>target_temperature_low_c</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-20">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="awaytemperaturehighf">awayTemperatureHighF</h2>
+                
+                <p>Returns the thermostat's away temperature high in Fahrenheit</p>
+                
+                <h3 id="returns-21">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="awaytemperaturehighc">awayTemperatureHighC</h2>
+                
+                <p>Returns the thermostat's away temperature high in Celsius</p>
+                
+                <h3 id="returns-22">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="awaytemperaturelowf">awayTemperatureLowF</h2>
+                
+                <p>Returns the thermostat's away temperature low in Fahrenheit</p>
+                
+                <h3 id="returns-23">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="awaytemperaturelowc">awayTemperatureLowC</h2>
+                
+                <p>Returns the thermostat's away temperature low in Celsius</p>
+                
+                <h3 id="returns-24">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) temp</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="hvacmode">hvacMode</h2>
+                
+                <p>Returns the current thermostat hvac mode value
+                or assigns the new value if provided</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>val</strong> (<code>String</code>) new value for <code>hvac_mode</code>
+</li>
+                </ul>
+                
+                <h3 id="returns-25">Returns</h3>
+                
+                <ul>
+                  <li>(<code>String</code>) hvac mode</li>
                 </ul>
                 
                 <hr>
@@ -358,7 +731,7 @@ Cylon.robot({
                 
                 <p>Returns the thermostat's detected ambient temperature, in Fahrenheit</p>
                 
-                <h3 id="returns-1">Returns</h3>
+                <h3 id="returns-26">Returns</h3>
                 
                 <ul>
                   <li>(<code>String</code>) temp</li>
@@ -370,7 +743,7 @@ Cylon.robot({
                 
                 <p>Returns the thermostat's detected ambient temperature, in Celsius</p>
                 
-                <h3 id="returns-2">Returns</h3>
+                <h3 id="returns-27">Returns</h3>
                 
                 <ul>
                   <li>(<code>String</code>) temp</li>
@@ -378,64 +751,26 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="targettemperaturef">targetTemperatureF</h2>
+                <h2 id="humidity">humidity</h2>
                 
-                <p>Returns the thermostat's targeted temperature, in Fahrenheit</p>
+                <p>Returns the thermostat's detected humidity</p>
                 
-                <h3 id="returns-3">Returns</h3>
+                <h3 id="returns-28">Returns</h3>
                 
                 <ul>
-                  <li>(<code>String</code>) temp</li>
+                  <li>(<code>String</code>) humidity</li>
                 </ul>
                 
                 <hr>
                 
-                <h2 id="targettemperaturec">targetTemperatureC</h2>
+                <h2 id="hvacstate">hvacState</h2>
                 
-                <p>Returns the thermostat's targeted temperature, in Celsius</p>
+                <p>Returns the thermostat's hvac state</p>
                 
-                <h3 id="returns-4">Returns</h3>
-                
-                <ul>
-                  <li>(<code>String</code>) temp</li>
-                </ul>
-                
-                <hr>
-                
-                <h2 id="settargettemperaturef">setTargetTemperatureF</h2>
-                
-                <p>Sets the thermostat's targeted temperature, in Fahrenheit</p>
-                
-                <h3 id="params">Params</h3>
+                <h3 id="returns-29">Returns</h3>
                 
                 <ul>
-                  <li>
-<strong>value</strong> (<code>String</code>) temperature to set as target</li>
-                </ul>
-                
-                <h3 id="returns-5">Returns</h3>
-                
-                <ul>
-                  <li>(<code>null</code>)</li>
-                </ul>
-                
-                <hr>
-                
-                <h2 id="settargettemperaturec">setTargetTemperatureC</h2>
-                
-                <p>Sets the thermostat's targeted temperature, in Celsius</p>
-                
-                <h3 id="params-1">Params</h3>
-                
-                <ul>
-                  <li>
-<strong>value</strong> (<code>String</code>) temperature to set as target</li>
-                </ul>
-                
-                <h3 id="returns-6">Returns</h3>
-                
-                <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>String</code>) hvac state</li>
                 </ul>
               </div>
               <div class="commands-api" id="Events">
