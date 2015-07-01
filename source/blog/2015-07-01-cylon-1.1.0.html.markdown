@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: "Cylon.js 1.1.0"
+title: "Cylon.js 1.1.0 - The Big Cleanup"
 page_title: Blog
 date: 2015-07-01
 tags: robots
@@ -8,7 +8,7 @@ author: Andrew Stewart
 active_menu_blog: true
 ---
 
-Cylon 1.1.0 has just been released, with a few small changes and additions meriting a minor release.
+Cylon.js 1.1.0 has just been released, and from the external interfaces only a few small changes and additions. However, the internals have had a fairly sizable refactoring meriting a release.
 There is a small potential for backwards compatability issues for users making use of undocumented properties on the main Cylon.js exports object.
 
 Here's a overview of the changes, but if you want to see more check out the [compare view][] on GitHub.
@@ -32,14 +32,14 @@ Here's a overview of the changes, but if you want to see more check out the [com
   We now better check for invalid syntax that would possibly result in an obscure error, ensuring that a better response is generated.
   Also, we now provide a useful warning message when multiple connections exist, and devices are specified without an explicit connection.
 
-- **Contribution Guidelines and CoC** - We've added a more explicit set of [contribution guidelines][], based on iojs'.
+- **Contribution Guidelines and CoC** - We've added a more explicit set of [contribution guidelines][], based on the iojs guidelines.
   Additionally, we've outlined a [Code of Conduct][], adapted from Rust's CoC guidelines.
 
 Of course, it wouldn't be a Cylon.js release without new or enhanced platform support!
 
 We've now [added support][cylon-bebop] for the [Parrot Bebop drone][bebop].
 Additionally, we've fixed compilation issues for a few of our modules that had issues on newer versions of V8.
-[cylon-joystick][] and [cylon-digispark][] should now work fully on Node v0.12 and iojs.
+[cylon-joystick][] and [cylon-digispark][] should now work fully on Node v0.12 and iojs. All the future nodes belong to us!
 We've also updated [cylon-sphero][] to use the new [Sphero.js][] library from Orbotix.
 
 For the latest updates, be sure to follow us on Twitter at [@CylonJS][].
