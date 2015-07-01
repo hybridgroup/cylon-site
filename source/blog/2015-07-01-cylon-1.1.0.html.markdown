@@ -8,7 +8,7 @@ author: Andrew Stewart
 active_menu_blog: true
 ---
 
-Cylon.js 1.1.0 has just been released, and from the external interfaces only a few small changes and additions. However, the internals have had a fairly sizable refactoring meriting a release.
+Cylon.js 1.1.0 has just been released, and from the external interfaces it appears only a few small changes and additions. However, the internals have had a fairly sizable refactoring, meriting a release.
 There is a small potential for backwards compatability issues for users making use of undocumented properties on the main Cylon.js exports object.
 
 Here's a overview of the changes, but if you want to see more check out the [compare view][] on GitHub.
@@ -35,12 +35,18 @@ Here's a overview of the changes, but if you want to see more check out the [com
 - **Contribution Guidelines and CoC** - We've added a more explicit set of [contribution guidelines][], based on the iojs guidelines.
   Additionally, we've outlined a [Code of Conduct][], adapted from Rust's CoC guidelines.
 
-Of course, it wouldn't be a Cylon.js release without new or enhanced platform support!
+## Even More Hardware Support
+
+Of course, it wouldn't be a Cylon.js release without new or enhanced platform support, and we've got a bunch!
 
 We've now [added support][cylon-bebop] for the [Parrot Bebop drone][bebop].
+
+We've also updated our support for [Nest][cylon-nest], to fully cover the [Nest Protect][nest-protect], Nest Home, and [Nest Thermostat][nest-thermostat].
+
 Additionally, we've fixed compilation issues for a few of our modules that had issues on newer versions of V8.
 [cylon-joystick][] and [cylon-digispark][] should now work fully on Node v0.12 and iojs. All the future nodes belong to us!
-We've also updated [cylon-sphero][] to use the new [Sphero.js][] library from Orbotix.
+
+And last, but certainly not least, we've also updated [cylon-sphero][] to use the new [Sphero.js][] library from Orbotix.
 
 For the latest updates, be sure to follow us on Twitter at [@CylonJS][].
 
@@ -49,8 +55,11 @@ For the latest updates, be sure to follow us on Twitter at [@CylonJS][].
 [contribution guidelines]: https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md
 [Code of Conduct]: https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md#code-of-conduct
 [cylon-bebop]: https://github.com/hybridgroup/cylon-bebop
+[cylon-nest]: https://github.com/hybridgroup/cylon-nest
 [cylon-joystick]: https://github.com/hybridgroup/cylon-joystick
 [cylon-digispark]: https://github.com/hybridgroup/cylon-digispark
 [cylon-sphero]: https://github.com/hybridgroup/cylon-sphero
 [Sphero.js]: https://github.com/orbotix/sphero.js
 [bebop]: http://www.parrot.com/products/bebop-drone/
+[nest-protect]: https://nest.com/smoke-co-alarm/meet-nest-protect/
+[nest-thermostat]: https://nest.com/thermostat/meet-nest-thermostat/
