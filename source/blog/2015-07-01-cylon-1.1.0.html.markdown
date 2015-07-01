@@ -1,0 +1,56 @@
+---
+page_title_show: true
+title: "Cylon.js 1.1.0"
+page_title: Blog
+date: 2015-07-01
+tags: robots
+author: Andrew Stewart
+active_menu_blog: true
+---
+
+Cylon 1.1.0 has just been released, with a few small changes and additions meriting a minor release.
+There is a small potential for backwards compatability issues for users making use of undocumented properties on the main Cylon.js exports object.
+
+Here's a overview of the changes, but if you want to see more check out the [compare view][] on GitHub.
+
+- **ESLint** - we've switched to using ESLint for linting, over JSHint.
+  ESLint's better support for validating coding styles and conventions has been a great asset to us.
+  This has also resulted in a number of fixes to prevent potential minor issues in core.
+
+- **async** - we've removed Cylon's last remaining core dependency, `async`.
+  This has the benefit of reducing Cylon install sizes across projects.
+
+- **MCP refactor** - we've split apart the existing `lib/cylon.js` exports module into three new files, for better separation of responsibilities.
+  This may result in some backwards compatability concerns if you were previously using undocumented properties on the main Cylon object, such as `Cylon.robots`, the `Cylon.toJSON` method, or `Cylon.apiInstances`.
+  For more details, see the [pull request diff](https://github.com/hybridgroup/cylon/pull/301/files).
+
+- **Robot Naming** - previously, robot names were generated pseudo-randomly if the user didn't explicitly supply one.
+  While this helped avoid collisions, it led to confusion when Cylon programs were restarted, as Robots couldn't be found under the same name.
+  In Cylon 1.1.0, un-named robots are now assigned an incremental name, e.g. "Robot 1", "Robot 2", etc.
+
+- **Better validation** - we've improved validation of Robot options, to provide better clues as to what's preventing your robot from working.
+  We now better check for invalid syntax that would possibly result in an obscure error, ensuring that a better response is generated.
+  Also, we now provide a useful warning message when multiple connections exist, and devices are specified without an explicit connection.
+
+- **Contribution Guidelines and CoC** - We've added a more explicit set of [contribution guidelines][], based on iojs'.
+  Additionally, we've outlined a [Code of Conduct][], adapted from Rust's CoC guidelines.
+
+Of course, it wouldn't be a Cylon.js release without new or enhanced platform support!
+
+We've now [added support][cylon-bebop] for the [Parrot Bebop drone][bebop].
+Additionally, we've fixed compilation issues for a few of our modules that had issues on newer versions of V8.
+[cylon-joystick][] and [cylon-digispark][] should now work fully on Node v0.12 and iojs.
+We've also updated [cylon-sphero][] to use the new [Sphero.js][] library from Orbotix.
+
+For the latest updates, be sure to follow us on Twitter at [@CylonJS][].
+
+[@CylonJS]: https://twitter.com/CylonJS
+[compare view]: http://github.com/hybridgroup/cylon/compare/v1.0.0...v1.1.0
+[contribution guidelines]: https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md
+[Code of Conduct]: https://github.com/hybridgroup/cylon/blob/master/CONTRIBUTING.md#code-of-conduct
+[cylon-bebop]: https://github.com/hybridgroup/cylon-bebop
+[cylon-joystick]: https://github.com/hybridgroup/cylon-joystick
+[cylon-digispark]: https://github.com/hybridgroup/cylon-digispark
+[cylon-sphero]: https://github.com/hybridgroup/cylon-sphero
+[Sphero.js]: https://github.com/orbotix/sphero.js
+[bebop]: http://www.parrot.com/products/bebop-drone/
