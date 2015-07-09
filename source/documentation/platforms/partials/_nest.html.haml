@@ -15,7 +15,8 @@
           },
 
           devices: {
-            thermostat: { driver: 'nest-thermostat', deviceId: 'XXX' }
+            thermostat: { driver: 'nest-thermostat', deviceId: 'XXX' },
+            protect: { driver: 'nest-protect', deviceId: 'XXX' }
           },
 
           work: function(my) {
@@ -25,9 +26,16 @@
               console.log('The Thermostat at a glance--->', data);
             });
 
+            my.protect.on('status', function(data) {
+              console.log('The Protect at a glance--->', data);
+            });
+
             every((60).seconds(), function(){
-              console.log('NEST ambient temp C:', my.thermostat.ambientTemperatureC());
-              console.log('NEST ambient temp F:', my.thermostat.ambientTemperatureF());
+              console.log('NEST thermostat ambient temp C:', my.thermostat.ambientTemperatureC());
+              console.log('NEST thermostat ambient temp F:', my.thermostat.ambientTemperatureF());
+
+              console.log('NEST protect co alarm state:', my.protect.coAlarmState());
+              console.log('NEST protect smoke alarm state:', my.protect.smokeAlarmState());
             });
           }
         }).start();
@@ -35,6 +43,7 @@
     We currently have drivers for the following Nest devices:
 
     - Thermostat
+    - Protect
     - Nest Home
 
     ## How to Connect
@@ -48,3 +57,11 @@
     Next step is to obtain the access token for your Nest account in order to authenticate, as instructed [here](https://developer.nest.com/documentation/how-to-auth).
 
     Once you have done this, you should be able to use the `access_token` you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js
+
+    ## Nest Home Simulator
+
+    You can use [Nest Home Simulator](https://developer.nest.com/documentation/cloud/home-simulator) to test your programs. Follow instructions for installation [here](https://developer.nest.com/documentation/cloud/home-simulator).
+
+    Once you have the simulator installed, you can create the structures you need and add as many devices as each structure supports.
+
+    You can now use your cylon program to interact with your simulated devices.
