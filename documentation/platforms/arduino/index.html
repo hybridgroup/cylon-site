@@ -338,7 +338,7 @@ Cylon.robot({
               
               <h3 id="upload-the-firmata-firmware-to-the-arduino">Upload the Firmata Firmware to the Arduino</h3>
               
-              <p>This section assumes you're using an Arduino Uno or another compatible board, and a UNIX operating system (OS X or Linux). If you already have the Firmata sketch installed, you can skip straight to the examples.</p>
+              <p>This section assumes you're using an Arduino Uno or another compatible board. If you already have the Firmata sketch installed, you can skip straight to the examples.</p>
               
               <h3 id="os-x">OS X</h3>
               
@@ -393,6 +393,44 @@ Cylon.robot({
 </pre>
               
               <p>Now you are ready to connect and communicate with the Arduino using serial port connection</p>
+              
+              <h3 id="windows">Windows</h3>
+              
+              <p>First plug the Arduino into your computer via the USB/serial port.</p>
+              
+              <p>Install the cylon-firmata module:</p>
+              
+              <pre class="CodeRay">$ npm install cylon cylon-firmata
+</pre>
+              
+              <p>Then download and install gort for your OS from the <a href="gort.io">gort.io</a> <a href="http://gort.io/documentation/getting_started/downloads/">downloads page</a> and install it.</p>
+              
+              <p>Open a command prompt window by right clicking on the start button and choose <code>Command Prompt (Admin)</code> (on windows 8.1). Then navigate to the folder where you uncompressed gort (uncomress to a folder first if you haven't done this yet).</p>
+              
+              <p>Once inside the gort folder, first install avrdude which we'll use to upload firmata to the arduino.</p>
+              
+              <pre class="CodeRay">$ gort arduino install
+</pre>
+              
+              <p>When the installation is complete, close the command prompt window and open a new one. We need to do this for the env variables to reload.</p>
+              
+              <pre class="CodeRay">$ gort scan serial
+</pre>
+              
+              <p>Take note of your arduinos serialport address (COM1, COM2, COM3 etc). You need to already have installed the arduino drivers from <a href="https://www.arduino.cc/en/Main/Software">arduino.cc/en/Main/Software</a>. Finally upload the firmata protocol sketch to the arduino.</p>
+              
+              <pre class="CodeRay">$ gort arduino upload firmata &lt;COMX&gt;
+</pre>
+              
+              <p>Make sure to substitute <code>&lt;COMX&gt;</code> with the apropiate serialport address.</p>
+              
+              <p>Now you are ready to connect and communicate with the Arduino using serial port connection.</p>
+              
+              <h3 id="using-arduino-ide">Using arduino IDE</h3>
+              
+              <p>Open arduino IDE and go to File &gt; Examples &gt; Firmata &gt; StandardFirmata and open it. Select the appriate port
+              for your arduino and click upload. Wait for the upload to finish and you should be ready to start using Gobot
+              with your arduino.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>

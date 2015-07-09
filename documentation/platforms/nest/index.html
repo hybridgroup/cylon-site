@@ -322,7 +322,8 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span> }
+    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-thermostat</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span> },
+    <span class="key">protect</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">nest-protect</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">XXX</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
@@ -332,9 +333,16 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Thermostat at a glance---&gt;</span><span class="delimiter">'</span></span>, data);
     });
 
+    my.protect.on(<span class="string"><span class="delimiter">'</span><span class="content">status</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">The Protect at a glance---&gt;</span><span class="delimiter">'</span></span>, data);
+    });
+
     every((<span class="integer">60</span>).seconds(), <span class="keyword">function</span>(){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp C:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureC());
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST ambient temp F:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureF());
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST thermostat ambient temp C:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureC());
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST thermostat ambient temp F:</span><span class="delimiter">'</span></span>, my.thermostat.ambientTemperatureF());
+
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST protect co alarm state:</span><span class="delimiter">'</span></span>, my.protect.coAlarmState());
+      console.log(<span class="string"><span class="delimiter">'</span><span class="content">NEST protect smoke alarm state:</span><span class="delimiter">'</span></span>, my.protect.smokeAlarmState());
     });
   }
 }).start();
@@ -344,6 +352,7 @@ Cylon.robot({
               
               <ul>
                 <li>Thermostat</li>
+                <li>Protect</li>
                 <li>Nest Home</li>
               </ul>
               
@@ -358,6 +367,14 @@ Cylon.robot({
               <p>Next step is to obtain the access token for your Nest account in order to authenticate, as instructed <a href="https://developer.nest.com/documentation/how-to-auth">here</a>.</p>
               
               <p>Once you have done this, you should be able to use the <code>access_token</code> you obtained, with the generate access token url listed in the clients section of the Nest developer portal, to make API calls from Cylon.js</p>
+              
+              <h2 id="nest-home-simulator">Nest Home Simulator</h2>
+              
+              <p>You can use <a href="https://developer.nest.com/documentation/cloud/home-simulator">Nest Home Simulator</a> to test your programs. Follow instructions for installation <a href="https://developer.nest.com/documentation/cloud/home-simulator">here</a>.</p>
+              
+              <p>Once you have the simulator installed, you can create the structures you need and add as many devices as each structure supports.</p>
+              
+              <p>You can now use your cylon program to interact with your simulated devices.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
