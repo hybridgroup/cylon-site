@@ -1,0 +1,45 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - structure-api"
+page_title: "Example: structure-api"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-nest/tree/master/examples/structure-api' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            nest: { adaptor: "nest", accessToken: "ACCESS_TOKEN" }
+          },
+
+          devices: {
+            home: { driver: "nest-home", structureId: "STRUCTURE_ID" }
+          },
+
+          work: function(my) {
+            my.home.on("status", function() {
+              console.log("========================Structure========================");
+              console.log("structure id:", my.home.structureId);
+              console.log("structure name:", my.home.structureName());
+              console.log("thermostats:", my.home.thermostats());
+              console.log("smokeCoAlarms:", my.home.smokeCoAlarms());
+              console.log("devices:", my.home.devices());
+              console.log("away status:", my.home.away());
+              console.log("countryCode:", my.home.countryCode());
+              console.log("postalCode:", my.home.postalCode());
+              console.log("peakPeriodStartTime:", my.home.peakPeriodStartTime());
+              console.log("peakPeriodEndTime:", my.home.peakPeriodEndTime());
+              console.log("timeZone:", my.home.timeZone());
+              console.log("eta:", my.home.eta());
+            });
+
+          }
+        }).start();

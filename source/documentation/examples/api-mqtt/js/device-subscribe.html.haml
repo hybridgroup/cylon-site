@@ -13,18 +13,18 @@ active_menu_docs: true
         :::javascript
         'use strict';
 
-        var mqtt    = require('mqtt');
-        var client  = mqtt.connect('mqtt://test.mosquitto.org');
+        var mqtt = require('mqtt');
+        var client = mqtt.connect('mqtt://test.mosquitto.org');
 
-        client.on('message', function (topic, payload) {
+        client.on('message', function(topic, contents) {
           // MQTT only receives and sends message payload as
           // string or buffer, so we need to parse the JSON string
           // send by Cylon, this way we can access it as a regular
           // JS object.
           var data, sender;
 
-          if (!!payload && (payload.length > 0)) {
-            data = JSON.parse(payload);
+          if (!!contents && (contents.length > 0)) {
+            data = JSON.parse(contents);
             sender = data.sender;
           }
 

@@ -51,19 +51,9 @@ active_menu_docs: true
           var color = 0x00FF00,
               bitFilter = 0xFFFF00;
 
-  When our Sphero emits the 'connect' event, we're going to hook up collision
-  detection, make sure it's not moving, and set a color.
+          console.log("Setting up Collision Detection...");
 
-      :::javascript
-          me.sphero.on('connect', function() {
-            console.log("Setting up Collision Detection...");
-            me.sphero.detectCollisions();
-            me.sphero.setRGB(color);
-            me.sphero.stop();
-          });
-
-  And when our Sphero detects a collision, we want to notify the user of this via
-  the console.
+  We add a listener on `collision`, since we want to be notified when our Sphero detects a collision.
 
       :::javascript
           me.sphero.on('collision', function(data) {
@@ -81,10 +71,16 @@ active_menu_docs: true
 
       :::javascript
             console.log("Color: " + (color.toString(16)) + " ");
-            me.sphero.setRGB(color);
+            me.sphero.color(color);
             me.sphero.roll(90, Math.floor(Math.random() * 360));
           });
         }
+
+  Once the `collision` listener is been added, we change the color and start detecting collisions.
+
+      :::javascript
+        me.sphero.color(color);
+        me.sphero.detectCollisions();
 
   And with all that said and done, we can now start the robot.
 

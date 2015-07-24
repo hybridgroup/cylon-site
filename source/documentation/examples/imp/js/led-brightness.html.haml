@@ -25,11 +25,11 @@ active_menu_docs: true
 
           device: { name: "led", driver: "led", pin: 1 },
 
-          work: function(my){
+          work: function(my) {
             var brightness = 0;
             var fade = 20;
 
-            every((1).seconds(), function(){
+            every((1).seconds(), function() {
               brightness += fade;
               brightness = (brightness > 255) ? 255 : brightness;
               brightness = (brightness < 0) ? 0 : brightness;

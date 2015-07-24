@@ -30,13 +30,13 @@ active_menu_docs: true
               console.log("The Thermostat SnapShoot --->", data);
             });
 
-            every((10).seconds(), function(){
+            every((10).seconds(), function() {
               console.log("NEST ambient temp C:", my.thermostat.ambientTemperatureC());
               console.log("NEST ambient temp F:", my.thermostat.ambientTemperatureF());
               console.log("NEST target temp F:", my.thermostat.targetTemperatureC());
               console.log("NEST target temp F:", my.thermostat.targetTemperatureF());
 
-              my.thermostat.setTargetTemperatureC(24);
+              my.thermostat.targetTemperatureC(24);
 
               my.thermostat.write("target_temperature_high_c", 30, function(err) {
                 console.log("ERR OBJ =====>", err);

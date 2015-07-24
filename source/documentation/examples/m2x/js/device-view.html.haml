@@ -29,9 +29,9 @@ active_menu_docs: true
               console.log("Err: ", err);
               console.log("Private devices: ", data.devices);
               data.devices.forEach(function(device) {
-                my.m2x.view(device.id, function(err, data) {
-                  console.log("Err: ", err);
-                  console.log("details: ", data);
+                my.m2x.view(device.id, function(error, details) {
+                  console.log("Err: ", error);
+                  console.log("details: ", details);
                 });
               });
             });

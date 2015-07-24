@@ -27,6 +27,7 @@ active_menu_docs: true
           work: function(my) {
             every(100, function() {
               my.lidar.distance(function(err, data) {
+                if (err) { console.error(err); }
                 console.log("distance: " + data);
               });
             });

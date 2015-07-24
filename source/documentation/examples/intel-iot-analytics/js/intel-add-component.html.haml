@@ -31,15 +31,15 @@ active_menu_docs: true
 
           work: function(my) {
             var com = {
-              "cid": "raspi-01-temperature.v1.0-01",
-              "name": "temp",
-              "type": "temperature.v1.0"
+              cid: "raspi-01-temperature.v1.0-01",
+              name: "temp",
+              type: "temperature.v1.0"
             };
 
             var deviceToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJ-b7A....",
                 aId = "f5dbea6a-7115-4f77-9919-63c23ec83d9b";
 
-            var callback =  function(err, res) {
+            var callback = function(err, res) {
               console.log("error:", err);
               console.log("Component:", res);
             };

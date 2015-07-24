@@ -23,7 +23,7 @@ active_menu_docs: true
           work: function(my) {
             my.server.subscribe("hello");
 
-            my.server.on("message", function (topic, data) {
+            my.server.on("message", function(topic, data) {
               console.log(topic + ": " + data);
             });
 

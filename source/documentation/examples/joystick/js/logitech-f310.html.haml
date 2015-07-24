@@ -25,7 +25,8 @@ active_menu_docs: true
           },
 
           work: function(my) {
-            ["a", "b", "x", "y"].forEach(function(button) {
+            ["up", "down", "left", "right", "start", "select", "home",
+            "ls", "rs", "lb", "rb", "a", "b", "y", "x"].forEach(function(button) {
               my.controller.on(button + ":press", function() {
                 console.log("Button " + button + " pressed.");
               });
@@ -47,8 +48,16 @@ active_menu_docs: true
               console.log("Left Stick - Y:", pos);
             });
 
+            my.controller.on("left_y:move", function(pos) {
+              console.log("Left Stick - Y:", pos);
+            });
+
             my.controller.on("right_y:move", function(pos) {
               console.log("Right Stick - Y:", pos);
+            });
+
+            my.controller.on("right_z:move", function(pos) {
+              console.log("Right Shoulder - Z:", pos);
             });
           }
         });

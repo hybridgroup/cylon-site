@@ -27,7 +27,7 @@ active_menu_docs: true
               console.log("The Thermostat at a glance--->", data);
             });
 
-            every((30).seconds(), function(){
+            every((30).seconds(), function() {
               console.log("NEST ambient temp C:", bot.thermostat.ambientTemperatureC());
               console.log("NEST ambient temp F:", bot.thermostat.ambientTemperatureF());
               console.log("NEST target temp F:", bot.thermostat.targetTemperatureC());

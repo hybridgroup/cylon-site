@@ -24,13 +24,13 @@ active_menu_docs: true
               console.log("thermostat snapshot --->", data);
             });
 
-            every((10).seconds(), function(){
+            every((10).seconds(), function() {
               console.log("NEST ambient temp C:", bot.thermostat.ambientTemperatureC());
               console.log("NEST ambient temp F:", bot.thermostat.ambientTemperatureF());
               console.log("NEST target temp F:", bot.thermostat.targetTemperatureC());
               console.log("NEST target temp F:", bot.thermostat.targetTemperatureF());
 
-              bot.thermostat.setTargetTemperatureC(24);
+              bot.thermostat.targetTemperatureC(24);
 
               bot.thermostat.write("target_temperature_high_c", 30, function(err) {
                 console.log("ERR OBJ =====>", err);

@@ -26,7 +26,7 @@ active_menu_docs: true
 
           work: function(my) {
             my.battery.getBatteryLevel(function(err, data) {
-              if (!!err) {
+              if (err) {
                 console.log("error: ", err);
                 return;
               }

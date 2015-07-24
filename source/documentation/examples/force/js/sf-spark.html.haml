@@ -54,10 +54,12 @@ active_menu_docs: true
 
           work: function(my) {
             my.salesforce.subscribe("SparkOutboundMsg", function(err, data) {
+              if (err) { return console.log(err); }
+
               console.log("Spark Data received from Salesforce:", data);
 
               var analogValue = data.sobject.Analog_Read__c || 0;
-              var scaledBrightness = (analogValue).fromScale(0, 4095).toScale(0,255);
+              var scaledBrightness = (analogValue).fromScale(0, 4095).toScale(0, 255);
 
               my.led.brightness(Math.round(scaledBrightness));
 
