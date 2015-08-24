@@ -114,6 +114,11 @@
     "drivers": []
   },
 
+  "Particle": {
+    "slug": "particle",
+    "drivers": ["GPIO"]
+  },
+
   "Pebble": {
     "slug": "pebble",
     "drivers": ["Pebble"]
@@ -162,11 +167,6 @@
   "Skynet": {
     "slug": "skynet",
     "drivers": ["Skynet"]
-  },
-
-  "Particle": {
-    "slug": "particle",
-    "drivers": ["GPIO"]
   },
 
   "Speech": {
