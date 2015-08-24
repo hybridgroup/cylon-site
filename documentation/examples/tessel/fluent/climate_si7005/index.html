@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -285,16 +285,18 @@ Cylon
   .device(<span class="string"><span class="delimiter">"</span><span class="content">climate</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">climate-si7005</span><span class="delimiter">"</span></span> })
 
   .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
-    bot.climate.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
+    bot.climate.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err) {
       console.log(err);
     });
 
     setInterval(<span class="keyword">function</span>() {
-      bot.climate.readHumidity(<span class="keyword">function</span> (err, humid) {
+      bot.climate.readHumidity(<span class="keyword">function</span>(err, humid) {
+        <span class="keyword">if</span> (err) { console.error(err); }
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Humidity:</span><span class="delimiter">"</span></span>, humid.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">"</span><span class="content">%RH</span><span class="delimiter">"</span></span>);
       });
 
-      bot.climate.readTemperature(<span class="string"><span class="delimiter">"</span><span class="content">f</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err, temp) {
+      bot.climate.readTemperature(<span class="string"><span class="delimiter">"</span><span class="content">f</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, temp) {
+        <span class="keyword">if</span> (err) { console.error(err); }
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">Degrees:</span><span class="delimiter">"</span></span>, temp.toFixed(<span class="integer">4</span>) + <span class="string"><span class="delimiter">"</span><span class="content">F</span><span class="delimiter">"</span></span>);
       });
     }, <span class="integer">1000</span>);

@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -282,7 +282,7 @@
 Cylon.api({
   <span class="key">host</span>: <span class="string"><span class="delimiter">"</span><span class="content">0.0.0.0</span><span class="delimiter">"</span></span>,
   <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">8080</span><span class="delimiter">"</span></span>,
-  <span class="key">ssl</span>:  <span class="predefined-constant">false</span>
+  <span class="key">ssl</span>: <span class="predefined-constant">false</span>
 });
 
 Cylon.robot({
@@ -299,7 +299,7 @@ Cylon.robot({
   },
 
   <span class="key">heading</span>: <span class="integer">0</span>,
-  <span class="key">speed</span>:   <span class="integer">0</span>,
+  <span class="key">speed</span>: <span class="integer">0</span>,
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     every((<span class="float">0.1</span>).second(), <span class="keyword">function</span>() {
@@ -311,10 +311,10 @@ Cylon.robot({
           x = values[<span class="integer">0</span>],
           y = values[<span class="integer">1</span>];
 
-      my.speed = Math.round(Math.max(Math.abs(x)/<span class="integer">6</span>, Math.abs(y)/<span class="integer">6</span>));
+      my.speed = Math.round(Math.max(Math.abs(x) / <span class="integer">6</span>, Math.abs(y) / <span class="integer">6</span>));
 
       my.heading = Math.round(
-        ((<span class="float">180.0</span> - (Math.atan2(y,x) * (<span class="float">180.0</span> / Math.PI))))
+        ((<span class="float">180.0</span> - (Math.atan2(y, x) * (<span class="float">180.0</span> / Math.PI))))
       );
     });
   }

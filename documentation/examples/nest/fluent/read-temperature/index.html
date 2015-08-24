@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -291,7 +291,7 @@ Cylon
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">The Thermostat at a glance---&gt;</span><span class="delimiter">"</span></span>, data);
     });
 
-    every((<span class="integer">30</span>).seconds(), <span class="keyword">function</span>(){
+    every((<span class="integer">30</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp C:</span><span class="delimiter">"</span></span>, bot.thermostat.ambientTemperatureC());
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST ambient temp F:</span><span class="delimiter">"</span></span>, bot.thermostat.ambientTemperatureF());
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">NEST target temp F:</span><span class="delimiter">"</span></span>, bot.thermostat.targetTemperatureC());

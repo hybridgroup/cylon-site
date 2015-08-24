@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -318,10 +318,12 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.salesforce.subscribe(<span class="string"><span class="delimiter">"</span><span class="content">SparkOutboundMsg</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, data) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> console.log(err); }
+
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Spark Data received from Salesforce:</span><span class="delimiter">"</span></span>, data);
 
       <span class="keyword">var</span> analogValue = data.sobject.Analog_Read__c || <span class="integer">0</span>;
-      <span class="keyword">var</span> scaledBrightness = (analogValue).fromScale(<span class="integer">0</span>, <span class="integer">4095</span>).toScale(<span class="integer">0</span>,<span class="integer">255</span>);
+      <span class="keyword">var</span> scaledBrightness = (analogValue).fromScale(<span class="integer">0</span>, <span class="integer">4095</span>).toScale(<span class="integer">0</span>, <span class="integer">255</span>);
 
       my.led.brightness(Math.round(scaledBrightness));
 

@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -294,17 +294,17 @@ Cylon.robot({
 
     console.log(<span class="string"><span class="delimiter">"</span><span class="content">GPS module powered and ready. Waiting for satellites...</span><span class="delimiter">"</span></span>);
 
-    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (err) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">error</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err) {
       console.log(err);
     });
 
     <span class="comment">// Emit coordinates when we get a coordinate fix</span>
-    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">coordinates</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (c) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">coordinates</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(c) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Lat:</span><span class="delimiter">"</span></span>, c.lat, <span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Lon:</span><span class="delimiter">"</span></span>, c.lon, <span class="string"><span class="delimiter">"</span><span class="char">\t</span><span class="content">Timestamp:</span><span class="delimiter">"</span></span>, c.timestamp);
     });
 
     <span class="comment">// Emit altitude when we get an altitude fix</span>
-    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">altitude</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (alt) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">altitude</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(alt) {
       <span class="keyword">var</span> a = alt.alt,
           t = alt.timestamp;
 
@@ -312,13 +312,13 @@ Cylon.robot({
     });
 
     <span class="comment">// Emitted whenever satellites are in view</span>
-    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">satellite-list-partial</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (data) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">satellite-list-partial</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       satsInRange = data.satsInView;
       console.log(satsInRange, <span class="string"><span class="delimiter">"</span><span class="content">satellites in range,</span><span class="delimiter">"</span></span>, satsFixed, <span class="string"><span class="delimiter">"</span><span class="content">fixed.</span><span class="delimiter">"</span></span>);
     });
 
     <span class="comment">// Emitted when we have information about a fix on satellites</span>
-    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">fix</span><span class="delimiter">"</span></span>, <span class="keyword">function</span> (data) {
+    my.gps.on(<span class="string"><span class="delimiter">"</span><span class="content">fix</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       satsFixed = data.numSat;
       console.log(satsInRange, <span class="string"><span class="delimiter">"</span><span class="content">satellites in range,</span><span class="delimiter">"</span></span>, satsFixed, <span class="string"><span class="delimiter">"</span><span class="content">fixed.</span><span class="delimiter">"</span></span>);
     });

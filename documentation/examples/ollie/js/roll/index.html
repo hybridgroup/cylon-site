@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -289,7 +289,7 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.ollie.wake(<span class="keyword">function</span>(){
+    my.ollie.wake(<span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">wake</span><span class="delimiter">"</span></span>);
 
       after(<span class="integer">200</span>, <span class="keyword">function</span>() {
@@ -300,10 +300,10 @@ Cylon.robot({
         my.ollie.setRGB(<span class="hex">0xFF0000</span>);
         my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>, <span class="integer">1</span>);
 
-        after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
+        after(<span class="integer">1000</span>, <span class="keyword">function</span>() {
           my.ollie.roll(<span class="integer">60</span>, <span class="integer">90</span>, <span class="integer">1</span>);
 
-          after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
+          after(<span class="integer">1000</span>, <span class="keyword">function</span>() {
             my.ollie.stop();
           });
         });

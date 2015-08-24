@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Particle with Cylon.js</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/subnav.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a class="active" href="/documentation/platforms">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mip">MiP</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/ollie">Ollie</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      <a href="/documentation/drivers/pca9685">PCA9685</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/bebop">Bebop - Flight</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mip">MiP</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Resources')}">
+                <div class="name" ng-click="show('Resources')">Resources</div>
+                <div class="links" ng-show="active('Resources')">
+                  <a href="/resources">Index</a>
+                  <a href="/news">News</a>
+                  <a href="/resources/videos">Videos</a>
+                  <a href="/resources/links">Links</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('API')}">
+                <div class="name" ng-click="show('API')">API</div>
+                <div class="links" ng-show="active('API')">
+                  <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
+                  <a href="/documentation/api/socket-io">Socket.io</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/hackster-hardware-weekend-los-angeles">Hackster Hardware Weekend</a>
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/user-contributed-platforms">User Contributed Platforms</a>
+              <a href="/documentation/helpers">Helper Methods</a>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">Particle (formally Spark)</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>Particle (formally Spark)</h5>
+                <nav class="documentation-nav">
+                  <a href="#how-to-install">How To Install</a>
+                  <a href="#how-to-use">How To Use</a>
+                  <a href="#how-to-connect">How To Connect</a>
+                  <a href="#Drivers">Drivers</a>
+                  <a href="#top">Top</a>
+                </nav>
+              </div>
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/particle.jpg">
+              <div class="info-intro">
+                <h4 class="subtitle">
+<a href="https://github.com/hybridgroup/cylon-spark" target="_blank" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-spark/issues" target="_blank">Issues</a>
+</h4>
+                <p>Both the Particle Core and Particle Photon contain a Wi-Fi connected microcontroller.
+                Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Particle Cloud") and stays connected so it can be controlled from external systems, such as a Cylon.js program.</p>
+                
+                <p>For more info about the Particle platform, click <a href="https://www.particle.io/">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section class="how-to">
+              <h2 id="how-to-install">How to Install</h2>
+              
+              <p>Install the module with:</p>
+              
+              <pre class="CodeRay">$ npm install cylon cylon-spark
+</pre>
+              
+              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Particle, and you can get both of these from Particle's <a href="https://build.particle.io/build/">Build tool</a>.</p>
+              
+              <ul>
+                <li>
+<strong>access_token:</strong> In the Build tool, click on the Settings cog in the
+              bottom-left corner to find your access token.</li>
+                <li>
+<strong>device_id:</strong> After you have your Particle Core or Photon registered to your account
+              through the Tinker app, click on the Cores section (just above the Settings
+              cog) on the Build tool. Then, click on the arrow next to your core's name to
+              get its device ID.</li>
+              </ul>
+              
+              <h3 id="installing-firmware-on-your-particle-core-or-photon">Installing Firmware On Your Particle Core or Photon</h3>
+              
+              <p>You will need to install the appropriate firmware on your Particle Core or Photon to use it from Cylon.js.</p>
+              
+              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the Gort CLI (http://gort.io). This routes all of your calls thru the Particle cloud, with is appropriate for communicating with Particle devices in a remote location.</p>
+              
+              <p>Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Particle cloud, and then routes all of your calls directly to the Particle Core or Photon device. This is appropriate for communicating with Particle devices on the same local subnet as the computer that you wish to control them from.</p>
+              
+              <p>For more information on how to program your Particle, please see <a href="https://docs.particle.io/guide/getting-started/examples/photon/">Particle's examples</a>.</p>
+              
+              <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
+              
+              <h2 id="how-to-use">How to Use</h2>
+              
+              <h3 id="particle-using-tinker-api">Particle using Tinker API:</h3>
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="comment">// Initialize the robot</span>
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">spark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span>}
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
+  }
+}).start();
+</pre>
+              
+              <h3 id="particle-using-voodoospark-api">Particle using VoodooSpark API:</h3>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+<span class="comment">// Initialize the robot</span>
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">voodoospark</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>,
+      <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>,
+      <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
+    }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
+  }
+}).start();
+</pre>
+              
+              <h2 id="how-to-connect">How to Connect</h2>
+              
+              <p>The setup process for the Particle core and photon is fully explained by <a href="https://docs.particle.io/guide/getting-started/connect/photon/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
+              
+              <p>Once your Particle is connected, you can get the <code>accessToken</code> and <code>deviceId</code> necessary to communicate with it from Cylon.</p>
+            </section>
+            <section class="drivers" id="Drivers">
+              <h2 id="drivers">Drivers</h2>
+              
+              <p>Available drivers for the Particle platform are listed below:</p>
+              <div class="hardware">
+                <div class="devices">
+                  <div class="clear"></div>
+                  <h2>GPIO Drivers</h2>
+                  <section>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
+                        <p class="title">Analog Sensor</p>
+                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/button" title="Button">
+                        <p class="title">Button</p>
+                        <img src="/images/devices/button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/continuous-servo" title="Continuous Servo">
+                        <p class="title">Continuous Servo</p>
+                        <img src="/images/devices/continuous-servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/direct-pin" title="Direct Pin">
+                        <p class="title">Direct Pin</p>
+                        <img src="/images/devices/direct-pin.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
+                        <p class="title">IR Range Finder</p>
+                        <img src="/images/devices/ir-range-finder.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/led" title="LED">
+                        <p class="title">LED</p>
+                        <img src="/images/devices/led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/makey-button" title="Makey Button">
+                        <p class="title">Makey Button</p>
+                        <img src="/images/devices/makey-button.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/maxbotix" title="Maxbotix">
+                        <p class="title">Maxbotix</p>
+                        <img src="/images/devices/maxbotix.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/motor" title="Motor">
+                        <p class="title">Motor</p>
+                        <img src="/images/devices/motor.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/relay" title="Relay">
+                        <p class="title">Relay</p>
+                        <img src="/images/devices/relay.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/rgb-led" title="RGB LED">
+                        <p class="title">RGB LED</p>
+                        <img src="/images/devices/rgb-led.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                    <div class="compatability-link">
+                      <a href="/documentation/drivers/servo" title="Servo">
+                        <p class="title">Servo</p>
+                        <img src="/images/devices/servo.jpg" style="width: 100%">
+                      </a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon.js provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2015</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

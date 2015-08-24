@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -292,41 +292,10 @@ Cylon.robot({
     <span class="keyword">var</span> color = <span class="hex">0x00FF00</span>,
         bitFilter = <span class="hex">0xFFFF00</span>;
 
-    after((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
-      my.sphero.detectCollisions();
-      <span class="comment">// To detect locator, accelOne and velocity from the sphero</span>
-      <span class="comment">// we use setDataStreaming.</span>
-      <span class="comment">// sphero API data sources for locator info are as follows:</span>
-      <span class="comment">// ["locator", "accelOne", "velocity"]</span>
-      <span class="comment">// It is also possible to pass an opts object to setDataStreaming():</span>
-      <span class="keyword">var</span> opts = {
-        <span class="comment">// n: int, divisor of the max sampling rate, 400 hz/s</span>
-        <span class="comment">// n = 40 means 400/40 = 10 data samples per second,</span>
-        <span class="comment">// n = 200 means 400/200 = 2 data samples per second</span>
-        <span class="key">n</span>: <span class="integer">200</span>,
-        <span class="comment">// m: int, number of data packets buffered before passing to the stream</span>
-        <span class="comment">// m = 10 means each time you get data it will contain 10 data packets</span>
-        <span class="comment">// m = 1 is usually best for real time data readings.</span>
-        <span class="key">m</span>: <span class="integer">1</span>,
-        <span class="comment">// pcnt: 1 -255, how many packets to send.</span>
-        <span class="comment">// pcnt = 0 means unlimited data Streaming</span>
-        <span class="comment">// pcnt = 10 means stop after 10 data packets</span>
-        <span class="key">pcnt</span>: <span class="integer">0</span>,
-      };
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
 
-      my.sphero.setDataStreaming([<span class="string"><span class="delimiter">"</span><span class="content">locator</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">accelOne</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">velocity</span><span class="delimiter">"</span></span>], opts);
-
-      <span class="comment">// SetBackLED turns on the tail LED of the sphero that helps</span>
-      <span class="comment">// identify the direction the sphero is heading.</span>
-      <span class="comment">// accepts a param with a value from 0 to 255, led brightness.</span>
-      my.sphero.setBackLED(<span class="integer">192</span>);
-      my.sphero.setRGB(color);
-      my.sphero.stop();
-    });
-
-    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">locator:</span><span class="delimiter">"</span></span>);
+    my.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">dataStreaming</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">dataStreaming:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
@@ -334,10 +303,39 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision:</span><span class="delimiter">"</span></span>);
       color = color ^ bitFilter;
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Color: </span><span class="delimiter">"</span></span> + (color.toString(<span class="integer">16</span>)) + <span class="string"><span class="delimiter">"</span><span class="content"> </span><span class="delimiter">"</span></span>);
-      my.sphero.setRGB(color);
+      my.sphero.color(color);
       my.sphero.roll(<span class="integer">128</span>, Math.floor(Math.random() * <span class="integer">360</span>));
     });
 
+    my.sphero.detectCollisions();
+    <span class="comment">// To detect locator, accelOne and velocity from the sphero</span>
+    <span class="comment">// we use setDataStreaming.</span>
+    <span class="comment">// sphero API data sources for locator info are as follows:</span>
+    <span class="comment">// ["locator", "accelOne", "velocity"]</span>
+    <span class="comment">// It is also possible to pass an opts object to setDataStreaming():</span>
+    <span class="keyword">var</span> opts = {
+      <span class="comment">// n: int, divisor of the max sampling rate, 400 hz/s</span>
+      <span class="comment">// n = 40 means 400/40 = 10 data samples per second,</span>
+      <span class="comment">// n = 200 means 400/200 = 2 data samples per second</span>
+      <span class="key">n</span>: <span class="integer">200</span>,
+      <span class="comment">// m: int, number of data packets buffered before passing to the stream</span>
+      <span class="comment">// m = 10 means each time you get data it will contain 10 data packets</span>
+      <span class="comment">// m = 1 is usually best for real time data readings.</span>
+      <span class="key">m</span>: <span class="integer">1</span>,
+      <span class="comment">// pcnt: 1 -255, how many packets to send.</span>
+      <span class="comment">// pcnt = 0 means unlimited data Streaming</span>
+      <span class="comment">// pcnt = 10 means stop after 10 data packets</span>
+      <span class="key">pcnt</span>: <span class="integer">0</span>,
+      <span class="key">dataSources</span>: [<span class="string"><span class="delimiter">"</span><span class="content">locator</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">accelOne</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">velocity</span><span class="delimiter">"</span></span>]
+    };
+
+    my.sphero.setDataStreaming(opts);
+
+    <span class="comment">// SetBackLED turns on the tail LED of the sphero that helps</span>
+    <span class="comment">// identify the direction the sphero is heading.</span>
+    <span class="comment">// accepts a param with a value from 0 to 255, led brightness.</span>
+    my.sphero.setBackLed(<span class="integer">192</span>);
+    my.sphero.color(color);
   }
 }).start();
 </pre>

@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -314,21 +314,11 @@
             
             <pre class="CodeRay">    <span class="keyword">var</span> color = <span class="hex">0x00FF00</span>,
         bitFilter = <span class="hex">0xFFFF00</span>;
+
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
 </pre>
             
-            <p>When our Sphero emits the 'connect' event, we're going to hook up collision
-            detection, make sure it's not moving, and set a color.</p>
-            
-            <pre class="CodeRay">    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">connect</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
-      me.sphero.detectCollisions();
-      me.sphero.setRGB(color);
-      me.sphero.stop();
-    });
-</pre>
-            
-            <p>And when our Sphero detects a collision, we want to notify the user of this via
-            the console.</p>
+            <p>We add a listener on <code>collision</code>, since we want to be notified when our Sphero detects a collision.</p>
             
             <pre class="CodeRay">    me.sphero.on(<span class="string"><span class="delimiter">'</span><span class="content">collision</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision:</span><span class="delimiter">"</span></span>);
@@ -345,10 +335,16 @@
             a random direction, at speed 90.</p>
             
             <pre class="CodeRay">      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Color: </span><span class="delimiter">"</span></span> + (color.toString(<span class="integer">16</span>)) + <span class="string"><span class="delimiter">"</span><span class="content"> </span><span class="delimiter">"</span></span>);
-      me.sphero.setRGB(color);
+      me.sphero.color(color);
       me.sphero.roll(<span class="integer">90</span>, Math.floor(Math.random() * <span class="integer">360</span>));
     });
   }
+</pre>
+            
+            <p>Once the <code>collision</code> listener is been added, we change the color and start detecting collisions.</p>
+            
+            <pre class="CodeRay">  me.sphero.color(color);
+  me.sphero.detectCollisions();
 </pre>
             
             <p>And with all that said and done, we can now start the robot.</p>

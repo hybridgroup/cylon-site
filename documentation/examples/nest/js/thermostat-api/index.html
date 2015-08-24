@@ -5,16 +5,15 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="description">
+    <meta content="A Cylon.JS code example" name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Spark with Cylon.js</title>
+    <title>Cylon.JS Example - thermostat-api</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
     <script src="/javascripts/parallax_bottom.js"></script>
     <script src="/javascripts/vendor/angular.min.js"></script>
     <script src="/javascripts/app.js"></script>
-    <script src="/javascripts/subnav.js"></script>
     <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
     <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
   <script type="text/javascript">
@@ -58,10 +57,10 @@
         <nav class="menu">
           <ul class="nav-list">
             <li>
-              <a href="/documentation" class="item">Docs</a>
+              <a class="active" href="/documentation">Docs</a>
             </li>
             <li>
-              <a class="active" href="/documentation/platforms">Platforms</a>
+              <a href="/documentation/platforms" class="item">Platforms</a>
             </li>
             <li>
               <a href="/resources" class="item">Resources</a>
@@ -127,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -135,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -274,207 +273,91 @@
             </nav>
           </div>
           <div class="container-documentation">
-            <div class="page-title-docs">
-              <div class="container">
-                <h1 class="title">Spark</h1>
-              </div>
+            
+            <div class="example">
+              <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
+
+<span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">nest</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest</span><span class="delimiter">"</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">"</span><span class="content">ACCESS_TOKEN</span><span class="delimiter">"</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">thermostat</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">nest-thermostat</span><span class="delimiter">"</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">"</span><span class="content">DEVICE_ID</span><span class="delimiter">"</span></span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.thermostat.on(<span class="string"><span class="delimiter">"</span><span class="content">status</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">========================Thermostat=======================</span><span class="delimiter">"</span></span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">id:</span><span class="delimiter">"</span></span>,
+        my.thermostat.deviceId);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">locale:</span><span class="delimiter">"</span></span>,
+        my.thermostat.locale());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">software version:</span><span class="delimiter">"</span></span>,
+        my.thermostat.softwareVersion());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">structure id:</span><span class="delimiter">"</span></span>,
+        my.thermostat.structureId());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">name:</span><span class="delimiter">"</span></span>,
+        my.thermostat.deviceName());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">name long:</span><span class="delimiter">"</span></span>,
+        my.thermostat.nameLong());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">last connection:</span><span class="delimiter">"</span></span>,
+        my.thermostat.lastConnection());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">is online?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.isOnline());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">can cool?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.canCool());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">can heat?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.canHeat());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">is using emergency heat ?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.isUsingEmergencyHeat());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">has fan ?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.hasFan());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">fan timer active ?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.fanTimerActive());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">fan timer timeout:</span><span class="delimiter">"</span></span>,
+        my.thermostat.fanTimerTimeout());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">has leaf ?:</span><span class="delimiter">"</span></span>,
+        my.thermostat.hasLeaf());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">temperature scale:</span><span class="delimiter">"</span></span>,
+        my.thermostat.temperatureScale());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature high Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureHighF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature high Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureHighC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature low Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureLowF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">target temperature low Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.targetTemperatureLowC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">away temperature high Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.awayTemperatureHighF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">away temperature high Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.awayTemperatureHighC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">away temperature low Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.awayTemperatureLowF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">away temperature low Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.awayTemperatureLowC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">hvac mode:</span><span class="delimiter">"</span></span>,
+        my.thermostat.hvacMode());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">ambient temperature in Fahrenheit:</span><span class="delimiter">"</span></span>,
+        my.thermostat.ambientTemperatureF());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">ambient temperature in Celsius:</span><span class="delimiter">"</span></span>,
+        my.thermostat.ambientTemperatureC());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">humidity:</span><span class="delimiter">"</span></span>,
+        my.thermostat.humidity());
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">hvac state:</span><span class="delimiter">"</span></span>,
+        my.thermostat.hvacState());
+    });
+  }
+}).start();
+</pre>
             </div>
-            <section class="subnav-drivers" id="mainsubnav">
-              <div class="container">
-                <h5>Spark</h5>
-                <nav class="documentation-nav">
-                  <a href="#how-to-install">How To Install</a>
-                  <a href="#how-to-use">How To Use</a>
-                  <a href="#how-to-connect">How To Connect</a>
-                  <a href="#Drivers">Drivers</a>
-                  <a href="#top">Top</a>
-                </nav>
-              </div>
-            </section>
-            <br>
-            <section class="intro">
-              <img class="display" src="/images/devices/spark.jpg">
-              <div class="info-intro">
-                <h4 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-spark" target="_blank" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-spark/issues" target="_blank">Issues</a>
-</h4>
-                <p>The Spark Core contains a Wi-Fi connected microcontroller.
-                Once it connects to a Wi-Fi network, it automatically connects with a central server (the "Spark Cloud") and stays connected so it can be controlled from external systems, such as a Cylon.js program.</p>
-                
-                <p>For more info about the Spark platform, click <a href="https://www.spark.io/">here</a>.</p>
-              </div>
-              <div class="clear"></div>
-            </section>
-            <section class="how-to">
-              <h2 id="how-to-install">How to Install</h2>
-              
-              <p>Install the module with:</p>
-              
-              <pre class="CodeRay">$ npm install cylon cylon-spark
-</pre>
-              
-              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to yourSpark, and you can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
-              
-              <ul>
-                <li>
-<strong>access_token:</strong> In the Build tool, click on the Settings cog in the
-              bottom-left corner to find your access token.</li>
-                <li>
-<strong>device_id:</strong> After you have your Spark Core registered to your account
-              through the Tinker app, click on the Cores section (just above the Settings
-              cog) on the Build tool. Then, click on the arrow next to your core's name to
-              get its device ID.</li>
-              </ul>
-              
-              <h3 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h3>
-              
-              <p>You will need to install the appropriate firmware on your Spark Core to use it from Cylon.js.</p>
-              
-              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the Gort CLI (http://gort.io). This routes all of your calls thru the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
-              
-              <p>Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device. This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
-              
-              <p>For more information on how to program your Spark, please see <a href="http://docs.spark.io/#/examples">Spark's examples</a>.</p>
-              
-              <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
-              
-              <h2 id="how-to-use">How to Use</h2>
-              
-              <h3 id="spark-using-tinker-api">Spark using Tinker API:</h3>
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-<span class="comment">// Initialize the robot</span>
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">spark</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">spark</span><span class="delimiter">'</span></span>, <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>, <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span>}
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
-  }
-}).start();
-</pre>
-              
-              <h3 id="spark-using-voodoospark-api">Spark using VoodooSpark API:</h3>
-              
-              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
-
-<span class="comment">// Initialize the robot</span>
-Cylon.robot({
-  <span class="key">connections</span>: {
-    <span class="key">voodoospark</span>: {
-      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">voodoospark</span><span class="delimiter">'</span></span>,
-      <span class="key">accessToken</span>: <span class="string"><span class="delimiter">'</span><span class="content">XYZPDQ123</span><span class="delimiter">'</span></span>,
-      <span class="key">deviceId</span>: <span class="string"><span class="delimiter">'</span><span class="content">123ABC456</span><span class="delimiter">'</span></span>,
-      <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-spark</span><span class="delimiter">'</span></span>
-    }
-  },
-
-  <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">led</span><span class="delimiter">'</span></span>, <span class="key">pin</span>: <span class="string"><span class="delimiter">'</span><span class="content">D0</span><span class="delimiter">'</span></span> }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {my.led.toggle()});
-  }
-}).start();
-</pre>
-              
-              <h2 id="how-to-connect">How to Connect</h2>
-              
-              <p>The setup process for the Spark core is fully explained by <a href="http://docs.spark.io/connect/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
-              
-              <p>Once your Spark is connected, you can get the <code>accessToken</code> and <code>deviceId</code> necessary to communicate with it from Cylon.</p>
-            </section>
-            <section class="drivers" id="Drivers">
-              <h2 id="drivers">Drivers</h2>
-              
-              <p>Available drivers for the Spark platform are listed below:</p>
-              <div class="hardware">
-                <div class="devices">
-                  <div class="clear"></div>
-                  <h2>GPIO Drivers</h2>
-                  <section>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/analog-sensor" title="Analog Sensor">
-                        <p class="title">Analog Sensor</p>
-                        <img src="/images/devices/analog-sensor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/button" title="Button">
-                        <p class="title">Button</p>
-                        <img src="/images/devices/button.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/continuous-servo" title="Continuous Servo">
-                        <p class="title">Continuous Servo</p>
-                        <img src="/images/devices/continuous-servo.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/direct-pin" title="Direct Pin">
-                        <p class="title">Direct Pin</p>
-                        <img src="/images/devices/direct-pin.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/ir-range-finder" title="IR Range Finder">
-                        <p class="title">IR Range Finder</p>
-                        <img src="/images/devices/ir-range-finder.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/led" title="LED">
-                        <p class="title">LED</p>
-                        <img src="/images/devices/led.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/makey-button" title="Makey Button">
-                        <p class="title">Makey Button</p>
-                        <img src="/images/devices/makey-button.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/maxbotix" title="Maxbotix">
-                        <p class="title">Maxbotix</p>
-                        <img src="/images/devices/maxbotix.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/motor" title="Motor">
-                        <p class="title">Motor</p>
-                        <img src="/images/devices/motor.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/relay" title="Relay">
-                        <p class="title">Relay</p>
-                        <img src="/images/devices/relay.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/rgb-led" title="RGB LED">
-                        <p class="title">RGB LED</p>
-                        <img src="/images/devices/rgb-led.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                    <div class="compatability-link">
-                      <a href="/documentation/drivers/servo" title="Servo">
-                        <p class="title">Servo</p>
-                        <img src="/images/devices/servo.jpg" style="width: 100%">
-                      </a>
-                    </div>
-                  </section>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </div>

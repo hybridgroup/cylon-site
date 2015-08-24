@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -294,6 +294,7 @@ Cylon.robot({
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">THE CAMERA IS READY!</span><span class="delimiter">"</span></span>);
 
       my.camera.on(<span class="string"><span class="delimiter">"</span><span class="content">frameReady</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im) {
+        <span class="keyword">if</span> (err) { console.log(err); }
         my.window.show(im, <span class="integer">5000</span>);
       });
 

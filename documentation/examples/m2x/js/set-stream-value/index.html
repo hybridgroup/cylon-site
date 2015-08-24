@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -295,8 +295,8 @@ Cylon.robot({
       my.m2x.setStreamValue(
         <span class="string"><span class="delimiter">"</span><span class="content">&lt;deviceId&gt;</span><span class="delimiter">"</span></span>, <span class="string"><span class="delimiter">"</span><span class="content">&lt;streamName&gt;</span><span class="delimiter">"</span></span>,
         { <span class="key">value</span>: <span class="integer">25</span> },
-        <span class="keyword">function</span>(err, locations) {
-          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, err);
+        <span class="keyword">function</span>(error, locations) {
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">Err: </span><span class="delimiter">"</span></span>, error);
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">locations: </span><span class="delimiter">"</span></span>, locations);
         }
       );

@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -279,7 +279,9 @@
 
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
-<span class="keyword">var</span> haarcascade = __dirname + <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>;
+<span class="keyword">var</span> path = require(<span class="string"><span class="delimiter">"</span><span class="content">path</span><span class="delimiter">"</span></span>);
+
+<span class="keyword">var</span> haarcascade = path.join(__dirname, <span class="string"><span class="delimiter">"</span><span class="content">/haarcascade_frontalface_alt.xml</span><span class="delimiter">"</span></span>);
 
 Cylon.robot({
   <span class="key">connections</span>: {
@@ -299,12 +301,15 @@ Cylon.robot({
 
     my.drone.getPngStream().on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(png) {
       my.opencv.readImage(png, <span class="keyword">function</span>(err, img) {
+        <span class="keyword">if</span> (err) { console.error(err); }
         self.image = img;
         <span class="keyword">if</span> (self.detect === <span class="predefined-constant">false</span>) { my.window.show(img); }
       });
     });
 
     my.opencv.on(<span class="string"><span class="delimiter">"</span><span class="content">facesDetected</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(err, im, faces) {
+      <span class="keyword">if</span> (err) { console.error(err); }
+
       <span class="keyword">var</span> biggest = <span class="integer">0</span>,
           face = <span class="predefined-constant">null</span>;
 

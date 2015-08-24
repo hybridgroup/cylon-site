@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -295,15 +295,15 @@ Cylon.robot({
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     <span class="keyword">var</span> com = {
-      <span class="key"><span class="delimiter">"</span><span class="content">cid</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">raspi-01-temperature.v1.0-01</span><span class="delimiter">"</span></span>,
-      <span class="key"><span class="delimiter">"</span><span class="content">name</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>,
-      <span class="key"><span class="delimiter">"</span><span class="content">type</span><span class="delimiter">"</span></span>: <span class="string"><span class="delimiter">"</span><span class="content">temperature.v1.0</span><span class="delimiter">"</span></span>
+      <span class="key">cid</span>: <span class="string"><span class="delimiter">"</span><span class="content">raspi-01-temperature.v1.0-01</span><span class="delimiter">"</span></span>,
+      <span class="key">name</span>: <span class="string"><span class="delimiter">"</span><span class="content">temp</span><span class="delimiter">"</span></span>,
+      <span class="key">type</span>: <span class="string"><span class="delimiter">"</span><span class="content">temperature.v1.0</span><span class="delimiter">"</span></span>
     };
 
     <span class="keyword">var</span> deviceToken = <span class="string"><span class="delimiter">"</span><span class="content">eyJ0eXAiOiJKV1QiLCJhbGciOiJ-b7A....</span><span class="delimiter">"</span></span>,
         aId = <span class="string"><span class="delimiter">"</span><span class="content">f5dbea6a-7115-4f77-9919-63c23ec83d9b</span><span class="delimiter">"</span></span>;
 
-    <span class="keyword">var</span> <span class="function">callback</span> =  <span class="keyword">function</span>(err, res) {
+    <span class="keyword">var</span> <span class="function">callback</span> = <span class="keyword">function</span>(err, res) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">error:</span><span class="delimiter">"</span></span>, err);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Component:</span><span class="delimiter">"</span></span>, res);
     };

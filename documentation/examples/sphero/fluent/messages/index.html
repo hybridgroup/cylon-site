@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -284,11 +284,7 @@ Cylon
   .connection(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/rfcomm0</span><span class="delimiter">"</span></span> })
   .device(<span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span>, { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">sphero</span><span class="delimiter">"</span></span> })
   .on(<span class="string"><span class="delimiter">"</span><span class="content">ready</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(bot) {
-    setTimeout(<span class="keyword">function</span>() {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
-      bot.sphero.detectCollisions();
-      bot.sphero.setRGB(<span class="hex">0x00FF00</span>);
-    }, <span class="integer">1000</span>);
+    console.log(<span class="string"><span class="delimiter">"</span><span class="content">Setting up Collision Detection...</span><span class="delimiter">"</span></span>);
 
     bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">update</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Update event eventName: </span><span class="delimiter">"</span></span> + data + <span class="string"><span class="delimiter">"</span><span class="content"> </span><span class="delimiter">"</span></span>);
@@ -296,23 +292,32 @@ Cylon
       console.log(data);
     });
 
-    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      bot.sphero.setRGB(<span class="hex">0x0000FF</span>);
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Message:</span><span class="delimiter">"</span></span>);
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">data</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      bot.sphero.color(<span class="hex">0x00FFFF</span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Data event args: </span><span class="delimiter">"</span></span>);
+      console.log(data);
+    });
+
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">response</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      bot.sphero.color(<span class="hex">0x0000FF</span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Response:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
     bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">collision</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      bot.sphero.setRGB(<span class="hex">0xFF0000</span>);
+      bot.sphero.color(<span class="hex">0xFFDD00</span>);
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">Collision:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
 
-    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">notification</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
-      bot.sphero.setRGB(<span class="hex">0xFF0000</span>);
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Notification:</span><span class="delimiter">"</span></span>);
+    bot.sphero.on(<span class="string"><span class="delimiter">"</span><span class="content">async</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+      bot.sphero.color(<span class="hex">0xFF0000</span>);
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Async:</span><span class="delimiter">"</span></span>);
       console.log(data);
     });
+
+    bot.sphero.detectCollisions();
+    bot.sphero.color(<span class="hex">0x00FF00</span>);
   });
 
 Cylon.start();

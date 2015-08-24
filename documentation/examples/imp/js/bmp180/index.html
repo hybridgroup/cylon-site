@@ -126,6 +126,7 @@
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
                   <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
                   <a href="/documentation/platforms/hue">Phillips Hue</a>
                   <a href="/documentation/platforms/pinoccio">Pinoccio</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
-                  <a href="/documentation/platforms/spark">Spark</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
@@ -288,12 +288,12 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">bmp180</span>: { <span class="key">driver</span>:<span class="string"><span class="delimiter">"</span><span class="content">bmp180</span><span class="delimiter">"</span></span> }
+    <span class="key">bmp180</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">bmp180</span><span class="delimiter">"</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
     my.bmp180.getTemperature(<span class="keyword">function</span>(err, val) {
-      <span class="keyword">if</span>(err) {
+      <span class="keyword">if</span> (err) {
         console.log(err);
       } <span class="keyword">else</span> {
         console.log(<span class="string"><span class="delimiter">"</span><span class="content">getTemperature call:</span><span class="delimiter">"</span></span>);
@@ -304,7 +304,7 @@ Cylon.robot({
     after((<span class="integer">1</span>).seconds(), <span class="keyword">function</span>() {
       console.log(<span class="string"><span class="delimiter">"</span><span class="content">reading pressure ---&gt;</span><span class="delimiter">"</span></span>);
       my.bmp180.getPressure(<span class="integer">1</span>, <span class="keyword">function</span>(err, val) {
-        <span class="keyword">if</span>(err) {
+        <span class="keyword">if</span> (err) {
           console.log(err);
         } <span class="keyword">else</span> {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">getPressure call:</span><span class="delimiter">"</span></span>);
@@ -316,7 +316,7 @@ Cylon.robot({
 
     after((<span class="integer">2</span>).seconds(), <span class="keyword">function</span>() {
       my.bmp180.getAltitude(<span class="integer">1</span>, <span class="predefined-constant">null</span>, <span class="keyword">function</span>(err, val) {
-        <span class="keyword">if</span>(err) {
+        <span class="keyword">if</span> (err) {
           console.log(err);
         } <span class="keyword">else</span> {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">getAltitude call:</span><span class="delimiter">"</span></span>);
@@ -329,7 +329,7 @@ Cylon.robot({
 
     every(<span class="integer">2000</span>, <span class="keyword">function</span>() {
       my.bmp180.getAltitude(<span class="integer">1</span>, <span class="predefined-constant">null</span>, <span class="keyword">function</span>(err, val) {
-        <span class="keyword">if</span>(err) {
+        <span class="keyword">if</span> (err) {
           console.log(err);
         } <span class="keyword">else</span> {
           console.log(<span class="string"><span class="delimiter">"</span><span class="content">getAltitude call:</span><span class="delimiter">"</span></span>);
