@@ -1,0 +1,75 @@
+---
+title: Cylon.js - UPM rfr359f
+author: The Hybrid Group
+page_title: UPM Module - rfr359f
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: UPM rfr359f
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+---
+%section.intro
+  =image_tag "/images/devices/direct-pin.jpg", class: "display"
+  .info-intro
+    :markdown
+      Info here...
+
+      For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        ...
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    Example here.
+
+        :::javascript
+        ...
+
+%section.public-methods
+  .commands-api#Commands
+    :markdown
+      # Commands
+
+      ## thing.command1()
+
+      Docs.
+
+      ## thing.command1()
+
+      Docs.
+
+      ## thing.command1()
+
+      Docs.
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      ## 'data'
+
+      Emitted when data is available...
+
+      ## 'error'
+
+      Emitted upon error.
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Edison and the module.
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "UPM - rfr359f" }
