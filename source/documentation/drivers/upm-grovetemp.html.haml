@@ -12,10 +12,10 @@ subnavjs: true
 subnav_driver: true
 ---
 %section.intro
-  =image_tag "/images/devices/direct-pin.jpg", class: "display"
+  =image_tag "/images/devices/upm-grovetemp.jpg", class: "display"
   .info-intro
     :markdown
-      Info here...
+      The UPM Grove Temperature Sensor can be used to measure the temperature of the ambient environment. 
 
       For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
   .clear
@@ -25,46 +25,63 @@ subnav_driver: true
     ## How To Connect
 
         :::javascript
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            sensor: {
+              driver: "upm-grovetemp",
+              pin: 0
+            }
+          },        
         ...
 
 %section#HowToUse
   :markdown
     ## How To Use
 
-    Example here.
+    Example using the UPM Grove Temperature driver:
 
         :::javascript
-        ...
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            sensor: {
+              driver: "upm-grovetemp",
+              pin: 0
+            }
+          },
+
+          work: function(my) {
+            every((5).seconds(), function() {
+              var value = my.sensor.value();
+              console.log(value);
+            });
+          }
+
+        }).start();
+        
 
 %section.public-methods
   .commands-api#Commands
     :markdown
       # Commands
 
-      ## thing.command1()
+      ## temperature.value()
 
-      Docs.
-
-      ## thing.command1()
-
-      Docs.
-
-      ## thing.command1()
-
-      Docs.
+      Returns the current temperature value reading from the Grove Temperature sensor.
 
   .commands-api#Events
     :markdown
       # Events
-
-      ## 'data'
-
-      Emitted when data is available...
-
-      ## 'error'
-
-      Emitted upon error.
-
+      
       ## 'ready'
 
       Emitted upon first successful communication between the Edison and the module.
