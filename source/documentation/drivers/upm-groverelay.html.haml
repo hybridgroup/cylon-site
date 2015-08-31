@@ -36,6 +36,7 @@ subnav_driver: true
             pin: 4
           }
         },
+        ...
 
 %section#HowToUse
   :markdown
@@ -93,6 +94,14 @@ subnav_driver: true
       ## relay.turnOff()
 
       Returns the state of the relay, if it is currently off.
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Edison and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

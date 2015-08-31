@@ -12,10 +12,10 @@ subnavjs: true
 subnav_driver: true
 ---
 %section.intro
-  =image_tag "/images/devices/direct-pin.jpg", class: "display"
+  =image_tag "/images/devices/upm-grovespeaker.jpg", class: "display"
   .info-intro
     :markdown
-      Info here...
+      The UPM Grove Speaker can be used to play simple tones to serve as an audio indicator that something has happened.
 
       For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
   .clear
@@ -25,45 +25,66 @@ subnav_driver: true
     ## How To Connect
 
         :::javascript
+        Cylon.robot({
+        connections: {
+          edison: { adaptor: "intel-iot" }
+        },
+
+        devices: {
+          speaker: {
+            driver: "upm-grovespeaker",
+            pin: 4
+          }
+        },
         ...
 
 %section#HowToUse
   :markdown
     ## How To Use
 
-    Example here.
+    Example using the UPM Grove Speaker driver:
 
         :::javascript
-        ...
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            speaker: {
+              driver: "upm-grovespeaker",
+              pin: 4
+            }
+          },
+
+          work: function(my) {
+            my.speaker.playSound("a", true, "low");
+            my.speaker.playSound("c", true, "low");
+            my.speaker.playSound("d", true, "low");
+            my.speaker.playSound("b", false, "low");
+          }
+
+        }).start();
+
 
 %section.public-methods
   .commands-api#Commands
     :markdown
       # Commands
 
-      ## thing.command1()
+      ## speaker.playSound(char letter, bool sharp, string vocalWeight)
 
-      Docs.
+      Play back a sound using the speaker. For example: `speaker.playSound("c", true, "med");` will play back a C-sharp note in the medium register.
 
-      ## thing.command1()
+      ## speaker.playAll()
 
-      Docs.
-
-      ## thing.command1()
-
-      Docs.
+      Play all 7 of the lowest notes.
 
   .commands-api#Events
     :markdown
       # Events
-
-      ## 'data'
-
-      Emitted when data is available...
-
-      ## 'error'
-
-      Emitted upon error.
 
       ## 'ready'
 

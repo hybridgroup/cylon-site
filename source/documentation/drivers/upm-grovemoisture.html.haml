@@ -35,7 +35,8 @@ subnav_driver: true
             driver: "upm-grovemoisture",
             pin: 0
           }
-        }
+        },
+        ...
 
 %section#HowToUse
   :markdown
@@ -75,6 +76,14 @@ subnav_driver: true
       ## grovemoisture.value()
 
       Returns the current moisture value reading from the Grove Moisture sensor.
+
+  .commands-api#Events
+    :markdown
+      # Events
+
+      ## 'ready'
+
+      Emitted upon first successful communication between the Edison and the module.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
