@@ -26,16 +26,16 @@ subnav_driver: true
 
         :::javascript
         Cylon.robot({
-        connections: {
-          edison: { adaptor: "intel-iot" }
-        },
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
 
-        devices: {
-          sensor: {
-            driver: "upm-grovemoisture",
-            pin: 0
-          }
-        },
+          devices: {
+            sensor: {
+              driver: "upm-grovemoisture",
+              pin: 0
+            }
+          },
         ...
 
 %section#HowToUse

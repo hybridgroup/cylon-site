@@ -26,16 +26,16 @@ subnav_driver: true
 
         :::javascript
         Cylon.robot({
-        connections: {
-          edison: { adaptor: "intel-iot" }
-        },
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
 
-        devices: {
-          relay: {
-            driver: "upm-groverelay",
-            pin: 4
-          }
-        },
+          devices: {
+            relay: {
+              driver: "upm-groverelay",
+              pin: 4
+            }
+          },
         ...
 
 %section#HowToUse
