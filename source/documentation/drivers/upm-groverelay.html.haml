@@ -12,10 +12,10 @@ subnavjs: true
 subnav_driver: true
 ---
 %section.intro
-  =image_tag "/images/devices/relay.jpg", class: "display"
+  =image_tag "/images/devices/upm-groverelay.jpg", class: "display"
   .info-intro
     :markdown
-      Info here...
+      The UPM Grove Relay can be used to turn on or off an external applicance that uses a separate DC or AC power supply. For example, lights or fans.
 
       For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
   .clear
@@ -25,49 +25,74 @@ subnav_driver: true
     ## How To Connect
 
         :::javascript
-        ...
+        Cylon.robot({
+        connections: {
+          edison: { adaptor: "intel-iot" }
+        },
+
+        devices: {
+          relay: {
+            driver: "upm-groverelay",
+            pin: 4
+          }
+        },
 
 %section#HowToUse
   :markdown
     ## How To Use
 
-    Example here.
+    Example using the UPM Grove Relay driver:
 
         :::javascript
-        ...
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            relay: {
+              driver: "upm-groverelay",
+              pin: 4
+            }
+          },
+
+          work: function(my) {
+            every((10).seconds(), function(){
+              if (my.relay.isOff()) {
+                my.relay.turnOn();
+                console.log("on");
+              } else {
+                my.relay.turnOff();
+                console.log("off");
+              }
+            });
+          }
+
+        }).start();
+
 
 %section.public-methods
   .commands-api#Commands
     :markdown
       # Commands
 
-      ## thing.command1()
+      ## relay.turnOn()
 
-      Docs.
+      Turns on the voltage controlled by the relay.
 
-      ## thing.command1()
+      ## relay.turnOff()
 
-      Docs.
+      Turns off the voltage controlled by the relay.
 
-      ## thing.command1()
+      ## relay.isOn()
 
-      Docs.
+      Returns the state of the relay, if it is currently on.
 
-  .commands-api#Events
-    :markdown
-      # Events
+      ## relay.turnOff()
 
-      ## 'data'
-
-      Emitted when data is available...
-
-      ## 'error'
-
-      Emitted upon error.
-
-      ## 'ready'
-
-      Emitted upon first successful communication between the Edison and the module.
+      Returns the state of the relay, if it is currently off.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility

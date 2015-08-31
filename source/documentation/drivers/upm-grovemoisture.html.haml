@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - UPM Grove Moisture Sensor
+title: Cylon.js - UPM Grove Moisture
 author: The Hybrid Group
-page_title: UPM Module - Grove Moisture Sensor
+page_title: UPM Module - Grove Moisture
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: UPM Grove Moisture Sensor
+page_title_docs: UPM Grove Moisture
 page_subtitle_docs: Module
 layout: documentation
 page_title_show: true
@@ -15,7 +15,7 @@ subnav_driver: true
   =image_tag "/images/devices/direct-pin.jpg", class: "display"
   .info-intro
     :markdown
-      Info here...
+      The UPM Grove Moisture Sensor can be used to measure the moisture of soil, or determine if there is water around the sensor, such as detecting a leak. 
 
       For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
   .clear
@@ -25,51 +25,58 @@ subnav_driver: true
     ## How To Connect
 
         :::javascript
-        ...
+        Cylon.robot({
+        connections: {
+          edison: { adaptor: "intel-iot" }
+        },
+
+        devices: {
+          sensor: {
+            driver: "upm-grovemoisture",
+            pin: 0
+          }
+        }
 
 %section#HowToUse
   :markdown
     ## How To Use
 
-    Example here.
+    Example using the UPM Grove Moisture driver:
 
         :::javascript
-        ...
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            sensor: {
+              driver: "upm-grovemoisture",
+              pin: 0
+            }
+          },
+
+          work: function(my) {
+            every((30).seconds(), function(){
+              var value = my.sensor.value();
+              console.log(value);
+            });
+          }
+
+        }).start();
 
 %section.public-methods
   .commands-api#Commands
     :markdown
       # Commands
 
-      ## thing.command1()
+      ## grovemoisture.value()
 
-      Docs.
-
-      ## thing.command1()
-
-      Docs.
-
-      ## thing.command1()
-
-      Docs.
-
-  .commands-api#Events
-    :markdown
-      # Events
-
-      ## 'data'
-
-      Emitted when data is available...
-
-      ## 'error'
-
-      Emitted upon error.
-
-      ## 'ready'
-
-      Emitted upon first successful communication between the Edison and the module.
+      Returns the current moisture value reading from the Grove Moisture sensor.
 
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "UPM - Grove Moisture Sensor" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "UPM - Grove Moisture" }
