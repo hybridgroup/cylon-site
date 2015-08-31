@@ -1,0 +1,115 @@
+---
+title: Cylon.js - UPM Grove Water Flow
+author: The Hybrid Group
+page_title: UPM Module - Grove Water Flow
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: UPM Grove Water Flow
+page_subtitle_docs: Module
+layout: documentation
+page_title_show: true
+active_menu_docs: true
+subnavjs: true
+subnav_driver: true
+---
+%section.intro
+  =image_tag "/images/devices/upm-grovewfs.jpg", class: "display"
+  .info-intro
+    :markdown
+      The UPM Grove Water Flow Sensor can be used to measure the flow of water coming from a connected water pump. 
+
+      For more info visit [here](http://iotdk.intel.com/docs/master/upm/).
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            flow: {
+              driver: "upm-grovewfs",
+              pin: 2
+            }
+          },
+        ...
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    Example using the UPM Grove Water Flow Sensor driver:
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            edison: { adaptor: "intel-iot" }
+          },
+
+          devices: {
+            flow: {
+              driver: "upm-grovewfs",
+              pin: 2
+            }
+          },
+
+          work: function(my) {
+            my.flow.clearFlowCounter();
+            my.flow.startFlowCounter();
+
+            every((5).seconds(), function() {
+              var value = my.flow.flowRate();
+              console.log(value);
+            });
+          }
+
+        }).start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    :markdown
+      # Commands
+
+      ## clearFlowCounter()
+
+      Clears the internal counter used to calculate flow rate for the sensor.
+
+      ## startFlowCounter()
+
+      Starts the internal counter used to calculate flow rate for the sensor.
+
+      ## getMillis()
+
+      Returns the number of milliseconds since the internal clock has been set.
+
+      ## flowCounter()
+
+      Returns the current counter used to calculate flow rate.
+
+      ## flowRate()
+
+      Returns the current flow rate for the Grove Water Flow Sensor.
+
+      ## stopFlowCounter()
+
+      Stops the internal counter used to calculate flow rate for the sensor.
+
+  .commands-api#Events
+    :markdown
+      # Events
+      
+      ## 'ready'
+
+      Emitted upon first successful communication between the Edison and the module.
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "UPM - Grove Water Flow" }
