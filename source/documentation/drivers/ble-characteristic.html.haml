@@ -1,0 +1,74 @@
+---
+title: Cylon.js - BLE Characteristic
+author: The Hybrid Group
+page_title: Drivers
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: BLE Characteristic
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-ble' target='_blank' class='repository'>Repository</a> <a class='issues' href='https://github.com/hybridgroup/cylon-ble/issues' target='_blank'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/ble-characteristic.jpg", class: "display"
+  .info-intro
+    :markdown
+      This driver provides a simple read/write/notify interface to any BLE service/chacteristic pair.
+      It is intended to help prototype or explore BLE characteristics easily.
+
+  .clear
+
+%section.how_to#HowToConnect
+  :markdown
+    ## How To Connect
+
+    For information on how to connect to BLE devices, please see the [BLE platform page][ble].
+
+    [ble]: /documentation/platforms/ble
+
+%section.how-to#HowToUse
+  :markdown
+    ## How To Use
+
+    A simple example of reading data from a Bluetooth LE device, using the BLE characteristic driver:
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            bluetooth: {
+              adaptor: "central", uuid: "207377654321",
+              module: "cylon-ble"
+            }
+          },
+
+          devices: {
+            wiced: {
+              driver: "ble-characteristic",
+              serviceId: "180f", characteristicId: "2a19",
+              connection: "bluetooth"
+            }
+          },
+
+          work: function(my) {
+            my.wiced.readCharacteristic(function(err, data) {
+              if (err) { return console.error("Error: ", err); }
+              console.log("Data: ", data);
+            });
+          }
+        }).start();
+
+    This example connects and then reads the characteristic ID `2a19` for the service ID `180f`. This happens to be the "Battery" information, which is a well-known BLE service/characteristic.
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-ble/characteristic-commands"
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "BLE - Characteristic" }

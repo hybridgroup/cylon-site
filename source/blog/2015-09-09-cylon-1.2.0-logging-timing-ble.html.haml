@@ -1,0 +1,153 @@
+---
+page_title_show: true
+title: "Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!"
+page_title: Blog
+date: 2015-09-09
+tags: robots
+author: Ron Evans
+active_menu_blog: true
+---
+:markdown
+  We've been really busy working on our JavaScript robotics & IoT framework, and version 1.2.0 of Cylon.js is hot off the presses.
+
+  There are several important changes to Cylon.js's core. There are also some significant changes to the `cylon-ble` module that provides support for various Bluetooth LE devices.
+
+  And of course, a smattering of other changes to some of the other Cylon.js modules. Let's get into the details.
+
+  ### Cylon.js Core Changes
+
+  We have made a couple of important and useful changes to the Cylon.js core:
+
+  #### Simplified Logging
+
+  We've replaced the built-in logger with a much simpler one. It still has the important options, but removes everything else. The Cylon.js logger is also pluggable, so it is very easy to replace it with your own logging capabilities should you so choose.
+
+  #### Improved Time Helpers
+
+  We've added a couple more convenience functions for our expressive time syntax. You can now define increments of time in anything ranging from minutes to milliseconds.
+
+  Here are a few examples combined with the `every`, `after`, & `finish` functions:
+
+      :::javascript
+      after((500).milliseconds(), function() {
+        console.log("500 milliseconds elapsed");
+      });
+
+      every((30).seconds(), function() {
+        console.log("another 30 seconds");
+      });
+
+      var minutely = every((1).minute(), function() {
+        console.log("another 1 minute");
+      });
+
+      after((10).minutes(), function() {
+        finish(minutely);
+        console.log("10 minutes elapsed");
+      });
+
+  #### Dynamic Devices
+
+  You no longer need to define all of your devices upfront. Now you can dynamically add devices and start them after your Cylon.js robot is already running.
+
+  ### cylon-ble Enhanced Features
+
+  #### Compatible With Noble 1.1.x
+
+  We've updated `cylon-ble` to work with the latest version of `noble`. Thanks to the hard work of [@sandeepmistry](https://github.com/sandeepmistry) and other contributors to `noble`, cylon-ble can now run on Linux, OSX and Windows 8.1+ too!
+
+  #### Multiple Connections
+
+  The latest release of `cylon-ble` now fully supports connections to multiple BLE peripherals at the same time. This makes it really easy to write code that coordinates activity between multiple, different kinds of Bluetooth LE devices.
+
+  #### Direct BLE Characteristic Driver
+
+  A new driver has been added to the `cylon-ble` module called `characteristic`. This is a suitably ubiquitous name, for what is a very useful driver.
+
+  The `characteristic` driver provides a simple generic interface to a single BLE service/characteristic. It is to BLE development in Cylon.js what the [`direct-pin`](http://cylonjs.com/documentation/drivers/direct-pin/) driver is to GPIO development: a way to quickly connect to something, or to do exploratory development to figure out how a BLE device works.
+
+  Example usage:
+
+      :::javascript
+      var Cylon = require("cylon");
+
+      Cylon.robot({
+        connections: {
+          bluetooth: {
+            adaptor: "central", uuid: "207377654321",
+            module: "cylon-ble"
+          }
+        },
+
+        devices: {
+          wiced: {
+            driver: "ble-characteristic",
+            serviceId: "180f", characteristicId: "2a19",
+            connection: "bluetooth"
+          }
+        },
+
+        work: function(my) {
+          my.wiced.readCharacteristic(function(err, data) {
+            if (err) { return console.error("Error: ", err); }
+            console.log("Data: ", data);
+          });
+        }
+      }).start();
+
+
+  This example connects and then reads the characteristic ID `2a19` for the service ID `180f`. This happens to be the "Battery" information, which is a well-known BLE service/characteristic.
+
+  #### BLE Searching + Dynamic Peripherals
+
+  The new `cylon-ble` release also adds a new way to scan for BLE devices to connect to. You can combine this with the dynamic device feature. This makes it possible to search for devices at runtime, and then connect to whichever of them based on how you want your application to work.
+
+  Example usage:
+
+      :::javascript
+      var Cylon = require("cylon");
+
+      Cylon.robot({
+        connections: {
+          bluetooth: { adaptor: "central", module: "cylon-ble" }
+        },
+
+        connectBLE: function(peripheral) {
+          if (this.connected) { return; }
+
+          this.bluetooth.connectPeripheral(peripheral.uuid, peripheral, function() {
+            console.log(peripheral.advertisement.localName, peripheral.uuid);
+            this.connected = true;
+            this.device("blething",
+                        {connection: "bluetooth", driver: "ble-device-information"});
+            this.devices.blething.getManufacturerName(function(err, data) {
+              if (err) {
+                console.log("error: ", err);
+                return;
+              }
+              console.log("data: ", data);
+            });
+          }.bind(this));
+        },
+
+        work: function(my) {
+          this.connected = false;
+
+          my.bluetooth.on("discover", function(peripheral) {
+            my.connectBLE(peripheral);
+          });
+        }
+      }).start();
+
+  This example scans and then automatically connects to the first BLE peripheral it can find. Then it tries to obtain the manufacturer name via the `device-information` service.
+
+  As always, you can check out the [compare view][] on GitHub for more details.
+
+  ## Thanks Again
+
+  We can't overstate how thankful we are to our users and contributors.
+
+  For more updates, be sure to follow us on Twitter at [@CylonJS][].
+
+  [compare view]: https://github.com/hybridgroup/cylon/compare/v0.22.1...v1.0.0
+  [@CylonJS]: https://twitter.com/CylonJS
