@@ -1,0 +1,48 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - dynamic-connect"
+page_title: "Example: dynamic-connect"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-ble/tree/master/examples/dynamic-connect' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: "central", module: __dirname + "/cylon/" }
+          },
+
+          connectBLE: function(peripheral) {
+            if (this.connected) { return; }
+
+            this.bluetooth.connectPeripheral(peripheral.uuid, peripheral, function() {
+              console.log(peripheral.advertisement.localName, peripheral.uuid);
+              this.connected = true;
+              this.device("blething",
+                          {connection: "bluetooth", driver: "ble-device-information"});
+              this.devices.blething.getManufacturerName(function(err, data) {
+                if (err) {
+                  console.log("error: ", err);
+                  return;
+                }
+                console.log("data: ", data);
+              });
+            }.bind(this));
+          },
+
+          work: function(my) {
+            this.connected = false;
+
+            my.bluetooth.on("discover", function(peripheral) {
+              my.connectBLE(peripheral);
+            });
+          }
+        }).start();

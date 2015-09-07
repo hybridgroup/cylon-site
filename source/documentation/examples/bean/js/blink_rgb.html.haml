@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - blink_rgb"
+page_title: "Example: blink_rgb"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-bean/tree/master/examples/blink_rgb' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            bean: { adaptor: "bean" }
+          },
+
+          devices: {
+            bean: { driver: "bean" }
+          },
+
+          work: function(my) {
+            every((1).second(), function() {
+              var r = Math.floor(Math.random() * 255);
+              var g = Math.floor(Math.random() * 255);
+              var b = Math.floor(Math.random() * 255);
+              my.bean.setLed(r, g, b);
+            });
+          }
+        }).start();

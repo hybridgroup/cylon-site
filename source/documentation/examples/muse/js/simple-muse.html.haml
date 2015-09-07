@@ -1,0 +1,35 @@
+---
+layout: documentation
+page_title_show: true
+title: "Cylon.JS Example - simple-muse"
+page_title: "Example: simple-muse"
+author: The Hybrid Group
+description: A Cylon.JS code example
+page_subtitle: "<a href='https://github.com/hybridgroup/cylon-muse/tree/master/examples/simple-muse' target='_blank'>View In Repo</a>"
+active_menu_docs: true
+---
+.example
+  :markdown
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            muse: { adaptor: "muse", port: "/dev/rfcomm0" }
+          },
+
+          devices: {
+            headset: { driver: "muse" }
+          },
+
+          work: function(my) {
+            my.muse.read(function(packet) {
+              console.log("packet:", packet);
+            });
+            my.muse.write("v\n");
+          }
+        });
+
+        Cylon.start();
