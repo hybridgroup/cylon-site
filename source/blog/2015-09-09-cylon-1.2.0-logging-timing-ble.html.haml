@@ -46,9 +46,10 @@ active_menu_blog: true
         console.log("10 minutes elapsed");
       });
 
-  #### Dynamic Devices
+  #### Dynamic Connections And Devices
 
-  You no longer need to define all of your devices upfront. Now you can dynamically add devices and start them after your Cylon.js robot is already running.
+  You no longer need to define all of your connections and devices upfront. Now you can dynamically add connections and devices, and start them up, after your Cylon.js robot is already running.
+  Here is an example using a dynamic device:
 
       :::javascript
       var Cylon = require("cylon");
@@ -75,7 +76,7 @@ active_menu_blog: true
         }
       }).start();
 
-  This is an extremely simple example, but shows the idea. You could use external configuration files to determine which devices the user has installed, do device discovery to decide what to use, and so many more possibilities.
+  This is an extremely simple example, but shows the idea. You could use external configuration files to determine which devices the user has installed, do connection discovery to decide which to use, and so many more possibilities.
 
   ### cylon-ble Enhanced Features
 
