@@ -8,9 +8,9 @@ author: Ron Evans
 active_menu_blog: true
 ---
 :markdown
-  We've been really busy working on our JavaScript robotics & IoT framework, and version 1.2.0 of Cylon.js is hot off the presses.
+  We've been really busy working on our JavaScript robotics & IoT framework, and [version 1.2.0 of Cylon.js]() is hot off the presses.
 
-  There are several important changes to Cylon.js's core. There are also some significant changes to the `cylon-ble` module that provides support for various Bluetooth LE devices.
+  There are several important changes to the Cylon.js core. There are also some significant changes to the `cylon-ble` module that provides support for various Bluetooth LE devices.
 
   And of course, a smattering of other changes to some of the other Cylon.js modules. Let's get into the details.
 
@@ -49,6 +49,33 @@ active_menu_blog: true
   #### Dynamic Devices
 
   You no longer need to define all of your devices upfront. Now you can dynamically add devices and start them after your Cylon.js robot is already running.
+
+      :::javascript
+      var Cylon = require("cylon");
+
+      Cylon.robot({
+        connections: {
+          loopback: { adaptor: "loopback" }
+        },
+
+        connectPinger: function() {
+          this.device("pinger",
+                      {connection: "loopback", driver: "ping"});
+          this.startDevice(this.devices.pinger, function() {
+            console.log("Get ready to ping...");
+          });
+        },
+
+        work: function(my) {
+          my.connectPinger();
+
+          every((1).second(), function() {
+            console.log(my.pinger.ping());
+          });
+        }
+      }).start();
+
+  This is an extremely simple example, but shows the idea. You could use external configuration files to determine which devices the user has installed, do device discovery to decide what to use, and so many more possibilities.
 
   ### cylon-ble Enhanced Features
 
@@ -120,13 +147,15 @@ active_menu_blog: true
             this.connected = true;
             this.device("blething",
                         {connection: "bluetooth", driver: "ble-device-information"});
-            this.devices.blething.getManufacturerName(function(err, data) {
-              if (err) {
-                console.log("error: ", err);
-                return;
-              }
-              console.log("data: ", data);
-            });
+            this.startDevice(this.devices.blething, function() {
+              this.devices.blething.getManufacturerName(function(err, data) {
+                if (err) {
+                  console.log("error: ", err);
+                  return;
+                }
+                console.log("data: ", data);
+              });
+            }.bind(this));
           }.bind(this));
         },
 
@@ -141,13 +170,26 @@ active_menu_blog: true
 
   This example scans and then automatically connects to the first BLE peripheral it can find. Then it tries to obtain the manufacturer name via the `device-information` service.
 
-  As always, you can check out the [compare view][] on GitHub for more details.
+  ### A Few More Tidbits
 
-  ## Thanks Again
+  #### `cylon-joystick` Support For Dualshock 4
 
-  We can't overstate how thankful we are to our users and contributors.
+  We've added support for the the [Dualshock 4](https://www.playstation.com/en-us/explore/accessories/dualshock-4-wireless-controller/), which is the new joystick from the Playstation 4. This coincidentally brings the total number of different supported joysticks to 4.
+
+  #### `cylon-gpio` Bugfixes
+
+  A couple small but important fixes to the `continuous-servo` driver thanks to contributor [Eric Terpstra](https://github.com/ericterpstra).
+
+  #### `cylon-mqtt` Additional Options
+
+  We've added some additional options for configuration to the `cylon-mqtt` adaptor.
+  This allows support for additional authentication options for cloud-based MQTT providers such as [IBM Bluemix](https://console.ng.bluemix.net/catalog/internet-of-things/).
+
+  ### Thank You, Users and Contributors
+
+  As always, we want to thank our users and contributors for their fine efforts that have led to this release.
+  You could be the next human to join in!
 
   For more updates, be sure to follow us on Twitter at [@CylonJS][].
 
-  [compare view]: https://github.com/hybridgroup/cylon/compare/v0.22.1...v1.0.0
   [@CylonJS]: https://twitter.com/CylonJS
