@@ -1,10 +1,13 @@
 :markdown
   ## takeOff
 
-  Sets the internal fly state to true, callback is invoked
-  after the drone reports that it is hovering.
+  Tells Bebop to start flying by setting the internal 'fly' state to true.
 
-  callback - params
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to invoke once hovering
 
 
   ### Returns
@@ -15,10 +18,13 @@
 
   ## land
 
-  Sets the internal fly state to false, callback is invoked
-  after the drone reports it has landed.
+  Tells Bebop to land by setting the internal 'fly' state to false.
 
-  callback - params
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to invoke once landed
 
 
   ### Returns
@@ -29,8 +35,8 @@
 
   ## stop
 
-  Sets all drone movement commands to 0,
-  making it effectively hover in place.
+  Sets all drone movement commands to 0, making it effectively hover in
+  place.
 
 
   ### Returns
@@ -41,111 +47,138 @@
 
   ## up
 
-  Makes the drone gain altitude.
-  speed can be a value from 0 to 1.
+  Tells the drone to start gaining altitude
 
-  speed - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (<code>Number</code>) value from 0 to 1
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## down
 
-  Makes the drone reduce altitude.
-  speed can be a value from 0 to 1.
+  Tells the drone to start losing altitude
 
-  speed - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## left
 
-  Causes the drone to bank to the left, controls the roll, which is
-  a horizontal movement using the camera as a reference point.
-  speed can be a value from 0 to 1.
+  Tells the drone to bank left - controlling the roll using the camera as
+  a reference point.
 
-  speed - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (<code>Number</code>) value from 0 to 1
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## right
 
-  Causes the drone to bank to the right, controls the roll, which is
-  a horizontal movement using the camera as a reference point.
-  speed can be a value from 0 to 1.
+  Tells the drone to bank right - controlling the roll using the camera as
+  a reference point.
 
-  speed - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (<code>Number</code>) value from 0 to 1
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## forward
 
-  Causes the drone to bank forward, controls the pitch,
-  which a horizontal movement using the camera as a reference point.
-  speed can be a value from 0 to 1.
+  Tells the drone to bank forward - controlling the pitch using the camera as
+  a reference point.
 
-  speed - params
-  forward(speed) - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## backward
 
-  Causes the drone to bank to the back, controls the pitch,
-  which a horizontal movement using the camera as a reference point.
-  speed can be a value from 0 to 1.
+  Tells the drone to bank backwards - controlling the pitch using the camera
+  as a reference point.
 
-  speed - params
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (<code>Number</code>) value from 0 to 1
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## clockwise
 
-  Causes the drone to spin.
-  speed can be a value from 0 to 1.
+  Tells the drone to begin spinning clockwise
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (<code>Number</code>) value from 0 to 1
+  - (<code>Number</code>) set speed
 
   * * *
 
   ## counterClockwise
 
-  Causes the drone to spin.
-  speed can be a value from 0 to 1.
+  Tells the drone to begin spinning counterclockwise
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) value from 0 to 1
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>Number</code>) set speed

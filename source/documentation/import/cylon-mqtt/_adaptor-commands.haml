@@ -7,12 +7,18 @@
   ### Params
 
 
-  - **topic** (<code>String</code>) which topic to subscribe to
+  - **topic** (<code>String</code>,<code>Array</code>|<code>Object</code>) which topic(s) to subscribe to
+
+
+  - **options** (<code>Object</code>) options for the MQTT subscription
+
+
+  - **[callback]** (<code>Function</code>) triggered on suback with (err, granted)
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -30,6 +36,10 @@
   - **data** (<code>Object</code>,<code>String</code>) the data to publish to the topic
 
 
+  - **[opts]** (<code>Object</code>) - publish options, includes:    {Number} qos - qos level to publish on
+   {Boolean} retain - whether or not to retain the message
+
+
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)

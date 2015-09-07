@@ -6,7 +6,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -17,7 +17,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -29,6 +29,29 @@
   ### Returns
 
   - (<code>Object</code>) connected peripherals
+
+  * * *
+
+  ## connectPeripheral
+
+  Connects to a specific peripheral
+
+
+  ### Params
+
+
+  - **uuid** (<code>String</code>) of the BLE peripheral to connect to
+
+
+  - **peripheral** (<code>Object</code>) to connect to
+
+
+  - **callback** (<code>Function</code>) to be triggered when connected
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
@@ -48,12 +71,12 @@
   - **characteristicId** (<code>Number</code>) ID of characteristic to get details for
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to be invoked with value
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -76,12 +99,12 @@
   - **value** (<code>Number</code>) value to write to the characteristic
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to be invoked when data is written
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -104,12 +127,12 @@
   - **state** (<code>String</code>) notify state to write
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to be invoked when data is written
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -129,9 +152,9 @@
   - **characteristicId** (<code>Number</code>) ID of characteristic to look for
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to be invoked with requested characteristic
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)

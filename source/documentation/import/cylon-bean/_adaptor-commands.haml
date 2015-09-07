@@ -1,0 +1,227 @@
+:markdown
+  ## digitalRead
+
+  Reads a value from a digital pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## digitalWrite
+
+  Writes a value to a digital pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## analogRead
+
+  Reads a value from an analog pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **callback** (<code>Function</code>) triggered when the value has been read from the pin
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## analogWrite
+
+  Writes a value to an analog pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## pwmWrite
+
+  Writes a PWM value to a pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## servoWrite
+
+  Writes a servo value to a pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) the number of the pin to use
+
+
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## i2cWrite
+
+  Writes an I2C value to the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **buff** (<code>Array</code>) buffered data to write
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## i2cRead
+
+  Reads an I2C value from the board.
+
+
+  ### Params
+
+
+  - **address** (<code>Number</code>) I2C address to write to
+
+
+  - **cmd** (<code>Number</code>) I2C command to write
+
+
+  - **length** (<code>Number</code>) amount of data to read
+
+
+  - **callback** (<code>Function</code>) function to be invoked when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setLed
+
+  Sets the built-in LED to a specific color
+
+
+  ### Params
+
+
+  - **r** (<code>Number</code>) the red value to set
+
+
+  - **g** (<code>Number</code>) the green value to set
+
+
+  - **b** (<code>Number</code>) the blue value to set
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getAcceleration
+
+  Reads the built-in accelerometer once
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getTemperature
+
+  Reads the built-in thermometer once
+
+
+  ### Returns
+
+  - (<code>undefined</code>)

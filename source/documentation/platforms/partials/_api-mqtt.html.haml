@@ -35,7 +35,7 @@
         });
 
         // ensure you install the API plugin first:
-        // $ npm install cylon-api-socket-io
+        // $ npm install cylon-api-mqtt
         Cylon.api(
           'mqtt',
           {
@@ -81,12 +81,12 @@
         var payload = JSON.stringify(params);
 
         // get response messages from the robot-level command `toggle`
-        client.subscribe('/api/robots/cybot/toggle');
+        client.subscribe('/api/robots/cybot/commands/toggle');
 
         setInterval(function() {
           // call robot-level command `toggle`
           client.publish(
-            '/api/robots/cybot/toggle',
+            '/api/robots/cybot/commands/toggle',
             payload);
         }, 2000);
     You can also send commands or subscribe to events directly on any robot's devices. Take a look at the examples folder for more samples.

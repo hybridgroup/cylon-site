@@ -6,6 +6,48 @@
 
         $ npm install cylon cylon-audio
 
+
+    ### Special instructions for Intel Edison
+
+    You need to install the various dependencies before you can install cylon-audio on your Intel Edison. First, make sure you have updated to the very latest Edison firmware.
+
+    Then, add these lines to your `/etc/opkg/base-feeds.conf` file:
+
+    ```
+    src/gz all http://repo.opkg.net/edison/repo/all
+    src/gz edison http://repo.opkg.net/edison/repo/edison
+    src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
+    ```
+
+    And then run:
+
+    ```
+    opkg update
+    opkg install alsa-tools-dev
+    ```
+
+    Plug in your USB sound device, then run, then run this command to check that ALSA sees your device:
+
+    ```
+    aplay -Ll
+    ```
+
+    Create a ~/.asoundrc file (or an /etc/asound.conf file for all users):
+
+    ```
+    pcm.!default sysdefault:Device
+    ```
+
+    Change `Device` to match the name of the card returned by the `aplay -Ll` command.
+
+    To verify that the system is working, run this command:
+
+    ```
+    aplay /usr/share/sounds/alsa/Front_Center.wav
+    ```
+
+    If you hear audio, you should now be able to run `npm install cylon-audio`. Thanks to [http://alextgalileo.altervista.org/blog/lets-make-noise-play-audio-edison/](http://alextgalileo.altervista.org/blog/lets-make-noise-play-audio-edison/) for which partof these instructions were derived.
+
     ## How to Use
 
     Using the cylon-audio module is pretty easy, pretty much just install the npm module and you are good to go, use it as you would any other device passing along the audio you wish to reproduce. To play audio, pass a full or relative path to the `play` function.  See the example below for further details.

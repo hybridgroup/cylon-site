@@ -21,7 +21,7 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) pin number to read from
 
 
   - **callback** (<code>Function</code>) triggered when the value has been read from the pin
@@ -29,7 +29,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -41,15 +41,15 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) value to write to pin
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -61,7 +61,7 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) pin to read from
 
 
   - **callback** (<code>Function</code>) triggered when the value has been read from the pin
@@ -69,7 +69,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -81,15 +81,15 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) value to write to pin
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -101,15 +101,41 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pinNum** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) value to write to pin (0..1)
+
+
+  - **servo** (<a href="Bool.html">Bool</a>) whether values should be servo
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## analogWrite
+
+  Writes an analog value to a pin
+
+
+  ### Params
+
+
+  - **pinNum** (<code>Number</code>) pin to write to
+
+
+  - **value** (<code>Number</code>) value to write to pin (0..1)
+
+
+  - **servo** (<a href="Bool.html">Bool</a>) whether values should be servo
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
@@ -130,12 +156,12 @@
   - **buff** (<code>Array</code>) buffered data to write
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to invoke when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -156,9 +182,9 @@
   - **length** (<code>Number</code>) amount of data to read
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to invoke with data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)

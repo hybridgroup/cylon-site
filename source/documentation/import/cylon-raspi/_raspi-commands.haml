@@ -7,7 +7,7 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pinNum** (<code>Number</code>) pin to read from
 
 
   - **callback** (<code>Function</code>) triggered when the value has been read from the pin
@@ -15,7 +15,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -27,15 +27,18 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pinNum** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) value to write to the pin
+
+
+  - **callback** (<code>Function</code>) function to invoke when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -56,12 +59,12 @@
   - **buff** (<code>Array</code>) buffered data to write
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to call when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -82,32 +85,35 @@
   - **length** (<code>Number</code>) amount of data to read
 
 
-  - **callback** (<code>Function</code>)
+  - **callback** (<code>Function</code>) function to call with data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## pwmWrite
 
-  Writes a servo value to a pin
+  Writes a pwm value to a pin
 
 
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pinNum** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **angle** (<code>Number</code>) angle to write to the pin
+
+
+  - **callback** (<code>Number</code>) function to call when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -119,12 +125,15 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pinNum** (<code>Number</code>) pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **angle** (<code>Number</code>) angle to write to the pin
+
+
+  - **callback** (<code>Number</code>) function to call when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)

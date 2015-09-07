@@ -1,90 +1,4 @@
 :markdown
-  ## detectCollisions
-
-  Enables collision detection on the Sphero.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setRGB
-
-  Sets the color of Sphero's internal RGB LED
-
-
-  ### Params
-
-
-  - **color** (<code>Number</code>)
-
-
-  - **persist** (<code>Boolean</code>)
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setColor
-
-  Sets the color of Sphero's internal LEDs, with support for named colors (see
-  colors.js
-
-
-  ### Params
-
-
-  - **color** (<code>Number</code>,<code>String</code>)
-
-
-  - **persist** (<code>Boolean</code>)
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setRandomColor
-
-  Sets Sphero's LED to a random color
-
-
-  ### Params
-
-
-  - **persist** (<code>Boolean</code>)
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setBackLed
-
-  Sets the brightness of Sphero's tail LED
-
-
-  ### Params
-
-
-  - **brightness** (<code>Number</code>)
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
   ## setDataStreaming
 
   Enables Sphero data streaming
@@ -93,23 +7,12 @@
   ### Params
 
 
-  - **dataSources** (<code>Array</code>.&lt;<code>Number</code>&gt;)
+  - **opts** (<code>Object</code>) to be passed to sphero
 
 
-  - **opts** (<code>Object</code>)
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## stop
-
-  Stops Sphero in place
+  - **callback** (<code>Function</code>) to be triggered when done
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)

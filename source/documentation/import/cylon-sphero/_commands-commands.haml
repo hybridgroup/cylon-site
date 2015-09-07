@@ -1,525 +1,1889 @@
 :markdown
   ## abortMacro
 
-  Tells Sphero to abort the currently-running macro
+  The Abort Macro command aborts any executing macro, and returns both it's
+  ID code and the command number currently in progress.
+
+  An exception is a System Macro executing with the UNKILLABLE flag set.
+
+  A returned ID code of 0x00 indicates that no macro was running, an ID code
+  of 0xFFFF as the CmdNum indicates the macro was unkillable.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## abortOrbBasicProgram
 
-  Tells Sphero to abort the currently-running orbBasic program
+  The Abort orbBasic Program command aborts execution of any currently
+  running orbBasic program.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## appendMacroChunck
+  ## appendMacroChunk
 
-  Tells Sphero to append a new macro chunk
+  The Append Macro Chunk project stores the attached macro definition into
+  the temporary RAM buffer for later execution.
+
+  It's similar to the Save Temporary Macro command, but allows building up
+  longer temporary macros.
+
+  Any existing Macro ID can be sent through this command, and executed
+  through the Run Macro call using ID 0xFF.
+
+  If this command is sent while a Temporary or Stream Macro is executing it
+  will be terminated so that its storage space can be overwritten. As with
+  all macros, the longest chunk that can be sent is 254 bytes.
+
+  You must follow this with a Run Macro command (ID 0xFF) to actually get it
+  to go and it is best to prefix this command with an Abort call to make
+  certain the larger buffer is completely initialized.
+
+
+  ### Params
+
+
+  - **chunk** (<code>Array</code>) of bytes to append for macro execution
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## appendOrbBasicFragment
 
-  Tells Sphero to append a new orbBasic program fragment
+  The Append orbBasic Fragment command appends a patch of orbBasic code to
+  existing ones in the specified storage area (0x00 for RAM, 0x01 for
+  persistent).
+
+  Complete lines are not required. A line begins with a decimal line number
+  followed by a space and is terminated with a <LF>.
+
+  See the orbBasic Interpreter document for complete information.
+
+  Possible error responses would be ORBOTIX_RSP_CODE_EPARAM if an illegal
+  storage area is specified or ORBOTIX_RSP_CODE_EEXEC if the specified
+  storage area is full.
+
+
+  ### Params
+
+
+  - **area** (<code>Number</code>) which area to append the fragment to
+
+
+  - **code** (<code>String</code>) orbBasic code to append
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## configureCollisionDetection
+  ## assignTime
 
-  Tells Sphero to enable collision detection
+  The Assign Time command sets a specific value to Sphero's internal 32-bit
+  relative time counter.
+
+
+  ### Params
+
+
+  - **time** (<code>Number</code>) the new value to set
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## boost
+
+  The Boost command executes Sphero's boost macro.
+
+  It takes a 1-byte parameter, 0x01 to start boosting, or 0x00 to stop.
+
+
+  ### Params
+
+
+  - **boost** (<code>Number</code>) whether or not to boost (1 - yes, 0 - no)
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## clearCounters
+
+  The Clear Counters command is a developer-only command to clear the various
+  system counters created by the L2 diagnostics.
+
+  It is denied when the Sphero is in Normal mode.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## color
+
+  The Color command wraps Sphero's built-in setRgb command, allowing for
+  a greater range of possible inputs.
+
+
+  ### Params
+
+
+  - **color** (<code>Number</code>,<code>String</code>|<code>Object</code>) what color to change Sphero to
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## commitToFlash
+
+  The Commit To Flash command copies the current orbBasic RAM program to
+  persistent flash storage.
+
+  It will fail if a program is currently executing out of flash.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## configureCollisions
+
+  The Configure Collisions command configures Sphero's collision detection
+  with the provided parameters.
+
+  These include:
+
+  - **meth** - which detection method to use. Supported methods are 0x01,
+  0x02, and 0x03 (see the collision detection document for details). 0x00
+  disables this service.
+  - **xt, yt** - 8-bit settable threshold for the X (left, right) and
+  y (front, back) axes of Sphero. 0x00 disables the contribution of that
+  axis.
+  - **xs, ys** - 8-bit settable speed value for X/Y axes. This setting is
+  ranged by the speed, than added to `xt` and `yt` to generate the final
+  threshold value.
+  - **dead** - an 8-bit post-collision dead time to prevent re-triggering.
+  Specified in 10ms increments.
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) object containing collision configuration opts
+
+
+  - **cb** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## configureLocator
 
-  Tells Sphero to enable sharing of locator data
+  The Configure Locator command configures Sphero's streaming location data
+  service.
+
+  The following options must be provided:
+
+  - **flags** - bit 0 determines whether calibrate commands auto-correct the
+  yaw tare value. When false, positive Y axis coincides with heading 0.
+  Other bits are reserved.
+  - **x, y** - the current (x/y) coordinates of Sphero on the ground plane in
+  centimeters
+  - **yawTare** - controls how the x,y-plane is aligned with Sphero's heading
+  coordinate system. When zero, yaw = 0 corresponds to facing down the
+  y-axis in the positive direction. Possible values are 0-359 inclusive.
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) object containing locator service configuration
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## controlUartTx
+
+  The Control UART Tx command enables or disables the CPU's UART transmit
+  line so another client can configure the Bluetooth module.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered after write
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## detectCollisions
 
-  Tells Sphero to enable collision detection
+  The Detect Collisions command sets up Sphero's collision detection system,
+  and automatically parses asynchronous packets to re-emit collision events
+  to 'collision' event listeners.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) (err, data) to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## detectLocator
+  ## enableSsbAsyncMsg
 
-  Tells Sphero to enable sharing of locator data
+  The Enable SSB Async Messages command turns on/off soul block related
+  asynchronous messages.
+
+  These include shield collision/regrowth messages, boost use/regrowth
+  messages, XP growth, and level-up messages.
+
+  This feature defaults to off.
+
+
+  ### Params
+
+
+  - **flag** (<code>Number</code>) whether or not to enable async messages
+
+
+  - **callback** (<code>Function</code>) function to be triggered after write
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## eraseOrbBasicStorage
 
-  Tells Sphero to erase on-board orbBasic program storage
+  The Erase orbBasic Storage command erases any existing program in the
+  specified storage area.
+
+  Specify 0x00 for the temporary RAM buffer, or 0x01 for the persistent
+  storage area.
+
+
+  ### Params
+
+
+  - **area** (<code>Number</code>) which area to erase
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## executeOrbBasicProgram
 
-  Tells Sphero to execute the stored orbBasic program
+  The Execute orbBasic Program command attempts to run a program in the
+  specified storage area, beginning at the specified line number.
+
+  This command will fail if there is already an orbBasic program running.
+
+
+  ### Params
+
+
+  - **area** (<code>Number</code>) which area to run from
+
+
+  - **slMSB** (<code>Number</code>) start line
+
+
+  - **slLSB** (<code>Number</code>) start line
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## finishCalibration
 
-  Tells Sphero to end calibration mode, and resume normal operation
+  The Finish Calibration command ends Sphero's calibration mode, by setting
+  the new heading as current, turning off the back LED, and re-enabling
+  stabilization.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## getApplicationConfigurationBlock
+  ## getAutoReconnect
 
-  Tells Sphero to get the current application's configuration
+  The Get Auto Reconnect command returns the Bluetooth auto reconnect values
+  as defined above in the Set Auto Reconnect command.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with reconnect data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## getConfigurationBlock
+  ## getBluetoothInfo
 
-  Tells Sphero to get the configuration
+  Triggers the callback with a structure containing
+
+  - Sphero's ASCII name
+  - Sphero's Bluetooth address (ASCII)
+  - Sphero's ID colors
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with Bluetooth info
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getChassisId
+
+  The Get Chassis ID command returns the 16-bit chassis ID Sphero was
+  assigned at the factory.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with a response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getColor
+
+  Passes the color of the sphero Rgb LED to the callback (err, data)
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getConfigBlock
+
+  The Get Configuration Block command retrieves one of Sphero's configuration
+  blocks.
+
+  The response is a simple one; an error code of 0x08 is returned when the
+  resources are currently unavailable to send the requested block back. The
+  actual configuration block data returns in an asynchronous message of type
+  0x04 due to its length (if there is no error).
+
+  ID = `0x00` requests the factory configuration block
+  ID = `0x01` requests the user configuration block, which is updated with
+  current values first
+
+
+  ### Params
+
+
+  - **id** (<code>Number</code>) which configuration block to fetch
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## getDeviceMode
 
-  Tells Sphero to get it's current mode
+  The Get Device Mode command gets the current device mode of Sphero.
+
+  Possible values:
+
+  - **0x00**: Normal mode
+  - **0x01**: User Hack mode.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be called with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## getMacroStatus
 
-  Tells Sphero to get the status of the currently running macro
+  The Get Macro Status command returns the ID code and command number of the
+  currently executing macro.
+
+  If no macro is running, the 0x00 is returned for the ID code, and the
+  command number is left over from the previous macro.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## getPermanentOptionFlags
+  ## getPermOptionFlags
 
-  Tells Sphero to return it's permanent option flags
+  The Get Permanent Option Flags command returns Sphero's permanent option
+  flags, as a bit field.
+
+  Here's possible bit fields, and their descriptions:
+
+  - `0`: Set to prevent Sphero from immediately going to sleep when placed in
+  the charger and connected over Bluetooth.
+  - `1`: Set to enable Vector Drive, that is, when Sphero is stopped and
+  a new roll command is issued it achieves the heading before moving along
+  it.
+  - `2`: Set to disable self-leveling when Sphero is inserted into the
+  charger.
+  - `3`: Set to force the tail LED always on.
+  - `4`: Set to enable motion timeouts (see DID 02h, CID 34h)
+  - `5`: Set to enable retail Demo Mode (when placed in the charger, ball
+  runs a slow rainbow macro for 60 minutes and then goes to sleep).
+  - `6`: Set double tap awake sensitivity to Light
+  - `7`: Set double tap awake sensitivity to Heavy
+  - `8`: Enable gyro max async message (NOT SUPPORTED IN VERSION 1.47)
+  - `6-31`: Unassigned
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function triggered with option flags data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## getRGB
+  ## getPowerState
 
-  Tells Sphero to return the current color value of the internal LEDs
+  The Get Power State command returns Sphero's current power state, and some
+  additional parameters:
+
+  - **RecVer**: record version code (following is for 0x01)
+  - **Power State**: high-level state of the power system
+  - **BattVoltage**: current battery voltage, scaled in 100ths of a volt
+  (e.g. 0x02EF would be 7.51 volts)
+  - **NumCharges**: Number of battery recharges in the life of this Sphero
+  - **TimeSinceChg**: Seconds awake since last recharge
+
+  Possible power states:
+
+  - 0x01 - Battery Charging
+  - 0x02 - Battery OK
+  - 0x03 - Battery Low
+  - 0x04 - Battery Critical
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with power state data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## getTemporaryOptionFlags
+  ## getRgbLed
 
-  Tells Sphero to return it's temporary option flags
+  The Get RGB LED command fetches the current "user LED color" value, stored
+  in Sphero's configuration.
+
+  This value may or may not be what's currently displayed by Sphero's LEDs.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## reInitializeMacroExecutive
+  ## getSsb
 
-  Tells Sphero to re-initialize the current macro
+  The Get SSB command retrieves Sphero's Soul Block.
+
+  The response is simple, and then the actual block of soulular data returns
+  in an asynchronous message of type 0x0D, due to it's 0x440 byte length
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be called with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getTempOptionFlags
+
+  The Get Temporary Option Flags command returns Sphero's temporary option
+  flags, as a bit field:
+
+  - `0`: Enable Stop On Disconnect behavior
+  - `1-31`: Unassigned
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function triggered with option flags data
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getVoltageTripPoints
+
+  The Get Voltage Trip Points command returns the trip points Sphero uses to
+  determine Low battery and Critical battery.
+
+  The values are expressed in 100ths of a volt, so defaults of 7V and 6.5V
+  respectively are returned as 700 and 650.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with trip point data
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## jumpToBootloader
+
+  The Jump To Bootloader command requests a jump into the Bootloader to
+  prepare for a firmware download.
+
+  All commands after this one must comply with the Bootloader Protocol
+  Specification.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## ping
+
+  The Ping command verifies the Sphero is awake and receiving commands.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) triggered when Sphero has been pinged
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## pollPacketTimes
+
+  The Poll Packet Times command helps users profile the transmission and
+  processing latencies in Sphero.
+
+  For more details, see the Sphero API documentation.
+
+
+  ### Params
+
+
+  - **time** (<code>Number</code>) a timestamp to use for profiling
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## randomColor
+
+  The Random Color command sets Sphero to a randomly-generated color.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) (err, data) to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## reInitMacroExec
+
+  The Reinit Macro Executive command terminates any running macro, and
+  reinitializes the macro system.
+
+  The table of any persistent user macros is cleared.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## readLocator
 
-  Tells Sphero to read data from the locator
+  The Read Locator command gets Sphero's current position (X,Y), component
+  velocities, and speed-over-ground (SOG).
+
+  The position is a signed value in centimeters, the component velocities are
+  signed cm/sec, and the SOG is unsigned cm/sec.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with data
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## roll
 
-  Tells Sphero to roll at a specific speed, along a specific heading.
+  The Roll command tells Sphero to roll along the provided vector.
 
-  Heading is considered relative to the last calibrated position.
+  Both a speed and heading are required, the latter is considered relative to
+  the last calibrated direction.
+
+  Permissible heading values are 0 to 359 inclusive.
 
 
   ### Params
 
 
-  - **speed** (<code>Number</code>)
+  - **speed** (<code>Number</code>) what speed Sphero should roll at
 
 
-  - **heading** (<code>Number</code>)
+  - **heading** (<code>Number</code>) what heading Sphero should roll towards (0-359)
 
 
-  - **state** (<code>Number</code>)
+  - **[state]** (<code>Number</code>) optional state parameter
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## runL1Diags
+
+  The Perform Level 1 Diagnostics command is a developer-level command to
+  help diagnose aberrant behaviour in Sphero.
+
+  Most process flags, system counters, and system states are decoded to
+  human-readable ASCII.
+
+  For more details, see the Sphero API documentation.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with diagnostic data
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## runL2Diags
+
+  The Perform Level 2 Diagnostics command is a developer-level command to
+  help diagnose aberrant behaviour in Sphero.
+
+  It's much less informative than the Level 1 command, but is in binary
+  format and easier to parse.
+
+  For more details, see the Sphero API documentation.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to be triggered with diagnostic data
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## runMacro
 
-  Tells Sphero to run the specified macro
+  The Run Macro command attempts to execute the specified macro.
 
+  Macro IDs are split into groups:
 
-  ### Returns
+  0-31 are System Macros. They are compiled into the Main Application, and
+  cannot be deleted. They are always available to run.
 
-  - (<code>null</code>)
+  32-253 are User Macros. They are downloaded and persistently stored, and
+  can be deleted in total.
 
-  * * *
+  255 is the Temporary Macro, a special user macro as it is held in RAM for
+  execution.
 
-  ## saveMacro
+  254 is also a special user macro, called the Stream Macro that doesn't
+  require this call to begin execution.
 
-  Tells Sphero to save the specified macro
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## saveTemporaryMacro
-
-  Tells Sphero to save the specified macro as a temporary macro
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## selfLevel
-
-  Tells Sphero to self-level
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setAccelerometerRange
-
-  Sets Sphero's accelerometer range
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setApplicationConfigurationBlock
-
-  Sets Sphero's application configuration
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setBackLED
-
-  Enables Sphero's rear tail-light LED
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setBoostWithTime
-
-  Sets Sphero's boost duration.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setColor
-
-  Sets Sphero's color.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setConfigurationBlock
-
-  Sets Sphero's configuration block.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setDataStreaming
-
-  Tells Sphero to enable data streaming.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setDeviceMode
-
-  Sets Sphero's device mode.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setHeading
-
-  Sets Sphero's default (0) "heading" angle.
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setMacroParameter
-
-  Sets a macro parameter for Sphero
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setMotionTimeout
-
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setPermanentOptionFlags
-
-  Sets Sphero's permanent option flags
-
-
-  ### Returns
-
-  - (<code>null</code>)
-
-  * * *
-
-  ## setRGB
-
-  Sets the color of Sphero's internal RGB LED
+  This command will fail if there is a currently executing macro, or the
+  specified ID code can't be found.
 
 
   ### Params
 
 
-  - **color** (<code>Number</code>)
+  - **id** (<code>Number</code>) 8-bit Macro ID to run
 
 
-  - **persist** (<code>Boolean</code>)
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## setRandomColor
+  ## saveMacro
 
-  Sets Sphero's internal LED to a random color
+  Save macro
+
+  The Save Macro command stores the attached macro definition into the
+  persistent store for later execution. This command can be sent even if
+  other macros are executing.
+
+  You will receive a failure response if you attempt to send an ID number in
+  the System Macro range, 255 for the Temp Macro and ID of an existing user
+  macro in the storage block.
+
+  As with all macros, the longest definition that can be sent is 254 bytes.
+
+
+  ### Params
+
+
+  - **macro** (<code>Array</code>) array of bytes with the data to be written
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## setRawMotorValues
+  ## saveTempMacro
 
-  Allows for raw manipulation of Sphero's motors
+  The Save Temporary Macro stores the attached macro definition into the
+  temporary RAM buffer for later execution.
+
+  If this command is sent while a Temporary or Stream Macro is executing it
+  will be terminated so that its storage space can be overwritten. As with
+  all macros, the longest definition that can be sent is 254 bytes.
+
+
+  ### Params
+
+
+  - **macro** (<code>Array</code>) array of bytes with the data to be written
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## selfLevel
+
+  The Self Level command controls Sphero's self-level routine.
+
+  This routine attempts to achieve a horizontal orientation where pitch/roll
+  angles are less than the provided Angle Limit.
+
+  After both limits are satisfied, option bits control sleep, final
+  angle(heading), and control system on/off.
+
+  An asynchronous message is returned when the self level routine completes.
+
+  For more detail on opts param, see the Sphero API documentation.
+
+  opts:
+ - angleLimit: 0 for defaul, 1 - 90 to set.
+ - timeout: 0 for default, 1 - 255 to set.
+ - trueTime: 0 for default, 1 - 255 to set.
+ - options: bitmask 4bit e.g. 0xF;
+  };
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) self-level routine options
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setAccelRange
+
+  The Set Accelerometer Range command tells Sphero what accelerometer range
+  to use.
+
+  By default, Sphero's solid-state accelerometer is set for a range of ±8Gs.
+  You may wish to change this, perhaps to resolve finer accelerations.
+
+  This command takes an index for the supported range, as explained below:
+
+  - `0`: ±2Gs
+  - `1`: ±4Gs
+  - `2`: ±8Gs (default)
+  - `3`: ±16Gs
+
+
+  ### Params
+
+
+  - **idx** (<code>Number</code>) what accelerometer range to use
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setAutoReconnect
+
+  The Set Auto Reconnect command tells Sphero's BT module whether or not it
+  should automatically reconnect to the previously-connected Apple mobile
+  device.
+
+
+  ### Params
+
+
+  - **flag** (<code>Number</code>) whether or not to reconnect (0 - no, 1 - yes)
+
+
+  - **time** (<code>Number</code>) how many seconds after start to enable auto reconnect
+
+
+  - **callback** (<code>Function</code>) function to be triggered after write
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setBackLed
+
+  The Set Back LED command allows brightness adjustment of Sphero's tail
+  light.
+
+  This value does not persist across power cycles.
+
+
+  ### Params
+
+
+  - **brightness** (<code>Number</code>) brightness to set to Sphero's tail light
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setChassisId
+
+  The Set Chassis ID command assigns Sphero's chassis ID, a 16-bit value.
+
+  This command only works if you're at the factory.
+
+
+  ### Params
+
+
+  - **chassisId** (<code>Number</code>) new chassis ID
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setConfigBlock
+
+  The Set Config Block command accepts an exact copy of the configuration
+  block, and loads it into the RAM copy of the configuration block.
+
+  The RAM copy is then saved to flash.
+
+  The configuration block can be obtained by using the Get Configuration
+  Block command.
+
+
+  ### Params
+
+
+  - **block** (<code>Array</code>) - An array of bytes with the data to be written
+
+
+  - **callback** (<code>Function</code>) - To be triggered when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setDataStreaming
+
+  The Set Data Streaming command configures Sphero's built-in support for
+  asynchronously streaming certain system and sensor data.
+
+  This command selects the internal sampling frequency, packet size,
+  parameter mask, and (optionally) the total number of packets.
+
+  These options are provided as an object, with the following properties:
+
+  - **n** - divisor of the maximum sensor sampling rate
+  - **m** - number of sample frames emitted per packet
+  - **mask1** - bitwise selector of data sources to stream
+  - **pcnt** - packet count 1-255 (or 0, for unlimited streaming)
+  - **mask2** - bitwise selector of more data sources to stream (optional)
+
+  For more explanation of these options, please see the Sphero API
+  documentation.
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) object containing streaming data options
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setDeviceMode
+
+  The Set Device Mode command assigns the operation mode of Sphero based on
+  the supplied mode value.
+
+  - **0x00**: Normal mode
+  - **0x01**: User Hack mode. Enables ASCII shell commands, refer to the
+  associated document for details.
+
+
+  ### Params
+
+
+  - **mode** (<code>Number</code>) which mode to set Sphero to
+
+
+  - **callback** (<code>Function</code>) function to be called after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setDeviceName
+
+  The Set Device Name command assigns Sphero an internal name. This value is
+  then produced as part of the Get Bluetooth Info command.
+
+  Names are clipped at 48 characters to support UTF-8 sequences. Any extra
+  characters will be discarded.
+
+  This field defaults to the Bluetooth advertising name of Sphero.
+
+
+  ### Params
+
+
+  - **name** (<code>String</code>) what name to give to the Sphero
+
+
+  - **callback** (<code>Function</code>) function to be triggered when the name is set
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setHeading
+
+  The Set Heading command tells Sphero to adjust it's orientation, by
+  commanding a new reference heading (in degrees).
+
+  If stabilization is enabled, Sphero will respond immediately to this.
+
+
+  ### Params
+
+
+  - **heading** (<code>Number</code>) Sphero's new reference heading, in degrees (0-359)
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setInactivityTimeout
+
+  The Set Inactivity Timeout command sets the timeout delay before Sphero
+  goes to sleep automatically.
+
+  By default, the value is 600 seconds (10 minutes), but this command can
+  alter it to any value of 60 seconds or greater.
+
+
+  ### Params
+
+
+  - **time** (<code>Number</code>) new delay before sleeping
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setMacroParam
+
+  The Set Macro Parameter command allows system globals that influence
+  certain macro commands to be selectively altered from outside of the macro
+  system itself.
+
+  The values of Val1 and Val2 depend on the parameter index.
+
+  Possible indices:
+
+  - **00h** Assign System Delay 1: Val1 = MSB, Val2 = LSB
+  - **01h** Assign System Delay 2: Val1 = MSB, Val2 = LSB
+  - **02h** Assign System Speed 1: Val1 = speed, Val2 = 0 (ignored)
+  - **03h** Assign System Speed 2: Val1 = speed, Val2 = 0 (ignored)
+  - **04h** Assign System Loops: Val1 = loop count, Val2 = 0 (ignored)
+
+  For more details, please refer to the Sphero Macro document.
+
+
+  ### Params
+
+
+  - **index** (<code>Number</code>) what parameter index to use
+
+
+  - **val1** (<code>Number</code>) value 1 to set
+
+
+  - **val2** (<code>Number</code>) value 2 to set
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setMotionTimeout
+
+  The Set Motion Timeout command gives Sphero an ultimate timeout for the
+  last motion command to keep Sphero from rolling away in the case of
+  a crashed (or paused) application.
+
+  This defaults to 2000ms (2 seconds) upon wakeup.
+
+
+  ### Params
+
+
+  - **time** (<code>Number</code>) timeout length in milliseconds
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setPermOptionFlags
+
+  The Set Permanent Option Flags command assigns Sphero's permanent option
+  flags to the provided values, and writes them immediately to the config
+  block.
+
+  See below for the bit definitions.
+
+
+  ### Params
+
+
+  - **flags** (<code>Array</code>) permanent option flags
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setPowerNotification
+
+  The Set Power Notification command enables sphero to asynchronously notify
+  the user of power state periodically (or immediately, when a change occurs)
+
+  Timed notifications are sent every 10 seconds, until they're disabled or
+  Sphero is unpaired.
+
+
+  ### Params
+
+
+  - **flag** (<code>Number</code>) whether or not to send notifications (0 - no, 1 - yes)
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setRawMotors
+
+  The Set Raw Motors command allows manual control over one or both of
+  Sphero's motor output values.
+
+  Each motor (left and right requires a mode and a power value from 0-255.
+
+  This command will disable stabilization is both mode's aren't "ignore", so
+  you'll need to re-enable it once you're done.
+
+  Possible modes:
+
+  - `0x00`: Off (motor is open circuit)
+  - `0x01`: Forward
+  - `0x02`: Reverse
+  - `0x03`: Brake (motor is shorted)
+  - `0x04`: Ignore (motor mode and power is left unchanged
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) object with mode/power values (e.g. lmode, lpower)
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setRgbLed
+
+  The Set RGB LED command sets the colors of Sphero's RGB LED.
+
+  An object containaing `red`, `green`, and `blue` values must be provided.
+
+  If `opts.flag` is set to 1 (default), the color is persisted across power
+  cycles.
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) object containing RGB values for Sphero's LED
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## setRotationRate
 
-  Directly sets Sphero's rotation rate
+  The Set Rotation Rate command allows control of the rotation rate Sphero
+  uses to meet new heading commands.
+
+  A lower value offers better control, but with a larger turning radius.
+
+  Higher values yield quick turns, but Sphero may lose control.
+
+  The provided value is in units of 0.784 degrees/sec.
+
+
+  ### Params
+
+
+  - **rotation** (<code>Number</code>) new rotation rate (0-255)
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## setStabilization
 
-  Enables or disables Sphero's automatic internal stabilization
+  The Set Stabilization command turns Sphero's internal stabilization on or
+  off, depending on the flag provided.
+
+
+  ### Params
+
+
+  - **flag** (<code>Number</code>) stabilization setting flag (0 - off, 1 - on)
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## setTemporaryOptionFlags
+  ## setTempOptionFlags
 
-  Sets Sphero's temporary option flags
+  The Set Temporary Option Flags command assigns Sphero's temporary option
+  flags to the provided values. These do not persist across power cycles.
+
+  See below for the bit definitions.
+
+
+  ### Params
+
+
+  - **flags** (<code>Array</code>) permanent option flags
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setVoltageTripPoints
+
+  The Set Voltage Trip Points command assigns the voltage trip points for Low
+  and Critical battery voltages.
+
+  Values are specified in 100ths of a volt, and there are limitations on
+  adjusting these from their defaults:
+
+  - vLow must be in the range 675-725
+  - vCrit must be in the range 625-675
+
+  There must be 0.25v of separation between the values.
+
+  Shifting these values too low can result in very little warning before
+  Sphero forces itself to sleep, depending on the battery pack. Be careful.
+
+
+  ### Params
+
+
+  - **vLow** (<code>Number</code>) new voltage trigger for Low battery
+
+
+  - **vCrit** (<code>Number</code>) new voltage trigger for Crit battery
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## sleep
+
+  The Sleep command puts Sphero to sleep immediately.
+
+
+  ### Params
+
+
+  - **wakeup** (<code>Number</code>) the number of seconds for Sphero to re-awaken after. 0x00 tells Sphero to sleep forever, 0xFFFF attemps to put Sphero into deep
+  sleep.
+
+
+  - **macro** (<code>Number</code>) if non-zero, Sphero will attempt to run this macro ID when it wakes up
+
+
+  - **orbBasic** (<code>Number</code>) if non-zero, Sphero will attempt to run an orbBasic program from this line number
+
+
+  - **callback** (<code>Function</code>) function to be triggered when done writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
 
   * * *
 
   ## startCalibration
 
-  Starts up Sphero's calibration mode, used to adjust the heading
+  The Start Calibration command sets up Sphero for manual heading
+  calibration.
+
+  It does this by turning on the tail light (so you can tell where it's
+  facing) and disabling stabilization (so you can adjust the heading).
+
+  When done, call #finishCalibration to set the new heading, and re-enable
+  stabilization.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) (err, data) to be triggered with response
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
   ## stop
 
-  Tells Sphero to stop in place.
+  Stops sphero the optimal way by setting flag 'go' to 0
+  and speed to a very low value.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) triggered on complete
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
-  ## submitValueToInputStatement
+  ## stopOnDisconnect
 
+  The Stop On Disconnect command sends a flag to Sphero. This flag tells
+  Sphero whether or not it should automatically stop when it detects
+  that it's disconnected.
+
+
+  ### Params
+
+
+  - **[remove=false]** (<code>Boolean</code>) whether or not to stop on disconnect
+
+
+  - **callback** (<code>Function</code>) triggered on complete
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamAccelOne
+
+  Starts streaming of accelOne data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `accelOne` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamAccelerometer
+
+  Starts streaming of accelerometer data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `accelerometer` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamData
+
+  Generic Data Streaming setup, using Sphero's setDataStraming command.
+
+  Users need to listen for the `dataStreaming` event, or a custom event, to
+  get the data.
+
+
+  ### Params
+
+
+  - **args** (<code>Object</code>) event, masks, fields, and sps data
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamGyroscope
+
+  Starts streaming of gyroscope data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `gyroscope` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamImuAngles
+
+  Starts streaming of IMU angles data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `imuAngles` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamMotorsBackEmf
+
+  Starts streaming of motor back EMF data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `motorsBackEmf` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamOdometer
+
+  Starts streaming of odometer data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `odometer` event to get the data.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamVelocity
+
+  Starts streaming of velocity data
+
+  It uses sphero's data streaming command. User needs to listen
+  for the `dataStreaming` or `velocity` event to get the velocity values.
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## submitValueToInput
+
+  The Submit value To Input command takes the place of the typical user
+  console in orbBasic and allows a user to answer an input request.
+
+  If there is no pending input request when this API command is sent, the
+  supplied value is ignored without error.
+
+  Refer to the orbBasic language document for further information.
+
+
+  ### Params
+
+
+  - **val** (<code>Number</code>) value to respond with
+
+
+  - **callback** (<code>Function</code>) function to be triggered with response
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## version
+
+  The Version command returns a batch of software and hardware information
+  about Sphero.
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) triggered with version information
+
+
+  ### Returns
+
+  - (<code>undefined</code>)

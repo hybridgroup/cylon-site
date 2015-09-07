@@ -7,15 +7,15 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) the pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) the value to write to the pin
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -27,7 +27,7 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) the pin to read from
 
 
   - **callback** (<code>Function</code>) triggered when the value has been read from the pin
@@ -35,7 +35,7 @@
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -47,15 +47,18 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) the pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) - to be triggered on completion
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -67,12 +70,38 @@
   ### Params
 
 
-  - **pin** (<code>Number</code>)
+  - **pin** (<code>Number</code>) the pin to write to
 
 
-  - **value** (<code>Number</code>)
+  - **value** (<code>Number</code>) the value to write to the pin
+
+
+  - **callback** (<code>Function</code>) - to be triggered on completion
 
 
   ### Returns
 
-  - (<code>null</code>)
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## digitalWrite
+
+  Writes a value to a digital pin
+
+
+  ### Params
+
+
+  - **pin** (<code>Number</code>) - pin number
+
+
+  - **value** (<code>Number</code>) - to be passed
+
+
+  - **callback** (<code>Function</code>) - to be triggered on completion
+
+
+  ### Returns
+
+  - (<code>undefined</code>)

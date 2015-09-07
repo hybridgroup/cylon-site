@@ -7,15 +7,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account to get details for
+  - **accountId** (<code>String</code>) The account to get details for
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -27,15 +27,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account to get details for
+  - **accountId** (<code>String</code>) The account to get details for
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -47,15 +47,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account to get details for
+  - **accountId** (<code>String</code>) The account to get details for
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -67,15 +67,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account to get details for
+  - **accountId** (<code>String</code>) The account to get details for
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **filters** (<code>String</code>) The account to get details for
+
+
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -87,18 +90,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account to get details for
+  - **accountId** (<code>String</code>) The account to get details for
 
 
-  - **deviceId** (<code>String</code>) - The Id of the device
+  - **filters** (<code>String</code>) filters to use when fetching
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -110,18 +113,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account we want to add the device to
+  - **accountId** (<code>String</code>) The account we want to add the device to
 
 
-  - **device** (<code>Object</code>) - The device details
+  - **device** (<code>Object</code>) The device details
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -133,21 +136,21 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **DeviceId** (<code>String</code>) - The device to be updated
+  - **dId** (<code>String</code>) The device to be updated
 
 
-  - **device** (<code>Object</code>) - The device details
+  - **device** (<code>Object</code>) The device details
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -159,21 +162,21 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **DeviceId** (<code>String</code>) - The device to be updated
+  - **dId** (<code>String</code>) The device to be updated
 
 
-  - **device** (<code>Object</code>) - The device details
+  - **code** (<code>Object</code>) activation code
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -185,18 +188,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **DeviceId** (<code>String</code>) - The device to be deleted
+  - **deviceId** (<code>String</code>) The device to be deleted
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -208,21 +211,24 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **aId** (<code>String</code>) The account the device belongs to
 
 
-  - **DeviceId** (<code>String</code>) - The device to be updated
+  - **dId** (<code>String</code>) The device to be updated
 
 
-  - **component** (<code>Object</code>) - The component to be added
+  - **token** (<code>String</code>) token
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **component** (<code>Object</code>) The component to be added
+
+
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -234,21 +240,21 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **aId** (<code>String</code>) The account the device belongs to
 
 
-  - **DeviceId** (<code>String</code>) - The device the component belongs to
+  - **dId** (<code>String</code>) The device the component belongs to
 
 
-  - **componentId** (<code>String</code>) - The component to be deleted
+  - **cId** (<code>String</code>) The component to be deleted
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -260,15 +266,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -280,15 +286,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -300,15 +306,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -320,18 +326,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account the device belongs to
+  - **accountId** (<code>String</code>) The account the device belongs to
 
 
-  - **componentId** (<code>String</code>) - The component ID
+  - **componentId** (<code>String</code>) The component ID
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {} component
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -343,18 +349,18 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account we want to add the device to
+  - **accountId** (<code>String</code>) The account we want to add the device to
 
 
-  - **component** (<code>Object</code>) - The component details
+  - **component** (<code>Object</code>) The component details
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -366,21 +372,21 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account we want to add the device to
+  - **aId** (<code>String</code>) The account we want to add the device to
 
 
-  - **componentId** (<code>String</code>) - The account we want to add the device to
+  - **cId** (<code>String</code>) The account we want to add the device to
 
 
-  - **component** (<code>Object</code>) - The component details
+  - **component** (<code>Object</code>) The component details
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -392,21 +398,24 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account we want to add the new component to
+  - **aId** (<code>String</code>) The account we want to add the new component to
 
 
-  - **deviceId** (<code>String</code>) - The device we want to add data to
+  - **dId** (<code>String</code>) The device we want to add data to
 
 
-  - **data** (<code>Array</code>) - Array of objects with component data details
+  - **token** (<code>String</code>) device token
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **data** (<code>Array</code>) Array of objects with component data details
+
+
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
 
   * * *
 
@@ -418,15 +427,15 @@
   ### Params
 
 
-  - **accountId** (<code>String</code>) - The account we want to add the new component to
+  - **accountId** (<code>String</code>) The account we want to add the new component to
 
 
-  - **filters** (<code>Object</code>) - filters for the search
+  - **filters** (<code>Object</code>) filters for the search
 
 
-  - **callback** (<code>Function</code>) - called on complete: function(err, res) {}
+  - **callback** (<code>Function</code>) called on complete: function(err, res) {}
 
 
   ### Returns
 
-  - (`null`)
+  - (<code>undefined</code>)
