@@ -210,6 +210,7 @@
                     <div class="name">BLE</div>
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
                       <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                       <a href="/documentation/drivers/powerup">PowerUp</a>
@@ -348,114 +349,2178 @@ Cylon.robot({
             <section class="public-methods">
               <div class="commands-api" id="Commands">
                 <h1>Commands</h1>
-                <h2 id="roll">roll</h2>
+                <h2 id="abortmacro">abortMacro</h2>
                 
-                <p>Tells Sphero to roll at a specific speed, along a specific heading.</p>
+                <p>The Abort Macro command aborts any executing macro, and returns both it's
+                ID code and the command number currently in progress.</p>
                 
-                <p>Heading is considered relative to the last calibrated position.</p>
+                <p>An exception is a System Macro executing with the UNKILLABLE flag set.</p>
+                
+                <p>A returned ID code of 0x00 indicates that no macro was running, an ID code
+                of 0xFFFF as the CmdNum indicates the macro was unkillable.</p>
                 
                 <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
-                  </li>
-                  <li>
-                    <p><strong>heading</strong> (<code>Number</code>)</p>
-                  </li>
-                  <li>
-                    <p><strong>state</strong> (<code>Number</code>)</p>
-                  </li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
                 </ul>
                 
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
                 
-                <h2 id="detectcollisions">detectCollisions</h2>
+                <h2 id="abortorbbasicprogram">abortOrbBasicProgram</h2>
                 
-                <p>Tells Sphero to detect collisions, and report them.</p>
-                
-                <h3 id="returns-1">Returns</h3>
-                
-                <ul>
-                  <li>(<code>null</code>)</li>
-                </ul>
-                
-                <hr>
-                
-                <h2 id="detectlocator">detectLocator</h2>
-                
-                <p>Tells Sphero to enable sharing of locator data</p>
-                
-                <h3 id="returns-2">Returns</h3>
-                
-                <ul>
-                  <li>(<code>null</code>)</li>
-                </ul>
-                
-                <hr>
-                
-                <h2 id="stop">stop</h2>
-                
-                <p>Tells Sphero to stop in place.</p>
-                
-                <h3 id="returns-3">Returns</h3>
-                
-                <ul>
-                  <li>(<code>null</code>)</li>
-                </ul>
-                
-                <hr>
-                
-                <h2 id="setrgb">setRGB</h2>
-                
-                <p>Sets the color of Sphero's internal RGB LED</p>
+                <p>The Abort orbBasic Program command aborts execution of any currently
+                running orbBasic program.</p>
                 
                 <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>color</strong> (<code>Number</code>)</p>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="appendmacrochunk">appendMacroChunk</h2>
+                
+                <p>The Append Macro Chunk project stores the attached macro definition into
+                the temporary RAM buffer for later execution.</p>
+                
+                <p>It's similar to the Save Temporary Macro command, but allows building up
+                longer temporary macros.</p>
+                
+                <p>Any existing Macro ID can be sent through this command, and executed
+                through the Run Macro call using ID 0xFF.</p>
+                
+                <p>If this command is sent while a Temporary or Stream Macro is executing it
+                will be terminated so that its storage space can be overwritten. As with
+                all macros, the longest chunk that can be sent is 254 bytes.</p>
+                
+                <p>You must follow this with a Run Macro command (ID 0xFF) to actually get it
+                to go and it is best to prefix this command with an Abort call to make
+                certain the larger buffer is completely initialized.</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>chunk</strong> (<code>Array</code>) of bytes to append for macro execution</p>
                   </li>
                   <li>
-                    <p><strong>persist</strong> (<code>Boolean</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="appendorbbasicfragment">appendOrbBasicFragment</h2>
+                
+                <p>The Append orbBasic Fragment command appends a patch of orbBasic code to
+                existing ones in the specified storage area (0x00 for RAM, 0x01 for
+                persistent).</p>
+                
+                <p>Complete lines are not required. A line begins with a decimal line number
+                followed by a space and is terminated with a <lf>.</lf></p>
+                
+                <p>See the orbBasic Interpreter document for complete information.</p>
+                
+                <p>Possible error responses would be ORBOTIX_RSP_CODE_EPARAM if an illegal
+                storage area is specified or ORBOTIX_RSP_CODE_EEXEC if the specified
+                storage area is full.</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>area</strong> (<code>Number</code>) which area to append the fragment to</p>
+                  </li>
+                  <li>
+                    <p><strong>code</strong> (<code>String</code>) orbBasic code to append</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="assigntime">assignTime</h2>
+                
+                <p>The Assign Time command sets a specific value to Sphero's internal 32-bit
+                relative time counter.</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) the new value to set</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-4">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
                 
-                <h2 id="startcalibration">startCalibration</h2>
+                <h2 id="boost">boost</h2>
                 
-                <p>Enables Sphero's tail light, and disables stabilization, to allow for
-                orientation of Sphero</p>
+                <p>The Boost command executes Sphero's boost macro.</p>
+                
+                <p>It takes a 1-byte parameter, 0x01 to start boosting, or 0x00 to stop.</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>boost</strong> (<code>Number</code>) whether or not to boost (1 - yes, 0 - no)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
                 
                 <h3 id="returns-5">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="clearcounters">clearCounters</h2>
+                
+                <p>The Clear Counters command is a developer-only command to clear the various
+                system counters created by the L2 diagnostics.</p>
+                
+                <p>It is denied when the Sphero is in Normal mode.</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="color">color</h2>
+                
+                <p>The Color command wraps Sphero's built-in setRgb command, allowing for
+                a greater range of possible inputs.</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+<strong>color</strong> (<code>Number</code>,<code>String</code>
+</td>
+                          <td>
+<code>Object</code>) what color to change Sphero to</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="committoflash">commitToFlash</h2>
+                
+                <p>The Commit To Flash command copies the current orbBasic RAM program to
+                persistent flash storage.</p>
+                
+                <p>It will fail if a program is currently executing out of flash.</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="configurecollisions">configureCollisions</h2>
+                
+                <p>The Configure Collisions command configures Sphero's collision detection
+                with the provided parameters.</p>
+                
+                <p>These include:</p>
+                
+                <ul>
+                  <li>
+<strong>meth</strong> - which detection method to use. Supported methods are 0x01,
+                0x02, and 0x03 (see the collision detection document for details). 0x00
+                disables this service.</li>
+                  <li>
+<strong>xt, yt</strong> - 8-bit settable threshold for the X (left, right) and
+                y (front, back) axes of Sphero. 0x00 disables the contribution of that
+                axis.</li>
+                  <li>
+<strong>xs, ys</strong> - 8-bit settable speed value for X/Y axes. This setting is
+                ranged by the speed, than added to <code>xt</code> and <code>yt</code> to generate the final
+                threshold value.</li>
+                  <li>
+<strong>dead</strong> - an 8-bit post-collision dead time to prevent re-triggering.
+                Specified in 10ms increments.</li>
+                </ul>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) object containing collision configuration opts</p>
+                  </li>
+                  <li>
+                    <p><strong>cb</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="configurelocator">configureLocator</h2>
+                
+                <p>The Configure Locator command configures Sphero's streaming location data
+                service.</p>
+                
+                <p>The following options must be provided:</p>
+                
+                <ul>
+                  <li>
+<strong>flags</strong> - bit 0 determines whether calibrate commands auto-correct the
+                yaw tare value. When false, positive Y axis coincides with heading 0.
+                Other bits are reserved.</li>
+                  <li>
+<strong>x, y</strong> - the current (x/y) coordinates of Sphero on the ground plane in
+                centimeters</li>
+                  <li>
+<strong>yawTare</strong> - controls how the x,y-plane is aligned with Sphero's heading
+                coordinate system. When zero, yaw = 0 corresponds to facing down the
+                y-axis in the positive direction. Possible values are 0-359 inclusive.</li>
+                </ul>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) object containing locator service configuration</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="controluarttx">controlUartTx</h2>
+                
+                <p>The Control UART Tx command enables or disables the CPU's UART transmit
+                line so another client can configure the Bluetooth module.</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered after write</li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="detectcollisions">detectCollisions</h2>
+                
+                <p>The Detect Collisions command sets up Sphero's collision detection system,
+                and automatically parses asynchronous packets to re-emit collision events
+                to 'collision' event listeners.</p>
+                
+                <h3 id="params-12">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) (err, data) to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="enablessbasyncmsg">enableSsbAsyncMsg</h2>
+                
+                <p>The Enable SSB Async Messages command turns on/off soul block related
+                asynchronous messages.</p>
+                
+                <p>These include shield collision/regrowth messages, boost use/regrowth
+                messages, XP growth, and level-up messages.</p>
+                
+                <p>This feature defaults to off.</p>
+                
+                <h3 id="params-13">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flag</strong> (<code>Number</code>) whether or not to enable async messages</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after write</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-13">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="eraseorbbasicstorage">eraseOrbBasicStorage</h2>
+                
+                <p>The Erase orbBasic Storage command erases any existing program in the
+                specified storage area.</p>
+                
+                <p>Specify 0x00 for the temporary RAM buffer, or 0x01 for the persistent
+                storage area.</p>
+                
+                <h3 id="params-14">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>area</strong> (<code>Number</code>) which area to erase</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-14">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="executeorbbasicprogram">executeOrbBasicProgram</h2>
+                
+                <p>The Execute orbBasic Program command attempts to run a program in the
+                specified storage area, beginning at the specified line number.</p>
+                
+                <p>This command will fail if there is already an orbBasic program running.</p>
+                
+                <h3 id="params-15">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>area</strong> (<code>Number</code>) which area to run from</p>
+                  </li>
+                  <li>
+                    <p><strong>slMSB</strong> (<code>Number</code>) start line</p>
+                  </li>
+                  <li>
+                    <p><strong>slLSB</strong> (<code>Number</code>) start line</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-15">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="finishcalibration">finishCalibration</h2>
                 
-                <p>Resets Sphero's heading, disables the rear LED, and re-enables stabilization</p>
+                <p>The Finish Calibration command ends Sphero's calibration mode, by setting
+                the new heading as current, turning off the back LED, and re-enabling
+                stabilization.</p>
                 
-                <h3 id="returns-6">Returns</h3>
+                <h3 id="params-16">Params</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-16">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getautoreconnect">getAutoReconnect</h2>
+                
+                <p>The Get Auto Reconnect command returns the Bluetooth auto reconnect values
+                as defined above in the Set Auto Reconnect command.</p>
+                
+                <h3 id="params-17">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with reconnect data</li>
+                </ul>
+                
+                <h3 id="returns-17">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getbluetoothinfo">getBluetoothInfo</h2>
+                
+                <p>Triggers the callback with a structure containing</p>
+                
+                <ul>
+                  <li>Sphero's ASCII name</li>
+                  <li>Sphero's Bluetooth address (ASCII)</li>
+                  <li>Sphero's ID colors</li>
+                </ul>
+                
+                <h3 id="params-18">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with Bluetooth info</li>
+                </ul>
+                
+                <h3 id="returns-18">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getchassisid">getChassisId</h2>
+                
+                <p>The Get Chassis ID command returns the 16-bit chassis ID Sphero was
+                assigned at the factory.</p>
+                
+                <h3 id="params-19">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with a response</li>
+                </ul>
+                
+                <h3 id="returns-19">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getcolor">getColor</h2>
+                
+                <p>Passes the color of the sphero Rgb LED to the callback (err, data)</p>
+                
+                <h3 id="params-20">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-20">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getconfigblock">getConfigBlock</h2>
+                
+                <p>The Get Configuration Block command retrieves one of Sphero's configuration
+                blocks.</p>
+                
+                <p>The response is a simple one; an error code of 0x08 is returned when the
+                resources are currently unavailable to send the requested block back. The
+                actual configuration block data returns in an asynchronous message of type
+                0x04 due to its length (if there is no error).</p>
+                
+                <p>ID = <code>0x00</code> requests the factory configuration block
+                ID = <code>0x01</code> requests the user configuration block, which is updated with
+                current values first</p>
+                
+                <h3 id="params-21">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>Number</code>) which configuration block to fetch</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-21">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getdevicemode">getDeviceMode</h2>
+                
+                <p>The Get Device Mode command gets the current device mode of Sphero.</p>
+                
+                <p>Possible values:</p>
+                
+                <ul>
+                  <li>
+<strong>0x00</strong>: Normal mode</li>
+                  <li>
+<strong>0x01</strong>: User Hack mode.</li>
+                </ul>
+                
+                <h3 id="params-22">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be called with response</li>
+                </ul>
+                
+                <h3 id="returns-22">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getmacrostatus">getMacroStatus</h2>
+                
+                <p>The Get Macro Status command returns the ID code and command number of the
+                currently executing macro.</p>
+                
+                <p>If no macro is running, the 0x00 is returned for the ID code, and the
+                command number is left over from the previous macro.</p>
+                
+                <h3 id="params-23">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-23">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getpermoptionflags">getPermOptionFlags</h2>
+                
+                <p>The Get Permanent Option Flags command returns Sphero's permanent option
+                flags, as a bit field.</p>
+                
+                <p>Here's possible bit fields, and their descriptions:</p>
+                
+                <ul>
+                  <li>
+<code>0</code>: Set to prevent Sphero from immediately going to sleep when placed in
+                the charger and connected over Bluetooth.</li>
+                  <li>
+<code>1</code>: Set to enable Vector Drive, that is, when Sphero is stopped and
+                a new roll command is issued it achieves the heading before moving along
+                it.</li>
+                  <li>
+<code>2</code>: Set to disable self-leveling when Sphero is inserted into the
+                charger.</li>
+                  <li>
+<code>3</code>: Set to force the tail LED always on.</li>
+                  <li>
+<code>4</code>: Set to enable motion timeouts (see DID 02h, CID 34h)</li>
+                  <li>
+<code>5</code>: Set to enable retail Demo Mode (when placed in the charger, ball
+                runs a slow rainbow macro for 60 minutes and then goes to sleep).</li>
+                  <li>
+<code>6</code>: Set double tap awake sensitivity to Light</li>
+                  <li>
+<code>7</code>: Set double tap awake sensitivity to Heavy</li>
+                  <li>
+<code>8</code>: Enable gyro max async message (NOT SUPPORTED IN VERSION 1.47)</li>
+                  <li>
+<code>6-31</code>: Unassigned</li>
+                </ul>
+                
+                <h3 id="params-24">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function triggered with option flags data</li>
+                </ul>
+                
+                <h3 id="returns-24">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getpowerstate">getPowerState</h2>
+                
+                <p>The Get Power State command returns Sphero's current power state, and some
+                additional parameters:</p>
+                
+                <ul>
+                  <li>
+<strong>RecVer</strong>: record version code (following is for 0x01)</li>
+                  <li>
+<strong>Power State</strong>: high-level state of the power system</li>
+                  <li>
+<strong>BattVoltage</strong>: current battery voltage, scaled in 100ths of a volt
+                (e.g. 0x02EF would be 7.51 volts)</li>
+                  <li>
+<strong>NumCharges</strong>: Number of battery recharges in the life of this Sphero</li>
+                  <li>
+<strong>TimeSinceChg</strong>: Seconds awake since last recharge</li>
+                </ul>
+                
+                <p>Possible power states:</p>
+                
+                <ul>
+                  <li>0x01 - Battery Charging</li>
+                  <li>0x02 - Battery OK</li>
+                  <li>0x03 - Battery Low</li>
+                  <li>0x04 - Battery Critical</li>
+                </ul>
+                
+                <h3 id="params-25">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with power state data</li>
+                </ul>
+                
+                <h3 id="returns-25">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getrgbled">getRgbLed</h2>
+                
+                <p>The Get RGB LED command fetches the current "user LED color" value, stored
+                in Sphero's configuration.</p>
+                
+                <p>This value may or may not be what's currently displayed by Sphero's LEDs.</p>
+                
+                <h3 id="params-26">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered after writing</li>
+                </ul>
+                
+                <h3 id="returns-26">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getssb">getSsb</h2>
+                
+                <p>The Get SSB command retrieves Sphero's Soul Block.</p>
+                
+                <p>The response is simple, and then the actual block of soulular data returns
+                in an asynchronous message of type 0x0D, due to it's 0x440 byte length</p>
+                
+                <h3 id="params-27">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be called with response</li>
+                </ul>
+                
+                <h3 id="returns-27">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="gettempoptionflags">getTempOptionFlags</h2>
+                
+                <p>The Get Temporary Option Flags command returns Sphero's temporary option
+                flags, as a bit field:</p>
+                
+                <ul>
+                  <li>
+<code>0</code>: Enable Stop On Disconnect behavior</li>
+                  <li>
+<code>1-31</code>: Unassigned</li>
+                </ul>
+                
+                <h3 id="params-28">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function triggered with option flags data</li>
+                </ul>
+                
+                <h3 id="returns-28">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getvoltagetrippoints">getVoltageTripPoints</h2>
+                
+                <p>The Get Voltage Trip Points command returns the trip points Sphero uses to
+                determine Low battery and Critical battery.</p>
+                
+                <p>The values are expressed in 100ths of a volt, so defaults of 7V and 6.5V
+                respectively are returned as 700 and 650.</p>
+                
+                <h3 id="params-29">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with trip point data</li>
+                </ul>
+                
+                <h3 id="returns-29">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="jumptobootloader">jumpToBootloader</h2>
+                
+                <p>The Jump To Bootloader command requests a jump into the Bootloader to
+                prepare for a firmware download.</p>
+                
+                <p>All commands after this one must comply with the Bootloader Protocol
+                Specification.</p>
+                
+                <h3 id="params-30">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</li>
+                </ul>
+                
+                <h3 id="returns-30">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="ping">ping</h2>
+                
+                <p>The Ping command verifies the Sphero is awake and receiving commands.</p>
+                
+                <h3 id="params-31">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) triggered when Sphero has been pinged</li>
+                </ul>
+                
+                <h3 id="returns-31">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="pollpackettimes">pollPacketTimes</h2>
+                
+                <p>The Poll Packet Times command helps users profile the transmission and
+                processing latencies in Sphero.</p>
+                
+                <p>For more details, see the Sphero API documentation.</p>
+                
+                <h3 id="params-32">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) a timestamp to use for profiling</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-32">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="randomcolor">randomColor</h2>
+                
+                <p>The Random Color command sets Sphero to a randomly-generated color.</p>
+                
+                <h3 id="params-33">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) (err, data) to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-33">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="reinitmacroexec">reInitMacroExec</h2>
+                
+                <p>The Reinit Macro Executive command terminates any running macro, and
+                reinitializes the macro system.</p>
+                
+                <p>The table of any persistent user macros is cleared.</p>
+                
+                <h3 id="params-34">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-34">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="readlocator">readLocator</h2>
+                
+                <p>The Read Locator command gets Sphero's current position (X,Y), component
+                velocities, and speed-over-ground (SOG).</p>
+                
+                <p>The position is a signed value in centimeters, the component velocities are
+                signed cm/sec, and the SOG is unsigned cm/sec.</p>
+                
+                <h3 id="params-35">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with data</li>
+                </ul>
+                
+                <h3 id="returns-35">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="roll">roll</h2>
+                
+                <p>The Roll command tells Sphero to roll along the provided vector.</p>
+                
+                <p>Both a speed and heading are required, the latter is considered relative to
+                the last calibrated direction.</p>
+                
+                <p>Permissible heading values are 0 to 359 inclusive.</p>
+                
+                <h3 id="params-36">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>) what speed Sphero should roll at</p>
+                  </li>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) what heading Sphero should roll towards (0-359)</p>
+                  </li>
+                  <li>
+                    <p><strong>[state]</strong> (<code>Number</code>) optional state parameter</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-36">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="runl1diags">runL1Diags</h2>
+                
+                <p>The Perform Level 1 Diagnostics command is a developer-level command to
+                help diagnose aberrant behaviour in Sphero.</p>
+                
+                <p>Most process flags, system counters, and system states are decoded to
+                human-readable ASCII.</p>
+                
+                <p>For more details, see the Sphero API documentation.</p>
+                
+                <h3 id="params-37">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with diagnostic data</li>
+                </ul>
+                
+                <h3 id="returns-37">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="runl2diags">runL2Diags</h2>
+                
+                <p>The Perform Level 2 Diagnostics command is a developer-level command to
+                help diagnose aberrant behaviour in Sphero.</p>
+                
+                <p>It's much less informative than the Level 1 command, but is in binary
+                format and easier to parse.</p>
+                
+                <p>For more details, see the Sphero API documentation.</p>
+                
+                <h3 id="params-38">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered with diagnostic data</li>
+                </ul>
+                
+                <h3 id="returns-38">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="runmacro">runMacro</h2>
+                
+                <p>The Run Macro command attempts to execute the specified macro.</p>
+                
+                <p>Macro IDs are split into groups:</p>
+                
+                <p>0-31 are System Macros. They are compiled into the Main Application, and
+                cannot be deleted. They are always available to run.</p>
+                
+                <p>32-253 are User Macros. They are downloaded and persistently stored, and
+                can be deleted in total.</p>
+                
+                <p>255 is the Temporary Macro, a special user macro as it is held in RAM for
+                execution.</p>
+                
+                <p>254 is also a special user macro, called the Stream Macro that doesn't
+                require this call to begin execution.</p>
+                
+                <p>This command will fail if there is a currently executing macro, or the
+                specified ID code can't be found.</p>
+                
+                <h3 id="params-39">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>id</strong> (<code>Number</code>) 8-bit Macro ID to run</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-39">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="savemacro">saveMacro</h2>
+                
+                <p>Save macro</p>
+                
+                <p>The Save Macro command stores the attached macro definition into the
+                persistent store for later execution. This command can be sent even if
+                other macros are executing.</p>
+                
+                <p>You will receive a failure response if you attempt to send an ID number in
+                the System Macro range, 255 for the Temp Macro and ID of an existing user
+                macro in the storage block.</p>
+                
+                <p>As with all macros, the longest definition that can be sent is 254 bytes.</p>
+                
+                <h3 id="params-40">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>macro</strong> (<code>Array</code>) array of bytes with the data to be written</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-40">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="savetempmacro">saveTempMacro</h2>
+                
+                <p>The Save Temporary Macro stores the attached macro definition into the
+                temporary RAM buffer for later execution.</p>
+                
+                <p>If this command is sent while a Temporary or Stream Macro is executing it
+                will be terminated so that its storage space can be overwritten. As with
+                all macros, the longest definition that can be sent is 254 bytes.</p>
+                
+                <h3 id="params-41">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>macro</strong> (<code>Array</code>) array of bytes with the data to be written</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-41">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="selflevel">selfLevel</h2>
+                
+                <p>The Self Level command controls Sphero's self-level routine.</p>
+                
+                <p>This routine attempts to achieve a horizontal orientation where pitch/roll
+                angles are less than the provided Angle Limit.</p>
+                
+                <p>After both limits are satisfied, option bits control sleep, final
+                angle(heading), and control system on/off.</p>
+                
+                <p>An asynchronous message is returned when the self level routine completes.</p>
+                
+                <p>For more detail on opts param, see the Sphero API documentation.</p>
+                
+                <p>opts:
+                - angleLimit: 0 for default, 1 - 90 to set.
+                - timeout: 0 for default, 1 - 255 to set.
+                - trueTime: 0 for default, 1 - 255 to set.
+                - options: bitmask 4bit e.g. 0xF;
+                };</p>
+                
+                <h3 id="params-42">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) self-level routine options</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-42">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setaccelrange">setAccelRange</h2>
+                
+                <p>The Set Accelerometer Range command tells Sphero what accelerometer range
+                to use.</p>
+                
+                <p>By default, Sphero's solid-state accelerometer is set for a range of ±8Gs.
+                You may wish to change this, perhaps to resolve finer accelerations.</p>
+                
+                <p>This command takes an index for the supported range, as explained below:</p>
+                
+                <ul>
+                  <li>
+<code>0</code>: ±2Gs</li>
+                  <li>
+<code>1</code>: ±4Gs</li>
+                  <li>
+<code>2</code>: ±8Gs (default)</li>
+                  <li>
+<code>3</code>: ±16Gs</li>
+                </ul>
+                
+                <h3 id="params-43">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>idx</strong> (<code>Number</code>) what accelerometer range to use</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-43">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setautoreconnect">setAutoReconnect</h2>
+                
+                <p>The Set Auto Reconnect command tells Sphero's BT module whether or not it
+                should automatically reconnect to the previously-connected Apple mobile
+                device.</p>
+                
+                <h3 id="params-44">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flag</strong> (<code>Number</code>) whether or not to reconnect (0 - no, 1 - yes)</p>
+                  </li>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) how many seconds after start to enable auto reconnect</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after write</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-44">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setbackled">setBackLed</h2>
+                
+                <p>The Set Back LED command allows brightness adjustment of Sphero's tail
+                light.</p>
+                
+                <p>This value does not persist across power cycles.</p>
+                
+                <h3 id="params-45">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>brightness</strong> (<code>Number</code>) brightness to set to Sphero's tail light</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-45">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setchassisid">setChassisId</h2>
+                
+                <p>The Set Chassis ID command assigns Sphero's chassis ID, a 16-bit value.</p>
+                
+                <p>This command only works if you're at the factory.</p>
+                
+                <h3 id="params-46">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>chassisId</strong> (<code>Number</code>) new chassis ID</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-46">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setconfigblock">setConfigBlock</h2>
+                
+                <p>The Set Config Block command accepts an exact copy of the configuration
+                block, and loads it into the RAM copy of the configuration block.</p>
+                
+                <p>The RAM copy is then saved to flash.</p>
+                
+                <p>The configuration block can be obtained by using the Get Configuration
+                Block command.</p>
+                
+                <h3 id="params-47">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>block</strong> (<code>Array</code>) - An array of bytes with the data to be written</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) - To be triggered when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-47">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setdatastreaming">setDataStreaming</h2>
+                
+                <p>The Set Data Streaming command configures Sphero's built-in support for
+                asynchronously streaming certain system and sensor data.</p>
+                
+                <p>This command selects the internal sampling frequency, packet size,
+                parameter mask, and (optionally) the total number of packets.</p>
+                
+                <p>These options are provided as an object, with the following properties:</p>
+                
+                <ul>
+                  <li>
+<strong>n</strong> - divisor of the maximum sensor sampling rate</li>
+                  <li>
+<strong>m</strong> - number of sample frames emitted per packet</li>
+                  <li>
+<strong>mask1</strong> - bitwise selector of data sources to stream</li>
+                  <li>
+<strong>pcnt</strong> - packet count 1-255 (or 0, for unlimited streaming)</li>
+                  <li>
+<strong>mask2</strong> - bitwise selector of more data sources to stream (optional)</li>
+                </ul>
+                
+                <p>For more explanation of these options, please see the Sphero API
+                documentation.</p>
+                
+                <h3 id="params-48">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) object containing streaming data options</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-48">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setdevicemode">setDeviceMode</h2>
+                
+                <p>The Set Device Mode command assigns the operation mode of Sphero based on
+                the supplied mode value.</p>
+                
+                <ul>
+                  <li>
+<strong>0x00</strong>: Normal mode</li>
+                  <li>
+<strong>0x01</strong>: User Hack mode. Enables ASCII shell commands, refer to the
+                associated document for details.</li>
+                </ul>
+                
+                <h3 id="params-49">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>mode</strong> (<code>Number</code>) which mode to set Sphero to</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be called after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-49">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setdevicename">setDeviceName</h2>
+                
+                <p>The Set Device Name command assigns Sphero an internal name. This value is
+                then produced as part of the Get Bluetooth Info command.</p>
+                
+                <p>Names are clipped at 48 characters to support UTF-8 sequences. Any extra
+                characters will be discarded.</p>
+                
+                <p>This field defaults to the Bluetooth advertising name of Sphero.</p>
+                
+                <h3 id="params-50">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>name</strong> (<code>String</code>) what name to give to the Sphero</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when the name is set</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-50">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setheading">setHeading</h2>
+                
+                <p>The Set Heading command tells Sphero to adjust it's orientation, by
+                commanding a new reference heading (in degrees).</p>
+                
+                <p>If stabilization is enabled, Sphero will respond immediately to this.</p>
+                
+                <h3 id="params-51">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) Sphero's new reference heading, in degrees (0-359)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-51">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setinactivitytimeout">setInactivityTimeout</h2>
+                
+                <p>The Set Inactivity Timeout command sets the timeout delay before Sphero
+                goes to sleep automatically.</p>
+                
+                <p>By default, the value is 600 seconds (10 minutes), but this command can
+                alter it to any value of 60 seconds or greater.</p>
+                
+                <h3 id="params-52">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) new delay before sleeping</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-52">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setmacroparam">setMacroParam</h2>
+                
+                <p>The Set Macro Parameter command allows system globals that influence
+                certain macro commands to be selectively altered from outside of the macro
+                system itself.</p>
+                
+                <p>The values of Val1 and Val2 depend on the parameter index.</p>
+                
+                <p>Possible indices:</p>
+                
+                <ul>
+                  <li>
+<strong>00h</strong> Assign System Delay 1: Val1 = MSB, Val2 = LSB</li>
+                  <li>
+<strong>01h</strong> Assign System Delay 2: Val1 = MSB, Val2 = LSB</li>
+                  <li>
+<strong>02h</strong> Assign System Speed 1: Val1 = speed, Val2 = 0 (ignored)</li>
+                  <li>
+<strong>03h</strong> Assign System Speed 2: Val1 = speed, Val2 = 0 (ignored)</li>
+                  <li>
+<strong>04h</strong> Assign System Loops: Val1 = loop count, Val2 = 0 (ignored)</li>
+                </ul>
+                
+                <p>For more details, please refer to the Sphero Macro document.</p>
+                
+                <h3 id="params-53">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>index</strong> (<code>Number</code>) what parameter index to use</p>
+                  </li>
+                  <li>
+                    <p><strong>val1</strong> (<code>Number</code>) value 1 to set</p>
+                  </li>
+                  <li>
+                    <p><strong>val2</strong> (<code>Number</code>) value 2 to set</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-53">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setmotiontimeout">setMotionTimeout</h2>
+                
+                <p>The Set Motion Timeout command gives Sphero an ultimate timeout for the
+                last motion command to keep Sphero from rolling away in the case of
+                a crashed (or paused) application.</p>
+                
+                <p>This defaults to 2000ms (2 seconds) upon wakeup.</p>
+                
+                <h3 id="params-54">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>time</strong> (<code>Number</code>) timeout length in milliseconds</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-54">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setpermoptionflags">setPermOptionFlags</h2>
+                
+                <p>The Set Permanent Option Flags command assigns Sphero's permanent option
+                flags to the provided values, and writes them immediately to the config
+                block.</p>
+                
+                <p>See below for the bit definitions.</p>
+                
+                <h3 id="params-55">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flags</strong> (<code>Array</code>) permanent option flags</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-55">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setpowernotification">setPowerNotification</h2>
+                
+                <p>The Set Power Notification command enables sphero to asynchronously notify
+                the user of power state periodically (or immediately, when a change occurs)</p>
+                
+                <p>Timed notifications are sent every 10 seconds, until they're disabled or
+                Sphero is unpaired.</p>
+                
+                <h3 id="params-56">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flag</strong> (<code>Number</code>) whether or not to send notifications (0 - no, 1 - yes)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-56">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrawmotors">setRawMotors</h2>
+                
+                <p>The Set Raw Motors command allows manual control over one or both of
+                Sphero's motor output values.</p>
+                
+                <p>Each motor (left and right requires a mode and a power value from 0-255.</p>
+                
+                <p>This command will disable stabilization is both mode's aren't "ignore", so
+                you'll need to re-enable it once you're done.</p>
+                
+                <p>Possible modes:</p>
+                
+                <ul>
+                  <li>
+<code>0x00</code>: Off (motor is open circuit)</li>
+                  <li>
+<code>0x01</code>: Forward</li>
+                  <li>
+<code>0x02</code>: Reverse</li>
+                  <li>
+<code>0x03</code>: Brake (motor is shorted)</li>
+                  <li>
+<code>0x04</code>: Ignore (motor mode and power is left unchanged</li>
+                </ul>
+                
+                <h3 id="params-57">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) object with mode/power values (e.g. lmode, lpower)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-57">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrgbled">setRgbLed</h2>
+                
+                <p>The Set RGB LED command sets the colors of Sphero's RGB LED.</p>
+                
+                <p>An object containaing <code>red</code>, <code>green</code>, and <code>blue</code> values must be provided.</p>
+                
+                <p>If <code>opts.flag</code> is set to 1 (default), the color is persisted across power
+                cycles.</p>
+                
+                <h3 id="params-58">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) object containing RGB values for Sphero's LED</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-58">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrotationrate">setRotationRate</h2>
+                
+                <p>The Set Rotation Rate command allows control of the rotation rate Sphero
+                uses to meet new heading commands.</p>
+                
+                <p>A lower value offers better control, but with a larger turning radius.</p>
+                
+                <p>Higher values yield quick turns, but Sphero may lose control.</p>
+                
+                <p>The provided value is in units of 0.784 degrees/sec.</p>
+                
+                <h3 id="params-59">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>rotation</strong> (<code>Number</code>) new rotation rate (0-255)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-59">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setstabilization">setStabilization</h2>
+                
+                <p>The Set Stabilization command turns Sphero's internal stabilization on or
+                off, depending on the flag provided.</p>
+                
+                <h3 id="params-60">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flag</strong> (<code>Number</code>) stabilization setting flag (0 - off, 1 - on)</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-60">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="settempoptionflags">setTempOptionFlags</h2>
+                
+                <p>The Set Temporary Option Flags command assigns Sphero's temporary option
+                flags to the provided values. These do not persist across power cycles.</p>
+                
+                <p>See below for the bit definitions.</p>
+                
+                <h3 id="params-61">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>flags</strong> (<code>Array</code>) permanent option flags</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-61">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setvoltagetrippoints">setVoltageTripPoints</h2>
+                
+                <p>The Set Voltage Trip Points command assigns the voltage trip points for Low
+                and Critical battery voltages.</p>
+                
+                <p>Values are specified in 100ths of a volt, and there are limitations on
+                adjusting these from their defaults:</p>
+                
+                <ul>
+                  <li>vLow must be in the range 675-725</li>
+                  <li>vCrit must be in the range 625-675</li>
+                </ul>
+                
+                <p>There must be 0.25v of separation between the values.</p>
+                
+                <p>Shifting these values too low can result in very little warning before
+                Sphero forces itself to sleep, depending on the battery pack. Be careful.</p>
+                
+                <h3 id="params-62">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>vLow</strong> (<code>Number</code>) new voltage trigger for Low battery</p>
+                  </li>
+                  <li>
+                    <p><strong>vCrit</strong> (<code>Number</code>) new voltage trigger for Crit battery</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-62">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="sleep">sleep</h2>
+                
+                <p>The Sleep command puts Sphero to sleep immediately.</p>
+                
+                <h3 id="params-63">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>wakeup</strong> (<code>Number</code>) the number of seconds for Sphero to re-awaken after. 0x00 tells Sphero to sleep forever, 0xFFFF attemps to put Sphero into deep
+                sleep.</p>
+                  </li>
+                  <li>
+                    <p><strong>macro</strong> (<code>Number</code>) if non-zero, Sphero will attempt to run this macro ID when it wakes up</p>
+                  </li>
+                  <li>
+                    <p><strong>orbBasic</strong> (<code>Number</code>) if non-zero, Sphero will attempt to run an orbBasic program from this line number</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered when done writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-63">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="startcalibration">startCalibration</h2>
+                
+                <p>The Start Calibration command sets up Sphero for manual heading
+                calibration.</p>
+                
+                <p>It does this by turning on the tail light (so you can tell where it's
+                facing) and disabling stabilization (so you can adjust the heading).</p>
+                
+                <p>When done, call #finishCalibration to set the new heading, and re-enable
+                stabilization.</p>
+                
+                <h3 id="params-64">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) (err, data) to be triggered with response</li>
+                </ul>
+                
+                <h3 id="returns-64">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stop">stop</h2>
+                
+                <p>Stops sphero the optimal way by setting flag 'go' to 0
+                and speed to a very low value.</p>
+                
+                <h3 id="params-65">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) triggered on complete</li>
+                </ul>
+                
+                <h3 id="returns-65">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stopondisconnect">stopOnDisconnect</h2>
+                
+                <p>The Stop On Disconnect command sends a flag to Sphero. This flag tells
+                Sphero whether or not it should automatically stop when it detects
+                that it's disconnected.</p>
+                
+                <h3 id="params-66">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) whether or not to stop on disconnect</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) triggered on complete</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-66">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelone">streamAccelOne</h2>
+                
+                <p>Starts streaming of accelOne data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>accelOne</code> event to get the data.</p>
+                
+                <h3 id="params-67">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-67">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelerometer">streamAccelerometer</h2>
+                
+                <p>Starts streaming of accelerometer data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>accelerometer</code> event to get the data.</p>
+                
+                <h3 id="params-68">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-68">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamdata">streamData</h2>
+                
+                <p>Generic Data Streaming setup, using Sphero's setDataStraming command.</p>
+                
+                <p>Users need to listen for the <code>dataStreaming</code> event, or a custom event, to
+                get the data.</p>
+                
+                <h3 id="params-69">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>args</strong> (<code>Object</code>) event, masks, fields, and sps data</li>
+                </ul>
+                
+                <h3 id="returns-69">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamgyroscope">streamGyroscope</h2>
+                
+                <p>Starts streaming of gyroscope data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>gyroscope</code> event to get the data.</p>
+                
+                <h3 id="params-70">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-70">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamimuangles">streamImuAngles</h2>
+                
+                <p>Starts streaming of IMU angles data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>imuAngles</code> event to get the data.</p>
+                
+                <h3 id="params-71">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-71">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streammotorsbackemf">streamMotorsBackEmf</h2>
+                
+                <p>Starts streaming of motor back EMF data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>motorsBackEmf</code> event to get the data.</p>
+                
+                <h3 id="params-72">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-72">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamodometer">streamOdometer</h2>
+                
+                <p>Starts streaming of odometer data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>odometer</code> event to get the data.</p>
+                
+                <h3 id="params-73">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-73">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamvelocity">streamVelocity</h2>
+                
+                <p>Starts streaming of velocity data</p>
+                
+                <p>It uses sphero's data streaming command. User needs to listen
+                for the <code>dataStreaming</code> or <code>velocity</code> event to get the velocity values.</p>
+                
+                <h3 id="params-74">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-74">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="submitvaluetoinput">submitValueToInput</h2>
+                
+                <p>The Submit value To Input command takes the place of the typical user
+                console in orbBasic and allows a user to answer an input request.</p>
+                
+                <p>If there is no pending input request when this API command is sent, the
+                supplied value is ignored without error.</p>
+                
+                <p>Refer to the orbBasic language document for further information.</p>
+                
+                <h3 id="params-75">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>val</strong> (<code>Number</code>) value to respond with</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered with response</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-75">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="version">version</h2>
+                
+                <p>The Version command returns a batch of software and hardware information
+                about Sphero.</p>
+                
+                <h3 id="params-76">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) triggered with version information</li>
+                </ul>
+                
+                <h3 id="returns-76">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 <h5>
                   Note: for more information about the documentation of the Sphero driver click
@@ -465,6 +2530,12 @@ Cylon.robot({
               <div class="commands-api" id="Events">
                 <h1>Events</h1>
                 <h2 id="disconnect">disconnect</h2>
+                
+                <p>Emitted when the connection to the Sphero is closed</p>
+                
+                <hr>
+                
+                <h2 id="disconnect-1">disconnect</h2>
                 
                 <p>Emitted when the connection to the Sphero is closed</p>
                 
@@ -510,6 +2581,162 @@ Cylon.robot({
                 <h2 id="collision">collision</h2>
                 
                 <p>Emitted when Sphero detects a collision</p>
+                
+                <hr>
+                
+                <h2 id="collision-1">collision</h2>
+                
+                <p>Emitted when Sphero receives a version response</p>
+                
+                <hr>
+                
+                <h2 id="collision-2">collision</h2>
+                
+                <p>Emitted when Sphero receives getBluetoothInfo response</p>
+                
+                <hr>
+                
+                <h2 id="collision-3">collision</h2>
+                
+                <p>Emitted when Sphero receives autoRecoonect response</p>
+                
+                <hr>
+                
+                <h2 id="collision-4">collision</h2>
+                
+                <p>Emitted when Sphero receives power state response</p>
+                
+                <hr>
+                
+                <h2 id="collision-5">collision</h2>
+                
+                <p>Emitted when Sphero receives voltage trip points response</p>
+                
+                <hr>
+                
+                <h2 id="collision-6">collision</h2>
+                
+                <p>Emitted when Sphero receives level2diags response</p>
+                
+                <hr>
+                
+                <h2 id="collision-7">collision</h2>
+                
+                <p>Emitted when Sphero receives packetTimes</p>
+                
+                <hr>
+                
+                <h2 id="collision-8">collision</h2>
+                
+                <p>Emitted when Sphero receives chassisId response</p>
+                
+                <hr>
+                
+                <h2 id="collision-9">collision</h2>
+                
+                <p>Emitted when Sphero receives read locator response</p>
+                
+                <hr>
+                
+                <h2 id="collision-10">collision</h2>
+                
+                <p>Emitted when Sphero receives read rgb color response</p>
+                
+                <hr>
+                
+                <h2 id="collision-11">collision</h2>
+                
+                <p>Emitted when Sphero receives perm option flags response</p>
+                
+                <hr>
+                
+                <h2 id="collision-12">collision</h2>
+                
+                <p>Emitted when Sphero receives temp option flags response</p>
+                
+                <hr>
+                
+                <h2 id="collision-13">collision</h2>
+                
+                <p>Emitted when Sphero receives device mode response</p>
+                
+                <hr>
+                
+                <h2 id="collision-14">collision</h2>
+                
+                <p>Emitted when Sphero receives abort macro response</p>
+                
+                <hr>
+                
+                <h2 id="collision-15">collision</h2>
+                
+                <p>Emitted when Sphero receives macro status response</p>
+                
+                <hr>
+                
+                <h2 id="collision-16">collision</h2>
+                
+                <p>Emitted when Sphero receives battery status response</p>
+                
+                <hr>
+                
+                <h2 id="collision-17">collision</h2>
+                
+                <p>Emitted when Sphero receives level 1 diasgs async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-18">collision</h2>
+                
+                <p>Emitted when Sphero receives data streaming async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-19">collision</h2>
+                
+                <p>Emitted when Sphero receives config block async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-20">collision</h2>
+                
+                <p>Emitted when Sphero receives pre sleep warning async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-21">collision</h2>
+                
+                <p>Emitted when Sphero receives macro markers async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-22">collision</h2>
+                
+                <p>Emitted when Sphero receives orb basic print msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-23">collision</h2>
+                
+                <p>Emitted when Sphero receives orb basic ascii error msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-24">collision</h2>
+                
+                <p>Emitted when Sphero receives orb basic error msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-25">collision</h2>
+                
+                <p>Emitted when Sphero receives self level async msg</p>
+                
+                <hr>
+                
+                <h2 id="collision-26">collision</h2>
+                
+                <p>Emitted when Sphero receives gyro axis exceeded async msg</p>
               </div>
             </section>
             <section id="SpheroColors">

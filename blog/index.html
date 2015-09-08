@@ -89,6 +89,226 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    Sep
+                  </div>
+                  <div class="day">
+                    08
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2015
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2015/09/08/cylon-1.2.0-logging-timing-ble/">Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Ron Evans
+              </div>
+            </header>
+            <p>We've been really busy working on our JavaScript robotics &amp; IoT framework, and <a href="">version 1.2.0 of Cylon.js</a> is hot off the presses.</p>
+            
+            <p>There are several important changes to the Cylon.js core. There are also some significant changes to the <code>cylon-ble</code> module that provides support for various Bluetooth LE devices.</p>
+            
+            <p>And of course, a smattering of other changes to some of the other Cylon.js modules. Let's get into the details.</p>
+            
+            <h3 id="cylonjs-core-changes">Cylon.js Core Changes</h3>
+            
+            <p>We have made a few important and useful changes to the Cylon.js core:</p>
+            
+            <h4 id="improved-time-helpers">Improved Time Helpers</h4>
+            
+            <p>We've added a couple more convenience functions for our expressive time syntax. You can now define increments of time in anything ranging from minutes to milliseconds.</p>
+            
+            <p>Here are a few examples combined with the <code>every</code>, <code>after</code>, &amp; <code>finish</code> functions:</p>
+            
+            <pre class="CodeRay">after((<span class="integer">500</span>).milliseconds(), <span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">500 milliseconds elapsed</span><span class="delimiter">"</span></span>);
+});
+
+every((<span class="integer">30</span>).seconds(), <span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">another 30 seconds</span><span class="delimiter">"</span></span>);
+});
+
+<span class="keyword">var</span> minutely = every((<span class="integer">1</span>).minute(), <span class="keyword">function</span>() {
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">another 1 minute</span><span class="delimiter">"</span></span>);
+});
+
+after((<span class="integer">10</span>).minutes(), <span class="keyword">function</span>() {
+  finish(minutely);
+  console.log(<span class="string"><span class="delimiter">"</span><span class="content">10 minutes elapsed</span><span class="delimiter">"</span></span>);
+});
+</pre>
+            
+            <h4 id="dynamic-connections-and-devices">Dynamic Connections And Devices</h4>
+            
+            <p>You no longer need to define all of your connections and devices upfront. Now you can dynamically add connections and devices, and start them up, after your Cylon.js robot is already running.
+            Here is an example using a dynamic device:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">loopback</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span> }
+  },
+
+  <span class="function">connectPinger</span>: <span class="keyword">function</span>() {
+    <span class="local-variable">this</span>.device(<span class="string"><span class="delimiter">"</span><span class="content">pinger</span><span class="delimiter">"</span></span>,
+                {<span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">loopback</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ping</span><span class="delimiter">"</span></span>});
+    <span class="local-variable">this</span>.startDevice(<span class="local-variable">this</span>.devices.pinger, <span class="keyword">function</span>() {
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Get ready to ping...</span><span class="delimiter">"</span></span>);
+    });
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.connectPinger();
+
+    every((<span class="integer">1</span>).second(), <span class="keyword">function</span>() {
+      console.log(my.pinger.ping());
+    });
+  }
+}).start();
+</pre>
+            
+            <p>This is an extremely simple example, but shows the idea. You could use external configuration files to determine which devices the user has installed, do connection discovery to decide which to use, and so many more possibilities.</p>
+            
+            <h4 id="simplified-logging">Simplified Logging</h4>
+            
+            <p>We've replaced the built-in logger with a much simpler one. It still has the important options, but removes everything else. The Cylon.js logger is also pluggable, so it is very easy to replace it with your own logging capabilities should you so choose.
+            This should not really impact developers unless they are implementing adaptor or driver modules.</p>
+            
+            <h3 id="cylon-ble-enhanced-features">cylon-ble Enhanced Features</h3>
+            
+            <h4 id="compatible-with-noble-11x">Compatible With Noble 1.1.x</h4>
+            
+            <p>We've updated <code>cylon-ble</code> to work with the latest version of <code>noble</code>. Thanks to the hard work of <a href="https://github.com/sandeepmistry">@sandeepmistry</a> and other contributors to <code>noble</code>, cylon-ble can now run on Linux, OSX and Windows 8.1+ too!</p>
+            
+            <h4 id="multiple-connections">Multiple Connections</h4>
+            
+            <p>The latest release of <code>cylon-ble</code> now fully supports connections to multiple BLE peripherals at the same time. This makes it really easy to write code that coordinates activity between multiple, different kinds of Bluetooth LE devices.</p>
+            
+            <h4 id="direct-ble-characteristic-driver">Direct BLE Characteristic Driver</h4>
+            
+            <p>A new driver has been added to the <code>cylon-ble</code> module called <code>characteristic</code>. This is a suitably ubiquitous name, for what is a very useful driver.</p>
+            
+            <p>The <code>characteristic</code> driver provides a simple generic interface to a single BLE service/characteristic. It is to BLE development in Cylon.js what the <a href="http://cylonjs.com/documentation/drivers/direct-pin/"><code>direct-pin</code></a> driver is to GPIO development: a way to quickly connect to something, or to do exploratory development to figure out how a BLE device works.</p>
+            
+            <p>Example usage:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: {
+      <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">central</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">207377654321</span><span class="delimiter">"</span></span>,
+      <span class="key">module</span>: <span class="string"><span class="delimiter">"</span><span class="content">cylon-ble</span><span class="delimiter">"</span></span>
+    }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">wiced</span>: {
+      <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ble-characteristic</span><span class="delimiter">"</span></span>,
+      <span class="key">serviceId</span>: <span class="string"><span class="delimiter">"</span><span class="content">180f</span><span class="delimiter">"</span></span>, <span class="key">characteristicId</span>: <span class="string"><span class="delimiter">"</span><span class="content">2a19</span><span class="delimiter">"</span></span>,
+      <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">bluetooth</span><span class="delimiter">"</span></span>
+    }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.wiced.readCharacteristic(<span class="keyword">function</span>(err, data) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> console.error(<span class="string"><span class="delimiter">"</span><span class="content">Error: </span><span class="delimiter">"</span></span>, err); }
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Data: </span><span class="delimiter">"</span></span>, data);
+    });
+  }
+}).start();
+</pre>
+            
+            <p>This example connects and then reads the characteristic ID <code>2a19</code> for the service ID <code>180f</code>. This happens to be the "Battery" information, which is a well-known BLE service/characteristic.</p>
+            
+            <h4 id="ble-searching--dynamic-peripherals">BLE Searching + Dynamic Peripherals</h4>
+            
+            <p>The new <code>cylon-ble</code> release also adds a new way to scan for BLE devices to connect to. You can combine this with the dynamic device feature. This makes it possible to search for devices at runtime, and then connect to whichever of them based on how you want your application to work.</p>
+            
+            <p>Example usage:</p>
+            
+            <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">central</span><span class="delimiter">"</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">"</span><span class="content">cylon-ble</span><span class="delimiter">"</span></span> }
+  },
+
+  <span class="function">connectBLE</span>: <span class="keyword">function</span>(peripheral) {
+    <span class="keyword">if</span> (<span class="local-variable">this</span>.connected) { <span class="keyword">return</span>; }
+
+    <span class="local-variable">this</span>.bluetooth.connectPeripheral(peripheral.uuid, peripheral, <span class="keyword">function</span>() {
+      console.log(peripheral.advertisement.localName, peripheral.uuid);
+      <span class="local-variable">this</span>.connected = <span class="predefined-constant">true</span>;
+      <span class="local-variable">this</span>.device(<span class="string"><span class="delimiter">"</span><span class="content">blething</span><span class="delimiter">"</span></span>,
+                  {<span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">bluetooth</span><span class="delimiter">"</span></span>, <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">ble-device-information</span><span class="delimiter">"</span></span>});
+      <span class="local-variable">this</span>.startDevice(<span class="local-variable">this</span>.devices.blething, <span class="keyword">function</span>() {
+        <span class="local-variable">this</span>.devices.blething.getManufacturerName(<span class="keyword">function</span>(err, data) {
+          <span class="keyword">if</span> (err) {
+            console.log(<span class="string"><span class="delimiter">"</span><span class="content">error: </span><span class="delimiter">"</span></span>, err);
+            <span class="keyword">return</span>;
+          }
+          console.log(<span class="string"><span class="delimiter">"</span><span class="content">data: </span><span class="delimiter">"</span></span>, data);
+        });
+      }.bind(<span class="local-variable">this</span>));
+    }.bind(<span class="local-variable">this</span>));
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    <span class="local-variable">this</span>.connected = <span class="predefined-constant">false</span>;
+
+    my.bluetooth.on(<span class="string"><span class="delimiter">"</span><span class="content">discover</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(peripheral) {
+      my.connectBLE(peripheral);
+    });
+  }
+}).start();
+</pre>
+            
+            <p>This example scans and then automatically connects to the first BLE peripheral it can find. Then it tries to obtain the manufacturer name via the <code>device-information</code> service.</p>
+            
+            <h3 id="a-few-more-tidbits">A Few More Tidbits</h3>
+            
+            <h4 id="cylon-joystick-support-for-dualshock-4">
+<code>cylon-joystick</code> Support For Dualshock 4</h4>
+            
+            <p>We've added support for the the <a href="https://www.playstation.com/en-us/explore/accessories/dualshock-4-wireless-controller/">Dualshock 4</a>, which is the new joystick from the Playstation 4. This coincidentally brings the total number of different supported joysticks to 4.</p>
+            
+            <h4 id="cylon-gpio-bugfixes">
+<code>cylon-gpio</code> Bugfixes</h4>
+            
+            <p>A couple small but important fixes to the <code>continuous-servo</code> driver thanks to contributor <a href="https://github.com/ericterpstra">Eric Terpstra</a>.</p>
+            
+            <h4 id="cylon-mqtt-additional-options">
+<code>cylon-mqtt</code> Additional Options</h4>
+            
+            <p>We've added some additional options for configuration to the <code>cylon-mqtt</code> adaptor.
+            This allows support for additional authentication options for cloud-based MQTT providers such as <a href="https://console.ng.bluemix.net/catalog/internet-of-things/">IBM Bluemix</a>.</p>
+            
+            <h3 id="thank-you-users-and-contributors">Thank You, Users and Contributors</h3>
+            
+            <p>As always, we want to thank our users and contributors for their fine efforts that have led to this release.
+            You could be the next human to join in!</p>
+            
+            <p>For more updates, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Jul
                   </div>
                   <div class="day">
@@ -4175,6 +4395,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2015/09/08/cylon-1.2.0-logging-timing-ble/">Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!</a></li>
               <li><a href="/blog/2015/07/01/cylon-1.1.0-big-cleanup/">Cylon.js 1.1.0 - The Big Cleanup</a></li>
               <li><a href="/blog/2015/05/06/hello-node-bebop-drone/">Hello, Node Bebop Drone</a></li>
               <li><a href="/blog/2015/04/13/cylon-js-featured-in-wired/">Cylon.js featured in Wired</a></li>

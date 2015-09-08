@@ -210,6 +210,7 @@
                     <div class="name">BLE</div>
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
                       <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                       <a href="/documentation/drivers/powerup">PowerUp</a>
@@ -414,7 +415,7 @@ Cylon.robot({
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -429,17 +430,17 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>level</strong> (<code>Number</code>)</p>
+                    <p><strong>level</strong> (<code>Number</code>) power to set</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-1">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -452,20 +453,20 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>color</strong> (<code>Number</code>)</p>
+                    <p><strong>color</strong> (<code>Number</code>) color value to set</p>
                   </li>
                   <li>
-                    <p><strong>persist</strong> (<code>Boolean</code>)</p>
+                    <p><strong>persist</strong> (<code>Boolean</code>) whether color should persist through power cycles</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-2">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -478,23 +479,23 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to roll at</p>
                   </li>
                   <li>
-                    <p><strong>heading</strong> (<code>Number</code>)</p>
+                    <p><strong>heading</strong> (<code>Number</code>) heading to roll at</p>
                   </li>
                   <li>
-                    <p><strong>state</strong> (<code>Number</code>)</p>
+                    <p><strong>state</strong> (<code>Number</code>) roll state value</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-3">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -507,13 +508,13 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-<strong>callback</strong> (<code>Function</code>)</li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-4">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -532,26 +533,26 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>leftMode</strong> (<code>Number</code>)</p>
+                    <p><strong>lm</strong> (<code>Number</code>) left motor mode</p>
                   </li>
                   <li>
-                    <p><strong>leftPower</strong> (<code>Number</code>)</p>
+                    <p><strong>lp</strong> (<code>Number</code>) left motor power</p>
                   </li>
                   <li>
-                    <p><strong>rightMode</strong> (<code>Number</code>)</p>
+                    <p><strong>rm</strong> (<code>Number</code>) right motor mode</p>
                   </li>
                   <li>
-                    <p><strong>rightPower</strong> (<code>Number</code>)</p>
+                    <p><strong>rp</strong> (<code>Number</code>) right motor power</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-5">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -566,17 +567,17 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>enable</strong> (<code>Number</code>)</p>
+                    <p><strong>enable</strong> (<code>Number</code>) stabilization enable mode</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-6">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -592,13 +593,13 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-<strong>callback</strong> (<code>Function</code>)</li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-7">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
               </div>
             </section>

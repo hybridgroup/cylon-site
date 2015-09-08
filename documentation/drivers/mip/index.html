@@ -210,6 +210,7 @@
                     <div class="name">BLE</div>
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
                       <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                       <a href="/documentation/drivers/powerup">PowerUp</a>
@@ -340,26 +341,26 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>light1</strong> (<code>Number</code>)</p>
+                    <p><strong>light1</strong> (<code>Number</code>) light one value</p>
                   </li>
                   <li>
-                    <p><strong>light2</strong> (<code>Number</code>)</p>
+                    <p><strong>light2</strong> (<code>Number</code>) light two value</p>
                   </li>
                   <li>
-                    <p><strong>light3</strong> (<code>Number</code>)</p>
+                    <p><strong>light3</strong> (<code>Number</code>) light three value</p>
                   </li>
                   <li>
-                    <p><strong>light4</strong> (<code>Number</code>)</p>
+                    <p><strong>light4</strong> (<code>Number</code>) light four value</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -372,23 +373,23 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>r</strong> (<code>Number</code>)</p>
+                    <p><strong>r</strong> (<code>Number</code>) red value</p>
                   </li>
                   <li>
-                    <p><strong>g</strong> (<code>Number</code>)</p>
+                    <p><strong>g</strong> (<code>Number</code>) green value</p>
                   </li>
                   <li>
-                    <p><strong>b</strong> (<code>Number</code>)</p>
+                    <p><strong>b</strong> (<code>Number</code>) blue value</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-1">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -401,29 +402,29 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>r</strong> (<code>Number</code>)</p>
+                    <p><strong>r</strong> (<code>Number</code>) red value</p>
                   </li>
                   <li>
-                    <p><strong>g</strong> (<code>Number</code>)</p>
+                    <p><strong>g</strong> (<code>Number</code>) green value</p>
                   </li>
                   <li>
-                    <p><strong>b</strong> (<code>Number</code>)</p>
+                    <p><strong>b</strong> (<code>Number</code>) blue value</p>
                   </li>
                   <li>
-                    <p><strong>timeOn</strong> (<code>Number</code>)</p>
+                    <p><strong>timeOn</strong> (<code>Number</code>) time on</p>
                   </li>
                   <li>
-                    <p><strong>timeOff</strong> (<code>Number</code>)</p>
+                    <p><strong>timeOff</strong> (<code>Number</code>) time off</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-2">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -436,17 +437,17 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>stand</strong> (<code>Number</code>)</p>
+                    <p><strong>stand</strong> (<code>Number</code>) MiP should stand</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-3">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -459,26 +460,26 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>direction</strong> (<code>Number</code>)</p>
+                    <p><strong>direction</strong> (<code>Number</code>) direction to drive</p>
                   </li>
                   <li>
-                    <p><strong>distance</strong> (<code>Number</code>)</p>
+                    <p><strong>distance</strong> (<code>Number</code>) distance to drive</p>
                   </li>
                   <li>
-                    <p><strong>turnDirection</strong> (<code>Number</code>)</p>
+                    <p><strong>turnDirection</strong> (<code>Number</code>) direction to turn</p>
                   </li>
                   <li>
-                    <p><strong>turnAngle</strong> (<code>Number</code>)</p>
+                    <p><strong>turnAngle</strong> (<code>Number</code>) angle to turn</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-4">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -491,20 +492,20 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to move at</p>
                   </li>
                   <li>
-                    <p><strong>time</strong> (<code>Number</code>)</p>
+                    <p><strong>time</strong> (<code>Number</code>) how long to move</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-5">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -517,20 +518,20 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to move at</p>
                   </li>
                   <li>
-                    <p><strong>time</strong> (<code>Number</code>)</p>
+                    <p><strong>time</strong> (<code>Number</code>) how long to move</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-6">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -543,20 +544,20 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>angle</strong> (<code>Number</code>)</p>
+                    <p><strong>angle</strong> (<code>Number</code>) angle to turn to</p>
                   </li>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to turn at</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-7">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -569,20 +570,20 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>angle</strong> (<code>Number</code>)</p>
+                    <p><strong>angle</strong> (<code>Number</code>) angle to turn to</p>
                   </li>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>)</p>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to turn at</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-8">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -595,17 +596,17 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-                    <p><strong>mode</strong> (<code>Number</code>)</p>
+                    <p><strong>mode</strong> (<code>Number</code>) mode to set to</p>
                   </li>
                   <li>
-                    <p><strong>callback</strong> (<code>Function</code>)</p>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
                   </li>
                 </ul>
                 
                 <h3 id="returns-9">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
                 
                 <hr>
@@ -618,13 +619,13 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-<strong>callback</strong> (<code>Function</code>)</li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-10">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>undefined</code>)</li>
                 </ul>
               </div>
             </section>

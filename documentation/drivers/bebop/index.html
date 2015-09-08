@@ -210,6 +210,7 @@
                     <div class="name">BLE</div>
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
                       <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                       <a href="/documentation/drivers/powerup">PowerUp</a>
@@ -347,10 +348,14 @@ Cylon.robot({
                 <h1>Commands</h1>
                 <h2 id="takeoff">takeOff</h2>
                 
-                <p>Sets the internal fly state to true, callback is invoked
-                after the drone reports that it is hovering.</p>
+                <p>Tells Bebop to start flying by setting the internal 'fly' state to true.</p>
                 
-                <p>callback - params</p>
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to invoke once hovering</li>
+                </ul>
                 
                 <h3 id="returns">Returns</h3>
                 
@@ -362,10 +367,14 @@ Cylon.robot({
                 
                 <h2 id="land">land</h2>
                 
-                <p>Sets the internal fly state to false, callback is invoked
-                after the drone reports it has landed.</p>
+                <p>Tells Bebop to land by setting the internal 'fly' state to false.</p>
                 
-                <p>callback - params</p>
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to invoke once landed</li>
+                </ul>
                 
                 <h3 id="returns-1">Returns</h3>
                 
@@ -377,8 +386,8 @@ Cylon.robot({
                 
                 <h2 id="stop">stop</h2>
                 
-                <p>Sets all drone movement commands to 0,
-                making it effectively hover in place.</p>
+                <p>Sets all drone movement commands to 0, making it effectively hover in
+                place.</p>
                 
                 <h3 id="returns-2">Returns</h3>
                 
@@ -390,121 +399,156 @@ Cylon.robot({
                 
                 <h2 id="up">up</h2>
                 
-                <p>Makes the drone gain altitude.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to start gaining altitude</p>
                 
-                <p>speed - params</p>
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-3">Returns</h3>
                 
                 <ul>
-                  <li>(<code>Number</code>) value from 0 to 1</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="down">down</h2>
                 
-                <p>Makes the drone reduce altitude.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to start losing altitude</p>
                 
-                <p>speed - params</p>
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-4">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="left">left</h2>
                 
-                <p>Causes the drone to bank to the left, controls the roll, which is
-                a horizontal movement using the camera as a reference point.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to bank left - controlling the roll using the camera as
+                a reference point.</p>
                 
-                <p>speed - params</p>
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-5">Returns</h3>
                 
                 <ul>
-                  <li>(<code>Number</code>) value from 0 to 1</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="right">right</h2>
                 
-                <p>Causes the drone to bank to the right, controls the roll, which is
-                a horizontal movement using the camera as a reference point.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to bank right - controlling the roll using the camera as
+                a reference point.</p>
                 
-                <p>speed - params</p>
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-6">Returns</h3>
                 
                 <ul>
-                  <li>(<code>Number</code>) value from 0 to 1</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="forward">forward</h2>
                 
-                <p>Causes the drone to bank forward, controls the pitch,
-                which a horizontal movement using the camera as a reference point.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to bank forward - controlling the pitch using the camera as
+                a reference point.</p>
                 
-                <p>speed - params
-                forward(speed) - params</p>
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-7">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="backward">backward</h2>
                 
-                <p>Causes the drone to bank to the back, controls the pitch,
-                which a horizontal movement using the camera as a reference point.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to bank backwards - controlling the pitch using the camera
+                as a reference point.</p>
                 
-                <p>speed - params</p>
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-8">Returns</h3>
                 
                 <ul>
-                  <li>(<code>Number</code>) value from 0 to 1</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="clockwise">clockwise</h2>
                 
-                <p>Causes the drone to spin.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to begin spinning clockwise</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-9">Returns</h3>
                 
                 <ul>
-                  <li>(<code>Number</code>) value from 0 to 1</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
                 
                 <hr>
                 
                 <h2 id="counterclockwise">counterClockwise</h2>
                 
-                <p>Causes the drone to spin.
-                speed can be a value from 0 to 1.</p>
+                <p>Tells the drone to begin spinning counterclockwise</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>speed</strong> (<code>Number</code>) value from 0 to 1</li>
+                </ul>
                 
                 <h3 id="returns-10">Returns</h3>
                 
                 <ul>
-                  <li>(<code>null</code>)</li>
+                  <li>(<code>Number</code>) set speed</li>
                 </ul>
               </div>
             </section>

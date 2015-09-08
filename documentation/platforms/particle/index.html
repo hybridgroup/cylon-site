@@ -210,6 +210,7 @@
                     <div class="name">BLE</div>
                     <div class="links">
                       <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
                       <a href="/documentation/drivers/ble-device-information">Device Information</a>
                       <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
                       <a href="/documentation/drivers/powerup">PowerUp</a>
@@ -313,34 +314,34 @@
               <pre class="CodeRay">$ npm install cylon cylon-spark
 </pre>
               
-              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to your Particle, and you can get both of these from Particle's <a href="https://build.particle.io/build/">Build tool</a>.</p>
+              <p>You'll need your <code>access_token</code> and <code>device_id</code> to push new software to yourSpark, and you can get both of these from Spark's <a href="https://spark.io/build">Build tool</a>.</p>
               
               <ul>
                 <li>
 <strong>access_token:</strong> In the Build tool, click on the Settings cog in the
               bottom-left corner to find your access token.</li>
                 <li>
-<strong>device_id:</strong> After you have your Particle Core or Photon registered to your account
+<strong>device_id:</strong> After you have your Spark Core registered to your account
               through the Tinker app, click on the Cores section (just above the Settings
               cog) on the Build tool. Then, click on the arrow next to your core's name to
               get its device ID.</li>
               </ul>
               
-              <h3 id="installing-firmware-on-your-particle-core-or-photon">Installing Firmware On Your Particle Core or Photon</h3>
+              <h3 id="installing-firmware-on-your-spark-core">Installing Firmware On Your Spark Core</h3>
               
-              <p>You will need to install the appropriate firmware on your Particle Core or Photon to use it from Cylon.js.</p>
+              <p>You will need to install the appropriate firmware on your Spark Core to use it from Cylon.js.</p>
               
-              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the Gort CLI (http://gort.io). This routes all of your calls thru the Particle cloud, with is appropriate for communicating with Particle devices in a remote location.</p>
+              <p>One option is to use the Tinker software, which has the same API as the "default.cpp" code that is included with the Gort CLI (http://gort.io). This routes all of your calls thru the Spark cloud, with is appropriate for communicating with Spark devices in a remote location.</p>
               
-              <p>Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Particle cloud, and then routes all of your calls directly to the Particle Core or Photon device. This is appropriate for communicating with Particle devices on the same local subnet as the computer that you wish to control them from.</p>
+              <p>Another option is to use the VoodooSpark firmware, which has its own binary API. This discovers your device thru the Spark cloud, and then routes all of your calls directly to the Spark Core device. This is appropriate for communicating with Spark devices on the same local subnet as the computer that you wish to control them from.</p>
               
-              <p>For more information on how to program your Particle, please see <a href="https://docs.particle.io/guide/getting-started/examples/photon/">Particle's examples</a>.</p>
+              <p>For more information on how to program your Spark, please see <a href="http://docs.spark.io/#/examples">Spark's examples</a>.</p>
               
               <p>For more information about VoodooSpark, click <a href="http://voodoospark.me">here</a>.</p>
               
               <h2 id="how-to-use">How to Use</h2>
               
-              <h3 id="particle-using-tinker-api">Particle using Tinker API:</h3>
+              <h3 id="spark-using-tinker-api">Spark using Tinker API:</h3>
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
 <span class="comment">// Initialize the robot</span>
@@ -359,7 +360,7 @@ Cylon.robot({
 }).start();
 </pre>
               
-              <h3 id="particle-using-voodoospark-api">Particle using VoodooSpark API:</h3>
+              <h3 id="spark-using-voodoospark-api">Spark using VoodooSpark API:</h3>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
 
@@ -386,9 +387,9 @@ Cylon.robot({
               
               <h2 id="how-to-connect">How to Connect</h2>
               
-              <p>The setup process for the Particle core and photon is fully explained by <a href="https://docs.particle.io/guide/getting-started/connect/photon/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
+              <p>The setup process for the Spark core is fully explained by <a href="http://docs.spark.io/connect/">their docs</a>, and requires only an active internet connection with a WiFi access point.</p>
               
-              <p>Once your Particle is connected, you can get the <code>accessToken</code> and <code>deviceId</code> necessary to communicate with it from Cylon.</p>
+              <p>Once your Spark is connected, you can get the <code>accessToken</code> and <code>deviceId</code> necessary to communicate with it from Cylon.</p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
