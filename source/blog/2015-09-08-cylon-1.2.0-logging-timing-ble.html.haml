@@ -2,7 +2,7 @@
 page_title_show: true
 title: "Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!"
 page_title: Blog
-date: 2015-09-09
+date: 2015-09-08
 tags: robots
 author: Ron Evans
 active_menu_blog: true
@@ -16,11 +16,7 @@ active_menu_blog: true
 
   ### Cylon.js Core Changes
 
-  We have made a couple of important and useful changes to the Cylon.js core:
-
-  #### Simplified Logging
-
-  We've replaced the built-in logger with a much simpler one. It still has the important options, but removes everything else. The Cylon.js logger is also pluggable, so it is very easy to replace it with your own logging capabilities should you so choose.
+  We have made a few important and useful changes to the Cylon.js core:
 
   #### Improved Time Helpers
 
@@ -77,6 +73,11 @@ active_menu_blog: true
       }).start();
 
   This is an extremely simple example, but shows the idea. You could use external configuration files to determine which devices the user has installed, do connection discovery to decide which to use, and so many more possibilities.
+
+  #### Simplified Logging
+
+  We've replaced the built-in logger with a much simpler one. It still has the important options, but removes everything else. The Cylon.js logger is also pluggable, so it is very easy to replace it with your own logging capabilities should you so choose.
+  This should not really impact developers unless they are implementing adaptor or driver modules.
 
   ### cylon-ble Enhanced Features
 
