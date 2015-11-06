@@ -15,7 +15,7 @@ active_menu_docs: true
 
     Cylon.js, as an example of a modernized robotics development framework, has support for TDR built-in.
 
-    Here's an example robot:
+    Here's an example robot "testbot.js":
 
         :::javascript
         var Cylon = require("cylon");
@@ -40,7 +40,7 @@ active_menu_docs: true
           }
         }.start());
 
-    And here's a test, set up with a combination of the Mocha, Sinon, and Chai test frameworks:
+    And here's a test "testbot_test.js", set up with a combination of the Mocha, Sinon, and Chai test frameworks:
 
         :::javascript
         "use strict";
@@ -52,9 +52,10 @@ active_menu_docs: true
             sinon = require('sinon'),
             sinonChai = require('sinon-chai');
 
+        var expect = chai.expect;
         chai.use(sinonChai);
 
-        var clock = sinon.useFakeTimers;
+        var clock = sinon.useFakeTimers();
 
         // load the robot, in test mode
         var Cylon = require('cylon');
@@ -64,7 +65,7 @@ active_menu_docs: true
         require('./robot.js');
 
         describe("TestBot", function() {
-          var robot = Cylon.robots["TestBot"];
+          var robot = Cylon.MCP.robots["TestBot"];
 
           it("should have work", function() {
             expect(robot.work).to.be.a('function');
@@ -78,3 +79,7 @@ active_menu_docs: true
             expect(toggle).to.have.been.called;
           });
         });
+
+    You would run the above test with the mocha command line, like this:
+
+        mocha testbot_test.js
