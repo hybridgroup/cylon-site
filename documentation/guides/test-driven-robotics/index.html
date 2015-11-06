@@ -282,7 +282,7 @@
               
               <p>Cylon.js, as an example of a modernized robotics development framework, has support for TDR built-in.</p>
               
-              <p>Here's an example robot:</p>
+              <p>Here's an example robot "testbot.js":</p>
               
               <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">"</span><span class="content">cylon</span><span class="delimiter">"</span></span>);
 
@@ -307,7 +307,7 @@ Cylon.robot({
 }.start());
 </pre>
               
-              <p>And here's a test, set up with a combination of the Mocha, Sinon, and Chai test frameworks:</p>
+              <p>And here's a test "testbot_test.js", set up with a combination of the Mocha, Sinon, and Chai test frameworks:</p>
               
               <pre class="CodeRay"><span class="string"><span class="delimiter">"</span><span class="content">use strict</span><span class="delimiter">"</span></span>;
 
@@ -318,9 +318,10 @@ process.env.NODE_ENV = <span class="string"><span class="delimiter">'</span><spa
     sinon = require(<span class="string"><span class="delimiter">'</span><span class="content">sinon</span><span class="delimiter">'</span></span>),
     sinonChai = require(<span class="string"><span class="delimiter">'</span><span class="content">sinon-chai</span><span class="delimiter">'</span></span>);
 
+<span class="keyword">var</span> expect = chai.expect;
 chai.use(sinonChai);
 
-<span class="keyword">var</span> clock = sinon.useFakeTimers;
+<span class="keyword">var</span> clock = sinon.useFakeTimers();
 
 <span class="comment">// load the robot, in test mode</span>
 <span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
@@ -330,7 +331,7 @@ Cylon.config({ <span class="key">testMode</span>: <span class="predefined-consta
 require(<span class="string"><span class="delimiter">'</span><span class="content">./robot.js</span><span class="delimiter">'</span></span>);
 
 describe(<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
-  <span class="keyword">var</span> robot = Cylon.robots[<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>];
+  <span class="keyword">var</span> robot = Cylon.MCP.robots[<span class="string"><span class="delimiter">"</span><span class="content">TestBot</span><span class="delimiter">"</span></span>];
 
   it(<span class="string"><span class="delimiter">"</span><span class="content">should have work</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>() {
     expect(robot.work).to.be.a(<span class="string"><span class="delimiter">'</span><span class="content">function</span><span class="delimiter">'</span></span>);
@@ -344,6 +345,11 @@ describe(<span class="string"><span class="delimiter">"</span><span class="conte
     expect(toggle).to.have.been.called;
   });
 });
+</pre>
+              
+              <p>You would run the above test with the mocha command line, like this:</p>
+              
+              <pre class="CodeRay">mocha testbot_test.js
 </pre>
             </div>
           </div>
