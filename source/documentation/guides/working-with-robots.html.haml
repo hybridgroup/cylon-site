@@ -276,9 +276,9 @@ active_menu_docs: true
   For example:
 
       :::javascript
-      (0.5).fromScale(0, 200); // 100
-      (10).fromScale(0, 50);   // 50
-      (-1).fromScale(0, 50);   // 0
+      (0.5).toScale(0, 200); // 100
+      (10).toScale(0, 50);   // 50
+      (-1).toScale(0, 50);   // 0
 
   **every** is a wrapper around `setInterval`, with the aim of making the semantics easier for new developers.
   It's intended to be used with the `Number#seconds` helper method.
