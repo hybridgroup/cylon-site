@@ -544,9 +544,9 @@ setInterval(randomFunction, (<span class="integer">5</span>).seconds()); <span c
             If the number exceeds the provided scale, either the min or max end of the scale will be returned.
             For example:</p>
             
-            <pre class="CodeRay">(<span class="float">0.5</span>).fromScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 100</span>
-(<span class="integer">10</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 50</span>
-(-<span class="integer">1</span>).fromScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 0</span>
+            <pre class="CodeRay">(<span class="float">0.5</span>).toScale(<span class="integer">0</span>, <span class="integer">200</span>); <span class="comment">// 100</span>
+(<span class="integer">10</span>).toScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 50</span>
+(-<span class="integer">1</span>).toScale(<span class="integer">0</span>, <span class="integer">50</span>);   <span class="comment">// 0</span>
 </pre>
             
             <p><strong>every</strong> is a wrapper around <code>setInterval</code>, with the aim of making the semantics easier for new developers.
