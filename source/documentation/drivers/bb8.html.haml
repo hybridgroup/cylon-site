@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Ollie Driver
+title: Cylon.js - BB-8 Driver
 author: The Hybrid Group
-page_title: Drivers - Ollie
+page_title: Drivers - BB-8
 page_subtitle: Cylon has an extensible system for connecting to hardware devices.
-page_title_docs: Ollie
+page_title_docs: BB-8
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -12,12 +12,12 @@ active_menu_docs: true
 subnavjs: true
 ---
 %section.intro
-  =image_tag "/images/devices/ollie.jpg", class: "display"
+  =image_tag "/images/devices/bb8.jpg", class: "display"
   .info-intro
     :markdown
-      Allows users to interact with the Ollie using Cylon.js.
+      Allows users to interact with the Sphero BB-8 robot using Cylon.js.
 
-      For more information click [here](http://www.gosphero.com/ollie).
+      For more information click [here](http://www.sphero.com/bb8).
 
   .clear
 
@@ -34,9 +34,10 @@ subnavjs: true
           },
 
           devices: {
-            ollie: { driver: 'ollie', module: "cylon-sphero-ble" }
+            bb8: { driver: 'bb8', module: "cylon-sphero-ble" }
           },
           ...
+
 
 %section#HowToUse
   :markdown
@@ -51,30 +52,29 @@ subnavjs: true
           },
 
           devices: {
-            ollie: { driver: 'ollie', module: 'cylon-sphero-ble' }
+            bb8: { driver: 'bb8', module: 'cylon-sphero-ble' }
           },
 
           work: function(my) {
-            my.ollie.color(0x00FFFF);
+            my.bb8.color(0x00FFFF);
 
             after(500, function() {
-              my.ollie.color(0xFF0000);
+              my.bb8.color(0xFF0000);
             });
 
             after(1000, function() {
-              my.ollie.roll(60, 0);
+              my.bb8.roll(60, 0);
             });
 
             after(2000, function() {
-              my.ollie.roll(60, 180);
+              my.bb8.roll(60, 180);
             });
 
             after(3000, function() {
-              my.ollie.stop();
+              my.bb8.stop();
             });
           }
         }).start();
-
 
 %section.public-methods
   .commands-api#Commands
@@ -84,4 +84,4 @@ subnavjs: true
 %section.compatability.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Ollie" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "BB-8" }

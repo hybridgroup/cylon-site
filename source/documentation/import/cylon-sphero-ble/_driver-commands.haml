@@ -1,0 +1,329 @@
+:markdown
+  ## roll
+
+  Roll the robot
+
+
+  ### Params
+
+
+  - **speed** (<code>Number</code>) what speed robot should roll at
+
+
+  - **heading** (<code>Number</code>) what heading robot should roll towards (0-359)
+
+
+  - **[state]** (<code>Number</code>) optional state parameter
+
+
+  - **callback** (<code>Function</code>) function to be triggered after writing
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## color
+
+  Sets the RGB color of built-in LED
+
+
+  ### Params
+
+
+  - **color** (<code>Number</code>) color value to set
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## randomColor
+
+  Sets the RGB color built-in LED to random color
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## getColor
+
+  Gets the RGB color for built-in LED
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## detectCollisions
+
+  Turns on collision detection mode
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## startCalibration
+
+  Turns on start calibration mode
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## finishCalibration
+
+  Finish calibration mode
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamOdometer
+
+  Stream odometer data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamVelocity
+
+  Stream velocity data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamAccelOne
+
+  Stream accelOne data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamImuAngles
+
+  Stream ImuAngles data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamAccelerometer
+
+  Stream accelerometer data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamGyroscope
+
+  Stream gyroscope data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## streamMotorsBackEmf
+
+  Stream motors back EMF data
+
+
+  ### Params
+
+
+  - **[sps=5]** (<code>Number</code>) samples per second
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## stopOnDisconnect
+
+  Auto stop the Sphero when it detects it has become disconnected
+
+
+  ### Params
+
+
+  - **[remove=false]** (<code>Boolean</code>) forces velocity streaming to stop
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## setHeading
+
+  Tell Sphero to adjust orientation
+
+
+  ### Params
+
+
+  - **heading** (<code>Number</code>) heading to set as new zero
+
+
+  - **callback** (<code>Function</code>) function to call when done
+
+
+  ### Returns
+
+  - (<code>undefined</code>)
+
+  * * *
+
+  ## spin
+
+  Tells robot to spin in place
+
+
+  ### Params
+
+
+  - **direction** (<code>String</code>) direction to spin, either "left", or "right"
+
+
+  - **speed** (<code>Number</code>) speed to spin
+
+
+  ### Returns
+
+  - (<code>undefined</code>)

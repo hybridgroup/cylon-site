@@ -1,0 +1,52 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+        $ npm install cylon cylon-sphero-ble
+
+    ## How to Use
+
+        :::javascript
+        var Cylon = require('cylon');
+
+        Cylon.robot({
+          connections: {
+            bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'}
+          },
+
+          devices: {
+            bb8: { driver: 'bb8', module: 'cylon-sphero-ble'}
+          },
+
+          work: function(my) {
+            my.bb8.color(0x00FFFF);
+
+            after(500, function() {
+              my.bb8.color(0xFF0000);
+            });
+
+            after(1000, function() {
+              my.bb8.roll(60, 0);
+            });
+
+            after(2000, function() {
+              my.bb8.roll(60, 180);
+            });
+
+            after(3000, function() {
+              my.bb8.stop();
+            });
+          }
+        }).start();
+
+    ## How to Connect
+
+    Before you will be able to program the BB-8/Ollie, you will need to determine the BLE `address` of your robot. One way to do this, is to use the `cylon-ble-scan` command line utility installed as part of [cylon-ble](https://github.com/hybridgroup/cylon-ble).
+
+    Once you know your `address` substitute it into your code, and away you go!
+
+    You can run the examples in this repo like this:
+
+    ```
+    ADDRESS="f3f26d557108" node examples/color.js
+    ```

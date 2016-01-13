@@ -1,0 +1,36 @@
+---
+title: Sphero BLE with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - Sphero BLE
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Sphero BLE
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-sphero-ble' target='_blank' class='repository'>Repository</a>| <a class+'issues' href='https://github.com/hybridgroup/cylon-ollie/issues' target='_blank' >Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/bb8.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+
+      The latest robots from Sphero are the Sphero BB-8 and Sphero Ollie, and they are both controlled using Bluetooth Low Energy (BLE) interface.
+
+      To learn more about the Sphero Ollie, click [here](http://www.sphero.com/ollie).
+  .clear
+
+= partial "documentation/platforms/partials/sphero-ble"
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    There are drivers for the Sphero BB-8, and the Sphero Ollie.
+    Click on the image below:
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Sphero BLE" }
