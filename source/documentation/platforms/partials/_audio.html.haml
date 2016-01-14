@@ -6,6 +6,17 @@
 
         $ npm install cylon cylon-audio
 
+    ### Prerequisites for OSX
+
+        $ brew install mpg123
+
+    ### Prerequisites for Ubuntu
+
+        $ sudo apt-get install mpg123
+
+    ### Prerequisites for Windows
+
+    Download and install the latest release for Windows from [http://www.mpg123.de/download/win32/?V=1&O=D](http://www.mpg123.de/download/win32/?V=1&O=D)
 
     ### Special instructions for Intel Edison
 
@@ -13,40 +24,14 @@
 
     Then, add these lines to your `/etc/opkg/base-feeds.conf` file:
 
-    ```
-    src/gz all http://repo.opkg.net/edison/repo/all
-    src/gz edison http://repo.opkg.net/edison/repo/edison
-    src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
-    ```
+        src/gz all http://repo.opkg.net/edison/repo/all
+        src/gz edison http://repo.opkg.net/edison/repo/edison
+        src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32
 
     And then run:
 
-    ```
-    opkg update
-    opkg install alsa-tools-dev
-    ```
-
-    Plug in your USB sound device, then run, then run this command to check that ALSA sees your device:
-
-    ```
-    aplay -Ll
-    ```
-
-    Create a ~/.asoundrc file (or an /etc/asound.conf file for all users):
-
-    ```
-    pcm.!default sysdefault:Device
-    ```
-
-    Change `Device` to match the name of the card returned by the `aplay -Ll` command.
-
-    To verify that the system is working, run this command:
-
-    ```
-    aplay /usr/share/sounds/alsa/Front_Center.wav
-    ```
-
-    If you hear audio, you should now be able to run `npm install cylon-audio`. Thanks to [http://alextgalileo.altervista.org/blog/lets-make-noise-play-audio-edison/](http://alextgalileo.altervista.org/blog/lets-make-noise-play-audio-edison/) for which partof these instructions were derived.
+        opkg update
+        opkg install mpg123
 
     ## How to Use
 
@@ -65,8 +50,8 @@
           },
 
           work: function(my) {
-            my.audio.on('playing', function(song){
-              console.log('Playing this nice tune: "' + song + '"');
+            my.audio.on("complete", function(){
+              console.log("Done playing this nice sound.");
             });
 
             // You can pass a string with a full or relative path here,
