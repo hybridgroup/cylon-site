@@ -1,0 +1,856 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="The Hybrid Group" name="author">
+    <title>Cylon.js - BB-8 Driver</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/subnav.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a class="active" href="/documentation">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a href="/blog" class="item">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="main-content" role="main">
+        <div class="documentation">
+          <div class="side-documentation">
+            <div class="mobile-menu">
+              <h1 class="sidebar-title">Index</h1>
+              <a id="docs-menu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </a>
+            </div>
+            <nav class="docs-sidebar" ng-controller="SidebarCtrl">
+              <a href="/documentation/getting-started">Getting Started</a>
+              <div class="section" ng-class="{active: active('Guides')}">
+                <div class="name" ng-click="show('Guides')">Guides</div>
+                <div class="links" ng-show="active('Guides')">
+                  <a href="/documentation/guides/what_is_cylon">About Cylon</a>
+                  <a href="/documentation/guides/working-with-robots">Working With Robots</a>
+                  <a href="/documentation/guides/declarative-vs-fluent">Declarative vs. Fluent</a>
+                  <a href="/documentation/guides/cli">CLI</a>
+                  <a href="/documentation/guides/test-driven-robotics">Test-Driven Robotics</a>
+                  <a href="/documentation/guides/browser-support">Browser Support</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Platforms')}">
+                <div class="name" ng-click="show('Platforms')">Platforms</div>
+                <div class="links" ng-show="active('Platforms')">
+                  <a href="/documentation/platforms/ardrone">Ardrone</a>
+                  <a href="/documentation/platforms/arduino">Arduino</a>
+                  <a href="/documentation/platforms/yun">Arduino Yun</a>
+                  <a href="/documentation/platforms/audio">Audio</a>
+                  <a href="/documentation/platforms/beaglebone">Beaglebone</a>
+                  <a href="/documentation/platforms/bebop">Bebop</a>
+                  <a href="/documentation/platforms/ble">BLE</a>
+                  <a href="/documentation/platforms/crazyflie">Crazyflie</a>
+                  <a href="/documentation/platforms/digispark">Digispark</a>
+                  <a href="/documentation/platforms/imp">Imp</a>
+                  <a href="/documentation/platforms/galileo">Intel Galileo</a>
+                  <a href="/documentation/platforms/edison">Intel Edison</a>
+                  <a href="/documentation/platforms/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/platforms/joystick">Joystick</a>
+                  <a href="/documentation/platforms/keyboard">Keyboard</a>
+                  <a href="/documentation/platforms/leapmotion">Leap Motion</a>
+                  <a href="/documentation/platforms/m2x">M2X</a>
+                  <a href="/documentation/platforms/mip">MiP</a>
+                  <a href="/documentation/platforms/mqtt">MQTT</a>
+                  <a href="/documentation/platforms/nest">Nest</a>
+                  <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/opencv">OpenCV</a>
+                  <a href="/documentation/platforms/particle">Particle</a>
+                  <a href="/documentation/platforms/pebble">Pebble</a>
+                  <a href="/documentation/platforms/hue">Phillips Hue</a>
+                  <a href="/documentation/platforms/pinoccio">Pinoccio</a>
+                  <a href="/documentation/platforms/powerup">PowerUp</a>
+                  <a href="/documentation/platforms/rapiro">Rapiro</a>
+                  <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
+                  <a href="/documentation/platforms/force">Salesforce</a>
+                  <a href="/documentation/platforms/skynet">Skynet</a>
+                  <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
+                  <a href="/documentation/platforms/speech">Speech</a>
+                  <a href="/documentation/platforms/tessel">Tessel</a>
+                  <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Drivers')}">
+                <div class="name" ng-click="show('Drivers')">Drivers</div>
+                <div class="links" ng-show="active('Drivers')">
+                  <div class="sub-section">
+                    <div class="name">GPIO</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/analog-sensor">Analog Sensor</a>
+                      <a href="/documentation/drivers/button">Button</a>
+                      <a href="/documentation/drivers/continuous-servo">Continuous Servo</a>
+                      <a href="/documentation/drivers/direct-pin">Direct Pin</a>
+                      <a href="/documentation/drivers/ir-range-finder">Sharp IR Proximity Sensor</a>
+                      <a href="/documentation/drivers/led">LED</a>
+                      <a href="/documentation/drivers/makey-button">Makey Button</a>
+                      <a href="/documentation/drivers/maxbotix">Maxbotix</a>
+                      <a href="/documentation/drivers/motor">Motor</a>
+                      <a href="/documentation/drivers/relay">Relay</a>
+                      <a href="/documentation/drivers/rgb-led">RGB LED</a>
+                      <a href="/documentation/drivers/servo">Servo</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">I2C</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/blinkm">BlinkM</a>
+                      <a href="/documentation/drivers/bmp180">BMP180</a>
+                      <a href="/documentation/drivers/hmc6352-compass">HMC6352 Compass</a>
+                      <a href="/documentation/drivers/lcd">LCD</a>
+                      <a href="/documentation/drivers/lidar-lite">LIDAR-Lite</a>
+                      <a href="/documentation/drivers/lsm9ds0g">LSM9DS0G</a>
+                      <a href="/documentation/drivers/lsm9ds0xm">LSM9DS0XM</a>
+                      <a href="/documentation/drivers/mpl115a2">MPL115A2</a>
+                      <a href="/documentation/drivers/mpu6050">MPU6050</a>
+                      <a href="/documentation/drivers/pca9685">PCA9685</a>
+                    </div>
+                  </div>
+                  <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
+                  <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
+                  <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
+                  <a href="/documentation/drivers/bebop">Bebop - Flight</a>
+                  <a href="/documentation/drivers/crazyflie">Crazyflie</a>
+                  <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
+                  <a href="/documentation/drivers/dualshock">Joystick - DualShock 3</a>
+                  <a href="/documentation/drivers/xbox360">Joystick - Xbox 360</a>
+                  <a href="/documentation/drivers/keyboard">Keyboard</a>
+                  <a href="/documentation/drivers/leapmotion">Leap Motion</a>
+                  <a href="/documentation/drivers/m2x">M2X</a>
+                  <a href="/documentation/drivers/mip">MiP</a>
+                  <a href="/documentation/drivers/mqtt">MQTT</a>
+                  <a href="/documentation/drivers/nest-home">Nest - Home</a>
+                  <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
+                  <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
+                  <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/ollie">Ollie</a>
+                  <a href="/documentation/drivers/pebble">Pebble</a>
+                  <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
+                  <a href="/documentation/drivers/hue-light">Philips Hue - Light</a>
+                  <a href="/documentation/drivers/pinoccio-led">Pinoccio - LED</a>
+                  <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
+                  <a href="/documentation/drivers/rapiro">Rapiro</a>
+                  <a href="/documentation/drivers/force">Salesforce</a>
+                  <a href="/documentation/drivers/skynet">Skynet</a>
+                  <a href="/documentation/drivers/speech">Speech</a>
+                  <a href="/documentation/drivers/sphero">Sphero</a>
+                  <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                  <div class="sub-section">
+                    <div class="name">BLE</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/ble-battery-service">Battery Service</a>
+                      <a href="/documentation/drivers/ble-characteristic">Characteristic</a>
+                      <a href="/documentation/drivers/ble-device-information">Device Information</a>
+                      <a href="/documentation/drivers/ble-generic-access">Generic Access</a>
+                      <a href="/documentation/drivers/powerup">PowerUp</a>
+                      <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
+                    </div>
+                  </div>
+                  <div class="sub-section">
+                    <div class="name">Tessel</div>
+                    <div class="links">
+                      <a href="/documentation/drivers/tessel-accelerometer">Accelerometer</a>
+                      <a href="/documentation/drivers/tessel-ambient">Ambient</a>
+                      <a href="/documentation/drivers/tessel-audio">Audio</a>
+                      <a href="/documentation/drivers/tessel-bluetooth">Bluetooth</a>
+                      <a href="/documentation/drivers/tessel-camera">Camera</a>
+                      <a href="/documentation/drivers/tessel-gps">GPS</a>
+                      <a href="/documentation/drivers/tessel-infrared">Infrared</a>
+                      <a href="/documentation/drivers/tessel-relay">Relay</a>
+                      <a href="/documentation/drivers/tessel-servo">Servo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Resources')}">
+                <div class="name" ng-click="show('Resources')">Resources</div>
+                <div class="links" ng-show="active('Resources')">
+                  <a href="/resources">Index</a>
+                  <a href="/news">News</a>
+                  <a href="/resources/videos">Videos</a>
+                  <a href="/resources/links">Links</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('Contribute')}">
+                <div class="name" ng-click="show('Contribute')">Contribute</div>
+                <div class="links" ng-show="active('Contribute')">
+                  <a href="/documentation/contribute/guidelines">Guidelines</a>
+                  <a href="/documentation/contribute/contact-us">Contact Us</a>
+                </div>
+              </div>
+              <div class="section" ng-class="{active: active('API')}">
+                <div class="name" ng-click="show('API')">API</div>
+                <div class="links" ng-show="active('API')">
+                  <a href="/documentation/api/http">HTTP</a>
+                  <a href="/documentation/api/mqtt">MQTT</a>
+                  <a href="/documentation/api/socket-io">Socket.io</a>
+                </div>
+              </div>
+              <a href="/documentation/examples">Examples</a>
+              <div class="section" ng-class="{active: active('Tutorials')}">
+                <div class="name" ng-click="show('Tutorials')">Tutorials</div>
+                <div class="links" ng-show="active('Tutorials')">
+                  <a href="/documentation/tutorials/hackster-hardware-weekend-los-angeles">Hackster Hardware Weekend</a>
+                  <a href="/documentation/tutorials/dreamforce-2014">Dreamforce</a>
+                  <a href="/documentation/tutorials/thingscon">Thingscon</a>
+                </div>
+              </div>
+              <a href="/documentation/user-contributed-platforms">User Contributed Platforms</a>
+              <a href="/documentation/helpers">Helper Methods</a>
+              <a href="/documentation/architecture">Architecture</a>
+              <a href="/documentation/configuration">Configuration</a>
+              <a href="/documentation/adding-new-hardware-support">Adding Hardware Support</a>
+              <a href="/documentation/chat">Chat</a>
+            </nav>
+          </div>
+          <div class="container-documentation">
+            <div class="page-title-docs">
+              <div class="container">
+                <h1 class="title">BB-8</h1>
+              </div>
+            </div>
+            <section class="subnav-drivers" id="mainsubnav">
+              <div class="container">
+                <h5>BB-8</h5>
+                <nav class="documentation-nav">
+                  <a href="#HowToConnect">How to Connect</a>
+                  <a href="#HowToUse">How To Use</a>
+                  <a href="#Commands">Commands</a>
+                  <a href="#Events">Events</a>
+                  <a href="#Compatability">Compatibility</a>
+                  <a href="#top">Top</a>
+                </nav>
+              </div>
+            </section>
+            <br>
+            <section class="intro">
+              <img class="display" src="/images/devices/bb8.jpg">
+              <div class="info-intro">
+                <p>Allows users to interact with the Sphero BB-8 robot using Cylon.js.</p>
+                
+                <p>For more information click <a href="http://www.sphero.com/bb8">here</a>.</p>
+              </div>
+              <div class="clear"></div>
+            </section>
+            <section id="HowToConnect">
+              <h2 id="how-to-connect">How To Connect</h2>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">bb8</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">bb8</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">"</span><span class="content">cylon-sphero-ble</span><span class="delimiter">"</span></span> }
+  },
+  ...
+</pre>
+            </section>
+            <section id="HowToUse">
+              <h2 id="how-to-use">How To Use</h2>
+              
+              <pre class="CodeRay"><span class="keyword">var</span> Cylon = require(<span class="string"><span class="delimiter">'</span><span class="content">cylon</span><span class="delimiter">'</span></span>);
+
+Cylon.robot({
+  <span class="key">connections</span>: {
+    <span class="key">bluetooth</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">central</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">'</span><span class="content">cc360e85785e</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-ble</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="key">devices</span>: {
+    <span class="key">bb8</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">bb8</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-sphero-ble</span><span class="delimiter">'</span></span> }
+  },
+
+  <span class="function">work</span>: <span class="keyword">function</span>(my) {
+    my.bb8.color(<span class="hex">0x00FFFF</span>);
+
+    after(<span class="integer">500</span>, <span class="keyword">function</span>() {
+      my.bb8.color(<span class="hex">0xFF0000</span>);
+    });
+
+    after(<span class="integer">1000</span>, <span class="keyword">function</span>() {
+      my.bb8.roll(<span class="integer">60</span>, <span class="integer">0</span>);
+    });
+
+    after(<span class="integer">2000</span>, <span class="keyword">function</span>() {
+      my.bb8.roll(<span class="integer">60</span>, <span class="integer">180</span>);
+    });
+
+    after(<span class="integer">3000</span>, <span class="keyword">function</span>() {
+      my.bb8.stop();
+    });
+  }
+}).start();
+</pre>
+            </section>
+            <section class="public-methods">
+              <div class="commands-api" id="Commands">
+                <h1>Commands</h1>
+                <h2 id="roll">roll</h2>
+                
+                <p>Roll the robot</p>
+                
+                <h3 id="params">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>) what speed robot should roll at</p>
+                  </li>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) what heading robot should roll towards (0-359)</p>
+                  </li>
+                  <li>
+                    <p><strong>[state]</strong> (<code>Number</code>) optional state parameter</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stop">stop</h2>
+                
+                <p>Stop the robot</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered after writing</li>
+                </ul>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="color">color</h2>
+                
+                <p>Sets the RGB color of built-in LED</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>color</strong> (<code>Number</code>) color value to set</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="randomcolor">randomColor</h2>
+                
+                <p>Sets the RGB color built-in LED to random color</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="getcolor">getColor</h2>
+                
+                <p>Gets the RGB color for built-in LED</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="detectcollisions">detectCollisions</h2>
+                
+                <p>Turns on collision detection mode</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="startcalibration">startCalibration</h2>
+                
+                <p>Turns on start calibration mode</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="finishcalibration">finishCalibration</h2>
+                
+                <p>Finish calibration mode</p>
+                
+                <h3 id="params-7">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
+                </ul>
+                
+                <h3 id="returns-7">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamodometer">streamOdometer</h2>
+                
+                <p>Stream odometer data</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamvelocity">streamVelocity</h2>
+                
+                <p>Stream velocity data</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelone">streamAccelOne</h2>
+                
+                <p>Stream accelOne data</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamimuangles">streamImuAngles</h2>
+                
+                <p>Stream ImuAngles data</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelerometer">streamAccelerometer</h2>
+                
+                <p>Stream accelerometer data</p>
+                
+                <h3 id="params-12">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamgyroscope">streamGyroscope</h2>
+                
+                <p>Stream gyroscope data</p>
+                
+                <h3 id="params-13">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-13">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streammotorsbackemf">streamMotorsBackEmf</h2>
+                
+                <p>Stream motors back EMF data</p>
+                
+                <h3 id="params-14">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-14">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stopondisconnect">stopOnDisconnect</h2>
+                
+                <p>Auto stop the Sphero when it detects it has become disconnected</p>
+                
+                <h3 id="params-15">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-15">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setheading">setHeading</h2>
+                
+                <p>Tell Sphero to adjust orientation</p>
+                
+                <h3 id="params-16">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) heading to set as new zero</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-16">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="spin">spin</h2>
+                
+                <p>Tells robot to spin in place</p>
+                
+                <h3 id="params-17">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>direction</strong> (<code>String</code>) direction to spin, either "left", or "right"</p>
+                  </li>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to spin</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-17">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrawmotors">setRawMotors</h2>
+                
+                <p>Sets robot raw motor values</p>
+                
+                <h3 id="params-18">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>leftCommand</strong> (<code>String</code>) left motor command</p>
+                  </li>
+                  <li>
+                    <p><strong>leftPower</strong> (<code>Number</code>) left motor power level</p>
+                  </li>
+                  <li>
+                    <p><strong>rightCommand</strong> (<code>String</code>) right motor command</p>
+                  </li>
+                  <li>
+                    <p><strong>rightPower</strong> (<code>Number</code>) right motor power level</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-18">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+              </div>
+            </section>
+            <section class="compatability hardware" id="Compatability">
+              <h2>Compatibility</h2>
+              <div class="devices">
+                <div class="compatability-link">
+                  <a href="/documentation/platforms/sphero-ble">
+                    <p class="title">Sphero BLE</p>
+                    <img src="/images/devices/sphero-ble.jpg" style="width: 90%">
+                  </a>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon.js provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2016</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

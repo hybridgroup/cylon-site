@@ -125,7 +125,6 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
@@ -137,6 +136,7 @@
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
                   <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
@@ -180,6 +180,7 @@
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
                   <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
                   <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
                   <a href="/documentation/drivers/bebop">Bebop - Flight</a>
                   <a href="/documentation/drivers/crazyflie">Crazyflie</a>
                   <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
@@ -332,8 +333,8 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.audio.on(<span class="string"><span class="delimiter">'</span><span class="content">playing</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(song){
-      console.log(<span class="string"><span class="delimiter">'</span><span class="content">Playing this nice tune: "</span><span class="delimiter">'</span></span> + song + <span class="string"><span class="delimiter">'</span><span class="content">"</span><span class="delimiter">'</span></span>);
+    my.audio.on(<span class="string"><span class="delimiter">"</span><span class="content">complete</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(){
+      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Done playing this nice sound.</span><span class="delimiter">"</span></span>);
     });
 
     <span class="comment">// You can pass a string with a full or relative path here,</span>
@@ -347,13 +348,13 @@ Cylon.robot({
                 <h1>Commands</h1>
                 <h2 id="play">play</h2>
                 
-                <p>Plays a track</p>
+                <p>Plays a sound</p>
                 
                 <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>track</strong> (<code>String</code>,<code>Number</code>) path to track to be played, or index of <code>this.tracks</code> to play</li>
+<strong>filename</strong> (<code>String</code>) name of file to play</li>
                 </ul>
                 
                 <h3 id="returns">Returns</h3>
@@ -361,12 +362,85 @@ Cylon.robot({
                 <ul>
                   <li>(<code>undefined</code>)</li>
                 </ul>
+                
+                <hr>
+                
+                <h2 id="stop">stop</h2>
+                
+                <p>Stops playing sound</p>
+                
+                <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="pause">pause</h2>
+                
+                <p>Pause playing sound</p>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="resume">resume</h2>
+                
+                <p>Resume playing sound</p>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="loop">loop</h2>
+                
+                <p>Loop sound</p>
+                
+                <h3 id="params-1">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>filename</strong> (<code>String</code>) name of file to loop</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
               </div>
               <div class="commands-api" id="Events">
                 <h1>Events</h1>
-                <h2 id="playing">playing</h2>
+                <h2 id="stop">stop</h2>
                 
-                <p>Emitted when the adaptor starts playing a file</p>
+                <p>Emitted when the driver detects a stop command</p>
+                
+                <hr>
+                
+                <h2 id="pause">pause</h2>
+                
+                <p>Emitted when the driver detects a pause command</p>
+                
+                <hr>
+                
+                <h2 id="resume">resume</h2>
+                
+                <p>Emitted when the driver detects a resume command</p>
+                
+                <hr>
+                
+                <h2 id="complete">complete</h2>
+                
+                <p>Emitted when the driver finishes playing a file</p>
               </div>
             </section>
             <section class="compatibility hardware" id="Compatability">
@@ -423,7 +497,7 @@ Cylon.robot({
       <div class="copyright">
         <div class="container">
           <div class="hybrid-group">
-            <span>© Copyright 2012-2015</span>
+            <span>© Copyright 2012-2016</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>

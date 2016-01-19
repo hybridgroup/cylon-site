@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Ollie with Cylon.js</title>
+    <title>Sphero BLE with Cylon.js</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -125,7 +125,6 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
@@ -137,6 +136,7 @@
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
                   <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
@@ -180,6 +180,7 @@
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
                   <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
                   <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
                   <a href="/documentation/drivers/bebop">Bebop - Flight</a>
                   <a href="/documentation/drivers/crazyflie">Crazyflie</a>
                   <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
@@ -277,12 +278,12 @@
           <div class="container-documentation">
             <div class="page-title-docs">
               <div class="container">
-                <h1 class="title">Ollie</h1>
+                <h1 class="title">Sphero BLE</h1>
               </div>
             </div>
             <section class="subnav-drivers" id="mainsubnav">
               <div class="container">
-                <h5>Ollie</h5>
+                <h5>Sphero BLE</h5>
                 <nav class="documentation-nav">
                   <a href="#how-to-install">How To Install</a>
                   <a href="#how-to-use">How To Use</a>
@@ -294,21 +295,21 @@
             </section>
             <br>
             <section class="intro">
-              <img class="display" src="/images/devices/ollie.jpg">
+              <img class="display" src="/images/devices/bb8.jpg">
               <div class="info-intro">
                 <h4 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-ollie" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-ollie/issues" target="_blank">Issues</a>
+<a href="https://github.com/hybridgroup/cylon-sphero-ble" target="_blank" class="repository">Repository</a>| <a class href="https://github.com/hybridgroup/cylon-ollie/issues" target="_blank">Issues</a>
 </h4>
-                <p>Ollie is engineered for speed and complete control. Thanks to its tubular design, the Ollie is an awesomely agile robot. The Ollie is also programmable to do tricks, allowing you to make it Spin, drift, and flip.</p>
+                <p>The latest robots from Sphero are the Sphero BB-8 and Sphero Ollie, and they are both controlled using Bluetooth Low Energy (BLE) interface.</p>
                 
-                <p>To learn more about the Ollie, click <a href="http://www.gosphero.com/ollie">here</a>.</p>
+                <p>To learn more about the Sphero Ollie, click <a href="http://www.sphero.com/ollie">here</a>.</p>
               </div>
               <div class="clear"></div>
             </section>
             <section class="how-to">
               <h2 id="how-to-install">How to Install</h2>
               
-              <pre class="CodeRay">$ npm install cylon cylon-ollie
+              <pre class="CodeRay">$ npm install cylon cylon-sphero-ble
 </pre>
               
               <h2 id="how-to-use">How to Use</h2>
@@ -321,29 +322,26 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>}
+    <span class="key">bb8</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">bb8</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-sphero-ble</span><span class="delimiter">'</span></span>}
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.ollie.wake(<span class="keyword">function</span>(err, data){
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">wake</span><span class="delimiter">"</span></span>);
+    my.bb8.color(<span class="hex">0x00FFFF</span>);
 
-      after(<span class="integer">200</span>, <span class="keyword">function</span>() {
-        my.ollie.setRGB(<span class="hex">0x00FFFF</span>);
-      });
+    after(<span class="integer">500</span>, <span class="keyword">function</span>() {
+      my.bb8.color(<span class="hex">0xFF0000</span>);
+    });
 
-      after(<span class="integer">500</span>, <span class="keyword">function</span>() {
-        my.ollie.setRGB(<span class="hex">0xFF0000</span>);
-        my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>, <span class="integer">1</span>);
+    after(<span class="integer">1000</span>, <span class="keyword">function</span>() {
+      my.bb8.roll(<span class="integer">60</span>, <span class="integer">0</span>);
+    });
 
-        after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-          my.ollie.roll(<span class="integer">60</span>, <span class="integer">90</span>, <span class="integer">1</span>);
+    after(<span class="integer">2000</span>, <span class="keyword">function</span>() {
+      my.bb8.roll(<span class="integer">60</span>, <span class="integer">180</span>);
+    });
 
-          after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-            my.ollie.stop();
-          });
-        });
-      });
+    after(<span class="integer">3000</span>, <span class="keyword">function</span>() {
+      my.bb8.stop();
     });
   }
 }).start();
@@ -351,19 +349,28 @@ Cylon.robot({
               
               <h2 id="how-to-connect">How to Connect</h2>
               
-              <p>Before you will be able to program the Ollie, you will need to put it into "developer mode" using a compatible mobile app. If you do not have an app that can do this, you will not be able to use cylon-ollie.</p>
+              <p>Before you will be able to program the BB-8/Ollie, you will need to determine the BLE <code>address</code> of your robot. One way to do this, is to use the <code>cylon-ble-scan</code> command line utility installed as part of <a href="https://github.com/hybridgroup/cylon-ble">cylon-ble</a>.</p>
               
-              <p>You then need to determine the <code>uuid</code> of your Ollie. One way to do this, is to use the <code>cylon-ble-scan</code> command line utility installed as part of <a href="https://github.com/hybridgroup/cylon-ble">cylon-ble</a>.</p>
+              <p>Once you know your <code>address</code> substitute it into your code, and away you go!</p>
               
-              <p>Once you know your <code>uuid</code> substititute it into your code, and away you go!</p>
+              <p>You can run the examples in this repo like this:</p>
+              
+              <p><code>
+ADDRESS="f3f26d557108" node examples/color.js</code></p>
             </section>
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
               
-              <p>There is only one driver for the Ollie.
+              <p>There are drivers for the Sphero BB-8, and the Sphero Ollie.
               Click on the image below:</p>
               <div class="hardware">
                 <div class="devices">
+                  <div class="compatability-link">
+                    <a href="/documentation/drivers/bb8" title="BB-8">
+                      <p class="title">BB-8</p>
+                      <img src="/images/devices/bb8.jpg" style="width: 100%">
+                    </a>
+                  </div>
                   <div class="compatability-link">
                     <a href="/documentation/drivers/ollie" title="Ollie">
                       <p class="title">Ollie</p>
@@ -416,7 +423,7 @@ Cylon.robot({
       <div class="copyright">
         <div class="container">
           <div class="hybrid-group">
-            <span>© Copyright 2012-2015</span>
+            <span>© Copyright 2012-2016</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>

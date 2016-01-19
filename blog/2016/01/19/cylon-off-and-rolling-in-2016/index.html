@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html ng-app="cylon">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description">
+    <meta content="Ron Evans" name="author">
+    <title>Cylon.js Off And Rolling In 2016</title>
+    <link href="/stylesheets/application.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/javascripts/plax.js"></script>
+    <script src="/javascripts/parallax_bottom.js"></script>
+    <script src="/javascripts/vendor/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700%7CMontserrat:700" rel="stylesheet">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/gif">
+  <script type="text/javascript">
+
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46433484-2', {"cookieDomain":"cylonjs.com"});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ga('send', 'pageview');
+
+
+</script></head>
+  <body>
+    
+    <div class="app-header section-nav" id="top" role="banner">
+      <div class="container">
+        <div class="display">
+          <div class="app-logo">
+            <a href="/">Cylon</a>
+          </div>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li>
+              <a href="/documentation" class="item">Docs</a>
+            </li>
+            <li>
+              <a href="/documentation/platforms" class="item">Platforms</a>
+            </li>
+            <li>
+              <a href="/resources" class="item">Resources</a>
+            </li>
+            <li>
+              <a class="active" href="/blog">Blog</a>
+            </li>
+            <li>
+              <a class="item" target="_blank" href="https://github.com/hybridgroup/cylon/">Github</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="app-content">
+      <div class="page-title">
+        <div class="container">
+          <h1 class="title">Blog</h1>
+        </div>
+      </div>
+      
+      <div class="main-content blog" role="main">
+        <div class="articles">
+          <header class="header">
+            <div class="dates">
+              <div class="date-top">
+                <div class="month">
+                  Jan
+                </div>
+                <div class="day">
+                  19
+                </div>
+              </div>
+              <div class="date-bottom">
+                <div class="year">
+                  2016
+                </div>
+              </div>
+            </div>
+            <h3 class="article-title">
+              <a href="/blog/2016/01/19/cylon-off-and-rolling-in-2016/">Cylon.js Off And Rolling In 2016</a>
+              <br>
+            </h3>
+            <div class="author">
+              by Ron Evans
+            </div>
+          </header>
+          <p>The new year is here, and we're off and rolling with our first Cylon.js releases of 2016.</p>
+          
+          <p>There have been lots of exciting new developments in the hardware world, and our awesome contributors and team have been busy making things work for all of you.</p>
+          
+          <p>Here's the list of this first collection of platform releases of the year.</p>
+          
+          <h3 id="platform-updates">Platform Updates</h3>
+          
+          <h4 id="cylon-ble-support-for-noble-13">
+<em>cylon-ble</em> Support For Noble 1.3</h4>
+          
+          <p>We've added support in <a href="https://github.com/hybridgroup/cylon-ble">cylon-ble</a> for the new 1.3.0 version of <a href="https://github.com/sandeepmistry/noble">Noble</a>. We've also greatly improved our integration and Noble connection sharing. This means you can more easily connect your Cylon.js programs to Bluetooth LE devices than ever before. Expect lots of cool integrations coming soon.</p>
+          
+          <h4 id="cylon-ollie-is-now-cylon-sphero-ble">
+<em>cylon-ollie</em> is now <em>cylon-sphero-ble</em>
+</h4>
+          
+          <p>We've renamed the <em>cylon-ollie</em> module to <a href="https://github.com/hybridgroup/cylon-sphero-ble">cylon-sphero-ble</a>, and we've also added support for a certain very popular <a href="http://sphero.com/bb8">little cinematic robot</a>. Here is a code sample:</p>
+          
+          <pre class="CodeRay">var Cylon = require('cylon');
+
+Cylon.robot({
+  connections: {
+    bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'}
+  },
+
+  devices: {
+    bb8: { driver: 'bb8', module: 'cylon-sphero-ble'}
+  },
+
+  work: function(my) {
+    my.bb8.color(0x00FFFF);
+    my.bb8.roll(60, 0);
+
+    after(3000, function() {
+      my.bb8.color(0xFF0000);
+      my.bb8.stop();
+    });
+  }
+}).start();
+</pre>
+          
+          <p>Thank you to our awesome friends at Sphero, and their support of the <a href="https://github.com/orbotix/sphero.js">Sphero.js</a> library.</p>
+          
+          <h4 id="cylon-audio-using-mpg123">
+<em>cylon-audio</em> using MPG123</h4>
+          
+          <p>We've released a new version of <a href="https://github.com/hybridgroup/cylon-audio">cylon-audio</a> that uses the <a href="http://mpg123.org/">MPG123</a> library. This means a lot less dependencies, not to mention support for playing multiple sounds at the same time. We've even added a handy <code>loop()</code> function. Check it out at <a href="https://github.com/hybridgroup/cylon-audio">https://github.com/hybridgroup/cylon-audio</a></p>
+          
+          <pre class="CodeRay">var Cylon = require("cylon");
+
+Cylon.robot({
+  connections: {
+    audio: { adaptor: "audio" }
+  },
+
+  devices: {
+    sound: { driver: "audio", file: "./audio_samples/audio-sample.mp3" }
+  },
+
+  work: function(my) {
+    my.sound.loop();
+  }
+}).start();
+</pre>
+          
+          <h4 id="cylon-joystick-bugfixes">
+<em>cylon-joystick</em> bugfixes</h4>
+          
+          <p>We fixed some bugs in <a href="https://github.com/hybridgroup/cylon-joystick">cylon-joystick</a>, and now the Dualshock 4 is fully working, including all the triggers. Fire at will, commander!</p>
+          
+          <h4 id="cylon-mqtt-updates">
+<em>cylon-mqtt</em> updates</h4>
+          
+          <p>We've updated <a href="https://github.com/hybridgroup/cylon-mqtt">cylon-mqtt</a> to the latest version of <a href="https://github.com/mqttjs/MQTT.js">mqtt.js</a>, as well as adding some additional configuration options to more easily integrate with older MQTT servers.</p>
+          
+          <h4 id="cylon-intel-iot-i2c-error-handling">
+<em>cylon-intel-iot</em> i2c error handling</h4>
+          
+          <p>We're released a new update to <a href="https://github.com/hybridgroup/cylon-intel-iot">cylon-intel-iot</a> that adds improved error handling for missing or disconnected i2c devices. Thank you <a href="https://github.com/derrell">@derrell</a> for your contribution that fixes this!</p>
+          
+          <h4 id="cylon-gpio-improved-rgb-led-support">
+<em>cylon-gpio</em> improved RGB LED support</h4>
+          
+          <p>Thanks to contributor <a href="https://github.com/bencevans">@bencevans</a>, the RGB LED support in <a href="https://github.com/hybridgroup/cylon-gpio">cylon-gpio</a> can more easily handle different types of RGB LEDs.</p>
+          
+          <h3 id="thanks-to-our-users-and-contributors">Thanks To Our Users and Contributors</h3>
+          
+          <p>Thank you very much to our users and contributors for their hard work making Cylon.js the best it can be.
+          You could be the next of us, we cordially invite you to please jump right in! We appreciate every contribution.</p>
+          
+          <p>For the latest news, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+          <div class="blog-footer">
+            <h2>Contact Us</h2>
+            <ul>
+              <li>
+              Get involved with Cylon.js projects, ask questions, or stay up to date with the latest Cylon.js news on our
+              <a target="blank" href="https://groups.google.com/forum/#!forum/cylonjs">mailing list!</a>
+              <li>Need to some help? Talk to us on IRC: #cylon @ freenode.net</li>
+              <li>
+              If you need help or you feel we can improve something, let us know! Open a
+              <a target="blank" href="https://github.com/hybridgroup/cylon/issues/new">new issue.</a>
+              <li>
+              To subscribe to announcements of releases and important changes, please follow
+              <a target="blank" href="https://twitter.com/CylonJS">@CylonJS</a>
+            </ul>
+          </div>
+        </div>
+        <div class="side-column">
+          <div class="categories">
+            <h4>Tags</h4>
+            <ul>
+              <li><a href="/blog/tags/robots/">Robots</a></li>
+              <li><a href="/blog/tags/events/">Events</a></li>
+            </ul>
+          </div>
+          <div class="network">
+            <h4>Network</h4>
+            <div class="network-links">
+              <a href="https://twitter.com/cylonjs"><img src="/images/elements/twitter.png"></a>
+              <a href="https://github.com/hybridgroup/cylon"><img src="/images/elements/github.png"></a>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Posts</h4>
+            <ul>
+              <li><a href="/blog/2016/01/19/cylon-off-and-rolling-in-2016/">Cylon.js Off And Rolling In 2016</a></li>
+              <li><a href="/blog/2015/09/08/cylon-1.2.0-logging-timing-ble/">Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!</a></li>
+              <li><a href="/blog/2015/07/01/cylon-1.1.0-big-cleanup/">Cylon.js 1.1.0 - The Big Cleanup</a></li>
+              <li><a href="/blog/2015/05/06/hello-node-bebop-drone/">Hello, Node Bebop Drone</a></li>
+              <li><a href="/blog/2015/04/13/cylon-js-featured-in-wired/">Cylon.js featured in Wired</a></li>
+              <li><a href="/blog/2015/04/08/cylon-1.0.0/">Cylon.js 1.0.0 is here!</a></li>
+              <li><a href="/blog/2015/02/05/using-socketio-with-cylonjs-api/">Using Socket.io With The Cylon.js API</a></li>
+              <li><a href="/blog/2015/01/14/cylon-0.22-0/">Cylon 0.22.0 - A New Year's Release</a></li>
+              <li><a href="/blog/2014/11/28/cylon-0-21-0/">Cylon 0.21.0 is out!</a></li>
+              <li><a href="/blog/2014/11/19/creating-multiplatform-precompiled-binaries-for-node-modules/">Creating Multiplatform Precompiled Binaries for Node.js Modules</a></li>
+              <li><a href="/blog/2014/11/06/cylon-0-20-0/">Cylon 0.20.0 is out!</a></li>
+              <li><a href="/blog/2014/11/05/run-cylon-js-from-your-browser/">Running Robots From Your Browser With Cylon.js</a></li>
+              <li><a href="/blog/2014/11/03/winning-the-dreamforce-500-with-cylon-js/">Winning the Dreamforce 500 With Cylon.js</a></li>
+              <li><a href="/blog/2014/10/01/with-the-new-cylon-js-you-can-be-fluent-too/">With The New Cylon.js 0.19.0, You Can Be Fluent Too</a></li>
+              <li><a href="/blog/2014/09/17/cylon-js-on-intel-edison/">Cylon.js on Intel Edison</a></li>
+              <li><a href="/blog/2014/08/07/cylon-takes-off-on-nodebots-day/">Cylon Takes Off on NodeBots Day</a></li>
+              <li><a href="/blog/2014/07/29/cylon-js-fun-with-the-arduino-yun/">Cylon.js Fun With The Arduino Yun</a></li>
+              <li><a href="/blog/2014/07/22/control-robots-from-your-pebble/">Control Robots From Your Pebble</a></li>
+              <li><a href="/blog/2014/07/14/making-moves-with-intel-galileo/">Making Moves With Intel Galileo</a></li>
+              <li><a href="/blog/2014/07/01/the-cylon-nest/">The Cylon Nest</a></li>
+              <li><a href="/blog/2014/06/20/announcing-full-tessel-support/">Announcing Full Tessel Support!</a></li>
+              <li><a href="/blog/2014/06/13/cylon-0-15-0/">Cylon 0.15.0 is Out!</a></li>
+              <li><a href="/blog/2014/05/31/cylonjs-in-make-magazine/">Cylon.js in Make Magazine!</a></li>
+              <li><a href="/blog/2014/05/29/cylonjs-at-jsconf-2014/">Cylon.js At JSConf 2014</a></li>
+              <li><a href="/blog/2014/05/18/cylonjs-takes-the-stage-at-makerfaire/">Cylon.js Takes The Stage At MakerFaire</a></li>
+              <li><a href="/blog/2014/05/10/cylons-in-scotland/">Cylon.js In Scotland</a></li>
+              <li><a href="/blog/2014/05/07/robots-are-the-new-normal-at-nextberlin/">Robots Are The New Normal At NextBerlin</a></li>
+              <li><a href="/blog/2014/05/03/thingscon-ich-bin-ein-cylon/">Thingscon - Ich Bin Ein Cylon</a></li>
+              <li><a href="/blog/2014/04/12/national-robotics-week-at-the-robotics-society-of-southern-california/">National Robotics Week at the Robotics Society of Southern California</a></li>
+              <li><a href="/blog/2014/04/02/functional-robots-with-wisp/">Functional Robots With Wisp</a></li>
+              <li><a href="/blog/2014/03/28/release-0.12-is-for-robotops/">Release 0.12 Is For RobotOps</a></li>
+              <li><a href="/blog/2014/03/24/making-waves-at-makerland/">Making Waves At Makerland</a></li>
+              <li><a href="/blog/2014/03/04/this-one-goes-to-0.11-of-pure-javascript/">This One Goes To 0.11 Of Pure JavaScript</a></li>
+              <li><a href="/blog/2014/02/24/tipping-scale12x/">Tipping SCaLE12X</a></li>
+              <li><a href="/blog/2014/02/06/intro-robeaux-a-universal-user-interface-to-robotic-devices/">Intro Robeaux- A Universal User Interface To Robotic Devices</a></li>
+              <li><a href="/blog/2014/01/21/ng-robots-a-fun-robot-hackathon-at-the-first-ng-conf/">ng-robots! A Fun Robot Hackathon At The First ng-conf</a></li>
+              <li><a href="/blog/2014/01/15/number-9-the-release-in-which-we-add-a-web-ux-more-platforms-and-tools/">Number 9! The Release In Which We Add A Web UX, More Platforms, and Tools</a></li>
+              <li><a href="/blog/2013/12/16/release-0.8.0-makes-10-platforms/">Release 0.8.0 Makes 10 Platforms</a></li>
+              <li><a href="/blog/2013/12/12/robotsconf-was-remarkable/">RobotsConf Was Remarkable</a></li>
+              <li><a href="/blog/2013/11/26/dreamforce-means-connected-devices-are-a-thing/">Dreamforce Means Connected Devices Are A Thing</a></li>
+              <li><a href="/blog/2013/11/15/dreamforce-is-coming/">Dreamforce Is Coming!</a></li>
+              <li><a href="/blog/2013/11/13/welcome-cylon-js/">Welcome, Cylon.js</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div class="frameworks">
+        <div class="parallax-container">
+          <div class="background-footer parallax-bottom"></div>
+          <div class="container">
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-cylon-2x.png">
+              </div>
+              <h4>Multiple solutions</h4>
+              <p>Cylon.js provides a simple, yet powerful way to create solutions that incorporate multiple, different hardware devices at the same time.</p>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-artoo-2x.png">
+              </div>
+              <h4>Artoo</h4>
+              <p>Want to use Ruby on robots? Check out our sister project Artoo</p>
+              <div class="button-footer">
+                <a target="blank" href="http://artoo.io">View Project</a>
+              </div>
+            </div>
+            <div class="column-footer">
+              <div class="img">
+                <img class="display" src="/images/elements/logo-gobot-2x.png">
+              </div>
+              <h4>Gobot</h4>
+              <p>Want to use the Go programming language to power your robots? Check out our sister project Gobot</p>
+              <div class="button-footer">
+                <a target="blank" href="http://gobot.io">View Project</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="container">
+          <div class="hybrid-group">
+            <span>© Copyright 2012-2016</span>
+            <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
+              <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
+            </a>
+          </div>
+          <div class="top-link">
+            <a href="#top">
+              <img alt="Top" src="/images/elements/triangle_up.svg">
+              <p>Top</p>
+            </a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

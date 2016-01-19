@@ -125,7 +125,6 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
-                  <a href="/documentation/platforms/ollie">Ollie</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
@@ -137,6 +136,7 @@
                   <a href="/documentation/platforms/force">Salesforce</a>
                   <a href="/documentation/platforms/skynet">Skynet</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
+                  <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
                   <a href="/documentation/platforms/speech">Speech</a>
                   <a href="/documentation/platforms/tessel">Tessel</a>
                   <a href="/documentation/platforms/wiced-sense">Wiced Sense</a>
@@ -180,6 +180,7 @@
                   <a href="/documentation/drivers/ardrone-flight">Ardrone - Flight</a>
                   <a href="/documentation/drivers/ardrone-navigation">Ardrone - Navigation</a>
                   <a href="/documentation/drivers/audio">Audio</a>
+                  <a href="/documentation/drivers/bb8">BB-8</a>
                   <a href="/documentation/drivers/bebop">Bebop - Flight</a>
                   <a href="/documentation/drivers/crazyflie">Crazyflie</a>
                   <a href="/documentation/drivers/intel-iot-analytics">Intel IoT Analytics</a>
@@ -314,52 +315,9 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">battery</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-battery-service</span><span class="delimiter">'</span></span> },
-    <span class="key">deviceInfo</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-device-information</span><span class="delimiter">'</span></span> },
-    <span class="key">generic</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ble-generic-access</span><span class="delimiter">'</span></span> },
-    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">"</span><span class="content">cylon-sphero-ble</span><span class="delimiter">"</span></span> }
   },
-
-  <span class="function">display</span>: <span class="keyword">function</span>(err, data) {
-    <span class="keyword">if</span> (err) {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Error:</span><span class="delimiter">"</span></span>, err);
-    } <span class="keyword">else</span> {
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">Data:</span><span class="delimiter">"</span></span>, data);
-    }
-  },
-
-  <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.generic.getDeviceName(<span class="keyword">function</span>(err, data){
-      my.display(err, data);
-      my.generic.getAppearance(<span class="keyword">function</span>(err, data){
-        my.display(err, data);
-        my.deviceInfo.getManufacturerName(<span class="keyword">function</span>(err, data){
-          my.display(err, data);
-          my.ollie.wake(<span class="keyword">function</span>(err, data){
-            console.log(<span class="string"><span class="delimiter">"</span><span class="content">wake</span><span class="delimiter">"</span></span>);
-            after(<span class="integer">200</span>, <span class="keyword">function</span>() {
-              console.log(<span class="string"><span class="delimiter">"</span><span class="content">color</span><span class="delimiter">"</span></span>);
-              my.ollie.setRGB(<span class="hex">0x00FFFF</span>);
-            });
-            after(<span class="integer">500</span>, <span class="keyword">function</span>() {
-              console.log(<span class="string"><span class="delimiter">"</span><span class="content">color</span><span class="delimiter">"</span></span>);
-              my.ollie.setRGB(<span class="hex">0xFF0000</span>);
-
-              my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>, <span class="integer">1</span>);
-              after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-                my.ollie.roll(<span class="integer">60</span>, <span class="integer">90</span>, <span class="integer">1</span>);
-
-                after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-                  my.ollie.stop();
-                });
-              });
-            });
-          });
-        });
-      });
-    });
-  }
-}).start();
+  ...
 </pre>
             </section>
             <section id="HowToUse">
@@ -373,43 +331,53 @@ Cylon.robot({
   },
 
   <span class="key">devices</span>: {
-    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span> }
+    <span class="key">ollie</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">'</span><span class="content">ollie</span><span class="delimiter">'</span></span>, <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">cylon-sphero-ble</span><span class="delimiter">'</span></span> }
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.ollie.wake(<span class="keyword">function</span>(err, data){
-      console.log(<span class="string"><span class="delimiter">"</span><span class="content">wake</span><span class="delimiter">"</span></span>);
-      after(<span class="integer">200</span>, <span class="keyword">function</span>() {
-        my.ollie.setRGB(<span class="hex">0x00FFFF</span>);
-      });
-      after(<span class="integer">500</span>, <span class="keyword">function</span>() {
-        my.ollie.setRGB(<span class="hex">0xFF0000</span>);
+    my.ollie.color(<span class="hex">0x00FFFF</span>);
 
-        my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>, <span class="integer">1</span>);
-        after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-          my.ollie.roll(<span class="integer">60</span>, <span class="integer">90</span>, <span class="integer">1</span>);
+    after(<span class="integer">500</span>, <span class="keyword">function</span>() {
+      my.ollie.color(<span class="hex">0xFF0000</span>);
+    });
 
-          after(<span class="integer">1000</span>, <span class="keyword">function</span>(){
-            my.ollie.stop();
-          });
-        });
-      });
+    after(<span class="integer">1000</span>, <span class="keyword">function</span>() {
+      my.ollie.roll(<span class="integer">60</span>, <span class="integer">0</span>);
+    });
+
+    after(<span class="integer">2000</span>, <span class="keyword">function</span>() {
+      my.ollie.roll(<span class="integer">60</span>, <span class="integer">180</span>);
+    });
+
+    after(<span class="integer">3000</span>, <span class="keyword">function</span>() {
+      my.ollie.stop();
     });
   }
+}).start();
 </pre>
             </section>
             <section class="public-methods">
               <div class="commands-api" id="Commands">
                 <h1>Commands</h1>
-                <h2 id="wake">wake</h2>
+                <h2 id="roll">roll</h2>
                 
-                <p>Tells the Ollie to wake up</p>
+                <p>Roll the robot</p>
                 
                 <h3 id="params">Params</h3>
                 
                 <ul>
                   <li>
-<strong>callback</strong> (<code>Function</code>) function to be triggered when the Ollie is awake</li>
+                    <p><strong>speed</strong> (<code>Number</code>) what speed robot should roll at</p>
+                  </li>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) what heading robot should roll towards (0-359)</p>
+                  </li>
+                  <li>
+                    <p><strong>[state]</strong> (<code>Number</code>) optional state parameter</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to be triggered after writing</p>
+                  </li>
                 </ul>
                 
                 <h3 id="returns">Returns</h3>
@@ -420,21 +388,15 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="settxpower">setTXPower</h2>
+                <h2 id="stop">stop</h2>
                 
-                <p>Sets the BLE transmit power for the Ollie.</p>
-                
-                <p>Uses more battery, but gives longer range</p>
+                <p>Stop the robot</p>
                 
                 <h3 id="params-1">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>level</strong> (<code>Number</code>) power to set</p>
-                  </li>
-                  <li>
-                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
-                  </li>
+<strong>callback</strong> (<code>Function</code>) function to be triggered after writing</li>
                 </ul>
                 
                 <h3 id="returns-1">Returns</h3>
@@ -445,18 +407,15 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="setrgb">setRGB</h2>
+                <h2 id="color">color</h2>
                 
-                <p>Sets the RGB color of Ollie's built-in LED</p>
+                <p>Sets the RGB color of built-in LED</p>
                 
                 <h3 id="params-2">Params</h3>
                 
                 <ul>
                   <li>
                     <p><strong>color</strong> (<code>Number</code>) color value to set</p>
-                  </li>
-                  <li>
-                    <p><strong>persist</strong> (<code>Boolean</code>) whether color should persist through power cycles</p>
                   </li>
                   <li>
                     <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
@@ -471,25 +430,15 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="roll">roll</h2>
+                <h2 id="randomcolor">randomColor</h2>
                 
-                <p>Tells Ollie to roll in a particular speed and heading</p>
+                <p>Sets the RGB color built-in LED to random color</p>
                 
                 <h3 id="params-3">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>speed</strong> (<code>Number</code>) speed to roll at</p>
-                  </li>
-                  <li>
-                    <p><strong>heading</strong> (<code>Number</code>) heading to roll at</p>
-                  </li>
-                  <li>
-                    <p><strong>state</strong> (<code>Number</code>) roll state value</p>
-                  </li>
-                  <li>
-                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
-                  </li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-3">Returns</h3>
@@ -500,9 +449,9 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="stop">stop</h2>
+                <h2 id="getcolor">getColor</h2>
                 
-                <p>Tells Ollie to stop rolling</p>
+                <p>Gets the RGB color for built-in LED</p>
                 
                 <h3 id="params-4">Params</h3>
                 
@@ -519,34 +468,15 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="setrawmotorvalues">setRawMotorValues</h2>
+                <h2 id="detectcollisions">detectCollisions</h2>
                 
-                <p>Allows for direct control of both motors, rather than auto-control via the
-                stabilization system.</p>
-                
-                <p>Each motor (left and right) requires a mode (see below) and a power value
-                from 0-255. This command will disable stabilization if both modes aren't
-                "ignore" so you'll need to re-enable it via setStabilization() once you're
-                done.</p>
+                <p>Turns on collision detection mode</p>
                 
                 <h3 id="params-5">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>lm</strong> (<code>Number</code>) left motor mode</p>
-                  </li>
-                  <li>
-                    <p><strong>lp</strong> (<code>Number</code>) left motor power</p>
-                  </li>
-                  <li>
-                    <p><strong>rm</strong> (<code>Number</code>) right motor mode</p>
-                  </li>
-                  <li>
-                    <p><strong>rp</strong> (<code>Number</code>) right motor power</p>
-                  </li>
-                  <li>
-                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
-                  </li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-5">Returns</h3>
@@ -557,21 +487,15 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="setstabilization">setStabilization</h2>
+                <h2 id="startcalibration">startCalibration</h2>
                 
-                <p>Used to enable/disable Ollie's auto-stabilization</p>
-                
-                <p>Often used after setting raw motor commands.</p>
+                <p>Turns on start calibration mode</p>
                 
                 <h3 id="params-6">Params</h3>
                 
                 <ul>
                   <li>
-                    <p><strong>enable</strong> (<code>Number</code>) stabilization enable mode</p>
-                  </li>
-                  <li>
-                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
-                  </li>
+<strong>callback</strong> (<code>Function</code>) function to call when done</li>
                 </ul>
                 
                 <h3 id="returns-6">Returns</h3>
@@ -582,12 +506,9 @@ Cylon.robot({
                 
                 <hr>
                 
-                <h2 id="devmodeon">devModeOn</h2>
+                <h2 id="finishcalibration">finishCalibration</h2>
                 
-                <p>Enables developer mode on the Ollie.</p>
-                
-                <p>This is accomplished via sending a special string to the Anti-DoS service,
-                setting TX power to 7, and telling the Sphero to wake up.</p>
+                <p>Finish calibration mode</p>
                 
                 <h3 id="params-7">Params</h3>
                 
@@ -601,15 +522,274 @@ Cylon.robot({
                 <ul>
                   <li>(<code>undefined</code>)</li>
                 </ul>
+                
+                <hr>
+                
+                <h2 id="streamodometer">streamOdometer</h2>
+                
+                <p>Stream odometer data</p>
+                
+                <h3 id="params-8">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-8">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamvelocity">streamVelocity</h2>
+                
+                <p>Stream velocity data</p>
+                
+                <h3 id="params-9">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-9">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelone">streamAccelOne</h2>
+                
+                <p>Stream accelOne data</p>
+                
+                <h3 id="params-10">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-10">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamimuangles">streamImuAngles</h2>
+                
+                <p>Stream ImuAngles data</p>
+                
+                <h3 id="params-11">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-11">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamaccelerometer">streamAccelerometer</h2>
+                
+                <p>Stream accelerometer data</p>
+                
+                <h3 id="params-12">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-12">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streamgyroscope">streamGyroscope</h2>
+                
+                <p>Stream gyroscope data</p>
+                
+                <h3 id="params-13">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-13">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="streammotorsbackemf">streamMotorsBackEmf</h2>
+                
+                <p>Stream motors back EMF data</p>
+                
+                <h3 id="params-14">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[sps=5]</strong> (<code>Number</code>) samples per second</p>
+                  </li>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-14">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="stopondisconnect">stopOnDisconnect</h2>
+                
+                <p>Auto stop the Sphero when it detects it has become disconnected</p>
+                
+                <h3 id="params-15">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>[remove=false]</strong> (<code>Boolean</code>) forces velocity streaming to stop</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-15">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setheading">setHeading</h2>
+                
+                <p>Tell Sphero to adjust orientation</p>
+                
+                <h3 id="params-16">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>heading</strong> (<code>Number</code>) heading to set as new zero</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) function to call when done</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-16">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="spin">spin</h2>
+                
+                <p>Tells robot to spin in place</p>
+                
+                <h3 id="params-17">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>direction</strong> (<code>String</code>) direction to spin, either "left", or "right"</p>
+                  </li>
+                  <li>
+                    <p><strong>speed</strong> (<code>Number</code>) speed to spin</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-17">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="setrawmotors">setRawMotors</h2>
+                
+                <p>Sets robot raw motor values</p>
+                
+                <h3 id="params-18">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>leftCommand</strong> (<code>String</code>) left motor command</p>
+                  </li>
+                  <li>
+                    <p><strong>leftPower</strong> (<code>Number</code>) left motor power level</p>
+                  </li>
+                  <li>
+                    <p><strong>rightCommand</strong> (<code>String</code>) right motor command</p>
+                  </li>
+                  <li>
+                    <p><strong>rightPower</strong> (<code>Number</code>) right motor power level</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-18">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
               </div>
             </section>
             <section class="compatability hardware" id="Compatability">
               <h2>Compatibility</h2>
               <div class="devices">
                 <div class="compatability-link">
-                  <a href="/documentation/platforms/ollie">
-                    <p class="title">Ollie</p>
-                    <img src="/images/devices/ollie.jpg" style="width: 90%">
+                  <a href="/documentation/platforms/sphero-ble">
+                    <p class="title">Sphero BLE</p>
+                    <img src="/images/devices/sphero-ble.jpg" style="width: 90%">
                   </a>
                 </div>
               </div>
@@ -657,7 +837,7 @@ Cylon.robot({
       <div class="copyright">
         <div class="container">
           <div class="hybrid-group">
-            <span>© Copyright 2012-2015</span>
+            <span>© Copyright 2012-2016</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>

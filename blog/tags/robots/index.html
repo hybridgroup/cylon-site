@@ -90,6 +90,131 @@
               <div class="dates">
                 <div class="date-top">
                   <div class="month">
+                    Jan
+                  </div>
+                  <div class="day">
+                    19
+                  </div>
+                </div>
+                <div class="date-bottom">
+                  <div class="year">
+                    2016
+                  </div>
+                </div>
+              </div>
+              <h3 class="article-title">
+                <a href="/blog/2016/01/19/cylon-off-and-rolling-in-2016/">Cylon.js Off And Rolling In 2016</a>
+                <br>
+              </h3>
+              <div class="author">
+                by Ron Evans
+              </div>
+            </header>
+            <p>The new year is here, and we're off and rolling with our first Cylon.js releases of 2016.</p>
+            
+            <p>There have been lots of exciting new developments in the hardware world, and our awesome contributors and team have been busy making things work for all of you.</p>
+            
+            <p>Here's the list of this first collection of platform releases of the year.</p>
+            
+            <h3 id="platform-updates">Platform Updates</h3>
+            
+            <h4 id="cylon-ble-support-for-noble-13">
+<em>cylon-ble</em> Support For Noble 1.3</h4>
+            
+            <p>We've added support in <a href="https://github.com/hybridgroup/cylon-ble">cylon-ble</a> for the new 1.3.0 version of <a href="https://github.com/sandeepmistry/noble">Noble</a>. We've also greatly improved our integration and Noble connection sharing. This means you can more easily connect your Cylon.js programs to Bluetooth LE devices than ever before. Expect lots of cool integrations coming soon.</p>
+            
+            <h4 id="cylon-ollie-is-now-cylon-sphero-ble">
+<em>cylon-ollie</em> is now <em>cylon-sphero-ble</em>
+</h4>
+            
+            <p>We've renamed the <em>cylon-ollie</em> module to <a href="https://github.com/hybridgroup/cylon-sphero-ble">cylon-sphero-ble</a>, and we've also added support for a certain very popular <a href="http://sphero.com/bb8">little cinematic robot</a>. Here is a code sample:</p>
+            
+            <pre class="CodeRay">var Cylon = require('cylon');
+
+Cylon.robot({
+  connections: {
+    bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'}
+  },
+
+  devices: {
+    bb8: { driver: 'bb8', module: 'cylon-sphero-ble'}
+  },
+
+  work: function(my) {
+    my.bb8.color(0x00FFFF);
+    my.bb8.roll(60, 0);
+
+    after(3000, function() {
+      my.bb8.color(0xFF0000);
+      my.bb8.stop();
+    });
+  }
+}).start();
+</pre>
+            
+            <p>Thank you to our awesome friends at Sphero, and their support of the <a href="https://github.com/orbotix/sphero.js">Sphero.js</a> library.</p>
+            
+            <h4 id="cylon-audio-using-mpg123">
+<em>cylon-audio</em> using MPG123</h4>
+            
+            <p>We've released a new version of <a href="https://github.com/hybridgroup/cylon-audio">cylon-audio</a> that uses the <a href="http://mpg123.org/">MPG123</a> library. This means a lot less dependencies, not to mention support for playing multiple sounds at the same time. We've even added a handy <code>loop()</code> function. Check it out at <a href="https://github.com/hybridgroup/cylon-audio">https://github.com/hybridgroup/cylon-audio</a></p>
+            
+            <pre class="CodeRay">var Cylon = require("cylon");
+
+Cylon.robot({
+  connections: {
+    audio: { adaptor: "audio" }
+  },
+
+  devices: {
+    sound: { driver: "audio", file: "./audio_samples/audio-sample.mp3" }
+  },
+
+  work: function(my) {
+    my.sound.loop();
+  }
+}).start();
+</pre>
+            
+            <h4 id="cylon-joystick-bugfixes">
+<em>cylon-joystick</em> bugfixes</h4>
+            
+            <p>We fixed some bugs in <a href="https://github.com/hybridgroup/cylon-joystick">cylon-joystick</a>, and now the Dualshock 4 is fully working, including all the triggers. Fire at will, commander!</p>
+            
+            <h4 id="cylon-mqtt-updates">
+<em>cylon-mqtt</em> updates</h4>
+            
+            <p>We've updated <a href="https://github.com/hybridgroup/cylon-mqtt">cylon-mqtt</a> to the latest version of <a href="https://github.com/mqttjs/MQTT.js">mqtt.js</a>, as well as adding some additional configuration options to more easily integrate with older MQTT servers.</p>
+            
+            <h4 id="cylon-intel-iot-i2c-error-handling">
+<em>cylon-intel-iot</em> i2c error handling</h4>
+            
+            <p>We're released a new update to <a href="https://github.com/hybridgroup/cylon-intel-iot">cylon-intel-iot</a> that adds improved error handling for missing or disconnected i2c devices. Thank you <a href="https://github.com/derrell">@derrell</a> for your contribution that fixes this!</p>
+            
+            <h4 id="cylon-gpio-improved-rgb-led-support">
+<em>cylon-gpio</em> improved RGB LED support</h4>
+            
+            <p>Thanks to contributor <a href="https://github.com/bencevans">@bencevans</a>, the RGB LED support in <a href="https://github.com/hybridgroup/cylon-gpio">cylon-gpio</a> can more easily handle different types of RGB LEDs.</p>
+            
+            <h3 id="thanks-to-our-users-and-contributors">Thanks To Our Users and Contributors</h3>
+            
+            <p>Thank you very much to our users and contributors for their hard work making Cylon.js the best it can be.
+            You could be the next of us, we cordially invite you to please jump right in! We appreciate every contribution.</p>
+            
+            <p>For the latest news, be sure to follow us on Twitter at <a href="https://twitter.com/CylonJS">@CylonJS</a>.</p>
+            <div class="tags">
+              <div class="img">
+                <img src="/images/elements/tag.png">
+              </div>
+              <a href="/blog/tags/robots/">robots</a>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="article">
+            <header class="header">
+              <div class="dates">
+                <div class="date-top">
+                  <div class="month">
                     Sep
                   </div>
                   <div class="day">
@@ -3182,6 +3307,7 @@ Cylon.Robot(robot).start();
           <div class="titles">
             <h4>Posts</h4>
             <ul>
+              <li><a href="/blog/2016/01/19/cylon-off-and-rolling-in-2016/">Cylon.js Off And Rolling In 2016</a></li>
               <li><a href="/blog/2015/09/08/cylon-1.2.0-logging-timing-ble/">Cylon.js 1.2.0 - Logging and Timing and BLE! Oh my!</a></li>
               <li><a href="/blog/2015/07/01/cylon-1.1.0-big-cleanup/">Cylon.js 1.1.0 - The Big Cleanup</a></li>
               <li><a href="/blog/2015/04/08/cylon-1.0.0/">Cylon.js 1.0.0 is here!</a></li>
@@ -3252,7 +3378,7 @@ Cylon.Robot(robot).start();
       <div class="copyright">
         <div class="container">
           <div class="hybrid-group">
-            <span>© Copyright 2012-2015</span>
+            <span>© Copyright 2012-2016</span>
             <a href="http://hybridgroup.com" id="THG-logo" target="_blank">
               <img alt="The Hybrid Group" src="/images/elements/THG_logo.png">
             </a>
