@@ -1,6 +1,6 @@
 ---
 page_title_show: true
-title: "Cylon.js Off And Running In 2016"
+title: "Cylon.js Off And Rolling In 2016"
 page_title: Blog
 date: 2016-01-19
 tags: robots
@@ -8,7 +8,7 @@ author: Ron Evans
 active_menu_blog: true
 ---
 :markdown
-  The new year is here, and we're off and running with our first Cylon.js releases of 2016.
+  The new year is here, and we're off and rolling with our first Cylon.js releases of 2016.
 
   There have been lots of exciting new developments in the hardware world, and our awesome contributors and team have been busy making things work for all of you.
 
@@ -22,11 +22,52 @@ active_menu_blog: true
 
   #### *cylon-ollie* is now *cylon-sphero-ble*
 
-  We've renamed the *cylon-ollie* module to [cylon-sphero-ble][], and we've also added support for a certain very popular [little cinematic robot][]. Thank you to our awesome friends at Sphero, and their support of the [Sphero.js][] library.
+  We've renamed the *cylon-ollie* module to [cylon-sphero-ble][], and we've also added support for a certain very popular [little cinematic robot][]. Here is a code sample:
 
-  #### *cylon-audio* now using MPG123
+      var Cylon = require('cylon');
+
+      Cylon.robot({
+        connections: {
+          bluetooth: { adaptor: 'central', uuid: 'cc360e85785e', module: 'cylon-ble'}
+        },
+
+        devices: {
+          bb8: { driver: 'bb8', module: 'cylon-sphero-ble'}
+        },
+
+        work: function(my) {
+          my.bb8.color(0x00FFFF);
+          my.bb8.roll(60, 0);
+
+          after(3000, function() {
+            my.bb8.color(0xFF0000);
+            my.bb8.stop();
+          });
+        }
+      }).start();
+
+
+  Thank you to our awesome friends at Sphero, and their support of the [Sphero.js][] library.
+
+  #### *cylon-audio* using MPG123
 
   We've released a new version of [cylon-audio][] that uses the [MPG123][] library. This means a lot less dependencies, not to mention support for playing multiple sounds at the same time. We've even added a handy `loop()` function. Check it out at [https://github.com/hybridgroup/cylon-audio](https://github.com/hybridgroup/cylon-audio)
+
+      var Cylon = require("cylon");
+
+      Cylon.robot({
+        connections: {
+          audio: { adaptor: "audio" }
+        },
+
+        devices: {
+          sound: { driver: "audio", file: "./audio_samples/audio-sample.mp3" }
+        },
+
+        work: function(my) {
+          my.sound.loop();
+        }
+      }).start();
 
   #### *cylon-joystick* bugfixes
 
@@ -36,7 +77,7 @@ active_menu_blog: true
 
   We've updated [cylon-mqtt][] to the latest version of [mqtt.js][], as well as adding some additional configuration options to more easily integrate with older MQTT servers.
 
-  #### *cylon-intel-iot* bugfixes
+  #### *cylon-intel-iot* i2c error handling
 
   We're released a new update to [cylon-intel-iot][] that adds improved error handling for missing or disconnected i2c devices. Thank you [@derrell][] for your contribution that fixes this!
 
