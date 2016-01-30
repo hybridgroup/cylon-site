@@ -18,11 +18,12 @@ active_menu_docs: true
         Cylon.robot({
           connections: {
             leap: { adaptor: "leapmotion" },
-            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+            arduino: { adaptor: "firmata", port: "/dev/tty.usbmodem1411" }
           },
 
           devices: {
-            led: { driver: "led", pin: 13, connection: "arduino" }
+            led: { driver: "led", pin: 13, connection: "arduino" },
+            leapmotion: {driver: "leapmotion", connection: "leap"}
           },
 
           work: function(my) {
