@@ -284,11 +284,12 @@
 Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">leap</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span> },
-    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/ttyACM0</span><span class="delimiter">"</span></span> }
+    <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1411</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
-    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span> }
+    <span class="key">led</span>: { <span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">led</span><span class="delimiter">"</span></span>, <span class="key">pin</span>: <span class="integer">13</span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">arduino</span><span class="delimiter">"</span></span> },
+    <span class="key">leapmotion</span>: {<span class="key">driver</span>: <span class="string"><span class="delimiter">"</span><span class="content">leapmotion</span><span class="delimiter">"</span></span>, <span class="key">connection</span>: <span class="string"><span class="delimiter">"</span><span class="content">leap</span><span class="delimiter">"</span></span>}
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
