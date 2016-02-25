@@ -4,7 +4,7 @@
 
     Install the module with:
 
-        $ npm install cylon cylon-skynet
+        $ npm install cylon cylon-octoblu
 
     ## How to Use
 
@@ -14,7 +14,7 @@
         Cylon.robot({
           connections: {
             arduino: { adaptor: "firmata", port: "/dev/tty.usbmodem1411" },
-            skynet: { adaptor: "skynet", uuid: "SKYNET_UUID", token: "SKYNET_TOKEN" }
+            octoblu: { adaptor: "octoblu", uuid: "SKYNET_UUID", token: "SKYNET_TOKEN" }
           },
 
           devices: {
@@ -22,7 +22,7 @@
           },
 
           work: function(my) {
-            my.skynet.on("message", function(data) {
+            my.octoblu.on("message", function(data) {
               console.log(data);
 
               if (data.payload.red === "on") {
@@ -36,7 +36,7 @@
 
     ## How to Connect
 
-    First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:
+    First, you need to register a device on the Octoblu network. You can do this with a curl command similar to this one:
 
         $ curl -X POST http://meshblu.octoblu.com/devices
 

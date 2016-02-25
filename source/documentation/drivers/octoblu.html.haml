@@ -1,9 +1,9 @@
 ---
-title: Cylon.js - Skynet Driver
+title: Cylon.js - Octoblu Driver
 author: The Hybrid Group
-page_title: Drivers - Skynet
+page_title: Drivers - Octoblu
 page_subtitle: Cylon has a extensible system for connecting to hardware devices.
-page_title_docs: Skynet
+page_title_docs: Octoblu
 page_subtitle_docs: Driver
 layout: documentation
 page_title_show: true
@@ -12,12 +12,12 @@ active_menu_docs: true
 subnavjs: true
 ---
 %section.intro
-  = image_tag "/images/devices/skynet.jpg", class: "display"
+  = image_tag "/images/devices/octoblu.jpg", class: "display"
   .info-intro
     :markdown
       Open Communications Network and API for the internet of things.
 
-      For more info about the Skynet platform click [here](http://skynet.im/).
+      For more info about the Octoblu platform click [here](https://www.octoblu.com).
   .clear
 
 %section#HowToConnect
@@ -28,7 +28,7 @@ subnavjs: true
         Cylon.robot({
           connections: {
             arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
-            skynet: { adaptor: 'skynet', uuid: "742401f1-87a4-11e3-834d-670dadc0ddbf", token: "xjq9h3yzhemf5hfrme8y08fh0sm50zfr" }
+            octoblu: { adaptor: 'octoblu', uuid: "742401f1-87a4-11e3-834d-670dadc0ddbf", token: "xjq9h3yzhemf5hfrme8y08fh0sm50zfr" }
           },
 
           devices: {
@@ -49,7 +49,7 @@ subnavjs: true
         Cylon.robot({
           connections: {
             arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
-            skynet: { adaptor: 'skynet', uuid: "742401f1-87a4-11e3-834d-670dadc0ddbf", token: "xjq9h3yzhemf5hfrme8y08fh0sm50zfr" }
+            octoblu: { adaptor: 'octoblu', uuid: "742401f1-87a4-11e3-834d-670dadc0ddbf", token: "xjq9h3yzhemf5hfrme8y08fh0sm50zfr" }
           },
 
           devices: {
@@ -58,7 +58,7 @@ subnavjs: true
 
 
           work: function(my) {
-            my.skynet.on('message', function(data) {
+            my.octoblu.on('message', function(data) {
               if(data.message.red == 'on') {
                 my.led.turnOn()
               }
@@ -72,13 +72,13 @@ subnavjs: true
 %section.public-methods
   .commands-api#Commands
     %h1 Commands
-    = partial "/documentation/import/cylon-skynet/adaptor-commands"
+    = partial "/documentation/import/cylon-octoblu/adaptor-commands"
 
   .commands-api#Events
     %h1 Commands
-    = partial "/documentation/import/cylon-skynet/adaptor-events"
+    = partial "/documentation/import/cylon-octoblu/adaptor-events"
 
 %section.compatibility.hardware#Compatability
   %h2 Compatibility
   .devices
-    = partial "/partials/platforms_for_driver", locals: { driver: "Skynet" }
+    = partial "/partials/platforms_for_driver", locals: { driver: "Octoblu" }
