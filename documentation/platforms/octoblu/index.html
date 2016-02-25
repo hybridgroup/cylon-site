@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Skynet with Cylon.js</title>
+    <title>Octoblu with Cylon.js</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -125,6 +125,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/octoblu">Octoblu</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/rapiro">Rapiro</a>
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
-                  <a href="/documentation/platforms/skynet">Skynet</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
                   <a href="/documentation/platforms/speech">Speech</a>
@@ -195,6 +195,7 @@
                   <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/octoblu">Octoblu</a>
                   <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
@@ -203,7 +204,6 @@
                   <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
                   <a href="/documentation/drivers/rapiro">Rapiro</a>
                   <a href="/documentation/drivers/force">Salesforce</a>
-                  <a href="/documentation/drivers/skynet">Skynet</a>
                   <a href="/documentation/drivers/speech">Speech</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
                   <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
@@ -278,12 +278,12 @@
           <div class="container-documentation">
             <div class="page-title-docs">
               <div class="container">
-                <h1 class="title">Skynet</h1>
+                <h1 class="title">Octoblu</h1>
               </div>
             </div>
             <section class="subnav-drivers" id="mainsubnav">
               <div class="container">
-                <h5>Skynet</h5>
+                <h5>Octoblu</h5>
                 <nav class="documentation-nav">
                   <a href="#HowToInstall">How To Install</a>
                   <a href="#HowToUse">How To Use</a>
@@ -294,14 +294,14 @@
             </section>
             <br>
             <section class="intro">
-              <img class="display" src="/images/devices/skynet.jpg">
+              <img class="display" src="/images/devices/octoblu.jpg">
               <div class="info-intro">
                 <h4 class="subtitle">
-<a href="https://github.com/hybridgroup/cylon-skynet" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-skynet/issues">Issues</a>
+<a href="https://github.com/hybridgroup/cylon-octoblu" class="repository">Repository</a>| <a class="issues" href="https://github.com/hybridgroup/cylon-octoblu/issues">Issues</a>
 </h4>
                 <p>Open Communications Network and API for the internet of things.</p>
                 
-                <p>For more info about the Skynet platform click <a href="http://skynet.im/">here </a>.</p>
+                <p>For more info about the Octoblu platform click <a href="https://www.octoblu.com">here </a>.</p>
               </div>
               <div class="clear"></div>
             </section>
@@ -310,7 +310,7 @@
               
               <p>Install the module with:</p>
               
-              <pre class="CodeRay">$ npm install cylon cylon-skynet
+              <pre class="CodeRay">$ npm install cylon cylon-octoblu
 </pre>
               
               <h2 id="how-to-use">How to Use</h2>
@@ -320,7 +320,7 @@
 Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">firmata</span><span class="delimiter">"</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">"</span><span class="content">/dev/tty.usbmodem1411</span><span class="delimiter">"</span></span> },
-    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">skynet</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_UUID</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_TOKEN</span><span class="delimiter">"</span></span> }
+    <span class="key">octoblu</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">"</span><span class="content">octoblu</span><span class="delimiter">"</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_UUID</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">SKYNET_TOKEN</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
@@ -328,7 +328,7 @@ Cylon.robot({
   },
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.skynet.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
+    my.octoblu.on(<span class="string"><span class="delimiter">"</span><span class="content">message</span><span class="delimiter">"</span></span>, <span class="keyword">function</span>(data) {
       console.log(data);
 
       <span class="keyword">if</span> (data.payload.red === <span class="string"><span class="delimiter">"</span><span class="content">on</span><span class="delimiter">"</span></span>) {
@@ -343,7 +343,7 @@ Cylon.robot({
               
               <h2 id="how-to-connect">How to Connect</h2>
               
-              <p>First, you need to register a device on the Skynet network. You can do this with a curl command similar to this one:</p>
+              <p>First, you need to register a device on the Octoblu network. You can do this with a curl command similar to this one:</p>
               
               <pre class="CodeRay">$ curl -X POST http://meshblu.octoblu.com/devices
 </pre>
@@ -356,13 +356,13 @@ Cylon.robot({
             <section class="drivers" id="Drivers">
               <h2 id="drivers">Drivers</h2>
               
-              <p>Available drivers for the Skynet platform are listed below.</p>
+              <p>Available drivers for the Octoblu platform are listed below.</p>
               <div class="hardware">
                 <div class="devices">
                   <div class="compatability-link">
-                    <a href="/documentation/drivers/skynet" title="Skynet">
-                      <p class="title">Skynet</p>
-                      <img src="/images/devices/skynet.jpg" style="width: 100%">
+                    <a href="/documentation/drivers/octoblu" title="Octoblu">
+                      <p class="title">Octoblu</p>
+                      <img src="/images/devices/octoblu.jpg" style="width: 100%">
                     </a>
                   </div>
                 </div>

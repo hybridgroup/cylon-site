@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description">
     <meta content="The Hybrid Group" name="author">
-    <title>Cylon.js - Skynet Driver</title>
+    <title>Cylon.js - Octoblu Driver</title>
     <link href="/stylesheets/application.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/javascripts/plax.js"></script>
@@ -125,6 +125,7 @@
                   <a href="/documentation/platforms/mqtt">MQTT</a>
                   <a href="/documentation/platforms/nest">Nest</a>
                   <a href="/documentation/platforms/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/platforms/octoblu">Octoblu</a>
                   <a href="/documentation/platforms/opencv">OpenCV</a>
                   <a href="/documentation/platforms/particle">Particle</a>
                   <a href="/documentation/platforms/pebble">Pebble</a>
@@ -134,7 +135,6 @@
                   <a href="/documentation/platforms/rapiro">Rapiro</a>
                   <a href="/documentation/platforms/raspberry-pi">Raspberry Pi</a>
                   <a href="/documentation/platforms/force">Salesforce</a>
-                  <a href="/documentation/platforms/skynet">Skynet</a>
                   <a href="/documentation/platforms/sphero">Sphero</a>
                   <a href="/documentation/platforms/sphero-ble">Sphero BLE</a>
                   <a href="/documentation/platforms/speech">Speech</a>
@@ -195,6 +195,7 @@
                   <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
+                  <a href="/documentation/drivers/octoblu">Octoblu</a>
                   <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
@@ -203,7 +204,6 @@
                   <a href="/documentation/drivers/pinoccio-power">Pinoccio - Power</a>
                   <a href="/documentation/drivers/rapiro">Rapiro</a>
                   <a href="/documentation/drivers/force">Salesforce</a>
-                  <a href="/documentation/drivers/skynet">Skynet</a>
                   <a href="/documentation/drivers/speech">Speech</a>
                   <a href="/documentation/drivers/sphero">Sphero</a>
                   <a href="/documentation/drivers/wiced-sense">Wiced Sense</a>
@@ -278,12 +278,12 @@
           <div class="container-documentation">
             <div class="page-title-docs">
               <div class="container">
-                <h1 class="title">Skynet</h1>
+                <h1 class="title">Octoblu</h1>
               </div>
             </div>
             <section class="subnav-drivers" id="mainsubnav">
               <div class="container">
-                <h5>Skynet</h5>
+                <h5>Octoblu</h5>
                 <nav class="documentation-nav">
                   <a href="#HowToConnect">How to Connect</a>
                   <a href="#HowToUse">How To Use</a>
@@ -296,11 +296,11 @@
             </section>
             <br>
             <section class="intro">
-              <img class="display" src="/images/devices/skynet.jpg">
+              <img class="display" src="/images/devices/octoblu.jpg">
               <div class="info-intro">
                 <p>Open Communications Network and API for the internet of things.</p>
                 
-                <p>For more info about the Skynet platform click <a href="http://skynet.im/">here</a>.</p>
+                <p>For more info about the Octoblu platform click <a href="https://www.octoblu.com">here</a>.</p>
               </div>
               <div class="clear"></div>
             </section>
@@ -310,7 +310,7 @@
               <pre class="CodeRay">Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span> }
+    <span class="key">octoblu</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">octoblu</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
@@ -329,7 +329,7 @@
 Cylon.robot({
   <span class="key">connections</span>: {
     <span class="key">arduino</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">firmata</span><span class="delimiter">'</span></span>, <span class="key">port</span>: <span class="string"><span class="delimiter">'</span><span class="content">/dev/ttyACM0</span><span class="delimiter">'</span></span> },
-    <span class="key">skynet</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">skynet</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span> }
+    <span class="key">octoblu</span>: { <span class="key">adaptor</span>: <span class="string"><span class="delimiter">'</span><span class="content">octoblu</span><span class="delimiter">'</span></span>, <span class="key">uuid</span>: <span class="string"><span class="delimiter">"</span><span class="content">742401f1-87a4-11e3-834d-670dadc0ddbf</span><span class="delimiter">"</span></span>, <span class="key">token</span>: <span class="string"><span class="delimiter">"</span><span class="content">xjq9h3yzhemf5hfrme8y08fh0sm50zfr</span><span class="delimiter">"</span></span> }
   },
 
   <span class="key">devices</span>: {
@@ -338,7 +338,7 @@ Cylon.robot({
 
 
   <span class="function">work</span>: <span class="keyword">function</span>(my) {
-    my.skynet.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
+    my.octoblu.on(<span class="string"><span class="delimiter">'</span><span class="content">message</span><span class="delimiter">'</span></span>, <span class="keyword">function</span>(data) {
       <span class="keyword">if</span>(data.message.red == <span class="string"><span class="delimiter">'</span><span class="content">on</span><span class="delimiter">'</span></span>) {
         my.led.turnOn()
       }
@@ -355,7 +355,7 @@ Cylon.robot({
                 <h1>Commands</h1>
                 <h2 id="message">message</h2>
                 
-                <p>Posts a message to Skynet</p>
+                <p>Posts a message to Octoblu</p>
                 
                 <h3 id="params">Params</h3>
                 
@@ -374,7 +374,7 @@ Cylon.robot({
                 
                 <h2 id="subscribe">subscribe</h2>
                 
-                <p>Subscribes to data from Skynet</p>
+                <p>Subscribes to data from Octoblu</p>
                 
                 <h3 id="params-1">Params</h3>
                 
@@ -393,7 +393,7 @@ Cylon.robot({
                 <h1>Commands</h1>
                 <h2 id="message">message</h2>
                 
-                <p>Emitted when Skynet has received a new message</p>
+                <p>Emitted when Octoblu has received a new message</p>
                 
                 <h3 id="values">Values</h3>
                 
@@ -406,9 +406,9 @@ Cylon.robot({
               <h2>Compatibility</h2>
               <div class="devices">
                 <div class="compatability-link">
-                  <a href="/documentation/platforms/skynet">
-                    <p class="title">Skynet</p>
-                    <img src="/images/devices/skynet.jpg" style="width: 90%">
+                  <a href="/documentation/platforms/octoblu">
+                    <p class="title">Octoblu</p>
+                    <img src="/images/devices/octoblu.jpg" style="width: 90%">
                   </a>
                 </div>
               </div>
