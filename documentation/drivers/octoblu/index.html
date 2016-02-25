@@ -195,7 +195,6 @@
                   <a href="/documentation/drivers/nest-protect">Nest - Protect</a>
                   <a href="/documentation/drivers/nest-thermostat">Nest - Thermostat</a>
                   <a href="/documentation/drivers/neurosky">Neurosky Mindwave</a>
-                  <a href="/documentation/drivers/octoblu">Octoblu</a>
                   <a href="/documentation/drivers/ollie">Ollie</a>
                   <a href="/documentation/drivers/pebble">Pebble</a>
                   <a href="/documentation/drivers/hue-bridge">Philips Hue - Bridge</a>
@@ -380,10 +379,109 @@ Cylon.robot({
                 
                 <ul>
                   <li>
-<strong>data</strong> (<code>Object</code>) what to subscribe to</li>
+<strong>opts</strong> (<code>Object</code>) what to subscribe to</li>
                 </ul>
                 
                 <h3 id="returns-1">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="register">register</h2>
+                
+                <p>Register a device on Octoblu</p>
+                
+                <h3 id="params-2">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>opts</strong> (<code>Object</code>) device data</li>
+                </ul>
+                
+                <h3 id="returns-2">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="unregister">unregister</h2>
+                
+                <p>Unregister a device on Octoblu</p>
+                
+                <h3 id="params-3">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>opts</strong> (<code>Object</code>) device data</li>
+                </ul>
+                
+                <h3 id="returns-3">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="update">update</h2>
+                
+                <p>Update a device on Octoblu</p>
+                
+                <h3 id="params-4">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>data</strong> (<code>Object</code>) device data to update</li>
+                </ul>
+                
+                <h3 id="returns-4">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="whoami">whoami</h2>
+                
+                <p>Get device info for current device from Octoblu</p>
+                
+                <h3 id="params-5">Params</h3>
+                
+                <ul>
+                  <li>
+                    <p><strong>opts</strong> (<code>Object</code>) device data</p>
+                  </li>
+                  <li>
+                    <p><strong>callback</strong> (<code>Function</code>) to be triggered with device info</p>
+                  </li>
+                </ul>
+                
+                <h3 id="returns-5">Returns</h3>
+                
+                <ul>
+                  <li>(<code>undefined</code>)</li>
+                </ul>
+                
+                <hr>
+                
+                <h2 id="status">status</h2>
+                
+                <p>Get network status from Octoblu</p>
+                
+                <h3 id="params-6">Params</h3>
+                
+                <ul>
+                  <li>
+<strong>callback</strong> (<code>Function</code>) to be triggered with network info</li>
+                </ul>
+                
+                <h3 id="returns-6">Returns</h3>
                 
                 <ul>
                   <li>(<code>undefined</code>)</li>
@@ -405,12 +503,7 @@ Cylon.robot({
             <section class="compatibility hardware" id="Compatability">
               <h2>Compatibility</h2>
               <div class="devices">
-                <div class="compatability-link">
-                  <a href="/documentation/platforms/octoblu">
-                    <p class="title">Octoblu</p>
-                    <img src="/images/devices/octoblu.jpg" style="width: 90%">
-                  </a>
-                </div>
+                
               </div>
             </section>
           </div>
