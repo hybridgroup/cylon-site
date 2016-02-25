@@ -1,0 +1,34 @@
+---
+title: Octoblu with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - Octoblu
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Octoblu
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-octoblu' class='repository'>Repository</a>| <a class='issues' href='https://github.com/hybridgroup/cylon-octoblu/issues'>Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_nodriver_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/octoblu.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+      Open Communications Network and API for the internet of things.
+
+      For more info about the Octoblu platform click [here ](https://www.octoblu.com).
+  .clear
+
+= partial "documentation/platforms/partials/octoblu"
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    Available drivers for the Octoblu platform are listed below.
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Octoblu" }
