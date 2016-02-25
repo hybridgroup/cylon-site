@@ -1,0 +1,112 @@
+:markdown
+  ## flatTrim
+
+  Do a flat trim
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to invoke once set
+
+
+  ### Returns
+
+  - (<code>Boolean</code>)
+
+  * * *
+
+  ## takeOff
+
+  TAsk the drone to take off
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to invoke once hovering
+
+
+  ### Returns
+
+  - (<code>Boolean</code>)
+
+  * * *
+
+  ## pcmd
+
+  Ask the drone to move around.
+
+
+  ### Params
+
+
+  - **opts** (<code>Object</code>) flying options
+
+
+  - **opts.flag** (<code>Boolean</code>) flag to activate roll/pitch movement
+
+
+  - **opts.roll** (<code>Number</code>) Roll consign for the drone [-100;100]
+
+
+  - **opts.pitch** (<code>Number</code>) Pitch consign for the drone [-100;100]
+
+
+  - **opts.yaw** (<code>Number</code>) Yaw consign for the drone [-100;100]
+
+
+  - **opts.gaz** (<code>Number</code>) Gaz consign for the drone [-100;100]
+
+
+  - **callback** (<code>Function</code>) function to invoke once command sent
+
+
+  ### Returns
+
+  - (<code>Boolean</code>)
+
+  * * *
+
+  ## landing
+
+  Ask the drone to land
+
+
+  ### Params
+
+
+  - **callback** (<code>Function</code>) function to invoke once landed
+
+
+  ### Returns
+
+  - (<code>Null</code>)
+
+  * * *
+
+  ## emergency
+
+  Put drone in emergency user state
+
+
+  ### Returns
+
+  - (<code>Null</code>)
+
+  * * *
+
+  ## navigateHome
+
+  Ask the drone to fly to home
+
+
+  ### Params
+
+
+  - **start** (<code>Number</code>) 1 to start the navigate home, 0 to stop it
+
+
+  ### Returns
+
+  - (<code>null</code>)
