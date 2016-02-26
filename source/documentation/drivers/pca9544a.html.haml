@@ -1,0 +1,145 @@
+---
+title: Cylon.js - PCA9544a 4-Channel I2C Mux Driver
+author: The Hybrid Group
+page_title: Drivers - PCA9544a 4-Channel I2C Mux Driver
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: PCA9544a 4-Channel I2C Mux
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/pca9544a.jpg", class: "display"
+  .info-intro
+    :markdown
+      The 4 Channel I2C Multiplexer is basically a digital switch for up to 4 I2C devices.
+      It uses a PCA9544A multiplexer IC to allow one of four devices to be connected to
+      the I2C bus at one time, whilst disconnecting the other three. This is really useful
+      for I2C devices that have a fixed I2C address.
+
+      For more information click [here](http://www.hobbytronics.co.uk/pca9544a-i2c-mux).
+
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+            connections: {
+                raspi: {
+                    adaptor: 'raspi'
+                }
+            },
+
+            devices: {
+                pca9685: {
+                    driver: 'pca9685',
+                    connection: "raspi",
+                    address: "0x73"
+                }
+            },
+        });
+
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+        :::javascript
+        var cylon = require("cylon");
+
+        // We must use a mutex lock to ensure the mux state when reading values
+        var lock = new (require("rwlock"))();
+
+        // Mutex protected initialization
+        var getCoefficients = function(setChannel, bmp180) {
+            return lock.writeLock("i2c1_0x73", function(release) {
+              return setChannel(function() {
+                return bmp180.readCoefficients(function(err) {
+                  if (err) {
+                    console.log(err);
+                  }
+                  return release();
+                });
+              });
+            });
+          };
+
+        // Mutex protected data read
+        var getMeasurement = function(index, setChannel, bmp180) {
+            return lock.writeLock("i2c1_0x73", function(release) {
+              return setChannel(function() {
+                return bmp180.getPressure(1, function(err, val) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    val.time = Math.floor(Date.now() / 1000);
+                    console.log(index + " " + JSON.stringify(val));
+                  }
+                  release();
+                  return;
+                });
+              });
+            });
+          };
+
+        var robot_config = {
+            name: "test",
+            connections: {
+              raspi: {
+                adaptor: "raspi"
+              }
+            },
+            devices: {
+              pca9544a: {
+                driver: "pca9544a",
+                connection: "raspi",
+                address: "0x73"
+              },
+              bmp180_0: {
+                driver: "bmp180",
+                connection: "raspi",
+                address: "0x77"
+              },
+              bmp180_1: {
+                driver: "bmp180",
+                connection: "raspi",
+                address: "0x77"
+              }
+            },
+            work: function(my) {
+              /* The mux is in an unkown state at startup, so we mush re-read th
+              *   coefficients with a mutex protected call to ensure valid data
+              */
+              getCoefficients(my.pca9544a.setChannel1, my.bmp180_1);
+              getCoefficients(my.pca9544a.setChannel0, my.bmp180_0);
+              return every(20..seconds(), function() {
+                getMeasurement(1, my.pca9544a.setChannel1, my.bmp180_1);
+                getMeasurement(0, my.pca9544a.setChannel0, my.bmp180_0);
+                return;
+              });
+            }
+          };
+
+        cylon.robot(robot_config);
+
+        cylon.start();
+
+
+%section.public-methods
+  .commands-api#Commands
+    %h1 Commands
+    = partial "/documentation/import/cylon-i2c/pca9544a-commands"
+
+%section.compatibility.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "PCA9544a" }
