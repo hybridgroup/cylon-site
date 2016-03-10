@@ -1,0 +1,83 @@
+---
+title: Cylon.js - JHD1313M1 Driver
+author: The Hybrid Group
+page_title: Drivers - JHD1313M1 Driver
+page_subtitle: Cylon has a extensible system for connecting to hardware devices.
+page_title_docs: JHD1313M1
+page_subtitle_docs: Driver
+layout: documentation
+page_title_show: true
+subnav_driver: true
+subnav_circuit_driver: true
+active_menu_docs: true
+subnavjs: true
+---
+%section.intro
+  =image_tag "/images/devices/jhd1313m1-lcd.jpg", class: "display"
+  .info-intro
+    :markdown
+      Allows user to control JHD1313M1 RGB LCD via i2c interface.
+
+      For more information click [here](http://www.seeedstudio.com/depot/Grove-LCD-RGB-Backlight-p-1643.html).
+  .clear
+
+%section#HowToConnect
+  :markdown
+    ## How To Connect
+
+    Install the module with `npm install cylon-i2c`
+
+        :::javascript
+        Cylon.robot({
+          connections: {
+            arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' }
+          },
+
+          devices: {
+            led: { driver: 'jhd1313m1' }
+          },
+        });
+
+%section#HowToUse
+  :markdown
+    ## How To Use
+
+    Example, display a "Hello":
+
+        :::javascript
+        var Cylon = require("cylon");
+
+        var robot = Cylon.robot({
+          connections: {
+            arduino: { adaptor: "firmata", port: "/dev/ttyACM0" }
+          },
+
+          devices: {
+            lcd: { driver: "jhd1313m1" }
+          },
+
+          work: function(my) {
+            my.lcd.write("Hello");
+            my.lcd.setColor(255, 0, 0);
+          }
+        });
+
+        robot.start();
+
+%section.public-methods
+  .commands-api#Commands
+    %h2 Commands
+    = partial "/documentation/import/cylon-i2c/jhd1313m1-lcd-commands"
+
+%section.circuit#Circuit
+  %h2 Circuit
+  .description-circuit
+    %p
+  .image-circuit
+    %img{:src => "/documentation/drivers/breadboards/i2c/lcd_bb.png", :alt => ""}/
+  .clear
+
+%section.compatability.hardware#Compatability
+  %h2 Compatibility
+  .devices
+    = partial "/partials/platforms_for_driver", locals: { driver: "JHD1313M1 LCD" }
