@@ -1,0 +1,31 @@
+---
+page_title_show: true
+title: Muse with Cylon
+author: The Hybrid Group
+page_title: Platforms - Muse
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: Muse
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-muse' class='repository'>Repository</a>| <a class='issues' href='https://github.com/hybridgroup/cylon-muse/issues'>Issues</a>"
+layout: documentation
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/muse.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+      Muse is the first tool in the world that gives you accurate, real-time feedback on what’s happening in your brain when you meditate.
+
+      For more info about the Muse device click [here](http://www.choosemuse.com/).
+  .clear
+
+= partial "documentation/platforms/partials/muse"
+
+%section.drivers#Drivers
+  %h2 Drivers
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "Muse"}
