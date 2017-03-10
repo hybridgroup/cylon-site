@@ -1,0 +1,36 @@
+---
+title: C.H.I.P. with Cylon.js
+author: The Hybrid Group
+page_title: Platforms - C.H.I.P.
+page_subtitle: Cylon has an extensible system for connecting to hardware devices.
+page_title_docs: C.H.I.P.
+page_subtitle_docs: "<a href='https://github.com/hybridgroup/cylon-chip' target='_blank' class='repository'>Repository</a>|<a class+'issues' href='https://github.com/hybridgroup/cylon-chip/issues' target='_blank'> Issues</a>"
+layout: documentation
+page_title_show: true
+subnav_platform: true
+active_menu_platforms: true
+subnavjs: true
+---
+%section.intro
+  = image_tag "/images/devices/chip.jpg", class: "display"
+  .info-intro
+    %h4.subtitle= current_page.data.page_subtitle_docs
+    :markdown
+      The CHIP is a small, inexpensive ARM based single board computer,
+      with many different IO interfaces available on the pin headers.
+
+      For more info about the CHIP platform click [here](http://www.nextthing.co/pages/chip).
+
+  .clear
+
+= partial "documentation/platforms/partials/chip"
+
+%section.drivers#Drivers
+  :markdown
+    ## Drivers
+
+    All Cylon digital GPIO and i2c drivers listed below should work with the C.H.I.P.:
+
+  .hardware
+    .devices
+      = partial "/partials/devices_for_platform", locals: { platform: "CHIP" }

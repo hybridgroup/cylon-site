@@ -1,0 +1,55 @@
+%section.how-to
+  :markdown
+    ## How to Install
+
+    Install the module with:
+
+        $ npm install cylon cylon-chip
+
+
+    ## How to Use
+
+        :::javascript
+        "use strict";
+
+        var Cylon = require("cylon");
+
+        Cylon.robot({
+          connections: {
+            beaglebone: { adaptor: "chip" }
+          },
+
+          devices: {
+            led: { driver: "led", pin: "" },
+            button: { driver: "button", pin: "" }
+          },
+
+          work: function(my) {
+            my.button.on('push', function() {my.led.toggle()});
+          }
+        }).start();
+
+    ## How to Connect
+
+    You will likely want to connect your development machine to your C.H.I.P. while working on your code.
+    You can do this easily, just by connecting to the C.H.I.P. over USB. Then, you can connect to the
+    C.H.I.P. using Network-Over-USB, and upload driver or configuration changes.
+
+    ### OSX
+
+    Info goes here
+
+    ### Linux
+
+    Info goes here
+
+    ### Windows
+
+    Info goes here
+
+    ### Credentials
+
+    By default, the C.H.I.P's login credentials are:
+
+    - user: root
+    - pass: chip
